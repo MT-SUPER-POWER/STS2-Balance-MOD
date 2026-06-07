@@ -44,7 +44,7 @@ internal static class MerchantCardRemovalPricePatch
     int baseCost = AscensionHelper.GetValueIfAscension(
         AscensionLevel.Inflation,
         75,  // 高进阶价格
-        50   // 普通价格
+     50   // 普通价格
     );
 
     int priceIncrease = 25;
