@@ -61,3 +61,4 @@
 ## 2. 反编译代码所在位置（必须知道）
 
 - Path: [D:\Game\Godot\Slay the Spire 2]
+- 参考代码 [./docs/references/WatcherMod]

@@ -1,3 +1,6 @@
 {
-  
+  "STS2BALANCEMOD-DEATH_REAP.title": "Death Reap",
+  "STS2BALANCEMOD-DEATH_REAP.description": "Deal {Damage:diff()} damage. Heal HP equal to unblocked damage dealt. NL Exhaust.",
+  "STS2BALANCEMOD-POWER_THOUGHT.title": "Power Through",
+  "STS2BALANCEMOD-POWER_THOUGHT.description": "Gain {Block:diff()} [gold]Block[/gold]. NL Add 2 [gold]Wounds[/gold] into your [gold]Hand[/gold]."
 }

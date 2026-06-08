@@ -4,7 +4,7 @@
   "author": "Momo",
   "description": "杀戮尖塔2 平衡调整 Mod",
   "version": "v0.0.1",
-  "has_pck": false,
+  "has_pck": true,
   "has_dll": true,
   "dependencies": [
     {
