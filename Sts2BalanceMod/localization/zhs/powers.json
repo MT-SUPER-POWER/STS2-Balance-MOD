@@ -1,5 +1,5 @@
 {
   "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.title": "电动力学",
-  "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.description": "闪电球造成的伤害增加 {Amount} 点。 NL 可叠加。",
-  "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.smartDescription": "闪电球造成的伤害增加 #b{Amount} 点。"
+  "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.description": "[gold]闪电[/gold]球改为[gold]攻击所有敌人[/gold]。",
+  "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.smartDescription": "[gold]闪电[/gold]球改为[gold]攻击所有敌人[/gold]。"
 }

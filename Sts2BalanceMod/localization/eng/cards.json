@@ -6,6 +6,6 @@
   "STS2BALANCEMOD-CONCENTRATE.title": "Concentrate",
   "STS2BALANCEMOD-CONCENTRATE.description": "Discard {Cards:diff()} cards. \nGain [gold]2[/gold] Energy.",
   "STS2BALANCEMOD-ELECTRODYNAMICS.title": "Electrodynamics",
-  "STS2BALANCEMOD-ELECTRODYNAMICS.description": "Channel {Cards:diff()} [gold]Lightning[/gold] Orbs.\nLightning Orbs deal {ElectrodynamicsPower:diff()} more damage.",
+  "STS2BALANCEMOD-ELECTRODYNAMICS.description": "Channel {Cards:diff()} [gold]Lightning[/gold] Orbs.\n[gold]Lightning[/gold] Orbs hit [gold]ALL enemies[/gold].",
   "WRAITH_FORM.description": "Gain {IntangiblePower:diff()} [gold]Intangible[/gold]."
 }
