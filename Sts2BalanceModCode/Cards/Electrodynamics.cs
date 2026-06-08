@@ -11,18 +11,14 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 
 /// <summary>
 /// LEGACY-04 — 电动力学（机器人，替换吞噬暗影）
-/// 2费 | 能力 | 召唤 2 个闪电球，闪电球伤害 +3
-/// 升级：召唤 3 个闪电球，伤害 +4
-/// Electrodynamics 由 ConcatModelsFromMods 注入 DefectCardPool，
-/// ConsumingShadow 由 DefectCardPoolPatch 从数组中移除。
+/// 2费 | 稀有 | 能力 | 召唤 2 个闪电球，闪电球改为攻击所有敌人
 /// </summary>
 [Pool(typeof(DefectCardPool))]
 public sealed class Electrodynamics : Sts2CardModel
 {
   public Electrodynamics() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
   {
-    WithCards(2, 1);  // 召唤闪电球 2 → 3
-    WithPower<ElectrodynamicsPower>(3, 1); // 闪电球伤害 +3 → +4
+    WithCards(2, 1); // 召唤 2 个闪电球
   }
 
   protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -32,12 +28,6 @@ public sealed class Electrodynamics : Sts2CardModel
     for (int i = 0; i < DynamicVars.Cards.IntValue; i++)
       await OrbCmd.Channel<LightningOrb>(choiceContext, Owner);
 
-    await PowerCmd.Apply<ElectrodynamicsPower>(
-        choiceContext,
-        Owner.Creature,
-        DynamicVars["ElectrodynamicsPower"].BaseValue,
-        Owner.Creature,
-        this
-    );
+    await PowerCmd.Apply<ElectrodynamicsPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
   }
 }
