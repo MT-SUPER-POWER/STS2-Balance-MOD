@@ -32,7 +32,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="*" PrivateAssets="All"/>
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.2.0" PrivateAssets="All"/>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />
         <!-- Generates a .pck file when building if only using simple assets. May not work on all setups. Uncomment to test. -->
@@ -80,6 +80,13 @@
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
         <Copy SourceFiles="$(AssemblyName).json" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
         <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
+
+        <!-- NOTE: 确保联机双方使用同一份 BaseLib，构建时自动同步到 mods 文件夹 -->
+        <Message Text="Copying BaseLib to mods folder." Importance="high"/>
+        <ItemGroup>
+            <BaseLibFiles Include="$(NuGetPackageRoot)alchyr.sts2.baselib/**/lib/**/BaseLib.dll;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.pck;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.json;"/>
+        </ItemGroup>
+        <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/"/>
     </Target>
 
     <Target Name="CopyQuickPck" AfterTargets="PackPck" Condition="Exists('$(PckPackerOutputPath)') And '$(PckPackerSkipped)' != 'true'">
