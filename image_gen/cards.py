@@ -6,7 +6,7 @@
   - 小图（卡牌列表等）  : 500x380  -> Sts2BalanceMod/images/card_portraits/
 
 用法:
-  python cards.py                     # 处理 image_gen/source/ 下所有 PNG
+  python cards.py                     # 处理 image_gen/source/cards/ 下所有 PNG
   python cards.py death_reap.png      # 只处理指定文件
   python cards.py --mode contain      # 完整显示（留透明边），默认 cover 居中裁切
   python cards.py --anchor top        # 裁切锚点: center / top / bottom
@@ -23,7 +23,7 @@ from PIL import Image
 # ======================== CONFIG ========================
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-INPUT_DIR = SCRIPT_DIR / "source"
+INPUT_DIR = SCRIPT_DIR / "source" / "cards"
 MOD_ROOT = SCRIPT_DIR.parent / "Sts2BalanceMod" / "images" / "card_portraits"
 
 BIG_SIZE = (1000, 760)
