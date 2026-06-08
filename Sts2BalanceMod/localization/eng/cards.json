@@ -1,10 +1,11 @@
 {
   "STS2BALANCEMOD-DEATH_REAP.title": "Death Reap",
-  "STS2BALANCEMOD-DEATH_REAP.description": "Deal {Damage:diff()} damage. Heal HP equal to unblocked damage dealt. NL Exhaust.",
+  "STS2BALANCEMOD-DEATH_REAP.description": "Deal {Damage:diff()} damage to all enemies. Heal HP equal to [gold]unblocked damage[/gold].",
   "STS2BALANCEMOD-POWER_THOUGHT.title": "Power Through",
-  "STS2BALANCEMOD-POWER_THOUGHT.description": "Gain {Block:diff()} [gold]Block[/gold]. NL Add 2 [gold]Wounds[/gold] into your [gold]Hand[/gold].",
+  "STS2BALANCEMOD-POWER_THOUGHT.description": "Gain {Block:diff()} [gold]Block[/gold]. \nAdd 2 [gold]Wounds[/gold] into your [gold]Hand[/gold].",
   "STS2BALANCEMOD-CONCENTRATE.title": "Concentrate",
-  "STS2BALANCEMOD-CONCENTRATE.description": "Discard {Cards:diff()} cards. NL Gain [gold]2[/gold] Energy.",
+  "STS2BALANCEMOD-CONCENTRATE.description": "Discard {Cards:diff()} cards. \nGain [gold]2[/gold] Energy.",
   "STS2BALANCEMOD-ELECTRODYNAMICS.title": "Electrodynamics",
-  "STS2BALANCEMOD-ELECTRODYNAMICS.description": "Channel {Cards:diff()} [gold]Lightning[/gold] Orbs. NL Lightning Orbs deal {ElectrodynamicsPower:diff()} more damage."
+  "STS2BALANCEMOD-ELECTRODYNAMICS.description": "Channel {Cards:diff()} [gold]Lightning[/gold] Orbs.\nLightning Orbs deal {ElectrodynamicsPower:diff()} more damage.",
+  "WRAITH_FORM.description": "Gain {IntangiblePower:diff()} [gold]Intangible[/gold]."
 }

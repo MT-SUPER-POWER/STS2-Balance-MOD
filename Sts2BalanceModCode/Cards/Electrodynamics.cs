@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Orbs;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Powers;
@@ -12,8 +13,10 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 /// LEGACY-04 — 电动力学（机器人，替换吞噬暗影）
 /// 2费 | 能力 | 召唤 2 个闪电球，闪电球伤害 +3
 /// 升级：召唤 3 个闪电球，伤害 +4
-/// 不添加 [Pool] — 由 DefectCardPoolPatch 直接替换 ConsumingShadow
+/// Electrodynamics 由 ConcatModelsFromMods 注入 DefectCardPool，
+/// ConsumingShadow 由 DefectCardPoolPatch 从数组中移除。
 /// </summary>
+[Pool(typeof(DefectCardPool))]
 public sealed class Electrodynamics : Sts2CardModel
 {
   public Electrodynamics() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)

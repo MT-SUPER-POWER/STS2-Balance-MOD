@@ -20,6 +20,7 @@ public sealed class PowerThought : Sts2CardModel
   public PowerThought() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
   {
     WithBlock(15, 5); // 基础 15，升级 +5 = 20
+    WithTip(typeof(Wound));
   }
 
   protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
