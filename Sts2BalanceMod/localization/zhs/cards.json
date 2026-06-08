@@ -2,5 +2,9 @@
   "STS2BALANCEMOD-DEATH_REAP.title": "死亡收割",
   "STS2BALANCEMOD-DEATH_REAP.description": "造成 {Damage:diff()} 点伤害。回复等量于造成的非格挡伤害的生命。 NL 消耗 。",
   "STS2BALANCEMOD-POWER_THOUGHT.title": "硬撑",
-  "STS2BALANCEMOD-POWER_THOUGHT.description": "获得 {Block:diff()} 点[gold]格挡[/gold]。 NL 将 2 张[gold]伤口[/gold]加入你的[gold]手牌[/gold]。"
+  "STS2BALANCEMOD-POWER_THOUGHT.description": "获得 {Block:diff()} 点[gold]格挡[/gold]。 NL 将 2 张[gold]伤口[/gold]加入你的[gold]手牌[/gold]。",
+  "STS2BALANCEMOD-CONCENTRATE.title": "全神贯注",
+  "STS2BALANCEMOD-CONCENTRATE.description": "丢弃 {Cards:diff()} 张牌。 NL 获得 [gold]2[/gold] 点能量。",
+  "STS2BALANCEMOD-ELECTRODYNAMICS.title": "电动力学",
+  "STS2BALANCEMOD-ELECTRODYNAMICS.description": "召唤 {Cards:diff()} 个[gold]闪电[/gold]球。 NL 闪电球造成的伤害增加 {ElectrodynamicsPower:diff()} 点。"
 }

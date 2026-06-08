@@ -21,9 +21,10 @@ public partial class MainFile : Node
     // Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(Assembly.GetExecutingAssembly());
 
     // ======================== CARD POOL REGISTRATION ========================
-    // 将自定义卡牌显式注册到 Ironclad 卡池（必须在游戏初始化前调用）
+    // 将自定义卡牌显式注册到卡池（必须在游戏初始化前调用）
     ModHelper.AddModelToPool<IroncladCardPool, DeathReap>();
     ModHelper.AddModelToPool<IroncladCardPool, PowerThought>();
+    ModHelper.AddModelToPool<SilentCardPool, Concentrate>();
 
     Harmony harmony = new(ModId);
     harmony.PatchAll();

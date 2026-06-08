@@ -62,3 +62,4 @@
 
 - Path: [D:\Game\Godot\Slay the Spire 2]
 - 参考代码 [./docs/references/WatcherMod]
+- 运行日志 [C:\Users\shuhe\AppData\Roaming\SlayTheSpire2\logs\godot.log]

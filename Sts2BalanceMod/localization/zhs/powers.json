@@ -1,0 +1,5 @@
+{
+  "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.title": "电动力学",
+  "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.description": "闪电球造成的伤害增加 {Amount} 点。 NL 可叠加。",
+  "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.smartDescription": "闪电球造成的伤害增加 #b{Amount} 点。"
+}

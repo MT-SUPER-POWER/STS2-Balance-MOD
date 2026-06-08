@@ -1,3 +1,5 @@
 {
-  
+  "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.title": "Electrodynamics",
+  "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.description": "Lightning Orbs deal {Amount} more damage. NL Stacks.",
+  "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.smartDescription": "Lightning Orbs deal #b{Amount} more damage."
 }

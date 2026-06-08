@@ -11,13 +11,13 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 
 /// <summary>
 /// LEGACY-02 — 硬撑（战士）
-/// 1费 | 技能 | 获得 15 点格挡, 往手中塞入两张伤口
+/// 1费 | 罕见 | 技能 | 获得 15 点格挡, 往手中塞入两张伤口
 /// 升级：格挡 15→20
 /// </summary>
 [Pool(typeof(IroncladCardPool))]
 public sealed class PowerThought : Sts2CardModel
 {
-  public PowerThought() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+  public PowerThought() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
   {
     WithBlock(15, 5); // 基础 15，升级 +5 = 20
   }
