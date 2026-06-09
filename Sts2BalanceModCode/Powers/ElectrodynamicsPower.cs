@@ -1,6 +1,4 @@
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Models.Orbs;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
