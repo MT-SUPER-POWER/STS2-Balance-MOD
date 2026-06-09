@@ -1,5 +1,8 @@
 {
   "STS2BALANCEMOD-SUNDIAL.title": "日晷",
-  "STS2BALANCEMOD-SUNDIAL.description": "每将[gold]抽牌堆[/gold]洗牌[blue]{Shuffles}[/blue]次，获得[blue]{Energy}[/blue]。",
-  "STS2BALANCEMOD-SUNDIAL.flavor": "「早期人类对时间的愚蠢痴迷导致他们仰望天空寻求指引，希望找到永恒之物。」——佐罗斯"
+  "STS2BALANCEMOD-SUNDIAL.description": "每将[blue]抽牌堆[/blue]洗牌[blue]{Shuffles}[/blue]次，获得[blue]{Energy}[/blue]。",
+  "STS2BALANCEMOD-SUNDIAL.flavor": "「早期人类对时间的愚蠢痴迷导致他们仰望天空寻求指引，希望找到永恒之物。」——佐罗斯",
+  "STS2BALANCEMOD-ORANGE_PILL.title": "橙色药丸",
+  "STS2BALANCEMOD-ORANGE_PILL.description": "你每在同一回合内打[gold]能力牌[/gold] 、[gold]攻击牌[/gold]和[gold]技能牌[/gold]各一张，移除你身上的所有负面效果",
+  "STS2BALANCEMOD-ORANGE_PILL.flavor": "“用塔里各处真菌做出来的药，包治百病！”"
 }

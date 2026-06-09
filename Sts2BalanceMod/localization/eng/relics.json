@@ -1,5 +1,8 @@
 {
   "STS2BALANCEMOD-SUNDIAL.title": "Sundial",
-  "STS2BALANCEMOD-SUNDIAL.description": "Every [blue]{Shuffles}[/blue] times you shuffle your [gold]Draw Pile[/gold], gain [blue]{Energy}[/blue].",
-  "STS2BALANCEMOD-SUNDIAL.flavor": "\"Early man's foolish obsession with time caused them to look to the sky for guidance, hoping for something permanent.\" - Zoroth"
+  "STS2BALANCEMOD-SUNDIAL.description": "Every [blue]{Shuffles}[/blue] times you shuffle your [blue]Draw Pile[/blue], gain [blue]{Energy}[/blue].",
+  "STS2BALANCEMOD-SUNDIAL.flavor": "\"Early man's foolish obsession with time caused them to look to the sky for guidance, hoping for something permanent.\" - Zoroth",
+  "STS2BALANCEMOD-ORANGE_PILL.title": "Orange Pill",
+  "STS2BALANCEMOD-ORANGE_PILL.description": "Each turn, after you play a [gold]Power[/gold], an [gold]Attack[/gold], and a [gold]Skill[/gold], remove all negative effects from yourself.",
+  "STS2BALANCEMOD-ORANGE_PILL.flavor": "\"A pill made from all the fungi in the Spire. Cures everything!\""
 }

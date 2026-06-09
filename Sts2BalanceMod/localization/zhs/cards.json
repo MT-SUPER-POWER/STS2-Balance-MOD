@@ -4,7 +4,7 @@
   "STS2BALANCEMOD-POWER_THOUGHT.title": "硬撑",
   "STS2BALANCEMOD-POWER_THOUGHT.description": "获得 {Block:diff()} 点[gold]格挡[/gold]。 \n将 2 张[gold]伤口[/gold]加入你的[gold]手牌[/gold]。",
   "STS2BALANCEMOD-CONCENTRATE.title": "全神贯注",
-  "STS2BALANCEMOD-CONCENTRATE.description": "丢弃 {Cards:diff()} 张牌。\n获得 [gold]2[/gold] 点能量。",
+  "STS2BALANCEMOD-CONCENTRATE.description": "丢弃 {Cards:diff()} 张牌。\n获得 [blue]2[/blue] 点能量。",
   "STS2BALANCEMOD-ELECTRODYNAMICS.title": "电动力学",
   "STS2BALANCEMOD-ELECTRODYNAMICS.description": "召唤 {Cards:diff()} 个[gold]闪电[/gold]球。\n[gold]闪电[/gold]球改为[gold]攻击所有敌人[/gold]。",
   "WRAITH_FORM.description": "获得{IntangiblePower:diff()}[gold]无实体[/gold]。"
