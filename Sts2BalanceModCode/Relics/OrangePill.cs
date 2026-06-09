@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Rooms;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
@@ -177,5 +178,14 @@ public sealed class OrangePill : Sts2RelicModel
     {
       await PowerCmd.Remove(debuff);
     }
+  }
+
+  public override Task AfterCombatEnd(CombatRoom _)
+  {
+    // 只清掉激活状态，否则下一场战斗可能还显示 Active。
+    base.Status = RelicStatus.Normal;
+    ResetPlayedFlags();
+
+    return Task.CompletedTask;
   }
 }
