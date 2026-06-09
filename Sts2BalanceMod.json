@@ -2,7 +2,7 @@
   "id": "Sts2BalanceMod",
   "name": "Sts2BalanceMod",
   "author": "Momo",
-  "description": "杀戮尖塔2 平衡调整 Mod",
+  "description": "《杀戮尖塔2》平衡调整 Mod",
   "version": "v0.0.2",
   "has_pck": true,
   "has_dll": true,
@@ -12,5 +12,6 @@
       "min_version": "3.2.0"
     }
   ],
-  "affects_gameplay": true
+  "affects_gameplay": true,
+  "min_game_version": "0.107.0"
 }
