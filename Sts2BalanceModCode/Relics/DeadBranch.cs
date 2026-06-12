@@ -50,6 +50,13 @@ public sealed class DeadBranch : Sts2RelicModel
   public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
   {
     if (card.Owner != Owner) return;
+    var newGeneratedCard = GenerateRandomCard();
+
+    // NOTE: 如何让卡片有短时效的保留效果
+    if (causedByEthereal) newGeneratedCard.GiveSingleTurnRetain();
+
+    Flash();    // NOTE: 让遗物闪烁一下
+
     await CardPileCmd.AddGeneratedCardToCombat(GenerateRandomCard(), PileType.Hand, Owner);
   }
 }
