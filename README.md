@@ -211,36 +211,41 @@ python image_gen/relics.py Sundial.png
 
 ## 发布到 GitHub Releases
 
-发布分两部分，**无需 self-hosted runner**：
-
-| 步骤 | 谁来做 | 做什么 |
-|------|--------|--------|
-| Release 说明 | GitHub Actions（推送 Tag 触发） | 从 `CHANGELOG.md` 提取 `# vx.x.x` 写入 Release |
-| 安装包 zip | 本机 `Hooks/release.ps1` | `dotnet publish` 构建后上传附件 |
+项目使用模块化的发布脚本，发布流程由用户手动管理 Git 标签，脚本负责自动化打包和附件上传。
 
 ### 前置条件
 
-1. 本机可正常 `dotnet publish -c Release`
+1. 本机环境支持 `dotnet publish -c Release`
 2. 已安装 [GitHub CLI](https://cli.github.com/) 并登录：`gh auth login`
 
 ### 发布步骤
 
-1. 在 `CHANGELOG.md` 写好对应版本段落（`# v0.0.4.1`）
-2. 执行发布脚本：
+1. **更新版本号**：在 `CHANGELOG.md` 写好对应版本段落（如 `# v0.0.5`）。
+2. **同步配置**（可选）：运行脚本更新 `Sts2BalanceMod.json`。
+   ```powershell
+   .\Hooks\release.ps1 -Version 0.0.5 -UpdateJson
+   ```
+3. **手动推送**：提交代码并打上 Tag 推送到 GitHub。
+   ```bash
+   git add .
+   git commit -m "chore: release v0.0.5"
+   git tag v0.0.5
+   git push origin main v0.0.5
+   ```
+4. **打包上传**：运行脚本执行构建并上传 zip 到对应的 Release。
+   ```powershell
+   .\Hooks\release.ps1 -Version 0.0.5 -Build -Upload
+   ```
 
-```powershell
-.\Hooks\package-release.ps1 -Version 0.0.4
-```
+### 常用命令
 
-脚本会：构建 → 打包 zip → 推送 Tag → 等待 Actions 写好 Release 说明 → 上传 zip 附件。
+| 命令 | 说明 |
+|------|------|
+| `.\Hooks\release.ps1 -Version 0.0.5 -Build` | **仅本地打包**：构建并生成 `dist/*.zip` |
+| `.\Hooks\release.ps1 -Version 0.0.5 -Upload` | **仅上传**：将已存在的 zip 上传到 GitHub (支持覆盖) |
+| `.\Hooks\release.ps1 -Version 0.0.5 -All` | **全自动化**：同步 JSON + 构建 + 上传 |
 
-### 仅本地打包
-
-```powershell
-.\Hooks\package-release.ps1 -Version 0.0.4
-# 或
-.\Hooks\release.ps1 -Version 0.0.4 -SkipPush
-```
+> **提示**：`-Upload` 步骤会自动检测 GitHub Release。如果不存在，它会创建一个包含更新日志说明的 Release 页面，并将包上传。如果已存在附件，会直接覆盖更新。
 
 ---
 
