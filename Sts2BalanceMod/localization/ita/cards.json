@@ -4,7 +4,7 @@
   "STS2BALANCEMOD-POWER_THOUGHT.title": "Resistenza",
   "STS2BALANCEMOD-POWER_THOUGHT.description": "Ottieni {Block:diff()} [gold]Blocco[/gold]. \nAggiungi 2 [gold]Ferite[/gold] alla tua [gold]Mano[/gold].",
   "STS2BALANCEMOD-CONCENTRATE.title": "Concentrazione",
-  "STS2BALANCEMOD-CONCENTRATE.description": "Scarta {Cards:diff()} carte. \nOttieni [blue]2[/blue] Energia.",
+  "STS2BALANCEMOD-CONCENTRATE.description": "Scarta {Cards:diff()} carte. \nOttieni {Energy:energyIcons()} .",
   "STS2BALANCEMOD-ELECTRODYNAMICS.title": "Elettrodinamica",
   "STS2BALANCEMOD-ELECTRODYNAMICS.description": "Incarni {Cards:diff()} Sfere [gold]Fulmine[/gold].\nLe Sfere [gold]Fulmine[/gold] colpiscono [gold]TUTTI i nemici[/gold].",
   "WRAITH_FORM.description": "Ottieni {IntangiblePower:diff()} [gold]Intangibilità[/gold]."
