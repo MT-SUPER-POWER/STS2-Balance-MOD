@@ -1,0 +1,16 @@
+[project]
+name = "sts2-image-gen"
+version = "0.1.0"
+description = "Slay the Spire 2 Mod 卡牌/遗物/能力图生成与裁剪工具"
+requires-python = ">=3.11"
+dependencies = [
+    "Pillow>=10.0.0",
+]
+
+[project.scripts]
+gen-cards = "cards:main"
+gen-powers = "powers:main"
+gen-relics = "relics:main"
+
+[tool.uv]
+dev-dependencies = []
