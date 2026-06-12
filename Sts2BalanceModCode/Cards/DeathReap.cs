@@ -16,7 +16,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 public sealed class DeathReap : Sts2CardModel
 {
   public DeathReap()
-      : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+      : base(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
   {
     WithDamage(4, 2); // 基础 4，升级 +2 = 6
     WithKeywords(CardKeyword.Exhaust);
@@ -24,12 +24,13 @@ public sealed class DeathReap : Sts2CardModel
 
   protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
   {
-    var target = cardPlay.Target;
-    if (target == null) return;
+    // TODO: 后期可以自己加一个死收割的动画效果和怪物受击动画
+    SfxCmd.Play("event:/sfx/characters/ironclad/ironclad_whirlwind");
 
     var result = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
         .FromCard(this)
-        .Targeting(target)
+        .TargetingAllOpponents(CombatState)
+        .WithHitFx("vfx/vfx_giant_horizontal_slash")
         .Execute(choiceContext);
 
     int healed = result.Results
