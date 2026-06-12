@@ -4,5 +4,8 @@
   "STS2BALANCEMOD-SUNDIAL.flavor": "\"Early man's foolish obsession with time caused them to look to the sky for guidance, hoping for something permanent.\" - Zoroth",
   "STS2BALANCEMOD-ORANGE_PILL.title": "Orange Pill",
   "STS2BALANCEMOD-ORANGE_PILL.description": "Each turn, after you play a [gold]Power[/gold], an [gold]Attack[/gold], and a [gold]Skill[/gold], remove all negative effects from yourself.",
-  "STS2BALANCEMOD-ORANGE_PILL.flavor": "\"A pill made from all the fungi in the Spire. Cures everything!\""
+  "STS2BALANCEMOD-ORANGE_PILL.flavor": "\"A pill made from all the fungi in the Spire. Cures everything!\"",
+  "STS2BALANCEMOD-DEAD_BRANCH.title": "Dead Branch",
+  "STS2BALANCEMOD-DEAD_BRANCH.description": "Whenever you [gold]Exhaust[/gold] a card, add a random card into your hand.",
+  "STS2BALANCEMOD-DEAD_BRANCH.flavor": "The branch of a tree from a forgotten era."
 }
