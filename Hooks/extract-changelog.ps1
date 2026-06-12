@@ -1,7 +1,4 @@
-# 从 CHANGELOG.md 提取指定版本的更新说明。
-# 用法：
-#   .\Hooks\extract-changelog.ps1 -Version 0.0.4.1
-#   .\Hooks\extract-changelog.ps1 -Version 0.0.4.1 -OutputPath dist\release_notes.md
+# Extract release notes for a version from CHANGELOG.md
 
 param(
     [Parameter(Mandatory = $true)]
@@ -14,7 +11,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 if (-not (Test-Path $ChangelogPath)) {
-    throw "未找到 $ChangelogPath"
+    throw "Missing $ChangelogPath"
 }
 
 $content = Get-Content -Path $ChangelogPath -Raw -Encoding UTF8
@@ -35,13 +32,13 @@ foreach ($pattern in $patterns) {
 }
 
 if (-not $notes) {
-    $notes = "未在 CHANGELOG.md 中找到 ``# v$Version`` 段落，请查看 [CHANGELOG.md](CHANGELOG.md)。"
+    $notes = "No # v$Version section in CHANGELOG.md. See CHANGELOG.md."
 }
 
 if ($OutputPath) {
     $dir = Split-Path $OutputPath -Parent
     if ($dir) { New-Item -ItemType Directory -Force -Path $dir | Out-Null }
-    $notes | Out-File -FilePath $OutputPath -Encoding utf8NoBOM
+    [System.IO.File]::WriteAllText($OutputPath, $notes, (New-Object System.Text.UTF8Encoding $false))
 }
 
 Write-Output $notes

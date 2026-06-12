@@ -42,7 +42,7 @@ cd STS2-Balance-MOD
 dotnet publish -c Release
 ```
 
-Release 构建产物位于项目内 `build/Sts2BalanceMod/`（dll + json + pck）；Debug 构建仍自动拷贝到游戏 `mods/` 目录方便本地调试。
+Release 构建产物位于 `dist/Sts2BalanceMod/`（dll + json + pck），打包后为 `dist/Sts2BalanceMod-vX.X.X.zip`；Debug 构建仍自动拷贝到游戏 `mods/` 目录。
 
 ---
 
@@ -140,7 +140,7 @@ Sts2BalanceMod/
 │   ├── sts2-modding-guide.md        #   Mod 制作教程
 │   └── references/WatcherMod/       #   参考 Mod（git submodule）
 └── .github/workflows/               # CI/CD
-    └── publish.yml                  #   自动构建 + 发布
+    └── release.yml                  #   推送 Tag 时写入 Release 说明
 ```
 
 ---
@@ -229,7 +229,7 @@ python image_gen/relics.py Sundial.png
 2. 执行发布脚本：
 
 ```powershell
-.\Hooks\release.ps1 -Version 0.0.4.1
+.\Hooks\package-release.ps1 -Version 0.0.4
 ```
 
 脚本会：构建 → 打包 zip → 推送 Tag → 等待 Actions 写好 Release 说明 → 上传 zip 附件。
@@ -237,9 +237,9 @@ python image_gen/relics.py Sundial.png
 ### 仅本地打包
 
 ```powershell
-.\Hooks\package-release.ps1 -Version 0.0.4.1
+.\Hooks\package-release.ps1 -Version 0.0.4
 # 或
-.\Hooks\release.ps1 -Version 0.0.4.1 -SkipPush
+.\Hooks\release.ps1 -Version 0.0.4 -SkipPush
 ```
 
 ---

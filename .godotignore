@@ -1,0 +1,10 @@
+# NOTE: 避免 Godot 扫描参考代码、构建产物和脚本目录
+docs/
+dist/
+Hooks/
+image_gen/
+.github/
+.git/
+bin/
+obj/
+.godot/

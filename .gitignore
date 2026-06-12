@@ -1,15 +1,30 @@
 .godot/
+
+# Compile
 bin/
-build/
 dist/
 /android/
+publish/
+j
 .git/
 .idea/
 .vs/
-publish/
+
+# NuGet
 Properties/
 packages/
-.editorconfig
+
 *.user
+
+# C#
 Directory.Build.props
+
+# Setting
+.editorconfig
+
+# Docs
 docs/references/WatcherMod
+
+# Godot
+*.uid
+*.import

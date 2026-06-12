@@ -17,8 +17,8 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <!-- NOTE: Release 输出到项目 build/；Debug 仍输出到游戏 mods/ 方便本地调试 -->
-        <ModOutputDir Condition="'$(Configuration)' == 'Release'">$(MSBuildProjectDirectory)\build\$(MSBuildProjectName)\</ModOutputDir>
+        <!-- NOTE: Release 输出到 dist/；Debug 仍输出到游戏 mods/ 方便本地调试 -->
+        <ModOutputDir Condition="'$(Configuration)' == 'Release'">$(MSBuildProjectDirectory)\dist\$(MSBuildProjectName)\</ModOutputDir>
         <ModOutputDir Condition="'$(Configuration)' != 'Release'">$(ModsPath)$(MSBuildProjectName)\</ModOutputDir>
     </PropertyGroup>
 
@@ -66,6 +66,7 @@
         <None Include=".gitignore" />
         <None Include="Sts2BalanceMod.json" />
         <None Include="project.godot"/>
+        <None Include="Sts2BalanceMod.sln" />
         <None Include="Sts2BalanceMod/**" />
     </ItemGroup>
 
@@ -113,7 +114,16 @@
         <MakeDir Directories="$(ModOutputDir)" />
         <Message Text="Exporting Godot .pck to $(ModOutputDir)" Importance="high"/>
         <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(ModOutputDir)$(MSBuildProjectName).pck&quot;"
-            EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
-            ContinueOnError="WarnAndContinue"/>
+            EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1" />
+    </Target>
+
+    <!-- NOTE: Release 发布必须产出完整 pck，避免 Godot 导出失败后仍误报成功 -->
+    <Target Name="VerifyReleaseOutputs" AfterTargets="GodotPublish;CopyQuickPck" Condition="'$(Configuration)' == 'Release'">
+        <Error Text="Missing release dll: $(ModOutputDir)$(MSBuildProjectName).dll"
+            Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).dll')" />
+        <Error Text="Missing release json: $(ModOutputDir)$(MSBuildProjectName).json"
+            Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).json')" />
+        <Error Text="Missing release pck: $(ModOutputDir)$(MSBuildProjectName).pck. Check Godot export logs and Sts2BalanceMod.sln."
+            Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).pck')" />
     </Target>
 </Project>

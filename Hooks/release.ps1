@@ -1,97 +1,90 @@
-# 本机构建 Mod 安装包，推送 Tag 后由 Actions 写入 Release 说明，本脚本上传 zip 附件。
-# 需要：gh auth login
+# Release helper script: modularized for manual control.
 #
-# 用法：
-#   .\Hooks\release.ps1 -Version 0.0.4.1
-#   .\Hooks\release.ps1 -Version 0.0.4.1 -SkipPush    # 仅本地构建打包
+# Usage:
+#   .\Hooks\release.ps1 -Version 0.0.5 -Build           # Only build the zip
+#   .\Hooks\release.ps1 -Version 0.0.5 -Upload          # Only upload existing zip
+#   .\Hooks\release.ps1 -Version 0.0.5 -UpdateJson      # Only update version in json
+#   .\Hooks\release.ps1 -Version 0.0.5 -Build -Upload   # Build and then upload
 
 param(
     [Parameter(Mandatory = $true)]
     [string]$Version,
 
-    [switch]$SkipPush,
-    [switch]$SkipBuild,
-    [int]$WaitSeconds = 300
+    [switch]$UpdateJson,
+    [switch]$Build,
+    [switch]$Upload,
+    [switch]$All
 )
 
 $ErrorActionPreference = "Stop"
 $root = Split-Path $PSScriptRoot -Parent
 $modName = "Sts2BalanceMod"
 $tag = "v$Version"
+$zip = Join-Path $root "dist\$modName-v$Version.zip"
 
 Set-Location $root
 
-function Wait-ForGitHubRelease {
-    param(
-        [string]$ReleaseTag,
-        [int]$TimeoutSec
-    )
-
-    $deadline = (Get-Date).AddSeconds($TimeoutSec)
-    while ((Get-Date) -lt $deadline) {
-        gh release view $ReleaseTag 2>$null | Out-Null
-        if ($LASTEXITCODE -eq 0) {
-            Write-Host ">> Release $ReleaseTag 已就绪"
-            return
-        }
-        Write-Host ">> 等待 Actions 创建 Release $ReleaseTag ..."
-        Start-Sleep -Seconds 5
-    }
-
-    throw "等待 Release 超时（${TimeoutSec}s）。请检查 GitHub Actions 是否成功，或手动创建 Release 后执行：`n  gh release upload $ReleaseTag dist\$modName-v$Version.zip --clobber"
+if ($All) {
+    $UpdateJson = $true
+    $Build = $true
+    $Upload = $true
 }
 
-if (-not $SkipPush) {
-    if (git tag --list $tag) { throw "本地 Tag $tag 已存在。请换版本号或删除：git tag -d $tag" }
-    $remoteTags = git ls-remote --tags origin "refs/tags/$tag"
-    if ($remoteTags) { throw "远程 Tag $tag 已存在。请换版本号或删除远程 Tag。" }
-}
-
-# --- 写入版本号 ---
-$jsonPath = "Sts2BalanceMod.json"
-$json = Get-Content $jsonPath -Raw
-$json = $json -replace '"version"\s*:\s*"[^"]*"', "`"version`": `"v$Version`""
-$json | Set-Content $jsonPath -Encoding utf8NoBOM -NoNewline
-Write-Host ">> 已更新 $jsonPath -> v$Version"
-
-# --- 构建 + 打包 ---
-if (-not $SkipBuild) {
-    $zip = & "$PSScriptRoot\package-release.ps1" -Version $Version
-} else {
-    $zip = Join-Path $root "dist\$modName-v$Version.zip"
-    if (-not (Test-Path $zip)) { throw "未找到 $zip，去掉 -SkipBuild 或先手动打包。" }
-}
-
-Write-Host ">> 打包完成: $zip"
-
-# --- 预览 CHANGELOG（Release 正文由 Actions 从 CHANGELOG.md 写入） ---
-Write-Host "----- CHANGELOG 预览 -----"
-& "$PSScriptRoot\extract-changelog.ps1" -Version $Version
-Write-Host "--------------------------"
-
-if ($SkipPush) {
-    Write-Host ">> 已跳过 push / 上传（-SkipPush）"
+if (-not ($UpdateJson -or $Build -or $Upload)) {
+    Write-Host "Usage: .\Hooks\release.ps1 -Version <version> [-UpdateJson] [-Build] [-Upload] [-All]"
+    Write-Host "Example: .\Hooks\release.ps1 -Version 0.0.5 -Build -Upload"
     exit 0
 }
 
-if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
-    throw "未找到 gh 命令。请安装 GitHub CLI 并执行 gh auth login"
+# --- Step 1: Update JSON version ---
+if ($UpdateJson) {
+    $jsonPath = "Sts2BalanceMod.json"
+    Write-Host ">> Updating $jsonPath to v$Version..."
+    $json = Get-Content $jsonPath -Raw
+    $json = $json -replace '"version"\s*:\s*"[^"]*"', ('"version": "v' + $Version + '"')
+    [System.IO.File]::WriteAllText((Join-Path $root $jsonPath), $json, (New-Object System.Text.UTF8Encoding $false))
+    Write-Host ">> Done."
 }
 
-# --- 提交、打 Tag、推送（触发 Actions 写 Release 说明） ---
-git add $jsonPath
-if (git diff --cached --quiet) {
-    Write-Warning "Sts2BalanceMod.json 无变更，跳过 commit。"
-} else {
-    git commit -m "chore(release): v$Version"
+# --- Step 2: Build Package ---
+if ($Build) {
+    Write-Host ">> Packaging release..."
+    $zip = & "$PSScriptRoot\package-release.ps1" -Version $Version | Select-Object -Last 1
+    if (-not (Test-Path $zip)) {
+        throw "Package step did not produce a zip file at: $zip"
+    }
+    Write-Host ">> Package ready: $zip"
 }
 
-git tag $tag
-git push origin HEAD --tags
-Write-Host ">> 已推送 $tag，等待 Actions 创建 Release ..."
+# --- Step 3: Upload to GitHub ---
+if ($Upload) {
+    if (-not (Test-Path $zip)) {
+        throw "Zip file not found: $zip. Run with -Build first or ensure it exists."
+    }
 
-Wait-ForGitHubRelease -ReleaseTag $tag -TimeoutSec $WaitSeconds
+    if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
+        throw "gh CLI not found. Please install GitHub CLI and run 'gh auth login'."
+    }
 
-# --- 上传安装包附件 ---
-gh release upload $tag $zip --clobber
-Write-Host ">> 已上传附件到 $tag"
+    Write-Host ">> Checking for release $tag on GitHub..."
+    gh release view $tag 1>$null 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host ">> Release $tag not found. Creating a draft release..."
+        # If the release doesn't exist, we create it. 
+        # We can use the changelog extractor if it exists.
+        $notes = "Release $tag"
+        if (Test-Path "$PSScriptRoot\extract-changelog.ps1") {
+            $notes = & "$PSScriptRoot\extract-changelog.ps1" -Version $Version
+        }
+        $notes | gh release create $tag --title "Release $tag" --notes-file -
+    }
+
+    Write-Host ">> Uploading $zip to release $tag..."
+    # --clobber overwrites existing assets with the same name
+    gh release upload $tag $zip --clobber
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host ">> Upload successful!"
+    } else {
+        throw "gh release upload failed."
+    }
+}

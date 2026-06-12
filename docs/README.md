@@ -9,7 +9,7 @@
 
 - [发布脚本](../Hooks/release.ps1) — 本机构建打包并上传 Release 附件（说明由 Actions 从 CHANGELOG 写入）
 - [提取更新说明](../Hooks/extract-changelog.ps1) — 从 CHANGELOG.md 读取指定版本段落
-- [仅打包](../Hooks/package-release.ps1) — `dotnet publish` → `build/Sts2BalanceMod/` → `dist/*.zip`
+- [仅打包](../Hooks/package-release.ps1) — `dotnet publish` → `dist/Sts2BalanceMod/` → `dist/*.zip`
 - [卡牌立绘切图](../image_gen/cards.py) — 将原始素材裁切为 1000×760 / 500×380，输出到 `Sts2BalanceMod/images/card_portraits/`
 - [遗物图标切图](../image_gen/relics.py) — 将原始素材裁切为 256×256 / 94×94，轮廓图 94×94，输出到 `Sts2BalanceMod/images/relics/`
 
