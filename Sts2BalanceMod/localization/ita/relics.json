@@ -9,6 +9,6 @@
   "STS2BALANCEMOD-DEAD_BRANCH.description": "Ogni volta che [gold]Esaurisci[/gold] una carta, aggiungi una carta casuale alla tua mano.",
   "STS2BALANCEMOD-DEAD_BRANCH.flavor": "Il ramo di un albero di un'era dimenticata.",
   "STS2BALANCEMOD-OMAMORI.title": "Omamori",
-  "STS2BALANCEMOD-OMAMORI.description": "Nega le prossime 2 [purple]Maledizioni[/purple] che otterresti.",
+  "STS2BALANCEMOD-OMAMORI.description": "Nega le prossime {Curses} [purple]Maledizioni[/purple] che otterresti.",
   "STS2BALANCEMOD-OMAMORI.flavor": "Un comune amuleto per tenere lontani gli spiriti maligni. Questo sembra possedere una scintilla divina."
 }

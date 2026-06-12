@@ -1,18 +1,11 @@
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.RelicPools;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Relics;
-using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Runs;
-using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
@@ -33,32 +26,24 @@ public sealed class Omamori : Sts2RelicModel
 {
   // NOTE: CursesKey 与 relics.json 中的 {Curses} 占位符对应，用于本地化文本的动态数值替换
   private const string CursesKey = "Curses";
-
   private bool _isActivating;
+  private int _cursesRemaining = 2;
 
   public override string FlashSfx => "event:/sfx/ui/relic_activate_general";
-  public override RelicRarity Rarity => RelicRarity.Common;
+  public override RelicRarity Rarity => RelicRarity.Event;
 
   // 显示计数器（遗物图标右下角显示剩余可抵消次数）
-  public override bool ShowCounter => true;
+  public override bool ShowCounter => true;     // NOTE: 制作一个带有计数的遗物
 
   /// <summary>
-  /// 遗物图标上显示的数字：
-  ///   - 动画播放期间显示满值（2），表示"正在抵消"的状态
-  ///   - 平时显示剩余可抵消次数（2、1、0）
+  /// 遗物图标上显示的数字
   /// </summary>
-  public override int DisplayAmount
+  public override int DisplayAmount       // NOTE: 告知外部 遗物还有 多少 计数的接口
   {
-    get
-    {
-      if (IsActivating)
-        return base.DynamicVars[CursesKey].IntValue;
-
-      return CursesRemaining;
-    }
+    get { return CursesRemaining; }
   }
 
-  // NOTE: 注册变量到本地化文本，key 名与 relics.json 中的 {Curses} 对应
+  // NOTE: 给外部看的是具体数量
   protected override IEnumerable<DynamicVar> CanonicalVars =>
   [
     new DynamicVar(CursesKey, 2m),  // 初始可抵消 2 张诅咒
@@ -66,22 +51,21 @@ public sealed class Omamori : Sts2RelicModel
 
   /// <summary>
   /// 动画激活状态属性。
-  /// 修改时需要调用 AssertMutable() 确保遗物当前可修改，
-  /// 然后通过 InvokeDisplayAmountChanged() 通知 UI 刷新显示数值。
+  /// 激活动画的时候，通知外部读取新的遗物计数
   /// </summary>
   private bool IsActivating
   {
     get => _isActivating;
     set
     {
-      AssertMutable();
+      AssertMutable();    // 相当于保护锁
       _isActivating = value;
-      InvokeDisplayAmountChanged();
+      InvokeDisplayAmountChanged();    // NOTE: 通知外部变更遗物计数地主动 notify
     }
   }
 
   /// <summary>
-  /// 剩余可抵消诅咒次数 — 带 [SavedProperty] 特性，会自动存盘并在读档时恢复。
+  /// 剩余可抵消诅咒次数 — 带 [SavedProperty] 特性，SL 也不会重置
   /// </summary>
   [SavedProperty]
   public int CursesRemaining
@@ -94,7 +78,7 @@ public sealed class Omamori : Sts2RelicModel
       InvokeDisplayAmountChanged();
     }
   }
-  private int _cursesRemaining = 2;
+
 
   /// <summary>
   /// 每次卡牌改变牌堆时调用。
@@ -103,18 +87,15 @@ public sealed class Omamori : Sts2RelicModel
   public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? clonedBy)
   {
     // 只处理诅咒牌
-    if (card.Type != CardType.Curse)
-      return;
+    if (card.Type != CardType.Curse) return;
 
     // 只响应持有者本人的牌，不响应敌人或队友的
-    if (card.Owner != Owner)
-      return;
+    if (card.Owner != Owner) return;
 
     // 次数已用完
-    if (CursesRemaining <= 0)
-      return;
+    if (CursesRemaining <= 0) return;
 
-    // 扣减剩余次数
+    // 扣减剩余次数, 注意这里扣的是 SL 的那个值
     CursesRemaining--;
 
     // 将诅咒牌送入消耗堆
@@ -136,14 +117,10 @@ public sealed class Omamori : Sts2RelicModel
   /// </summary>
   private async Task DoActivateVisuals()
   {
-    IsActivating = true;
+    this.IsActivating = true;
     Flash();
-
     await Cmd.Wait(1f);
-
-    IsActivating = false;
-
-    base.Status = CursesRemaining > 0 ? RelicStatus.Normal : RelicStatus.Disabled;
+    this.IsActivating = false;
   }
 
 }
