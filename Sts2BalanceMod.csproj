@@ -16,6 +16,12 @@
         <NoWarn>$(NoWarn);MSB3270</NoWarn>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <!-- NOTE: Release 输出到项目 build/；Debug 仍输出到游戏 mods/ 方便本地调试 -->
+        <ModOutputDir Condition="'$(Configuration)' == 'Release'">$(MSBuildProjectDirectory)\build\$(MSBuildProjectName)\</ModOutputDir>
+        <ModOutputDir Condition="'$(Configuration)' != 'Release'">$(ModsPath)$(MSBuildProjectName)\</ModOutputDir>
+    </PropertyGroup>
+
     <ItemGroup Condition="Exists('$(Sts2DataDir)')" >
         <Reference Include="0Harmony">
             <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
@@ -76,22 +82,26 @@
     </Target>
 
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
-        <Message Text="Copying .dll .pdb and .json to mods folder." Importance="high" />
-        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
-        <Copy SourceFiles="$(AssemblyName).json" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
-        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
+        <MakeDir Directories="$(ModOutputDir)" />
+        <Message Text="Copying mod files to $(ModOutputDir)" Importance="high" />
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModOutputDir)" />
+        <Copy SourceFiles="$(AssemblyName).json" DestinationFolder="$(ModOutputDir)" />
+        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(ModOutputDir)"
+              Condition="'$(Configuration)' != 'Release'" />
 
-        <!-- NOTE: 确保联机双方使用同一份 BaseLib，构建时自动同步到 mods 文件夹 -->
-        <Message Text="Copying BaseLib to mods folder." Importance="high"/>
-        <ItemGroup>
+        <!-- NOTE: 仅 Debug 构建时同步 BaseLib 到游戏 mods，方便本机联机调试 -->
+        <Message Text="Copying BaseLib to mods folder." Importance="high"
+                 Condition="'$(Configuration)' != 'Release'"/>
+        <ItemGroup Condition="'$(Configuration)' != 'Release'">
             <BaseLibFiles Include="$(NuGetPackageRoot)alchyr.sts2.baselib/**/lib/**/BaseLib.dll;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.pck;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.json;"/>
         </ItemGroup>
-        <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/"/>
+        <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/"
+              Condition="'$(Configuration)' != 'Release'"/>
     </Target>
 
     <Target Name="CopyQuickPck" AfterTargets="PackPck" Condition="Exists('$(PckPackerOutputPath)') And '$(PckPackerSkipped)' != 'true'">
-        <Message Text="Copying quick .pck to mods folder." Importance="high"/>
-        <Copy SourceFiles="$(PckPackerOutputPath)" DestinationFolder="$(ModsPath)/$(MSBuildProjectName)" />
+        <Message Text="Copying quick .pck to $(ModOutputDir)" Importance="high"/>
+        <Copy SourceFiles="$(PckPackerOutputPath)" DestinationFolder="$(ModOutputDir)" />
     </Target>
 
     <Target Name="NeedGodotForPublish" BeforeTargets="Publish">
@@ -100,8 +110,9 @@
     </Target>
 
     <Target Name="GodotPublish" AfterTargets="Publish" Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
-        <Message Text="Exporting Godot .pck to mods folder" Importance="high"/>
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(ModsPath)$(MSBuildProjectName)/$(MSBuildProjectName).pck&quot;"
+        <MakeDir Directories="$(ModOutputDir)" />
+        <Message Text="Exporting Godot .pck to $(ModOutputDir)" Importance="high"/>
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(ModOutputDir)$(MSBuildProjectName).pck&quot;"
             EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
             ContinueOnError="WarnAndContinue"/>
     </Target>

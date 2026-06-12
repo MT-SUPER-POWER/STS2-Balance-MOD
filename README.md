@@ -42,7 +42,7 @@ cd STS2-Balance-MOD
 dotnet publish -c Release
 ```
 
-构建产物位于 `.godot/mono/temp/bin/Release/publish/`。
+Release 构建产物位于项目内 `build/Sts2BalanceMod/`（dll + json + pck）；Debug 构建仍自动拷贝到游戏 `mods/` 目录方便本地调试。
 
 ---
 
@@ -211,7 +211,13 @@ python image_gen/relics.py Sundial.png
 
 ## GitHub Release 自动构建
 
-推送 Tag 后，`.github/workflows/publish.yml` 会自动构建 Mod 并发布到 GitHub Releases。
+推送 Tag 后，`.github/workflows/publish.yml` 会在**本机 self-hosted runner** 上构建并发布到 GitHub Releases。无需配置 Steam Secrets，直接复用你本地已装好的 STS2 / Godot 环境。
+
+### 一次性配置（self-hosted runner）
+
+1. 在本机安装 [GitHub Actions Runner](https://github.com/actions/runner) 并注册到仓库
+2. 确保本机已能正常 `dotnet publish -c Release`（`Directory.Build.props` 路径正确）
+3. 推送 Tag 后，runner 会自动接管构建
 
 ### 发布步骤
 
@@ -225,25 +231,20 @@ git push origin v0.0.4
 
 3. Actions 完成后，Release 页面会显示 `CHANGELOG.md` 中该版本的改动说明，并附带 `.zip` 安装包
 
+### 本地手动打包（可选）
+
+不跑 Actions 时，也可在本机直接打包：
+
+```powershell
+.\Hooks\package-release.ps1 -Version 0.0.4
+# build/Sts2BalanceMod/  →  dist/Sts2BalanceMod-v0.0.4.zip
+```
+
 ### Actions 流程
 
 1. 从 `CHANGELOG.md` 提取 `# vx.x.x` 段落作为 Release 说明
-2. 通过 DepotDownloader 下载 STS2（用于编译引用 `sts2.dll`）
-3. 安装 Godot 4.5.1 与 .NET 9 SDK
-4. 执行 `dotnet publish -c Release`，打包 `Sts2BalanceMod/` 文件夹为 `.zip`
-5. 创建 GitHub Release 并上传产物
-
-### 所需 Secrets
-
-在仓库 **Settings → Secrets and variables → Actions** 中配置：
-
-| Secret | 说明 |
-|--------|------|
-| `STEAM_USERNAME` | 拥有 STS2 的 Steam 账号 |
-| `STEAM_PASSWORD` | 对应密码 |
-| `STEAM_GUARD_CODE` | 可选；开启 Steam 令牌时需要填写一次性验证码 |
-
-> **NOTE**: CI 使用 `public-beta` 分支下载游戏（Depot `2868841`）。建议使用专用 Steam 小号，避免个人主号频繁输入令牌。
+2. 本机执行 `dotnet publish -c Release` → 输出到 `build/Sts2BalanceMod/`
+3. 打包为 `dist/Sts2BalanceMod-vX.X.X.zip` 并上传 Release
 
 ---
 
