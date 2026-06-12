@@ -7,5 +7,8 @@
   "STS2BALANCEMOD-ORANGE_PILL.flavor": "用塔里各处真菌做出来的药，包治百病！",
   "STS2BALANCEMOD-DEAD_BRANCH.title": "枯木树枝",
   "STS2BALANCEMOD-DEAD_BRANCH.description": "每当你[gold]消耗[/gold]一张牌增加一张随机手牌到你的手中",
-  "STS2BALANCEMOD-DEAD_BRANCH.flavor": "一个早已被遗忘的时代所遗留下来的树木枝条。"
+  "STS2BALANCEMOD-DEAD_BRANCH.flavor": "一个早已被遗忘的时代所遗留下来的树木枝条。",
+  "STS2BALANCEMOD-OMAMORI.title": "御守",
+  "STS2BALANCEMOD-OMAMORI.description": "抵消你接下来获得的 2 张[purple]诅咒[/purple]牌。",
+  "STS2BALANCEMOD-OMAMORI.flavor": "驱邪避凶的寻常护符，但这枚似乎蕴藏着一丝神性。"
 }

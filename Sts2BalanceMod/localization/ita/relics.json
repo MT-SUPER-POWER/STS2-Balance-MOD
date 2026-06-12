@@ -1,0 +1,14 @@
+{
+  "STS2BALANCEMOD-SUNDIAL.title": "Meridiana",
+  "STS2BALANCEMOD-SUNDIAL.description": "Ogni [blue]{Shuffles}[/blue] volte che rimescoli il tuo [blue]Mazzo di Pesca[/blue], ottieni [blue]{Energy}[/blue].",
+  "STS2BALANCEMOD-SUNDIAL.flavor": "\"L'ossessione dell'uomo primitivo per il tempo lo spinse a cercare una guida nel cielo, sperando in qualcosa di permanente.\" - Zoroth",
+  "STS2BALANCEMOD-ORANGE_PILL.title": "Pillola Arancione",
+  "STS2BALANCEMOD-ORANGE_PILL.description": "Ogni turno, dopo aver giocato un [gold]Potere[/gold], un [gold]Attacco[/gold] e un'[gold]Abilità[/gold], rimuovi tutti gli effetti negativi da te stesso.",
+  "STS2BALANCEMOD-ORANGE_PILL.flavor": "\"Una pillola fatta con tutti i funghi della Guglia. Cura ogni male!\"",
+  "STS2BALANCEMOD-DEAD_BRANCH.title": "Ramo Secco",
+  "STS2BALANCEMOD-DEAD_BRANCH.description": "Ogni volta che [gold]Esaurisci[/gold] una carta, aggiungi una carta casuale alla tua mano.",
+  "STS2BALANCEMOD-DEAD_BRANCH.flavor": "Il ramo di un albero di un'era dimenticata.",
+  "STS2BALANCEMOD-OMAMORI.title": "Omamori",
+  "STS2BALANCEMOD-OMAMORI.description": "Nega le prossime 2 [purple]Maledizioni[/purple] che otterresti.",
+  "STS2BALANCEMOD-OMAMORI.flavor": "Un comune amuleto per tenere lontani gli spiriti maligni. Questo sembra possedere una scintilla divina."
+}
