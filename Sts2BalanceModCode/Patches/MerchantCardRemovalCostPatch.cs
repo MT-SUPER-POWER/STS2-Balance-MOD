@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Threading.Tasks;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Merchant;
@@ -25,7 +26,7 @@ internal static class MerchantCardRemovalPricePatch
       AccessTools.Field(typeof(MerchantEntry), "_player");
 
   [HarmonyPrefix]
-  private static bool Prefix(MerchantCardRemovalEntry __instance)
+  private static async Task<bool> Prefix(MerchantCardRemovalEntry __instance)
   {
     // 如果游戏更新导致字段名变了，就放弃补丁，走原版逻辑，避免直接炸游戏
     if (CostField is null || PlayerField is null)
