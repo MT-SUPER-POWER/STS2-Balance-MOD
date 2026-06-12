@@ -1,10 +1,10 @@
 using System.Reflection;
 using HarmonyLib;
-
 using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Merchant;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
+using Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches;
 
@@ -12,6 +12,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches;
 /// SHOP-01: 调整删牌价格
 ///   低进阶 (V1-5):   BaseCost=50, PriceIncrease=25
 ///   高进阶 (A6+):    BaseCost=75, PriceIncrease=25
+///   有微笑面具的时候，删牌价格固定 50
 /// </summary>
 [HarmonyPatch(typeof(MerchantCardRemovalEntry), nameof(MerchantCardRemovalEntry.CalcCost))]
 internal static class MerchantCardRemovalPricePatch
@@ -38,13 +39,20 @@ internal static class MerchantCardRemovalPricePatch
       return true;
     }
 
+    if (player.GetRelic<SmilingMask>() != null)
+    {
+      CostField.SetValue(__instance, SmilingMask.FIXED_DELETE_PRICE);
+      player.GetRelic<SmilingMask>()?.Flash();
+      return false;
+    }
+
     int removalsUsed = player.ExtraFields.CardShopRemovalsUsed;   // 删了多少次牌
 
     // 这里改成你自己的价格逻辑
     int baseCost = AscensionHelper.GetValueIfAscension(
         AscensionLevel.Inflation,
         75,  // 高进阶价格
-     50   // 普通价格
+        50   // 普通价格
     );
 
     int priceIncrease = 25;

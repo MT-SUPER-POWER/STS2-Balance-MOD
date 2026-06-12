@@ -10,5 +10,8 @@
   "STS2BALANCEMOD-DEAD_BRANCH.flavor": "The branch of a tree from a forgotten era.",
   "STS2BALANCEMOD-OMAMORI.title": "Omamori",
   "STS2BALANCEMOD-OMAMORI.description": "Negate the next {Curses} [purple]Curses[/purple] you would obtain.",
-  "STS2BALANCEMOD-OMAMORI.flavor": "A common charm for staving off vile spirits. This one seems to possess a spark of the divine."
+  "STS2BALANCEMOD-OMAMORI.flavor": "A common charm for staving off vile spirits. This one seems to possess a spark of the divine.",
+  "STS2BALANCEMOD-SMILING_MASK.title": "Smiling Mask",
+  "STS2BALANCEMOD-SMILING_MASK.description": "The Merchant's card removal service now always costs [blue]50[/blue] Gold.",
+  "STS2BALANCEMOD-SMILING_MASK.flavor": "Mask worn by the merchant. He must have spares..."
 }

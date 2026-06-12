@@ -10,5 +10,8 @@
   "STS2BALANCEMOD-DEAD_BRANCH.flavor": "一个早已被遗忘的时代所遗留下来的树木枝条。",
   "STS2BALANCEMOD-OMAMORI.title": "御守",
   "STS2BALANCEMOD-OMAMORI.description": "抵消你接下来获得的 {Curses} 张[purple]诅咒[/purple]牌。",
-  "STS2BALANCEMOD-OMAMORI.flavor": "驱邪避凶的寻常护符，但这枚似乎蕴藏着一丝神性。"
+  "STS2BALANCEMOD-OMAMORI.flavor": "驱邪避凶的寻常护符，但这枚似乎蕴藏着一丝神性。",
+  "STS2BALANCEMOD-SMILING_MASK.title": "微笑面具",
+  "STS2BALANCEMOD-SMILING_MASK.description": "商人的删牌服务现在固定花费[blue]50[/blue]金币。",
+  "STS2BALANCEMOD-SMILING_MASK.flavor": "商人戴过的面具。他肯定还有备用的……"
 }
