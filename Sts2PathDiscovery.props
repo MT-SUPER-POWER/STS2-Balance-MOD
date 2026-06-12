@@ -2,6 +2,9 @@
     <!--
       Fills Sts2Path and Sts2DataDir when not set (e.g. no local.props).
       Override via local.props or MSBuild /p:Sts2Path=...
+
+      自动适配 Windows / Linux / macOS（含 Apple Silicon 与 Intel）。
+      如果外部已设置的 Sts2Path 路径在当前系统上不存在，会自动重新检测。
     -->
     <!-- OS Detection -->
     <PropertyGroup>
@@ -11,7 +14,7 @@
         <IsOSX Condition="$([MSBuild]::IsOSPlatform('OSX'))">true</IsOSX>
     </PropertyGroup>
 
-    <!-- Default -->
+    <!-- ========== Windows ========== -->
     <PropertyGroup Condition="'$(IsLinux)' != 'true' And '$(IsOSX)' != 'true'">
         <!-- Try getting uninstall location first -->
         <RegistrySts2Path>$([MSBuild]::GetRegistryValueFromView('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 2868840', 'InstallLocation', '', RegistryView.Registry64, RegistryView.Registry32))</RegistrySts2Path>
@@ -19,29 +22,39 @@
         <SteamLibraryPath Condition="'$(SteamLibraryPath)' == '' and Exists('$(AutoSteamPath)/common/Slay the Spire 2')">$(AutoSteamPath)</SteamLibraryPath>
         <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">C:/Program Files (x86)/Steam/steamapps</SteamLibraryPath>
 
-        <Sts2Path Condition="'$(Sts2Path)' == '' and Exists('$(SteamLibraryPath)/common/Slay the Spire 2')">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
-        <Sts2Path Condition="'$(Sts2Path)' == '' and Exists('$(RegistrySts2Path)/data_sts2_windows_x86_64')">$(RegistrySts2Path)</Sts2Path>
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
+        <!-- 外部设置的 Sts2Path 不存在时，自动检测 -->
+        <Sts2Path Condition="!Exists('$(Sts2Path)') and Exists('$(SteamLibraryPath)/common/Slay the Spire 2')">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
+        <Sts2Path Condition="!Exists('$(Sts2Path)') and Exists('$(RegistrySts2Path)/data_sts2_windows_x86_64')">$(RegistrySts2Path)</Sts2Path>
+        <Sts2Path Condition="!Exists('$(Sts2Path)')">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
 
         <ModsPath>$(Sts2Path)/mods/</ModsPath>
         <Sts2DataDir>$(Sts2Path)/data_sts2_windows_x86_64</Sts2DataDir>
     </PropertyGroup>
 
-    <!-- Linux -->
+    <!-- ========== Linux ========== -->
     <PropertyGroup Condition="'$(IsLinux)' == 'true'">
         <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">$(HOME)/.local/share/Steam/steamapps</SteamLibraryPath>
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
+        <Sts2Path Condition="!Exists('$(Sts2Path)') and Exists('$(SteamLibraryPath)/common/Slay the Spire 2')">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
+        <Sts2Path Condition="!Exists('$(Sts2Path)')">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
 
         <ModsPath>$(Sts2Path)/mods/</ModsPath>
         <Sts2DataDir>$(Sts2Path)/data_sts2_linuxbsd_x86_64</Sts2DataDir>
     </PropertyGroup>
 
-    <!-- macOS -->
+    <!-- ========== macOS ========== -->
     <PropertyGroup Condition="'$(IsOSX)' == 'true'">
         <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">$(HOME)/Library/Application Support/Steam/steamapps</SteamLibraryPath>
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
+        <Sts2PathSteam>$(SteamLibraryPath)/common/Slay the Spire 2</Sts2PathSteam>
+
+        <!-- 如果外部设置了 Sts2Path（如 Windows 路径的 Directory.Build.props），
+             但路径在当前 Mac 上不存在，自动检测 Steam 默认位置。 -->
+        <Sts2Path Condition="!Exists('$(Sts2Path)') and Exists('$(Sts2PathSteam)')">$(Sts2PathSteam)</Sts2Path>
+        <Sts2Path Condition="!Exists('$(Sts2Path)')">$(Sts2PathSteam)</Sts2Path>
 
         <ModsPath>$(Sts2Path)/SlayTheSpire2.app/Contents/MacOS/mods/</ModsPath>
-        <Sts2DataDir>$(Sts2Path)/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_x86_64</Sts2DataDir>
+
+        <!-- 自动检测 Apple Silicon (arm64) 或 Intel (x86_64) 数据目录 -->
+        <Sts2DataDir Condition="Exists('$(Sts2Path)/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_arm64')">$(Sts2Path)/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_arm64</Sts2DataDir>
+        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_x86_64</Sts2DataDir>
     </PropertyGroup>
 </Project>
