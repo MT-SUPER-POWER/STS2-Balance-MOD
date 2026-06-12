@@ -1,7 +1,9 @@
 # docs 目录索引
 
+- [更新日志](../CHANGELOG.md) — 各版本已实现功能与修复记录（`# vx.x.x` 格式，推送 Tag 时自动用于 Release 说明）
 - [平衡调整需求清单](balance-changes.md) — 所有需求项的编号、描述和状态
 - [STS2 Mod 制作指南](sts2-modding-guide.md) — 从零开始制作 STS2 Mod 的完整教程
+- [WatcherMod 参考代码](references/WatcherMod/) — 社区参考 Mod（[GitHub](https://github.com/lamali292/WatcherMod) submodule）
 
 ## 工具脚本
 

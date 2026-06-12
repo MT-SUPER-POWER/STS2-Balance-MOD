@@ -1,8 +1,15 @@
-# Sts2BalanceMod — 《杀戮尖塔 2》平衡调整 Mod
+<div align="center">
+<img alt="logo" height="100" width="100" src="docs/img/icon.ico" />
+<h2> Sts2BalanceMod </h2>
+<p> Sts2BalanceMod — 《杀戮尖塔 2》平衡调整 Mod </p>
 
-> 作者：Momo | 版本：v0.0.2 | 支持游戏版本：≥ 0.107.0
+<br/>
 
-对 STS2 进行多方面平衡调整——商店定价、卡牌稀有度/效果、新增老版回归卡牌、以及机制修复。
+[![Stars](https://img.shields.io/github/stars/MT-SUPER-POWER/STS2-Balance-MOD?style=flat)](https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/stargazers)
+[![Version](https://img.shields.io/github/v/release/MT-SUPER-POWER/STS2-Balance-MOD)](https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/releases)
+[![Issues](https://img.shields.io/github/issues/MT-SUPER-POWER/STS2-Balance-MOD)](https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/issues)
+
+</div>
 
 ---
 
@@ -15,7 +22,7 @@
 
 ### 安装步骤
 
-1. 下载本 Mod 的最新发布包（从 [Releases](../../releases) 页面获取 `.zip`）
+1. 下载本 Mod 的最新发布包（从 [Releases](https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/releases) 页面获取 `.zip`）
 2. 将解压后的 **整个文件夹** 放入 STS2 的 Mod 目录：
    - **Windows**: `%AppData%/SlayTheSpire2/mods/`
    - **macOS**: `~/Library/Application Support/SlayTheSpire2/mods/`
@@ -27,8 +34,8 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/MT-SUPER-POWER/Sts2BalanceMod.git
-cd Sts2BalanceMod
+git clone --recurse-submodules https://github.com/MT-SUPER-POWER/STS2-Balance-MOD.git
+cd STS2-Balance-MOD
 
 # 用 Godot 4.x 打开 project.godot，导出为 .pck + .dll
 # 或者用 dotnet 命令行发布
@@ -41,25 +48,25 @@ dotnet publish -c Release
 
 ## 调整内容
 
-所有调整项的完整清单和状态，请查看 **[docs/balance-changes.md](docs/balance-changes.md)**。
+版本更新记录见 **[CHANGELOG.md](CHANGELOG.md)**；完整需求清单和状态见 **[docs/balance-changes.md](docs/balance-changes.md)**。
 
 | 分类 | 调整项 | 状态 |
 |------|--------|------|
 | 商店 | V6+ 高阶删牌价格 75+25/次 | ✅ 已实现 |
 | 卡牌 | 骨妹挽歌 → 不消耗 | ✅ 已实现 |
-| 卡牌 | 刀舞 → 删除消耗词条 | ✅ 已实现 |
+| 卡牌 | 刀舞 → 删除消耗词条、升为蓝卡 | ✅ 已实现 |
 | 卡牌 | 杂技 → 蓝卡降白卡 | ✅ 已实现 |
-| 卡牌 | 认知偏差 → 聚焦归零自动移除 | ✅ 已实现 |
+| 卡牌 | 认知偏差 → 五回合后停止扣聚焦 | ✅ 已实现 |
 | 卡牌 | 多重释放 → 升级保留 | ✅ 已实现 |
 | 卡牌 | 幽魂形态 → 清除减敏捷负面 | ✅ 已实现 |
-| 回归 | 死亡收割（战士） | ✅ 已实现 |
-| 回归 | 硬撑（战士） | ✅ 已实现 |
-| 回归 | 全神贯注（猎人） | ✅ 已实现 |
-| 回归 | 电动力学（机器人，替换吞噬暗影） | ✅ 已实现 |
-| 遗物 | 日晷 — 每 3 次洗牌获得 2 点能量 | ✅ 已实现 |
-| 怪物 | Boss 沙漏 / 感染棱柱 | 🔲 待处理 |
-| 事件 | 双拳机器人、牧师删牌、JAX 变牌等 | 🔲 待处理 |
-| 遗物 | 药丸祛除负面 | 🔲 待处理 |
+| 卡牌 | 腐蚀波 → 单体效果 | 🔲 待处理 |
+| 回归 | 死亡收割 / 硬撑 / 全神贯注 / 电动力学 | ✅ 已实现 |
+| 怪物 | Boss 沙漏凋零卡可打出消耗 | ✅ 已实现 |
+| 怪物 | Boss 时间吞噬者 | 🔲 待处理 |
+| 事件 | 双拳机器人、牧师删牌、JAX 变牌 | 🔲 待处理 |
+| 事件 | 旧日垃圾堆加入御守 | ✅ 已实现 |
+| 遗物 | 日晷 / 药丸 / 树枝 / 坚固钳子 | ✅ 已实现 |
+| 遗物 | 宁静烟斗 / 微笑面具 / 达福遗物补充 | 🔲 待处理 |
 
 ---
 
@@ -83,18 +90,25 @@ Sts2BalanceMod/
 │   │   ├── ElectrodynamicsPower.cs  #   电动力学能力标记
 │   │   └── Sts2BalanceModPower.cs   #   [已废弃] 旧基类
 │   ├── Relics/                      # 新增遗物
-│   │   └── Sundial.cs               #   日晷
+│   │   ├── Sundial.cs               #   日晷
+│   │   ├── OrangePill.cs            #   药丸
+│   │   ├── DeadBranch.cs            #   树枝
+│   │   └── Omamori.cs               #   御守
 │   ├── Patches/                     # Harmony 补丁（修改原版行为）
-│   │   ├── MerchantCardRemovalCostPatch.cs   # 删牌价格调整
-│   │   ├── DirgeExhaustPatch.cs              # 骨妹挽歌不消耗
-│   │   ├── BladeDanceExhaustPatch.cs         # 刀舞去消耗
-│   │   ├── AcrobaticsRarityPatch.cs          # 杂技降级
-│   │   ├── BiasedCognitionPowerPatch.cs      # 认知偏差修复
-│   │   ├── MultiCastRetainPatch.cs           # 多重释放保留
-│   │   ├── WraithFormNoDexDebuffPatch.cs     # 幽魂形态去除减敏捷
-│   │   ├── DefectCardPoolPatch.cs            # 移除吞噬暗影
-│   │   ├── LightningOrbElectrodynamicsPatch.cs # 电动力学 AOE
-│   │   └── RelaxBlockPatch.cs                # 放松格挡值调整
+│   │   ├── MerchantCardRemovalCostPatch.cs    # 删牌价格调整
+│   │   ├── DirgeExhaustPatch.cs               # 骨妹挽歌不消耗
+│   │   ├── BladeDanceExhaustPatch.cs          # 刀舞去消耗
+│   │   ├── AcrobaticsRarityPatch.cs           # 杂技降级
+│   │   ├── BiasedCognitionPowerPatch.cs       # 认知偏差修复
+│   │   ├── MultiCastRetainPatch.cs            # 多重释放保留
+│   │   ├── WraithFormNoDexDebuffPatch.cs      # 幽魂形态去除减敏捷
+│   │   ├── DefectCardPoolPatch.cs             # 移除吞噬暗影
+│   │   ├── SilentCardPoolPatch.cs             # 移除袖里乾坤
+│   │   ├── LightningOrbElectrodynamicsPatch.cs  # 电动力学 AOE
+│   │   ├── AgeonglassWitherExhaustPatch.cs    # Boss 沙漏凋零卡可打出
+│   │   ├── SturdyClampEnhanced.cs             # 坚固钳子护甲增强
+│   │   ├── TrashHeapAddCustomRelicAndCard.cs  # 旧日垃圾堆加入御守
+│   │   └── RelaxBlockPatch.cs                 # 放松格挡值调整
 │   └── Extensions/
 │       └── StringExtensions.cs      # 资源路径工具方法
 ├── Sts2BalanceMod/                  # Mod 资源文件
@@ -123,7 +137,8 @@ Sts2BalanceMod/
 ├── docs/                            # 文档
 │   ├── README.md                    #   docs 目录索引
 │   ├── balance-changes.md           #   平衡调整需求清单
-│   └── sts2-modding-guide.md        #   Mod 制作教程
+│   ├── sts2-modding-guide.md        #   Mod 制作教程
+│   └── references/WatcherMod/       #   参考 Mod（git submodule）
 └── .github/workflows/               # CI/CD
     └── publish.yml                  #   自动构建 + 发布
 ```
@@ -190,49 +205,48 @@ python image_gen/relics.py Sundial.png
 - **补丁引擎**: Harmony 2.x (运行时方法劫持)
 - **语言**: C# 12
 
-### 核心概念
 
-| 概念 | 说明 |
-|------|------|
-| `[HarmonyPatch]` | 标记一个类是补丁类，指定要劫持的目标方法 |
-| `[HarmonyPrefix]` | 在目标方法**之前**执行，返回 `false` 可跳过原方法 |
-| `[HarmonyPostfix]` | 在目标方法**之后**执行，可读取/修改返回值 |
-| `[Pool(...)]` | 通过 BaseLib 将卡牌/遗物注册到指定角色卡池 |
-| `[SavedProperty]` | 标记需要自动存档/读档的属性 |
-| `ConstructedCardModel` | BaseLib 提供的自定义卡牌基类，无需 JSON 定义即可创建新卡 |
-
-### 添加新卡牌
-
-1. 在 `Cards/` 下新建类，继承 `Sts2CardModel`
-2. 用 `[Pool(typeof(XxxCardPool))]` 指定卡池
-3. 构造函数中设置费用、类型、稀有度、目标类型、基础数值
-4. 重写 `OnPlay()` 实现卡牌效果
-5. 在 `image_gen/source/cards/` 放入立绘素材，运行 `cards.py`
-6. 在 `localization/` 中添加卡牌名称和描述文本
 
 ---
 
 ## GitHub Release 自动构建
 
-项目配置了 GitHub Actions（`.github/workflows/publish.yml`），当推送 Tag 时自动构建并发布 Release：
+推送 Tag 后，`.github/workflows/publish.yml` 会自动构建 Mod 并发布到 GitHub Releases。
+
+### 发布步骤
+
+1. 在 `CHANGELOG.md` 写好对应版本段落（`# vx.x.x`）
+2. 打标签并推送：
 
 ```bash
-# 打标签并推送
-git tag v0.1.0
-git push origin v0.1.0
+git tag v0.0.4
+git push origin v0.0.4
 ```
 
-Actions 流程会自动：
-1. 安装 .NET SDK
-2. 执行 `dotnet publish -c Release`
-3. 打包构建产物为 `.zip`
-4. 上传到 GitHub Releases 页面
+3. Actions 完成后，Release 页面会显示 `CHANGELOG.md` 中该版本的改动说明，并附带 `.zip` 安装包
 
-> **注意**: 当前 `publish.yml` 为空模板，需要补充完整的 CI 配置后再启用。
+### Actions 流程
+
+1. 从 `CHANGELOG.md` 提取 `# vx.x.x` 段落作为 Release 说明
+2. 通过 DepotDownloader 下载 STS2（用于编译引用 `sts2.dll`）
+3. 安装 Godot 4.5.1 与 .NET 9 SDK
+4. 执行 `dotnet publish -c Release`，打包 `Sts2BalanceMod/` 文件夹为 `.zip`
+5. 创建 GitHub Release 并上传产物
+
+### 所需 Secrets
+
+在仓库 **Settings → Secrets and variables → Actions** 中配置：
+
+| Secret | 说明 |
+|--------|------|
+| `STEAM_USERNAME` | 拥有 STS2 的 Steam 账号 |
+| `STEAM_PASSWORD` | 对应密码 |
+| `STEAM_GUARD_CODE` | 可选；开启 Steam 令牌时需要填写一次性验证码 |
+
+> **NOTE**: CI 使用 `public-beta` 分支下载游戏（Depot `2868841`）。建议使用专用 Steam 小号，避免个人主号频繁输入令牌。
 
 ---
 
 ## 已知问题
 
-- **BUG-01**: 联机报错黑屏 — `Parameter 'ModelId entry ID 1920 is out of range! We have 1627 entries'`
-  可能与 BaseLib 模型注册数量超出限制有关，排查中。
+当前无已知未修复问题。历史 BUG 记录见 [docs/balance-changes.md](docs/balance-changes.md#现存-bug)。

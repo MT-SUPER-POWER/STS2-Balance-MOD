@@ -1,0 +1,209 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "发布标签（如 v0.0.4）"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+env:
+  GODOT_VERSION: "4.5.1"
+  STS2_APP_ID: "2868840"
+  STS2_DEPOT_ID: "2868841"
+  STS2_BRANCH: "public-beta"
+  MOD_NAME: Sts2BalanceMod
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve version
+        id: version
+        shell: pwsh
+        run: |
+          $tag = if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch') {
+            '${{ inputs.tag }}'.Trim()
+          } else {
+            $env:GITHUB_REF_NAME
+          }
+
+          if ($tag -notmatch '^v(?<ver>\d+\.\d+\.\d+)$') {
+            throw "Tag must look like v0.0.4, got: $tag"
+          }
+
+          "tag=$tag" >> $env:GITHUB_OUTPUT
+          "version=$($Matches['ver'])" >> $env:GITHUB_OUTPUT
+
+      - name: Extract changelog for release
+        id: changelog
+        shell: pwsh
+        run: |
+          $version = '${{ steps.version.outputs.version }}'
+          $content = Get-Content -Path 'CHANGELOG.md' -Raw -Encoding UTF8
+          $escaped = [regex]::Escape($version)
+
+          $patterns = @(
+            "(?ms)^# v$escaped\s*\r?\n(.*?)(?=^# v|\z)",
+            "(?ms)^# V $escaped\s*\r?\n(.*?)(?=^# [vV]|\z)",
+            "(?ms)^## \[$escaped\].*?\r?\n(.*?)(?=^## \[|^# [vV]|\z)"
+          )
+
+          $notes = $null
+          foreach ($pattern in $patterns) {
+            $match = [regex]::Match($content, $pattern)
+            if ($match.Success) {
+              $notes = $match.Groups[1].Value.Trim()
+              break
+            }
+          }
+
+          if (-not $notes) {
+            Write-Warning "CHANGELOG.md 中未找到 # v$version 段落，将使用默认说明"
+            $notes = @(
+              "## ${{ env.MOD_NAME }} v$version",
+              "",
+              "未在 CHANGELOG.md 中找到 ``# v$version`` 段落，请查看 [CHANGELOG.md](CHANGELOG.md)。"
+            ) -join "`n"
+          }
+
+          $notesPath = "$env:GITHUB_WORKSPACE\release_notes.md"
+          $notes | Out-File -FilePath $notesPath -Encoding utf8NoBOM
+          Write-Host "----- Release Notes Preview -----"
+          Get-Content $notesPath
+          Write-Host "---------------------------------"
+          "path=$notesPath" >> $env:GITHUB_OUTPUT
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+
+      - name: Install DepotDownloader
+        shell: pwsh
+        run: |
+          $zip = "$env:RUNNER_TEMP\DepotDownloader.zip"
+          Invoke-WebRequest `
+            -Uri "https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.7.4/DepotDownloader-windows-x64.zip" `
+            -OutFile $zip
+          Expand-Archive $zip -DestinationPath "$env:RUNNER_TEMP\DepotDownloader" -Force
+          "DEPOTDOWNLOADER_EXE=$env:RUNNER_TEMP\DepotDownloader\DepotDownloader.exe" >> $env:GITHUB_ENV
+
+      - name: Download Slay the Spire 2
+        shell: pwsh
+        env:
+          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
+          STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
+          STEAM_GUARD_CODE: ${{ secrets.STEAM_GUARD_CODE }}
+        run: |
+          if (-not $env:STEAM_USERNAME -or -not $env:STEAM_PASSWORD) {
+            throw @"
+          Missing Steam credentials.
+          Please configure repository secrets:
+            - STEAM_USERNAME
+            - STEAM_PASSWORD
+            - STEAM_GUARD_CODE (optional, required when Steam Guard is enabled)
+          "@
+          }
+
+          $sts2Dir = "$env:GITHUB_WORKSPACE\sts2"
+          New-Item -ItemType Directory -Force -Path $sts2Dir | Out-Null
+
+          $args = @(
+            "-app", "${{ env.STS2_APP_ID }}",
+            "-depot", "${{ env.STS2_DEPOT_ID }}",
+            "-branch", "${{ env.STS2_BRANCH }}",
+            "-username", $env:STEAM_USERNAME,
+            "-password", $env:STEAM_PASSWORD,
+            "-dir", $sts2Dir
+          )
+
+          if ($env:STEAM_GUARD_CODE) {
+            $args += @("-steamguard", $env:STEAM_GUARD_CODE)
+          }
+
+          & $env:DEPOTDOWNLOADER_EXE @args
+
+          $dataDir = Join-Path $sts2Dir "data_sts2_windows_x86_64"
+          if (-not (Test-Path $dataDir)) {
+            throw "STS2 data directory not found after download: $dataDir"
+          }
+
+      - name: Setup Godot
+        id: godot
+        shell: pwsh
+        run: |
+          $zip = "$env:RUNNER_TEMP\godot.zip"
+          $url = "https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_mono_win64.zip"
+          Invoke-WebRequest -Uri $url -OutFile $zip
+          Expand-Archive $zip -DestinationPath "$env:RUNNER_TEMP\godot" -Force
+          $exe = Get-ChildItem -Path "$env:RUNNER_TEMP\godot" -Recurse -Filter "Godot_v*-stable_mono_win64.exe" | Select-Object -First 1
+          if (-not $exe) { throw "Godot executable not found after extraction" }
+          "godot_path=$($exe.FullName)" >> $env:GITHUB_OUTPUT
+
+      - name: Sync mod version
+        shell: pwsh
+        run: |
+          $version = '${{ steps.version.outputs.version }}'
+          $jsonPath = "Sts2BalanceMod.json"
+          $json = Get-Content $jsonPath -Raw
+          $json = $json -replace '"version"\s*:\s*"[^"]*"', "`"version`": `"v$version`""
+          $json | Set-Content $jsonPath -Encoding utf8NoBOM -NoNewline
+
+      - name: Build and publish mod
+        shell: pwsh
+        run: |
+          $sts2Path = "$env:GITHUB_WORKSPACE\sts2"
+          $modsPath = Join-Path $sts2Path "mods\${{ env.MOD_NAME }}"
+          New-Item -ItemType Directory -Force -Path $modsPath | Out-Null
+
+          dotnet publish -c Release `
+            /p:Sts2Path="$sts2Path" `
+            /p:GodotPath="${{ steps.godot.outputs.godot_path }}" `
+            /p:ContinuousIntegrationBuild=true
+
+      - name: Package mod
+        id: package
+        shell: pwsh
+        run: |
+          $modDir = "$env:GITHUB_WORKSPACE\sts2\mods\${{ env.MOD_NAME }}"
+          if (-not (Test-Path $modDir)) {
+            throw "Mod output directory not found: $modDir"
+          }
+
+          $required = @(
+            "${{ env.MOD_NAME }}.dll",
+            "${{ env.MOD_NAME }}.json"
+          )
+          foreach ($file in $required) {
+            if (-not (Test-Path (Join-Path $modDir $file))) {
+              throw "Missing required release file: $file"
+            }
+          }
+
+          $dist = "$env:GITHUB_WORKSPACE\dist"
+          New-Item -ItemType Directory -Force -Path $dist | Out-Null
+          $zip = "$dist\${{ env.MOD_NAME }}-v${{ steps.version.outputs.version }}.zip"
+          Compress-Archive -Path "$modDir\*" -DestinationPath $zip -Force
+          "zip=$zip" >> $env:GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: ${{ env.MOD_NAME }} ${{ steps.version.outputs.tag }}
+          body_path: ${{ steps.changelog.outputs.path }}
+          files: ${{ steps.package.outputs.zip }}
+          target_commitish: ${{ github.sha }}
+          generate_release_notes: false
