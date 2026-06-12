@@ -209,42 +209,38 @@ python image_gen/relics.py Sundial.png
 
 ---
 
-## GitHub Release 自动构建
+## 发布到 GitHub Releases
 
-推送 Tag 后，`.github/workflows/publish.yml` 会在**本机 self-hosted runner** 上构建并发布到 GitHub Releases。无需配置 Steam Secrets，直接复用你本地已装好的 STS2 / Godot 环境。
+发布分两部分，**无需 self-hosted runner**：
 
-### 一次性配置（self-hosted runner）
+| 步骤 | 谁来做 | 做什么 |
+|------|--------|--------|
+| Release 说明 | GitHub Actions（推送 Tag 触发） | 从 `CHANGELOG.md` 提取 `# vx.x.x` 写入 Release |
+| 安装包 zip | 本机 `Hooks/release.ps1` | `dotnet publish` 构建后上传附件 |
 
-1. 在本机安装 [GitHub Actions Runner](https://github.com/actions/runner) 并注册到仓库
-2. 确保本机已能正常 `dotnet publish -c Release`（`Directory.Build.props` 路径正确）
-3. 推送 Tag 后，runner 会自动接管构建
+### 前置条件
+
+1. 本机可正常 `dotnet publish -c Release`
+2. 已安装 [GitHub CLI](https://cli.github.com/) 并登录：`gh auth login`
 
 ### 发布步骤
 
-1. 在 `CHANGELOG.md` 写好对应版本段落（`# vx.x.x`）
-2. 打标签并推送：
-
-```bash
-git tag v0.0.4
-git push origin v0.0.4
-```
-
-3. Actions 完成后，Release 页面会显示 `CHANGELOG.md` 中该版本的改动说明，并附带 `.zip` 安装包
-
-### 本地手动打包（可选）
-
-不跑 Actions 时，也可在本机直接打包：
+1. 在 `CHANGELOG.md` 写好对应版本段落（`# v0.0.4.1`）
+2. 执行发布脚本：
 
 ```powershell
-.\Hooks\package-release.ps1 -Version 0.0.4
-# build/Sts2BalanceMod/  →  dist/Sts2BalanceMod-v0.0.4.zip
+.\Hooks\release.ps1 -Version 0.0.4.1
 ```
 
-### Actions 流程
+脚本会：构建 → 打包 zip → 推送 Tag → 等待 Actions 写好 Release 说明 → 上传 zip 附件。
 
-1. 从 `CHANGELOG.md` 提取 `# vx.x.x` 段落作为 Release 说明
-2. 本机执行 `dotnet publish -c Release` → 输出到 `build/Sts2BalanceMod/`
-3. 打包为 `dist/Sts2BalanceMod-vX.X.X.zip` 并上传 Release
+### 仅本地打包
+
+```powershell
+.\Hooks\package-release.ps1 -Version 0.0.4.1
+# 或
+.\Hooks\release.ps1 -Version 0.0.4.1 -SkipPush
+```
 
 ---
 

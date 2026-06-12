@@ -2,7 +2,7 @@
 
 本文件记录 [Sts2BalanceMod](https://github.com/MT-SUPER-POWER/STS2-Balance-MOD) 的版本变更。
 
-每个版本以 `# vx.x.x` 为标题；推送对应 Git Tag（如 `v0.0.4`）时，GitHub Actions 会自动提取该段内容作为 Release 说明。
+每个版本以 `# vx.x.x` 为标题。推送 Tag 后 GitHub Actions 自动把该段写入 Release 说明；zip 附件由本机 `Hooks/release.ps1` 上传。
 
 完整需求清单与待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 

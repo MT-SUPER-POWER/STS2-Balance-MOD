@@ -1,9 +1,12 @@
-name: Publish Release
+name: Release Notes
+
+# 推送 Tag 时自动创建 Release，并从 CHANGELOG.md 写入对应版本说明。
+# zip 附件由本机 Hooks/release.ps1 构建后上传。
 
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "v*"
 
 permissions:
   contents: write
@@ -12,9 +15,8 @@ env:
   MOD_NAME: Sts2BalanceMod
 
 jobs:
-  release:
-    # NOTE: 在本机 self-hosted runner 上构建，复用已配置好的 STS2 / Godot 环境，无需额外 Secrets
-    runs-on: self-hosted
+  release-notes:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -22,16 +24,17 @@ jobs:
 
       - name: Resolve version
         id: version
-        shell: pwsh
+        shell: bash
         run: |
-          $tag = $env:GITHUB_REF_NAME
-          if ($tag -notmatch '^v(?<ver>\d+\.\d+\.\d+)$') {
-            throw "Tag 格式应为 v0.0.4，当前: $tag"
-          }
-          "tag=$tag" >> $env:GITHUB_OUTPUT
-          "version=$($Matches['ver'])" >> $env:GITHUB_OUTPUT
+          TAG="${GITHUB_REF_NAME}"
+          if [[ ! "$TAG" =~ ^v([0-9]+(\.[0-9]+)+)$ ]]; then
+            echo "Tag 格式无效: $TAG（应为 v0.0.4 或 v0.0.4.1）"
+            exit 1
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=${BASH_REMATCH[1]}" >> "$GITHUB_OUTPUT"
 
-      - name: Extract changelog for release
+      - name: Extract changelog
         id: changelog
         shell: pwsh
         run: |
@@ -59,25 +62,9 @@ jobs:
             $notes = "详见 [CHANGELOG.md](CHANGELOG.md)"
           }
 
-          $notesPath = "$env:GITHUB_WORKSPACE\release_notes.md"
+          $notesPath = "$env:GITHUB_WORKSPACE/release_notes.md"
           $notes | Out-File -FilePath $notesPath -Encoding utf8NoBOM
           "path=$notesPath" >> $env:GITHUB_OUTPUT
-
-      - name: Sync mod version
-        shell: pwsh
-        run: |
-          $version = '${{ steps.version.outputs.version }}'
-          $jsonPath = "Sts2BalanceMod.json"
-          $json = Get-Content $jsonPath -Raw
-          $json = $json -replace '"version"\s*:\s*"[^"]*"', "`"version`": `"v$version`""
-          $json | Set-Content $jsonPath -Encoding utf8NoBOM -NoNewline
-
-      - name: Build and package
-        id: package
-        shell: pwsh
-        run: |
-          $zip = & "$env:GITHUB_WORKSPACE\Hooks\package-release.ps1" -Version '${{ steps.version.outputs.version }}'
-          "zip=$zip" >> $env:GITHUB_OUTPUT
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -85,5 +72,4 @@ jobs:
           tag_name: ${{ steps.version.outputs.tag }}
           name: ${{ env.MOD_NAME }} ${{ steps.version.outputs.tag }}
           body_path: ${{ steps.changelog.outputs.path }}
-          files: ${{ steps.package.outputs.zip }}
           generate_release_notes: false
