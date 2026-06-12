@@ -24,12 +24,9 @@ public sealed class DeathReap : Sts2CardModel
 
   protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
   {
-    // TODO: 后期可以自己加一个死收割的动画效果和怪物受击动画
-    SfxCmd.Play("event:/sfx/characters/ironclad/ironclad_whirlwind");
-
     var result = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
         .FromCard(this)
-        .TargetingAllOpponents(CombatState)
+        .TargetingAllOpponents(CombatState!)
         .WithHitFx("vfx/vfx_giant_horizontal_slash")
         .Execute(choiceContext);
 
