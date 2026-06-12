@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.11"
 
 [[package]]
@@ -92,13 +92,10 @@ wheels = [
 [[package]]
 name = "sts2-image-gen"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "pillow" },
 ]
 
 [package.metadata]
 requires-dist = [{ name = "pillow", specifier = ">=10.0.0" }]
-
-[package.metadata.requires-dev]
-dev = []

@@ -168,18 +168,18 @@ cd image_gen && uv sync && cd ..
 
 # 将原始素材放入 image_gen/source/cards/
 # 运行处理脚本
-uv run --directory image_gen python cards.py
+uv run cards
 
 # 只处理指定文件
-uv run --directory image_gen python cards.py death_reap.png
+uv run cards death_reap.png
 
 # 缩放模式（默认 cover 居中裁切填满）
-uv run --directory image_gen python cards.py --mode contain    # 完整显示（留透明边）
-uv run --directory image_gen python cards.py --mode stretch    # 拉伸（可能变形）
+uv run cards --mode contain    # 完整显示（留透明边）
+uv run cards --mode stretch    # 拉伸（可能变形）
 
 # 裁切锚点（cover 模式）
-uv run --directory image_gen python cards.py --anchor top      # 顶部对齐
-uv run --directory image_gen python cards.py --anchor bottom   # 底部对齐
+uv run cards --anchor top      # 顶部对齐
+uv run cards --anchor bottom   # 底部对齐
 ```
 
 - 源图 → 大图 `1000×760` → `images/card_portraits/big/`
@@ -190,13 +190,13 @@ uv run --directory image_gen python cards.py --anchor bottom   # 底部对齐
 ```bash
 # 将遗物图标放入 image_gen/source/relics/
 # 轮廓图放入 image_gen/source/relics/outlines/
-uv run --directory image_gen python relics.py
+uv run relics
 
 # 只处理轮廓图
-uv run --directory image_gen python relics.py --outline-only
+uv run relics --outline-only
 
 # 只处理指定文件
-uv run --directory image_gen python relics.py Sundial.png
+uv run relics Sundial.png
 ```
 
 - 源图 → 大图 `256×256` → `images/relics/big/`

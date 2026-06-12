@@ -8,9 +8,13 @@ dependencies = [
 ]
 
 [project.scripts]
-gen-cards = "cards:main"
-gen-powers = "powers:main"
-gen-relics = "relics:main"
+cards  = "cards:main"
+powers = "powers:main"
+relics = "relics:main"
 
-[tool.uv]
-dev-dependencies = []
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["cards", "powers", "relics"]

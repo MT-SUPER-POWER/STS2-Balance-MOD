@@ -1,2 +1,6 @@
 # 虚拟环境（uv 自动生成，不要提交）
 .venv/
+
+# Python 缓存
+__pycache__/
+sts2_image_gen.egg-info/
