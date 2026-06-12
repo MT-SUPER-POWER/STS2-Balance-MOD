@@ -129,7 +129,9 @@ Sts2BalanceMod/
 │   ├── cards.py                     #   卡牌立绘切图工具
 │   ├── relics.py                    #   遗物图标生成工具
 │   ├── powers.py                    #   能力图标生成工具
-│   ├── requirements.txt             #   Python 依赖（Pillow）
+│   ├── pyproject.toml               #   项目配置与依赖声明
+│   ├── uv.lock                      #   依赖锁定文件（自动生成）
+│   ├── .python-version              #   Python 版本锁定
 │   └── source/                      #   原始素材目录
 │       ├── cards/
 │       ├── powers/
@@ -139,7 +141,7 @@ Sts2BalanceMod/
 │   ├── balance-changes.md           #   平衡调整需求清单
 │   ├── sts2-modding-guide.md        #   Mod 制作教程
 │   └── references/WatcherMod/       #   参考 Mod（git submodule）
-└── .github/workflows/               # CI/CD
+└── .github/workflows/               #   CI/CD
     └── release.yml                  #   推送 Tag 时写入 Release 说明
 ```
 
@@ -149,26 +151,35 @@ Sts2BalanceMod/
 
 新增卡牌/遗物/能力后，需要准备对应的图片素材，使用脚本批量处理。
 
+> **前置要求**：需要安装 [uv](https://docs.astral.sh/uv/)（Python 包管理器）。
+> ```bash
+> # macOS / Linux
+> curl -LsSf https://astral.sh/uv/install.sh | sh
+> # Windows (PowerShell)
+> powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+> ```
+> 首次使用在 `image_gen/` 目录下执行 `uv sync` 即可创建虚拟环境并安装依赖。
+
 ### 卡牌立绘
 
 ```bash
-# 安装依赖
-pip install -r image_gen/requirements.txt
+# 首次使用：安装依赖（需要先安装 uv，详见下方说明）
+cd image_gen && uv sync && cd ..
 
 # 将原始素材放入 image_gen/source/cards/
 # 运行处理脚本
-python image_gen/cards.py
+uv run cards
 
 # 只处理指定文件
-python image_gen/cards.py death_reap.png
+uv run cards death_reap.png
 
 # 缩放模式（默认 cover 居中裁切填满）
-python image_gen/cards.py --mode contain    # 完整显示（留透明边）
-python image_gen/cards.py --mode stretch    # 拉伸（可能变形）
+uv run cards --mode contain    # 完整显示（留透明边）
+uv run cards --mode stretch    # 拉伸（可能变形）
 
 # 裁切锚点（cover 模式）
-python image_gen/cards.py --anchor top      # 顶部对齐
-python image_gen/cards.py --anchor bottom   # 底部对齐
+uv run cards --anchor top      # 顶部对齐
+uv run cards --anchor bottom   # 底部对齐
 ```
 
 - 源图 → 大图 `1000×760` → `images/card_portraits/big/`
@@ -179,13 +190,13 @@ python image_gen/cards.py --anchor bottom   # 底部对齐
 ```bash
 # 将遗物图标放入 image_gen/source/relics/
 # 轮廓图放入 image_gen/source/relics/outlines/
-python image_gen/relics.py
+uv run relics
 
 # 只处理轮廓图
-python image_gen/relics.py --outline-only
+uv run relics --outline-only
 
 # 只处理指定文件
-python image_gen/relics.py Sundial.png
+uv run relics Sundial.png
 ```
 
 - 源图 → 大图 `256×256` → `images/relics/big/`
