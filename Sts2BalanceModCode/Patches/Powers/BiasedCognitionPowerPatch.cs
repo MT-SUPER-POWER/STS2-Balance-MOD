@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Sts2BalanceMod.Sts2BalanceModCode.Patches;
+namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Powers;
 
 /// <summary>
 /// CARD-04: BiasedCognition（认知偏差）

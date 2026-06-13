@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Sts2BalanceMod.Sts2BalanceModCode.Patches;
+namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 
 /// <summary>
 /// 幽魂形态：

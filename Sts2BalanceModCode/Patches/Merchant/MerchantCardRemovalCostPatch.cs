@@ -1,5 +1,4 @@
 using System.Reflection;
-using System.Threading.Tasks;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Merchant;
@@ -7,7 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
-namespace Sts2BalanceMod.Sts2BalanceModCode.Patches;
+namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Merchant;
 
 /// <summary>
 /// SHOP-01: 调整删牌价格
@@ -43,7 +42,6 @@ internal static class MerchantCardRemovalPricePatch
     if (player.GetRelic<SmilingMask>() != null)
     {
       CostField.SetValue(__instance, SmilingMask.FIXED_DELETE_PRICE);
-      player.GetRelic<SmilingMask>()?.Flash();
       return false;
     }
 

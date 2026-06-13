@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
 
-namespace Sts2BalanceMod.Sts2BalanceModCode.Patches;
+namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 
 
 [HarmonyPatch(typeof(SturdyClamp), nameof(SturdyClamp.AfterPreventingBlockClear))]

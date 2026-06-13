@@ -3,7 +3,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace Sts2BalanceMod.Sts2BalanceModCode.Patches;
+namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 
 /// <summary>
 /// Relax（放松）—— 格挡值 15→18（升级后 17→20）

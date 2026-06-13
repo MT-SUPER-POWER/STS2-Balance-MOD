@@ -1,10 +1,9 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Events;
-using MegaCrit.Sts2.Core.Models.Relics;
 using Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
-namespace Sts2BalanceMod.Sts2BalanceModCode.Patches;
+namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Events;
 
 [HarmonyPatch(typeof(TrashHeap), "get_Relics")]
 public static class TrashHeapRelicsPatch

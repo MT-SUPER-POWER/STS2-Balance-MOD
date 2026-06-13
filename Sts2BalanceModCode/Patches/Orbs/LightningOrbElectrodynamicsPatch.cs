@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Models.Orbs;
 using MegaCrit.Sts2.Core.ValueProps;
 using Sts2BalanceMod.Sts2BalanceModCode.Powers;
 
-namespace Sts2BalanceMod.Sts2BalanceModCode.Patches;
+namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Orbs;
 
 /// <summary>
 /// 电动力学：闪电球被动/激发攻击所有敌人（原版为随机单体，现覆盖 TeslaCoil 等指定目标场景）
