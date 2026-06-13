@@ -13,5 +13,8 @@
   "STS2BALANCEMOD-OMAMORI.flavor": "A common charm for staving off vile spirits. This one seems to possess a spark of the divine.",
   "STS2BALANCEMOD-SMILING_MASK.title": "Smiling Mask",
   "STS2BALANCEMOD-SMILING_MASK.description": "The Merchant's card removal service now always costs [blue]50[/blue] Gold.",
-  "STS2BALANCEMOD-SMILING_MASK.flavor": "Mask worn by the merchant. He must have spares..."
+  "STS2BALANCEMOD-SMILING_MASK.flavor": "Mask worn by the merchant. He must have spares...",
+  "STS2BALANCEMOD-COFFIE_CUP.title": "Coffee Cup",
+  "STS2BALANCEMOD-COFFIE_CUP.description": "You cannot rest at Rest Sites. Gain {Energy:energyIcons()} additional Energy each turn.",
+  "STS2BALANCEMOD-COFFIE_CUP.flavor": "The strong aroma keeps you wide awake, for better or worse."
 }

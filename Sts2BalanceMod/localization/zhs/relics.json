@@ -13,5 +13,8 @@
   "STS2BALANCEMOD-OMAMORI.flavor": "驱邪避凶的寻常护符，但这枚似乎蕴藏着一丝神性。",
   "STS2BALANCEMOD-SMILING_MASK.title": "微笑面具",
   "STS2BALANCEMOD-SMILING_MASK.description": "商人的删牌服务现在固定花费[blue]50[/blue]金币。",
-  "STS2BALANCEMOD-SMILING_MASK.flavor": "商人戴过的面具。他肯定还有备用的……"
+  "STS2BALANCEMOD-SMILING_MASK.flavor": "商人戴过的面具。他肯定还有备用的……",
+  "STS2BALANCEMOD-COFFIE_CUP.title": "咖啡杯",
+  "STS2BALANCEMOD-COFFIE_CUP.description": "无法在火堆休息。每回合额外获得{Energy:energyIcons()}点费用。",
+  "STS2BALANCEMOD-COFFIE_CUP.flavor": "浓郁的香气让你精神抖擞，彻夜难眠。"
 }
