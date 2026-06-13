@@ -16,5 +16,8 @@
   "STS2BALANCEMOD-SMILING_MASK.flavor": "Mask worn by the merchant. He must have spares...",
   "STS2BALANCEMOD-COFFIE_CUP.title": "Coffee Cup",
   "STS2BALANCEMOD-COFFIE_CUP.description": "You cannot rest at Rest Sites. Gain {Energy:energyIcons()} additional Energy each turn.",
-  "STS2BALANCEMOD-COFFIE_CUP.flavor": "The strong aroma keeps you wide awake, for better or worse."
+  "STS2BALANCEMOD-COFFIE_CUP.flavor": "The strong aroma keeps you wide awake, for better or worse.",
+  "STS2BALANCEMOD-FUSION_HAMMER.title": "Fusion Hammer",
+  "STS2BALANCEMOD-FUSION_HAMMER.description": "You can no longer Smith at Rest Sites. Gain {Energy:energyIcons()} additional Energy each turn.",
+  "STS2BALANCEMOD-FUSION_HAMMER.flavor": "Once held, it can never be put down."
 }

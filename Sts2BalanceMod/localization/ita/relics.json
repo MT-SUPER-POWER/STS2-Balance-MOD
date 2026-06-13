@@ -16,5 +16,8 @@
   "STS2BALANCEMOD-SMILING_MASK.flavor": "Maschera indossata dal mercante. Deve averne di riserva...",
   "STS2BALANCEMOD-COFFIE_CUP.title": "Tazza di Caffè",
   "STS2BALANCEMOD-COFFIE_CUP.description": "Non puoi riposare ai Siti di Riposo. Ottieni {Energy:energyIcons()} Energia aggiuntiva ogni turno.",
-  "STS2BALANCEMOD-COFFIE_CUP.flavor": "L'aroma intenso ti tiene sveglio, nel bene e nel male."
+  "STS2BALANCEMOD-COFFIE_CUP.flavor": "L'aroma intenso ti tiene sveglio, nel bene e nel male.",
+  "STS2BALANCEMOD-FUSION_HAMMER.title": "Martello Fusione",
+  "STS2BALANCEMOD-FUSION_HAMMER.description": "Non puoi più Forgiare ai Siti di Riposo. Ottieni {Energy:energyIcons()} Energia aggiuntiva ogni turno.",
+  "STS2BALANCEMOD-FUSION_HAMMER.flavor": "Una volta impugnato, non può più essere lasciato."
 }

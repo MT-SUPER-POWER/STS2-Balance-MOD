@@ -94,21 +94,14 @@ Sts2BalanceMod/
 │   │   ├── OrangePill.cs            #   药丸
 │   │   ├── DeadBranch.cs            #   树枝
 │   │   └── Omamori.cs               #   御守
-│   ├── Patches/                     # Harmony 补丁（修改原版行为）
-│   │   ├── MerchantCardRemovalCostPatch.cs    # 删牌价格调整
-│   │   ├── DirgeExhaustPatch.cs               # 骨妹挽歌不消耗
-│   │   ├── BladeDanceExhaustPatch.cs          # 刀舞去消耗
-│   │   ├── AcrobaticsRarityPatch.cs           # 杂技降级
-│   │   ├── BiasedCognitionPowerPatch.cs       # 认知偏差修复
-│   │   ├── MultiCastRetainPatch.cs            # 多重释放保留
-│   │   ├── WraithFormNoDexDebuffPatch.cs      # 幽魂形态去除减敏捷
-│   │   ├── DefectCardPoolPatch.cs             # 移除吞噬暗影
-│   │   ├── SilentCardPoolPatch.cs             # 移除袖里乾坤
-│   │   ├── LightningOrbElectrodynamicsPatch.cs  # 电动力学 AOE
-│   │   ├── AgeonglassWitherExhaustPatch.cs    # Boss 沙漏凋零卡可打出
-│   │   ├── SturdyClampEnhanced.cs             # 坚固钳子护甲增强
-│   │   ├── TrashHeapAddCustomRelicAndCard.cs  # 旧日垃圾堆加入御守
-│   │   └── RelaxBlockPatch.cs                 # 放松格挡值调整
+│   ├── Patches/                     # Harmony 补丁（按功能域分子目录）
+│   │   ├── Cards/                   #   单卡属性/行为修改
+│   │   ├── CardPools/               #   角色卡池增删
+│   │   ├── Powers/                  #   原版能力行为修改
+│   │   ├── Orbs/                    #   球体行为修改
+│   │   ├── Merchant/                #   商店/删牌价格
+│   │   ├── Relics/                  #   原版遗物行为修改
+│   │   └── Events/                  #   事件奖励池修改
 │   └── Extensions/
 │       └── StringExtensions.cs      # 资源路径工具方法
 ├── Sts2BalanceMod/                  # Mod 资源文件
