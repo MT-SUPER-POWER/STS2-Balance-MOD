@@ -9,6 +9,7 @@ j
 .git/
 .idea/
 .vs/
+.DS_Store
 
 # NuGet
 Properties/
