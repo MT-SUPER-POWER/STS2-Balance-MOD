@@ -8,16 +8,17 @@ using Sts2BalanceMod.Sts2BalanceModCode.Relics;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Ancient;
 
 /// <summary>
-/// RELIC-07: 把自定义遗物加入达夫的选项池
+/// RELIC-07: 把自定义遗物注入达夫的静态 _validRelicSets
+/// Patch AllPossibleOptions getter — 图鉴和实际事件都会调，且不会提前触发 Darv..cctor()
 /// </summary>
 [HarmonyPatch(typeof(Darv))]
-[HarmonyPatch("GenerateInitialOptions")]
+[HarmonyPatch(nameof(Darv.AllPossibleOptions), MethodType.Getter)]
 internal static class DarvAddCustomRelicPatch
 {
   private static bool _registered = false;
 
   [HarmonyPrefix]
-  private static bool Prefix(Darv __instance)
+  private static bool Prefix()
   {
     if (_registered)
       return true;

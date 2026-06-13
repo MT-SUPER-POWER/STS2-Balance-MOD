@@ -60,4 +60,4 @@
 - [x] BUG-01 — 联机报错黑屏: Parameter 'ModelId entry ID 1920 is out of range! We have 1627 entries'
 - [x] BUG-02 — 死亡收割是单体的问题
 - [x] BUG-03 — 虚无牌消耗之后 树枝生成的牌 不会保留在手里而是一起进入弃牌堆
-- [x] BUG-04 — 没办法设置 Darv 的遗物选项列表
+- [x] BUG-04 — 注册逻辑放到了 Darv 的生成选项里面，没有注册到全局，Relic Collection 没法持续显示
