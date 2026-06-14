@@ -61,10 +61,14 @@ public sealed class CurseKey : Sts2RelicModel
 
     // NOTE: 使用 Niche RNG（与 SereTalon 一致），从可用诅咒中随机选取一张
     var canonicalCurse = Owner.RunState.Rng.Niche.NextItem(availableCurses);
+    if (canonicalCurse == null) return;
     var curseCard = Owner.RunState.CreateCard(canonicalCurse, Owner);
 
     Flash(); // 遗物闪烁特效
+    await Cmd.Wait(0.5f); // 等待特效播放
 
-    await CardPileCmd.Add(curseCard, PileType.Deck);
+    // NOTE: 使用 PreviewCardPileAdd 展示诅咒牌飞入牌组的动画效果
+    var result = await CardPileCmd.Add(curseCard, PileType.Deck);
+    CardCmd.PreviewCardPileAdd(result, 2f);
   }
 }
