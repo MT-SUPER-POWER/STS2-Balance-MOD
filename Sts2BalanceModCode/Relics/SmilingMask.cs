@@ -28,15 +28,8 @@ public sealed class SmilingMask : Sts2RelicModel
 
   public override decimal ModifyMerchantPrice(Player player, MerchantEntry entry, decimal originalPrice)
   {
-    if (player != base.Owner)
-    {
-      return originalPrice;
-    }
-    if (!LocalContext.IsMe(base.Owner) && entry is not MerchantCardRemovalEntry)
-    {
-      return originalPrice;
-    }
-    return originalPrice * (base.DynamicVars["Discount"].BaseValue / 100m);
+    if (player != base.Owner) return originalPrice;
+    if (entry is not MerchantCardRemovalEntry) return originalPrice;
+    return base.DynamicVars[_deletePriceKey].BaseValue;
   }
-
 }

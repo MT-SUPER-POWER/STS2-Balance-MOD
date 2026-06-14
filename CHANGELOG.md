@@ -6,6 +6,14 @@
 
 完整需求清单与待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+# v0.0.5
+
+**新增**
+- 遗物 · 诅咒钥匙（CurseKey）：每回合 +1 费用，每次获取奖励时获得一张随机诅咒牌（RELIC-07）
+- 遗物 · 咖啡杯（CoffeeCup）：无法在火堆休息，每回合 +1 费用（RELIC-07）
+- 遗物 · 融合之锤（FusionHammer）：无法锻造，每回合 +1 费用（RELIC-07）
+- 遗物 · 微笑面具（SmilingMask）：删牌价格固定 50 金币（RELIC-06）
+
 # v0.0.4
 
 **新增**

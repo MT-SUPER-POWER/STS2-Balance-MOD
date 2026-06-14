@@ -59,8 +59,16 @@
 
 # 知识库
 
-## 2. 反编译代码所在位置（必须知道）
+## 1. 反编译源代码位置（必须知道）
 
-- Path: [D:\Game\Godot\Slay the Spire 2]
+- 游戏安装目录: [D:\Game\Godot\Slay the Spire 2]
+- 反编译源代码: [D:\Game\Godot\StS2-Code]
+  - `src/Core/Models/CardPools/` — 卡池定义（CurseCardPool 等）
+  - `src/Core/Models/Relics/` — 遗物实现
+  - `src/Core/Hooks/Hook.cs` — 全局钩子系统
+  - `src/Core/Models/AbstractModel.cs` — 基类与可覆盖钩子
+  - `src/Core/Commands/` — 命令系统（CardPileCmd 等）
+  - `src/Core/Factories/CardFactory.cs` — 卡牌生成工厂
+  - `src/Core/Models/ModelDb.cs` — 全局模型数据库注册
 - 参考代码 [./docs/references/WatcherMod]
 - 运行日志 [C:\Users\shuhe\AppData\Roaming\SlayTheSpire2\logs\godot.log]
