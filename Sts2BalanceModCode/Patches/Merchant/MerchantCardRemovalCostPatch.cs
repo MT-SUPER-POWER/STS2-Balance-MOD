@@ -39,12 +39,6 @@ internal static class MerchantCardRemovalPricePatch
       return true;
     }
 
-    if (player.GetRelic<SmilingMask>() != null)
-    {
-      CostField.SetValue(__instance, SmilingMask.FIXED_DELETE_PRICE);
-      return false;
-    }
-
     int removalsUsed = player.ExtraFields.CardShopRemovalsUsed;   // 删了多少次牌
 
     // 这里改成你自己的价格逻辑

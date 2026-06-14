@@ -1,6 +1,10 @@
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Models.RelicPools;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Entities.Merchant;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Context;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
@@ -12,7 +16,27 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 [Pool(typeof(SharedRelicPool))]
 public sealed class SmilingMask : Sts2RelicModel
 {
-  public override string FlashSfx => "event:/sfx/ui/relic_activate_general";
   public override RelicRarity Rarity => RelicRarity.Common;
   public static readonly int FIXED_DELETE_PRICE = 50;
+
+  private const string _deletePriceKey = "delete_price";
+
+  protected override IEnumerable<DynamicVar> CanonicalVars => new[]
+  {
+    new DynamicVar(_deletePriceKey, FIXED_DELETE_PRICE)
+  };
+
+  public override decimal ModifyMerchantPrice(Player player, MerchantEntry entry, decimal originalPrice)
+  {
+    if (player != base.Owner)
+    {
+      return originalPrice;
+    }
+    if (!LocalContext.IsMe(base.Owner) && entry is not MerchantCardRemovalEntry)
+    {
+      return originalPrice;
+    }
+    return originalPrice * (base.DynamicVars["Discount"].BaseValue / 100m);
+  }
+
 }
