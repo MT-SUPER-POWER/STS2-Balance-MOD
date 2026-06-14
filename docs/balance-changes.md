@@ -1,14 +1,57 @@
 # STS2 平衡调整需求清单
 
 > 本文档记录我对 Slay the Spire 2 的所有调整。
-> 状态：持续更新中。
+
+---
+
+## 进度总览
+
+```mermaid
+%%{init: {'themeVariables': {'primaryTextColor':'#000', 'primaryBorderColor':'#000', 'lineColor':'#000', 'secondBkgColor':'#ffffff', 'tertiaryTextColor':'#000'}} }%%
+gantt
+    title STS2-Balance-MOD 进度表
+    dateFormat YYYY-MM-DD
+    axisFormat %m-%d
+
+    section 核心框架
+    项目初始化与框架搭建           : core-init, 2026-06-08, 2d
+
+    section 卡牌系统
+    LEGACY-03/04      : card-legacy, 2026-06-08, 1d
+    卡牌平衡调整                  : card-balance, 2026-06-09, 1d
+
+    section 遗物系统
+    日晷与宁静烟斗开发             : relic-s1, 2026-06-09, 1d
+    Omamori 御守开发               : relic-omamori, 2026-06-12, 1d
+    咖啡杯与融合之锤           : relic-s2, 2026-06-13, 1d
+    诅咒钥匙开发与完善             :relic-curse-key, 2026-06-13, 3d
+
+    section 文档与发布
+    文档完善              : docs, 2026-06-09, 1d
+    版本发布 v0.0.2 到 v0.0.5      : release, 2026-06-08, 6d
+    构建流程优化                  : build, 2026-06-12, 2d
+
+    section Bug 修复
+    早期 Bug 修复                 : bugfix-early, 2026-06-09, 3d
+    遗物相关 Bug 修复              : bugfix-relic, 2026-06-13, 3d
+```
+
+**工作统计**
+
+| 日期       | 主要工作                                            | 提交数 |
+| ---------- | --------------------------------------------------- | ------ |
+| 2026-06-08 | 项目初始化、框架搭建、LEGACY-03/04、发布流程        | 7      |
+| 2026-06-09 | 遗物系统（日晷）、卡牌平衡、早期 Bug 修复、README   | 8      |
+| 2026-06-12 | Omamori 御守、构建流程优化、版本更新 v0.0.4         | 8      |
+| 2026-06-13 | 融合之锤、咖啡杯、诅咒钥匙基础版、遗物相关 Bug 修复 | 13     |
+| 2026-06-14 | 诅咒钥匙完善、文档跟进                              | 8      |
+
 
 ---
 
 ## 1. 商店调整
 
 - [x] SHOP-01 — V6 难度以上删牌价格调整为 25 金币（低进阶 50+25/次，高进阶 75+25/次）
-
 
 ## 2. 卡牌调整
 
@@ -30,7 +73,6 @@
 - [x] LEGACY-02 — 硬撑（战士）
 - [x] LEGACY-03 — 全神贯注（猎人）
 - [x] LEGACY-04 — 电动力学（机器人，**替换吞噬暗影**）
-
 
 ## 4. 怪物机制调整
 
@@ -55,10 +97,16 @@
   - [x] 融合之锤: 你不再能够锻造，但是每回合多加一点费用
   - [x] 诅咒的钥匙: 每当打开一个宝箱获得一个随机诅咒，但是每回合多加一点费用
 
-# 现存 BUG
+# 现有的问题以及无法解决的问题
+
+## BUG 列表
 
 - [x] BUG-01 — 联机报错黑屏: Parameter 'ModelId entry ID 1920 is out of range! We have 1627 entries'
 - [x] BUG-02 — 死亡收割是单体的问题
 - [x] BUG-03 — 虚无牌消耗之后 树枝生成的牌 不会保留在手里而是一起进入弃牌堆
 - [x] BUG-04 — 注册逻辑放到了 Darv 的生成选项里面，没有注册到全局，Relic Collection 没法持续显示
 - [x] BUG-05 — 如果是后买的面具，删牌价格不会及时更新
+
+## FEATURE 列表
+
+- [ ] FEATURE-01 — 游戏里没有宝箱跳过的选项，那么多人完全不知道如何做，所以**诅咒钥匙**现在基本就是拿了稳定三诅咒的
