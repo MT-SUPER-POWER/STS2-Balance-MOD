@@ -1,0 +1,5 @@
+{
+  "OPTION_SMOKE.name": "抽烟",
+  "OPTION_SMOKE.description": "从你的牌组中移除 {Cards} 张牌。",
+  "OPTION_SMOKE.descriptionDisabled": "你的牌组中没有可以移除的牌。"
+}

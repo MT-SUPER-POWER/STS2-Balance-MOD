@@ -8,13 +8,14 @@ dependencies = [
 ]
 
 [project.scripts]
-cards  = "cards:main"
-powers = "powers:main"
-relics = "relics:main"
+cards             = "cards:main"
+powers            = "powers:main"
+relics            = "relics:main"
+rest-site-options = "rest_site_options:main"
 
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-py-modules = ["cards", "powers", "relics"]
+py-modules = ["cards", "powers", "relics", "rest_site_options"]

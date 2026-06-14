@@ -64,6 +64,15 @@ public static class StringExtensions
         return Path.Join(MainFile.ResPath, "images", "relics", "big", "relic.png");
     }
 
+    public static string RestSiteOptionImagePath(this string path)
+    {
+        path = Path.Join(MainFile.ResPath, "images", "ui", "rest_site", path);
+        if (ResourceLoader.Exists(path)) return path;
+
+        MainFile.Logger.Info("Could not find rest site option image path: " + path);
+        return Path.Join(MainFile.ResPath, "images", "ui", "rest_site", "option.png");
+    }
+
     public static string CharacterUiPath(this string path)
     {
         return Path.Join(MainFile.ResPath, "images", "charui", path);

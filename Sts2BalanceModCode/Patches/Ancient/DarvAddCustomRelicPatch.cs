@@ -55,6 +55,7 @@ internal static class DarvAddCustomRelicPatch
       {
         ("CoffieCup", ModelDb.Relic<CoffieCup>()),
         ("FusionHammer", ModelDb.Relic<FusionHammer>()),
+        ("CurseKey", ModelDb.Relic<CurseKey>()),
       };
 
       foreach (var (name, relic) in relicsToAdd)

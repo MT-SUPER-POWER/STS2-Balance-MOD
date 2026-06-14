@@ -12,6 +12,7 @@
 - [仅打包](../Hooks/package-release.ps1) — `dotnet publish` → `dist/Sts2BalanceMod/` → `dist/*.zip`
 - [卡牌立绘切图](../image_gen/cards.py) — 将原始素材裁切为 1000×760 / 500×380，输出到 `Sts2BalanceMod/images/card_portraits/`
 - [遗物图标切图](../image_gen/relics.py) — 将原始素材裁切为 256×256 / 94×94，轮廓图 94×94，输出到 `Sts2BalanceMod/images/relics/`
+- [火堆选项图标切图](../image_gen/rest_site_options.py) — 将原始素材裁切为 256×169，输出到 `Sts2BalanceMod/images/ui/rest_site/`
 
 
 ## 文件夹修改规则

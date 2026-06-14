@@ -1,0 +1,5 @@
+{
+  "OPTION_SMOKE.name": "Smoke",
+  "OPTION_SMOKE.description": "Remove {Cards} card from your deck.",
+  "OPTION_SMOKE.descriptionDisabled": "There are no removable cards in your deck."
+}

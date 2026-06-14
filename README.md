@@ -66,7 +66,7 @@ Release 构建产物位于 `dist/Sts2BalanceMod/`（dll + json + pck），打包
 | 事件 | 双拳机器人、牧师删牌、JAX 变牌 | 🔲 待处理 |
 | 事件 | 旧日垃圾堆加入御守 | ✅ 已实现 |
 | 遗物 | 日晷 / 药丸 / 树枝 / 坚固钳子 | ✅ 已实现 |
-| 遗物 | 宁静烟斗 / 微笑面具 / 达福遗物补充 | 🔲 待处理 |
+| 遗物 | 宁静烟斗 / 微笑面具 / 达福遗物补充 | ✅ 部分已实现 |
 
 ---
 
@@ -89,11 +89,14 @@ Sts2BalanceMod/
 │   ├── Powers/                      # 新增能力
 │   │   ├── ElectrodynamicsPower.cs  #   电动力学能力标记
 │   │   └── Sts2BalanceModPower.cs   #   [已废弃] 旧基类
+│   ├── RestSite/                    # 新增火堆选项
+│   │   └── PeacePipeRestSiteOption.cs # 宁静烟斗删牌选项
 │   ├── Relics/                      # 新增遗物
 │   │   ├── Sundial.cs               #   日晷
 │   │   ├── OrangePill.cs            #   药丸
 │   │   ├── DeadBranch.cs            #   树枝
-│   │   └── Omamori.cs               #   御守
+│   │   ├── Omamori.cs               #   御守
+│   │   └── PeacePipe.cs             #   宁静烟斗
 │   ├── Patches/                     # Harmony 补丁（按功能域分子目录）
 │   │   ├── Cards/                   #   单卡属性/行为修改
 │   │   ├── CardPools/               #   角色卡池增删
@@ -128,7 +131,8 @@ Sts2BalanceMod/
 │   └── source/                      #   原始素材目录
 │       ├── cards/
 │       ├── powers/
-│       └── relics/
+│       ├── relics/
+│       └── rest_site_options/
 ├── docs/                            # 文档
 │   ├── README.md                    #   docs 目录索引
 │   ├── balance-changes.md           #   平衡调整需求清单
@@ -197,6 +201,20 @@ uv run relics Sundial.png
 - 轮廓图 → `94×94` → `images/relics/{name}_outline.png`
 
 > 图片路径是自动解析的：只需文件名为 `{id小写}.png`，代码中的 `Sts2RelicModel` / `Sts2CardModel` 基类会自动拼接完整路径。
+
+### 火堆选项图标
+
+火堆按钮图标由游戏本体按 `res://images/ui/rest_site/option_{OptionId小写}.png` 读取；Mod 自定义火堆选项通过 Harmony 接管按钮刷新，统一从 `Sts2BalanceMod/images/ui/rest_site/` 读取。
+
+```bash
+# 将源图放入 image_gen/source/rest_site_options/
+uv run rest-site-options
+
+# 只处理指定文件
+uv run rest-site-options smoke.png
+```
+
+- 源图 → 选项图标 `256×169` → `Sts2BalanceMod/images/ui/rest_site/option_smoke.png`
 
 ---
 

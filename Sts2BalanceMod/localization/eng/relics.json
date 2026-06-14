@@ -22,5 +22,8 @@
   "STS2BALANCEMOD-FUSION_HAMMER.flavor": "Once held, it can never be put down.",
   "STS2BALANCEMOD-CURSE_KEY.title": "Curse Key",
   "STS2BALANCEMOD-CURSE_KEY.description": "Gain {Energy:energyIcons()} additional Energy each turn. Whenever you open a [gold]Treasure Chest[/gold], obtain a random [purple]Curse[/purple].",
-  "STS2BALANCEMOD-CURSE_KEY.flavor": "A key that opens doors to power, but each turn leaves behind a lingering curse."
+  "STS2BALANCEMOD-CURSE_KEY.flavor": "A key that opens doors to power, but each turn leaves behind a lingering curse.",
+  "STS2BALANCEMOD-PEACE_PIPE.title": "Peace Pipe",
+  "STS2BALANCEMOD-PEACE_PIPE.description": "You can now remove [blue]1[/blue] card from your deck at Rest Sites.",
+  "STS2BALANCEMOD-PEACE_PIPE.flavor": "A quiet breath clears more than the lungs."
 }

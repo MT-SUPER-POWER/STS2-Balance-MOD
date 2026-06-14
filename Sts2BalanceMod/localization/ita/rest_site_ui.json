@@ -1,0 +1,5 @@
+{
+  "OPTION_SMOKE.name": "Fuma",
+  "OPTION_SMOKE.description": "Rimuovi {Cards} carta dal tuo mazzo.",
+  "OPTION_SMOKE.descriptionDisabled": "Non ci sono carte rimovibili nel tuo mazzo."
+}

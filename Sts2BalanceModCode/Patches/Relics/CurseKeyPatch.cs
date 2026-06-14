@@ -16,7 +16,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 
 /// <summary>
 /// 在 RewardsCmd.GenerateForRoomEnd 被调用时（即宝箱打开/奖励生成的瞬间），
-/// 若玩家持有 CurseKey 且当前为宝箱房或 Boss 房，则获得一张随机诅咒牌。
+/// 若玩家持有 CurseKey 且当前为宝箱房，则获得一张随机诅咒牌。
 /// </summary>
 [HarmonyPatch(typeof(RewardsCmd), nameof(RewardsCmd.GenerateForRoomEnd))]
 public static class CurseKeyPatch
@@ -24,8 +24,8 @@ public static class CurseKeyPatch
   [HarmonyPostfix]
   static void Postfix(Player player, AbstractRoom room)
   {
-    // NOTE: 仅宝箱房（TreasureRoom）和 Boss 房触发，普通战斗/事件/商店等不触发
-    bool isChestRoom = room is TreasureRoom || room.RoomType == RoomType.Boss;
+    // NOTE: 仅宝箱房（TreasureRoom），普通战斗/事件/商店等不触发
+    bool isChestRoom = room is TreasureRoom;
     if (!isChestRoom) return;
 
     // 异步逻辑通过 RunSafely 执行，避免阻塞原调用链

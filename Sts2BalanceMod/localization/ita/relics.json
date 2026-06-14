@@ -22,5 +22,8 @@
   "STS2BALANCEMOD-FUSION_HAMMER.flavor": "Una volta impugnato, non può più essere lasciato.",
   "STS2BALANCEMOD-CURSE_KEY.title": "Chiave Maledetta",
   "STS2BALANCEMOD-CURSE_KEY.description": "Ottieni {Energy:energyIcons()} Energia aggiuntiva ogni turno. Ogni volta che apri uno [gold]Scrigno[/gold], ricevi una [purple]Maledizione[/purple] casuale.",
-  "STS2BALANCEMOD-CURSE_KEY.flavor": "Una chiave che apre porte al potere, ma ogni giro lascia dietro di sé una maledizione persistente."
+  "STS2BALANCEMOD-CURSE_KEY.flavor": "Una chiave che apre porte al potere, ma ogni giro lascia dietro di sé una maledizione persistente.",
+  "STS2BALANCEMOD-PEACE_PIPE.title": "Pipa della Pace",
+  "STS2BALANCEMOD-PEACE_PIPE.description": "Ora puoi rimuovere [blue]1[/blue] carta dal tuo mazzo ai Siti di Riposo.",
+  "STS2BALANCEMOD-PEACE_PIPE.flavor": "Un respiro quieto libera più dei polmoni."
 }

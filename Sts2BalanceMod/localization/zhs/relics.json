@@ -22,5 +22,8 @@
   "STS2BALANCEMOD-FUSION_HAMMER.flavor": "一旦握住，就永远无法放下。",
   "STS2BALANCEMOD-CURSE_KEY.title": "诅咒钥匙",
   "STS2BALANCEMOD-CURSE_KEY.description": "每回合额外获得{Energy:energyIcons()}点费用。每次打开[gold]宝箱[/gold]时，获得一张随机[purple]诅咒[/purple]牌。",
-  "STS2BALANCEMOD-CURSE_KEY.flavor": "一把能打开力量之门的钥匙，但每次转动都会留下挥之不去的诅咒。"
+  "STS2BALANCEMOD-CURSE_KEY.flavor": "一把能打开力量之门的钥匙，但每次转动都会留下挥之不去的诅咒。",
+  "STS2BALANCEMOD-PEACE_PIPE.title": "宁静烟斗",
+  "STS2BALANCEMOD-PEACE_PIPE.description": "你现在可以在火堆处移除牌组中的 [blue]1[/blue] 张牌。",
+  "STS2BALANCEMOD-PEACE_PIPE.flavor": "一缕安静的烟，带走了比疲惫更沉的东西。"
 }
