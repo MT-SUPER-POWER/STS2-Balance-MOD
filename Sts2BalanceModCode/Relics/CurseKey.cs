@@ -42,11 +42,14 @@ public sealed class CurseKey : Sts2RelicModel
   // ======================== 奖励诅咒 ========================
 
   /// <summary>
-  /// 每次获取奖励后，从诅咒池中随机获得一张诅咒牌加入牌组
+  /// 每次打开宝箱获取遗物后，从诅咒池中随机获得一张诅咒牌加入牌组
   /// </summary>
   public override async Task AfterRewardTaken(Player player, Reward reward)
   {
     if (player != Owner) return;
+
+    // NOTE: 仅宝箱遗物（RelicReward）触发，战斗奖励、商店等不触发
+    if (reward is not RelicReward) return;
 
     // NOTE: 参考 SereTalon / CursedRun 的诅咒生成逻辑，从 CurseCardPool 中获取可用诅咒
     var availableCurses = ModelDb.CardPool<CurseCardPool>()
@@ -60,7 +63,7 @@ public sealed class CurseKey : Sts2RelicModel
     var canonicalCurse = Owner.RunState.Rng.Niche.NextItem(availableCurses);
     var curseCard = Owner.RunState.CreateCard(canonicalCurse, Owner);
 
-    Flash();
+    Flash(); // 遗物闪烁特效
 
     await CardPileCmd.Add(curseCard, PileType.Deck);
   }

@@ -21,6 +21,6 @@
   "STS2BALANCEMOD-FUSION_HAMMER.description": "无法在火堆锻造。每回合额外获得{Energy:energyIcons()}点费用。",
   "STS2BALANCEMOD-FUSION_HAMMER.flavor": "一旦握住，就永远无法放下。",
   "STS2BALANCEMOD-CURSE_KEY.title": "诅咒钥匙",
-  "STS2BALANCEMOD-CURSE_KEY.description": "每回合额外获得{Energy:energyIcons()}点费用。每次获取奖励时，获得一张随机[purple]诅咒[/purple]牌。",
+  "STS2BALANCEMOD-CURSE_KEY.description": "每回合额外获得{Energy:energyIcons()}点费用。每次打开[gold]宝箱[/gold]时，获得一张随机[purple]诅咒[/purple]牌。",
   "STS2BALANCEMOD-CURSE_KEY.flavor": "一把能打开力量之门的钥匙，但每次转动都会留下挥之不去的诅咒。"
 }

@@ -21,6 +21,6 @@
   "STS2BALANCEMOD-FUSION_HAMMER.description": "Non puoi più Forgiare ai Siti di Riposo. Ottieni {Energy:energyIcons()} Energia aggiuntiva ogni turno.",
   "STS2BALANCEMOD-FUSION_HAMMER.flavor": "Una volta impugnato, non può più essere lasciato.",
   "STS2BALANCEMOD-CURSE_KEY.title": "Chiave Maledetta",
-  "STS2BALANCEMOD-CURSE_KEY.description": "Ottieni {Energy:energyIcons()} Energia aggiuntiva ogni turno. Ogni volta che ottieni una Ricompensa, ricevi una [purple]Maledizione[/purple] casuale.",
+  "STS2BALANCEMOD-CURSE_KEY.description": "Ottieni {Energy:energyIcons()} Energia aggiuntiva ogni turno. Ogni volta che apri uno [gold]Scrigno[/gold], ricevi una [purple]Maledizione[/purple] casuale.",
   "STS2BALANCEMOD-CURSE_KEY.flavor": "Una chiave che apre porte al potere, ma ogni giro lascia dietro di sé una maledizione persistente."
 }
