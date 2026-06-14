@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.RelicPools;
 using MegaCrit.Sts2.Core.Rewards;
+using MegaCrit.Sts2.Core.Rooms;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 // ======================== RELIC-07: 诅咒钥匙 ========================
 
 /// <summary>
-/// RELIC-07 — 诅咒钥匙：每回合多加一点费用，但每次获取奖励时获得一张随机诅咒牌
+/// RELIC-07 — 诅咒钥匙：每回合多加一点费用，但打开宝箱时获得一张随机诅咒牌
 /// </summary>
 [Pool(typeof(EventRelicPool))]
 public sealed class CurseKey : Sts2RelicModel
@@ -42,14 +43,18 @@ public sealed class CurseKey : Sts2RelicModel
   // ======================== 奖励诅咒 ========================
 
   /// <summary>
-  /// 每次打开宝箱获取遗物后，从诅咒池中随机获得一张诅咒牌加入牌组
+  /// 打开宝箱（普通/Boss）获取遗物后，从诅咒池中随机获得一张诅咒牌加入牌组
   /// </summary>
   public override async Task AfterRewardTaken(Player player, Reward reward)
   {
     if (player != Owner) return;
 
-    // NOTE: 仅宝箱遗物（RelicReward）触发，战斗奖励、商店等不触发
+    // NOTE: 仅宝箱遗物触发，事件、商店等不触发
     if (reward is not RelicReward) return;
+
+    // NOTE: 限定宝箱房或 Boss 房（Boss 战后也有宝箱），CurrentRoom 取不到时回退到 BaseRoom
+    var roomType = Owner.RunState.CurrentRoom?.RoomType ?? Owner.RunState.BaseRoom?.RoomType;
+    if (roomType != RoomType.Treasure && roomType != RoomType.Boss) return;
 
     // NOTE: 参考 SereTalon / CursedRun 的诅咒生成逻辑，从 CurseCardPool 中获取可用诅咒
     var availableCurses = ModelDb.CardPool<CurseCardPool>()
