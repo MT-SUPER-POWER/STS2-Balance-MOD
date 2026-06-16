@@ -1,5 +1,8 @@
 {
   "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.title": "Electrodynamics",
   "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.description": "[gold]Lightning[/gold] Orbs hit [gold]ALL enemies[/gold].",
-  "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.smartDescription": "[gold]Lightning[/gold] Orbs hit [gold]ALL enemies[/gold]."
+  "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.smartDescription": "[gold]Lightning[/gold] Orbs hit [gold]ALL enemies[/gold].",
+  "STS2BALANCEMOD-TIME_WARP_POWER.title": "Time Warp",
+  "STS2BALANCEMOD-TIME_WARP_POWER.description": "Whenever a player plays {Amount} more cards, end that player's turn and gain [blue]2[/blue] [gold]Strength[/gold].",
+  "STS2BALANCEMOD-TIME_WARP_POWER.smartDescription": "Whenever a player plays {Amount} more cards, end that player's turn and gain [blue]2[/blue] [gold]Strength[/gold]."
 }

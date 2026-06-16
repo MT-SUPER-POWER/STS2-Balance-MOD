@@ -1,0 +1,13 @@
+{
+  "STS2BALANCEMOD-TIME_EATER.name": "Time Eater",
+  "STS2BALANCEMOD-TIME_EATER.moves.REVERBERATE.title": "Reverberate",
+  "STS2BALANCEMOD-TIME_EATER.moves.RIPPLE.title": "Ripple",
+  "STS2BALANCEMOD-TIME_EATER.moves.HEAD_SLAM.title": "Head Slam",
+  "STS2BALANCEMOD-COLLECTOR.name": "Collector",
+  "STS2BALANCEMOD-COLLECTOR.moves.SUMMON.title": "Spawn",
+  "STS2BALANCEMOD-COLLECTOR.moves.FIREBALL.title": "Fireball",
+  "STS2BALANCEMOD-COLLECTOR.moves.BUFF.title": "Buff",
+  "STS2BALANCEMOD-COLLECTOR.moves.MEGA_DEBUFF.title": "Mega Debuff",
+  "STS2BALANCEMOD-COLLECTOR_TORCH_HEAD.name": "Torch Head",
+  "STS2BALANCEMOD-COLLECTOR_TORCH_HEAD.moves.TACKLE.title": "Tackle"
+}

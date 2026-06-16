@@ -33,7 +33,7 @@
 ## 4. 怪物机制调整
 
 - [x] MON-01 — Boss 沙漏：凋零卡改为**可打出并消耗**，保留成长机制
-- [ ] MON-02 — Boss 新增 BOSS 时间吞噬者
+- [x] MON-02 — Boss 新增 BOSS 时间吞噬者
 
 ## 5. 事件调整
 
@@ -61,8 +61,8 @@
 > 当前实现策略：先简单注入事件池，不规划二层/三层新区域；涉及 Boss、遭遇与怪物资源链的内容暂不硬做。
 
 - [x] STS1-DOC-01 — 整理 ActsFromThePast 一代内容盘点清单
-- [ ] STS1-BOSS-01 — 移植时间吞噬者 Boss（Time Eater，对应 MON-02；需要怪物、能力与资源链）
-- [ ] STS1-BOSS-02 — 移植收藏家 Boss（Collector；需要怪物、召唤物与资源链）
+- [x] STS1-BOSS-01 — 移植时间吞噬者 Boss（Time Eater，对应 MON-02；已接入怪物、时间扭曲能力与 ActsFromThePast 资源链；NOTE: Head Slam 的少抽牌效果待后续补自定义减抽能力精准还原）
+- [x] STS1-BOSS-02 — 移植收藏家 Boss（Collector；已接入怪物、召唤物 Torch Head 与 ActsFromThePast 资源链）
 - [x] STS1-EVENT-01 — 移植诅咒书本事件（可获得死灵之书、尼利的宝典、英雄宝典）
 - [ ] STS1-EVENT-02 — 移植红面具事件（Masked Bandits，含红面具帮战斗；需要红面具帮战斗遭遇）
 - [x] STS1-EVENT-03 — 移植增益研究者事件（J.A.X. 事件）
@@ -87,6 +87,8 @@
 - [ ] BUG-06 — 改版的沙漏的凋零产生效果不会保留虽然有保留词条，还是会进入弃牌堆
 - [x] BUG-07 — 没有移植 ActFromPast 的遗物贴图和卡图
 - [ ] BUG-08 — 红面具直接从道具删除了，应该改为 Event 遗物才对
+- [ ] BUG-09 — JAX 的力量遗物的 JSON 文本描述是 {Strength} 没有渲染具体的数值
+- [ ] BUG-10 — 所有从 sts 添加的时间没有贴图和选项，直接是空内容
 
 ## FEATURE 列表
 
