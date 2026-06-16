@@ -6,6 +6,11 @@
 
 完整需求清单与待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+# v0.0.6
+**调整**
+- 骨妹挽歌：改为升级后不消耗，但不再提高召唤次数（CARD-01）
+
+
 # v0.0.5
 
 **新增**

@@ -7,7 +7,6 @@
 ## 进度总览
 
 ```mermaid
-%%{init: {'themeVariables': {'primaryTextColor':'#000', 'primaryBorderColor':'#000', 'lineColor':'#000', 'secondBkgColor':'#ffffff', 'tertiaryTextColor':'#000'}} }%%
 gantt
     title STS2-Balance-MOD 进度表
     dateFormat YYYY-MM-DD

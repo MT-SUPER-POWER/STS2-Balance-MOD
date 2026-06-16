@@ -8,6 +8,6 @@
 
         <!-- TODO: 如果你的游戏不在 Steam 默认路径，请取消下面的注释并把路径改成你实际的 STS2 目录 -->
         <!-- <Sts2Path>D:\Game\Godot\Slay the Spire 2</Sts2Path> -->
-        <Sts2Path>D:\App\Steam\steamapps\common\Slay the Spire 2</Sts2Path>
+        <Sts2Path>D:/Game/Steam/steamapps/common/Slay the Spire 2</Sts2Path>
     </PropertyGroup>
 </Project>
