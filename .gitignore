@@ -23,9 +23,6 @@ Directory.Build.props
 # Setting
 .editorconfig
 
-# Docs
-docs/references/WatcherMod
-
 # Godot
 *.uid
 *.import
