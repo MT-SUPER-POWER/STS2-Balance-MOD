@@ -1,3 +1,7 @@
 [submodule "docs/references/WatcherMod"]
 	path = docs/references/WatcherMod
 	url = https://github.com/lamali292/WatcherMod.git
+
+[submodule "docs/references/ActsFromThePast"]
+	path = docs/references/ActsFromThePast
+	url = https://github.com/Cany0udance/ActsFromThePast.git

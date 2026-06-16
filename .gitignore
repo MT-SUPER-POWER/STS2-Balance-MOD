@@ -24,9 +24,6 @@ Directory.Build.props
 .editorconfig
 .vscode/
 
-# Docs
-docs/references/WatcherMod
-
 # Godot
 *.uid
 *.import
