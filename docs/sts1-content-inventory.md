@@ -16,8 +16,10 @@
 
 **当前建议：**
 
-- 先合并 P0/P1 内容，保持本项目仍是“平衡调整 + 精选一代回归”。
-- 不直接复制 ActsFromThePast 的三幕系统；需要时只抽取可独立运行的模型、补丁和本地化。
+- 第一批只合并已经选定、且 ActsFromThePast 有参考实现的内容。
+- 第二层、第三层后续可以像第一层暗港/密林一样，新增“一代回归区域”来区分一代和二代怪物及最终 Boss。
+- 不直接复制 ActsFromThePast 的三幕系统；需要时只抽取可独立运行的模型、事件、补丁和本地化。
+- 双拳机器人是二代原生事件，不是 ActsFromThePast 的 `BronzeAutomaton`，当前机器没有 STS2 反编译源码，暂缓到源码到位后处理。
 - 每个合并项进入实现前，都需要在 `balance-changes.md` 中拥有独立编号。
 
 ---
@@ -38,19 +40,38 @@
 
 ---
 
-## 3. P0：当前需求直接命中
+## 3. 第一批确认合并范围
+
+| 编号 | 内容 | 来源 | 说明 |
+| ---- | ---- | ---- | ---- |
+| STS1-BOSS-01 | 时间吞噬者 | `Acts/TheBeyond/Enemies/TimeEater.cs`、`Acts/TheBeyond/Encounters/Boss/TimeEaterBoss.cs`、`Powers/TimeWarpPower.cs` | 三层一代回归 Boss 候选 |
+| STS1-BOSS-02 | 收藏家 | `Acts/TheCity/Enemies/Collector.cs`、`Acts/TheCity/Encounters/Boss/CollectorBoss.cs` | 二层一代回归 Boss 候选 |
+| STS1-EVENT-01 | 诅咒书本 | `Acts/TheCity/Events/CursedTome.cs` | 奖励死灵之书、尼利的宝典、英雄宝典之一 |
+| STS1-EVENT-02 | 红面具事件 | `Acts/TheCity/Events/MaskedBandits.cs`、`Acts/TheCity/Encounters/Normal/RedMaskBanditsEvent.cs`、`Patches/RoomEvents/MaskedBanditsPatches.cs` | 需要同步红面具帮战斗逻辑；`RedMask`、`HandOfGreed` 依赖需确认二代可用模型 |
+| STS1-EVENT-03 | 增益研究者 | `Acts/TheCity/Events/Augmenter.cs` | J.A.X. 事件，需要 `Cards/Jax.cs` 与突变之力相关逻辑 |
+| STS1-EVENT-04 | 神圣泉水 | `SharedEvents/TheDivineFountain.cs` | 删除诅咒事件 |
+| STS1-EVENT-05 | 牧师 | `Acts/Exordium/Events/Cleric.cs` | 治疗 / 删牌事件 |
+| STS1-EVENT-06 | 心灵绽放 | `Acts/TheBeyond/Events/MindBloom.cs`、`Patches/Events/MindBloomPatches.cs` | 包含 999 金币打一层 Boss、绽放印记不能再回复等分支 |
+| STS1-EVENT-07 | 大转盘 | `SharedEvents/WheelOfChange.cs` | 随机奖励/惩罚事件 |
+| STS1-CARD-01 | 本批事件依赖卡牌 | `Cards/Jax.cs`、`Cards/Necronomicurse.cs` | J.A.X. 与死灵之书链路依赖 |
+| STS1-RELIC-01 | 本批事件依赖遗物 | `Relics/Necronomicon.cs`、`Relics/NilrysCodex.cs`、`Relics/Enchiridion.cs`、`Relics/MarkOfTheBloom.cs` 等 | 先围绕本批事件补齐，不做全遗物池；红面具若二代没有可用模型再单独补 |
+
+---
+
+## 4. P0：当前需求直接命中
 
 | 编号 | 内容 | 来源 | 当前判断 |
 | ---- | ---- | ---- | -------- |
 | STS1-BOSS-01 | 时间吞噬者 | `Acts/TheBeyond/Enemies/TimeEater.cs`、`Encounters/Boss/TimeEaterBoss.cs`、`Powers/TimeWarpPower.cs` | 直接对应 `MON-02`，优先移植 |
-| STS1-EVENT-01 | 双拳机器人事件血量降低 | 当前二代事件；ActsFromThePast 的 `BronzeAutomaton` 只能作为机械人偶行为参考 | 需要单独查二代原事件模型并打补丁 |
+| STS1-BOSS-02 | 收藏家 | `Acts/TheCity/Enemies/Collector.cs`、`Encounters/Boss/CollectorBoss.cs` | 本批新增 Boss |
 | STS1-DOC-01 | 一代内容资产清单 | 本文档 | 已建立候选池，后续从这里挑选 |
+| EVENT-01 | 双拳机器人事件血量降低 | 二代原生事件 | 不是 `BronzeAutomaton`；需要 STS2 反编译源码后再定位模型与补丁点 |
 
 ---
 
-## 4. P1：轻量回归候选
+## 5. P1：轻量回归候选
 
-### 4.1 事件卡与诅咒
+### 5.1 事件卡与诅咒
 
 | 内容 | 文件 | 合并价值 | 注意事项 |
 | ---- | ---- | -------- | -------- |
@@ -63,7 +84,7 @@
 | 仪式匕首 | `Cards/RitualDagger.cs` | 事件奖励 | 永久成长逻辑需要确认存档/升级兼容 |
 | 盒子 | `Cards/TheBox.cs` | Rebalanced Mode 事件奖励 | 与商店移除逻辑相关，暂列候选 |
 
-### 4.2 事件遗物
+### 5.2 事件遗物
 
 | 内容 | 文件 | 合并价值 | 注意事项 |
 | ---- | ---- | -------- | -------- |
@@ -85,7 +106,7 @@
 | 精灵便便 | `Relics/SpiritPoop.cs` | 事件结果 | 主要是收藏/彩蛋 |
 | 鲜血储蓄袋 | `Relics/BloodBank.cs` | Rebalanced Mode 新遗物 | 非一代原版，暂缓 |
 
-### 4.3 简单事件候选
+### 5.3 简单事件候选
 
 | 内容 | 文件 | 初步判断 |
 | ---- | ---- | -------- |
@@ -99,9 +120,9 @@
 
 ---
 
-## 5. P2：系统级内容，暂不一次合并
+## 6. P2：系统级内容，暂不一次合并
 
-### 5.1 幕与遭遇池
+### 6.1 幕与遭遇池
 
 | 幕 | Boss | 精英 | 普通遭遇 |
 | -- | ---- | ---- | -------- |
@@ -115,7 +136,7 @@
 - 会把本项目从平衡 MOD 推向完整内容 MOD。
 - 更适合作为后续单独里程碑，而不是混在卡牌/遗物平衡调整里。
 
-### 5.2 复杂事件与小游戏
+### 6.2 复杂事件与小游戏
 
 | 类型 | 内容 |
 | ---- | ---- |
@@ -131,10 +152,9 @@
 
 ---
 
-## 6. 后续执行建议
+## 7. 后续执行建议
 
-1. 在 `balance-changes.md` 新增“一代内容合并路线图”，只放已经决定要做的条目。
-2. 第一批实现 `STS1-BOSS-01 时间吞噬者`，顺带抽出 `TimeWarpPower`。
-3. 第二批实现事件卡/诅咒扩展，优先考虑 `死灵诅咒`、`疼痛`、`寄生`，强化诅咒钥匙和御守的互动价值。
-4. 第三批挑选 2-3 个事件遗物，优先选择逻辑独立、测试成本低的内容。
-5. 幕、普通怪、完整事件系统另开里程碑。
+1. 先实现本批 `STS1-BOSS-01` 到 `STS1-EVENT-07`，只处理必要依赖。
+2. 本批事件依赖的 `J.A.X.`、`死灵诅咒`、三本书遗物、绽放印记随事件同步补齐。
+3. 双拳机器人事件、二层/三层一代回归区域挂载、二代原生 Boss 池调整，等 STS2 反编译源码到位后再做。
+4. 幕、普通怪、完整遭遇池另开里程碑，不混入本批。
