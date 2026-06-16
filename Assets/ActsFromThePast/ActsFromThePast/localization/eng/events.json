@@ -779,7 +779,7 @@
   "ACTSFROMTHEPAST-WHEEL_OF_CHANGE.pages.LEAVE.description": "",
 
   "ACTSFROMTHEPAST-WINDING_HALLS.pages.CHOICE.description": "Passing by a structure you are certain you have previously seen you start to question if you are going insane, or if the impossible geography of this place is starting to get to you. You need to change something, and soon.\n\nThat's what the [purple][sine]voices[/sine][/purple] say anyway, and why would they lie?",
-  "ACTSFROMTHEPAST-WINDING_HALLS.pages.CHOICE.options.MADNESS.description": "Add [blue]2[/blue] [gold]Madness[/gold] to your [gold]Deck[/gold]. Lose [red]{HpLoss}[/red] HP.",
+  "ACTSFROMTHEPAST-WINDING_HALLS.pages.CHOICE.options.MADNESS.descrfiption": "Add [blue]2[/blue] [gold]Madness[/gold] to your [gold]Deck[/gold]. Lose [red]{HpLoss}[/red] HP.",
   "ACTSFROMTHEPAST-WINDING_HALLS.pages.CHOICE.options.MADNESS.title": "Embrace Madness",
   "ACTSFROMTHEPAST-WINDING_HALLS.pages.CHOICE.options.RETREAT.description": "Lose [red]{MaxHpLoss}[/red] Max HP.",
   "ACTSFROMTHEPAST-WINDING_HALLS.pages.CHOICE.options.RETREAT.title": "Retrace Your Steps",

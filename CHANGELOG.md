@@ -14,7 +14,8 @@
 - Boss：移植时间吞噬者，接入时间扭曲能力、Boss 候选池与 ActsFromThePast 怪物资源。
 - Boss：移植收藏家，接入收藏家本体、Torch Head 召唤物、Boss 候选池与 ActsFromThePast 怪物资源。
 - 资源：补充 J.A.X.、死灵诅咒及本批一代事件遗物的卡图/遗物贴图。
-- 资源：完整拆出 ActsFromThePast `0.13.0` PCK 资源到 `Assets/ActsFromThePast/`，供后续移植复用。
+- 资源：完整拆出 ActsFromThePast `0.12.0` release PCK 资源到 `Assets/ActsFromThePast/`，并批量还原实际 PNG/OGG 素材，供后续移植复用。
+- 资源：从 ActsFromThePast `0.12.0` release PCK 解出并转存本批一代事件 portrait 贴图，接入 `Sts2BalanceMod/images/events/`。
 
 **调整**
 - 骨妹挽歌：改为升级后不消耗，但不再提高召唤次数（CARD-01）

@@ -779,7 +779,7 @@
   "ACTSFROMTHEPAST-WHEEL_OF_CHANGE.pages.LEAVE.description": "",
 
   "ACTSFROMTHEPAST-WINDING_HALLS.pages.CHOICE.description": "분명히 전에 본 적 있는 구조물을 지나가면서 당신은 자신이 미쳐가는건지, 아니면 이 곳의 있을 수 없는 지형이 자신을 괴롭히는 것인지 의문이 듭니다. 당신은 빨리 무언가를 바꿔야 할 필요를 느낍니다.\n\n그것은 [purple][sine]목소리[/sine][/purple]가 한 말이지만, 그게 거짓말일 이유도 없지 않겠습니까?",
-  "ACTSFROMTHEPAST-WINDING_HALLS.pages.CHOICE.options.MADNESS.description": "[gold]덱[/gold]에 [blue]2[/blue]장의 [gold]광기[/gold]를 추가합니다. 체력을 [red]{HpLoss}[/red] 잃습니다.",
+  "ACTSFROMTHEPAST-WINDING_HALLS.pages.CHOICE.options.MADNESS.descrfiption": "[gold]덱[/gold]에 [blue]2[/blue]장의 [gold]광기[/gold]를 추가합니다. 체력을 [red]{HpLoss}[/red] 잃습니다.",
   "ACTSFROMTHEPAST-WINDING_HALLS.pages.CHOICE.options.MADNESS.title": "광기를 받아들인다",
   "ACTSFROMTHEPAST-WINDING_HALLS.pages.CHOICE.options.RETREAT.description": "최대 체력을 [red]{MaxHpLoss}[/red] 잃습니다.",
   "ACTSFROMTHEPAST-WINDING_HALLS.pages.CHOICE.options.RETREAT.title": "왔던 길로 돌아간다",
