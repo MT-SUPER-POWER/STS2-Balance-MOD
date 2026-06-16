@@ -87,8 +87,8 @@
 - [ ] BUG-06 — 改版的沙漏的凋零产生效果不会保留虽然有保留词条，还是会进入弃牌堆
 - [x] BUG-07 — 没有移植 ActFromPast 的遗物贴图和卡图
 - [ ] BUG-08 — 红面具直接从道具删除了，应该改为 Event 遗物才对
-- [ ] BUG-09 — JAX 的力量遗物的 JSON 文本描述是 {Strength} 没有渲染具体的数值
-- [x] BUG-10 — 所有从 STS 添加的事件没有贴图和选项，直接是空内容（已从 ActsFromThePast `0.12.0` release PCK 解出本批事件贴图；选项文本由现有本地化接入）
+- [x] BUG-09 — JAX 的力量遗物的 JSON 文本描述是 {Strength} 没有渲染具体的数值
+- [x] BUG-10 — 所有从 STS 添加的事件没有贴图和选项，直接是空内容（已补事件 portrait 路径补丁并规避红面具 HoverTip 初始化异常；贴图来自 ActsFromThePast `0.12.0` release PCK）
 
 ## FEATURE 列表
 

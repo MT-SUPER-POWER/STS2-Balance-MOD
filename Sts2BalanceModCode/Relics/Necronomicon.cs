@@ -25,10 +25,7 @@ public sealed class Necronomicon : Sts2RelicModel
 
   public override RelicRarity Rarity => RelicRarity.Event;
 
-  protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-  [
-    HoverTipFactory.FromCard<Necronomicurse>(),
-  ];
+  protected override IEnumerable<IHoverTip> ExtraHoverTips => HoverTipFactory.FromCardWithCardHoverTips<Necronomicurse>();
 
   protected override IEnumerable<DynamicVar> CanonicalVars =>
   [

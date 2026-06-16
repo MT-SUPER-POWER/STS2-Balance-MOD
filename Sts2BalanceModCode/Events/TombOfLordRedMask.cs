@@ -46,8 +46,8 @@ public sealed class TombOfLordRedMask : CustomEventModel
       options.Add(new EventOption(this, null,
         $"{Id.Entry}.pages.INITIAL.options.WEAR_MASK_LOCKED",
         Array.Empty<IHoverTip>()));
-      options.Add(Option(PayRespects, "INITIAL",
-        HoverTipFactory.FromRelic(ModelDb.Relic<RedMask>()).ToArray()));
+      // NOTE: 二代原生 RedMask 的 HoverTip 在 Mod 事件内会触发能量图标池解析异常，先只展示选项文本。
+      options.Add(Option(PayRespects));
     }
 
     options.Add(Option(Leave));

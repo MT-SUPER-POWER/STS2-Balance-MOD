@@ -16,10 +16,12 @@
 - 资源：补充 J.A.X.、死灵诅咒及本批一代事件遗物的卡图/遗物贴图。
 - 资源：完整拆出 ActsFromThePast `0.12.0` release PCK 资源到 `Assets/ActsFromThePast/`，并批量还原实际 PNG/OGG 素材，供后续移植复用。
 - 资源：从 ActsFromThePast `0.12.0` release PCK 解出并转存本批一代事件 portrait 贴图，接入 `Sts2BalanceMod/images/events/`。
+- 资源：为本批一代事件补充 portrait 路径补丁，使二代事件布局读取 `Sts2BalanceMod/images/events/` 下的 Mod 资源。
 
 **调整**
 - 骨妹挽歌：改为升级后不消耗，但不再提高召唤次数（CARD-01）
 - 红面具从一般共享遗物池移除，改为通过红面具相关事件获得（RELIC-08）。
+- 红面具大人之墓：移除支付敬意选项上的原生红面具 HoverTip，避免原生遗物描述解析能量图标池时中断事件初始化。
 - 心灵绽放先接入非战斗分支；打一层 Boss 分支等待 Boss/遭遇资源链移植。
 - 时间吞噬者 Head Slam 暂不套二代 `NoDrawPower`，避免把 STS1 的少抽牌误还原成完全禁抽；后续补自定义减抽能力后再精确接入。
 
