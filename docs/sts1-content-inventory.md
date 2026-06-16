@@ -17,9 +17,10 @@
 **当前建议：**
 
 - 第一批只合并已经选定、且 ActsFromThePast 有参考实现的内容。
-- 第二层、第三层后续可以像第一层暗港/密林一样，新增“一代回归区域”来区分一代和二代怪物及最终 Boss。
+- 本批不规划二层/三层新区域，所有一代回归内容先按简单注入处理；区域方案后续另行规划。
 - 不直接复制 ActsFromThePast 的三幕系统；需要时只抽取可独立运行的模型、事件、补丁和本地化。
 - 双拳机器人是二代原生事件，不是 ActsFromThePast 的 `BronzeAutomaton`，当前机器没有 STS2 反编译源码，暂缓到源码到位后处理。
+- 红面具二代已有模型，本批不新增红面具遗物；需要把它从一般遗物获取池移除，改为红面具帮战斗或红面具大人之墓事件专属来源。
 - 每个合并项进入实现前，都需要在 `balance-changes.md` 中拥有独立编号。
 
 ---
@@ -47,14 +48,16 @@
 | STS1-BOSS-01 | 时间吞噬者 | `Acts/TheBeyond/Enemies/TimeEater.cs`、`Acts/TheBeyond/Encounters/Boss/TimeEaterBoss.cs`、`Powers/TimeWarpPower.cs` | 三层一代回归 Boss 候选 |
 | STS1-BOSS-02 | 收藏家 | `Acts/TheCity/Enemies/Collector.cs`、`Acts/TheCity/Encounters/Boss/CollectorBoss.cs` | 二层一代回归 Boss 候选 |
 | STS1-EVENT-01 | 诅咒书本 | `Acts/TheCity/Events/CursedTome.cs` | 奖励死灵之书、尼利的宝典、英雄宝典之一 |
-| STS1-EVENT-02 | 红面具事件 | `Acts/TheCity/Events/MaskedBandits.cs`、`Acts/TheCity/Encounters/Normal/RedMaskBanditsEvent.cs`、`Patches/RoomEvents/MaskedBanditsPatches.cs` | 需要同步红面具帮战斗逻辑；`RedMask`、`HandOfGreed` 依赖需确认二代可用模型 |
+| STS1-EVENT-02 | 红面具事件 | `Acts/TheCity/Events/MaskedBandits.cs`、`Acts/TheCity/Encounters/Normal/RedMaskBanditsEvent.cs`、`Patches/RoomEvents/MaskedBanditsPatches.cs` | 红面具帮战斗事件；战斗胜利后给予二代已有 `RedMask` |
 | STS1-EVENT-03 | 增益研究者 | `Acts/TheCity/Events/Augmenter.cs` | J.A.X. 事件，需要 `Cards/Jax.cs` 与突变之力相关逻辑 |
 | STS1-EVENT-04 | 神圣泉水 | `SharedEvents/TheDivineFountain.cs` | 删除诅咒事件 |
 | STS1-EVENT-05 | 牧师 | `Acts/Exordium/Events/Cleric.cs` | 治疗 / 删牌事件 |
 | STS1-EVENT-06 | 心灵绽放 | `Acts/TheBeyond/Events/MindBloom.cs`、`Patches/Events/MindBloomPatches.cs` | 包含 999 金币打一层 Boss、绽放印记不能再回复等分支 |
 | STS1-EVENT-07 | 大转盘 | `SharedEvents/WheelOfChange.cs` | 随机奖励/惩罚事件 |
+| STS1-EVENT-08 | 红面具大人之墓 | `Acts/TheBeyond/Events/TombOfLordRedMask.cs` | 没有红面具时可失去全部金币获得红面具；已有红面具时可戴上获得 222 金币 |
 | STS1-CARD-01 | 本批事件依赖卡牌 | `Cards/Jax.cs`、`Cards/Necronomicurse.cs` | J.A.X. 与死灵之书链路依赖 |
-| STS1-RELIC-01 | 本批事件依赖遗物 | `Relics/Necronomicon.cs`、`Relics/NilrysCodex.cs`、`Relics/Enchiridion.cs`、`Relics/MarkOfTheBloom.cs` 等 | 先围绕本批事件补齐，不做全遗物池；红面具若二代没有可用模型再单独补 |
+| STS1-RELIC-01 | 本批事件依赖遗物 | `Relics/Necronomicon.cs`、`Relics/NilrysCodex.cs`、`Relics/Enchiridion.cs`、`Relics/MarkOfTheBloom.cs` 等 | 先围绕本批事件补齐，不做全遗物池；红面具使用二代已有模型 |
+| RELIC-08 | 红面具获取池调整 | 二代已有 `RedMask` | 从一般遗物获取池移除，只允许红面具相关事件给予 |
 
 ---
 
@@ -65,6 +68,7 @@
 | STS1-BOSS-01 | 时间吞噬者 | `Acts/TheBeyond/Enemies/TimeEater.cs`、`Encounters/Boss/TimeEaterBoss.cs`、`Powers/TimeWarpPower.cs` | 直接对应 `MON-02`，优先移植 |
 | STS1-BOSS-02 | 收藏家 | `Acts/TheCity/Enemies/Collector.cs`、`Encounters/Boss/CollectorBoss.cs` | 本批新增 Boss |
 | STS1-DOC-01 | 一代内容资产清单 | 本文档 | 已建立候选池，后续从这里挑选 |
+| RELIC-08 | 红面具获取池调整 | 二代已有 `RedMask` | 本批新增遗物池补丁需求 |
 | EVENT-01 | 双拳机器人事件血量降低 | 二代原生事件 | 不是 `BronzeAutomaton`；需要 STS2 反编译源码后再定位模型与补丁点 |
 
 ---
@@ -154,7 +158,8 @@
 
 ## 7. 后续执行建议
 
-1. 先实现本批 `STS1-BOSS-01` 到 `STS1-EVENT-07`，只处理必要依赖。
+1. 先实现本批 `STS1-BOSS-01` 到 `STS1-EVENT-08`，只处理必要依赖。
 2. 本批事件依赖的 `J.A.X.`、`死灵诅咒`、三本书遗物、绽放印记随事件同步补齐。
-3. 双拳机器人事件、二层/三层一代回归区域挂载、二代原生 Boss 池调整，等 STS2 反编译源码到位后再做。
-4. 幕、普通怪、完整遭遇池另开里程碑，不混入本批。
+3. 红面具先做获取池移除，再由红面具帮战斗和红面具大人之墓负责给予。
+4. 双拳机器人事件等二代原生内容，等 STS2 反编译源码到位后再做。
+5. 幕、普通怪、完整遭遇池另开里程碑，不混入本批。
