@@ -39,6 +39,6 @@
   "STS2BALANCEMOD-MARK_OF_THE_BLOOM.description": "你无法再回复生命。",
   "STS2BALANCEMOD-MARK_OF_THE_BLOOM.flavor": "在高塔的深处，思维与现实成为了一体。",
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.title": "突变之力",
-  "STS2BALANCEMOD-MUTAGENIC_STRENGTH.description": "每场战斗开始时，获得 [blue]{Strength}[/blue] 点临时 [red]力量[/red]。",
+  "STS2BALANCEMOD-MUTAGENIC_STRENGTH.description": "每场战斗开始时，获得 [blue]{StrengthPower}[/blue] 点临时 [red]力量[/red]。",
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.flavor": "基因实验留下的残余力量。"
 }

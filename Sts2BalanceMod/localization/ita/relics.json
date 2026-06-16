@@ -39,6 +39,6 @@
   "STS2BALANCEMOD-MARK_OF_THE_BLOOM.description": "You can no longer heal.",
   "STS2BALANCEMOD-MARK_OF_THE_BLOOM.flavor": "In the deepest parts of the Spire, thought and reality are one.",
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.title": "Forza Mutagena",
-  "STS2BALANCEMOD-MUTAGENIC_STRENGTH.description": "All'inizio di ogni combattimento, ottieni [blue]{Strength}[/blue] [red]Forza[/red] temporanea.",
+  "STS2BALANCEMOD-MUTAGENIC_STRENGTH.description": "All'inizio di ogni combattimento, ottieni [blue]{StrengthPower}[/blue] [red]Forza[/red] temporanea.",
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.flavor": "Potere residuo di un esperimento genetico."
 }
