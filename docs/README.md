@@ -1,7 +1,7 @@
 # docs 目录索引
 
 - [更新日志](../CHANGELOG.md) — 各版本已实现功能与修复记录（`# vx.x.x` 格式，推送 Tag 时自动用于 Release 说明）
-- [平衡调整需求清单](balance-changes.md) — 所有需求项的编号、描述、状态与一代回归落地进度
+- [平衡调整需求清单](balance-changes.md) — 所有需求项的编号、描述、状态、一代回归落地进度与资源补齐记录
 - [STS1 内容回归盘点清单](sts1-content-inventory.md) — 基于 ActsFromThePast 整理的一代内容候选池与合并优先级
 - [STS2 Mod 制作指南](sts2-modding-guide.md) — 从零开始制作 STS2 Mod 的完整教程
 - [WatcherMod 参考代码](references/WatcherMod/) — 社区参考 Mod（[GitHub](https://github.com/lamali292/WatcherMod) submodule）
