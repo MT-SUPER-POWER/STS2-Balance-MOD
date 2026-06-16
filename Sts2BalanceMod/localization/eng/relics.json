@@ -25,5 +25,20 @@
   "STS2BALANCEMOD-CURSE_KEY.flavor": "A key that opens doors to power, but each turn leaves behind a lingering curse.",
   "STS2BALANCEMOD-PEACE_PIPE.title": "Peace Pipe",
   "STS2BALANCEMOD-PEACE_PIPE.description": "You can now remove [blue]1[/blue] card from your deck at Rest Sites.",
-  "STS2BALANCEMOD-PEACE_PIPE.flavor": "A quiet breath clears more than the lungs."
+  "STS2BALANCEMOD-PEACE_PIPE.flavor": "A quiet breath clears more than the lungs.",
+  "STS2BALANCEMOD-NECRONOMICON.title": "Necronomicon",
+  "STS2BALANCEMOD-NECRONOMICON.description": "On pickup, obtain [red]Necronomicurse[/red]. The first time you play an [gold]Attack[/gold] costing {Energy:energyIcons()} or more each turn, play it twice.",
+  "STS2BALANCEMOD-NECRONOMICON.flavor": "Only a fool would try to command such evil power.",
+  "STS2BALANCEMOD-NILRYS_CODEX.title": "Nilry's Codex",
+  "STS2BALANCEMOD-NILRYS_CODEX.description": "At the end of each turn, choose [blue]1[/blue] of [blue]3[/blue] random cards to shuffle into your [gold]Draw Pile[/gold].",
+  "STS2BALANCEMOD-NILRYS_CODEX.flavor": "Compiled by the infamous game master himself.",
+  "STS2BALANCEMOD-ENCHIRIDION.title": "Enchiridion",
+  "STS2BALANCEMOD-ENCHIRIDION.description": "At the start of each combat, add a random [gold]Power[/gold] card to your [gold]Hand[/gold]. It costs 0 this turn.",
+  "STS2BALANCEMOD-ENCHIRIDION.flavor": "A legendary journal from an ancient lich.",
+  "STS2BALANCEMOD-MARK_OF_THE_BLOOM.title": "Mark of the Bloom",
+  "STS2BALANCEMOD-MARK_OF_THE_BLOOM.description": "You can no longer heal.",
+  "STS2BALANCEMOD-MARK_OF_THE_BLOOM.flavor": "In the deepest parts of the Spire, thought and reality are one.",
+  "STS2BALANCEMOD-MUTAGENIC_STRENGTH.title": "Mutagenic Strength",
+  "STS2BALANCEMOD-MUTAGENIC_STRENGTH.description": "At the start of each combat, gain [blue]{Strength}[/blue] temporary [red]Strength[/red].",
+  "STS2BALANCEMOD-MUTAGENIC_STRENGTH.flavor": "Residual power from a genetic experiment."
 }

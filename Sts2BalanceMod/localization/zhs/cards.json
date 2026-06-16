@@ -7,5 +7,9 @@
   "STS2BALANCEMOD-CONCENTRATE.description": "丢弃 {Cards:diff()} 张牌。\n获得 {Energy:energyIcons()} 。",
   "STS2BALANCEMOD-ELECTRODYNAMICS.title": "电动力学",
   "STS2BALANCEMOD-ELECTRODYNAMICS.description": "召唤 {Cards:diff()} 个[gold]闪电[/gold]球。\n[gold]闪电[/gold]球改为[gold]攻击所有敌人[/gold]。",
+  "STS2BALANCEMOD-JAX.title": "J.A.X.",
+  "STS2BALANCEMOD-JAX.description": "失去 {HpLoss:diff()} 点生命。\n获得 {StrengthPower:diff()} [gold]力量[/gold]。",
+  "STS2BALANCEMOD-NECRONOMICURSE.title": "死灵诅咒",
+  "STS2BALANCEMOD-NECRONOMICURSE.description": "你无法逃脱这个 [red]诅咒[/red]。",
   "WRAITH_FORM.description": "获得{IntangiblePower:diff()}[gold]无实体[/gold]。"
 }
