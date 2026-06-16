@@ -3,6 +3,7 @@ docs/
 dist/
 Hooks/
 image_gen/
+Assets/
 .github/
 .git/
 bin/

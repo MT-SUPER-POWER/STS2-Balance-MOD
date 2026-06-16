@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_script"]
+[ext_resource type="Texture2D" path="res://ActsFromThePast/monsters/bronze_orb/bronze_orb.png" id="2_texture"]
+[ext_resource type="SpineSkeletonDataResource" path="res://ActsFromThePast/monsters/gremlin_fat/gremlin_fat_skel_data.tres" id="3_dummy"]
+
+[node name="BronzeOrb" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Visuals" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -85)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_texture")
+
+[node name="StolenCardPos" type="Marker2D" parent="Visuals"]
+unique_name_in_owner = true
+position = Vector2(0, -130)
+scale = Vector2(0.3, 0.3)
+
+[node name="DummySpine" type="SpineSprite" parent="."]
+visible = false
+skeleton_data_res = ExtResource("3_dummy")
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -155.0
+offset_right = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -73)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -200)
