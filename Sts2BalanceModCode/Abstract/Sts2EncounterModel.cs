@@ -1,4 +1,3 @@
-using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Models;
 
@@ -12,4 +11,6 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 public abstract class Sts2EncounterModel : EncounterModel
 {
   public override MegaSkeletonDataResource? BossNodeSpineResource => null;
+
+  public virtual string? CustomScenePath => null;
 }

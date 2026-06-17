@@ -16,8 +16,12 @@
   "STS2BALANCEMOD-BEAR.moves.LUNGE.title": "突刺",
   "STS2BALANCEMOD-POINTY.name": "尖头",
   "STS2BALANCEMOD-POINTY.moves.STAB.title": "戳刺",
+  "STS2BALANCEMOD-POINTY.deathReactLine": "[sine]熊哦！！！[/sine]",
   "STS2BALANCEMOD-ROMEO.name": "罗密欧",
   "STS2BALANCEMOD-ROMEO.moves.MOCK.title": "嘲讽",
+  "STS2BALANCEMOD-ROMEO.moves.MOCK.bearAlive": "[sine]熊，给我上！！[/sine]",
+  "STS2BALANCEMOD-ROMEO.moves.MOCK.bearDead": "[sine]你会付出代价的！！[/sine]",
   "STS2BALANCEMOD-ROMEO.moves.CROSS_SLASH.title": "十字斩",
-  "STS2BALANCEMOD-ROMEO.moves.AGONIZING_SLASH.title": "痛苦斩"
+  "STS2BALANCEMOD-ROMEO.moves.AGONIZING_SLASH.title": "痛苦斩",
+  "STS2BALANCEMOD-ROMEO.deathReactLine": "[sine]不——！熊！！[/sine]"
 }

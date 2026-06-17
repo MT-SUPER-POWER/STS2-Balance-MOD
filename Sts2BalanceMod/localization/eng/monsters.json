@@ -16,8 +16,12 @@
   "STS2BALANCEMOD-BEAR.moves.LUNGE.title": "Lunge",
   "STS2BALANCEMOD-POINTY.name": "Pointy",
   "STS2BALANCEMOD-POINTY.moves.STAB.title": "Stab",
+  "STS2BALANCEMOD-POINTY.deathReactLine": "[sine]Beeeaaar!!!![/sine]",
   "STS2BALANCEMOD-ROMEO.name": "Romeo",
   "STS2BALANCEMOD-ROMEO.moves.MOCK.title": "Mock",
+  "STS2BALANCEMOD-ROMEO.moves.MOCK.bearAlive": "[sine]Grab[/sine] [sine]em'[/sine] [sine]Bear!![/sine]",
+  "STS2BALANCEMOD-ROMEO.moves.MOCK.bearDead": "[sine]You[/sine] [sine]will[/sine] [sine]pay[/sine] [sine]for[/sine] [sine]this!![/sine]",
   "STS2BALANCEMOD-ROMEO.moves.CROSS_SLASH.title": "Cross Slash",
-  "STS2BALANCEMOD-ROMEO.moves.AGONIZING_SLASH.title": "Agonizing Slash"
+  "STS2BALANCEMOD-ROMEO.moves.AGONIZING_SLASH.title": "Agonizing Slash",
+  "STS2BALANCEMOD-ROMEO.deathReactLine": "[sine]Nooooooo,[/sine] [sine]Bear![/sine]"
 }

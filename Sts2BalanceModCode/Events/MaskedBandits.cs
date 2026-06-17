@@ -1,13 +1,19 @@
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Gold;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 using Sts2BalanceMod.Sts2BalanceModCode.Encounters;
+using Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 
@@ -19,6 +25,11 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 /// </summary>
 public sealed class MaskedBandits : CustomEventModel
 {
+  private static readonly LocString EmptyDescription =
+    new("events", "STS2BALANCEMOD-MASKED_BANDITS.pages.EMPTY.description");
+
+  private NSpeechBubbleVfx? _speechBubble;
+
   public override ActModel[] Acts => [];
 
   public override bool IsShared => true;
@@ -55,7 +66,51 @@ public sealed class MaskedBandits : CustomEventModel
     if (goldToLose > 0)
       await PlayerCmd.LoseGold(goldToLose, owner, GoldLossType.Stolen);
 
-    SetEventFinished(PageDescription("PAID"));
+    SetEventState(EmptyDescription,
+    [
+      new EventOption(this, Paid2, $"{Id.Entry}.pages.PAID_1.options.CONTINUE", []),
+    ]);
+    PlayPaidLine<Pointy>("PAID_1");
+  }
+
+  private Task Paid2()
+  {
+    SetEventState(EmptyDescription,
+    [
+      new EventOption(this, Paid3, $"{Id.Entry}.pages.PAID_2.options.CONTINUE", []),
+    ]);
+    PlayPaidLine<Romeo>("PAID_2");
+    return Task.CompletedTask;
+  }
+
+  private Task Paid3()
+  {
+    PlayPaidLine<Romeo>("PAID_3");
+    SetEventFinished(EmptyDescription);
+    return Task.CompletedTask;
+  }
+
+  private void PlayPaidLine<TMonster>(string pageKey) where TMonster : MonsterModel
+  {
+    if (!LocalContext.IsMe(Owner)) return;
+
+    if (_speechBubble != null)
+    {
+      _ = _speechBubble.AnimOut();
+      _speechBubble = null;
+    }
+
+    var speaker = FindCreature<TMonster>();
+    if (speaker == null) return;
+
+    _speechBubble = TalkCmd.Play(PageDescription(pageKey), speaker, VfxColor.Red, VfxDuration.Forever);
+  }
+
+  private static Creature? FindCreature<TMonster>() where TMonster : MonsterModel
+  {
+    return NCombatRoom.Instance?.CreatureNodes
+      .FirstOrDefault(n => n.Entity.Monster is TMonster)
+      ?.Entity;
   }
 
   private Task Fight()

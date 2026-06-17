@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
+using MegaCrit.Sts2.Core.Runs;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 
@@ -28,6 +29,12 @@ public sealed class TombOfLordRedMask : CustomEventModel
   public override void CalculateVars()
   {
     DynamicVars["PlayerGold"].BaseValue = Owner?.Gold ?? 0;
+  }
+
+  public override bool IsAllowed(IRunState runState)
+  {
+    if (runState.CurrentActIndex != 2) return false;         // NOTE: 第 3 幕（索引 2）
+    return !runState.Players.Any(p => p.Relics.Any(r => r is RedMask));
   }
 
   protected override IReadOnlyList<EventOption> GenerateInitialOptions()

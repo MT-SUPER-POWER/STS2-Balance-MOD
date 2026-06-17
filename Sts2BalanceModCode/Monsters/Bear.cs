@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.ValueProps;
+using Sts2BalanceMod.Sts2BalanceModCode.Animations;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
@@ -21,7 +22,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 /// </summary>
 public sealed class Bear : Sts2MonsterModel
 {
-  protected override string VisualsPath => "res://Sts2BalanceMod/monsters/bear/bear.tscn";
+  protected override string VisualsPath => "res://Assets/ActsFromPast/ActsFromThePast/monsters/bear/bear.tscn";
 
   public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 40, 38);
   public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 44, 42);
@@ -50,8 +51,7 @@ public sealed class Bear : Sts2MonsterModel
 
   private async Task BearHug(IReadOnlyList<Creature> targets)
   {
-    await CreatureCmd.TriggerAnim(Creature, "Attack", 0.0f);
-    await Cmd.Wait(0.3f);
+    await FastAttackAnimation.Play(Creature);
 
     foreach (var target in targets.Where(t => t.IsAlive))
     {
@@ -72,8 +72,7 @@ public sealed class Bear : Sts2MonsterModel
 
   private async Task Lunge(IReadOnlyList<Creature> targets)
   {
-    await CreatureCmd.TriggerAnim(Creature, "Attack", 0.0f);
-    await Cmd.Wait(0.3f);
+    await FastAttackAnimation.Play(Creature);
 
     await DamageCmd.Attack(LungeDamage)
         .FromMonster(this)
@@ -93,9 +92,22 @@ public sealed class Bear : Sts2MonsterModel
     hit.NextState = idle;
 
     var animator = new CreatureAnimator(idle, controller);
+    animator.AddAnyState("Attack", attack);
+    animator.AddAnyState(BEAR_HUG, attack);
     animator.AddAnyState("Maul", attack);
+    animator.AddAnyState(MAUL, attack);
+    animator.AddAnyState(LUNGE, attack);
     animator.AddAnyState("Hit", hit);
 
     return animator;
+  }
+
+  protected override string? GetBestiaryMoveAnimationId(string moveStateId)
+  {
+    return moveStateId switch
+    {
+      BEAR_HUG or MAUL or LUNGE => "Attack",
+      _ => base.GetBestiaryMoveAnimationId(moveStateId),
+    };
   }
 }

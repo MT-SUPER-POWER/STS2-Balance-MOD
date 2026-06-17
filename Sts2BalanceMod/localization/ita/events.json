@@ -115,5 +115,13 @@
   "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.PAY.description": "Perdi tutto il [gold]Oro[/gold].",
   "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.FIGHT.title": "Combatti",
   "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.FIGHT.description": "Combatti i banditi per la [gold]Maschera Rossa[/gold]!",
-  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID.description": "Consegni il tuo oro e ti allontani. I banditi ridono mentre contano il bottino."
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.EMPTY.description": "",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID.description": "Consegni il tuo oro e ti allontani. I banditi ridono mentre contano il bottino.",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_1.description": "Hehehe.. Grazie per l'[gold]Oro![/gold]\nOh, adoro l'[gold]Oro.[/gold] E cosi bello.\n[sine]luccicanti[/sine] [sine]luccicanti[/sine] monetine!",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_1.options.CONTINUE.title": "Continua",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_1.options.CONTINUE.description": "",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_2.description": "Ehi [blue]Orso,[/blue] ehi!\nQuesto qui ci ha dato tutto il suo [gold]Oro![/gold] Che ingenuo, vero?\nSenti qua: e bastato chiedere con gentilezza. Chi lo sapeva?!\nIo no di certo! Che allocco!",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_2.options.CONTINUE.title": "Continua",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_2.options.CONTINUE.description": "",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_3.description": "Banda, facciamoci una bella risata per questa meravigliosa occasione!\n[jitter]Hahaah[/jitter]\n[jitter]Ho[/jitter] [jitter]HOH[/jitter] [sine]hoho![/sine]\n[sine]Hoh![/sine]"
 }

@@ -5,9 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
@@ -19,7 +21,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 /// </summary>
 public sealed class Romeo : Sts2MonsterModel
 {
-  protected override string VisualsPath => "res://Sts2BalanceMod/monsters/romeo/romeo.tscn";
+  protected override string VisualsPath => "res://Assets/ActsFromPast/ActsFromThePast/monsters/romeo/romeo.tscn";
 
   public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 37, 35);
   public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 41, 39);
@@ -27,10 +29,45 @@ public sealed class Romeo : Sts2MonsterModel
   private int CrossSlashDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 17, 15);
   private int AgonizeDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 12, 10);
   private const int WeakAmount = 3;
+  private static readonly LocString MockBearAliveLine =
+    L10NMonsterLookup("STS2BALANCEMOD-ROMEO.moves.MOCK.bearAlive");
+  private static readonly LocString MockBearDeadLine =
+    L10NMonsterLookup("STS2BALANCEMOD-ROMEO.moves.MOCK.bearDead");
+  private static readonly LocString DeathReactLine =
+    L10NMonsterLookup("STS2BALANCEMOD-ROMEO.deathReactLine");
 
   private const string CROSS_SLASH = "CROSS_SLASH";
   private const string MOCK = "MOCK";
   private const string AGONIZING_SLASH = "AGONIZING_SLASH";
+
+  public override async Task AfterAddedToRoom()
+  {
+    await base.AfterAddedToRoom();
+
+    var combatState = Creature.CombatState;
+    if (combatState == null)
+    {
+      return;
+    }
+
+    var bear = combatState.GetTeammatesOf(Creature)
+      .FirstOrDefault(t => t.Monster is Bear);
+    if (bear != null)
+    {
+      bear.Died += BearDeathResponse;
+    }
+  }
+
+  private void BearDeathResponse(Creature deadCreature)
+  {
+    deadCreature.Died -= BearDeathResponse;
+    if (Creature.IsDead)
+    {
+      return;
+    }
+
+    TalkCmd.Play(DeathReactLine, Creature, VfxColor.Red, VfxDuration.Long);
+  }
 
   protected override MonsterMoveStateMachine GenerateMoveStateMachine()
   {
@@ -62,8 +99,10 @@ public sealed class Romeo : Sts2MonsterModel
 
   private async Task Mock(IReadOnlyList<Creature> targets)
   {
-    await CreatureCmd.TriggerAnim(Creature, "Attack", 0.0f);
-    await Cmd.Wait(0.5f);
+    var bearAlive = Creature.CombatState?.GetTeammatesOf(Creature)
+      .Any(t => t != Creature && t.IsAlive && t.Monster is Bear) == true;
+    var line = bearAlive ? MockBearAliveLine : MockBearDeadLine;
+    TalkCmd.Play(line, Creature, VfxColor.Red, VfxDuration.Long);
   }
 
   private async Task CrossSlash(IReadOnlyList<Creature> targets)
@@ -103,9 +142,23 @@ public sealed class Romeo : Sts2MonsterModel
     hit.NextState = idle;
 
     var animator = new CreatureAnimator(idle, controller);
+    animator.AddAnyState("Attack", attack);
     animator.AddAnyState("Stab", attack);
+    animator.AddAnyState(MOCK, attack);
+    animator.AddAnyState(CROSS_SLASH, attack);
+    animator.AddAnyState(AGONIZING_SLASH, attack);
     animator.AddAnyState("Hit", hit);
+    controller.GetAnimationState().SetTimeScale(0.8f);
 
     return animator;
+  }
+
+  protected override string? GetBestiaryMoveAnimationId(string moveStateId)
+  {
+    return moveStateId switch
+    {
+      MOCK or CROSS_SLASH or AGONIZING_SLASH => "Attack",
+      _ => base.GetBestiaryMoveAnimationId(moveStateId),
+    };
   }
 }

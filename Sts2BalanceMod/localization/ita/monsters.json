@@ -4,5 +4,9 @@
   "STS2BALANCEMOD-COLLECTOR_TORCH_HEAD.name": "Torch Head",
   "STS2BALANCEMOD-BEAR.name": "Orso",
   "STS2BALANCEMOD-POINTY.name": "Acuminato",
-  "STS2BALANCEMOD-ROMEO.name": "Romeo"
+  "STS2BALANCEMOD-POINTY.deathReactLine": "[sine]Orsoooo!!!![/sine]",
+  "STS2BALANCEMOD-ROMEO.name": "Romeo",
+  "STS2BALANCEMOD-ROMEO.moves.MOCK.bearAlive": "[sine]Prendilo,[/sine] [sine]Orso!![/sine]",
+  "STS2BALANCEMOD-ROMEO.moves.MOCK.bearDead": "[sine]La[/sine] [sine]pagherai[/sine] [sine]per[/sine] [sine]questo!![/sine]",
+  "STS2BALANCEMOD-ROMEO.deathReactLine": "[sine]Nooooooo,[/sine] [sine]Orso![/sine]"
 }

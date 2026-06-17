@@ -27,6 +27,10 @@ position = Vector2(0, -142)
 unique_name_in_owner = true
 position = Vector2(0, -335)
 
+[node name="TalkPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-100, -270)
+
 [node name="Visuals" type="SpineSprite" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -15)

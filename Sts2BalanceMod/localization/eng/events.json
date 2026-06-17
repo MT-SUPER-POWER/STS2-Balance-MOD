@@ -115,5 +115,13 @@
   "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.PAY.description": "Lose all [gold]Gold[/gold].",
   "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.FIGHT.title": "Fight",
   "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.FIGHT.description": "Fight the bandits for [gold]Red Mask[/gold]!",
-  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID.description": "You hand over your gold and slink away. The bandits laugh as they count their spoils."
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.EMPTY.description": "",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID.description": "You hand over your gold and slink away. The bandits laugh as they count their spoils.",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_1.description": "Hehehe.. Thanks for the [gold]gold![/gold]\nOh, I love [gold]gold.[/gold] It's so nice.\n[sine]shiny[/sine] [sine]shiny[/sine] chits they are!",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_1.options.CONTINUE.title": "Continue",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_1.options.CONTINUE.description": "",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_2.description": "Hey [blue]Bear,[/blue] hey!\nThis guy gave us all his [gold]gold![/gold] What a sucker, right?\nGet this, I just had to ask nicely. Who knew?!\nI certainly didn't! What a chump!",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_2.options.CONTINUE.title": "Continue",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_2.options.CONTINUE.description": "",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_3.description": "Gang, let's all have a laugh for this wondrous occasion!\n[jitter]Hahaah[/jitter]\n[jitter]Ho[/jitter] [jitter]HOH[/jitter] [sine]hoho![/sine]\n[sine]Hoh![/sine]"
 }
