@@ -20,7 +20,8 @@ public sealed class TimeEaterBoss : Sts2EncounterModel
 
   public override string BossNodePath => "res://Sts2BalanceMod/map_boss_icons/time_eater";
 
-  public override string CustomBgm => "res://Sts2BalanceMod/bgm/beyond_theme_1.ogg";
+
+  public override string CustomBgm => "res://Sts2BalanceMod/bgm/beyond_boss.ogg";
 
   public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<TimeEater>()];
 

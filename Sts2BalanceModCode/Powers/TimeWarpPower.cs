@@ -3,8 +3,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
@@ -18,6 +21,7 @@ public sealed class TimeWarpPower() : Sts2PowerModel(PowerType.Buff, PowerStackT
 {
   private const decimal CardsPerWarp = 12M;
   private const decimal StrengthGain = 2M;
+  private const string TimeWarpSfx = "res://Sts2BalanceMod/sfx/time_eater/time_warp.ogg";
 
   public override string CustomPackedIconPath =>
     "res://Sts2BalanceMod/images/powers/actsfromthepast-time_warp_power.png";
@@ -32,11 +36,18 @@ public sealed class TimeWarpPower() : Sts2PowerModel(PowerType.Buff, PowerStackT
     if (cardPlay.Card.Owner.Creature.Side == Owner.Side)
       return;
 
-    await PowerCmd.ModifyAmount(choiceContext, this, -1M, Owner, null, silent: false);
-    if (Amount > 0M)
+    if (Amount > 1M)
+    {
+      await PowerCmd.ModifyAmount(choiceContext, this, -1M, Owner, null, silent: false);
       return;
+    }
 
-    await PowerCmd.ModifyAmount(choiceContext, this, CardsPerWarp, Owner, null, silent: false);
+    Flash();
+    SfxCmd.Play(TimeWarpSfx);
+    NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NAdditiveOverlayVfx.Create(VfxColor.Purple));
+    VfxCmd.PlayOnSide(cardPlay.Card.Owner.Creature.Side, VfxCmd.gazePath, Owner.CombatState);
+
+    await PowerCmd.ModifyAmount(choiceContext, this, CardsPerWarp - Amount, Owner, null, silent: false);
     await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, StrengthGain, Owner, null);
     PlayerCmd.EndTurn(cardPlay.Card.Owner, canBackOut: false);
   }

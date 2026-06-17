@@ -1,4 +1,5 @@
 using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Audio.Debug;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -37,6 +38,7 @@ public sealed class TimeEater : Sts2MonsterModel
   private const int ReverberateHits = 3;
   private const int RippleBlock = 20;
   private const int DebuffTurns = 1;
+  private const int DrawReductionAmount = 2;
   private const int SlimedCount = 2;
 
   private static readonly LocString HasteDialog =
@@ -50,6 +52,8 @@ public sealed class TimeEater : Sts2MonsterModel
 
   protected override string VisualsPath => "res://Sts2BalanceMod/monsters/time_eater/time_eater.tscn";
 
+  protected override string AttackSfx => "event:/sfx/enemy/enemy_attacks/punch_construct/punch_construct_attack_single";
+
   public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 480, 456);
 
   public override int MaxInitialHp => MinInitialHp;
@@ -57,6 +61,8 @@ public sealed class TimeEater : Sts2MonsterModel
   private int ReverberateDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 8, 7);
 
   private int HeadSlamDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 32, 26);
+
+  private bool HasDoubleBossAscension => AscensionHelper.HasAscension(AscensionLevel.DoubleBoss);
 
   private bool UsedHaste
   {
@@ -94,10 +100,13 @@ public sealed class TimeEater : Sts2MonsterModel
       Ripple,
       RippleMove,
       new AbstractIntent[] { new DefendIntent(), new DebuffIntent() });
+    var headSlamIntents = HasDoubleBossAscension
+      ? new AbstractIntent[] { new SingleAttackIntent(HeadSlamDamage), new DebuffIntent(), new StatusIntent(SlimedCount) }
+      : [new SingleAttackIntent(HeadSlamDamage), new DebuffIntent()];
     var headSlamState = new MoveState(
       HeadSlam,
       HeadSlamMove,
-      new AbstractIntent[] { new SingleAttackIntent(HeadSlamDamage), new DebuffIntent(), new StatusIntent(SlimedCount) });
+      headSlamIntents);
     var hasteState = new MoveState(
       Haste,
       HasteMove,
@@ -163,6 +172,7 @@ public sealed class TimeEater : Sts2MonsterModel
     await PlayIntroIfFirstTurn();
     await DamageCmd.Attack(ReverberateDamage).WithHitCount(ReverberateHits).FromMonster(this)
       .WithAttackerAnim("Attack", 0.4f)
+      .WithAttackerFx(null, AttackSfx)
       .WithHitFx("vfx/vfx_attack_blunt")
       .Execute(null);
   }
@@ -176,7 +186,6 @@ public sealed class TimeEater : Sts2MonsterModel
     {
       await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), target, DebuffTurns, Creature, null);
       await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), target, DebuffTurns, Creature, null);
-      await PowerCmd.Apply<FrailPower>(new ThrowingPlayerChoiceContext(), target, DebuffTurns, Creature, null);
     }
   }
 
@@ -185,15 +194,19 @@ public sealed class TimeEater : Sts2MonsterModel
     await PlayIntroIfFirstTurn();
     await CreatureCmd.TriggerAnim(Creature, "Slam", 0.4f);
     await DamageCmd.Attack(HeadSlamDamage).FromMonster(this)
-      .WithHitFx("vfx/vfx_slime_impact")
+      .WithHitFx("vfx/vfx_slime_impact", null, "heavy_attack.mp3")
       .Execute(null);
 
     foreach (var target in targets.Where(t => t.IsAlive))
     {
-      await PowerCmd.Apply<DrawReductionPower>(new ThrowingPlayerChoiceContext(), target, 1M, Creature, null);
+      await PowerCmd.Apply<DrawReductionPower>(new ThrowingPlayerChoiceContext(), target, DrawReductionAmount, Creature, null);
     }
 
-    await CardPileCmd.AddToCombatAndPreview<Slimed>(targets, PileType.Discard, SlimedCount, (Player?)null);
+    if (HasDoubleBossAscension)
+    {
+      NDebugAudioManager.Instance?.Play("card_deal.mp3", 0.45f, PitchVariance.Small);
+      await CardPileCmd.AddToCombatAndPreview<Slimed>(targets, PileType.Discard, SlimedCount, (Player?)null);
+    }
   }
 
   private async Task HasteMove(IReadOnlyList<Creature> targets)
@@ -213,7 +226,10 @@ public sealed class TimeEater : Sts2MonsterModel
       await CreatureCmd.Heal(Creature, healAmount);
     }
 
-    await CreatureCmd.GainBlock(Creature, HeadSlamDamage, ValueProp.Move, null);
+    if (HasDoubleBossAscension)
+    {
+      await CreatureCmd.GainBlock(Creature, HeadSlamDamage, ValueProp.Move, null);
+    }
   }
 
   public override CreatureAnimator GenerateAnimator(MegaSprite controller)
