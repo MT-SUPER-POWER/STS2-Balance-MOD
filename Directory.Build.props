@@ -3,8 +3,8 @@
         <!-- Megadot current version is 4.5.1, and the game won't load your .pck if the Godot version used is newer. -->
         <!-- MegaDot / Godot 4.5.1 mono executable used for export-pack when publishing -->
         <!-- TODO: 填写 4.5.1 版本的 Godot 路径 -->
-        <!-- <GodotPath>D:/Game/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64.exe</GodotPath> -->
-        <GodotPath>D:/Game/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64.exe</GodotPath>
+        <!-- <GodotPath>D:/Game/Godot/Godot_v4.5.1-stable_mono_win64_net/Godot_v4.5.1-stable_mono_win64.exe</GodotPath> -->
+        <GodotPath>D:/Game/Godot/Godot_v4.5.1-stable_mono_win64_net/Godot_v4.5.1-stable_mono_win64.exe</GodotPath>
 
         <!-- TODO: 如果你的游戏不在 Steam 默认路径，请取消下面的注释并把路径改成你实际的 STS2 目录 -->
         <!-- <Sts2Path>D:\Game\Godot\Slay the Spire 2</Sts2Path> -->

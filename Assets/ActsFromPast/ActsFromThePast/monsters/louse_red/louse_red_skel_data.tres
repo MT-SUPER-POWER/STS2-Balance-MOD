@@ -1,4 +1,4 @@
-﻿[gd_resource type="SpineSkeletonDataResource" format=3]
+[gd_resource type="SpineSkeletonDataResource" format=3]
 
 [ext_resource type="SpineAtlasResource" path="res://Assets/ActsFromPast/ActsFromThePast/monsters/louse_red/louse_red.spatlas" id="1_atlas"]
 [ext_resource type="SpineSkeletonFileResource" path="res://Assets/ActsFromPast/ActsFromThePast/monsters/louse_red/louse_red.spskel" id="2_skel"]
