@@ -98,6 +98,16 @@
         </ItemGroup>
         <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/"
               Condition="'$(Configuration)' != 'Release'"/>
+
+        <!-- NOTE: 快速 PCK 不支持 .tscn，Debug 需直接复制资源文件到游戏 mods 目录 -->
+        <Message Text="Copying resource dirs to $(ModOutputDir)" Importance="high"
+                 Condition="'$(Configuration)' == 'Debug'"/>
+        <Exec Command="xcopy /E /I /Y &quot;$(MSBuildProjectDirectory)\Sts2BalanceMod\monsters&quot; &quot;$(ModOutputDir)monsters&quot;"
+              Condition="'$(Configuration)' == 'Debug'" />
+        <Exec Command="xcopy /E /I /Y &quot;$(MSBuildProjectDirectory)\Sts2BalanceMod\images&quot; &quot;$(ModOutputDir)images&quot;"
+              Condition="'$(Configuration)' == 'Debug'" />
+        <Exec Command="xcopy /E /I /Y &quot;$(MSBuildProjectDirectory)\Sts2BalanceMod\localization&quot; &quot;$(ModOutputDir)localization&quot;"
+              Condition="'$(Configuration)' == 'Debug'" />
     </Target>
 
     <Target Name="CopyQuickPck" AfterTargets="PackPck" Condition="Exists('$(PckPackerOutputPath)') And '$(PckPackerSkipped)' != 'true'">
