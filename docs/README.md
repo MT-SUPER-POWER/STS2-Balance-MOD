@@ -7,6 +7,10 @@
 - [一代事件贴图](../Sts2BalanceMod/images/events/) — 从 ActsFromThePast release PCK 转存并按本 Mod 事件 ID 命名的事件 portrait；事件布局通过路径补丁从 Mod 资源目录读取
 - [STS2 Mod 制作指南](sts2-modding-guide.md) — 从零开始制作 STS2 Mod 的完整教程
 - [WatcherMod 参考代码](references/WatcherMod/) — 社区参考 Mod（[GitHub](https://github.com/lamali292/WatcherMod) submodule）
+
+## 技术分析报告
+
+- [红面具事件完整流程 — 分层技术分析报告](reports/RedMaskFullSystemAnalysis.md) — 从底层实体到本地化的六层架构剖析，含与 ActsFromThePast 参考代码的对比、完整时序图及 API 速查
 - [ActsFromThePast 参考代码](references/ActsFromThePast/) — STS1 三幕与事件回归参考 Mod（[GitHub](https://github.com/Cany0udance/ActsFromThePast) submodule）
 
 ## 工具脚本
