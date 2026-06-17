@@ -3,11 +3,11 @@ using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.ValueProps;
+using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 
@@ -16,7 +16,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 /// 输入：Boss 回合与场上召唤物数量。
 /// 输出：攻击、强化或召唤 Torch Head。
 /// </summary>
-public sealed class Collector : MonsterModel
+public sealed class Collector : Sts2MonsterModel
 {
   protected override string VisualsPath => "res://Assets/ActsFromThePast/ActsFromThePast/monsters/collector/collector.tscn";
 

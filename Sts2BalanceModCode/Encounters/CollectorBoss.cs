@@ -2,6 +2,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
+using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
@@ -11,7 +12,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 /// 输入：作为 Boss 房遭遇被 Act 抽取。
 /// 输出：生成收藏家与预留召唤物槽位。
 /// </summary>
-public sealed class CollectorBoss : EncounterModel
+public sealed class CollectorBoss : Sts2EncounterModel
 {
   public override RoomType RoomType => RoomType.Boss;
 
@@ -28,10 +29,6 @@ public sealed class CollectorBoss : EncounterModel
     ModelDb.Monster<Collector>(),
     ModelDb.Monster<CollectorTorchHead>(),
   ];
-
-  public override float GetCameraScaling() => 0.9f;
-
-  public override Vector2 GetCameraOffset() => Vector2.Down * 35f;
 
   protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
   [

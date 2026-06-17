@@ -108,5 +108,12 @@
   "STS2BALANCEMOD-TOMB_OF_LORD_RED_MASK.pages.INITIAL.options.LEAVE.description": "",
   "STS2BALANCEMOD-TOMB_OF_LORD_RED_MASK.pages.WEAR_MASK.description": "The tomb opens and gold spills out.",
   "STS2BALANCEMOD-TOMB_OF_LORD_RED_MASK.pages.PAY_RESPECTS.description": "You offer your gold. The Red Mask falls into your hands.",
-  "STS2BALANCEMOD-TOMB_OF_LORD_RED_MASK.pages.LEAVE.description": "You leave the tomb undisturbed."
+  "STS2BALANCEMOD-TOMB_OF_LORD_RED_MASK.pages.LEAVE.description": "You leave the tomb undisturbed.",
+  "STS2BALANCEMOD-MASKED_BANDITS.title": "Masked Bandits",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.description": "Three masked bandits block your path!\n\"[shake]Not so fast![/shake] Hand over your [gold]Gold[/gold] or fight us!\"",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.PAY.title": "Pay Up",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.PAY.description": "Lose all [gold]Gold[/gold].",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.FIGHT.title": "Fight",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.FIGHT.description": "Fight the bandits for [gold]Red Mask[/gold]!",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID.description": "You hand over your gold and slink away. The bandits laugh as they count their spoils."
 }

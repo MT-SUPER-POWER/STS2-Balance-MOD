@@ -3,10 +3,10 @@ using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
+using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 
@@ -15,7 +15,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 /// 输入：怪物回合。
 /// 输出：进行单体火焰攻击，死亡后从战斗移除。
 /// </summary>
-public sealed class CollectorTorchHead : MonsterModel
+public sealed class CollectorTorchHead : Sts2MonsterModel
 {
   protected override string VisualsPath => "res://Assets/ActsFromThePast/ActsFromThePast/monsters/collector/collector.tscn";
 

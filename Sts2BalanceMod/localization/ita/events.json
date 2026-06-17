@@ -108,5 +108,12 @@
   "STS2BALANCEMOD-TOMB_OF_LORD_RED_MASK.pages.INITIAL.options.LEAVE.description": "",
   "STS2BALANCEMOD-TOMB_OF_LORD_RED_MASK.pages.WEAR_MASK.description": "The tomb opens and gold spills out.",
   "STS2BALANCEMOD-TOMB_OF_LORD_RED_MASK.pages.PAY_RESPECTS.description": "You offer your gold. The Red Mask falls into your hands.",
-  "STS2BALANCEMOD-TOMB_OF_LORD_RED_MASK.pages.LEAVE.description": "You leave the tomb undisturbed."
+  "STS2BALANCEMOD-TOMB_OF_LORD_RED_MASK.pages.LEAVE.description": "You leave the tomb undisturbed.",
+  "STS2BALANCEMOD-MASKED_BANDITS.title": "Banditi Mascherati",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.description": "Tre banditi mascherati bloccano la tua strada!\n\"[shake]Fermi tutti![/shake] Consegna il tuo [gold]Oro[/gold] o combatti!\"",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.PAY.title": "Paga",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.PAY.description": "Perdi tutto il [gold]Oro[/gold].",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.FIGHT.title": "Combatti",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.FIGHT.description": "Combatti i banditi per la [gold]Maschera Rossa[/gold]!",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID.description": "Consegni il tuo oro e ti allontani. I banditi ridono mentre contano il bottino."
 }

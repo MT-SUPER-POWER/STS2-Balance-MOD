@@ -9,5 +9,15 @@
   "STS2BALANCEMOD-COLLECTOR.moves.BUFF.title": "Buff",
   "STS2BALANCEMOD-COLLECTOR.moves.MEGA_DEBUFF.title": "Mega Debuff",
   "STS2BALANCEMOD-COLLECTOR_TORCH_HEAD.name": "Torch Head",
-  "STS2BALANCEMOD-COLLECTOR_TORCH_HEAD.moves.TACKLE.title": "Tackle"
+  "STS2BALANCEMOD-COLLECTOR_TORCH_HEAD.moves.TACKLE.title": "Tackle",
+  "STS2BALANCEMOD-BEAR.name": "Bear",
+  "STS2BALANCEMOD-BEAR.moves.BEAR_HUG.title": "Bear Hug",
+  "STS2BALANCEMOD-BEAR.moves.MAUL.title": "Maul",
+  "STS2BALANCEMOD-BEAR.moves.LUNGE.title": "Lunge",
+  "STS2BALANCEMOD-POINTY.name": "Pointy",
+  "STS2BALANCEMOD-POINTY.moves.STAB.title": "Stab",
+  "STS2BALANCEMOD-ROMEO.name": "Romeo",
+  "STS2BALANCEMOD-ROMEO.moves.MOCK.title": "Mock",
+  "STS2BALANCEMOD-ROMEO.moves.CROSS_SLASH.title": "Cross Slash",
+  "STS2BALANCEMOD-ROMEO.moves.AGONIZING_SLASH.title": "Agonizing Slash"
 }

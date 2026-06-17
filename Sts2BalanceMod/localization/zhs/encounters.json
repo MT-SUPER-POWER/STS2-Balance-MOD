@@ -2,5 +2,7 @@
   "STS2BALANCEMOD-TIME_EATER_BOSS.title": "时间吞噬者",
   "STS2BALANCEMOD-TIME_EATER_BOSS.loss": "{name} 被时间吞没了。",
   "STS2BALANCEMOD-COLLECTOR_BOSS.title": "收藏家",
-  "STS2BALANCEMOD-COLLECTOR_BOSS.loss": "{name} 被收藏了。"
+  "STS2BALANCEMOD-COLLECTOR_BOSS.loss": "{name} 被收藏了。",
+  "STS2BALANCEMOD-RED_MASK_BANDITS.title": "面具强盗",
+  "STS2BALANCEMOD-RED_MASK_BANDITS.loss": "{name} 被打劫了。"
 }

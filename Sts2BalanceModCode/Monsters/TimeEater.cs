@@ -3,11 +3,11 @@ using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.ValueProps;
+using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Powers;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
@@ -17,7 +17,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 /// 输入：玩家出牌与怪物回合。
 /// 输出：执行攻击/减益/格挡强化，并通过 TimeWarpPower 限制每回合出牌数。
 /// </summary>
-public sealed class TimeEater : MonsterModel
+public sealed class TimeEater : Sts2MonsterModel
 {
   private const decimal HealThreshold = 0.5M;
   private bool _hasHealed;

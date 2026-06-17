@@ -108,5 +108,12 @@
   "STS2BALANCEMOD-TOMB_OF_LORD_RED_MASK.pages.INITIAL.options.LEAVE.description": "",
   "STS2BALANCEMOD-TOMB_OF_LORD_RED_MASK.pages.WEAR_MASK.description": "你戴上红面具，墓中机关开启，金币滚落到你面前。",
   "STS2BALANCEMOD-TOMB_OF_LORD_RED_MASK.pages.PAY_RESPECTS.description": "你献上所有金币。墓前的红面具轻轻落入你的手中。",
-  "STS2BALANCEMOD-TOMB_OF_LORD_RED_MASK.pages.LEAVE.description": "你决定不打扰这座墓。"
+  "STS2BALANCEMOD-TOMB_OF_LORD_RED_MASK.pages.LEAVE.description": "你决定不打扰这座墓。",
+  "STS2BALANCEMOD-MASKED_BANDITS.title": "面具强盗",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.description": "三个戴面具的强盗挡住了你的去路！\n「[shake]站住！[/shake]把 [gold]金币[/gold]交出来，否则就开打！」",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.PAY.title": "交钱",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.PAY.description": "失去所有 [gold]金币[/gold]。",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.FIGHT.title": "开战",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.INITIAL.options.FIGHT.description": "与强盗战斗，获得 [gold]红面具[/gold]！",
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID.description": "你交出金币，灰溜溜地离开。强盗们笑着清点战利品。"
 }

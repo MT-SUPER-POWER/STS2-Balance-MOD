@@ -2,6 +2,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
+using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
@@ -11,7 +12,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 /// 输入：作为 Boss 房遭遇被 Act 抽取。
 /// 输出：生成一个时间吞噬者怪物并使用一代回归资源。
 /// </summary>
-public sealed class TimeEaterBoss : EncounterModel
+public sealed class TimeEaterBoss : Sts2EncounterModel
 {
   public override RoomType RoomType => RoomType.Boss;
 
@@ -22,10 +23,6 @@ public sealed class TimeEaterBoss : EncounterModel
   public override string CustomBgm => "event:/music/act3_boss_queen";
 
   public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<TimeEater>()];
-
-  public override float GetCameraScaling() => 0.9f;
-
-  public override Vector2 GetCameraOffset() => Vector2.Down * 35f;
 
   protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
   [
