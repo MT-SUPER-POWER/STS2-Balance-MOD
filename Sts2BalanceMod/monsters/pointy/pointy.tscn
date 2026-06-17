@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://d2yk4n4sg8h68"]
 
-[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_script"]
-[ext_resource type="SpineSkeletonDataResource" path="res://Sts2BalanceMod/monsters/pointy/pointy_skel_data.tres" id="2_skel"]
+[ext_resource type="SpineSkeletonDataResource" path="res://Sts2BalanceMod/monsters/pointy/pointy_skel_data.tres" id="1_skel"]
 
 [node name="Pointy" type="Node2D"]
-script = ExtResource("1_script")
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
@@ -28,7 +26,11 @@ unique_name_in_owner = true
 position = Vector2(0, -230)
 
 [node name="Visuals" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("1_skel")
+preview_skin = "Default"
+preview_animation = "Idle"
+preview_frame = false
+preview_time = 0.0
 unique_name_in_owner = true
 position = Vector2(0, -15)
 scale = Vector2(1.1, 1.1)
-skeleton_data_res = ExtResource("2_skel")
