@@ -19,6 +19,9 @@
 - 重构：Collector、TorchHead、TimeEater 改为继承 `Sts2MonsterModel`；CollectorBoss、TimeEaterBoss 改为继承 `Sts2EncounterModel`（代码已注释）。
 - 分支：当前 Boss 开发进度保存至 `feature/act3-bosses` 分支。
 
+**修复**
+- Bear 资源引用路径修正：VisualsPath 与 spine 资源链从旧的 `res://Assets/ActsFromThePast/` 迁移至 `res://Sts2BalanceMod/`，确保熊在怪物系统中正确加载。
+
 **本地化**
 - 新增 eng/zhs/ita 三语言红面具强盗团本地化（名字、技能、事件文案）。
 
