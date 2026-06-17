@@ -33,7 +33,7 @@
 ## 4. 怪物机制调整
 
 - [x] MON-01 — Boss 沙漏：凋零卡改为**可打出并消耗**，保留成长机制
-- [x] MON-02 — Boss 新增 BOSS 时间吞噬者
+- [x] MON-02 — Boss 时间吞噬者替换三层永世沙漏 Boss
 
 ## 5. 事件调整
 
@@ -61,7 +61,7 @@
 > 当前实现策略：先简单注入事件池，不规划二层/三层新区域；涉及 Boss、遭遇与怪物资源链的内容暂不硬做。
 
 - [x] STS1-DOC-01 — 整理 ActsFromThePast 一代内容盘点清单
-- [x] STS1-BOSS-01 — 移植时间吞噬者 Boss（Time Eater，对应 MON-02；已接入怪物、时间扭曲能力与 ActsFromThePast 资源链；NOTE: Head Slam 的少抽牌效果待后续补自定义减抽能力精准还原）
+- [x] STS1-BOSS-01 — 移植时间吞噬者 Boss（Time Eater，对应 MON-02；替换三层永世沙漏 Boss；已接入怪物、时间扭曲、半血 Haste 转阶段、减抽牌能力与 ActsFromThePast 资源链）
 - [x] STS1-BOSS-02 — 移植收藏家 Boss（Collector；已接入怪物、召唤物 Torch Head 与 ActsFromThePast 资源链）
 - [x] STS1-EVENT-01 — 移植诅咒书本事件（可获得死灵之书、尼利的宝典、英雄宝典）
 - [ ] STS1-EVENT-02 — 移植红面具事件（Masked Bandits，含红面具帮战斗；需要红面具帮战斗遭遇）

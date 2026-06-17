@@ -6,53 +6,50 @@
 
 完整需求清单与待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
-# v0.0.7
+# v0.0.6
+
+**补充修复**
+- 红面具事件：Bear/Pointy/Romeo 改用 `res://Assets/ActsFromPast/ActsFromThePast/monsters/` 下的新资源路径，并为 MaskedBandits 事件接入可预加载 portrait，避免迁移目录后事件或战斗视觉资源为空。
+- 构建：禁用只支持简单资源的 quick PCK，改由 Godot export 产出完整 PCK；Debug 不再把 `Assets`、`images`、`localization` 作为裸目录复制到 mods 目录。
 
 **新增**
 - 怪物：红面具三人帮 — Pointy（尖头）、Romeo（罗密欧）、Bear（熊）模型与战斗 AI。
 - 遭遇：RedMaskBandits 遭遇战，三个强盗同时登场。
 - 事件：MaskedBandits 事件，第 2 幕第 23 层后触发，可选择交金或战斗获取红面具。
-- 抽象基类：新增 `Sts2MonsterModel`（怪物基类）和 `Sts2EncounterModel`（遭遇基类），统一 MOD 怪物/遭遇代码模式。
-
-**变更**
-- Boss：暂注释 Collector/TimeEater Boss 代码（`#if false`），资源与本地化保留，后续版本恢复开发。
-- 重构：Collector、TorchHead、TimeEater 改为继承 `Sts2MonsterModel`；CollectorBoss、TimeEaterBoss 改为继承 `Sts2EncounterModel`（代码已注释）。
-- 分支：当前 Boss 开发进度保存至 `feature/act3-bosses` 分支。
-
-**修复**
-- ActsFromThePast 资源：修正 `Assets/ActsFromPast/ActsFromThePast/` 下场景、Spine 数据与导入元数据的 `res://ActsFromThePast/` 旧路径，改为当前项目实际路径，避免 monster `.tscn` 打开时视觉资源为空。
-- 怪物图鉴 Error：红面具三人帮（Bear/Pointy/Romeo）spine 资源路径从旧 `res://Assets/ActsFromThePast/` 迁移至 `res://Sts2BalanceMod/`；所有 61 个怪物 .tscn 恢复 `NCreatureVisuals.cs` 脚本引用（Godot 4 C# 脚本运行时由程序集解析，该引用是怪物视觉系统必需组件）。
-- 图鉴名称显示 `monsters.XXX.name`：`Sts2MonsterModel` 覆盖 `Title` 属性显式拼接 `STS2BALANCEMOD-` 前缀；新增 `MonsterLocalizationInjectionPatch` 运行时注入 MOD 的 `monsters.json`。
-- MaskedBandits 事件注册到 `ActModel.GenerateRooms` 事件池，第 2 幕问号格可见。
-- RedMaskBandits 遭遇注入 `Hive.GenerateAllEncounters`，三怪在 Compendium 图鉴可见。
-
-**本地化**
-- 新增 eng/zhs/ita 三语言红面具强盗团本地化（名字、技能、事件文案）。
-
-# v0.0.6
-**新增**
 - 卡牌：新增 J.A.X. 与死灵诅咒，作为一代事件回归依赖。
 - 遗物：新增死灵之书、尼利的宝典、英雄宝典、绽放印记与突变之力。
 - 事件：新增诅咒书本、增益研究者、神圣泉水、牧师、大转盘、红面具大人之墓，并简单注入现有事件池。
 - Boss：移植时间吞噬者，接入时间扭曲能力、Boss 候选池与 ActsFromThePast 怪物资源。
 - Boss：移植收藏家，接入收藏家本体、Torch Head 召唤物、Boss 候选池与 ActsFromThePast 怪物资源。
 - 资源：补充 J.A.X.、死灵诅咒及本批一代事件遗物的卡图/遗物贴图。
-- 资源：完整拆出 ActsFromThePast `0.12.0` release PCK 资源到 `Assets/ActsFromThePast/`，并批量还原实际 PNG/OGG 素材，供后续移植复用。
-- 资源：从 ActsFromThePast `0.12.0` release PCK 解出并转存本批一代事件 portrait 贴图，接入 `Sts2BalanceMod/images/events/`。
-- 资源：为本批一代事件补充 portrait 路径补丁，使二代事件布局读取 `Sts2BalanceMod/images/events/` 下的 Mod 资源。
+- 抽象基类：新增 `Sts2MonsterModel`（怪物基类）和 `Sts2EncounterModel`（遭遇基类），统一 MOD 怪物/遭遇代码模式。
+
+**变更**
+- Boss：时间吞噬者改为替换三层 `AeonglassBoss`（永世沙漏）候选，不再追加到三层 Boss 池，保持三层 Boss 数量不变。
+- Boss：Collector Boss 代码仍暂注释（`#if false`），资源与本地化保留，后续版本恢复开发。
+- 重构：Collector、TorchHead、TimeEater 改为继承 `Sts2MonsterModel`；CollectorBoss、TimeEaterBoss 改为继承 `Sts2EncounterModel`。
+
+**修复**
+- Boss：恢复 TimeEater/TimeEaterBoss 编译，补齐半血 Haste 转阶段台词气泡、`TalkPos` Marker2D、Head Slam 减抽牌能力与三语本地化。
+- ActsFromThePast 资源：修正 `Assets/ActsFromPast/ActsFromThePast/` 下场景、Spine 数据与导入元数据的 `res://ActsFromThePast/` 旧路径，改为当前项目实际路径，避免 monster `.tscn` 打开时视觉资源为空。
+- 怪物图鉴 Error：红面具三人帮（Bear/Pointy/Romeo）spine 资源路径迁移至 `res://Assets/ActsFromPast/ActsFromThePast/`；所有 61 个怪物 .tscn 恢复 `NCreatureVisuals.cs` 脚本引用（Godot 4 C# 脚本运行时由程序集解析，该引用是怪物视觉系统必需组件）。
+- 图鉴名称显示 `monsters.XXX.name`：`Sts2MonsterModel` 覆盖 `Title` 属性显式拼接 `STS2BALANCEMOD-` 前缀；新增 `MonsterLocalizationInjectionPatch` 运行时注入 MOD 的 `monsters.json`。
+- MaskedBandits 事件注册到 `ActModel.GenerateRooms` 事件池，第 2 幕问号格可见。
+- RedMaskBandits 遭遇注入 `Hive.GenerateAllEncounters`，三怪在 Compendium 图鉴可见。
+
+**本地化**
+- 新增 eng/zhs/ita 三语言红面具强盗团本地化（名字、技能、事件文案）。
+- 新增 eng/zhs/ita 三语言红面具强盗团本地化对话气泡文案
 
 **调整**
 - 骨妹挽歌：改为升级后不消耗，但不再提高召唤次数（CARD-01）
 - 红面具从一般共享遗物池移除，改为通过红面具相关事件获得（RELIC-08）。
 - 红面具大人之墓：移除支付敬意选项上的原生红面具 HoverTip，避免原生遗物描述解析能量图标池时中断事件初始化。
 - 心灵绽放先接入非战斗分支；打一层 Boss 分支等待 Boss/遭遇资源链移植。
-- 时间吞噬者 Head Slam 暂不套二代 `NoDrawPower`，避免把 STS1 的少抽牌误还原成完全禁抽；后续补自定义减抽能力后再精确接入。
 
 **文档**
 - 新增 STS1 内容回归盘点清单，基于 ActsFromThePast 整理一代候选池与合并优先级
 - 更新平衡调整清单，加入一代内容回归合并路线图
-- 明确第一批一代回归范围：时间吞噬者、收藏家、诅咒书本、红面具、J.A.X.、神圣泉水、牧师、心灵绽放与大转盘事件
-- 补充红面具规划：从一般遗物获取池移除，并通过红面具帮战斗与红面具大人之墓事件获得
 
 
 # v0.0.5

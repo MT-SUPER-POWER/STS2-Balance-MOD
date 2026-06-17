@@ -4,5 +4,8 @@
   "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.smartDescription": "[gold]Lightning[/gold] Orbs hit [gold]ALL enemies[/gold].",
   "STS2BALANCEMOD-TIME_WARP_POWER.title": "Time Warp",
   "STS2BALANCEMOD-TIME_WARP_POWER.description": "Whenever a player plays {Amount} more cards, end that player's turn and gain [blue]2[/blue] [gold]Strength[/gold].",
-  "STS2BALANCEMOD-TIME_WARP_POWER.smartDescription": "Whenever a player plays {Amount} more cards, end that player's turn and gain [blue]2[/blue] [gold]Strength[/gold]."
+  "STS2BALANCEMOD-TIME_WARP_POWER.smartDescription": "Whenever a player plays {Amount} more cards, end that player's turn and gain [blue]2[/blue] [gold]Strength[/gold].",
+  "STS2BALANCEMOD-DRAW_REDUCTION_POWER.title": "Draw Reduction",
+  "STS2BALANCEMOD-DRAW_REDUCTION_POWER.description": "Draw {Amount} fewer card next turn.",
+  "STS2BALANCEMOD-DRAW_REDUCTION_POWER.smartDescription": "Draw {Amount} fewer card next turn."
 }

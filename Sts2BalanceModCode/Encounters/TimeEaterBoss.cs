@@ -1,5 +1,3 @@
-// NOTE: 暂注释 — 后续版本开放 Boss 战斗
-#if false
 using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Models;
@@ -20,7 +18,7 @@ public sealed class TimeEaterBoss : Sts2EncounterModel
 
   public override MegaSkeletonDataResource? BossNodeSpineResource => null;
 
-  public override string BossNodePath => "res://Assets/ActsFromThePast/ActsFromThePast/map_boss_icons/time_eater";
+  public override string BossNodePath => "res://Assets/ActsFromPast/ActsFromThePast/map_boss_icons/time_eater";
 
   public override string CustomBgm => "event:/music/act3_boss_queen";
 
@@ -31,4 +29,3 @@ public sealed class TimeEaterBoss : Sts2EncounterModel
     (ModelDb.Monster<TimeEater>().ToMutable(), null),
   ];
 }
-#endif
