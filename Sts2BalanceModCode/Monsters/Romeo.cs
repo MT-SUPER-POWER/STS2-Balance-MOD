@@ -8,7 +8,6 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
-using MegaCrit.Sts2.Core.Random;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
@@ -38,26 +37,25 @@ public sealed class Romeo : Sts2MonsterModel
     var mockState = new MoveState(MOCK, Mock, new AbstractIntent[] { new UnknownIntent() });
     var crossSlashState = new MoveState(CROSS_SLASH, CrossSlash, new AbstractIntent[] { new SingleAttackIntent(CrossSlashDamage) });
     var agonizingSlashState = new MoveState(AGONIZING_SLASH, AgonizingSlash, new AbstractIntent[] { new SingleAttackIntent(AgonizeDamage), new DebuffIntent() });
-    var moveBranch = new ConditionalBranchState("MOVE_BRANCH", SelectNextMove);
+    var moveBranch = new ConditionalBranchState("MOVE_BRANCH");
 
     mockState.FollowUpState = agonizingSlashState;
     agonizingSlashState.FollowUpState = moveBranch;
     crossSlashState.FollowUpState = moveBranch;
 
-    return new MonsterMoveStateMachine([mockState, crossSlashState, agonizingSlashState, moveBranch], mockState);
+    // NOTE: 使用闭包捕获 machine 引用，构造完成后才赋值，运行时条件才被求值
+    MonsterMoveStateMachine? machine = null;
+    moveBranch.AddState(crossSlashState, () => !LastTwoMoves(machine, CROSS_SLASH));
+    moveBranch.AddState(agonizingSlashState, () => true); // 回退
+
+    machine = new MonsterMoveStateMachine([mockState, crossSlashState, agonizingSlashState, moveBranch], mockState);
+    return machine;
   }
 
-  private string SelectNextMove(Creature owner, Rng rng, MonsterMoveStateMachine stateMachine)
+  private static bool LastTwoMoves(MonsterMoveStateMachine? machine, string moveId)
   {
-    // NOTE: 最多连续两次 Cross Slash，然后强制 Agonizing Slash
-    if (!LastTwoMoves(stateMachine, CROSS_SLASH))
-      return CROSS_SLASH;
-    return AGONIZING_SLASH;
-  }
-
-  private static bool LastTwoMoves(MonsterMoveStateMachine stateMachine, string moveId)
-  {
-    var log = stateMachine.StateLog;
+    if (machine == null) return false;
+    var log = machine.StateLog;
     if (log.Count < 2) return false;
     return log[log.Count - 1].Id == moveId && log[log.Count - 2].Id == moveId;
   }

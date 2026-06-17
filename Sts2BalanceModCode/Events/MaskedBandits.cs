@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Rewards;
+using MegaCrit.Sts2.Core.Runs;
 using Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
@@ -47,20 +48,26 @@ public sealed class MaskedBandits : CustomEventModel
 
   private async Task Pay()
   {
-    var goldToLose = Owner.Gold;
+    var owner = Owner;
+    if (owner == null) return;
+
+    var goldToLose = owner.Gold;
     if (goldToLose > 0)
-      await PlayerCmd.LoseGold(goldToLose, Owner, GoldLossType.Stolen);
+      await PlayerCmd.LoseGold(goldToLose, owner, GoldLossType.Stolen);
 
     SetEventFinished(PageDescription("PAID"));
   }
 
   private Task Fight()
   {
+    var owner = Owner;
+    if (owner == null) return Task.CompletedTask;
+
     var redMaskRelic = ModelDb.Relic<RedMask>().ToMutable();
     var rewards = new List<Reward>
     {
-      new GoldReward(25, 35, Owner),
-      new RelicReward(redMaskRelic, Owner),
+      new GoldReward(25, 35, owner),
+      new RelicReward(redMaskRelic, owner),
     };
     EnterCombatWithoutExitingEvent<RedMaskBandits>(rewards, false);
     return Task.CompletedTask;
