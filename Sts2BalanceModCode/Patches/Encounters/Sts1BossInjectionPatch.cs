@@ -1,3 +1,5 @@
+// NOTE: 暂注释 — 后续版本开放 Boss 战斗
+#if false
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Acts;
@@ -39,3 +41,4 @@ public static class Sts1BossInjectionPatch
     return list;
   }
 }
+#endif

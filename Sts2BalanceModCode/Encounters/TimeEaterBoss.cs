@@ -1,3 +1,5 @@
+// NOTE: 暂注释 — 后续版本开放 Boss 战斗
+#if false
 using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Models;
@@ -29,3 +31,4 @@ public sealed class TimeEaterBoss : Sts2EncounterModel
     (ModelDb.Monster<TimeEater>().ToMutable(), null),
   ];
 }
+#endif

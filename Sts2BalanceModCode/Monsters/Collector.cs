@@ -1,3 +1,5 @@
+// NOTE: 暂注释 — 后续版本开放 Boss 战斗
+#if false
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -93,3 +95,4 @@ public sealed class Collector : Sts2MonsterModel
     await PowerCmd.Apply<FrailPower>(new ThrowingPlayerChoiceContext(), targets, 3M, Creature, null);
   }
 }
+#endif

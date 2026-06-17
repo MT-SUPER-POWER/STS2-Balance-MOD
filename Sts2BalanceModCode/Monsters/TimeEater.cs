@@ -1,3 +1,5 @@
+// NOTE: 暂注释 — 后续版本开放 Boss 战斗
+#if false
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -97,3 +99,4 @@ public sealed class TimeEater : Sts2MonsterModel
     await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), targets, 1M, Creature, null);
   }
 }
+#endif
