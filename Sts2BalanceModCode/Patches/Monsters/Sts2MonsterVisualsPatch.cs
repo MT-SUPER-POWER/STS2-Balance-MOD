@@ -8,7 +8,7 @@ using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Monsters;
 
 /// <summary>
-/// 修复 Godot 导出无法解析游戏本体 NCreatureVisuals 脚本时，MOD 怪物场景根节点退化成 Node2D 的问题。
+/// FIXME: Godot 导出无法解析游戏本体 NCreatureVisuals 脚本时，MOD 怪物场景根节点退化成 Node2D 的问题。
 /// 输入：本 MOD 的怪物模型。
 /// 输出：始终返回可被游戏强转的 NCreatureVisuals 根节点。
 /// </summary>

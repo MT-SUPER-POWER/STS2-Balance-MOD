@@ -19,7 +19,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 /// </summary>
 public sealed class CollectorTorchHead : Sts2MonsterModel
 {
-  protected override string VisualsPath => "res://Assets/ActsFromThePast/ActsFromThePast/monsters/collector/collector.tscn";
+  protected override string VisualsPath => "res://Sts2BalanceMod/monsters/collector/collector.tscn";
 
   public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 40, 38);
 

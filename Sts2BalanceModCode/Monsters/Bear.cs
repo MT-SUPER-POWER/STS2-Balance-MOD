@@ -22,7 +22,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 /// </summary>
 public sealed class Bear : Sts2MonsterModel
 {
-  protected override string VisualsPath => "res://Assets/ActsFromPast/ActsFromThePast/monsters/bear/bear.tscn";
+  protected override string VisualsPath => "res://Sts2BalanceMod/monsters/bear/bear.tscn";
 
   public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 40, 38);
   public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 44, 42);

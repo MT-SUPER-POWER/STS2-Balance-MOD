@@ -21,7 +21,7 @@ public sealed class RedMaskBandits : Sts2EncounterModel
   public override bool HasScene => true;
 
   public override string CustomScenePath =>
-    "res://Assets/ActsFromPast/scenes/encounters/actsfromthepast-red_mask_bandits_event.tscn";
+    "res://Sts2BalanceMod/scenes/actsfromthepast-red_mask_bandits_event.tscn";
 
   public override IEnumerable<string> ExtraAssetPaths => [CustomScenePath];
 

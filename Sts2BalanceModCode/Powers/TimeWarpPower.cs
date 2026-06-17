@@ -20,7 +20,7 @@ public sealed class TimeWarpPower() : Sts2PowerModel(PowerType.Buff, PowerStackT
   private const decimal StrengthGain = 2M;
 
   public override string CustomPackedIconPath =>
-    "res://Assets/ActsFromThePast/images/powers/actsfromthepast-time_warp_power.png";
+    "res://Sts2BalanceMod/images/powers/actsfromthepast-time_warp_power.png";
 
   public override string CustomBigIconPath => CustomPackedIconPath;
 

@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -47,7 +48,7 @@ public sealed class TimeEater : Sts2MonsterModel
   private bool _usedHaste;
   private bool _firstTurn = true;
 
-  protected override string VisualsPath => "res://Assets/ActsFromPast/ActsFromThePast/monsters/time_eater/time_eater.tscn";
+  protected override string VisualsPath => "res://Sts2BalanceMod/monsters/time_eater/time_eater.tscn";
 
   public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 480, 456);
 
@@ -134,13 +135,26 @@ public sealed class TimeEater : Sts2MonsterModel
 
   private async Task PlayIntroIfFirstTurn()
   {
+    // NOTE: 在 Bestiary 中时，招式预览不存在"第一回合"概念，每次播放都应该显示开场白。
     if (!FirstTurn)
+      return;
+
+    var creature = Creature;
+    if (creature == null)
+      return;
+
+    FirstTurn = false;
+
+    // NOTE: 检测是否为 Bestiary 模式（使用 NullCombatState），是则不消耗 _firstTurn，
+    //       让每次招式预览都能显示开场台词。
+    if (creature.CombatState is NullCombatState)
     {
+      TalkCmd.Play(IntroDialog, creature, VfxColor.Purple, VfxDuration.VeryLong);
+      FirstTurn = true; // 确保下次招式预览还能触发
       return;
     }
 
-    FirstTurn = false;
-    TalkCmd.Play(IntroDialog, Creature, VfxColor.Purple, VfxDuration.VeryLong);
+    TalkCmd.Play(IntroDialog, creature, VfxColor.Purple, VfxDuration.VeryLong);
     await Cmd.Wait(0.5f);
   }
 

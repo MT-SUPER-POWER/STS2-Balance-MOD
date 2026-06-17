@@ -18,9 +18,9 @@ public sealed class TimeEaterBoss : Sts2EncounterModel
 
   public override MegaSkeletonDataResource? BossNodeSpineResource => null;
 
-  public override string BossNodePath => "res://Assets/ActsFromPast/ActsFromThePast/map_boss_icons/time_eater";
+  public override string BossNodePath => "res://Sts2BalanceMod/map_boss_icons/time_eater";
 
-  public override string CustomBgm => "event:/music/act3_boss_queen";
+  public override string CustomBgm => "res://Sts2BalanceMod/bgm/beyond_theme_1.ogg";
 
   public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<TimeEater>()];
 

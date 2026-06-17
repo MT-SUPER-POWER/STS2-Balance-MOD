@@ -8,6 +8,8 @@
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
         <PathMap>$(AppOutputBase)=.\</PathMap>
         <GodotDisabledSourceGenerators>GodotPluginsInitializer</GodotDisabledSourceGenerators>
+        <!-- NOTE: 项目包含 .tscn/.gdextension 等 Godot 资源，必须用 Godot export 生成完整 PCK。 -->
+        <PckPackerEnabled>false</PckPackerEnabled>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -41,7 +43,7 @@
         <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.2.0" PrivateAssets="All"/>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />
-        <!-- Generates a .pck file when building if only using simple assets. May not work on all setups. Uncomment to test. -->
+        <!-- NOTE: 包仍保留为可选工具，但当前通过 PckPackerEnabled=false 禁用，避免生成缺少 Assets/ 的半截 PCK。 -->
         <PackageReference Include="BSchneppe.StS2.PckPacker" Version="0.1.1" PrivateAssets="All" />
         <!-- NOTE: ModAnalyzers 按文件名匹配本地化（Power → powers.json），需显式列入 AdditionalFiles -->
         <AdditionalFiles Include="Sts2BalanceMod/localization/**/*.json"/>
@@ -51,11 +53,13 @@
 
     <ItemGroup>
         <Compile Remove="Sts2BalanceMod/**" />
+        <Compile Remove="Assets/**" />
         <Compile Remove="materials/**" />
         <Compile Remove="shaders/**" />
         <Compile Remove="images/**" />
         <Compile Remove="docs/**" />
         <EmbeddedResource Remove="Sts2BalanceMod/**" />
+        <EmbeddedResource Remove="Assets/**" />
         <EmbeddedResource Remove="materials/**" />
         <EmbeddedResource Remove="shaders/**" />
         <EmbeddedResource Remove="images/**" />
@@ -99,20 +103,20 @@
         <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/"
               Condition="'$(Configuration)' != 'Release'"/>
 
-        <!-- NOTE: 快速 PCK 不支持 .tscn，Debug 需直接复制资源文件到游戏 mods 目录 -->
-        <Message Text="Copying resource dirs to $(ModOutputDir)" Importance="high"
-                 Condition="'$(Configuration)' == 'Debug'"/>
-        <Exec Command="xcopy /E /I /Y &quot;$(MSBuildProjectDirectory)\Sts2BalanceMod\monsters&quot; &quot;$(ModOutputDir)monsters&quot;"
-              Condition="'$(Configuration)' == 'Debug'" />
-        <Exec Command="xcopy /E /I /Y &quot;$(MSBuildProjectDirectory)\Sts2BalanceMod\images&quot; &quot;$(ModOutputDir)images&quot;"
-              Condition="'$(Configuration)' == 'Debug'" />
-        <Exec Command="xcopy /E /I /Y &quot;$(MSBuildProjectDirectory)\Sts2BalanceMod\localization&quot; &quot;$(ModOutputDir)localization&quot;"
-              Condition="'$(Configuration)' == 'Debug'" />
     </Target>
 
-    <Target Name="CopyQuickPck" AfterTargets="PackPck" Condition="Exists('$(PckPackerOutputPath)') And '$(PckPackerSkipped)' != 'true'">
-        <Message Text="Copying quick .pck to $(ModOutputDir)" Importance="high"/>
-        <Copy SourceFiles="$(PckPackerOutputPath)" DestinationFolder="$(ModOutputDir)" />
+    <Target Name="GodotExportPckOnBuild" AfterTargets="CopyToModsFolderOnBuild" Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
+        <Message Text="Exporting complete Godot PCK to $(ModOutputDir)" Importance="high"/>
+        <Delete Files="$(ModOutputDir)$(MSBuildProjectName).pck" />
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;$(MSBuildProjectName)&quot; &quot;$(ModOutputDir)$(MSBuildProjectName).pck&quot;"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
+              ContinueOnError="WarnAndContinue" />
+        <Error Text="Godot export did not produce PCK: $(ModOutputDir)$(MSBuildProjectName).pck"
+               Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).pck')" />
+    </Target>
+
+    <Target Name="NeedGodotForBuildPck" AfterTargets="CopyToModsFolderOnBuild" Condition="('$(GodotPath)' == '' or !Exists('$(GodotPath)')) and '$(IsInnerGodotExport)' != 'true'">
+        <Error Text="Godot path must be set before building the mod PCK; Godot not found at '$(GodotPath)'. Check Directory.Build.props." />
     </Target>
 
     <Target Name="NeedGodotForPublish" BeforeTargets="Publish">
@@ -123,12 +127,16 @@
     <Target Name="GodotPublish" AfterTargets="Publish" Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
         <MakeDir Directories="$(ModOutputDir)" />
         <Message Text="Exporting Godot .pck to $(ModOutputDir)" Importance="high"/>
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(ModOutputDir)$(MSBuildProjectName).pck&quot;"
-            EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1" />
+        <Delete Files="$(ModOutputDir)$(MSBuildProjectName).pck" />
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;$(MSBuildProjectName)&quot; &quot;$(ModOutputDir)$(MSBuildProjectName).pck&quot;"
+            EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
+            ContinueOnError="WarnAndContinue" />
+        <Error Text="Godot export did not produce PCK: $(ModOutputDir)$(MSBuildProjectName).pck"
+            Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).pck')" />
     </Target>
 
     <!-- NOTE: Release 发布必须产出完整 pck，避免 Godot 导出失败后仍误报成功 -->
-    <Target Name="VerifyReleaseOutputs" AfterTargets="GodotPublish;CopyQuickPck" Condition="'$(Configuration)' == 'Release'">
+    <Target Name="VerifyReleaseOutputs" AfterTargets="GodotPublish;GodotExportPckOnBuild" Condition="'$(Configuration)' == 'Release'">
         <Error Text="Missing release dll: $(ModOutputDir)$(MSBuildProjectName).dll"
             Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).dll')" />
         <Error Text="Missing release json: $(ModOutputDir)$(MSBuildProjectName).json"

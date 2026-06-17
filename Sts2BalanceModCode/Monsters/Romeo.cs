@@ -21,7 +21,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 /// </summary>
 public sealed class Romeo : Sts2MonsterModel
 {
-  protected override string VisualsPath => "res://Assets/ActsFromPast/ActsFromThePast/monsters/romeo/romeo.tscn";
+  protected override string VisualsPath => "res://Sts2BalanceMod/monsters/romeo/romeo.tscn";
 
   public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 37, 35);
   public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 41, 39);

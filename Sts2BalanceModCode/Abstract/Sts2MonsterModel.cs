@@ -37,9 +37,8 @@ public abstract class Sts2MonsterModel : MonsterModel
       var stateId = state.Key;
       var monsterState = state.Value;
 
-      if (string.IsNullOrEmpty(stateId)
-          || monsterState is not MoveState
-          || !ShouldShowMoveInBestiary(stateId))
+      if (string.IsNullOrEmpty(stateId) || monsterState is not MoveState ||
+        !ShouldShowMoveInBestiary(stateId))
       {
         continue;
       }
@@ -51,7 +50,8 @@ public abstract class Sts2MonsterModel : MonsterModel
 
       if (moveName.Exists() && animationId != null)
       {
-        moves.Add(BestiaryMonsterMove.FromAction(moveName, () => PlayBestiaryAnimation(creatureVisuals, animationId)));
+        moves.Add(BestiaryMonsterMove.FromAction(moveName,
+          () => PlayBestiaryAnimation(creatureVisuals, animationId)));
       }
       else
       {

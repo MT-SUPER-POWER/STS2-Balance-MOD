@@ -19,7 +19,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 /// </summary>
 public sealed class Pointy : Sts2MonsterModel
 {
-  protected override string VisualsPath => "res://Assets/ActsFromPast/ActsFromThePast/monsters/pointy/pointy.tscn";
+  protected override string VisualsPath => "res://Sts2BalanceMod/monsters/pointy/pointy.tscn";
 
   public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 34, 30);
   public override int MaxInitialHp => MinInitialHp;

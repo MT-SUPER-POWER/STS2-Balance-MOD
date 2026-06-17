@@ -20,7 +20,7 @@ public sealed class CollectorBoss : Sts2EncounterModel
 
   public override MegaSkeletonDataResource? BossNodeSpineResource => null;
 
-  public override string BossNodePath => "res://Assets/ActsFromThePast/ActsFromThePast/map_boss_icons/collector";
+  public override string BossNodePath => "res://Sts2BalanceMod/map_boss_icons/collector";
 
   public override string CustomBgm => "event:/music/act2_boss_kaiser_crab";
 

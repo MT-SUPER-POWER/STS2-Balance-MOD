@@ -16,7 +16,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 public sealed class DrawReductionPower() : Sts2PowerModel(PowerType.Debuff, PowerStackType.Counter)
 {
   public override string CustomPackedIconPath =>
-    "res://Assets/ActsFromPast/images/powers/actsfromthepast-draw_reduction_power.png";
+    "res://Sts2BalanceMod/images/powers/actsfromthepast-draw_reduction_power.png";
 
   public override string CustomBigIconPath => CustomPackedIconPath;
 

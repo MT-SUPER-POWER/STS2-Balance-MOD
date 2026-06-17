@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ds5rubdi4ffhs"]
 
-[ext_resource type="SpineSkeletonDataResource" path="res://Assets/ActsFromPast/ActsFromThePast/monsters/time_eater/time_eater_skel_data.tres" id="2_skel"]
+[ext_resource type="SpineSkeletonDataResource" path="res://Sts2BalanceMod/monsters/time_eater/time_eater_skel_data.tres" id="2_skel"]
 
 [node name="TimeEater" type="Node2D"]
 
