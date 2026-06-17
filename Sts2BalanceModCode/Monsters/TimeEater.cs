@@ -172,7 +172,8 @@ public sealed class TimeEater : Sts2MonsterModel
   private async Task ReverberateMove(IReadOnlyList<Creature> targets)
   {
     await PlayIntroIfFirstTurn();
-    await DamageCmd.Attack(ReverberateDamage).WithHitCount(ReverberateHits).FromMonster(this)
+    await DamageCmd.Attack(ReverberateDamage).WithHitCount(ReverberateHits).OnlyPlayAnimOnce()
+      .FromMonster(this)
       .WithAttackerAnim("Attack", 0.4f)
       .WithAttackerFx(null, AttackSfx)
       .WithHitFx("vfx/vfx_attack_blunt")
