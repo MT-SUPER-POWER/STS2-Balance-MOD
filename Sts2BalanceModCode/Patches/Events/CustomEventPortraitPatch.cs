@@ -1,3 +1,4 @@
+using BaseLib.Extensions;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Assets;
@@ -50,7 +51,7 @@ internal static class CustomEventPortraitPatch
       return false;
     }
 
-    portraitPath = $"events/{eventModel.Id.Entry.ToLowerInvariant()}.png".ImagePath();
+    portraitPath = $"events/{eventModel.Id.Entry.RemovePrefix().ToLowerInvariant()}.png".ImagePath();
     return true;
   }
 }

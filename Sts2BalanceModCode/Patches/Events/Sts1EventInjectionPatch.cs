@@ -22,6 +22,7 @@ public static class Sts1EventInjectionPatch
     if (RoomsField?.GetValue(__instance) is not RoomSet rooms)
       return;
 
+    // NOTE: 自定义事件注入位置
     AddIfMissing(rooms, ModelDb.Event<TheDivineFountain>());
     AddIfMissing(rooms, ModelDb.Event<Cleric>());
     AddIfMissing(rooms, ModelDb.Event<CursedTome>());
