@@ -20,9 +20,8 @@
 - 分支：当前 Boss 开发进度保存至 `feature/act3-bosses` 分支。
 
 **修复**
-- 怪物图鉴 Error（无图）：批量移除 58 个怪物 .tscn 中的 `NCreatureVisuals.cs` C# 脚本引用，全部改为纯 Node2D 结构。
+- 怪物图鉴 Error：红面具三人帮（Bear/Pointy/Romeo）spine 资源路径从旧 `res://Assets/ActsFromThePast/` 迁移至 `res://Sts2BalanceMod/`；所有 61 个怪物 .tscn 恢复 `NCreatureVisuals.cs` 脚本引用（Godot 4 C# 脚本运行时由程序集解析，该引用是怪物视觉系统必需组件）。
 - 图鉴名称显示 `monsters.XXX.name`：`Sts2MonsterModel` 覆盖 `Title` 属性显式拼接 `STS2BALANCEMOD-` 前缀；新增 `MonsterLocalizationInjectionPatch` 运行时注入 MOD 的 `monsters.json`。
-- 红面具三人帮（Bear/Pointy/Romeo）spine 资源路径从旧 `res://Assets/ActsFromThePast/` 迁移至 `res://Sts2BalanceMod/`。
 - MaskedBandits 事件注册到 `ActModel.GenerateRooms` 事件池，第 2 幕问号格可见。
 - RedMaskBandits 遭遇注入 `Hive.GenerateAllEncounters`，三怪在 Compendium 图鉴可见。
 
