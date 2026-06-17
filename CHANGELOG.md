@@ -30,6 +30,7 @@
 - 重构：Collector、TorchHead、TimeEater 改为继承 `Sts2MonsterModel`；CollectorBoss、TimeEaterBoss 改为继承 `Sts2EncounterModel`。
 
 **修复**
+- Boss：补充 `res://images/ui/run_history/time_eater_boss*.png` 兼容图标，修复进入第三幕时顶部 Boss 图标预加载失败导致的崩溃。
 - Boss：恢复 TimeEater/TimeEaterBoss 编译，补齐半血 Haste 转阶段台词气泡、`TalkPos` Marker2D、Head Slam 减抽牌能力与三语本地化。
 - ActsFromThePast 资源：修正 `Assets/ActsFromPast/ActsFromThePast/` 下场景、Spine 数据与导入元数据的 `res://ActsFromThePast/` 旧路径，改为当前项目实际路径，避免 monster `.tscn` 打开时视觉资源为空。
 - 怪物图鉴 Error：红面具三人帮（Bear/Pointy/Romeo）spine 资源路径迁移至 `res://Assets/ActsFromPast/ActsFromThePast/`；所有 61 个怪物 .tscn 恢复 `NCreatureVisuals.cs` 脚本引用（Godot 4 C# 脚本运行时由程序集解析，该引用是怪物视觉系统必需组件）。
