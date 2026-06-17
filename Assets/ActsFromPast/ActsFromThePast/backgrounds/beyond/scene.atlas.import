@@ -1,0 +1,16 @@
+﻿[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://bcckogx6tywu3"
+path="res://.godot/imported/scene.atlas-1699199de67f75342ca3a8930a3f0b21.spatlas"
+
+[deps]
+
+source_file="res://Assets/ActsFromPast/ActsFromThePast/backgrounds/beyond/scene.atlas"
+dest_files=["res://.godot/imported/scene.atlas-1699199de67f75342ca3a8930a3f0b21.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

@@ -1,0 +1,36 @@
+GDRE Tools v2.5.0-beta.5
+Windows 10.0.26200, NVIDIA GeForce RTX 3050 Laptop GPU, vulkan
+Opening file: C:/Users/shuhe/Downloads/ActsFromThePast/ActsFromThePast.pck
+Guessing bytecode revision from engine version: 4.5.1 (rev 0xebc36a7)
+Loaded 481 imported files
+WARNING: No assembly file 'Acts From the Past.dll' found in any directory in C:/Users/shuhe/Downloads/ActsFromThePast and no C# files found, assuming it's not a C# project
+   at: GDRESettings::load_project_dotnet_assembly (modules\gdsdecomp\utility\gdre_settings.cpp:2741)
+Detected Engine Version: 4.5.1
+Detected Bytecode Revision: 4.5.0-stable (ebc36a7)
+Verified 1251 files, no errors detected!
+Extracted 1251 files, no errors detected!
+Saved project config.
+
+
+********************************EXPORT REPORT********************************
+
+Totals:                                 
+Decompiled scripts:                     0
+Failed scripts:                         0
+Imported resources for export session:  481
+Successfully converted:                 481
+Lossy:                                  9
+Rewrote metadata:                       454
+Non-importable conversions:             0
+Not converted:                          0
+Failed conversions:                     0
+-------------
+
+
+
+------------------------------------------------------------------------------------
+
+Use Godot editor version 4.5.1 to edit the project.
+
+*******************************************************************************
+

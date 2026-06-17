@@ -1,0 +1,16 @@
+﻿[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://bg4inbgcglkih"
+path="res://.godot/imported/scene.atlas-770605c95b4d31f73413add22c5f0ed0.spatlas"
+
+[deps]
+
+source_file="res://Assets/ActsFromPast/ActsFromThePast/backgrounds/exordium/scene.atlas"
+dest_files=["res://.godot/imported/scene.atlas-770605c95b4d31f73413add22c5f0ed0.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

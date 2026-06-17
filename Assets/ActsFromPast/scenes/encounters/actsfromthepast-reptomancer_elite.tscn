@@ -1,0 +1,25 @@
+[gd_scene format=3]
+
+[node name="Encounter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="dagger1" type="Marker2D" parent="."]
+position = Vector2(1250, 400)
+
+[node name="dagger2" type="Marker2D" parent="."]
+position = Vector2(1550, 400)
+
+[node name="dagger3" type="Marker2D" parent="."]
+position = Vector2(1150, 650)
+
+[node name="dagger4" type="Marker2D" parent="."]
+position = Vector2(1650, 650)
+
+[node name="reptomancer" type="Marker2D" parent="."]
+position = Vector2(1400, 750)

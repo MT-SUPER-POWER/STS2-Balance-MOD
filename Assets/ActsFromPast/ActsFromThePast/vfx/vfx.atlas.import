@@ -1,0 +1,16 @@
+﻿[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://5sgyg6jobj3t"
+path="res://.godot/imported/vfx.atlas-db74ce7148d82734671b1c00fe543bfc.spatlas"
+
+[deps]
+
+source_file="res://Assets/ActsFromPast/ActsFromThePast/vfx/vfx.atlas"
+dest_files=["res://.godot/imported/vfx.atlas-db74ce7148d82734671b1c00fe543bfc.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://dv8dnfgrrc31c"
+path="res://.godot/imported/cardui.atlas-abe7564d9299641bd548b59a5fe1a4ee.spatlas"
+
+[deps]
+
+source_file="res://images/event_extras/cardui.atlas"
+dest_files=["res://.godot/imported/cardui.atlas-abe7564d9299641bd548b59a5fe1a4ee.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"
