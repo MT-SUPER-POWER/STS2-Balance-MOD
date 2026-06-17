@@ -6,6 +6,22 @@
 
 完整需求清单与待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+# v0.0.7
+
+**新增**
+- 怪物：红面具三人帮 — Pointy（尖头）、Romeo（罗密欧）、Bear（熊）模型与战斗 AI。
+- 遭遇：RedMaskBandits 遭遇战，三个强盗同时登场。
+- 事件：MaskedBandits 事件，第 2 幕第 23 层后触发，可选择交金或战斗获取红面具。
+- 抽象基类：新增 `Sts2MonsterModel`（怪物基类）和 `Sts2EncounterModel`（遭遇基类），统一 MOD 怪物/遭遇代码模式。
+
+**变更**
+- Boss：暂注释 Collector/TimeEater Boss 代码（`#if false`），资源与本地化保留，后续版本恢复开发。
+- 重构：Collector、TorchHead、TimeEater 改为继承 `Sts2MonsterModel`；CollectorBoss、TimeEaterBoss 改为继承 `Sts2EncounterModel`（代码已注释）。
+- 分支：当前 Boss 开发进度保存至 `feature/act3-bosses` 分支。
+
+**本地化**
+- 新增 eng/zhs/ita 三语言红面具强盗团本地化（名字、技能、事件文案）。
+
 # v0.0.6
 **新增**
 - 卡牌：新增 J.A.X. 与死灵诅咒，作为一代事件回归依赖。
