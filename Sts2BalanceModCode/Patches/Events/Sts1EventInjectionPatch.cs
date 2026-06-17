@@ -30,6 +30,7 @@ public static class Sts1EventInjectionPatch
     AddIfMissing(rooms, ModelDb.Event<MindBloom>());
     AddIfMissing(rooms, ModelDb.Event<WheelOfChange>());
     AddIfMissing(rooms, ModelDb.Event<TombOfLordRedMask>());
+    AddIfMissing(rooms, ModelDb.Event<MaskedBandits>());
   }
 
   private static void AddIfMissing(RoomSet rooms, EventModel eventModel)

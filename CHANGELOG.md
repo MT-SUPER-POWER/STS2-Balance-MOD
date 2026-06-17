@@ -20,7 +20,9 @@
 - 分支：当前 Boss 开发进度保存至 `feature/act3-bosses` 分支。
 
 **修复**
-- Bear 资源引用路径修正：VisualsPath 与 spine 资源链从旧的 `res://Assets/ActsFromThePast/` 迁移至 `res://Sts2BalanceMod/`，确保熊在怪物系统中正确加载。
+- 红面具三人帮（Bear/Pointy/Romeo）资源引用路径从旧 `res://Assets/ActsFromThePast/` 迁移至 `res://Sts2BalanceMod/`，确保三怪在怪物系统中正确加载。
+- MaskedBandits 事件注册到 `ActModel.GenerateRooms` 事件池，第 2 幕问号格可见。
+- RedMaskBandits 遭遇注入 `Hive.GenerateAllEncounters`，三怪在 Compendium 图鉴可见。
 
 **本地化**
 - 新增 eng/zhs/ita 三语言红面具强盗团本地化（名字、技能、事件文案）。
