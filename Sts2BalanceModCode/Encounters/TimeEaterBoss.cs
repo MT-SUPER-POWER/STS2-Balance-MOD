@@ -14,7 +14,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 /// </summary>
 public sealed class TimeEaterBoss : Sts2EncounterModel
 {
-  private const string BeyondBossBgm = "res://Sts2BalanceMod/bgm/beyond_boss.ogg";
+  private const string BeyondBossBgm = "res://Sts2BalanceMod/music/beyond_boss.ogg";
   private const string TimeWarpPowerIcon = "res://Sts2BalanceMod/images/powers/actsfromthepast-time_warp_power.png";
   private const string DrawReductionPowerIcon = "res://Sts2BalanceMod/images/powers/actsfromthepast-draw_reduction_power.png";
 

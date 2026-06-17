@@ -42,6 +42,7 @@ public static class Sts2ModAudio
       Stream = stream,
       VolumeLinear = volume,
     };
+    _musicPlayer.Finished += RestartMusic;
     NGame.Instance?.AddChildSafely(_musicPlayer);
     _musicPlayer.Play();
   }
@@ -53,10 +54,19 @@ public static class Sts2ModAudio
 
     if (GodotObject.IsInstanceValid(_musicPlayer))
     {
+      _musicPlayer.Finished -= RestartMusic;
       _musicPlayer.Stop();
       _musicPlayer.QueueFreeSafely();
     }
 
     _musicPlayer = null;
+  }
+
+  private static void RestartMusic()
+  {
+    if (_musicPlayer == null || !GodotObject.IsInstanceValid(_musicPlayer))
+      return;
+
+    _musicPlayer.Play();
   }
 }

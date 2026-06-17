@@ -17,7 +17,7 @@ public static class LocalAudioPatch
   [HarmonyPrefix]
   private static bool PlayCustomMusicPrefix(NRunMusicController __instance, string customMusic)
   {
-    if (!customMusic.StartsWith("res://Sts2BalanceMod/bgm/"))
+    if (!customMusic.StartsWith("res://Sts2BalanceMod/music/"))
       return true;
 
     var proxy = (Node?)AccessTools.Field(typeof(NRunMusicController), "_proxy").GetValue(__instance);

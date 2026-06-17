@@ -9,6 +9,7 @@
 # v0.0.6
 
 **修复**
+- Boss：将 TimeEater 本地音乐资源目录从 `bgm` 统一为 `music`，并让本地 OGG 音乐播完后自动循环。
 - Boss：修正抽牌减少说明，明确层数代表持续回合数，效果固定为每回合少抽 1 张牌。
 - Boss：为 TimeEater 的本地 OGG 音乐与 TimeWarp 音效增加 Godot 音频播放桥，避免把 `res://` 资源传给 FMOD 后报找不到音乐/音效路径。
 - Boss：Head Slam 叠加 TimeWarp 凝视特效与原本命中打击特效；TimeWarp 强制结束回合取消额外屏幕特效，改为延长音效提示。
