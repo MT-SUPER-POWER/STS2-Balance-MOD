@@ -9,8 +9,10 @@
 # v0.0.6
 
 **修复**
+- Boss：为 TimeEater 的本地 OGG 音乐与 TimeWarp 音效增加 Godot 音频播放桥，避免把 `res://` 资源传给 FMOD 后报找不到音乐/音效路径。
+- Boss：Head Slam 叠加 TimeWarp 凝视特效与原本命中打击特效；TimeWarp 强制结束回合取消额外屏幕特效，改为延长音效提示。
 - Boss：修正 TimeEater 的 BGM 与 TimeWarp 音效资源路径，避免进入第三幕或触发时间扭曲时报缺失资源。
-- Boss：TimeWarp 计数归零时直接回填至 12，不再被系统移除；触发强制结束玩家回合时播放时间扭曲音效并增加紫色全屏/凝视特效提示。
+- Boss：TimeWarp 计数归零时直接回填至 12，不再被系统移除；触发强制结束玩家回合时延长播放时间扭曲音效提示。
 - Boss：按设计表修正 TimeEater 招式，Head Slam 改为 2 层抽牌减少，A19+ 才塞入 2 张黏液；Ripple 不再施加脆弱；Haste 仅在 A19+ 额外获得格挡。
 
 **补充修复**

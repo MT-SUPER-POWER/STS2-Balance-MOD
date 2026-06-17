@@ -3,12 +3,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.Core.Nodes.Vfx;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
+using Sts2BalanceMod.Sts2BalanceModCode.Utility;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 
@@ -43,9 +41,9 @@ public sealed class TimeWarpPower() : Sts2PowerModel(PowerType.Buff, PowerStackT
     }
 
     Flash();
-    SfxCmd.Play(TimeWarpSfx);
-    NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NAdditiveOverlayVfx.Create(VfxColor.Purple));
-    VfxCmd.PlayOnSide(cardPlay.Card.Owner.Creature.Side, VfxCmd.gazePath, Owner.CombatState);
+    Sts2ModAudio.PlayOneShot(TimeWarpSfx);
+    await Cmd.Wait(0.35f);
+    Sts2ModAudio.PlayOneShot(TimeWarpSfx, 0.65f);
 
     await PowerCmd.ModifyAmount(choiceContext, this, CardsPerWarp - Amount, Owner, null, silent: false);
     await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, StrengthGain, Owner, null);

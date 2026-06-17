@@ -14,6 +14,10 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 /// </summary>
 public sealed class TimeEaterBoss : Sts2EncounterModel
 {
+  private const string BeyondBossBgm = "res://Sts2BalanceMod/bgm/beyond_boss.ogg";
+  private const string TimeWarpPowerIcon = "res://Sts2BalanceMod/images/powers/actsfromthepast-time_warp_power.png";
+  private const string DrawReductionPowerIcon = "res://Sts2BalanceMod/images/powers/actsfromthepast-draw_reduction_power.png";
+
   public override RoomType RoomType => RoomType.Boss;
 
   public override MegaSkeletonDataResource? BossNodeSpineResource => null;
@@ -21,7 +25,14 @@ public sealed class TimeEaterBoss : Sts2EncounterModel
   public override string BossNodePath => "res://Sts2BalanceMod/map_boss_icons/time_eater";
 
 
-  public override string CustomBgm => "res://Sts2BalanceMod/bgm/beyond_boss.ogg";
+  public override string CustomBgm => BeyondBossBgm;
+
+  public override IEnumerable<string> ExtraAssetPaths =>
+  [
+    BeyondBossBgm,
+    TimeWarpPowerIcon,
+    DrawReductionPowerIcon,
+  ];
 
   public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<TimeEater>()];
 

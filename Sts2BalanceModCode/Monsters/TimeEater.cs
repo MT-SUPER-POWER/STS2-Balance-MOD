@@ -20,6 +20,7 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Powers;
+using Sts2BalanceMod.Sts2BalanceModCode.Utility;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 
@@ -40,6 +41,7 @@ public sealed class TimeEater : Sts2MonsterModel
   private const int DebuffTurns = 1;
   private const int DrawReductionAmount = 2;
   private const int SlimedCount = 2;
+  private const string TimeWarpSfx = "res://Sts2BalanceMod/sfx/time_eater/time_warp.ogg";
 
   private static readonly LocString HasteDialog =
     L10NMonsterLookup("STS2BALANCEMOD-TIME_EATER.banter.haste");
@@ -193,6 +195,8 @@ public sealed class TimeEater : Sts2MonsterModel
   {
     await PlayIntroIfFirstTurn();
     await CreatureCmd.TriggerAnim(Creature, "Slam", 0.4f);
+    Sts2ModAudio.PlayOneShot(TimeWarpSfx, 0.8f);
+    VfxCmd.PlayOnCreatureCenters(targets.Where(t => t.IsAlive), VfxCmd.gazePath);
     await DamageCmd.Attack(HeadSlamDamage).FromMonster(this)
       .WithHitFx("vfx/vfx_slime_impact", null, "heavy_attack.mp3")
       .Execute(null);
