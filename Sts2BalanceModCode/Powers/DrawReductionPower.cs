@@ -15,6 +15,8 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 /// </summary>
 public sealed class DrawReductionPower() : Sts2PowerModel(PowerType.Debuff, PowerStackType.Counter)
 {
+  private const decimal DrawPenalty = 1M;
+
   public override string CustomPackedIconPath =>
     "res://Sts2BalanceMod/images/powers/actsfromthepast-draw_reduction_power.png";
 
@@ -28,7 +30,7 @@ public sealed class DrawReductionPower() : Sts2PowerModel(PowerType.Debuff, Powe
     }
 
     Flash();
-    return count - 1M;
+    return count - DrawPenalty;
   }
 
   public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)

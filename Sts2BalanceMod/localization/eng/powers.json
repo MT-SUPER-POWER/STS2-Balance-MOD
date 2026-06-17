@@ -6,6 +6,6 @@
   "STS2BALANCEMOD-TIME_WARP_POWER.description": "Whenever a player plays {Amount} more cards, end that player's turn and gain [blue]2[/blue] [gold]Strength[/gold].",
   "STS2BALANCEMOD-TIME_WARP_POWER.smartDescription": "Whenever a player plays {Amount} more cards, end that player's turn and gain [blue]2[/blue] [gold]Strength[/gold].",
   "STS2BALANCEMOD-DRAW_REDUCTION_POWER.title": "Draw Reduction",
-  "STS2BALANCEMOD-DRAW_REDUCTION_POWER.description": "Draw {Amount} fewer card next turn.",
-  "STS2BALANCEMOD-DRAW_REDUCTION_POWER.smartDescription": "Draw {Amount} fewer card next turn."
+  "STS2BALANCEMOD-DRAW_REDUCTION_POWER.description": "For {Amount} turn(s), draw [blue]1[/blue] fewer card at the start of your turn.",
+  "STS2BALANCEMOD-DRAW_REDUCTION_POWER.smartDescription": "For {Amount} turn(s), draw [blue]1[/blue] fewer card at the start of your turn."
 }
