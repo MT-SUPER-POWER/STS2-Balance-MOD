@@ -39,6 +39,7 @@ public sealed class Romeo : Sts2MonsterModel
   private const string CROSS_SLASH = "CROSS_SLASH";
   private const string MOCK = "MOCK";
   private const string AGONIZING_SLASH = "AGONIZING_SLASH";
+  private const string AttackSfx = "event:/sfx/enemy/enemy_attacks/gremlin_merc/sneaky_gremlin_attack";
 
   public override async Task AfterAddedToRoom()
   {
@@ -107,22 +108,20 @@ public sealed class Romeo : Sts2MonsterModel
 
   private async Task CrossSlash(IReadOnlyList<Creature> targets)
   {
-    await CreatureCmd.TriggerAnim(Creature, "Stab", 0.0f);
-    await Cmd.Wait(0.4f);
-
     await DamageCmd.Attack(CrossSlashDamage)
         .FromMonster(this)
+        .WithAttackerAnim("Attack", 0.4f)
+        .WithAttackerFx(null, AttackSfx)
         .WithHitFx("vfx/vfx_attack_slash")
         .Execute(null);
   }
 
   private async Task AgonizingSlash(IReadOnlyList<Creature> targets)
   {
-    await CreatureCmd.TriggerAnim(Creature, "Stab", 0.0f);
-    await Cmd.Wait(0.4f);
-
     await DamageCmd.Attack(AgonizeDamage)
         .FromMonster(this)
+        .WithAttackerAnim("Attack", 0.4f)
+        .WithAttackerFx(null, AttackSfx)
         .WithHitFx("vfx/vfx_attack_slash")
         .Execute(null);
 

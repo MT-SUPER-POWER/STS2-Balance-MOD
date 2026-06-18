@@ -35,6 +35,8 @@ public sealed class Bear : Sts2MonsterModel
   private const string MAUL = "MAUL";
   private const string BEAR_HUG = "BEAR_HUG";
   private const string LUNGE = "LUNGE";
+  private const string AttackHitSfx = "blunt_attack.mp3";
+  private const string AttackSfx = "event:/sfx/enemy/enemy_attacks/gremlin_merc/sneaky_gremlin_attack";
 
   protected override MonsterMoveStateMachine GenerateMoveStateMachine()
   {
@@ -52,6 +54,7 @@ public sealed class Bear : Sts2MonsterModel
   private async Task BearHug(IReadOnlyList<Creature> targets)
   {
     await FastAttackAnimation.Play(Creature);
+    SfxCmd.Play(AttackSfx);
 
     foreach (var target in targets.Where(t => t.IsAlive))
     {
@@ -61,12 +64,10 @@ public sealed class Bear : Sts2MonsterModel
 
   private async Task Maul(IReadOnlyList<Creature> targets)
   {
-    await CreatureCmd.TriggerAnim(Creature, "Maul", 0.0f);
-    await Cmd.Wait(0.3f);
-
     await DamageCmd.Attack(MaulDamage)
         .FromMonster(this)
-        .WithHitFx("vfx/vfx_attack_blunt")
+        .WithAttackerAnim("Attack", 0.4f)
+        .WithHitFx("vfx/vfx_attack_blunt", null, AttackHitSfx)
         .Execute(null);
   }
 
@@ -76,7 +77,7 @@ public sealed class Bear : Sts2MonsterModel
 
     await DamageCmd.Attack(LungeDamage)
         .FromMonster(this)
-        .WithHitFx("vfx/vfx_attack_slash")
+        .WithHitFx("vfx/vfx_attack_slash", null, AttackHitSfx)
         .Execute(null);
 
     await CreatureCmd.GainBlock(Creature, LungeBlock, ValueProp.Move, null);

@@ -30,6 +30,7 @@ public sealed class Pointy : Sts2MonsterModel
     L10NMonsterLookup("STS2BALANCEMOD-POINTY.deathReactLine");
 
   private const string STAB = "STAB";
+  private const string AttackSfx = "event:/sfx/enemy/enemy_attacks/gremlin_merc/sneaky_gremlin_attack";
 
   public override async Task AfterAddedToRoom()
   {
@@ -69,16 +70,13 @@ public sealed class Pointy : Sts2MonsterModel
 
   private async Task Stab(IReadOnlyList<Creature> targets)
   {
-    await CreatureCmd.TriggerAnim(Creature, "Slash", 0.0f);
-    await Cmd.Wait(0.3f);
-
-    for (int i = 0; i < AttackHits; i++)
-    {
-      await DamageCmd.Attack(AttackDamage)
-          .FromMonster(this)
-          .WithHitFx("vfx/vfx_attack_slash")
-          .Execute(null);
-    }
+    await DamageCmd.Attack(AttackDamage)
+        .WithHitCount(AttackHits).OnlyPlayAnimOnce()
+        .FromMonster(this)
+        .WithAttackerAnim("Attack", 0.4f)
+        .WithAttackerFx(null, AttackSfx)
+        .WithHitFx("vfx/vfx_attack_slash")
+        .Execute(null);
   }
 
   public override CreatureAnimator GenerateAnimator(MegaSprite controller)
