@@ -18,7 +18,7 @@
 ### 前置要求
 
 1. **Slay the Spire 2** — Steam 版，版本 ≥ 0.107.0
-2. **[BaseLib](https://github.com/STS2-Modding/BaseLib) v3.2.0+** — Mod 加载前置库，需先安装
+2. **[BaseLib](https://github.com/STS2-Modding/BaseLib) v3.2.1+** — Mod 加载前置库，需先安装
 
 ### 安装步骤
 
@@ -232,7 +232,7 @@ uv run rest-site-options smoke.png
 ### 技术栈
 
 - **游戏**: Slay the Spire 2 (Godot 4 / .NET)
-- **Mod 框架**: BaseLib 3.2.0+ (自定义模型注册)
+- **Mod 框架**: BaseLib 3.2.1+ (自定义模型注册与联机自定义消息兼容)
 - **补丁引擎**: Harmony 2.x (运行时方法劫持)
 - **语言**: C# 12
 
