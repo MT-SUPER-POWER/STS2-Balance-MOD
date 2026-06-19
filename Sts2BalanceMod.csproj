@@ -40,15 +40,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.2.1" PrivateAssets="All"/>
+        <!-- NOTE: Baselib 版本控制的地方 -->
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.3.0" PrivateAssets="All"/>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />
         <!-- NOTE: 包仍保留为可选工具，但当前通过 PckPackerEnabled=false 禁用，避免生成缺少 Assets/ 的半截 PCK。 -->
         <PackageReference Include="BSchneppe.StS2.PckPacker" Version="0.1.1" PrivateAssets="All" />
         <!-- NOTE: ModAnalyzers 按文件名匹配本地化（Power → powers.json），需显式列入 AdditionalFiles -->
         <AdditionalFiles Include="Sts2BalanceMod/localization/**/*.json"/>
-        <AdditionalFiles Include="Sts2BalanceMod/localization/eng/powers.json"/>
-        <AdditionalFiles Include="Sts2BalanceMod/localization/zhs/powers.json"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -72,6 +71,13 @@
         <None Include="project.godot"/>
         <None Include="Sts2BalanceMod.sln" />
         <None Include="Sts2BalanceMod/**" />
+    </ItemGroup>
+
+    <!-- PCK 增量构建：仅当这些文件变更时才重新导出 -->
+    <ItemGroup>
+        <PckResources Include="Sts2BalanceMod/**/*" Exclude="Sts2BalanceMod/**/*.uid" />
+        <PckResources Include="project.godot" />
+        <PckResources Include="export_presets.cfg" />
     </ItemGroup>
 
     <ItemGroup>
@@ -105,8 +111,11 @@
 
     </Target>
 
-    <Target Name="GodotExportPckOnBuild" AfterTargets="CopyToModsFolderOnBuild" Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
-        <Message Text="Exporting complete Godot PCK to $(ModOutputDir)" Importance="high"/>
+    <Target Name="GodotExportPckOnBuild" AfterTargets="CopyToModsFolderOnBuild"
+            Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'"
+            Inputs="@(PckResources)"
+            Outputs="$(ModOutputDir)$(MSBuildProjectName).pck">
+        <Message Text="🔄 资源文件有变动，正在重新导出 PCK..." Importance="high" />
         <Delete Files="$(ModOutputDir)$(MSBuildProjectName).pck" />
         <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;$(MSBuildProjectName)&quot; &quot;$(ModOutputDir)$(MSBuildProjectName).pck&quot;"
               EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
