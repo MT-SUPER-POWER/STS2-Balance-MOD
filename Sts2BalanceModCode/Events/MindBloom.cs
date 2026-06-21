@@ -1,6 +1,7 @@
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Factories;
@@ -9,6 +10,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Rewards;
+using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 using Sts2BalanceMod.Sts2BalanceModCode.Relics;
@@ -27,6 +29,8 @@ public sealed class MindBloom : CustomEventModel
   internal static bool CombatActive { get; set; }
 
   public override ActModel[] Acts => [];
+
+  public override bool IsShared => true;
 
   protected override IEnumerable<DynamicVar> CanonicalVars =>
   [
@@ -66,17 +70,10 @@ public sealed class MindBloom : CustomEventModel
   private Task Fight()
   {
     var owner = Owner;
-    if (owner == null)
+    if (owner == null || Rng == null)
       return Task.CompletedTask;
 
-    CombatActive = true;
-    var bosses = new List<EncounterModel>
-    {
-      ModelDb.Encounter<MindBloomGuardian>(),
-      ModelDb.Encounter<MindBloomHexaghost>(),
-      ModelDb.Encounter<MindBloomSlimeBoss>(),
-    };
-    var encounter = Rng.NextItem(bosses).ToMutable();
+    var encounter = Rng.NextItem(GetFightBosses(owner)).ToMutable();
     var rareRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Rare)?.ToMutable();
     if (rareRelic == null)
       return Task.CompletedTask;
@@ -86,8 +83,27 @@ public sealed class MindBloom : CustomEventModel
       new GoldReward(FightGold, owner),
       new RelicReward(rareRelic, owner),
     };
+    CombatActive = true;
     EnterCombatWithoutExitingEvent(encounter, rewards, false);
     return Task.CompletedTask;
+  }
+
+  private static IReadOnlyList<EncounterModel> GetFightBosses(Player owner)
+  {
+    var bosses = new List<EncounterModel>
+    {
+      ModelDb.Encounter<MindBloomGuardian>(),
+      ModelDb.Encounter<MindBloomSlimeBoss>(),
+    };
+
+    var firstAct = owner.RunState.Acts.FirstOrDefault();
+    var bossDiscoveryOrder = firstAct?.GetType().GetProperty("BossDiscoveryOrder")?.GetValue(firstAct);
+    if (bossDiscoveryOrder is IEnumerable<EncounterModel> actBosses)
+    {
+      bosses.AddRange(actBosses.Where(encounter => encounter.RoomType == RoomType.Boss));
+    }
+
+    return bosses;
   }
 
   private async Task Upgrade()

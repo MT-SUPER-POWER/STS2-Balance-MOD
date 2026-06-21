@@ -19,6 +19,10 @@
 
 **修复**
 - 联机：升级最低 BaseLib 依赖到 `3.2.1`，避免旧版自定义消息注册表在反序列化联机数据包时抛出 `KeyNotFoundException`。
+- 编译：修复 `ModeShiftPower.cs` 中 `decimal→int` 类型转换错误。
+- 编译：修复 `Guardian.cs` 中 `ConditionalBranchState` 构造参数错误，创建 `SelectorBranchState` 自定义分支类替代。
+- 编译：修复 `ModeShiftPower` 和 `SharpHidePower` 缺少本地化条目导致的 STS001 错误。
+- 警告：修复 `MindBloom.cs` 中 `Rng` 空引用警告（CS8602）。
 - Boss：将 TimeEater 本地音乐资源目录从 `bgm` 统一为 `music`，并让本地 OGG 音乐播完后自动循环。
 - Boss：修正抽牌减少说明，明确层数代表持续回合数，效果固定为每回合少抽 1 张牌。
 - Boss：为 TimeEater 的本地 OGG 音乐与 TimeWarp 音效增加 Godot 音频播放桥，避免把 `res://` 资源传给 FMOD 后报找不到音乐/音效路径。

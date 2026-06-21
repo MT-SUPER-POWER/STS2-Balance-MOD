@@ -7,5 +7,11 @@
   "STS2BALANCEMOD-TIME_WARP_POWER.smartDescription": "Whenever a player plays {Amount} more cards, end that player's turn and gain [blue]2[/blue] [gold]Strength[/gold].",
   "STS2BALANCEMOD-DRAW_REDUCTION_POWER.title": "Draw Reduction",
   "STS2BALANCEMOD-DRAW_REDUCTION_POWER.description": "For {Amount} turn(s), draw [blue]1[/blue] fewer card at the start of your turn.",
-  "STS2BALANCEMOD-DRAW_REDUCTION_POWER.smartDescription": "For {Amount} turn(s), draw [blue]1[/blue] fewer card at the start of your turn."
+  "STS2BALANCEMOD-DRAW_REDUCTION_POWER.smartDescription": "For {Amount} turn(s), draw [blue]1[/blue] fewer card at the start of your turn.",
+  "STS2BALANCEMOD-MODE_SHIFT_POWER.title": "Mode Shift",
+  "STS2BALANCEMOD-MODE_SHIFT_POWER.description": "The [gold]Guardian[/gold] will shift to defensive mode after taking {Amount} unblocked damage.",
+  "STS2BALANCEMOD-MODE_SHIFT_POWER.smartDescription": "The [gold]Guardian[/gold] will shift to defensive mode after taking {Amount} unblocked damage.",
+  "STS2BALANCEMOD-SHARP_HIDE_POWER.title": "Sharp Hide",
+  "STS2BALANCEMOD-SHARP_HIDE_POWER.description": "When attacked, deals {Amount} damage back.",
+  "STS2BALANCEMOD-SHARP_HIDE_POWER.smartDescription": "When attacked, deals {Amount} damage back."
 }
