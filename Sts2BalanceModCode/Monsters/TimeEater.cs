@@ -41,6 +41,8 @@ public sealed class TimeEater : Sts2MonsterModel
   private const int DebuffTurns = 1;
   private const int DrawReductionAmount = 2;
   private const int SlimedCount = 2;
+  private const decimal BaseTimeWarpCounter = 12M;
+  private const decimal TimeWarpCounterPerExtraPlayer = 3M;
   private const string TimeWarpSfx = "res://Sts2BalanceMod/sfx/time_eater/time_warp.ogg";
 
   private static readonly LocString HasteDialog =
@@ -56,9 +58,17 @@ public sealed class TimeEater : Sts2MonsterModel
 
   protected override string AttackSfx => "event:/sfx/enemy/enemy_attacks/punch_construct/punch_construct_attack_single";
 
-  public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 480, 456);
+  private int BaseInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 480, 456);
+
+  public override int MinInitialHp => BaseInitialHp;
 
   public override int MaxInitialHp => MinInitialHp;
+
+  private int PlayerCount => Math.Max(1, Creature?.CombatState?.Players.Count ?? 1);
+
+  private int ScaledInitialHp => BaseInitialHp * PlayerCount;
+
+  private decimal TimeWarpCounter => BaseTimeWarpCounter + TimeWarpCounterPerExtraPlayer * (PlayerCount - 1);
 
   private int ReverberateDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 8, 7);
 
@@ -89,7 +99,23 @@ public sealed class TimeEater : Sts2MonsterModel
   public override async Task AfterAddedToRoom()
   {
     await base.AfterAddedToRoom();
-    await PowerCmd.Apply<TimeWarpPower>(new ThrowingPlayerChoiceContext(), Creature, 12M, Creature, null);
+    await ScaleHpForMultiplayer();
+    await PowerCmd.Apply<TimeWarpPower>(new ThrowingPlayerChoiceContext(), Creature, TimeWarpCounter, Creature, null);
+  }
+
+  private async Task ScaleHpForMultiplayer()
+  {
+    if (PlayerCount <= 1 || Creature.MaxHp == ScaledInitialHp)
+      return;
+
+    var previousMaxHp = Creature.MaxHp;
+    await CreatureCmd.SetMaxHp(Creature, ScaledInitialHp);
+
+    var gainedMaxHp = ScaledInitialHp - previousMaxHp;
+    if (gainedMaxHp > 0)
+    {
+      await CreatureCmd.Heal(Creature, gainedMaxHp);
+    }
   }
 
   protected override MonsterMoveStateMachine GenerateMoveStateMachine()

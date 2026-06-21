@@ -17,7 +17,8 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 /// </summary>
 public sealed class TimeWarpPower() : Sts2PowerModel(PowerType.Buff, PowerStackType.Counter)
 {
-  private const decimal CardsPerWarp = 12M;
+  private const decimal BaseCardsPerWarp = 12M;
+  private const decimal CardsPerExtraPlayer = 3M;
   private const decimal StrengthGain = 2M;
   private const string TimeWarpSfx = "res://Sts2BalanceMod/sfx/time_eater/time_warp.ogg";
 
@@ -25,6 +26,10 @@ public sealed class TimeWarpPower() : Sts2PowerModel(PowerType.Buff, PowerStackT
     "res://Sts2BalanceMod/images/powers/actsfromthepast-time_warp_power.png";
 
   public override string CustomBigIconPath => CustomPackedIconPath;
+
+  private int PlayerCount => Math.Max(1, Owner?.CombatState?.Players.Count ?? 1);
+
+  private decimal CardsPerWarp => BaseCardsPerWarp + CardsPerExtraPlayer * (PlayerCount - 1);
 
   public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
   {

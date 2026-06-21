@@ -27,7 +27,7 @@ public sealed class SlimeBoss : Sts2MonsterModel
   private const string Slam = "SLAM";
 
   protected override string VisualsPath =>
-    "res://Assets/ActsFromPast/ActsFromThePast/monsters/slime_boss/slime_boss.tscn";
+    "res://Sts2BalanceMod/monsters/slime_boss/slime_boss.tscn";
 
   public override bool HasDeathSfx => false;
 

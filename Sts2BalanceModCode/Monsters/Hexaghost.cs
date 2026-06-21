@@ -34,7 +34,7 @@ public sealed class Hexaghost : Sts2MonsterModel
   private int _dividerDamage;
 
   protected override string VisualsPath =>
-    "res://Assets/ActsFromPast/ActsFromThePast/monsters/hexaghost/hexaghost.tscn";
+    "res://Sts2BalanceMod/monsters/hexaghost/hexaghost.tscn";
 
   public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 264, 250);
 

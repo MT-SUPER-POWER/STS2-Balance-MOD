@@ -27,7 +27,7 @@ public sealed class Guardian : Sts2MonsterModel
   private const string Whirlwind = "WHIRLWIND";
 
   protected override string VisualsPath =>
-    "res://Assets/ActsFromPast/ActsFromThePast/monsters/guardian/guardian.tscn";
+    "res://Sts2BalanceMod/monsters/guardian/guardian.tscn";
 
   public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 250, 240);
 
