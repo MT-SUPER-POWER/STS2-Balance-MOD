@@ -21,6 +21,11 @@ internal static class CustomEventPortraitPatch
   [HarmonyPostfix]
   private static void GetAssetPathsPostfix(EventModel __instance, IRunState runState, ref IEnumerable<string> __result)
   {
+    if (__instance is OldBeggar)
+    {
+      __result = __result.Append("events/cleric.png".ImagePath());
+    }
+
     if (!TryGetPortraitPath(__instance, out var portraitPath))
     {
       return;
@@ -45,7 +50,7 @@ internal static class CustomEventPortraitPatch
 
   private static bool TryGetPortraitPath(EventModel eventModel, out string portraitPath)
   {
-    if (eventModel is not (Augmenter or Cleric or CursedTome or MindBloom or TheDivineFountain or TombOfLordRedMask or WheelOfChange))
+    if (eventModel is not (Augmenter or Cleric or CursedTome or MindBloom or OldBeggar or TheDivineFountain or TombOfLordRedMask or WheelOfChange))
     {
       portraitPath = string.Empty;
       return false;
