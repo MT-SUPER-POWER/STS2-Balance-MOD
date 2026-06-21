@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Rewards;
+using MegaCrit.Sts2.Core.Runs;
 using Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 using Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
@@ -31,6 +32,11 @@ public sealed class MindBloom : CustomEventModel
   [
     new GoldVar(GoldRewardAmount),
   ];
+
+  public override bool IsAllowed(IRunState runState)
+  {
+    return runState.CurrentActIndex == 2;
+  }
 
   public override void CalculateVars()
   {
