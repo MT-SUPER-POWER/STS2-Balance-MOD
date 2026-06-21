@@ -1,11 +1,15 @@
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Events;
+using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Rewards;
+using Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 using Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
@@ -16,8 +20,10 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 /// </summary>
 public sealed class MindBloom : CustomEventModel
 {
+  private const int FightGold = 50;
   private const int GoldRewardAmount = 999;
   private bool _isBeforeTreasure;
+  internal static bool CombatActive { get; set; }
 
   public override ActModel[] Acts => [];
 
@@ -40,9 +46,7 @@ public sealed class MindBloom : CustomEventModel
   {
     var options = new List<EventOption>
     {
-      new(this, null,
-        $"{Id.Entry}.pages.INITIAL.options.FIGHT_LOCKED",
-        Array.Empty<IHoverTip>()),
+      Option(Fight),
       Option(Upgrade, "INITIAL", HoverTipFactory.FromRelic(ModelDb.Relic<MarkOfTheBloom>()).ToArray()),
     };
 
@@ -51,6 +55,33 @@ public sealed class MindBloom : CustomEventModel
       : Option(Heal, "INITIAL", HoverTipFactory.FromCardWithCardHoverTips<Doubt>().ToArray()));
 
     return options;
+  }
+
+  private Task Fight()
+  {
+    var owner = Owner;
+    if (owner == null)
+      return Task.CompletedTask;
+
+    CombatActive = true;
+    var bosses = new List<EncounterModel>
+    {
+      ModelDb.Encounter<MindBloomGuardian>(),
+      ModelDb.Encounter<MindBloomHexaghost>(),
+      ModelDb.Encounter<MindBloomSlimeBoss>(),
+    };
+    var encounter = Rng.NextItem(bosses).ToMutable();
+    var rareRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Rare)?.ToMutable();
+    if (rareRelic == null)
+      return Task.CompletedTask;
+
+    var rewards = new List<Reward>
+    {
+      new GoldReward(FightGold, owner),
+      new RelicReward(rareRelic, owner),
+    };
+    EnterCombatWithoutExitingEvent(encounter, rewards, false);
+    return Task.CompletedTask;
   }
 
   private async Task Upgrade()
@@ -99,5 +130,10 @@ public sealed class MindBloom : CustomEventModel
     CardCmd.PreviewCardPileAdd([result], 2f);
     await Cmd.Wait(0.75f);
     SetEventFinished(PageDescription("HEAL"));
+  }
+
+  protected override void OnEventFinished()
+  {
+    CombatActive = false;
   }
 }
