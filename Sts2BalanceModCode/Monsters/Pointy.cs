@@ -30,7 +30,7 @@ public sealed class Pointy : Sts2MonsterModel
     L10NMonsterLookup("STS2BALANCEMOD-POINTY.deathReactLine");
 
   private const string STAB = "STAB";
-  private const string AttackSfx = "event:/sfx/enemy/enemy_attacks/gremlin_merc/sneaky_gremlin_attack";
+  protected override string AttackSfx => "event:/sfx/enemy/enemy_attacks/gremlin_merc/sneaky_gremlin_attack";
 
   public override async Task AfterAddedToRoom()
   {

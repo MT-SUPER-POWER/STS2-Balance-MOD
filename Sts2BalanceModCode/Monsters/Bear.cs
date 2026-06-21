@@ -36,7 +36,7 @@ public sealed class Bear : Sts2MonsterModel
   private const string BEAR_HUG = "BEAR_HUG";
   private const string LUNGE = "LUNGE";
   private const string AttackHitSfx = "blunt_attack.mp3";
-  private const string AttackSfx = "event:/sfx/enemy/enemy_attacks/gremlin_merc/sneaky_gremlin_attack";
+  protected override string AttackSfx => "event:/sfx/enemy/enemy_attacks/gremlin_merc/sneaky_gremlin_attack";
 
   protected override MonsterMoveStateMachine GenerateMoveStateMachine()
   {

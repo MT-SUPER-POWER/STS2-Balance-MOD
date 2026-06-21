@@ -39,7 +39,7 @@ public sealed class Romeo : Sts2MonsterModel
   private const string CROSS_SLASH = "CROSS_SLASH";
   private const string MOCK = "MOCK";
   private const string AGONIZING_SLASH = "AGONIZING_SLASH";
-  private const string AttackSfx = "event:/sfx/enemy/enemy_attacks/gremlin_merc/sneaky_gremlin_attack";
+  protected override string AttackSfx => "event:/sfx/enemy/enemy_attacks/gremlin_merc/sneaky_gremlin_attack";
 
   public override async Task AfterAddedToRoom()
   {
