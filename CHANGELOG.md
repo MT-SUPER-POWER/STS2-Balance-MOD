@@ -14,7 +14,8 @@
 - Boss：多人模式下 TimeEater 血量按玩家数放大（456/480 × n），TimeWarp 计数改为 `12 + 3 × (n - 1)` 并在每次触发后按同一公式回填。
 - 资源：心灵绽放一层 Boss 的 Guardian、Hexaghost、SlimeBoss 与战斗场景改用 `res://Sts2BalanceMod/` 下的打包资源，避免 `Assets/` 不随 MOD 打包导致事件战斗资源失效。
 - 事件：心灵绽放“我即战争”分支接入一层 Boss 战斗，随机进入守护者、六火亡魂或史莱姆老大，并奖励 50 金币与稀有遗物。
-- 怪物：新增心灵绽放专用的一层 Boss 轻量模型与遭遇链，覆盖 Guardian、Hexaghost、SlimeBoss。
+- 怪物：新增心灵绽放专用的一层 Boss 轻量模型与遭遇链，覆盖 Guardian、SlimeBoss。
+- 怪物：史莱姆老大新增分裂机制，生命≤50% 时分裂为尖刺和酸液大型史莱姆，各自继承当前生命值。
 - 红面具事件：Bear 的 Bear Hug 改为施加 1 层脆弱，不再减少玩家敏捷。
 
 **修复**

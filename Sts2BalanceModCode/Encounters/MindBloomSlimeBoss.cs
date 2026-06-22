@@ -27,7 +27,12 @@ public sealed class MindBloomSlimeBoss : Sts2EncounterModel
     "acid_med_1", "slime_boss", "acid_large", "acid_med_2",
   ];
 
-  public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<SlimeBoss>()];
+  public override IEnumerable<MonsterModel> AllPossibleMonsters =>
+  [
+    ModelDb.Monster<SlimeBoss>(),
+    ModelDb.Monster<SpikeSlimeLarge>(),
+    ModelDb.Monster<AcidSlimeLarge>(),
+  ];
 
   protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
   [

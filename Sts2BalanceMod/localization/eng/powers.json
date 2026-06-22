@@ -13,5 +13,8 @@
   "STS2BALANCEMOD-MODE_SHIFT_POWER.smartDescription": "The [gold]Guardian[/gold] will shift to defensive mode after taking {Amount} unblocked damage.",
   "STS2BALANCEMOD-SHARP_HIDE_POWER.title": "Sharp Hide",
   "STS2BALANCEMOD-SHARP_HIDE_POWER.description": "When attacked, deals {Amount} damage back.",
-  "STS2BALANCEMOD-SHARP_HIDE_POWER.smartDescription": "When attacked, deals {Amount} damage back."
+  "STS2BALANCEMOD-SHARP_HIDE_POWER.smartDescription": "When attacked, deals {Amount} damage back.",
+  "STS2BALANCEMOD-SPLIT_POWER.title": "Split",
+  "STS2BALANCEMOD-SPLIT_POWER.description": "When HP is [gold]50%[/gold] or below, splits into 2 smaller slimes, each inheriting the current HP.",
+  "STS2BALANCEMOD-SPLIT_POWER.smartDescription": "When HP is [gold]50%[/gold] or below, splits into 2 smaller slimes, each inheriting the current HP."
 }

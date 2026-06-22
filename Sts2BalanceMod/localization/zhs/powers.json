@@ -13,5 +13,8 @@
   "STS2BALANCEMOD-MODE_SHIFT_POWER.smartDescription": "[gold]守护者[/gold]在受到 {Amount} 点未被格挡的伤害后会转入防御模式。",
   "STS2BALANCEMOD-SHARP_HIDE_POWER.title": "尖刺外壳",
   "STS2BALANCEMOD-SHARP_HIDE_POWER.description": "攻击者每次攻击受到 {Amount} 点伤害。",
-  "STS2BALANCEMOD-SHARP_HIDE_POWER.smartDescription": "攻击者每次攻击受到 {Amount} 点伤害。"
+  "STS2BALANCEMOD-SHARP_HIDE_POWER.smartDescription": "攻击者每次攻击受到 {Amount} 点伤害。",
+  "STS2BALANCEMOD-SPLIT_POWER.title": "分裂",
+  "STS2BALANCEMOD-SPLIT_POWER.description": "当生命[gold]50%[/gold]或以下时，分裂成 2 只较小的史莱姆，每只拥有当前的生命值。",
+  "STS2BALANCEMOD-SPLIT_POWER.smartDescription": "当生命[gold]50%[/gold]或以下时，分裂成 2 只较小的史莱姆，每只拥有当前的生命值。"
 }
