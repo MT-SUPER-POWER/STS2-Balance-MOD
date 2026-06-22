@@ -17,7 +17,10 @@ public static class HiveEncounterInjectionPatch
     [HarmonyPostfix]
     private static void Postfix(ref IEnumerable<EncounterModel> __result)
     {
-      __result = __result.Append(ModelDb.Encounter<RedMaskBandits>());
+      __result = __result
+        .Append(ModelDb.Encounter<RedMaskBandits>())
+        .Append(ModelDb.Encounter<MindBloomGuardian>())
+        .Append(ModelDb.Encounter<MindBloomSlimeBoss>());
     }
   }
 }

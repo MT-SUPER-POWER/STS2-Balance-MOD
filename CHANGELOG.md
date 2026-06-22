@@ -50,6 +50,7 @@
 **变更**
 - Boss：时间吞噬者改为替换三层 `AeonglassBoss`（永世沙漏）候选，不再追加到三层 Boss 池，保持三层 Boss 数量不变。
 - Boss：Collector Boss 代码仍暂注释（`#if false`），资源与本地化保留，后续版本恢复开发。
+- 怪物：移除六火亡魂（Hexaghost）及其心灵绽放遭遇，资源不再需要。
 - 重构：Collector、TorchHead、TimeEater 改为继承 `Sts2MonsterModel`；CollectorBoss、TimeEaterBoss 改为继承 `Sts2EncounterModel`。
 
 **修复**
