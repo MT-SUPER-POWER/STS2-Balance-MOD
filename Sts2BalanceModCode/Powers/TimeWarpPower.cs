@@ -39,6 +39,10 @@ public sealed class TimeWarpPower() : Sts2PowerModel(PowerType.Buff, PowerStackT
     if (cardPlay.Card.Owner.Creature.Side == Owner.Side)
       return;
 
+    // NOTE: Sly牌不计入时间扭曲计数
+    if (cardPlay.Card.IsSlyThisTurn)
+      return;
+
     if (Amount > 1M)
     {
       await PowerCmd.ModifyAmount(choiceContext, this, -1M, Owner, null, silent: false);
