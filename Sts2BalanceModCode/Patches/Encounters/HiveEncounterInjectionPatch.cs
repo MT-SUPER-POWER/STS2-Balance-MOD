@@ -17,8 +17,24 @@ public static class HiveEncounterInjectionPatch
     [HarmonyPostfix]
     private static void Postfix(ref IEnumerable<EncounterModel> __result)
     {
+      __result = __result.Append(ModelDb.Encounter<RedMaskBandits>());
+    }
+  }
+}
+
+/// <summary>
+/// 将心灵绽放一层 Boss 遭遇注入 Overgrowth（第 1 幕），使其怪物在 Compendium 图鉴中可见。
+/// 这些遭遇通过 MindBloom 事件触发，注册到遭遇池仅为图鉴展示和 console fight 可用。
+/// </summary>
+public static class OvergrowthEncounterInjectionPatch
+{
+  [HarmonyPatch(typeof(Overgrowth), nameof(Overgrowth.GenerateAllEncounters))]
+  public static class OvergrowthPatch
+  {
+    [HarmonyPostfix]
+    private static void Postfix(ref IEnumerable<EncounterModel> __result)
+    {
       __result = __result
-        .Append(ModelDb.Encounter<RedMaskBandits>())
         .Append(ModelDb.Encounter<MindBloomGuardian>())
         .Append(ModelDb.Encounter<MindBloomSlimeBoss>());
     }
