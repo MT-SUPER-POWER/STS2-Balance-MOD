@@ -1,6 +1,7 @@
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Nodes.Audio;
+using MegaCrit.Sts2.Core.Rooms;
 using Sts2BalanceMod.Sts2BalanceModCode.Utility;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Audio;
@@ -38,5 +39,16 @@ public static class LocalAudioPatch
   private static void StopMusicPostfix()
   {
     Sts2ModAudio.StopMusic();
+  }
+
+  /// <summary>
+  /// 战斗房间退出时停止 MOD 自定义 BGM（Godot AudioStreamPlayer），
+  /// 避免带 CustomBgm 的遭遇（如 TimeEater）战斗结束后 BGM 持续播放。
+  /// </summary>
+  [HarmonyPatch(typeof(CombatRoom), nameof(CombatRoom.Exit))]
+  public static class CleanupBgmOnCombatExitPatch
+  {
+    [HarmonyPostfix]
+    private static void Postfix() => Sts2ModAudio.StopMusic();
   }
 }
