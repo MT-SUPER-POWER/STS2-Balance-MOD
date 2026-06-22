@@ -30,8 +30,9 @@ public sealed class MindBloomBossEncounter : Sts2EncounterModel
 
   protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters()
   {
+    // MonstersWithSlots 里的怪物已经是 mutable 的（Boss 遭遇 GenerateMonsters 已调用 ToMutable）
     return _bossEncounter?.MonstersWithSlots
-      .Select(m => (m.Item1.ToMutable(), m.Item2))
+      .Select(m => (m.Item1, m.Item2))
       .ToList() ?? [];
   }
 }
