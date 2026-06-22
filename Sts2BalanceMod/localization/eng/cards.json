@@ -11,5 +11,6 @@
   "STS2BALANCEMOD-JAX.description": "Lose {HpLoss:diff()} HP.\nGain {StrengthPower:diff()} [gold]Strength[/gold].",
   "STS2BALANCEMOD-NECRONOMICURSE.title": "Necronomicurse",
   "STS2BALANCEMOD-NECRONOMICURSE.description": "There is no escape from this [red]Curse[/red].",
-  "WRAITH_FORM.description": "Gain {IntangiblePower:diff()} [gold]Intangible[/gold]."
+  "WRAITH_FORM.description": "Gain {IntangiblePower:diff()} [gold]Intangible[/gold].",
+  "GLOW.description": "Gain {Stars:starIcons()}.\nDraw 2 cards."
 }

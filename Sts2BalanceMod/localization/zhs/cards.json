@@ -11,5 +11,6 @@
   "STS2BALANCEMOD-JAX.description": "失去 {HpLoss:diff()} 点生命。\n获得 {StrengthPower:diff()} [gold]力量[/gold]。",
   "STS2BALANCEMOD-NECRONOMICURSE.title": "死灵诅咒",
   "STS2BALANCEMOD-NECRONOMICURSE.description": "你无法逃脱这个 [red]诅咒[/red]。",
-  "WRAITH_FORM.description": "获得{IntangiblePower:diff()}[gold]无实体[/gold]。"
+  "WRAITH_FORM.description": "获得{IntangiblePower:diff()}[gold]无实体[/gold]。",
+  "GLOW.description": "获得{Stars:starIcons()}。\n抽2张牌。"
 }
