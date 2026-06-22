@@ -49,5 +49,21 @@ public sealed class SplitPower : Sts2PowerModel
       slimeBoss.SplitTriggered = true;
       slimeBoss.SetMoveImmediate(slimeBoss.SplitState, true);
     }
+    else if (Owner.Monster is AcidSlimeLarge acidSlime)
+    {
+      if (acidSlime.SplitTriggered)
+        return;
+      Flash();
+      acidSlime.SplitTriggered = true;
+      acidSlime.SetMoveImmediate(acidSlime.SplitState, true);
+    }
+    else if (Owner.Monster is SpikeSlimeLarge spikeSlime)
+    {
+      if (spikeSlime.SplitTriggered)
+        return;
+      Flash();
+      spikeSlime.SplitTriggered = true;
+      spikeSlime.SetMoveImmediate(spikeSlime.SplitState, true);
+    }
   }
 }

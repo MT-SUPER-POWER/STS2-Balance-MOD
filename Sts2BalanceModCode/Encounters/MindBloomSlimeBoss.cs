@@ -32,6 +32,8 @@ public sealed class MindBloomSlimeBoss : Sts2EncounterModel
     ModelDb.Monster<SlimeBoss>(),
     ModelDb.Monster<SpikeSlimeLarge>(),
     ModelDb.Monster<AcidSlimeLarge>(),
+    ModelDb.Monster<SpikeSlimeMedium>(),
+    ModelDb.Monster<AcidSlimeMedium>(),
   ];
 
   protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>

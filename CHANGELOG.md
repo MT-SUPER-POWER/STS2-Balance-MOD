@@ -6,6 +6,24 @@
 
 完整需求清单与待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+## [Unreleased]
+
+### Added
+
+- 怪物：新增 `AcidSlimeMedium` 和 `SpikeSlimeMedium` 中号史莱姆模型类与资源。
+- 怪物：大型史莱姆（`AcidSlimeLarge`/`SpikeSlimeLarge`）同样具备分裂机制，生命≤50% 时继续分裂为两个中号史莱姆。
+- 本地化：新增三语言（eng/zhs/ita）中号史莱姆名称与技能条目。
+
+### Fixed
+
+- 怪物：史莱姆老大分裂出的尖刺/酸液大型史莱姆现在使用各自的 Spine 视觉资源（`acid_slime_large.tscn` / `spike_slime_large.tscn`），不再复用 BOSS 模型。
+- 怪物：修复分裂时机，史莱姆 BOSS 死亡消失后再生成分裂个体，避免三者同时出现。
+- 怪物：修复 `AcidSlimeLarge` 动画状态名（`idle` → `Idle`、`hit` → `damage`），现在酸液史莱姆能正确播放空闲动画。
+
+### Changed
+
+- 资源：将 `acid_slime_large`、`spike_slime_large`、`acid_slime_medium`、`spike_slime_medium` 的资源文件从 `Assets/ActsFromPast/` 复制到 `Sts2BalanceMod/monsters/` 下，Mod 资源完全自包含。
+
 # v0.0.6
 
 **本次补充**

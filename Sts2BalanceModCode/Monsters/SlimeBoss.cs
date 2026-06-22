@@ -104,10 +104,14 @@ public sealed class SlimeBoss : Sts2MonsterModel
     var combatState = Creature.CombatState;
     var originalPosition = NCombatRoom.Instance?.GetCreatureNode(Creature)?.Position ?? Vector2.Zero;
 
-    // 分裂动    await FastAttackAnimation.Play(Creature);
+    // 分裂动画
+    await FastAttackAnimation.Play(Creature);
     await Cmd.Wait(0.8f);
 
     await CreatureCmd.Kill(Creature);
+
+    // NOTE: 等待 BOSS 完全消失后再生成分裂个体，避免三者同时出现
+    await Cmd.Wait(1.0f);
 
     // 查找可用槽位
     var occupiedSlots = combatState.GetTeammatesOf(Creature)
