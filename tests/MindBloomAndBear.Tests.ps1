@@ -30,9 +30,12 @@ $bear = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Monsters/Bear.
 
 Assert-Contains $mindBloom "Option\(Fight" "Mind Bloom must expose the Act 1 boss fight option."
 Assert-NotContains $mindBloom "FIGHT_LOCKED" "Mind Bloom fight option must not stay locked."
-Assert-Contains $mindBloom "MindBloomGuardian" "Mind Bloom must include Guardian as a possible fight."
-Assert-Contains $mindBloom "MindBloomHexaghost" "Mind Bloom must include Hexaghost as a possible fight."
-Assert-Contains $mindBloom "MindBloomSlimeBoss" "Mind Bloom must include Slime Boss as a possible fight."
+Assert-Contains $mindBloom "Overgrowth" "Mind Bloom must support Overgrowth act 1 bosses."
+Assert-Contains $mindBloom "Underdocks" "Mind Bloom must support Underdocks act 1 bosses."
+Assert-Contains $mindBloom "HasSeenEncounter" "Mind Bloom must filter to seen act 1 bosses."
+Assert-NotContains $mindBloom "MindBloomGuardian" "Mind Bloom must not include custom Guardian fight."
+Assert-NotContains $mindBloom "MindBloomSlimeBoss" "Mind Bloom must not include custom Slime Boss fight."
+Assert-NotContains $mindBloom "MindBloomHexaghost" "Mind Bloom must not include custom Hexaghost fight."
 
 Assert-Contains $bear "VulnerablePower" "Bear Hug must apply Vulnerable."
 Assert-NotContains $bear "DexterityPower" "Bear Hug must not reduce Dexterity."
