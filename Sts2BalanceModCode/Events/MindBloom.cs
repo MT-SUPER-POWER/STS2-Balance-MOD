@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
@@ -73,7 +74,19 @@ public sealed class MindBloom : CustomEventModel
     if (owner == null || Rng == null)
       return Task.CompletedTask;
 
-    var encounter = Rng.NextItem(GetFightBosses(owner)).ToMutable();
+    var bosses = GetFightBosses(owner);
+    if (bosses.Count == 0)
+      return Task.CompletedTask;
+
+    var bossEncounter = Rng.NextItem(bosses);
+    if (bossEncounter == null)
+      return Task.CompletedTask;
+    bossEncounter = bossEncounter.ToMutable();
+    bossEncounter.GenerateMonstersWithSlots(owner.RunState);
+
+    var mindBloomEncounter = (MindBloomBossEncounter)ModelDb.Encounter<MindBloomBossEncounter>().ToMutable();
+    mindBloomEncounter.SetBoss(bossEncounter);
+
     var rareRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Rare)?.ToMutable();
     if (rareRelic == null)
       return Task.CompletedTask;
@@ -84,26 +97,20 @@ public sealed class MindBloom : CustomEventModel
       new RelicReward(rareRelic, owner),
     };
     CombatActive = true;
-    EnterCombatWithoutExitingEvent(encounter, rewards, false);
+    EnterCombatWithoutExitingEvent(mindBloomEncounter, rewards, false);
     return Task.CompletedTask;
   }
 
+  /// <summary>
+  /// 从本局第一层（密林 Overgrowth 或暗港 Underdocks）全量 Boss 池中真随机选取。
+  /// </summary>
   private static IReadOnlyList<EncounterModel> GetFightBosses(Player owner)
   {
-    var bosses = new List<EncounterModel>
-    {
-      ModelDb.Encounter<MindBloomGuardian>(),
-      ModelDb.Encounter<MindBloomSlimeBoss>(),
-    };
-
     var firstAct = owner.RunState.Acts.FirstOrDefault();
-    var bossDiscoveryOrder = firstAct?.GetType().GetProperty("BossDiscoveryOrder")?.GetValue(firstAct);
-    if (bossDiscoveryOrder is IEnumerable<EncounterModel> actBosses)
-    {
-      bosses.AddRange(actBosses.Where(encounter => encounter.RoomType == RoomType.Boss));
-    }
+    if (firstAct is not (Overgrowth or Underdocks))
+      return [];
 
-    return bosses;
+    return firstAct.AllBossEncounters.ToList();
   }
 
   private async Task Upgrade()

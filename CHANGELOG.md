@@ -6,35 +6,24 @@
 
 完整需求清单与待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
-## [Unreleased]
+## v0.0.7
 
 ### Added
 
-- 怪物：新增 `AcidSlimeMedium` 和 `SpikeSlimeMedium` 中号史莱姆模型类与资源。
-- 怪物：大型史莱姆（`AcidSlimeLarge`/`SpikeSlimeLarge`）同样具备分裂机制，生命≤50% 时继续分裂为两个中号史莱姆。
-- 本地化：新增三语言（eng/zhs/ita）中号史莱姆名称与技能条目。
+- 事件：更新自定义事件池的背景图
+- 事件：新增老乞丐事件，要求每名玩家至少 75 金币才会进入事件池；给金币后切换为牧师图并进入删牌阶段。
+- 遗物：活雾（瓦库）改为删4，不再删3。
 
 ### Fixed
 
-- 怪物：史莱姆老大分裂出的尖刺/酸液大型史莱姆现在使用各自的 Spine 视觉资源（`acid_slime_large.tscn` / `spike_slime_large.tscn`），不再复用 BOSS 模型。
-- 怪物：修复分裂时机，史莱姆 BOSS 死亡消失后再生成分裂个体，避免三者同时出现。
-- 怪物：修复 `AcidSlimeLarge` 动画状态名（`idle` → `Idle`、`hit` → `damage`），现在酸液史莱姆能正确播放空闲动画。
+- 事件：心灵绽放「我即战争」分支改为从本局第一层（密林或暗港）中玩家已遭遇过的原版 Boss 随机选取，不再注入守护者/史莱姆老大自定义遭遇。
+- 事件：修复心灵绽放 BOSS 战导致在第三幕会直接认为是和原版一样的 Boss 战，直接结束游戏的问题。
+- 事件：面具帮熊Bear的Bear Hug改为施加1层脆弱，不再减少玩家敏捷。
+- 事件：心灵绽放限制为仅在第三幕事件池出现，保留三层内宝箱前后分支阈值判断。
+- Boss：多人模式下 TimeEater 血量按玩家数放大（456/480 × n），TimeWarp 计数改为 `12 + 3 × (n - 1)` 并在每次触发后按同一公式回填。
 
-### Changed
-
-- 资源：将 `acid_slime_large`、`spike_slime_large`、`acid_slime_medium`、`spike_slime_medium` 的资源文件从 `Assets/ActsFromPast/` 复制到 `Sts2BalanceMod/monsters/` 下，Mod 资源完全自包含。
 
 # v0.0.6
-
-**本次补充**
-- 事件：心灵绽放限制为仅在第三幕事件池出现，保留三层内宝箱前后分支阈值判断。
-- 事件：新增老乞丐事件，要求每名玩家至少 75 金币才会进入事件池；给金币后切换为牧师图并进入删牌阶段。
-- Boss：多人模式下 TimeEater 血量按玩家数放大（456/480 × n），TimeWarp 计数改为 `12 + 3 × (n - 1)` 并在每次触发后按同一公式回填。
-- 资源：心灵绽放一层 Boss 的 Guardian、Hexaghost、SlimeBoss 与战斗场景改用 `res://Sts2BalanceMod/` 下的打包资源，避免 `Assets/` 不随 MOD 打包导致事件战斗资源失效。
-- 事件：心灵绽放“我即战争”分支接入一层 Boss 战斗，随机进入守护者、六火亡魂或史莱姆老大，并奖励 50 金币与稀有遗物。
-- 怪物：新增心灵绽放专用的一层 Boss 轻量模型与遭遇链，覆盖 Guardian、SlimeBoss。
-- 怪物：史莱姆老大新增分裂机制，生命≤50% 时分裂为尖刺和酸液大型史莱姆，各自继承当前生命值。
-- 红面具事件：Bear 的 Bear Hug 改为施加 1 层脆弱，不再减少玩家敏捷。
 
 **修复**
 - 联机：升级最低 BaseLib 依赖到 `3.2.1`，避免旧版自定义消息注册表在反序列化联机数据包时抛出 `KeyNotFoundException`。
