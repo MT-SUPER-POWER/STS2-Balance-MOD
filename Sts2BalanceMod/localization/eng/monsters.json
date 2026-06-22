@@ -32,6 +32,7 @@
   "STS2BALANCEMOD-SLIME_BOSS.moves.GOOP_SPRAY.title": "Goop Spray",
   "STS2BALANCEMOD-SLIME_BOSS.moves.PREP_SLAM.title": "Preparing",
   "STS2BALANCEMOD-SLIME_BOSS.moves.SLAM.title": "Slam",
+  "STS2BALANCEMOD-SLIME_BOSS.moves.SPLIT.title": "Split",
   "STS2BALANCEMOD-BEAR.name": "Bear",
   "STS2BALANCEMOD-BEAR.moves.BEAR_HUG.title": "Bear Hug",
   "STS2BALANCEMOD-BEAR.moves.MAUL.title": "Maul",
@@ -45,5 +46,12 @@
   "STS2BALANCEMOD-ROMEO.moves.MOCK.bearDead": "[sine]You[/sine] [sine]will[/sine] [sine]pay[/sine] [sine]for[/sine] [sine]this!![/sine]",
   "STS2BALANCEMOD-ROMEO.moves.CROSS_SLASH.title": "Cross Slash",
   "STS2BALANCEMOD-ROMEO.moves.AGONIZING_SLASH.title": "Agonizing Slash",
-  "STS2BALANCEMOD-ROMEO.deathReactLine": "[sine]Nooooooo,[/sine] [sine]Bear![/sine]"
+  "STS2BALANCEMOD-ROMEO.deathReactLine": "[sine]Nooooooo,[/sine] [sine]Bear![/sine]",
+  "STS2BALANCEMOD-SPIKE_SLIME_LARGE.name": "Spike Slime",
+  "STS2BALANCEMOD-SPIKE_SLIME_LARGE.moves.FLAME_TACKLE.title": "Flame Tackle",
+  "STS2BALANCEMOD-SPIKE_SLIME_LARGE.moves.LICK.title": "Lick",
+  "STS2BALANCEMOD-ACID_SLIME_LARGE.name": "Acid Slime",
+  "STS2BALANCEMOD-ACID_SLIME_LARGE.moves.CORROSIVE_SPIT.title": "Corrosive Spit",
+  "STS2BALANCEMOD-ACID_SLIME_LARGE.moves.TACKLE.title": "Tackle",
+  "STS2BALANCEMOD-ACID_SLIME_LARGE.moves.LICK.title": "Lick"
 }

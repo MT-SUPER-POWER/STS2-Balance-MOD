@@ -32,6 +32,7 @@
   "STS2BALANCEMOD-SLIME_BOSS.moves.GOOP_SPRAY.title": "黏液喷吐",
   "STS2BALANCEMOD-SLIME_BOSS.moves.PREP_SLAM.title": "准备重击",
   "STS2BALANCEMOD-SLIME_BOSS.moves.SLAM.title": "重击",
+  "STS2BALANCEMOD-SLIME_BOSS.moves.SPLIT.title": "分裂",
   "STS2BALANCEMOD-BEAR.name": "熊",
   "STS2BALANCEMOD-BEAR.moves.BEAR_HUG.title": "熊抱",
   "STS2BALANCEMOD-BEAR.moves.MAUL.title": "重击",
@@ -45,5 +46,12 @@
   "STS2BALANCEMOD-ROMEO.moves.MOCK.bearDead": "[sine]你会付出代价的！！[/sine]",
   "STS2BALANCEMOD-ROMEO.moves.CROSS_SLASH.title": "十字斩",
   "STS2BALANCEMOD-ROMEO.moves.AGONIZING_SLASH.title": "痛苦斩",
-  "STS2BALANCEMOD-ROMEO.deathReactLine": "[sine]不——！熊！！[/sine]"
+  "STS2BALANCEMOD-ROMEO.deathReactLine": "[sine]不——！熊！！[/sine]",
+  "STS2BALANCEMOD-SPIKE_SLIME_LARGE.name": "尖刺大型史莱姆",
+  "STS2BALANCEMOD-SPIKE_SLIME_LARGE.moves.FLAME_TACKLE.title": "火焰冲撞",
+  "STS2BALANCEMOD-SPIKE_SLIME_LARGE.moves.LICK.title": "舔舐",
+  "STS2BALANCEMOD-ACID_SLIME_LARGE.name": "酸液大型史莱姆",
+  "STS2BALANCEMOD-ACID_SLIME_LARGE.moves.CORROSIVE_SPIT.title": "腐蚀唾液",
+  "STS2BALANCEMOD-ACID_SLIME_LARGE.moves.TACKLE.title": "冲撞",
+  "STS2BALANCEMOD-ACID_SLIME_LARGE.moves.LICK.title": "舔舐"
 }
