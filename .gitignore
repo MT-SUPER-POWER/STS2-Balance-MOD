@@ -5,7 +5,6 @@ bin/
 dist/
 /android/
 publish/
-j
 .git/
 .idea/
 .vs/
@@ -33,3 +32,6 @@ Directory.Build.props
 !Assets/**/*.import
 !Assets/**/.godot/
 !Assets/**/.godot/**
+.claude/settings.local.json
+.omo/run-continuation/ses_10e5f8797ffeuzkidwVrcRgg9j.json
+.omo/run-continuation/ses_10e3483b4ffe08kgUZEwTCVScT.json
