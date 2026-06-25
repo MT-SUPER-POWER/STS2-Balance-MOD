@@ -90,7 +90,7 @@ public sealed class NWheelSpinScreen
 
     // 直接添加到 OverlayStack，不经过 Push（避免 IOverlayScreen 要求）
     var stack = NOverlayStack.Instance;
-    stack.AddChild(screen._root);
+    stack?.AddChild(screen._root);
     screen.StartBounceIn();
 
     return screen;
@@ -133,8 +133,10 @@ public sealed class NWheelSpinScreen
       ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
       StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
       PivotOffset = new Vector2(halfWheel, halfWheel),
-      AnchorLeft = 0.5f, AnchorTop = 0.5f,
-      AnchorRight = 0.5f, AnchorBottom = 0.5f,
+      AnchorLeft = 0.5f,
+      AnchorTop = 0.5f,
+      AnchorRight = 0.5f,
+      AnchorBottom = 0.5f,
       OffsetLeft = -halfWheel,
       OffsetTop = -halfWheel + WheelStartOffset,
       OffsetRight = halfWheel,
@@ -153,8 +155,10 @@ public sealed class NWheelSpinScreen
       CustomMinimumSize = new Vector2(ArrowDisplaySize, ArrowDisplaySize),
       ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
       StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
-      AnchorLeft = 0.5f, AnchorTop = 0.5f,
-      AnchorRight = 0.5f, AnchorBottom = 0.5f,
+      AnchorLeft = 0.5f,
+      AnchorTop = 0.5f,
+      AnchorRight = 0.5f,
+      AnchorBottom = 0.5f,
       OffsetLeft = ArrowOffsetX - halfArrow,
       OffsetTop = -halfArrow + WheelStartOffset,
       OffsetRight = ArrowOffsetX + halfArrow,
@@ -174,8 +178,10 @@ public sealed class NWheelSpinScreen
       ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
       StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
       PivotOffset = new Vector2(halfButton, halfButton),
-      AnchorLeft = 0.5f, AnchorTop = 0.5f,
-      AnchorRight = 0.5f, AnchorBottom = 0.5f,
+      AnchorLeft = 0.5f,
+      AnchorTop = 0.5f,
+      AnchorRight = 0.5f,
+      AnchorBottom = 0.5f,
       GrowHorizontal = Control.GrowDirection.Both,
       GrowVertical = Control.GrowDirection.Both,
       MouseFilter = Control.MouseFilterEnum.Stop,
@@ -201,8 +207,10 @@ public sealed class NWheelSpinScreen
       ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
       StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
       PivotOffset = new Vector2(halfButton, halfButton),
-      AnchorLeft = 0.5f, AnchorTop = 0.5f,
-      AnchorRight = 0.5f, AnchorBottom = 0.5f,
+      AnchorLeft = 0.5f,
+      AnchorTop = 0.5f,
+      AnchorRight = 0.5f,
+      AnchorBottom = 0.5f,
       GrowHorizontal = Control.GrowDirection.Both,
       GrowVertical = Control.GrowDirection.Both,
       MouseFilter = Control.MouseFilterEnum.Ignore,

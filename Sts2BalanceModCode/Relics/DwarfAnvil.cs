@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.RelicPools;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
@@ -23,6 +24,8 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 [Pool(typeof(SharedRelicPool))]
 public sealed class DwarfAnvil : Sts2RelicModel
 {
+  private const string EnergyKey = "Energy";
+
   public override string FlashSfx => "event:/sfx/ui/relic_activate_general";
   public override RelicRarity Rarity => RelicRarity.Shop;
 
@@ -30,6 +33,11 @@ public sealed class DwarfAnvil : Sts2RelicModel
 
   protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     HoverTipFactory.FromEnchantment<ForgeEnchantment>();
+
+  protected override IEnumerable<DynamicVar> CanonicalVars =>
+  [
+    new EnergyVar(1),
+  ];
 
   public override async Task AfterObtained()
   {
@@ -43,7 +51,7 @@ public sealed class DwarfAnvil : Sts2RelicModel
 
     foreach (var card in await CardSelectCmd.FromDeckForEnchantment(Owner, forge, 1, prefs))
     {
-      CardCmd.Enchant(forge.ToMutable(), card, 1m);
+      CardCmd.Enchant(forge.ToMutable(), card, base.DynamicVars[EnergyKey].IntValue);
       CardCmd.Preview(card);
     }
   }
