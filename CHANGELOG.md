@@ -4,9 +4,9 @@
 
 每个版本以 `# vx.x.x` 为标题。推送 Tag 后 GitHub Actions 自动把该段写入 Release 说明；zip 附件由本机 `Hooks/release.ps1` 上传。
 
-完整需求清单与待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
+已完成的所有改动见 [README.md](../README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
-## v0.0.7
+# v0.0.7
 
 ### Added
 
@@ -36,6 +36,11 @@
 - Boss：多人模式下 TimeEater 血量按玩家数放大（456/480 × n），TimeWarp 计数改为 `12 + 3 × (n - 1)` 并在每次触发后按同一公式回填。
 - 本地化：锻造附魔描述中 `{Energy:energyIcons()}` 改为 `{Amount:energyIcons()}`，匹配 `EnergyIconsFormatter` 期望的变量名（参考 Sown）。
 - 附魔图标：`ForgeEnchantmentIconPatch` 通过 Harmony 重定向 `EnchantmentModel.get_IconPath`，把图标路径指向 `res://Sts2BalanceMod/images/enchantments/forge_enchantment.png`，避免回退到 `missing_enchantment.png`。
+
+### Docs
+
+- README：重写「调整内容」章节，按商店 / 卡牌 / 回归卡牌 / 怪物 Boss / 事件 / 遗物 / 附魔分类，并标注每条改动的原版效果对照，方便玩家快速了解 Mod 改动。
+- `docs/balance-changes.md`：精简为只保留未完成的待办项（CARD-08 / CARD-09）与未解决的 BUG / FEATURE；所有已完成项移到 README。
 
 
 # v0.0.6
