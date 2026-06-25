@@ -40,5 +40,8 @@
   "STS2BALANCEMOD-MARK_OF_THE_BLOOM.flavor": "In the deepest parts of the Spire, thought and reality are one.",
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.title": "Mutagenic Strength",
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.description": "At the start of each combat, gain [blue]{StrengthPower}[/blue] temporary [red]Strength[/red].",
-  "STS2BALANCEMOD-MUTAGENIC_STRENGTH.flavor": "Residual power from a genetic experiment."
+  "STS2BALANCEMOD-MUTAGENIC_STRENGTH.flavor": "Residual power from a genetic experiment.",
+  "STS2BALANCEMOD-DWARF_ANVIL.title": "Dwarf Anvil",
+  "STS2BALANCEMOD-DWARF_ANVIL.description": "At Rest Sites, you can [gold]Forge[/gold] an [gold]Attack[/gold] or [gold]Skill[/gold] card to repeatedly enhance its damage or block.",
+  "STS2BALANCEMOD-DWARF_ANVIL.flavor": "A compact anvil from deep within the Spire, radiating a faint blue heat."
 }

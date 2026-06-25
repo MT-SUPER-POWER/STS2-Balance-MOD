@@ -40,5 +40,8 @@
   "STS2BALANCEMOD-MARK_OF_THE_BLOOM.flavor": "In the deepest parts of the Spire, thought and reality are one.",
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.title": "Forza Mutagena",
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.description": "All'inizio di ogni combattimento, ottieni [blue]{StrengthPower}[/blue] [red]Forza[/red] temporanea.",
-  "STS2BALANCEMOD-MUTAGENIC_STRENGTH.flavor": "Potere residuo di un esperimento genetico."
+  "STS2BALANCEMOD-MUTAGENIC_STRENGTH.flavor": "Potere residuo di un esperimento genetico.",
+  "STS2BALANCEMOD-DWARF_ANVIL.title": "Incudine Nana",
+  "STS2BALANCEMOD-DWARF_ANVIL.description": "Ai Siti di Riposo, puoi [gold]Forgiare[/gold] una carta [gold]Attacco[/gold] o [gold]Abilità[/gold] per potenziarne ripetutamente il danno o la difesa.",
+  "STS2BALANCEMOD-DWARF_ANVIL.flavor": "Un'incudine compatta delle profondità della Guglia, che emana un debole calore blu."
 }

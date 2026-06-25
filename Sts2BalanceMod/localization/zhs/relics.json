@@ -40,5 +40,8 @@
   "STS2BALANCEMOD-MARK_OF_THE_BLOOM.flavor": "在高塔的深处，思维与现实成为了一体。",
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.title": "突变之力",
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.description": "每场战斗开始时，获得 [blue]{StrengthPower}[/blue] 点临时 [red]力量[/red]。",
-  "STS2BALANCEMOD-MUTAGENIC_STRENGTH.flavor": "基因实验留下的残余力量。"
+  "STS2BALANCEMOD-MUTAGENIC_STRENGTH.flavor": "基因实验留下的残余力量。",
+  "STS2BALANCEMOD-DWARF_ANVIL.title": "矮人铁砧",
+  "STS2BALANCEMOD-DWARF_ANVIL.description": "在火堆处，你可以[gold]锻造[/gold]一张[gold]攻击[/gold]或[gold]技能[/gold]牌，不断强化其伤害或格挡。",
+  "STS2BALANCEMOD-DWARF_ANVIL.flavor": "一枚来自高塔深处的小巧铁砧，散发着幽蓝的微光。"
 }
