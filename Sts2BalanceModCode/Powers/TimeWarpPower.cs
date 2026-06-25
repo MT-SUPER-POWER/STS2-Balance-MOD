@@ -58,7 +58,7 @@ public sealed class TimeWarpPower() : Sts2PowerModel(PowerType.Buff, PowerStackT
     // 视觉效果：时钟弹出动画
     var effect = TimeWarpTurnEndEffect.Create();
     if (NCombatRoom.Instance?.CombatVfxContainer is Node vfxContainer)
-      vfxContainer.AddChildSafely(effect);
+      vfxContainer.AddChildSafely(effect.Root);
     await Cmd.Wait(0.35f);
     Sts2ModAudio.PlayOneShot(TimeWarpSfx, 0.65f);
 
