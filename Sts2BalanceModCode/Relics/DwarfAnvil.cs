@@ -33,7 +33,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 public sealed class DwarfAnvil : Sts2RelicModel
 {
   public override string FlashSfx => "event:/sfx/ui/relic_activate_general";
-  public override RelicRarity Rarity => RelicRarity.Rare;
+  public override RelicRarity Rarity => RelicRarity.Shop;
 
   public override bool HasUponPickupEffect => true;
 
@@ -47,7 +47,7 @@ public sealed class DwarfAnvil : Sts2RelicModel
 
     foreach (var card in await CardSelectCmd.FromDeckForEnchantment(Owner, forge, 1, prefs))
     {
-      CardCmd.Enchant(forge.ToMutable(), card, 1m);
+      CardCmd.Enchant(forge.ToMutable(), card, 0m);
       CardCmd.Preview(card);
     }
   }
@@ -78,6 +78,7 @@ internal static class DwarfAnvilSmithEnabledPatch
 /// <summary>
 /// 持有 DwarfAnvil 时，Smith 的选牌列表中包含 forge-enchanted 牌（即使已升级）。
 /// 选择附魔牌进行 Smith 会消耗本次锻造机会，并递增其 forge count。
+/// 注意：设 _selection 字段确保原版 DoLocalPostSelectVfx 能播放锻造动画与音效。
 /// </summary>
 [HarmonyPatch(typeof(SmithRestSiteOption), nameof(SmithRestSiteOption.OnSelect))]
 internal static class DwarfAnvilSmithPrefixPatch
@@ -85,22 +86,24 @@ internal static class DwarfAnvilSmithPrefixPatch
   private static readonly FieldInfo? SmithCountField =
     typeof(SmithRestSiteOption).GetField("SmithCount", BindingFlags.Instance | BindingFlags.Public);
 
+  private static readonly FieldInfo? SelectionField =
+    typeof(SmithRestSiteOption).GetField("_selection", BindingFlags.Instance | BindingFlags.NonPublic);
+
   [HarmonyPrefix]
   private static bool Prefix(SmithRestSiteOption __instance, ref Task<bool> __result)
   {
     var ownerProp = typeof(RestSiteOption).GetProperty("Owner", BindingFlags.Instance | BindingFlags.NonPublic);
     var owner = (Player?)ownerProp?.GetValue(__instance);
     if (owner?.GetRelic<DwarfAnvil>() == null)
-      return true; // 无遗物→走原逻辑
+      return true;
 
     var smithCount = (int)(SmithCountField?.GetValue(__instance) ?? 1);
     var forge = ModelDb.Enchantment<ForgeEnchantment>();
 
     var deck = PileType.Deck.GetPile(owner);
 
-    // 正常可升级牌
+    // 正常可升级牌 + 附魔牌
     var upgradeCards = deck.Cards.Where(c => c.IsUpgradable).ToList();
-    // 附魔牌
     var forgeCards = deck.Cards.Where(c => c.Enchantment is ForgeEnchantment).ToList();
 
     var combined = upgradeCards.Concat(forgeCards).Distinct().ToList();
@@ -110,41 +113,40 @@ internal static class DwarfAnvilSmithPrefixPatch
       return false;
     }
 
-    // 直接使用游戏内置选牌界面
     var prefs = new CardSelectorPrefs(CardSelectorPrefs.UpgradeSelectionPrompt, smithCount)
     {
       Cancelable = true,
       RequireManualConfirmation = true,
     };
 
-    // 需要有 RunState 来调用 ShowScreen；从玩家的 RunState 拿
     var screen = NDeckUpgradeSelectScreen.ShowScreen(combined, prefs, owner.RunState);
-    __result = HandleSmithSelection(screen, owner, forge);
+    __result = HandleSmithSelection(screen, __instance, owner, forge);
 
-    return false; // 跳过原方法
+    return false; // 跳过原方法，但我们设了 _selection 供 DoLocalPostSelectVfx 使用
   }
 
   private static async Task<bool> HandleSmithSelection(
-    NDeckUpgradeSelectScreen screen, Player owner, EnchantmentModel forge)
+    NDeckUpgradeSelectScreen screen, SmithRestSiteOption instance, Player owner, EnchantmentModel forge)
   {
-    var selected = await screen.CardsSelected();
-    if (!selected.Any())
+    var selected = (await screen.CardsSelected()).ToList();
+    if (selected.Count == 0)
       return false;
 
     foreach (var card in selected)
     {
       if (card.Enchantment is ForgeEnchantment)
       {
-        // 附魔牌：递增 forge 次数
         var existing = card.Enchantment?.Amount ?? 0;
         CardCmd.Enchant(forge.ToMutable(), card, existing + 1);
       }
       else
       {
-        // 正常牌：升级
         CardCmd.Upgrade(card, CardPreviewStyle.None);
       }
     }
+
+    // 设 _selection 字段，让 DoLocalPostSelectVfx 能做锻造动画
+    SelectionField?.SetValue(instance, selected);
 
     await Hook.AfterRestSiteSmith(owner.RunState, owner);
     return true;
