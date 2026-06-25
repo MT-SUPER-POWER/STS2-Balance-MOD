@@ -1,11 +1,15 @@
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
+using Sts2BalanceMod.Sts2BalanceModCode.Effects;
 using Sts2BalanceMod.Sts2BalanceModCode.Utility;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
@@ -51,6 +55,10 @@ public sealed class TimeWarpPower() : Sts2PowerModel(PowerType.Buff, PowerStackT
 
     Flash();
     Sts2ModAudio.PlayOneShot(TimeWarpSfx);
+    // 视觉效果：时钟弹出动画
+    var effect = TimeWarpTurnEndEffect.Create();
+    if (NCombatRoom.Instance?.CombatVfxContainer is Node vfxContainer)
+      vfxContainer.AddChildSafely(effect);
     await Cmd.Wait(0.35f);
     Sts2ModAudio.PlayOneShot(TimeWarpSfx, 0.65f);
 
