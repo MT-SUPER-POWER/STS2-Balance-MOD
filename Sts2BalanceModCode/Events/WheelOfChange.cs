@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.ValueProps;
+using Sts2BalanceMod.Sts2BalanceModCode.Events.UI;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 
@@ -43,17 +44,19 @@ public sealed class WheelOfChange : CustomEventModel
     return [Option(Play)];
   }
 
-  private Task Play()
+  private async Task Play()
   {
     var owner = Owner;
     if (owner == null)
-      return Task.CompletedTask;
+      return;
 
     for (var i = 0; i < owner.RunState.CurrentActIndex; i++)
       Rng.NextInt(1);
 
-    ShowResult(Rng.NextInt(6));
-    return Task.CompletedTask;
+    var result = Rng.NextInt(6);
+    var minigame = new WheelSpinMinigame(owner, result, owner.RunState.CurrentActIndex);
+    await minigame.PlayMinigame();
+    ShowResult(result);
   }
 
   private int GetGoldAmount()
