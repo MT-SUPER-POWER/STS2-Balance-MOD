@@ -1,5 +1,5 @@
 {
-  "STS2BALANCEOD-SUNDIAL.title": "Sundial",
+  "STS2BALANCEMOD-SUNDIAL.title": "Sundial",
   "STS2BALANCEMOD-SUNDIAL.description": "Every [blue]{Shuffles}[/blue] times you shuffle your [blue]Draw Pile[/blue], gain [blue]{Energy}[/blue].",
   "STS2BALANCEMOD-SUNDIAL.flavor": "\"Early man's foolish obsession with time caused them to look to the sky for guidance, hoping for something permanent.\" - Zoroth",
   "STS2BALANCEMOD-ORANGE_PILL.title": "Orange Pill",
@@ -42,6 +42,6 @@
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.description": "At the start of each combat, gain [blue]{StrengthPower}[/blue] temporary [red]Strength[/red].",
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.flavor": "Residual power from a genetic experiment.",
   "STS2BALANCEMOD-DWARF_ANVIL.title": "Dwarf Anvil",
-  "STS2BALANCEMOD-DWARF_ANVIL.description": "At Rest Sites, you can [gold]Forge[/gold] an [gold]Attack[/gold] or [gold]Skill[/gold] card to repeatedly enhance its damage or block.",
+  "STS2BALANCEMOD-DWARF_ANVIL.description": "On pickup, choose 3 cards. Each chosen card permanently costs 1 less {Energy:energyIcons()}.",
   "STS2BALANCEMOD-DWARF_ANVIL.flavor": "A compact anvil from deep within the Spire, radiating a faint blue heat."
 }

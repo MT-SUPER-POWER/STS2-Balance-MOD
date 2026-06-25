@@ -1,5 +1,5 @@
 {
   "FORGE_ENCHANTMENT.title": "Forged",
-  "FORGE_ENCHANTMENT.description": "This card has been forged [gold]{Amount}[/gold] times.",
+  "FORGE_ENCHANTMENT.description": "Costs 1 less {Amount:energyIcons()}.",
   "FORGE_ENCHANTMENT.extraCardText": ""
 }

@@ -15,15 +15,14 @@
 - 遗物：活雾（瓦库）改为删4，不再删3。
 - 事件：大转盘事件现在有自定义转盘 UI（移植自 ActsFromThePast 的 NWheelSpinScreen + WheelSpinMinigame）
 - 怪物：时间吞噬者 Time Warp 触发时现在有时钟弹出视觉效果（移植自 ActsFromThePast 的 TimeWarpTurnEndEffect）
-- 遗物：新增商店遗物「矮人铁砧」（DwarfAnvil），拾起时选择一张攻击/技能牌附魔，
-  此后在火堆 Smith 时可选择该牌消耗一次升级机会进行锻造，
-  每次锻造按 ceil(n(n+7)/2) 公式提升伤害/格挡
+- 遗物：新增商店遗物「矮人铁砧」（DwarfAnvil），拾起时选择 3 张牌为它们附加「锻造」附魔；被附魔的牌费用永久 -1（最低 0 费），由 `ForgeEnchantment` 通过 `CardEnergyCost.UpgradeBy(-1)` 实现。
 
 ### Changed
 
 - 音频：Sts2ModAudio 升级为 AFTP 风格（FadeIn/FadeOut/BossStinger/音量联动）
 - 音频：移除旧 LocalAudioPatch 注入机制，改用 ModBgmPatch（Hook.BeforeCombatStart 触发 TimeEater BGM）
 - 音频：TimeEaterBoss 移除 `CustomBgm`，由 ModBgmPatch 直接使用 Sts2ModAudio.FadeIn 播放
+- 遗物：矮人铁砧效果从「Smith 锻造次数叠加公式」简化为「拾起时选 3 张牌附魔（费用 -1）」
 
 ### Fixed
 
@@ -35,6 +34,8 @@
 - 事件：面具帮熊Bear的Bear Hug改为施加1层脆弱，不再减少玩家敏捷。
 - 事件：心灵绽放限制为仅在第三幕事件池出现，保留三层内宝箱前后分支阈值判断。
 - Boss：多人模式下 TimeEater 血量按玩家数放大（456/480 × n），TimeWarp 计数改为 `12 + 3 × (n - 1)` 并在每次触发后按同一公式回填。
+- 本地化：锻造附魔描述中 `{Energy:energyIcons()}` 改为 `{Amount:energyIcons()}`，匹配 `EnergyIconsFormatter` 期望的变量名（参考 Sown）。
+- 附魔图标：`ForgeEnchantmentIconPatch` 通过 Harmony 重定向 `EnchantmentModel.get_IconPath`，把图标路径指向 `res://Sts2BalanceMod/images/enchantments/forge_enchantment.png`，避免回退到 `missing_enchantment.png`。
 
 
 # v0.0.6

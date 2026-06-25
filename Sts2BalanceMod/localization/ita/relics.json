@@ -42,6 +42,6 @@
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.description": "All'inizio di ogni combattimento, ottieni [blue]{StrengthPower}[/blue] [red]Forza[/red] temporanea.",
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.flavor": "Potere residuo di un esperimento genetico.",
   "STS2BALANCEMOD-DWARF_ANVIL.title": "Incudine Nana",
-  "STS2BALANCEMOD-DWARF_ANVIL.description": "Ai Siti di Riposo, puoi [gold]Forgiare[/gold] una carta [gold]Attacco[/gold] o [gold]Abilità[/gold] per potenziarne ripetutamente il danno o la difesa.",
+  "STS2BALANCEMOD-DWARF_ANVIL.description": "Quando lo raccogli, scegli 3 carte. Ogni carta scelta costa permanentemente 1 {Energy:energyIcons()} in meno.",
   "STS2BALANCEMOD-DWARF_ANVIL.flavor": "Un'incudine compatta delle profondità della Guglia, che emana un debole calore blu."
 }

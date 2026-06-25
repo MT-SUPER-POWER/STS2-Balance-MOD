@@ -1,5 +1,5 @@
 {
   "FORGE_ENCHANTMENT.title": "锻造",
-  "FORGE_ENCHANTMENT.description": "此卡已被锻造 [gold]{Amount}[/gold] 次。",
+  "FORGE_ENCHANTMENT.description": "费用永久减少 1 {Amount:energyIcons()}。",
   "FORGE_ENCHANTMENT.extraCardText": ""
 }
