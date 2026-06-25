@@ -12,6 +12,7 @@ cards             = "cards:main"
 powers            = "powers:main"
 relics            = "relics:main"
 rest-site-options = "rest_site_options:main"
+enchantments      = "enchantments:main"
 events            = "events:main"
 
 [build-system]
@@ -19,4 +20,4 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-py-modules = ["cards", "powers", "relics", "rest_site_options", "events"]
+py-modules = ["cards", "powers", "relics", "rest_site_options", "enchantments", "events"]
