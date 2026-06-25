@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
@@ -30,7 +31,7 @@ public sealed class MaskedBandits : CustomEventModel
 
   private NSpeechBubbleVfx? _speechBubble;
 
-  public override ActModel[] Acts => [];
+  public override ActModel[] Acts => [ModelDb.Act<Hive>()];
 
   public override bool IsShared => true;
 

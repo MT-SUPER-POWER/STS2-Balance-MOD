@@ -26,8 +26,8 @@ public sealed class Romeo : Sts2MonsterModel
   public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 37, 35);
   public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 41, 39);
 
-  private int CrossSlashDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 17, 15);
-  private int AgonizeDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 12, 10);
+  private static int CrossSlashDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 17, 15);
+  private static int AgonizeDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 12, 10);
   private const int WeakAmount = 3;
   private static readonly LocString MockBearAliveLine =
     L10NMonsterLookup("STS2BALANCEMOD-ROMEO.moves.MOCK.bearAlive");
@@ -72,9 +72,9 @@ public sealed class Romeo : Sts2MonsterModel
 
   protected override MonsterMoveStateMachine GenerateMoveStateMachine()
   {
-    var mockState = new MoveState(MOCK, Mock, new AbstractIntent[] { new UnknownIntent() });
-    var crossSlashState = new MoveState(CROSS_SLASH, CrossSlash, new AbstractIntent[] { new SingleAttackIntent(CrossSlashDamage) });
-    var agonizingSlashState = new MoveState(AGONIZING_SLASH, AgonizingSlash, new AbstractIntent[] { new SingleAttackIntent(AgonizeDamage), new DebuffIntent() });
+    var mockState = new MoveState(MOCK, Mock, [new UnknownIntent()]);
+    var crossSlashState = new MoveState(CROSS_SLASH, CrossSlash, [new SingleAttackIntent(CrossSlashDamage)]);
+    var agonizingSlashState = new MoveState(AGONIZING_SLASH, AgonizingSlash, [new SingleAttackIntent(AgonizeDamage), new DebuffIntent()]);
     var moveBranch = new ConditionalBranchState("MOVE_BRANCH");
 
     mockState.FollowUpState = agonizingSlashState;
@@ -95,7 +95,7 @@ public sealed class Romeo : Sts2MonsterModel
     if (machine == null) return false;
     var log = machine.StateLog;
     if (log.Count < 2) return false;
-    return log[log.Count - 1].Id == moveId && log[log.Count - 2].Id == moveId;
+    return log[^1].Id == moveId && log[^2].Id == moveId;
   }
 
   private async Task Mock(IReadOnlyList<Creature> targets)
