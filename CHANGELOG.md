@@ -13,11 +13,23 @@
 - 事件：更新自定义事件池的背景图
 - 事件：新增老乞丐事件，要求每名玩家至少 75 金币才会进入事件池；给金币后切换为牧师图并进入删牌阶段。
 - 遗物：活雾（瓦库）改为删4，不再删3。
+- 事件：大转盘事件现在有自定义转盘 UI（移植自 ActsFromThePast 的 NWheelSpinScreen + WheelSpinMinigame）
+- 怪物：时间吞噬者 Time Warp 触发时现在有时钟弹出视觉效果（移植自 ActsFromThePast 的 TimeWarpTurnEndEffect）
+- 遗物：新增商店遗物「矮人铁砧」（DwarfAnvil），拾起时选择一张攻击/技能牌附魔，
+  此后在火堆 Smith 时可选择该牌消耗一次升级机会进行锻造，
+  每次锻造按 ceil(n(n+7)/2) 公式提升伤害/格挡
+
+### Changed
+
+- 音频：Sts2ModAudio 升级为 AFTP 风格（FadeIn/FadeOut/BossStinger/音量联动）
+- 音频：移除旧 LocalAudioPatch 注入机制，改用 ModBgmPatch（Hook.BeforeCombatStart 触发 TimeEater BGM）
+- 音频：TimeEaterBoss 移除 `CustomBgm`，由 ModBgmPatch 直接使用 Sts2ModAudio.FadeIn 播放
 
 ### Fixed
 
 - 事件：心灵绽放「我即战争」分支改为使用自定义 `MindBloomBossEncounter`（RoomType.Monster），避免 BOSS 战结束后误触发通关换幕。
 - 事件：心灵绽放「我即战争」分支改为从本局第一层全量 Boss 池真随机选取，不再限制"已遭遇过的"。
+- 事件：面具强盗事件改为限定在 Act 2（Hive）触发，修复事件不出现的 BUG-12
 - 音频：修复带 `CustomBgm` 的 Boss 遭遇（TimeEater 等）战斗结束后 MOD 自定义 BGM 不停止的问题。
 - 事件：修复心灵绽放 BOSS 战导致在第三幕会直接认为是和原版一样的 Boss 战，直接结束游戏的问题。
 - 事件：面具帮熊Bear的Bear Hug改为施加1层脆弱，不再减少玩家敏捷。
@@ -67,7 +79,7 @@
 - Boss：补充 `res://images/ui/run_history/time_eater_boss*.png` 兼容图标，修复进入第三幕时顶部 Boss 图标预加载失败导致的崩溃。
 - Boss：恢复 TimeEater/TimeEaterBoss 编译，补齐半血 Haste 转阶段台词气泡、`TalkPos` Marker2D、Head Slam 减抽牌能力与三语本地化。
 - ActsFromThePast 资源：修正 `Assets/ActsFromPast/ActsFromThePast/` 下场景、Spine 数据与导入元数据的 `res://ActsFromThePast/` 旧路径，改为当前项目实际路径，避免 monster `.tscn` 打开时视觉资源为空。
-- 怪物图鉴 Error：红面具三人帮（Bear/Pointy/Romeo）spine 资源路径迁移至 `res://Assets/ActsFromPast/ActsFromThePast/`；所有 61 个怪物 .tscn 恢复 `NCreatureVisuals.cs` 脚本引用（Godot 4 C# 脚本运行时由程序集解析，该引用是怪物视觉系统必需组件）。
+- 怪物图鉴 Error：红面具三人帮（Bear/Pointy/Romeo）spine 资源路径迁移至 `res://Assets/ActsFromThePast/ActsFromThePast/`；所有 61 个怪物 .tscn 恢复 `NCreatureVisuals.cs` 脚本引用（Godot 4 C# 脚本运行时由程序集解析，该引用是怪物视觉系统必需组件）。
 - 图鉴名称显示 `monsters.XXX.name`：`Sts2MonsterModel` 覆盖 `Title` 属性显式拼接 `STS2BALANCEMOD-` 前缀；新增 `MonsterLocalizationInjectionPatch` 运行时注入 MOD 的 `monsters.json`。
 - MaskedBandits 事件注册到 `ActModel.GenerateRooms` 事件池，第 2 幕问号格可见。
 - RedMaskBandits 遭遇注入 `Hive.GenerateAllEncounters`，三怪在 Compendium 图鉴可见。
