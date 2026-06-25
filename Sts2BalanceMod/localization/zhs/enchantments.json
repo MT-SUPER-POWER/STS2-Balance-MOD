@@ -1,5 +1,5 @@
 {
-  "STS2BALANCEMOD-FORGE_ENCHANTMENT.title": "锻造",
-  "STS2BALANCEMOD-FORGE_ENCHANTMENT.description": "此卡已被锻造 {Amount} 次。伤害/格挡提升 {Amount}。",
-  "STS2BALANCEMOD-FORGE_ENCHANTMENT.extraCardText": ""
+  "FORGE_ENCHANTMENT.title": "锻造",
+  "FORGE_ENCHANTMENT.description": "此卡已被锻造 [gold]{Amount}[/gold] 次。",
+  "FORGE_ENCHANTMENT.extraCardText": ""
 }

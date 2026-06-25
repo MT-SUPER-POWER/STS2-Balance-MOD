@@ -1,5 +1,5 @@
 {
-  "STS2BALANCEMOD-FORGE_ENCHANTMENT.title": "Forged",
-  "STS2BALANCEMOD-FORGE_ENCHANTMENT.description": "This card has been forged {Amount} times. Damage/Block is increased by {Amount}.",
-  "STS2BALANCEMOD-FORGE_ENCHANTMENT.extraCardText": ""
+  "FORGE_ENCHANTMENT.title": "Forged",
+  "FORGE_ENCHANTMENT.description": "This card has been forged [gold]{Amount}[/gold] times.",
+  "FORGE_ENCHANTMENT.extraCardText": ""
 }
