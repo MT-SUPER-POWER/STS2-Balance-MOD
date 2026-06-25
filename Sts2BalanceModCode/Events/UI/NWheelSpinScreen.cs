@@ -1,23 +1,21 @@
 using Godot;
-using MegaCrit.Sts2.Core.Entities.Multiplayer;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using Sts2BalanceMod.Sts2BalanceModCode.Utility;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Events.UI;
 
 /// <summary>
-/// STS1-EVENT-07 — 大转盘自定义 UI 覆盖层。
-/// 简化版移植自 ActsFromThePast.Minigames.NWheelSpinScreen。
-/// 移除：粒子效果、控制器支持、atlas 背景（使用纯色背景代替）。
-/// 保留：bounce-in 动画、旋转动画（linear spin + elastic deceleration）、bounce-out 动画。
+/// STS1-EVENT-07 — 大转盘自定义 UI。
+///
+/// 注意：此类不继承 Godot.Control，也不实现 IOverlayScreen，
+/// 避免 Godot 源码生成器创建 InvokeGodotClassMethod / GetGodotClassPropertyValue
+/// （MonoMod JIT hook 编译这些方法时抛 ArgumentException）。
+///
+/// 改用内建 Godot 节点（Control / TextureRect / Tween 等），
+/// 直接作为 NOverlayStack 的子节点加入场景树，手动管理生命周期。
 /// </summary>
-public partial class NWheelSpinScreen : Control, IOverlayScreen
+public sealed class NWheelSpinScreen
 {
-  // ─── IOverlayScreen / IScreenContext ───
-  public NetScreenType ScreenType => NetScreenType.None;
-  public bool UseSharedBackstop => false;
-  public Control? DefaultFocusedControl => this;
   // ─── 布局 ───
   private const float WheelDisplaySize = 1024f;
   private const float ArrowDisplaySize = 512f;
@@ -46,9 +44,11 @@ public partial class NWheelSpinScreen : Control, IOverlayScreen
 
   // ─── 实例 ───
   private static NWheelSpinScreen? _instance;
-  private WheelSpinMinigame _minigame = null!;
+  private readonly WheelSpinMinigame _minigame;
 
-  // ─── UI 元素 ───
+  // ─── Godot 节点 ───
+  private readonly Control _root;
+  private readonly ColorRect _backdrop;
   private TextureRect _wheelRect = null!;
   private TextureRect _arrowRect = null!;
   private TextureRect _buttonRect = null!;
@@ -59,20 +59,40 @@ public partial class NWheelSpinScreen : Control, IOverlayScreen
   private Tween? _glowTween;
   private bool _spinning;
 
+  private NWheelSpinScreen(WheelSpinMinigame minigame)
+  {
+    _minigame = minigame;
+
+    _root = new Control();
+    _root.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
+    _root.MouseFilter = Control.MouseFilterEnum.Ignore;
+
+    // 遮罩层：阻止点击穿透
+    _backdrop = new ColorRect
+    {
+      Color = new Color(0f, 0f, 0f, 0.7f),
+      MouseFilter = Control.MouseFilterEnum.Stop,
+    };
+    _backdrop.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
+    _root.AddChild(_backdrop);
+
+    BuildWheel();
+    BindEvents();
+  }
+
   public static NWheelSpinScreen ShowScreen(WheelSpinMinigame minigame)
   {
-    if (_instance != null && IsInstanceValid(_instance))
-      _instance.QueueFree();
+    if (_instance != null)
+      DisposeInstance();
 
-    var screen = new NWheelSpinScreen
-    {
-      _minigame = minigame,
-    };
-    screen.BuildUI();
-    screen.BindEvents();
+    var screen = new NWheelSpinScreen(minigame);
     _instance = screen;
-    NOverlayStack.Instance.Push((IOverlayScreen)screen);
+
+    // 直接添加到 OverlayStack，不经过 Push（避免 IOverlayScreen 要求）
+    var stack = NOverlayStack.Instance;
+    stack.AddChild(screen._root);
     screen.StartBounceIn();
+
     return screen;
   }
 
@@ -86,11 +106,13 @@ public partial class NWheelSpinScreen : Control, IOverlayScreen
     _minigame.Finished -= OnMinigameFinished;
   }
 
-  public override void _ExitTree()
+  private static void DisposeInstance()
   {
-    UnbindEvents();
-    KillAllTweens();
-    _minigame.ForceEnd();
+    if (_instance == null) return;
+    _instance.UnbindEvents();
+    _instance.KillAllTweens();
+    _instance._minigame.ForceEnd();
+    _instance._root.QueueFree();
     _instance = null;
   }
 
@@ -100,33 +122,8 @@ public partial class NWheelSpinScreen : Control, IOverlayScreen
     _glowTween?.Kill();
   }
 
-  // ─── IOverlayScreen ───
-
-  public void AfterOverlayOpened() { }
-  public void AfterOverlayClosed()
+  private void BuildWheel()
   {
-    KillAllTweens();
-    this.QueueFreeSafely();
-  }
-  public void AfterOverlayShown() { }
-  public void AfterOverlayHidden() { }
-
-  // ─── UI 构建 ───
-
-  private void BuildUI()
-  {
-    SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
-
-    // 半透明黑色背景
-    var bg = new ColorRect
-    {
-      Color = new Color(0f, 0f, 0f, 0.7f),
-      MouseFilter = MouseFilterEnum.Ignore,
-    };
-    bg.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
-    AddChild(bg);
-
-    // 转盘
     var wheelTex = GD.Load<Texture2D>(WheelTexPath);
     float halfWheel = WheelDisplaySize / 2f;
     _wheelRect = new TextureRect
@@ -138,15 +135,16 @@ public partial class NWheelSpinScreen : Control, IOverlayScreen
       PivotOffset = new Vector2(halfWheel, halfWheel),
       AnchorLeft = 0.5f, AnchorTop = 0.5f,
       AnchorRight = 0.5f, AnchorBottom = 0.5f,
-      OffsetLeft = -halfWheel, OffsetTop = -halfWheel + WheelStartOffset,
-      OffsetRight = halfWheel, OffsetBottom = halfWheel + WheelStartOffset,
-      GrowHorizontal = GrowDirection.Both,
-      GrowVertical = GrowDirection.Both,
-      MouseFilter = MouseFilterEnum.Ignore,
+      OffsetLeft = -halfWheel,
+      OffsetTop = -halfWheel + WheelStartOffset,
+      OffsetRight = halfWheel,
+      OffsetBottom = halfWheel + WheelStartOffset,
+      GrowHorizontal = Control.GrowDirection.Both,
+      GrowVertical = Control.GrowDirection.Both,
+      MouseFilter = Control.MouseFilterEnum.Ignore,
     };
-    AddChild(_wheelRect);
+    _root.AddChild(_wheelRect);
 
-    // 箭头（固定在转盘右侧）
     var arrowTex = GD.Load<Texture2D>(ArrowTexPath);
     float halfArrow = ArrowDisplaySize / 2f;
     _arrowRect = new TextureRect
@@ -157,15 +155,16 @@ public partial class NWheelSpinScreen : Control, IOverlayScreen
       StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
       AnchorLeft = 0.5f, AnchorTop = 0.5f,
       AnchorRight = 0.5f, AnchorBottom = 0.5f,
-      OffsetLeft = ArrowOffsetX - halfArrow, OffsetTop = -halfArrow + WheelStartOffset,
-      OffsetRight = ArrowOffsetX + halfArrow, OffsetBottom = halfArrow + WheelStartOffset,
-      GrowHorizontal = GrowDirection.Both,
-      GrowVertical = GrowDirection.Both,
-      MouseFilter = MouseFilterEnum.Ignore,
+      OffsetLeft = ArrowOffsetX - halfArrow,
+      OffsetTop = -halfArrow + WheelStartOffset,
+      OffsetRight = ArrowOffsetX + halfArrow,
+      OffsetBottom = halfArrow + WheelStartOffset,
+      GrowHorizontal = Control.GrowDirection.Both,
+      GrowVertical = Control.GrowDirection.Both,
+      MouseFilter = Control.MouseFilterEnum.Ignore,
     };
-    AddChild(_arrowRect);
+    _root.AddChild(_arrowRect);
 
-    // 旋转按钮
     var buttonTex = GD.Load<Texture2D>(ButtonTexPath);
     float halfButton = ButtonDisplaySize / 2f;
     _buttonRect = new TextureRect
@@ -177,28 +176,24 @@ public partial class NWheelSpinScreen : Control, IOverlayScreen
       PivotOffset = new Vector2(halfButton, halfButton),
       AnchorLeft = 0.5f, AnchorTop = 0.5f,
       AnchorRight = 0.5f, AnchorBottom = 0.5f,
-      GrowHorizontal = GrowDirection.Both,
-      GrowVertical = GrowDirection.Both,
-      MouseFilter = MouseFilterEnum.Stop,
+      GrowHorizontal = Control.GrowDirection.Both,
+      GrowVertical = Control.GrowDirection.Both,
+      MouseFilter = Control.MouseFilterEnum.Stop,
       Visible = false,
     };
-    _buttonRect.Connect(Control.SignalName.GuiInput,
-      Callable.From<InputEvent>(ev =>
+    _buttonRect.GuiInput += ev =>
+    {
+      if (_spinning) return;
+      if (ev is InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left })
       {
-        if (_spinning) return;
-        if (ev is InputEventMouseButton mb && mb.Pressed && mb.ButtonIndex == MouseButton.Left)
-        {
-          _buttonRect.AcceptEvent();
-          StartSpinning();
-        }
-      }));
-    _buttonRect.Connect(Control.SignalName.MouseEntered,
-      Callable.From(() => SetButtonHovered(true)));
-    _buttonRect.Connect(Control.SignalName.MouseExited,
-      Callable.From(() => SetButtonHovered(false)));
-    AddChild(_buttonRect);
+        _buttonRect.AcceptEvent();
+        StartSpinning();
+      }
+    };
+    _buttonRect.MouseEntered += () => SetButtonHovered(true);
+    _buttonRect.MouseExited += () => SetButtonHovered(false);
+    _root.AddChild(_buttonRect);
 
-    // 按钮发光叠加层
     _buttonGlowRect = new TextureRect
     {
       Texture = buttonTex,
@@ -208,22 +203,28 @@ public partial class NWheelSpinScreen : Control, IOverlayScreen
       PivotOffset = new Vector2(halfButton, halfButton),
       AnchorLeft = 0.5f, AnchorTop = 0.5f,
       AnchorRight = 0.5f, AnchorBottom = 0.5f,
-      GrowHorizontal = GrowDirection.Both,
-      GrowVertical = GrowDirection.Both,
-      MouseFilter = MouseFilterEnum.Ignore,
+      GrowHorizontal = Control.GrowDirection.Both,
+      GrowVertical = Control.GrowDirection.Both,
+      MouseFilter = Control.MouseFilterEnum.Ignore,
       Material = new CanvasItemMaterial { BlendMode = CanvasItemMaterial.BlendModeEnum.Add },
       Visible = false,
     };
-    AddChild(_buttonGlowRect);
+    _root.AddChild(_buttonGlowRect);
 
     // 初始透明
-    Modulate = new Color(1f, 1f, 1f, 0f);
+    _root.Modulate = new Color(1f, 1f, 1f, 0f);
 
-    // 设置初始按钮位置（独立于转盘动画）
+    // 初始按钮位置
+    SetButtonRect(ButtonStartY + WheelBaseY);
+  }
+
+  private void SetButtonRect(float y)
+  {
+    float halfButton = ButtonDisplaySize / 2f;
     _buttonRect.OffsetLeft = ButtonCenterX - halfButton;
     _buttonRect.OffsetRight = ButtonCenterX + halfButton;
-    _buttonRect.OffsetTop = ButtonStartY + WheelBaseY - halfButton;
-    _buttonRect.OffsetBottom = ButtonStartY + WheelBaseY + halfButton;
+    _buttonRect.OffsetTop = y - halfButton;
+    _buttonRect.OffsetBottom = y + halfButton;
     _buttonGlowRect.OffsetLeft = _buttonRect.OffsetLeft;
     _buttonGlowRect.OffsetRight = _buttonRect.OffsetRight;
     _buttonGlowRect.OffsetTop = _buttonRect.OffsetTop;
@@ -235,31 +236,24 @@ public partial class NWheelSpinScreen : Control, IOverlayScreen
   private void StartBounceIn()
   {
     _mainTween?.Kill();
-    _mainTween = CreateTween();
+    _mainTween = _root.CreateTween();
     _mainTween.SetParallel(true);
 
-    // 淡入
-    _mainTween.TweenProperty(this, "modulate", new Color(1f, 1f, 1f, 1f), BounceInDuration)
+    _mainTween.TweenProperty(_root, "modulate",
+      new Color(1f, 1f, 1f, 1f), BounceInDuration)
       .From(new Color(1f, 1f, 1f, 0f))
       .SetTrans(Tween.TransitionType.Cubic)
       .SetEase(Tween.EaseType.Out);
 
-    // 转盘从上方弹入
     _mainTween.TweenMethod(
-      Callable.From<float>(offset => SetWheelVerticalOffset(offset)),
-      WheelStartOffset, 0f, BounceInDuration
-    ).SetTrans(Tween.TransitionType.Bounce)
-     .SetEase(Tween.EaseType.Out);
-
-    // 箭头的垂直位置也跟随
-    _mainTween.TweenMethod(
-      Callable.From<float>(offset => _arrowRect.OffsetTop = -ArrowDisplaySize / 2f + WheelBaseY + offset),
-      WheelStartOffset, 0f, BounceInDuration
-    ).SetTrans(Tween.TransitionType.Bounce)
-     .SetEase(Tween.EaseType.Out);
-
-    _mainTween.TweenMethod(
-      Callable.From<float>(offset => _arrowRect.OffsetBottom = ArrowDisplaySize / 2f + WheelBaseY + offset),
+      Callable.From<float>(offset =>
+      {
+        float halfWheel = WheelDisplaySize / 2f;
+        _wheelRect.OffsetTop = -halfWheel + WheelBaseY + offset;
+        _wheelRect.OffsetBottom = halfWheel + WheelBaseY + offset;
+        _arrowRect.OffsetTop = -ArrowDisplaySize / 2f + WheelBaseY + offset;
+        _arrowRect.OffsetBottom = ArrowDisplaySize / 2f + WheelBaseY + offset;
+      }),
       WheelStartOffset, 0f, BounceInDuration
     ).SetTrans(Tween.TransitionType.Bounce)
      .SetEase(Tween.EaseType.Out);
@@ -267,7 +261,6 @@ public partial class NWheelSpinScreen : Control, IOverlayScreen
     _mainTween.SetParallel(false);
     _mainTween.TweenCallback(Callable.From(() =>
     {
-      // 转盘到位后，显示并滑入按钮
       _buttonRect.Visible = true;
       _buttonGlowRect.Visible = true;
       SlideButtonIn();
@@ -275,27 +268,13 @@ public partial class NWheelSpinScreen : Control, IOverlayScreen
     }));
   }
 
-  private void SetWheelVerticalOffset(float offset)
-  {
-    float halfWheel = WheelDisplaySize / 2f;
-    _wheelRect.OffsetTop = -halfWheel + WheelBaseY + offset;
-    _wheelRect.OffsetBottom = halfWheel + WheelBaseY + offset;
-  }
-
   // ─── 按钮动画 ───
 
   private void SlideButtonIn()
   {
-    var tween = CreateTween();
+    var tween = _root.CreateTween();
     tween.TweenMethod(
-      Callable.From<float>(y =>
-      {
-        float halfButton = ButtonDisplaySize / 2f;
-        _buttonRect.OffsetTop = y - halfButton;
-        _buttonRect.OffsetBottom = y + halfButton;
-        _buttonGlowRect.OffsetTop = _buttonRect.OffsetTop;
-        _buttonGlowRect.OffsetBottom = _buttonRect.OffsetBottom;
-      }),
+      Callable.From<float>(y => SetButtonRect(y)),
       ButtonStartY + WheelBaseY, ButtonFinalY + WheelBaseY, 0.6f
     ).SetTrans(Tween.TransitionType.Back)
      .SetEase(Tween.EaseType.Out);
@@ -303,16 +282,9 @@ public partial class NWheelSpinScreen : Control, IOverlayScreen
 
   private void SlideButtonOut()
   {
-    var tween = CreateTween();
+    var tween = _root.CreateTween();
     tween.TweenMethod(
-      Callable.From<float>(y =>
-      {
-        float halfButton = ButtonDisplaySize / 2f;
-        _buttonRect.OffsetTop = y - halfButton;
-        _buttonRect.OffsetBottom = y + halfButton;
-        _buttonGlowRect.OffsetTop = _buttonRect.OffsetTop;
-        _buttonGlowRect.OffsetBottom = _buttonRect.OffsetBottom;
-      }),
+      Callable.From<float>(y => SetButtonRect(y)),
       ButtonFinalY + WheelBaseY, ButtonStartY + WheelBaseY, 0.4f
     ).SetTrans(Tween.TransitionType.Back)
      .SetEase(Tween.EaseType.In);
@@ -324,12 +296,12 @@ public partial class NWheelSpinScreen : Control, IOverlayScreen
     }));
   }
 
-  // ─── 按钮发光脉冲 ───
+  // ─── 按钮发光 ───
 
   private void StartGlowPulse()
   {
     _glowTween?.Kill();
-    _glowTween = CreateTween();
+    _glowTween = _root.CreateTween();
     _glowTween.SetLoops();
 
     _glowTween.TweenMethod(
@@ -373,59 +345,72 @@ public partial class NWheelSpinScreen : Control, IOverlayScreen
     Sts2ModAudio.PlayOneShot(SpinSfxPath);
 
     float resultAngle = _minigame.ResultAngle;
-    float spinEnd = SpinVelocity * SpinDuration; // ~3000°
+    float spinEnd = SpinVelocity * SpinDuration;
 
     _mainTween?.Kill();
-    _mainTween = CreateTween();
+    _mainTween = _root.CreateTween();
 
-    // 阶段1：匀速高速旋转
     _mainTween.TweenMethod(
       Callable.From<float>(angle => _wheelRect.RotationDegrees = -angle + WheelAngleOffset),
       0f, spinEnd, SpinDuration
     ).SetTrans(Tween.TransitionType.Linear);
 
-    // 阶段2：弹性减速，模拟 STS1 的 ElasticIn
     _mainTween.TweenMethod(
-      Callable.From<float>(t => _wheelRect.RotationDegrees = -ElasticLerp(resultAngle, -180f, t) + WheelAngleOffset),
+      Callable.From<float>(t =>
+        _wheelRect.RotationDegrees = -ElasticLerp(resultAngle, -180f, t) + WheelAngleOffset),
       1.0f, 0.0f, DecelerateDuration
     ).SetTrans(Tween.TransitionType.Linear);
 
     _mainTween.TweenCallback(Callable.From(() =>
     {
-      // 微调最终角度
       _wheelRect.RotationDegrees = -resultAngle + WheelAngleOffset;
     }));
 
-    // 停顿后弹出
     _mainTween.TweenInterval(PauseDuration);
     _mainTween.TweenCallback(Callable.From(StartBounceOut));
   }
 
-  // ─── 弹出动画 ───
+  // ─── 弹出动画 → 清理 ───
 
   private void StartBounceOut()
   {
     _mainTween?.Kill();
-    _mainTween = CreateTween();
+    _mainTween = _root.CreateTween();
     _mainTween.SetParallel(true);
 
-    // 淡出
-    _mainTween.TweenProperty(this, "modulate", new Color(1f, 1f, 1f, 0f), BounceOutDuration)
+    _mainTween.TweenProperty(_root, "modulate",
+      new Color(1f, 1f, 1f, 0f), BounceOutDuration)
       .SetTrans(Tween.TransitionType.Cubic)
       .SetEase(Tween.EaseType.In);
 
-    // 转盘向上滑出
     _mainTween.TweenMethod(
-      Callable.From<float>(offset => SetWheelVerticalOffset(offset)),
+      Callable.From<float>(offset =>
+      {
+        float halfWheel = WheelDisplaySize / 2f;
+        float y = WheelBaseY + offset;
+        _wheelRect.OffsetTop = -halfWheel + y;
+        _wheelRect.OffsetBottom = halfWheel + y;
+        _arrowRect.OffsetTop = -ArrowDisplaySize / 2f + y;
+        _arrowRect.OffsetBottom = ArrowDisplaySize / 2f + y;
+      }),
       0f, WheelStartOffset, BounceOutDuration
     ).SetTrans(Tween.TransitionType.Back)
      .SetEase(Tween.EaseType.In);
 
     _mainTween.SetParallel(false);
-    _mainTween.TweenCallback(Callable.From(() => _minigame.Complete()));
+    _mainTween.TweenCallback(Callable.From(() =>
+    {
+      // 动画结束后清理
+      _minigame.Complete();
+    }));
   }
 
-  // ─── Elastic In 插值 ───
+  private void OnMinigameFinished()
+  {
+    DisposeInstance();
+  }
+
+  // ─── Elastic Interpolation ───
 
   private static float ElasticIn(float a)
   {
@@ -444,12 +429,5 @@ public partial class NWheelSpinScreen : Control, IOverlayScreen
   private static float ElasticLerp(float from, float to, float t)
   {
     return from + (to - from) * ElasticIn(t);
-  }
-
-  // ─── 清理 ───
-
-  private void OnMinigameFinished()
-  {
-    NOverlayStack.Instance.Remove((IOverlayScreen)this);
   }
 }
