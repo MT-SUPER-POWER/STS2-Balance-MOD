@@ -23,6 +23,7 @@
 - 音频：移除旧 LocalAudioPatch 注入机制，改用 ModBgmPatch（Hook.BeforeCombatStart 触发 TimeEater BGM）
 - 音频：TimeEaterBoss 移除 `CustomBgm`，由 ModBgmPatch 直接使用 Sts2ModAudio.FadeIn 播放
 - 遗物：矮人铁砧效果从「Smith 锻造次数叠加公式」简化为「拾起时选 3 张牌附魔（费用 -1）」
+- 事件：死灵书事件（CursedTome）和 J.A.X. 事件（Augmenter）**限制为仅 Act 2（Hive）出现**，避免第一幕过早遇到过于强大的遗物/卡牌。
 
 ### Fixed
 

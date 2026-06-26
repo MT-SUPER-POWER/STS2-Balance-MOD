@@ -4,7 +4,9 @@ using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Rewards;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
@@ -22,7 +24,14 @@ public sealed class CursedTome : CustomEventModel
   private const int DmgStop = 3;
   private const int DmgObtain = 15;
 
-  public override ActModel[] Acts => [];
+  /// <summary>仅限 Act 2（Hive）出现，太早遇到死灵书过于强大。</summary>
+  public override ActModel[] Acts => [ModelDb.Act<Hive>()];
+
+  /// <summary>仅在 Act 2 出现。</summary>
+  public override bool IsAllowed(IRunState runState)
+  {
+    return runState.CurrentActIndex == 1;
+  }
 
   protected override IEnumerable<DynamicVar> CanonicalVars =>
   [

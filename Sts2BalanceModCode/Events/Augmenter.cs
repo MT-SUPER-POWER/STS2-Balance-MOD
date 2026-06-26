@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Runs;
 using Sts2BalanceMod.Sts2BalanceModCode.Cards;
@@ -18,10 +19,12 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 /// </summary>
 public sealed class Augmenter : CustomEventModel
 {
-  public override ActModel[] Acts => [];
+  /// <summary>仅限 Act 2（Hive）出现，太早遇到 J.A.X. 过于强大。</summary>
+  public override ActModel[] Acts => [ModelDb.Act<Hive>()];
 
   public override bool IsAllowed(IRunState runState)
   {
+    if (runState.CurrentActIndex != 1) return false;
     return runState.Players.All(p => p.Deck.Cards.Count(c => c.IsRemovable) >= 2);
   }
 
