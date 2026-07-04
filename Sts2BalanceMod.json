@@ -3,13 +3,13 @@
   "name": "Sts2BalanceMod",
   "author": "Momo",
   "description": "平衡调整 Mod",
-  "version": "v0.0.7",
+  "version": "v0.0.8",
   "has_pck": true,
   "has_dll": true,
   "dependencies": [
     {
       "id": "BaseLib",
-      "min_version": "3.3.0"
+      "min_version": "3.3.3"
     }
   ],
   "affects_gameplay": true,
