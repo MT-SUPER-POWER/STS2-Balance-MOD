@@ -41,9 +41,9 @@ public sealed class Jax : Sts2LegacyCardModel
     await CreatureCmd.Damage(
       choiceContext,
       Owner.Creature,
-      DynamicVars.HpLoss.BaseValue,
+      base.DynamicVars.HpLoss.BaseValue,
       ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move,
-      this);
+      this, cardPlay);
 
     await PowerCmd.Apply<StrengthPower>(
       new ThrowingPlayerChoiceContext(),

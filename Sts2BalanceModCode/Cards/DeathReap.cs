@@ -25,7 +25,7 @@ public sealed class DeathReap : Sts2CardModel
   protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
   {
     var result = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-        .FromCard(this)
+        .FromCard(this, cardPlay)
         .TargetingAllOpponents(CombatState!)
         .WithHitFx("vfx/vfx_giant_horizontal_slash")
         .Execute(choiceContext);
