@@ -13,5 +13,7 @@
   "STS2BALANCEMOD-NECRONOMICURSE.description": "There is no escape from this [red]Curse[/red].",
   "WRAITH_FORM.description": "Ottieni {IntangiblePower:diff()} [gold]Intangibilità[/gold].",
   "GLOW.description": "Ottieni {Stars:starIcons()}.\nPesca 2 carte.",
-  "FUEL.description": "Ottieni {Energy:energyIcons()}.\nPesca {Cards:diff()} {Cards:plural:carta|carte}."
+  "FUEL.description": "Ottieni {Energy:energyIcons()}.\nPesca {Cards:diff()} {Cards:plural:carta|carte}.",
+  "STS2BALANCEMOD-STEP_BY_STEP.title": "Passo dopo Passo",
+  "STS2BALANCEMOD-STEP_BY_STEP.description": "Spendi X{IfUpgraded:show:+1}. Per X{IfUpgraded:show:+1} turni, all'inizio del turno pesca [blue]1[/blue] carta aggiuntiva e ottieni [blue]1[/blue] {energyPrefix:energyIcons(1)} aggiuntivo."
 }

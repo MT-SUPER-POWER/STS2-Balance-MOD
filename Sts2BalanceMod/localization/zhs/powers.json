@@ -16,5 +16,8 @@
   "STS2BALANCEMOD-SHARP_HIDE_POWER.smartDescription": "攻击者每次攻击受到 {Amount} 点伤害。",
   "STS2BALANCEMOD-SPLIT_POWER.title": "分裂",
   "STS2BALANCEMOD-SPLIT_POWER.description": "当生命[gold]50%[/gold]或以下时，分裂成 2 只较小的史莱姆，每只拥有当前的生命值。",
-  "STS2BALANCEMOD-SPLIT_POWER.smartDescription": "当生命[gold]50%[/gold]或以下时，分裂成 2 只较小的史莱姆，每只拥有当前的生命值。"
+  "STS2BALANCEMOD-SPLIT_POWER.smartDescription": "当生命[gold]50%[/gold]或以下时，分裂成 2 只较小的史莱姆，每只拥有当前的生命值。",
+  "STS2BALANCEMOD-STEP_BY_STEP_POWER.title": "步步为营",
+  "STS2BALANCEMOD-STEP_BY_STEP_POWER.description": "每回合开始时，多抽 [blue]1[/blue] 张牌并获得 [blue]1[/blue] 点 {energyPrefix:energyIcons(1)}。持续 {Amount} 回合。",
+  "STS2BALANCEMOD-STEP_BY_STEP_POWER.smartDescription": "每回合开始时，多抽 [blue]1[/blue] 张牌并获得 [blue]1[/blue] 点 {energyPrefix:energyIcons(1)}。剩余 {Amount} 回合。"
 }
