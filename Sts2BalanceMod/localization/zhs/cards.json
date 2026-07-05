@@ -15,5 +15,5 @@
   "GLOW.description": "获得{Stars:starIcons()}。\n抽2张牌。",
   "FUEL.description": "获得 {Energy:energyIcons()} 。\n抽 {Cards:diff()} 张牌。",
   "STS2BALANCEMOD-STEP_BY_STEP.title": "步步为营",
-  "STS2BALANCEMOD-STEP_BY_STEP.description": "消耗 X{IfUpgraded:show:+1} 点费用。接下来 X{IfUpgraded:show:+1} 回合，每回合开始时多抽 [blue]1[/blue] 张牌并获得 [blue]1[/blue] 点 {energyPrefix:energyIcons(1)}。"
+  "STS2BALANCEMOD-STEP_BY_STEP.description": "消耗 {IfUpgraded:show:X+1|X} 点费用。接下来 {IfUpgraded:show:X+1|X} 回合，每回合开始时多抽 [blue]1[/blue] 张牌并额外获得 {energyPrefix:energyIcons(1)}。"
 }

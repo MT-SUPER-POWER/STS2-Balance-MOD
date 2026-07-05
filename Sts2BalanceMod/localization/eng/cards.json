@@ -15,5 +15,5 @@
   "GLOW.description": "Gain {Stars:starIcons()}.\nDraw 2 cards.",
   "FUEL.description": "Gain {Energy:energyIcons()}.\nDraw {Cards:diff()} {Cards:plural:card|cards}.",
   "STS2BALANCEMOD-STEP_BY_STEP.title": "Step by Step",
-  "STS2BALANCEMOD-STEP_BY_STEP.description": "Spend X{IfUpgraded:show:+1}. For X{IfUpgraded:show:+1} turns, draw [blue]1[/blue] card and gain [blue]1[/blue] {energyPrefix:energyIcons(1)} at turn start."
+  "STS2BALANCEMOD-STEP_BY_STEP.description": "Spend {IfUpgraded:show:X+1|X} Energy. For the next {IfUpgraded:show:X+1|X} turns, draw [blue]1[/blue] additional card and gain {energyPrefix:energyIcons(1)} at the start of your turn."
 }

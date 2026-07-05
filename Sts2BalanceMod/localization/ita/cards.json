@@ -15,5 +15,5 @@
   "GLOW.description": "Ottieni {Stars:starIcons()}.\nPesca 2 carte.",
   "FUEL.description": "Ottieni {Energy:energyIcons()}.\nPesca {Cards:diff()} {Cards:plural:carta|carte}.",
   "STS2BALANCEMOD-STEP_BY_STEP.title": "Passo dopo Passo",
-  "STS2BALANCEMOD-STEP_BY_STEP.description": "Spendi X{IfUpgraded:show:+1}. Per X{IfUpgraded:show:+1} turni, all'inizio del turno pesca [blue]1[/blue] carta aggiuntiva e ottieni [blue]1[/blue] {energyPrefix:energyIcons(1)} aggiuntivo."
+  "STS2BALANCEMOD-STEP_BY_STEP.description": "Consuma {IfUpgraded:show:X+1|X} Energia. Per i successivi {IfUpgraded:show:X+1|X} turni, all'inizio del tuo turno peschi [blue]1[/blue] carta in più e ottieni {energyPrefix:energyIcons(1)}."
 }
