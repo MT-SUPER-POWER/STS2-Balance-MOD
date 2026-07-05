@@ -29,7 +29,7 @@ public sealed class Concentrate : Sts2CardModel
     var cards = (await CardSelectCmd.FromHandForDiscard(
         choiceContext,
         Owner,
-        new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 0, discardCount),
+        new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, discardCount),
         null,
         this
     )).ToList();
