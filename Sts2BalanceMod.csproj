@@ -1,4 +1,4 @@
-﻿<Project Sdk="Godot.NET.Sdk/4.5.1" InitialTargets="CheckDependencyPaths">
+<Project Sdk="Godot.NET.Sdk/4.5.1" InitialTargets="CheckDependencyPaths">
     <Import Project=".\Sts2PathDiscovery.props"/>
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
@@ -41,7 +41,7 @@
 
     <ItemGroup>
         <!-- NOTE: Baselib 版本控制的地方 -->
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.3.0" PrivateAssets="All"/>
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="*" PrivateAssets="All"/>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />
         <!-- NOTE: 包仍保留为可选工具，但当前通过 PckPackerEnabled=false 禁用，避免生成缺少 Assets/ 的半截 PCK。 -->
