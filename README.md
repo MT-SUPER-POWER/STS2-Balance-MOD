@@ -1,27 +1,26 @@
 <div align="center">
-<img alt="logo" height="100" width="100" src="docs/img/icon.ico" />
-<h2> Sts2BalanceMod </h2>
-<p> Sts2BalanceMod — 《杀戮尖塔 2》平衡调整 Mod </p>
-
-<br/>
-
-[![Stars](https://img.shields.io/github/stars/MT-SUPER-POWER/STS2-Balance-MOD?style=flat)](https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/stargazers)
-[![Version](https://img.shields.io/github/v/release/MT-SUPER-POWER/STS2-Balance-MOD)](https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/releases)
-[![Issues](https://img.shields.io/github/issues/MT-SUPER-POWER/STS2-Balance-MOD)](https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/issues)
-
+  <img alt="logo" height="100" width="100" src="docs/img/icon.ico" />
+  <h2> Sts2BalanceMod </h2>
+  <p> Sts2BalanceMod — 《杀戮尖塔 2》平衡调整 Mod </p>
+  <br/>
+  <a href="https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/stargazers">
+    <img src="https://img.shields.io/github/stars/MT-SUPER-POWER/STS2-Balance-MOD?style=flat" alt="Stars" />
+  </a>
+  <a href="https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/releases">
+    <img src="https://img.shields.io/github/v/release/MT-SUPER-POWER/STS2-Balance-MOD" alt="Version" />
+  </a>
+  <a href="https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/issues">
+    <img src="https://img.shields.io/github/issues/MT-SUPER-POWER/STS2-Balance-MOD" alt="Issues" />
+  </a>
 </div>
-
-> [!NOTE]
-> Beta 版本的分支的三层 BOSS 是沙漏，但是原版分支替换为了时间老头，对于沙漏其关键机制改为：凋零卡是可以打出并消耗的
-
 ---
 
 ## 安装
 
 ### 前置要求
 
-1. **Slay the Spire 2** — Steam 版，版本 ≥ 0.107.0
-2. **[BaseLib](https://github.com/STS2-Modding/BaseLib) v3.2.1+** — Mod 加载前置库，需先安装
+1. **Slay the Spire 2** — Steam 版，版本 ≥ 0.108.0
+2. **[BaseLib](https://github.com/STS2-Modding/BaseLib) ** — Mod 加载前置库，需先安装，版本 ≥ 3.3.3+
 
 ### 安装步骤
 
@@ -56,8 +55,9 @@ Release 构建产物位于 `dist/Sts2BalanceMod/`（dll + json + pck），打包
 ### 商店
 
 #### 高进阶删牌价格（SHOP-01）
-- **原版**：A20+ 删牌一律 50 金币，后续每删一张 +25。
-- **MOD 改后**：A6~A19 基础 50 金币（每张 +25），**A20+ 基础 75 金币**（每张 +25）。高进阶下删牌成本压力陡增，需谨慎规划牌组。
+
+- **原版**：A6+ 删牌一律 50 金币，后续每删一张 +25。
+- **MOD 改后**：小于A6 基础 50 金币（每张 +25），**A6+ 基础 75 金币**（每张 +25）。
 
 ### 卡牌调整
 
@@ -67,10 +67,11 @@ Release 构建产物位于 `dist/Sts2BalanceMod/`（dll + json + pck），打包
 | **刀舞** | 猎人 | 白卡，打出后消耗 | **删除消耗**词条，稀有度提升为蓝卡，可多次复用 |
 | **杂技** | 猎人 | 蓝卡，入手门槛较高 | 降为**白卡**，提升入手概率 |
 | **认知偏差**| 猎人 | 每回合 -1 聚焦，永久持续 | 集中在对应回合后自动消失，但是不再扣除提升点数之外的集中 |
-| **多重释放** | 机宝  | x+1 次释放 | **保留**词条|
+| **多重释放** | 鸡煲 | x+1 次释放 | **保留**词条|
 | **放松** | 佩尔 | 格挡 15（升级 17） | **格挡 18（升级 20）** |
 | **幽魂形态** | 佩尔 | 获得无实体时仅清除敏捷 Buff，减敏捷负面会保留 | **减敏捷负面一并清除** |
 | **袖里乾坤** | 猎人 | 每一次打出后，减少费用，定位和到刀舞冲突 | 从卡池中删除 |
+| **燃料** | 鸡煲 | 转换状态牌为两费 | 一费/一（两）抽 |
 
 ### 一代卡牌回归（新增卡牌）
 
@@ -89,13 +90,21 @@ Release 构建产物位于 `dist/Sts2BalanceMod/`（dll + json + pck），打包
 | **时间吞噬者 Boss** | MON-02 / MON-03 | - | 替换三层永世沙漏 Boss 候选；时间扭曲触发时有**时钟弹出视觉效果**；多人模式血量按玩家数放大、TimeWarp 计数同步调整；BGM 使用 AFTP 风格的 FadeIn/FadeOut。 |
 | **收藏家 Boss** | MON-04 | - | 移植收藏家本体与 Torch Head 召唤物，进入 Boss 候选池。 |
 
+
+
+> [!note]
+>
+> Beta 版本的的三层 BOSS 是沙漏，但是原版分支是时间老头，对于沙漏其关键机制改为：凋零卡是可以打出并消耗的
+
+
+
 ### 事件
 
 | 事件名称 | 编号 / 版本 | 详情与 MOD 修改内容 |
 | :--- | :--- | :--- |
 | **一代事件回归** | STS1-EVENT-01~08 | **诅咒书本**：可获得死灵之书、尼利的宝典、英雄宝典。<br>**红面具**（限定 Act 2）：可选择交金或与红面具三人帮战斗获取红面具。<br>**J.A.X.**（增益研究者）：失去生命换取力量 Buff。<br>**神圣泉水**：治疗（删除原版的诅咒副作用）。<br>**牧师**：提供治疗 / 删牌选项。<br>**心灵绽放**（限定 Act 3）：多分支选择，含自定义 BOSS 战。<br>**大转盘**：自定义转盘 UI 与小游戏。<br>**红面具大人之墓**：可获得红面具或戴上红面具。 |
 | **老乞丐事件** | v0.0.7 新增 | 至少 75 金币才会进入事件池；给金币后切换为牧师图，进入删牌阶段。 |
-| **旧日垃圾堆** | EVENT-02 | MOD 改后奖励池加入**御守**遗物。 |。
+| **旧日垃圾堆** | EVENT-02 | MOD 改后奖励池加入**御守**遗物。 |
 
 ### 遗物
 
@@ -122,12 +131,14 @@ Release 构建产物位于 `dist/Sts2BalanceMod/`（dll + json + pck），打包
 新增`卡牌/遗物/能力/事件`后，需要准备对应的图片素材，使用脚本批量处理。
 
 > **前置要求**：需要安装 [uv](https://docs.astral.sh/uv/)（Python 包管理器）。
+>
 > ```bash
 > # macOS / Linux
 > curl -LsSf https://astral.sh/uv/install.sh | sh
 > # Windows (PowerShell)
 > powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 > ```
+>
 > 首次使用在 `image_gen/` 目录下执行 `uv sync` 即可创建虚拟环境并安装依赖。
 
 ### 卡牌立绘
@@ -148,7 +159,7 @@ uv run cards --mode contain    # 完整显示（留透明边）
 uv run cards --mode stretch    # 拉伸（可能变形）
 
 # 裁切锚点（cover 模式）
-uv run cards --anchor top      # 顶部对齐
+uv run cards --anchor top     # 顶部对齐
 uv run cards --anchor bottom   # 底部对齐
 ```
 
@@ -219,17 +230,22 @@ uv run rest-site-options smoke.png
 
 1. **更新版本号**：在 `CHANGELOG.md` 写好对应版本段落（如 `# v0.0.5`）。
 2. **同步配置**（可选）：运行脚本更新 `Sts2BalanceMod.json`。
+
    ```powershell
    .\Hooks\release.ps1 -Version 0.0.5 -UpdateJson
    ```
+
 3. **手动推送**：提交代码并打上 Tag 推送到 GitHub。
+
    ```bash
    git add .
    git commit -m "chore: release v0.0.5"
    git tag v0.0.5
    git push origin main v0.0.5
    ```
+
 4. **打包上传**：运行脚本执行构建并上传 zip 到对应的 Release。
+
    ```powershell
    .\Hooks\release.ps1 -Version 0.0.5 -Build -Upload
    ```
@@ -243,9 +259,3 @@ uv run rest-site-options smoke.png
 | `.\Hooks\release.ps1 -Version 0.0.5 -All`    | **全自动化**：同步 JSON + 构建 + 上传               |
 
 > **提示**：`-Upload` 步骤会自动检测 GitHub Release。如果不存在，它会创建一个包含更新日志说明的 Release 页面，并将包上传。如果已存在附件，会直接覆盖更新。
-
----
-
-## 已知问题
-
-历史 BUG 记录见 [docs/balance-changes.md](docs/balance-changes.md#现有的问题以及无法解决的问题)。

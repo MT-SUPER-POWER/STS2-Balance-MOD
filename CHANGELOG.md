@@ -14,8 +14,12 @@
 - 卡牌：新增猎人金卡「步步为营」（StepByStep），X 费用消耗，后续 X 回合每回合 +1 抽 +1 能量（CARD-09）
 - 能力：新增 `StepByStepPower`，基于 `ClarityPower` + `EnergyNextTurnPower` 实现多回合持续效果
 - 能力图标：新增 `step_by_step_power.png` 大小图
+
+### Changed
 - BOSS：沙漏回归
 - CARD: 沙漏的凋零卡，改为可以用一费打出消耗
+
+### Fixed
 - BUG：修复全神贯注的弃牌数量可选的问题
 
 
