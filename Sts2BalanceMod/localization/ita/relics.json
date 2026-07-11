@@ -43,5 +43,12 @@
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.flavor": "Potere residuo di un esperimento genetico.",
   "STS2BALANCEMOD-DWARF_ANVIL.title": "Incudine Nana",
   "STS2BALANCEMOD-DWARF_ANVIL.description": "Quando lo raccogli, scegli 3 carte. Ogni carta scelta costa permanentemente 1 {Energy:energyIcons()} in meno.",
-  "STS2BALANCEMOD-DWARF_ANVIL.flavor": "Un'incudine compatta delle profondità della Guglia, che emana un debole calore blu."
+  "STS2BALANCEMOD-DWARF_ANVIL.flavor": "Un'incudine compatta delle profondità della Guglia, che emana un debole calore blu.",
+  "STS2BALANCEMOD-WRIST_BLADE.title": "Lama da Polso",
+  "STS2BALANCEMOD-WRIST_BLADE.description": "Gli [gold]Attacchi[/gold] che costano 0 infliggono [blue]{Damage}[/blue] danni aggiuntivi.",
+  "STS2BALANCEMOD-WRIST_BLADE.flavor": "Uno strumento comodo per gli assassinii.",
+  "STS2BALANCEMOD-HOVERING_KITE.title": "Aquilone Galleggiante",
+  "STS2BALANCEMOD-HOVERING_KITE.description": "La prima volta che scarti una carta ogni turno, ottieni {Energy:energyIcons()}.",
+  "STS2BALANCEMOD-HOVERING_KITE.flavor": "L'aquilone ti fluttua intorno in battaglia, spinto da una forza misteriosa."
 }
+
