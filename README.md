@@ -20,7 +20,7 @@
 ### 前置要求
 
 1. **Slay the Spire 2** — Steam 版，版本 ≥ 0.108.0
-2. **[BaseLib](https://github.com/STS2-Modding/BaseLib) ** — Mod 加载前置库，需先安装，版本 ≥ 3.3.3+
+2. **[BaseLib](https://github.com/Alchyr/BaseLib-StS2)** — Mod 加载前置库，需先安装，版本 ≥ 3.3.3+
 
 ### 安装步骤
 
