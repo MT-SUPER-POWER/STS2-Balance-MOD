@@ -3,7 +3,7 @@
   "name": "Sts2BalanceMod",
   "author": "Momo",
   "description": "平衡调整 Mod",
-  "version": "v0.0.8-beta",
+  "version": "v0.0.8.1-beta",
   "has_pck": true,
   "has_dll": true,
   "dependencies": [
