@@ -10,6 +10,7 @@
 
 ### Added
 
+- 卡牌：新增 Necrobinder（骨妹）普通卡牌「猛撞」（Ram）及其配套的中、英、意三语本地化（CARD-11）
 - 卡牌：新增 Necrobinder（骨妹）卡牌「比试」（Sparring）及其配套的中、英、意三语本地化与卡牌立绘（CARD-10）
 - 基础设施：添加了 CodeGraph 相关的配置（如 Cursor/Gemini MCP、opencode、CLAUDE.md 等），方便在 Agent 中对项目源码进行快速索引和跳转
 
