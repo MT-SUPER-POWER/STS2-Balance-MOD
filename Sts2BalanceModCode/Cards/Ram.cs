@@ -55,10 +55,4 @@ public sealed class Ram : Sts2CardModel
           .Execute(choiceContext);
     }
   }
-
-  protected override void OnUpgrade()
-  {
-    DynamicVars.Damage.UpgradeValueBy(6m);
-    DynamicVars.HpLoss.UpgradeValueBy(-1m);
-  }
 }
