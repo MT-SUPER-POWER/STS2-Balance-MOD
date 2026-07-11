@@ -18,7 +18,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 [Pool(typeof(NecrobinderCardPool))]
 public sealed class Sparring : Sts2LegacyCardModel
 {
-  public override IEnumerable<CardKeyword> CanonicalKeywords => new List<CardKeyword> { CardKeyword.Exhaust };
+  public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
   public Sparring()
       : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
