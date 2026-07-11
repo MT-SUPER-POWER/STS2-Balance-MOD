@@ -54,7 +54,7 @@ public sealed class HoveringKite : Sts2RelicModel
 
   public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
   {
-    if (card.Owner == Owner && Owner.Creature.Side == Owner.Creature.CombatState.CurrentSide)
+    if (Owner != null && card.Owner == Owner && Owner.Creature?.Side == Owner.Creature?.CombatState?.CurrentSide)
     {
       // Set to true synchronously to avoid race conditions with multiple discards on the same frame
       if (!DiscardedThisTurn)

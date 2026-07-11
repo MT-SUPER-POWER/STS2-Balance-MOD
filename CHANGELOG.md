@@ -27,6 +27,7 @@
 ### Fixed
 
 - 修复/清理：移除了无用的 Time Eater 资源文件，并修复了 Romeo 怪物类中 `Mock` 异步方法缺少 `await` 的编译警告（CS1998）
+- 修复：解决悬浮风筝（HoveringKite.cs）中因未对 Owner 或 Owner.Creature 进行空值校验而导致的潜在空引用解引用编译警告（CS8602）
 
 # v0.0.8-beta
 
