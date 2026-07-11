@@ -13,6 +13,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from pathlib import Path
 
@@ -122,15 +123,22 @@ def process_image(
     print(f"  {src.name}: {img.size[0]}x{img.size[1]} -> {TARGET_SIZE[0]}x{TARGET_SIZE[1]}")
 
 
+def to_snake_case(name: str) -> str:
+    s1 = re.sub(r'([a-z0-9])([A-Z])', r'\1_\2', name)
+    s2 = re.sub(r'([A-Z])([A-Z][a-z])', r'\1_\2', s1)
+    s3 = re.sub(r'[\s\-]+', '_', s2)
+    return re.sub(r'_+', '_', s3).lower()
+
+
 def output_name(src: Path) -> str:
-    """输出文件名：去掉模组前缀后全小写。"""
-    name = src.stem.lower()
-    # 去掉常见的模组前缀
+    """输出文件名：去掉模组前缀后驼峰转下划线小写。"""
+    name = src.stem
+    name_lower = name.lower()
     for prefix in ("sts2balancemod-", "sts2balancemod_", "actsfromthepast-"):
-        if name.startswith(prefix):
+        if name_lower.startswith(prefix):
             name = name[len(prefix):]
             break
-    return f"{name}.png"
+    return f"{to_snake_case(name)}.png"
 
 
 def collect_sources(input_dir: Path, names: list[str] | None) -> list[Path]:

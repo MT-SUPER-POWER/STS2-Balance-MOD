@@ -13,6 +13,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from pathlib import Path
 
@@ -45,6 +46,18 @@ def fit_cover(img: Image.Image, size: tuple[int, int]) -> Image.Image:
     top = (scaled_h - target_h) // 2
 
     return resized.crop((left, top, left + target_w, top + target_h))
+
+
+def to_snake_case(name: str) -> str:
+    s1 = re.sub(r'([a-z0-9])([A-Z])', r'\1_\2', name)
+    s2 = re.sub(r'([A-Z])([A-Z][a-z])', r'\1_\2', s1)
+    s3 = re.sub(r'[\s\-]+', '_', s2)
+    return re.sub(r'_+', '_', s3).lower()
+
+
+def output_name(src: Path) -> str:
+    """输出文件名：驼峰转下划线小写。"""
+    return f"{to_snake_case(src.stem)}.png"
 
 
 def process_power(src: Path, out_big: Path, out_small: Path) -> None:
@@ -116,10 +129,11 @@ def main() -> None:
     print(f"共 {len(sources)} 张\n")
 
     for src in sources:
+        out_name = output_name(src)
         process_power(
             src,
-            out_big_dir / src.name,
-            out_small_dir / src.name,
+            out_big_dir / out_name,
+            out_small_dir / out_name,
         )
 
     print("\n完成!")

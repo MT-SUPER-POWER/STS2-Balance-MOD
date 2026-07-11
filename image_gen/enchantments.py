@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from pathlib import Path
 
@@ -41,11 +42,16 @@ def fit_cover(img: Image.Image, size: tuple[int, int]) -> Image.Image:
     return resized.crop((left, top, left + target_w, top + target_h))
 
 
+def to_snake_case(name: str) -> str:
+    s1 = re.sub(r'([a-z0-9])([A-Z])', r'\1_\2', name)
+    s2 = re.sub(r'([A-Z])([A-Z][a-z])', r'\1_\2', s1)
+    s3 = re.sub(r'[\s\-]+', '_', s2)
+    return re.sub(r'_+', '_', s3).lower()
+
+
 def output_name(src: Path) -> str:
-    """输出文件名：全小写，去掉常见前缀。"""
-    name = src.stem.lower()
-    # 如果已包含前缀，保持原样；否则直接使用
-    return f"{name}.png"
+    """输出文件名：全小写，驼峰转下划线小写。"""
+    return f"{to_snake_case(src.stem)}.png"
 
 
 def process_image(src: Path, out: Path) -> None:

@@ -15,8 +15,23 @@ dotnet publish -c Release                 # 发布到 dist/Sts2BalanceMod/
 
 **PCK 导出**：由 `.csproj` 的 `GodotExportPckOnBuild` target 自动触发，仅资源有变动时重新导出。Release 构建如缺少 PCK 会报错。
 
-**没有单元测试**，`tests/` 下是 PowerShell 集成测试脚本，直接执行。
+**没有单元测试**，因为是三方 mod 的缘故，没办法做 godot 测试
+- 只能够输出检查 `godot.log` 日志文件的内容，具体日志位置在[调试](AGENTS.md#调试)中有说明。
+- 或者使用 `donet build` 检查报错信息。
 <!-- BUILD_END -->
+
+
+<!-- DOCUMENTATION_RULE_START -->
+## 文档同步约定（重要！！！）
+
+每当你完成我发布给你的任务，记得更新对应的文档。
+
+1. 在 `docs/` 文件夹里有一个 `balance-changes.md` 的文件，里面记录了所有我要求做的调整项。你务必确保这个文件里的我分配给你的任务完成后，更新这个文件里对应任务的状态。
+2. 在 `CHANGELOG.md` 文件中记录你的任务，尽可能明细分环节，你可以参考别的记录模式，但是如果现有的模式不够满足你的需求，你可以自由发挥，至少保证清晰可读即可，如果你需要绘制一下图来描述你的总结，我做一个约束
+  1. 任何图的绘制应该使用 markdown 支持的 `mermaid`
+  2. 有一些文字总结规律性一致的内容，可以用 `table` 来简化
+
+<!-- DOCUMENTATION_RULE_END -->
 
 <!-- PATHS_START -->
 ## 关键路径
@@ -105,7 +120,7 @@ uv run rest-site-options smoke.png            # 火堆选项图标（256×169）
 - `[Chore]`: 构建脚本、配置、依赖更新等杂项
 - `[Docs]`: 补充或修改文档、注释说明等
 
-每次提交前：`git diff` / `git status`，只提交任务相关文件，同步更新 `CHANGELOG.md`。
+每次提交前：`git diff` / `git status`，只提交任务相关文件，检查 `CHANGELOG.md` 是否记录的更新，如没有同步更新。
 <!-- GIT_COMMIT_END -->
 
 <!-- DEBUG_START -->

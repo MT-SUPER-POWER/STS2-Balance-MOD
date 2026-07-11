@@ -10,12 +10,18 @@
 
 ### Added
 
+- 遗物：新增 Hunter（Silent）专属罕见遗物「袖箭」（WristBlade）及其配套的中、英、意三语本地化与图标资源
+- 遗物：新增 Hunter（Silent）专属普通遗物「悬浮风筝」（HoveringKite）及其配套的中、英、意三语本地化与图标资源
 - 卡牌：新增 Necrobinder（骨妹）普通卡牌「猛撞」（Ram）及其配套的中、英、意三语本地化（CARD-11）
 - 卡牌：新增 Necrobinder（骨妹）卡牌「比试」（Sparring）及其配套的中、英、意三语本地化与卡牌立绘（CARD-10）
 - 基础设施：添加了 CodeGraph 相关的配置（如 Cursor/Gemini MCP、opencode、CLAUDE.md 等），方便在 Agent 中对项目源码进行快速索引和跳转
+- 基础设施：为 `image_gen` 中的所有图片处理脚本（[cards.py](file:///d:/Github/STS2-Balance-MOD/image_gen/cards.py), [relics.py](file:///d:/Github/STS2-Balance-MOD/image_gen/relics.py), [powers.py](file:///d:/Github/STS2-Balance-MOD/image_gen/powers.py), [events.py](file:///d:/Github/STS2-Balance-MOD/image_gen/events.py), [enchantments.py](file:///d:/Github/STS2-Balance-MOD/image_gen/enchantments.py), [rest_site_options.py](file:///d:/Github/STS2-Balance-MOD/image_gen/rest_site_options.py)）添加了命名规范化功能（驼峰/大写转下划线蛇形小写 `to_snake_case`），使输出的资源文件名自动匹配游戏内 `RemovePrefix().ToLowerInvariant()` 路径规则（例如 `DeathReap.png` 自动转换为 `death_reap.png`）
+
 
 ### Changed
 
+- 卡牌：能量汲取（Drain Power / DRAIN_POWER）伤害从 10/12 调整为 6/8，升级后由“随机升级 3 张”改为“升级弃牌堆的所有牌”（CARD-01）
+- 卡牌：吸引仇恨（Pull Aggro / PULL_AGGRO）升级后属性调整为：召唤生命 6，格挡 9（CARD-02）
 - 卡牌：回调了「挽歌」（Dirge）的消耗（Exhaust），但是增加了升级后的保留属性
 
 ### Fixed

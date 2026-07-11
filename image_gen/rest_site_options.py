@@ -13,6 +13,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from pathlib import Path
 
@@ -45,12 +46,21 @@ def fit_contain(img: Image.Image, size: tuple[int, int]) -> Image.Image:
     return canvas
 
 
+def to_snake_case(name: str) -> str:
+    s1 = re.sub(r'([a-z0-9])([A-Z])', r'\1_\2', name)
+    s2 = re.sub(r'([A-Z])([A-Z][a-z])', r'\1_\2', s1)
+    s3 = re.sub(r'[\s\-]+', '_', s2)
+    return re.sub(r'_+', '_', s3).lower()
+
+
 def output_name(src: Path) -> str:
-    """输出文件名必须符合 option_{OptionId小写}.png。"""
-    stem = src.stem.lower()
-    if not stem.startswith("option_"):
-        stem = f"option_{stem}"
-    return f"{stem}.png"
+    """输出文件名必须符合 option_{OptionId下划线小写}.png。"""
+    stem = src.stem
+    stem_lower = stem.lower()
+    if stem_lower.startswith("option_"):
+        stem = stem[7:]
+    snake = to_snake_case(stem)
+    return f"option_{snake}.png"
 
 
 def collect_sources(input_dir: Path, names: list[str] | None) -> list[Path]:
