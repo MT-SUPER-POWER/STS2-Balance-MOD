@@ -2,6 +2,7 @@
 
 《杀戮尖塔 2》平衡调整 Mod（Godot 4.5.1 / C# 12 / .NET 9 / Harmony 2.x / BaseLib 3.3.0+）。
 
+<!-- BUILD_START -->
 ## Build & Verify
 
 ```powershell
@@ -15,7 +16,9 @@ dotnet publish -c Release                 # 发布到 dist/Sts2BalanceMod/
 **PCK 导出**：由 `.csproj` 的 `GodotExportPckOnBuild` target 自动触发，仅资源有变动时重新导出。Release 构建如缺少 PCK 会报错。
 
 **没有单元测试**，`tests/` 下是 PowerShell 集成测试脚本，直接执行。
+<!-- BUILD_END -->
 
+<!-- PATHS_START -->
 ## 关键路径
 
 | 路径 | 用途 |
@@ -33,7 +36,9 @@ dotnet publish -c Release                 # 发布到 dist/Sts2BalanceMod/
 | `Sts2BalanceMod/localization/{eng,zhs,ita}/` | 本地化 JSON（cards.json / powers.json / relics.json 等） |
 | `Sts2BalanceMod/images/` | 图片资源（card_portraits/ / powers/ / relics/ / events/ / ui/） |
 | `image_gen/` | Python 图片批处理脚本（需 `uv`） |
+<!-- PATHS_END -->
 
+<!-- IMAGE_GEN_START -->
 ## 图片生成（需 [uv](https://docs.astral.sh/uv/)）
 
 ```bash
@@ -46,6 +51,17 @@ uv run rest-site-options smoke.png            # 火堆选项图标（256×169）
 
 图片路径自动解析：文件名 `{id小写}.png`，基类自动拼接完整路径。
 
+> [!warning]
+> **!必须做的检查!**
+>
+如果你使用了 `image_gen` 里面生成了任意相关的图片之后，做一个检查：
+1. 检查一下 `Sts2BalanceMod/images/` 下面是否有有对应的生成
+2. 用于 xxx 资源的图片名是否按照对应的 `xxx.cs` 文件的需求，负责图片无法使用
+
+
+<!-- IMAGE_GEN_END -->
+
+<!-- RELEASE_START -->
 ## 发布流程
 
 1. 更新 `CHANGELOG.md`（`# vX.X.X` 格式，推送 Tag 后 Actions 自动创建 Release）
@@ -53,35 +69,60 @@ uv run rest-site-options smoke.png            # 火堆选项图标（256×169）
 3. `.\Hooks\release.ps1 -Version X.X.X -Build -Upload`（本机打包 + 上传 zip）
 
 `Sts2BalanceMod.json` 中的 `version` 需同步更新（运行 `release.ps1 -Version X.X.X -UpdateJson`）。
+<!-- RELEASE_END -->
 
+<!-- HARMONY_PATCH_START -->
 ## Harmony Patch 约束
 
 - 优先 Postfix > Prefix > Transpiler
 - Patch 目标方法先用反编译源码验证（`D:\Game\Godot\StS2-Code`）
 - 每个 Patch 必须注明目标类型、方法、修改原因和依赖反编译细节的警告
 - **不要直接修改反编译源码**
+<!-- HARMONY_PATCH_END -->
 
+<!-- GIT_COMMIT_START -->
 ## Git 提交
 
+提交信息采用结构化的 Commit Message 格式。首行是一句话概括本次提交总体做了什么，空一行后列出具体的细节，每个细节需要加前缀修饰符。
+
+格式模板：
 ```text
-<type>(<scope>): <subject>   # 50 字内
+<type>(<scope>): <一句话概括这次提交总体做了什么，主旨清晰且精炼>
+
+- [<action>] <细节描述 1>
+- [<action>] <细节描述 2>
 ```
 
 常用 type/scope：`feat(card)` `fix(relic)` `refactor(patch)` `chore(infra)` `docs(docs)`。
 
-每次提交前：`git diff` / `git status`，只提交任务相关文件，同步更新 `CHANGELOG.md`。
+> [!note]
+> 如果你真的可以一句话概括，那么二级的 `-[<action>]` 其实没有那么重要
 
+细节前缀修饰符 `<action>` 推荐：
+- `[Add]`: 新增功能/资源/卡牌/遗物/代码等
+- `[Fix]`: 修复缺陷/Bug/逻辑问题/编译错误等
+- `[Refactor]`: 重构、代码优化（不改变外部行为）
+- `[Chore]`: 构建脚本、配置、依赖更新等杂项
+- `[Docs]`: 补充或修改文档、注释说明等
+
+每次提交前：`git diff` / `git status`，只提交任务相关文件，同步更新 `CHANGELOG.md`。
+<!-- GIT_COMMIT_END -->
+
+<!-- DEBUG_START -->
 ## 调试
 
 - 日志：`%AppData%/SlayTheSpire2/logs/godot.log`
 - 查阅日志重点：Mod 加载、Harmony Patch 应用、类型/方法找不到、资源路径错误、C# 异常堆栈
+<!-- DEBUG_END -->
 
+<!-- CONSTRAINTS_START -->
 ## 约束
 
 - **子模块只读**（`docs/references/WatcherMod`、`docs/references/ActsFromThePast`），不要提交改动
 - `.gitignore` 中的目录（`bin/`、`dist/`、`.godot/`、`*.uid`、`*.import`）不要提交
 - 修改现有卡牌/遗物/能力/怪物 → 用 Harmony Patch，不要新建替代品（除非明确要求新增）
 - 注释标签：`TODO` `FIXME` `WARNING` `NOTE` `BUG` 等用于标记非显而易见的决策
+<!-- CONSTRAINTS_END -->
 
 <!-- CODEGRAPH_START -->
 ## CodeGraph
