@@ -82,3 +82,14 @@ uv run rest-site-options smoke.png            # 火堆选项图标（256×169）
 - `.gitignore` 中的目录（`bin/`、`dist/`、`.godot/`、`*.uid`、`*.import`）不要提交
 - 修改现有卡牌/遗物/能力/怪物 → 用 Harmony Patch，不要新建替代品（除非明确要求新增）
 - 注释标签：`TODO` `FIXME` `WARNING` `NOTE` `BUG` 等用于标记非显而易见的决策
+
+<!-- CODEGRAPH_START -->
+## CodeGraph
+
+In repositories indexed by CodeGraph (a `.codegraph/` directory exists at the repo root), reach for it BEFORE grep/find or reading files when you need to understand or locate code:
+
+- **MCP tool** (when available): `codegraph_explore` answers most code questions in one call — the relevant symbols' verbatim source plus the call paths between them, including dynamic-dispatch hops grep can't follow. Name a file or symbol in the query to read its current line-numbered source. If it's listed but deferred, load it by name via tool search.
+- **Shell** (always works): `codegraph explore "<symbol names or question>"` prints the same output.
+
+If there is no `.codegraph/` directory, skip CodeGraph entirely — indexing is the user's decision.
+<!-- CODEGRAPH_END -->
