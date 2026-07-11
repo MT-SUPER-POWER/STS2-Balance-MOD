@@ -19,5 +19,7 @@
   "STS2BALANCEMOD-SPARRING.title": "Sparring",
   "STS2BALANCEMOD-SPARRING.description": "[gold]Osty[/gold] deals {OstyDamage:diff()} damage.\nDeal {Damage:diff()} damage. The side that deals less damage heals {Heal:diff()} HP.",
   "STS2BALANCEMOD-RAM.title": "Ram",
-  "STS2BALANCEMOD-RAM.description": "If [gold]Osty[/gold] has at least 5 HP, make it lose {HpLoss:diff()} HP and deal {Damage:diff()} damage to all enemies."
+  "STS2BALANCEMOD-RAM.description": "If [gold]Osty[/gold] has at least 5 HP, make it lose {HpLoss:diff()} HP and deal {Damage:diff()} damage to all enemies.",
+  "DRAIN_POWER.description": "Deal {Damage:diff()} damage. Upgrade {IfUpgraded:show:all|{Cards:diff()} random} cards in your discard pile.",
+  "PULL_AGGRO.description": "Summon [gold]Osty[/gold] with {Summon:diff()} HP. Gain {Block:diff()} [gold]Block[/gold]."
 }
