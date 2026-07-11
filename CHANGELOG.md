@@ -6,6 +6,20 @@
 
 已完成的所有改动见 [README.md](../README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+# v0.0.8.1-beta
+
+### Added
+
+- 卡牌：新增 Necrobinder（骨妹）卡牌「比试」（Sparring）及其配套的中、英、意三语本地化与卡牌立绘（CARD-10）
+- 基础设施：添加了 CodeGraph 相关的配置（如 Cursor/Gemini MCP、opencode、CLAUDE.md 等），方便在 Agent 中对项目源码进行快速索引和跳转
+
+### Changed
+
+- 卡牌：回调了「挽歌」（Dirge）的消耗（Exhaust），但是增加了升级后的保留属性
+
+### Fixed
+
+- 修复/清理：移除了无用的 Time Eater 资源文件，并修复了 Romeo 怪物类中 `Mock` 异步方法缺少 `await` 的编译警告（CS1998）
 
 # v0.0.8-beta
 
@@ -18,6 +32,7 @@
 ### Changed
 - BOSS：沙漏回归
 - CARD: 沙漏的凋零卡，改为可以用一费打出消耗
+- CARD: 鸡煲的压缩回调
 
 ### Fixed
 - BUG：修复全神贯注的弃牌数量可选的问题
