@@ -5,16 +5,14 @@ using MegaCrit.Sts2.Core.Models.Cards;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 
 /// <summary>
-/// CARD-01 — 骨妹升级的挽歌不提高召唤次数
-/// Prefix 删除消耗词条并跳过原版 OnUpgrade，避免 Summon 动态值从 3 提升到 4。
+/// CARD-01 — 挽歌：在原版升级效果的基础上，额外获得保留词条。
 /// </summary>
 [HarmonyPatch(typeof(Dirge), "OnUpgrade")]
-public static class DirgeExhaustPatch
+public static class DirgeOnUpgradePatch
 {
-  [HarmonyPrefix]
-  public static bool Prefix(Dirge __instance)
+  [HarmonyPostfix]
+  public static void Postfix(Dirge __instance)
   {
-    __instance.RemoveKeyword(CardKeyword.Exhaust);
-    return false; // 跳过原方法
+    __instance.AddKeyword(CardKeyword.Retain);
   }
 }
