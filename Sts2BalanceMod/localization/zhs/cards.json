@@ -19,7 +19,7 @@
   "STS2BALANCEMOD-SPARRING.title": "比试",
   "STS2BALANCEMOD-SPARRING.description": "[gold]奥斯提[/gold]造成 {OstyDamage:diff()} 点伤害。\n造成 {Damage:diff()} 点伤害。造成伤害较少的一方回复 {Heal:diff()} 点生命。",
   "STS2BALANCEMOD-RAM.title": "猛撞",
-  "STS2BALANCEMOD-RAM.description": "如果[gold]奥斯提[/gold]拥有至少 5 点生命，使其失去 {HpLoss:diff()} 点生命，并对所有敌人造成 {Damage:diff()} 点伤害。",
+  "STS2BALANCEMOD-RAM.description": "如果[gold]奥斯提[/gold]拥有至少 {HpLoss:diff()} 点生命，使其失去 {HpLoss:diff()} 点生命，并对所有敌人造成 {Damage:diff()} 点伤害。",
   "DRAIN_POWER.description": "造成 {Damage:diff()} 点伤害。升级弃牌堆中的 {IfUpgraded:show:所有|{Cards:diff()}张随机}卡牌。",
   "PULL_AGGRO.description": "召唤拥有 {Summon:diff()} 点生命的[gold]奥斯提[/gold]。\n获得 {Block:diff()} 点[gold]格挡[/gold]。"
 }

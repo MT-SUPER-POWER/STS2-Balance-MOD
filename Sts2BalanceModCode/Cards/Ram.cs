@@ -32,8 +32,8 @@ public sealed class Ram : Sts2CardModel
 
   protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
   {
-    // 约束：奥斯提必须拥有至少 5 点生命才会触发这 20 点伤害以及失去生命效果
-    if (Owner.IsOstyAlive && Owner.Osty != null && Owner.Osty.CurrentHp >= 5)
+    // 约束：奥斯提必须拥有至少与扣除生命一致的生命值才会触发效果
+    if (Owner.IsOstyAlive && Owner.Osty != null && Owner.Osty.CurrentHp >= DynamicVars.HpLoss.BaseValue)
     {
       // 1. 奥斯提失去相应生命值 (HpLoss)
       await CreatureCmd.Damage(

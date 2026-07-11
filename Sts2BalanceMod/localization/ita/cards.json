@@ -19,7 +19,7 @@
   "STS2BALANCEMOD-SPARRING.title": "Sparring",
   "STS2BALANCEMOD-SPARRING.description": "[gold]Osty[/gold] infligge {OstyDamage:diff()} danni.\nInfliggi {Damage:diff()} danni. Chi infligge meno danni cura {Heal:diff()} HP.",
   "STS2BALANCEMOD-RAM.title": "Scontro",
-  "STS2BALANCEMOD-RAM.description": "Se [gold]Osty[/gold] ha almeno 5 PV, perde {HpLoss:diff()} PV e infligge {Damage:diff()} danni a tutti i nemici.",
+  "STS2BALANCEMOD-RAM.description": "Se [gold]Osty[/gold] ha almeno {HpLoss:diff()} PV, perde {HpLoss:diff()} PV e infligge {Damage:diff()} danni a tutti i nemici.",
   "DRAIN_POWER.description": "Infliggi {Damage:diff()} danni. Potenzia {IfUpgraded:show:tutte le|{Cards:diff()} carte casuali} nella tua pila degli scarti.",
   "PULL_AGGRO.description": "Evoca [gold]Osty[/gold] con {Summon:diff()} PV. Ottieni {Block:diff()} [gold]Blocco[/gold]."
 }
