@@ -228,7 +228,7 @@ uv run rest-site-options smoke.png
 
 ### 发布步骤
 
-1. **更新版本号**：在 `CHANGELOG.md` 写好对应版本段落（如 `# v0.0.5`）。
+1. **更新版本号**：在 `CHANGELOG.md` 写好对应版本段落（如 `# v0.0.x`）。
 2. **同步配置**（可选）：运行脚本更新 `Sts2BalanceMod.json`。
 
    ```powershell
@@ -239,23 +239,24 @@ uv run rest-site-options smoke.png
 
    ```bash
    git add .
-   git commit -m "chore: release v0.0.5"
-   git tag v0.0.5
-   git push origin main v0.0.5
+   git commit -m "chore: release v0.0.x"
+   git tag v0.0.x
+   git push origin main v0.0.x
    ```
 
 4. **打包上传**：运行脚本执行构建并上传 zip 到对应的 Release。
 
    ```powershell
-   .\Hooks\release.ps1 -Version 0.0.5 -Build -Upload
+   # [x.x.x] 处替换为版本号，例如 0.0.8，一定要对应实际存在的 tag
+   .\Hooks\release.ps1 -Version [x.x.x] -Build -Upload
    ```
 
 ### 常用命令
 
-| 命令                                         | 说明                                                |
-| -------------------------------------------- | --------------------------------------------------- |
-| `.\Hooks\release.ps1 -Version 0.0.5 -Build`  | **仅本地打包**：构建并生成 `dist/*.zip`             |
-| `.\Hooks\release.ps1 -Version 0.0.5 -Upload` | **仅上传**：将已存在的 zip 上传到 GitHub (支持覆盖) |
-| `.\Hooks\release.ps1 -Version 0.0.5 -All`    | **全自动化**：同步 JSON + 构建 + 上传               |
+| 命令 | 说明 |
+| -------- | -------- |
+| `.\Hooks\release.ps1 -Version [x.x.x] -Build`  | **仅本地打包**：构建并生成 `dist/*.zip`      |
+| `.\Hooks\release.ps1 -Version [x.x.x] -Upload` | **仅上传**：将已存在的 zip 上传到 GitHub (支持覆盖) |
+| `.\Hooks\release.ps1 -Version [x.x.x] -All`    | **全自动化**：同步 JSON + 构建 + 上传          |
 
 > **提示**：`-Upload` 步骤会自动检测 GitHub Release。如果不存在，它会创建一个包含更新日志说明的 Release 页面，并将包上传。如果已存在附件，会直接覆盖更新。
