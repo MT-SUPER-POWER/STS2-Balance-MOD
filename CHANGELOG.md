@@ -15,6 +15,10 @@
 - 基础设施：在 `.csproj` 中增加了对 `BSchneppe.Sts2.ReferenceAssemblies` 和 `Lib.Harmony` 的条件引用，解决了在没有游戏文件的 CI 构建机上的编译依赖。
 - 基础设施：重构了 GitHub Actions 的 `release.yml` 流程。目前当推送 tag（如 `v0.0.8.2-beta`）时，云端自动下载并配置 Godot 4.5.1 Mono 命令行工具及导出模板，全自动完成打包与 zip 上传，实现全托管的 CI/CD 发布。
 
+### Fixed
+
+- 遗物：修复「枯木树枝」（DeadBranch）对回合结束时消耗的虚无牌生成新牌时，因重复调用生成函数导致新加入手牌没有正确获得保留（Retain）效果的 BUG。
+
 # v0.0.8.1-beta
 
 ### Added
