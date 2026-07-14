@@ -36,8 +36,14 @@
     </ItemGroup>
 
     <ItemGroup Condition="!Exists('$(Sts2DataDir)')">
-        <PackageReference Include="BSchneppe.Sts2.ReferenceAssemblies" Version="0.103.2" PrivateAssets="All" ExcludeAssets="Runtime" />
-        <PackageReference Include="Lib.Harmony" Version="2.3.3" PrivateAssets="All" ExcludeAssets="Runtime" />
+        <Reference Include="0Harmony">
+            <HintPath>$(MSBuildProjectDirectory)/libs/0Harmony.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="sts2">
+            <HintPath>$(MSBuildProjectDirectory)/libs/sts2.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
     </ItemGroup>
 
     <ItemGroup Condition="False"> <!--Allows access to originally private/protected members but may (unlikely to) cause errors.-->
@@ -157,5 +163,13 @@
             Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).json')" />
         <Error Text="Missing release pck: $(ModOutputDir)$(MSBuildProjectName).pck. Check Godot export logs and Sts2BalanceMod.sln."
             Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).pck')" />
+    </Target>
+
+    <!-- 本地开发时自动剥离并更新 libs/ 下的 API Stub DLL，保证 CI 编译使用的 Stub 与本地完全同步 -->
+    <Target Name="UpdateStubDlls" BeforeTargets="BeforeBuild" Condition="Exists('$(Sts2DataDir)')">
+        <Message Text="🔄 检测到本地游戏目录，正在全自动更新 libs/ 目录下的 API Stub DLL..." Importance="high" />
+        <MakeDir Directories="$(MSBuildProjectDirectory)/libs/" />
+        <Exec Command="refasmer --all -O &quot;$(MSBuildProjectDirectory)/libs/&quot; &quot;$(Sts2DataDir)/sts2.dll&quot; &quot;$(Sts2DataDir)/0Harmony.dll&quot;"
+              ContinueOnError="WarnAndContinue" />
     </Target>
 </Project>
