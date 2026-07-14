@@ -35,6 +35,11 @@
         </Reference>
     </ItemGroup>
 
+    <ItemGroup Condition="!Exists('$(Sts2DataDir)')">
+        <PackageReference Include="BSchneppe.Sts2.ReferenceAssemblies" Version="0.103.2" PrivateAssets="All" ExcludeAssets="Runtime" />
+        <PackageReference Include="Lib.Harmony" Version="2.3.3" PrivateAssets="All" ExcludeAssets="Runtime" />
+    </ItemGroup>
+
     <ItemGroup Condition="False"> <!--Allows access to originally private/protected members but may (unlikely to) cause errors.-->
         <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false" />
     </ItemGroup>
@@ -86,7 +91,7 @@
         <Folder Include="Sts2BalanceMod\images\relics\big\" />
     </ItemGroup>
 
-    <Target Name="CheckDependencyPaths" >
+    <Target Name="CheckDependencyPaths" Condition="'$(ContinuousIntegrationBuild)' != 'true'">
         <Error
             Text=" Slay the Spire 2 data not found at path '$(Sts2DataDir)'"
             Condition="'$(Sts2DataDir)' == '' or !Exists('$(Sts2DataDir)')" />

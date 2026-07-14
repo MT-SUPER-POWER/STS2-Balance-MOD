@@ -49,8 +49,10 @@ cd STS2-Balance-MOD
 # 或者用 dotnet 命令行发布
 dotnet publish -c Release
 ```
-
 Release 构建产物位于 `dist/Sts2BalanceMod/`（dll + json + pck），打包后为 `dist/Sts2BalanceMod-vX.X.X.zip`；Debug 构建仍自动拷贝到游戏 `mods/` 目录（前提是你在 `Directory.Build.props` 中正确配置了路径）。
+
+**CI/CD 自动发布**：
+项目配置了完整的 GitHub Actions 工作流。当推送格式为 `vX.X.X` 的 Git Tag 时，GitHub Actions 会在云端自动下载 .NET 和 Godot Mono 环境，调用还原引用编译，自动导出 PCK 资源并压缩成 ZIP 附件，最后创建并发布到 GitHub Release 中，无须本地手动执行脚本进行打包上传。
 
 ---
 
@@ -121,6 +123,8 @@ Release 构建产物位于 `dist/Sts2BalanceMod/`（dll + json + pck），打包
 | 事件名称 | 详情 |
 | :--- | :--- |
 | **旧日垃圾堆** | 遗物奖励池加入**御守**。 |
+| **除虫者 (Bugslayer)** | 初始选项中**新增「离开」分支**，允许玩家直接走开而无须获取卡牌。 |
+| **科学怪人 (TinkerTime)** | 初始选项中**新增「离开」分支**，允许玩家直接走开而不用强制接受突变卡。 |
 
 ### 一代事件回归
 

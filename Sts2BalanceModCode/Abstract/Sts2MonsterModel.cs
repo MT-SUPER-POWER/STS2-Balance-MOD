@@ -19,8 +19,7 @@ public abstract class Sts2MonsterModel : MonsterModel
 
   // NOTE: 原版 MonsterModel 使用 base.Id.Entry 读取怪物本地化，
   // 但 BaseLib 不会给原版 LocString 自动补 MOD 前缀，这里显式使用 MOD key。
-  public override LocString Title =>
-    new LocString("monsters", ModLocalizationEntry + ".name");
+  public override LocString Title => new("monsters", ModLocalizationEntry + ".name");
 
   public override List<BestiaryMonsterMove> GenerateBestiaryMoveList(NCreatureVisuals? creatureVisuals)
   {

@@ -2,9 +2,18 @@
 
 本文件记录 [Sts2BalanceMod](https://github.com/MT-SUPER-POWER/STS2-Balance-MOD) 的版本变更。
 
-每个版本以 `# vx.x.x` 为标题。推送 Tag 后 GitHub Actions 自动把该段写入 Release 说明；zip 附件由本机 `Hooks/release.ps1` 上传。
+每个版本以 `# vx.x.x` 为标题。推送 Tag 后 GitHub Actions 会自动在云端构建、打包，并将打包好的 zip 附件发布到对应的 Release 页面中，无须再本地手动上传。
 
 已完成的所有改动见 [README.md](../README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
+
+# v0.0.8.2-beta
+
+### Added
+
+- 事件：为「除虫者」（Bugslayer）事件初始选项新增「离开」分支，玩家可以安全离开而不用被迫选择卡牌。
+- 事件：为「科学怪人」（TinkerTime，对应 `MadScience.cs`）事件初始选项新增「离开」分支，玩家可以选择直接走开而无须被迫当实验对象。
+- 基础设施：在 `.csproj` 中增加了对 `BSchneppe.Sts2.ReferenceAssemblies` 和 `Lib.Harmony` 的条件引用，解决了在没有游戏文件的 CI 构建机上的编译依赖。
+- 基础设施：重构了 GitHub Actions 的 `release.yml` 流程。目前当推送 tag（如 `v0.0.8.2-beta`）时，云端自动下载并配置 Godot 4.5.1 Mono 命令行工具及导出模板，全自动完成打包与 zip 上传，实现全托管的 CI/CD 发布。
 
 # v0.0.8.1-beta
 

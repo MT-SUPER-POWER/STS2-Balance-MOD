@@ -136,5 +136,11 @@
   "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_2.description": "Ehi [blue]Orso,[/blue] ehi!\nQuesto qui ci ha dato tutto il suo [gold]Oro![/gold] Che ingenuo, vero?\nSenti qua: e bastato chiedere con gentilezza. Chi lo sapeva?!\nIo no di certo! Che allocco!",
   "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_2.options.CONTINUE.title": "Continua",
   "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_2.options.CONTINUE.description": "",
-  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_3.description": "Banda, facciamoci una bella risata per questa meravigliosa occasione!\n[jitter]Hahaah[/jitter]\n[jitter]Ho[/jitter] [jitter]HOH[/jitter] [sine]hoho![/sine]\n[sine]Hoh![/sine]"
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_3.description": "Banda, facciamoci una bella risata per questa meravigliosa occasione!\n[jitter]Hahaah[/jitter]\n[jitter]Ho[/jitter] [jitter]HOH[/jitter] [sine]hoho![/sine]\n[sine]Hoh![/sine]",
+  "BUGSLAYER.pages.INITIAL.options.LEAVE.title": "Lascia",
+  "BUGSLAYER.pages.INITIAL.options.LEAVE.description": "",
+  "BUGSLAYER.pages.LEAVE.description": "Decidi di non rischiare con gli insetti e te ne vai.",
+  "TINKER_TIME.pages.INITIAL.options.LEAVE.title": "Lascia",
+  "TINKER_TIME.pages.INITIAL.options.LEAVE.description": "",
+  "TINKER_TIME.pages.LEAVE.description": "La scienza comporta dei rischi. Decidi di interrompere l'esperimento e te ne vai."
 }
