@@ -265,48 +265,19 @@ uv run rest-site-options smoke.png
 
 ---
 
-## 发布到 GitHub Releases
+## 版本发布
 
-项目使用模块化的发布脚本，发布流程由用户手动管理 Git 标签，脚本负责自动化打包和附件上传。
+项目配置了基于 GitHub Actions 的 CI/CD 自动发布。每次发布新版本只需以下步骤：
 
-### 前置条件
-
-1. 本机环境支持 `dotnet publish -c Release`
-2. 已安装 [GitHub CLI](https://cli.github.com/) 并登录：`gh auth login`
-
-### 发布步骤
-
-1. **更新版本号**：在 `CHANGELOG.md` 写好对应版本段落（如 `# v0.0.x`）。
-2. **同步配置**（可选）：运行脚本更新 `Sts2BalanceMod.json`。
-
-   ```powershell
-   .\Hooks\release.ps1 -Version [0.0.x] -UpdateJson
-   ```
-
-3. **手动推送**：提交代码并打上 Tag 推送到 GitHub。
+1. **更新版本号**：在 `Sts2BalanceMod.json` 中更新 `"version"` 字段。
+2. **同步日志**：在 `CHANGELOG.md` 中添加对应版本的更新日志段落（以 `# vX.X.X` 为标题）。
+3. **推送 Tag**：提交代码并打上对应版本号的 Git Tag，然后推送至远程仓库：
 
    ```bash
    git add .
-   git commit -m "chore: release v0.0.x"
-   git tag v0.0.x
-   git push origin main v0.0.x
+   git commit -m "chore: release vX.X.X"
+   git tag vX.X.X
+   git push origin <当前分支> vX.X.X
    ```
 
-4. **打包上传**：运行脚本执行构建并上传 zip 到对应的 Release。
-
-   ```powershell
-   # [x.x.x] 处替换为版本号，例如 0.0.8，一定要对应实际存在的 tag
-   .\Hooks\release.ps1 -Version [x.x.x] -Build -Upload
-   ```
-
-### 常用命令
-
-| 命令 | 说明 |
-| -------- | -------- |
-| `.\Hooks\release.ps1 -Version [x.x.x] -Build`  | **仅本地打包**：构建并生成 `dist/*.zip`      |
-| `.\Hooks\release.ps1 -Version [x.x.x] -Upload` | **仅上传**：将已存在的 zip 上传到 GitHub (支持覆盖) |
-| `.\Hooks\release.ps1 -Version [x.x.x] -All`    | **全自动化**：同步 JSON + 构建 + 上传          |
-
->[!tip]
->
-> **提示**：`-Upload` 步骤会自动检测 GitHub Release。如果不存在，它会创建一个包含更新日志说明的 Release 页面，并将包上传。如果已存在附件，会直接覆盖更新。
+当推送 Tag 后，GitHub Actions 流水线会自动触发，在云端拉取依赖、自动配置 Godot 4.5.1 Mono 编译器与导出模板进行构建，并将最终的 `.zip` 附件自动关联并上传至对应的 GitHub Release 页面中，无须本地手动执行任何打包或上传命令。
