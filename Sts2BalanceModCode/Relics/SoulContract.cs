@@ -19,7 +19,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 public sealed class SoulContract : Sts2RelicModel
 {
     public override string FlashSfx => "event:/sfx/ui/relic_activate_general";
-    public override RelicRarity Rarity => RelicRarity.Rare;
+    public override RelicRarity Rarity => RelicRarity.Ancient;
 
     public override bool HasUponPickupEffect => true;
 
@@ -32,15 +32,15 @@ public sealed class SoulContract : Sts2RelicModel
             return;
 
         // 扣除最大生命上限 10% 的代价
-        var maxHp = (int)Owner.Creature.MaxHp;
-        var hpLoss = (int)System.Math.Round(maxHp * 0.1);
-        var newMaxHp = maxHp - hpLoss;
+        int maxHp = Owner.Creature.MaxHp;
+        int hpLoss = (int)Math.Round(maxHp * 0.1);
+        int newMaxHp = maxHp - hpLoss;
         if (newMaxHp < 1)
             newMaxHp = 1; // 至少保留 1 点最大生命值
         await CreatureCmd.SetMaxHp(Owner.Creature, newMaxHp);
 
         // 给一张有消耗的牌去除消耗
-        var soulsPowerEnch = ModelDb.Enchantment<SoulsPower>();
+        SoulsPower soulsPowerEnch = ModelDb.Enchantment<SoulsPower>();
         var prefs = new CardSelectorPrefs(
           new LocString("card_selection", "TO_ENCHANT"), 1)
         {
@@ -48,8 +48,8 @@ public sealed class SoulContract : Sts2RelicModel
             RequireManualConfirmation = true,
         };
 
-        var selectedCards = await CardSelectCmd.FromDeckForEnchantment(Owner, soulsPowerEnch, 1, prefs);
-        foreach (var card in selectedCards)
+        IEnumerable<CardModel> selectedCards = await CardSelectCmd.FromDeckForEnchantment(Owner, soulsPowerEnch, 1, prefs);
+        foreach (CardModel card in selectedCards)
         {
             CardCmd.Enchant(soulsPowerEnch.ToMutable(), card, 0);
             CardCmd.Preview(card);
