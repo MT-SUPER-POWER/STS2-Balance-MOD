@@ -6,18 +6,19 @@
 ## Build & Verify
 
 ```powershell
-dotnet build                              # 编译（Debug 自动拷贝 dll/json/pck 到游戏 mods/ 目录）
-dotnet publish -c Release                 # 发布到 dist/Sts2BalanceMod/
-./Hooks/release.ps1 -Version 0.0.X -Build # 仅打包（dotnet publish → zip）
+dotnet build                              # 编译（Debug 自动拷贝 dll/json/pck 到游戏 mods/ 目录，同时自动从本地游戏 DLL 更新 libs/ 目录下的 API Stub）
+dotnet publish -c Release                 # 本地发布编译到 dist/Sts2BalanceMod/（仅限本地发布验证，正式发布由 CI/CD 自动进行）
 ```
 
 **前置**：`Sts2PathDiscovery.props` 自动检测游戏路径；`Directory.Build.props` 需配置 `GodotPath`（PCK 导出需要 Godot 4.5.1 mono 命令行）。该文件在 `.gitignore` 中。
 
 **PCK 导出**：由 `.csproj` 的 `GodotExportPckOnBuild` target 自动触发，仅资源有变动时重新导出。Release 构建如缺少 PCK 会报错。
 
-**没有单元测试**，因为是三方 mod 的缘故，没办法做 godot 测试
+**API Stub 自动同步**：由 `.csproj` 的 `UpdateStubDlls` target 自动触发。本地开发编译时，若本地游戏 DLL 存在，会自动使用 `refasmer` 重新剥离 API Stub DLL 输出到 `libs/`，确保提交后 CI/CD 能永远获得匹配的 API。
+
+**没有单元测试**，因为是三方 mod 的缘故，没办法做 godot测试
 - 只能够输出检查 `godot.log` 日志文件的内容，具体日志位置在[调试](AGENTS.md#调试)中有说明。
-- 或者使用 `donet build` 检查报错信息。
+- 或者使用 `dotnet build` 检查报错信息。
 <!-- BUILD_END -->
 
 
@@ -79,11 +80,16 @@ uv run rest-site-options smoke.png            # 火堆选项图标（256×169）
 <!-- RELEASE_START -->
 ## 发布流程
 
-1. 更新 `CHANGELOG.md`（`# vX.X.X` 格式，推送 Tag 后 Actions 自动创建 Release）
-2. `git tag vX.X.X && git push origin main vX.X.X`
-3. `.\Hooks\release.ps1 -Version X.X.X -Build -Upload`（本机打包 + 上传 zip）
-
-`Sts2BalanceMod.json` 中的 `version` 需同步更新（运行 `release.ps1 -Version X.X.X -UpdateJson`）。
+1. 更新 `Sts2BalanceMod.json` 中的 `version` 字段为目标版本号 `vX.X.X`。
+2. 在 `CHANGELOG.md` 中以 `# vX.X.X` 的格式追加该版本的变更内容。
+3. 提交改动并打上对应版本号的 Git Tag，然后推送至远程仓库：
+   ```bash
+   git add .
+   git commit -m "chore: release vX.X.X"
+   git tag vX.X.X
+   git push origin <当前分支> vX.X.X
+   ```
+4. 推送后，GitHub Actions 会在云端自动拉取依赖、还原 API Stub DLL 编译、使用 Godot Mono Headless 导出 PCK，并最终将打包好的 ZIP 发布到 Release 页面中，无须本地手动打包上传。
 <!-- RELEASE_END -->
 
 <!-- HARMONY_PATCH_START -->
