@@ -27,22 +27,22 @@
     <ItemGroup Condition="Exists('$(Sts2DataDir)')" >
         <Reference Include="0Harmony">
             <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
-            <Private>false</Private>
+            <Private>true</Private>
         </Reference>
         <Reference Include="sts2">
             <HintPath>$(Sts2DataDir)/sts2.dll</HintPath>
-            <Private>false</Private>
+            <Private>true</Private>
         </Reference>
     </ItemGroup>
 
     <ItemGroup Condition="!Exists('$(Sts2DataDir)')">
         <Reference Include="0Harmony">
             <HintPath>$(MSBuildProjectDirectory)/libs/0Harmony.dll</HintPath>
-            <Private>false</Private>
+            <Private>true</Private>
         </Reference>
         <Reference Include="sts2">
             <HintPath>$(MSBuildProjectDirectory)/libs/sts2.dll</HintPath>
-            <Private>false</Private>
+            <Private>true</Private>
         </Reference>
     </ItemGroup>
 
@@ -130,7 +130,7 @@
         <Delete Files="$(ModOutputDir)$(MSBuildProjectName).pck" />
         <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;$(MSBuildProjectName)&quot; &quot;$(ModOutputDir)$(MSBuildProjectName).pck&quot;"
               EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
-              ContinueOnError="WarnAndContinue" />
+              IgnoreExitCode="true" />
         <Error Text="Godot export did not produce PCK: $(ModOutputDir)$(MSBuildProjectName).pck"
                Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).pck')" />
     </Target>
@@ -150,7 +150,7 @@
         <Delete Files="$(ModOutputDir)$(MSBuildProjectName).pck" />
         <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;$(MSBuildProjectName)&quot; &quot;$(ModOutputDir)$(MSBuildProjectName).pck&quot;"
             EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
-            ContinueOnError="WarnAndContinue" />
+            IgnoreExitCode="true" />
         <Error Text="Godot export did not produce PCK: $(ModOutputDir)$(MSBuildProjectName).pck"
             Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).pck')" />
     </Target>

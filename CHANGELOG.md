@@ -24,6 +24,12 @@
 - 新增 `.editorconfig`：统一 C# 12 代码风格规则（缩进、换行、命名等），与 `dotnet format` 配合
 - 新增 `.github/workflows/lint.yml`：PR 自动触发 `dotnet format --verify-no-changes` 格式检查，不通过时在 PR 上留评论说明修复方式
 - 新增 `.github/workflows/ai-review.yml`：PR 自动调用 Gemini Flash API 进行 AI 代码审查，重点关注 Harmony Patch 正确性、逻辑 Bug 和性能问题，审查结果以中文评论形式发布到 PR 页面
+- 优化构建与打包流程：
+  - 在 `Assets/`、`tests/`、`image_gen/`、`libs/`、`dist/` 目录下添加 `.gdignore` 文件，防止 Godot 扫描这些开发/测试辅助目录，彻底消除 36 个重复的 UID 警告
+  - 更新 `project.godot` 中的 `config/icon` 资源路径为有效的 `res://Sts2BalanceMod/mod_image.png`，消除 Unrecognized UID 警告
+  - 将 `Sts2BalanceMod.csproj` 中 `0Harmony` 与 `sts2` 依赖的 `Private` 属性设为 `true`，确保生成正确的 `.deps.json` 并在编译时复制到输出目录，消除 `.NET: Failed to load project assembly` 错误警告
+  - 为 `Sts2BalanceMod.csproj` 中 Godot Headless 导出 Exec 任务设置 `IgnoreExitCode="true"`，屏蔽 Godot 4.5.1 Mono 头显导出命令行退出时崩溃（Access Violation, 0xC0000005）产生的 MSB3073 干扰警告，实现编译/打包 0 错误、0 警告输出
+
 
 
 # v0.0.8.2-beta
