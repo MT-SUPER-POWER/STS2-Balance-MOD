@@ -6,6 +6,24 @@
 
 已完成的所有改动见 [README.md](../README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+
+# v0.0.9
+
+> [!note]
+>
+> Beta 分支正式作为主要分支合并到我们的 main 当中
+
+### Added
+
+- UI：采用中和作为 mod 的封面图
+
+### Chore
+
+- 新增 `.editorconfig`：统一 C# 12 代码风格规则（缩进、换行、命名等），与 `dotnet format` 配合
+- 新增 `.github/workflows/lint.yml`：PR 自动触发 `dotnet format --verify-no-changes` 格式检查，不通过时在 PR 上留评论说明修复方式
+- 新增 `.github/workflows/ai-review.yml`：PR 自动调用 Gemini Flash API 进行 AI 代码审查，重点关注 Harmony Patch 正确性、逻辑 Bug 和性能问题，审查结果以中文评论形式发布到 PR 页面
+
+
 # v0.0.8.2-beta
 
 ### Added
