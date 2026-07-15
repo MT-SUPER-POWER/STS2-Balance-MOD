@@ -30,7 +30,7 @@ public static class VakuuPoolPatch
 
         var genericMethod = method.MakeGenericMethod(typeof(SoulContract));
         // 必须传入对应的参数对象，反射调用不支持省略默认参数
-        if (genericMethod.Invoke(__instance, new object[] { "INITIAL", null }) is not EventOption soulContractOption)
+        if (genericMethod.Invoke(__instance, new object[] { "INITIAL", "" }) is not EventOption soulContractOption)
         {
             MainFile.Logger.Info("[VakuuPoolPatch] 调用 RelicOption<SoulContract> 失败");
             return;
