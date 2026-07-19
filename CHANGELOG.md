@@ -6,7 +6,24 @@
 
 已完成的所有改动见 [README.md](../README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
-# v0.10.0
+# v0.1.0
+
+### Added
+
+- 卡牌：新增战士罕见卡牌「进化」（Evolve）与对应能力「进化」（EvolvePower）（CARD-04）
+  - 效果：每当你抽到一张状态牌，抽 1（未升级）/ 2（升级）张牌。
+  - 资源：生成并配置了「进化」卡牌插图 `evolve.png` 及能力图标 `evolve_power.png`。
+- 本地化：补充了「进化」卡牌及能力的中文、英文、意大利文三语本地化翻译与说明。
+
+### Changed
+
+- 卡牌：战士卡牌「放血」（Bloodletting）稀有度由蓝卡（Uncommon）改回白卡（Common）（CARD-01）。
+- 卡牌：颜色无特定「创世之柱」（Pillar of Creation）平衡调整（CARD-02）
+  - 数值：护甲从原版的 5/8 调整为 3/4（通过 `BaseBlock = 3`，`UpgradeBlock = 1` 实现）。
+  - 效果：重构其 Power 逻辑，由“每回合首次生成卡牌时触发”修改为“每当你生成一张卡牌均获得格挡”。
+  - 描述：在 localization overrides 中重写了其三语描述以符合全新行为。
+- 卡池：将「残酷」（Cruelty）从战士卡池中过滤移除，实现用「进化」无缝替代「残酷」（CARD-03）。
+
 
 ### Fixed
 
