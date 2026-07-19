@@ -6,6 +6,12 @@
 
 已完成的所有改动见 [README.md](../README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+# v0.10.0
+
+### Fixed
+
+- 遗物：修复坚固夹子（SturdyClamp）因为 API 更新接口导致的错误
+
 
 # v0.0.9
 

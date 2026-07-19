@@ -49,6 +49,7 @@ cd STS2-Balance-MOD
 # 或者用 dotnet 命令行发布
 dotnet publish -c Release
 ```
+
 Release 构建产物位于 `dist/Sts2BalanceMod/`（dll + json + pck），打包后为 `dist/Sts2BalanceMod-vX.X.X.zip`；Debug 构建仍自动拷贝到游戏 `mods/` 目录（前提是你在 `Directory.Build.props` 中正确配置了路径）。
 
 **CI/CD 自动发布**：
@@ -107,16 +108,9 @@ Release 构建产物位于 `dist/Sts2BalanceMod/`（dll + json + pck），打包
 
 ### 怪物与 Boss
 
-> [!note]
->
-> 注意：在 Beta 分支中，三层的 BOSS 为永世沙漏（MON-01），时间吞噬者 Boss (MON-02/03) 在主分支，后续可能会废除，因为沙漏现有的机制还是可以接受的
-
-
 | 名称 | 编号 | 原版机制 | MOD 改后机制 |
 | :--- | :--- | :--- | :--- |
 | **永世沙漏** | MON-01 | 永世沙漏 Boss 生成的凋零卡无法打出，直接进入消耗堆。 | 凋零卡可以**1c打出并消耗**，保留成长机制。 |
-| **时间吞噬者** | MON-02 / MON-03 | - | 替换三层永世沙漏 Boss 候选；时间扭曲触发时有**时钟弹出视觉效果**；多人模式血量按玩家数放大、TimeWarp 计数同步调整。 |
-
 
 ### 事件
 
