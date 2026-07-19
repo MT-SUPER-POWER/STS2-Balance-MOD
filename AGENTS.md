@@ -96,7 +96,7 @@ uv run rest-site-options smoke.png            # 火堆选项图标（256×169）
 ## Harmony Patch 约束
 
 - 优先 Postfix > Prefix > Transpiler
-- Patch 目标方法先用反编译源码验证（`D:\Game\Godot\StS2-Code`）
+- Patch 目标方法先用反编译源码验证（`D:\Game\Sts2Code`）
 - 每个 Patch 必须注明目标类型、方法、修改原因和依赖反编译细节的警告
 - **不要直接修改反编译源码**
 <!-- HARMONY_PATCH_END -->
