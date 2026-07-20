@@ -162,7 +162,7 @@
         <Error Text="Missing release json: $(ModOutputDir)$(MSBuildProjectName).json"
             Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).json')" />
         <Error Text="Missing release pck: $(ModOutputDir)$(MSBuildProjectName).pck. Check Godot export logs and Sts2BalanceMod.sln."
-            Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).pck')" />
+            Condition="'$(SkipGodotExport)' != 'true' and !Exists('$(ModOutputDir)$(MSBuildProjectName).pck')" />
     </Target>
 
     <!-- 本地开发时自动剥离并更新 libs/ 下的 API Stub DLL，保证 CI 编译使用的 Stub 与本地完全同步 -->
