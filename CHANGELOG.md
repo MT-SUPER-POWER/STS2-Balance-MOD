@@ -17,6 +17,9 @@
 
 ### Changed
 
+- 遗物：遗物「诅咒钥匙」（Curse Key）调整为单人模式专用遗物（RELIC-01）。
+  - 联机限制：当处于多人联机模式下（`Players.Count > 1`），自动从 `EventRelicPool` 和 `SharedRelicPool` 中过滤并移除，使其无法在联机中被获取。
+  - 跳过宝箱：在单人模式下，通过 Harmony 补丁拦截宝箱房的 `Proceed` 继续按钮，使其在未开启宝箱时也强制显示并可用，允许玩家直接选择“Proceed”离开以跳过宝箱，规避钥匙诅咒。
 - 卡牌：战士卡牌「放血」（Bloodletting）稀有度由蓝卡（Uncommon）改回白卡（Common）（CARD-01）。
 - 卡牌：颜色无特定「创世之柱」（Pillar of Creation）平衡调整（CARD-02）
   - 数值：护甲从原版的 5/8 调整为 3/4（通过 `BaseBlock = 3`，`UpgradeBlock = 1` 实现）。
