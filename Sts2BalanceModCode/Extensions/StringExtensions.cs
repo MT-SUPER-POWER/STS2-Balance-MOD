@@ -86,4 +86,9 @@ public static class StringExtensions
         MainFile.Logger.Info("Could not find event image path: " + path);
         return Path.Join(MainFile.ResPath, "images", "events", "event.png");
     }
+
+    public static string EncounterImagePath(this string path)
+    {
+        return Path.Join(MainFile.ResPath, "images", "encounters", path);
+    }
 }
