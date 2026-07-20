@@ -60,13 +60,13 @@ jobs:
 
       - name: Compile & Publish
         run: |
-          # 执行编译并传入下载的 Godot 路径以生成 pck，并启用 CI 编译跳过本地依赖检查
-          dotnet publish -c Release /p:GodotPath=$(pwd)/godot /p:ContinuousIntegrationBuild=true
+          # 编译并发布到 dist/，跳过 Godot PCK 导出（后续步骤单独处理）
+          dotnet publish -c Release /p:ContinuousIntegrationBuild=true /p:SkipGodotExport=true
 
-      - name: Debug Godot build
+      - name: Export PCK
         continue-on-error: true
         run: |
-          ./godot --headless --build-solutions --verbose 2>&1
+          ./godot --headless --export-pack "Sts2BalanceMod" "$(pwd)/dist/Sts2BalanceMod/Sts2BalanceMod.pck" 2>&1
 
       - name: Verify outputs
         run: |
