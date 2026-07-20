@@ -21,5 +21,8 @@
   "STS2BALANCEMOD-RAM.title": "Ram",
   "STS2BALANCEMOD-RAM.description": "If [gold]Osty[/gold] has at least {HpLoss:diff()} HP, make it lose {HpLoss:diff()} HP and deal {Damage:diff()} damage to all enemies.",
   "DRAIN_POWER.description": "Deal {Damage:diff()} damage. Upgrade {IfUpgraded:show:all|{Cards:diff()} random} cards in your discard pile.",
-  "PULL_AGGRO.description": "Summon [gold]Osty[/gold] with {Summon:diff()} HP. Gain {Block:diff()} [gold]Block[/gold]."
+  "PULL_AGGRO.description": "Summon [gold]Osty[/gold] with {Summon:diff()} HP. Gain {Block:diff()} [gold]Block[/gold].",
+  "STS2BALANCEMOD-EVOLVE.title": "Evolve",
+  "STS2BALANCEMOD-EVOLVE.description": "Whenever you draw a Status card, draw {EvolvePower:diff()} {EvolvePower:plural:card|cards}.",
+  "PILLAR_OF_CREATION.description": "Whenever you generate a card, gain {Block:diff()} [gold]Block[/gold]."
 }

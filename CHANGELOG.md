@@ -6,30 +6,40 @@
 
 已完成的所有改动见 [README.md](../README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
-
-# v0.0.9
-
-> [!note]
->
-> Beta 分支正式作为主要分支合并到我们的 main 当中
+# v0.1.0
 
 ### Added
 
+- 卡牌：新增战士罕见卡牌「进化」（Evolve）与对应能力「进化」（EvolvePower）（CARD-04）
+  - 效果：每当你抽到一张状态牌，抽 1（未升级）/ 2（升级）张牌。
+  - 资源：生成并配置了「进化」卡牌插图 `evolve.png` 及能力图标 `evolve_power.png`。
+- 本地化：补充了「进化」卡牌及能力的中文、英文、意大利文三语本地化翻译与说明。
 - UI：采用中和作为 mod 的封面图
 - 遗物：为新增遗物「灵魂契约」（SoulContract）添加限制补丁，使其仅出现在先古之民「瓦库」（Vakuu）的专属遗物池中。此外，拦截 Vakuu 的 `Pool1` 选项，固定让该遗物出现在第一选项，且当且仅当玩家卡组中拥有包含消耗（Exhaust）属性的卡牌时才出现该选项。
 
+### Changed
+
+- 遗物：诅咒钥匙（CurseKey）跳过宝箱功能重构 + 诅咒时机调整（RELIC-01）
+  - 移除独立跳过按钮，复用 ProceedButton，开箱前显示”跳过宝箱”+ 图标，点击后直接离开；开箱后恢复原生行为。
+  - 诅咒改为选完遗物后生成（`UpdateText(ProceedLoc)` 时），而非开箱瞬间。
+  - 选遗物时文字残留 Skip 修复、地图返回黑屏修复。`SkipLoc` 改为 `gameplay_ui.json`。
+- 卡牌：战士卡牌「放血」（Bloodletting）稀有度由蓝卡（Uncommon）改回白卡（Common）（CARD-01）。
+- 卡牌：颜色无特定「创世之柱」（Pillar of Creation）平衡调整（CARD-02）
+  - 数值：护甲从原版的 5/8 调整为 3/4（通过 `BaseBlock = 3`，`UpgradeBlock = 1` 实现）。
+  - 效果：重构其 Power 逻辑，由”每回合首次生成卡牌时触发”修改为”每当你生成一张卡牌均获得格挡”。
+  - 描述：在 localization overrides 中重写了其三语描述以符合全新行为。
+- 卡池：将「残酷」（Cruelty）从战士卡池中过滤移除，实现用「进化」无缝替代「残酷」（CARD-03）。
 
 ### Chore
 
 - 新增 `.editorconfig`：统一 C# 12 代码风格规则（缩进、换行、命名等），与 `dotnet format` 配合
-- 新增 `.github/workflows/lint.yml`：PR 自动触发 `dotnet format --verify-no-changes` 格式检查，不通过时在 PR 上留评论说明修复方式
-- 新增 `.github/workflows/ai-review.yml`：PR 自动调用 Gemini Flash API 进行 AI 代码审查，重点关注 Harmony Patch 正确性、逻辑 Bug 和性能问题，审查结果以中文评论形式发布到 PR 页面
-- 优化构建与打包流程：
-  - 在 `Assets/`、`tests/`、`image_gen/`、`libs/`、`dist/` 目录下添加 `.gdignore` 文件，防止 Godot 扫描这些开发/测试辅助目录，彻底消除 36 个重复的 UID 警告
-  - 更新 `project.godot` 中的 `config/icon` 资源路径为有效的 `res://Sts2BalanceMod/mod_image.png`，消除 Unrecognized UID 警告
-  - 将 `Sts2BalanceMod.csproj` 中 `0Harmony` 与 `sts2` 依赖的 `Private` 属性设为 `true`，确保生成正确的 `.deps.json` 并在编译时复制到输出目录，消除 `.NET: Failed to load project assembly` 错误警告
-  - 为 `Sts2BalanceMod.csproj` 中 Godot Headless 导出 Exec 任务设置 `IgnoreExitCode="true"`，屏蔽 Godot 4.5.1 Mono 头显导出命令行退出时崩溃（Access Violation, 0xC0000005）产生的 MSB3073 干扰警告，实现编译/打包 0 错误、0 警告输出
+- 新增 `.github/workflows/lint.yml`：PR 自动触发 `dotnet format --verify-no-changes` 格式检查
+- 新增 `.github/workflows/ai-review.yml`：PR 自动调用 Gemini Flash API 进行 AI 代码审查
+- 优化构建与打包流程：消除 36 个重复 UID 警告、Unrecognized UID 警告、`.NET: Failed to load project assembly` 错误警告、Godot 导出崩溃 MSB3073 干扰警告，实现编译/打包 0 错误、0 警告输出
 
+### Fixed
+
+- 遗物：修复坚固夹子（SturdyClamp）因为 API 更新接口导致的错误
 
 
 # v0.0.8.2-beta
