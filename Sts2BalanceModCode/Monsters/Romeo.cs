@@ -98,12 +98,13 @@ public sealed class Romeo : Sts2MonsterModel
     return log[^1].Id == moveId && log[^2].Id == moveId;
   }
 
-  private async Task Mock(IReadOnlyList<Creature> targets)
+  private Task Mock(IReadOnlyList<Creature> targets)
   {
     var bearAlive = Creature.CombatState?.GetTeammatesOf(Creature)
       .Any(t => t != Creature && t.IsAlive && t.Monster is Bear) == true;
     var line = bearAlive ? MockBearAliveLine : MockBearDeadLine;
     TalkCmd.Play(line, Creature, VfxColor.Red, VfxDuration.Long);
+    return Task.CompletedTask;
   }
 
   private async Task CrossSlash(IReadOnlyList<Creature> targets)

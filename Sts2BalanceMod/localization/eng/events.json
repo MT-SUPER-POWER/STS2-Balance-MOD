@@ -136,5 +136,11 @@
   "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_2.description": "Hey [blue]Bear,[/blue] hey!\nThis guy gave us all his [gold]gold![/gold] What a sucker, right?\nGet this, I just had to ask nicely. Who knew?!\nI certainly didn't! What a chump!",
   "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_2.options.CONTINUE.title": "Continue",
   "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_2.options.CONTINUE.description": "",
-  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_3.description": "Gang, let's all have a laugh for this wondrous occasion!\n[jitter]Hahaah[/jitter]\n[jitter]Ho[/jitter] [jitter]HOH[/jitter] [sine]hoho![/sine]\n[sine]Hoh![/sine]"
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_3.description": "Gang, let's all have a laugh for this wondrous occasion!\n[jitter]Hahaah[/jitter]\n[jitter]Ho[/jitter] [jitter]HOH[/jitter] [sine]hoho![/sine]\n[sine]Hoh![/sine]",
+  "BUGSLAYER.pages.INITIAL.options.LEAVE.title": "Leave",
+  "BUGSLAYER.pages.INITIAL.options.LEAVE.description": "",
+  "BUGSLAYER.pages.LEAVE.description": "You decide not to mess with the bugs and walk away.",
+  "TINKER_TIME.pages.INITIAL.options.LEAVE.title": "Leave",
+  "TINKER_TIME.pages.INITIAL.options.LEAVE.description": "",
+  "TINKER_TIME.pages.LEAVE.description": "Science often carries risks. You decide to abort the experiment and leave."
 }

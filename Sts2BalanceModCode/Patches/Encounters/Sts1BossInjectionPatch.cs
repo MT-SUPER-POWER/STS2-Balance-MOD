@@ -1,4 +1,4 @@
-using HarmonyLib;
+/* using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Models.Encounters;
@@ -39,3 +39,4 @@ public static class Sts1BossInjectionPatch
     return encounters.Select(encounter => encounter is AeonglassBoss ? timeEater : encounter).ToList();
   }
 }
+*/

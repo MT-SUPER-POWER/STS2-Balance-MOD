@@ -1,7 +1,5 @@
-name: Release Notes
+name: Release Mod
 
-# 推送 Tag 时自动创建 Release，并从 CHANGELOG.md 写入对应版本说明。
-# Mod 安装包由本机 Hooks/release.ps1 构建后上传。
 on:
   push:
     tags:
@@ -12,9 +10,10 @@ permissions:
 
 env:
   MOD_NAME: Sts2BalanceMod
+  GODOT_VERSION: 4.5.1
 
 jobs:
-  release-notes:
+  build-and-release:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,11 +25,58 @@ jobs:
         shell: pwsh
         run: |
           $tag = $env:GITHUB_REF_NAME
-          if ($tag -notmatch '^v(?<ver>[0-9]+(\.[0-9]+)+)$') {
-            throw "Tag 格式应为 v0.0.4 或 v0.0.4.1，当前: $tag"
+          if ($tag -notmatch '^v(?<ver>[0-9]+(\.[0-9]+)+(-[a-zA-Z0-9.-]+)?)$') {
+            throw "Tag 格式应为 vx.x.x，当前: $tag"
           }
           "tag=$tag" >> $env:GITHUB_OUTPUT
           "version=$($Matches['ver'])" >> $env:GITHUB_OUTPUT
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Setup Godot Mono and Export Templates
+        run: |
+          # 1. 下载并安装 Godot Mono Headless 编译器
+          wget -q https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_mono_linux_x86_64.zip
+          unzip -q Godot_v${{ env.GODOT_VERSION }}-stable_mono_linux_x86_64.zip
+          mv Godot_v${{ env.GODOT_VERSION }}-stable_mono_linux_x86_64/Godot_v${{ env.GODOT_VERSION }}-stable_mono_linux.x86_64 godot
+          mv Godot_v${{ env.GODOT_VERSION }}-stable_mono_linux_x86_64/GodotSharp .
+          
+          # 2. 下载并安装导出模板（导出 PCK 所需）
+          wget -q https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_mono_export_templates.tpz
+          unzip -q Godot_v${{ env.GODOT_VERSION }}-stable_mono_export_templates.tpz -d /tmp/templates
+          mkdir -p ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable.mono
+          mv /tmp/templates/templates/* ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable.mono/
+          
+          # 3. 将 godot 添加到 PATH
+          echo "$(pwd)" >> $GITHUB_PATH
+
+      - name: Update version in mod json
+        shell: pwsh
+        run: |
+          ./Hooks/release.ps1 -Version '${{ steps.version.outputs.version }}' -UpdateJson
+
+      - name: Compile & Publish
+        run: |
+          # 执行编译并传入下载的 Godot 路径以生成 pck，并启用 CI 编译跳过本地依赖检查
+          dotnet publish -c Release /p:GodotPath=$(pwd)/godot /p:ContinuousIntegrationBuild=true
+
+      - name: Verify outputs
+        run: |
+          # 验证构建产物是否存在
+          ls -la dist/Sts2BalanceMod
+          if [ ! -f "dist/Sts2BalanceMod/Sts2BalanceMod.dll" ] || [ ! -f "dist/Sts2BalanceMod/Sts2BalanceMod.json" ] || [ ! -f "dist/Sts2BalanceMod/Sts2BalanceMod.pck" ]; then
+            echo "Error: Missing required build output files."
+            exit 1
+          fi
+
+      - name: Compress Release Archive
+        shell: pwsh
+        run: |
+          Compress-Archive -Path "dist/Sts2BalanceMod/*" -DestinationPath "dist/Sts2BalanceMod-v${{ steps.version.outputs.version }}.zip" -Force
+          ls -la dist/
 
       - name: Extract changelog
         shell: pwsh
@@ -42,11 +88,12 @@ jobs:
           Get-Content release_notes.md
           Write-Host "---------------------------------"
 
-      - name: Create GitHub Release
+      - name: Create GitHub Release and Upload Asset
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.tag }}
           name: ${{ env.MOD_NAME }} ${{ steps.version.outputs.tag }}
           body_path: release_notes.md
+          files: dist/Sts2BalanceMod-v${{ steps.version.outputs.version }}.zip
           generate_release_notes: false
           make_latest: true

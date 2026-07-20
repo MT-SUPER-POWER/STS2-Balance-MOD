@@ -1,0 +1,148 @@
+name: AI Code Review (Gemini)
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  ai-review:
+    name: AI PR Review
+    runs-on: ubuntu-latest
+    # 仅在非 fork PR 上运行（fork PR 无法访问 secrets）
+    if: github.event.pull_request.head.repo.full_name == github.repository
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # 需要完整历史以生成 diff
+
+      - name: Get PR diff
+        id: diff
+        run: |
+          # 获取本次 PR 的完整 diff（限制 8000 字符防止超出 token 限制）
+          git diff origin/${{ github.base_ref }}...HEAD -- '*.cs' > diff.txt
+          DIFF=$(cat diff.txt | head -c 8000)
+          echo "diff<<EOF" >> $GITHUB_OUTPUT
+          echo "$DIFF" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Call Gemini API for review
+        id: review
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          DIFF=$(cat diff.txt | head -c 8000)
+
+          # 如果没有 CS 文件变更，跳过审查
+          if [ -z "$DIFF" ]; then
+            echo "no_cs_changes=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          PROMPT="你是一个专业的 C# 代码审查助手，正在审查《杀戮尖塔2》Mod 项目（使用 Harmony 补丁框架）的 Pull Request。
+
+PR 标题：${PR_TITLE}
+PR 描述：${PR_BODY}
+
+请审查以下代码变更，重点关注：
+1. **Harmony Patch 正确性**：Prefix/Postfix/Transpiler 用法是否合理，目标方法是否存在风险
+2. **逻辑 Bug**：潜在的空引用、类型转换错误、边界条件
+3. **性能问题**：不必要的循环、频繁分配等
+4. **游戏平衡性**：数值变更是否合理（如有）
+5. **代码风格**：是否符合项目规范
+
+请用中文回复，格式如下（如某类问题没有则省略该节）：
+
+## 🤖 AI 代码审查
+
+### ✅ 总体评价
+（一句话总结）
+
+### 🐛 潜在问题
+- （问题描述，引用具体行号或代码片段）
+
+### ⚡ 性能建议
+- （建议内容）
+
+### 💡 改进建议
+- （可选改进，非阻断性）
+
+### 📝 小结
+（综合评价，是否可以合并）
+
+---
+代码变更如下：
+\`\`\`diff
+${DIFF}
+\`\`\`"
+
+          # 调用 Gemini 1.5 Flash（免费额度：每分钟15次，每天1500次）
+          RESPONSE=$(curl -s \
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"contents\": [{
+                \"parts\": [{\"text\": $(echo "$PROMPT" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))')}]
+              }],
+              \"generationConfig\": {
+                \"temperature\": 0.3,
+                \"maxOutputTokens\": 2048
+              }
+            }")
+
+          # 提取 text 内容
+          REVIEW_TEXT=$(echo "$RESPONSE" | python3 -c "
+          import json, sys
+          data = json.load(sys.stdin)
+          try:
+              text = data['candidates'][0]['content']['parts'][0]['text']
+              print(text)
+          except (KeyError, IndexError) as e:
+              print('AI 审查暂时不可用，请稍后重试。')
+              print(f'错误详情: {e}')
+          ")
+
+          echo "review<<EOF" >> $GITHUB_OUTPUT
+          echo "$REVIEW_TEXT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Post review comment
+        if: steps.review.outputs.no_cs_changes != 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const review = `${{ steps.review.outputs.review }}`;
+            const footer = '\n\n---\n*由 Gemini AI 自动生成，仅供参考，请结合实际情况判断。*';
+
+            // 查找并删除之前的 bot 评论（避免重复）
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            for (const comment of comments.data) {
+              if (comment.user.type === 'Bot' && comment.body.includes('🤖 AI 代码审查')) {
+                await github.rest.issues.deleteComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: comment.id,
+                });
+              }
+            }
+
+            // 发布新审查评论
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: review + footer,
+            });

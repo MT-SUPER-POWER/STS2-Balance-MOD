@@ -35,7 +35,7 @@ public sealed class DeadBranch : Sts2RelicModel
           .Distinct();
     }
 
-    return new[] { Owner.Character.CardPool };
+    return [Owner.Character.CardPool];
   }
 
   private CardModel GenerateRandomCard()
@@ -57,6 +57,6 @@ public sealed class DeadBranch : Sts2RelicModel
 
     Flash();    // NOTE: 让遗物闪烁一下
 
-    await CardPileCmd.AddGeneratedCardToCombat(GenerateRandomCard(), PileType.Hand, Owner);
+    await CardPileCmd.AddGeneratedCardToCombat(newGeneratedCard, PileType.Hand, Owner);
   }
 }

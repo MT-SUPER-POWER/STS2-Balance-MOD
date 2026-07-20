@@ -16,5 +16,8 @@
   "STS2BALANCEMOD-SHARP_HIDE_POWER.smartDescription": "When attacked, deals {Amount} damage back.",
   "STS2BALANCEMOD-SPLIT_POWER.title": "Split",
   "STS2BALANCEMOD-SPLIT_POWER.description": "When HP is [gold]50%[/gold] or below, splits into 2 smaller slimes, each inheriting the current HP.",
-  "STS2BALANCEMOD-SPLIT_POWER.smartDescription": "When HP is [gold]50%[/gold] or below, splits into 2 smaller slimes, each inheriting the current HP."
+  "STS2BALANCEMOD-SPLIT_POWER.smartDescription": "When HP is [gold]50%[/gold] or below, splits into 2 smaller slimes, each inheriting the current HP.",
+  "STS2BALANCEMOD-STEP_BY_STEP_POWER.title": "Passo dopo Passo",
+  "STS2BALANCEMOD-STEP_BY_STEP_POWER.description": "All'inizio del tuo turno, pesca [blue]1[/blue] carta aggiuntiva e ottieni [blue]1[/blue] {energyPrefix:energyIcons(1)} aggiuntivo. Dura {Amount} turni.",
+  "STS2BALANCEMOD-STEP_BY_STEP_POWER.smartDescription": "All'inizio del tuo turno, pesca [blue]1[/blue] carta aggiuntiva e ottieni [blue]1[/blue] {energyPrefix:energyIcons(1)} aggiuntivo per altri {Amount} turni."
 }

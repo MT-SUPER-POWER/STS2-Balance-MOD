@@ -43,5 +43,15 @@
   "STS2BALANCEMOD-MUTAGENIC_STRENGTH.flavor": "Residual power from a genetic experiment.",
   "STS2BALANCEMOD-DWARF_ANVIL.title": "Dwarf Anvil",
   "STS2BALANCEMOD-DWARF_ANVIL.description": "On pickup, choose 3 cards. Each chosen card permanently costs 1 less {Energy:energyIcons()}.",
-  "STS2BALANCEMOD-DWARF_ANVIL.flavor": "A compact anvil from deep within the Spire, radiating a faint blue heat."
+  "STS2BALANCEMOD-DWARF_ANVIL.flavor": "A compact anvil from deep within the Spire, radiating a faint blue heat.",
+  "STS2BALANCEMOD-WRIST_BLADE.title": "Wrist Blade",
+  "STS2BALANCEMOD-WRIST_BLADE.description": "Attacks that cost 0 deal [blue]{Damage}[/blue] additional damage.",
+  "STS2BALANCEMOD-WRIST_BLADE.flavor": "Handy for assassinations.",
+  "STS2BALANCEMOD-HOVERING_KITE.title": "Hovering Kite",
+  "STS2BALANCEMOD-HOVERING_KITE.description": "The first time you discard a card each turn, gain {Energy:energyIcons()}.",
+  "STS2BALANCEMOD-HOVERING_KITE.flavor": "The Kite floats around you in battle, propelled by a mysterious force.",
+  "STS2BALANCEMOD-SOUL_CONTRACT.title": "Soul Contract",
+  "STS2BALANCEMOD-SOUL_CONTRACT.description": "On pickup, lose [red]10%[/red] of your Max HP. Choose [blue]1[/blue] card with [gold]Exhaust[/gold] in your deck to permanently remove [gold]Exhaust[/gold] from it.",
+  "STS2BALANCEMOD-SOUL_CONTRACT.flavor": "Trading a portion of your life force for eternal utility. A steep price, but non-negotiable."
 }
+

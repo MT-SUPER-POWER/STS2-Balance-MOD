@@ -12,5 +12,14 @@
   "STS2BALANCEMOD-NECRONOMICURSE.title": "Necronomicurse",
   "STS2BALANCEMOD-NECRONOMICURSE.description": "There is no escape from this [red]Curse[/red].",
   "WRAITH_FORM.description": "Gain {IntangiblePower:diff()} [gold]Intangible[/gold].",
-  "GLOW.description": "Gain {Stars:starIcons()}.\nDraw 2 cards."
+  "GLOW.description": "Gain {Stars:starIcons()}.\nDraw 2 cards.",
+  "FUEL.description": "Gain {Energy:energyIcons()}.\nDraw {Cards:diff()} {Cards:plural:card|cards}.",
+  "STS2BALANCEMOD-STEP_BY_STEP.title": "Step by Step",
+  "STS2BALANCEMOD-STEP_BY_STEP.description": "Spend {IfUpgraded:show:X+1|X} Energy. For the next {IfUpgraded:show:X+1|X} turns, draw [blue]1[/blue] additional card and gain {energyPrefix:energyIcons(1)} at the start of your turn.",
+  "STS2BALANCEMOD-SPARRING.title": "Sparring",
+  "STS2BALANCEMOD-SPARRING.description": "[gold]Osty[/gold] deals {OstyDamage:diff()} damage.\nDeal {Damage:diff()} damage. The side that deals less damage heals {Heal:diff()} HP.",
+  "STS2BALANCEMOD-RAM.title": "Ram",
+  "STS2BALANCEMOD-RAM.description": "If [gold]Osty[/gold] has at least {HpLoss:diff()} HP, make it lose {HpLoss:diff()} HP and deal {Damage:diff()} damage to all enemies.",
+  "DRAIN_POWER.description": "Deal {Damage:diff()} damage. Upgrade {IfUpgraded:show:all|{Cards:diff()} random} cards in your discard pile.",
+  "PULL_AGGRO.description": "Summon [gold]Osty[/gold] with {Summon:diff()} HP. Gain {Block:diff()} [gold]Block[/gold]."
 }

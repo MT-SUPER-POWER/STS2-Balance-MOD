@@ -84,7 +84,7 @@ public sealed class MindBloom : CustomEventModel
     bossEncounter = bossEncounter.ToMutable();
     bossEncounter.GenerateMonstersWithSlots(owner.RunState);
 
-    var mindBloomEncounter = (MindBloomBossEncounter)ModelDb.Encounter<MindBloomBossEncounter>().ToMutable();
+    var mindBloomEncounter = ModelDb.Encounter<MindBloomBossEncounter>();
     mindBloomEncounter.SetBoss(bossEncounter);
 
     var rareRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Rare)?.ToMutable();

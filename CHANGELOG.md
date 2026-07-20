@@ -2,9 +2,89 @@
 
 本文件记录 [Sts2BalanceMod](https://github.com/MT-SUPER-POWER/STS2-Balance-MOD) 的版本变更。
 
-每个版本以 `# vx.x.x` 为标题。推送 Tag 后 GitHub Actions 自动把该段写入 Release 说明；zip 附件由本机 `Hooks/release.ps1` 上传。
+每个版本以 `# vx.x.x` 为标题。推送 Tag 后 GitHub Actions 会自动在云端构建、打包，并将打包好的 zip 附件发布到对应的 Release 页面中，无须再本地手动上传。
 
 已完成的所有改动见 [README.md](../README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
+
+
+# v0.0.9
+
+> [!note]
+>
+> Beta 分支正式作为主要分支合并到我们的 main 当中
+
+### Added
+
+- UI：采用中和作为 mod 的封面图
+- 遗物：为新增遗物「灵魂契约」（SoulContract）添加限制补丁，使其仅出现在先古之民「瓦库」（Vakuu）的专属遗物池中。此外，拦截 Vakuu 的 `Pool1` 选项，固定让该遗物出现在第一选项，且当且仅当玩家卡组中拥有包含消耗（Exhaust）属性的卡牌时才出现该选项。
+
+
+### Chore
+
+- 新增 `.editorconfig`：统一 C# 12 代码风格规则（缩进、换行、命名等），与 `dotnet format` 配合
+- 新增 `.github/workflows/lint.yml`：PR 自动触发 `dotnet format --verify-no-changes` 格式检查，不通过时在 PR 上留评论说明修复方式
+- 新增 `.github/workflows/ai-review.yml`：PR 自动调用 Gemini Flash API 进行 AI 代码审查，重点关注 Harmony Patch 正确性、逻辑 Bug 和性能问题，审查结果以中文评论形式发布到 PR 页面
+- 优化构建与打包流程：
+  - 在 `Assets/`、`tests/`、`image_gen/`、`libs/`、`dist/` 目录下添加 `.gdignore` 文件，防止 Godot 扫描这些开发/测试辅助目录，彻底消除 36 个重复的 UID 警告
+  - 更新 `project.godot` 中的 `config/icon` 资源路径为有效的 `res://Sts2BalanceMod/mod_image.png`，消除 Unrecognized UID 警告
+  - 将 `Sts2BalanceMod.csproj` 中 `0Harmony` 与 `sts2` 依赖的 `Private` 属性设为 `true`，确保生成正确的 `.deps.json` 并在编译时复制到输出目录，消除 `.NET: Failed to load project assembly` 错误警告
+  - 为 `Sts2BalanceMod.csproj` 中 Godot Headless 导出 Exec 任务设置 `IgnoreExitCode="true"`，屏蔽 Godot 4.5.1 Mono 头显导出命令行退出时崩溃（Access Violation, 0xC0000005）产生的 MSB3073 干扰警告，实现编译/打包 0 错误、0 警告输出
+
+
+
+# v0.0.8.2-beta
+
+### Added
+
+- 事件：为「除虫者」（Bugslayer）事件初始选项新增「离开」分支，玩家可以安全离开而不用被迫选择卡牌。
+- 事件：为「科学怪人」（TinkerTime，对应 `MadScience.cs`）事件初始选项新增「离开」分支，玩家可以选择直接走开而无须被迫当实验对象。
+- 基础设施：在 `.csproj` 中增加了对 `BSchneppe.Sts2.ReferenceAssemblies` 和 `Lib.Harmony` 的条件引用，解决了在没有游戏文件的 CI 构建机上的编译依赖。
+- 基础设施：重构了 GitHub Actions 的 `release.yml` 流程。目前当推送 tag（如 `v0.0.8.2-beta`）时，云端自动下载并配置 Godot 4.5.1 Mono 命令行工具及导出模板，全自动完成打包与 zip 上传，实现全托管的 CI/CD 发布。
+
+### Fixed
+
+- 遗物：修复「枯木树枝」（DeadBranch）对回合结束时消耗的虚无牌生成新牌时，因重复调用生成函数导致新加入手牌没有正确获得保留（Retain）效果的 BUG。
+
+# v0.0.8.1-beta
+
+### Added
+
+- 遗物：新增 Hunter（Silent）专属罕见遗物「袖箭」（WristBlade）及其配套的中、英、意三语本地化与图标资源
+- 遗物：新增 Hunter（Silent）专属普通遗物「悬浮风筝」（HoveringKite）及其配套的中、英、意三语本地化与图标资源
+- 卡牌：新增 Necrobinder（骨妹）普通卡牌「猛撞」（Ram）及其配套的中、英、意三语本地化（CARD-11）
+- 卡牌：新增 Necrobinder（骨妹）卡牌「比试」（Sparring）及其配套的中、英、意三语本地化与卡牌立绘（CARD-10）
+- 基础设施：添加了 CodeGraph 相关的配置（如 Cursor/Gemini MCP、opencode、CLAUDE.md 等），方便在 Agent 中对项目源码进行快速索引和跳转
+- 基础设施：为 `image_gen` 中的所有图片处理脚本添加了命名规范化功能（驼峰/大写转下划线蛇形小写 `to_snake_case`），使输出的资源文件名自动匹配游戏内 `RemovePrefix().ToLowerInvariant()` 路径规则（例如 `DeathReap.png` 自动转换为 `death_reap.png`）
+
+
+### Changed
+
+- 卡牌：能量汲取（Drain Power / DRAIN_POWER）伤害从 10/12 调整为 6/8，升级后由“随机升级 3 张”改为“升级弃牌堆的所有牌”（CARD-01）
+- 卡牌：吸引仇恨（Pull Aggro / PULL_AGGRO）升级后属性调整为：召唤生命 6，格挡 9（CARD-02）
+- 卡牌：回调了「挽歌」（Dirge）的消耗（Exhaust），但是增加了升级后的保留属性
+
+### Fixed
+
+- 修复/清理：移除了无用的 Time Eater 资源文件，并修复了 Romeo 怪物类中 `Mock` 异步方法缺少 `await` 的编译警告（CS1998）
+- 修复：解决悬浮风筝（HoveringKite.cs）中因未对 Owner 或 Owner.Creature 进行空值校验而导致的潜在空引用解引用编译警告（CS8602）
+- 修复：解决心灵绽放（MindBloom）事件点击 Boss 战斗分支时，由于传入了已 calls `.ToMutable()` 的 mutable 遭遇模型，导致 `EnterCombatWithoutExitingEvent` 内部重复调用 `ToMutable()` 触发 `MutableModelException` 崩溃的问题。改为直接传递 canonical 遭遇模型。
+
+# v0.0.8-beta
+
+### Added
+
+- 卡牌：新增猎人金卡「步步为营」（StepByStep），X 费用消耗，后续 X 回合每回合 +1 抽 +1 能量（CARD-09）
+- 能力：新增 `StepByStepPower`，基于 `ClarityPower` + `EnergyNextTurnPower` 实现多回合持续效果
+- 能力图标：新增 `step_by_step_power.png` 大小图
+
+### Changed
+- BOSS：沙漏回归
+- CARD: 沙漏的凋零卡，改为可以用一费打出消耗
+- CARD: 鸡煲的压缩回调
+
+### Fixed
+- BUG：修复全神贯注的弃牌数量可选的问题
+
 
 # v0.0.7
 

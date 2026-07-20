@@ -136,5 +136,11 @@
   "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_2.description": "喂，[blue]熊[/blue]，喂！\n这家伙居然把他的 [gold]金币[/gold] 全都给我们了！太蠢了是吧？\n你猜怎么着？我只是好声好气地问了一下就拿到了，谁会知道啊？！\n我反正是不知道！真是个冤大头！",
   "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_2.options.CONTINUE.title": "继续",
   "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_2.options.CONTINUE.description": "",
-  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_3.description": "小的们，这么好的事儿，我们可得一起好好笑一笑！\n[jitter]哈哈哈[/jitter]\n[jitter]吼吼吼[/jitter] [sine]嚯嚯！[/sine]\n[sine]哗哈哈![/sine]"
+  "STS2BALANCEMOD-MASKED_BANDITS.pages.PAID_3.description": "小的们，这么好的事儿，我们可得一起好好笑一笑！\n[jitter]哈哈哈[/jitter]\n[jitter]吼吼吼[/jitter] [sine]嚯嚯！[/sine]\n[sine]哗哈哈![/sine]",
+  "BUGSLAYER.pages.INITIAL.options.LEAVE.title": "离开",
+  "BUGSLAYER.pages.INITIAL.options.LEAVE.description": "",
+  "BUGSLAYER.pages.LEAVE.description": "你决定不招惹这些昆虫，径直走开了。",
+  "TINKER_TIME.pages.INITIAL.options.LEAVE.title": "离开",
+  "TINKER_TIME.pages.INITIAL.options.LEAVE.description": "",
+  "TINKER_TIME.pages.LEAVE.description": "科学往往伴随着风险。你决定放弃这次试验，明智地离开了。"
 }
