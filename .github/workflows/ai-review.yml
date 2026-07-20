@@ -21,5 +21,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           LANGUAGE: "Chinese"
-          MODEL_CODE: "models/gemini-3.5-flash"
+          MODEL_CODE: "models/gemini-2.5-flash"
           EXCLUDE_PATHS: "**/*.md,**/*.txt,**/*.yml,**/*.yaml,**/*.json,package-lock.json,*.uid,*.import"

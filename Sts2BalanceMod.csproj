@@ -97,7 +97,7 @@
         <Folder Include="Sts2BalanceMod\images\relics\big\" />
     </ItemGroup>
 
-    <Target Name="CheckDependencyPaths" Condition="'$(ContinuousIntegrationBuild)' != 'true'">
+    <Target Name="CheckDependencyPaths" Condition="'$(ContinuousIntegrationBuild)' != 'true' and '$(IsInnerGodotExport)' == ''">
         <Error
             Text=" Slay the Spire 2 data not found at path '$(Sts2DataDir)'"
             Condition="'$(Sts2DataDir)' == '' or !Exists('$(Sts2DataDir)')" />
