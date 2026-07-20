@@ -63,6 +63,11 @@ jobs:
           # 执行编译并传入下载的 Godot 路径以生成 pck，并启用 CI 编译跳过本地依赖检查
           dotnet publish -c Release /p:GodotPath=$(pwd)/godot /p:ContinuousIntegrationBuild=true
 
+      - name: Debug Godot build
+        continue-on-error: true
+        run: |
+          ./godot --headless --build-solutions --verbose 2>&1
+
       - name: Verify outputs
         run: |
           # 验证构建产物是否存在
