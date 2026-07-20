@@ -96,7 +96,7 @@ uv run rest-site-options smoke.png            # 火堆选项图标（256×169）
 ## Harmony Patch 约束
 
 - 优先 Postfix > Prefix > Transpiler
-- Patch 目标方法先用反编译源码验证（`D:\Game\Godot\StS2-Code`）
+- Patch 目标方法先用反编译源码验证（`D:\Game\Sts2Code`）
 - 每个 Patch 必须注明目标类型、方法、修改原因和依赖反编译细节的警告
 - **不要直接修改反编译源码**
 <!-- HARMONY_PATCH_END -->
@@ -132,9 +132,21 @@ uv run rest-site-options smoke.png            # 火堆选项图标（256×169）
 <!-- DEBUG_START -->
 ## 调试
 
-- 日志：`%AppData%/SlayTheSpire2/logs/godot.log`
-- 查阅日志重点：Mod 加载、Harmony Patch 应用、类型/方法找不到、资源路径错误、C# 异常堆栈
-<!-- DEBUG_END -->
+日志分为两个阶段：
+
+### 编译阶段
+
+- `dotnet build` — 仅检查**编译错误**（C# 语法、类型找不到等）
+- 编译通过不代表运行时能正常工作
+
+### 运行时阶段
+
+- **必须运行游戏后才会生成日志**
+- 路径：`%AppData%/SlayTheSpire2/logs/godot.log`
+- 查阅重点：Mod 加载、Harmony Patch 应用、类型/方法找不到、资源路径错误、C# 异常堆栈
+- 注意事项：
+  - 如果 Mod 有改动，**必须关闭游戏**再重新启动，否则可能不会重新加载
+  - 日志是**累积写入**的，每次游戏启动会追加而非覆盖<!-- DEBUG_END -->
 
 <!-- CONSTRAINTS_START -->
 ## 约束
