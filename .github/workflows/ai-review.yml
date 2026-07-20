@@ -23,4 +23,3 @@ jobs:
           LANGUAGE: "Chinese"
           MODEL_CODE: "models/gemini-3.5-flash"
           EXCLUDE_PATHS: "**/*.md,**/*.txt,**/*.yml,**/*.yaml,**/*.json,package-lock.json,*.uid,*.import"
-          USE_SINGLE_COMMENT_REVIEW: "true"
