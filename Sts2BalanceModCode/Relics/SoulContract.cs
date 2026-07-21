@@ -10,16 +10,16 @@ using MegaCrit.Sts2.Core.Models.Enchantments;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
-// ======================== RELIC-02: 灵魂契约 ========================
+// ======================== RELIC-03: 灵魂契约 ========================
 
 /// <summary>
-/// RELIC-02 — 灵魂契约：扣除最大生命上限 10% 的代价，给一张有消耗的牌去除消耗。
+/// RELIC-03 — 灵魂契约：给一张有消耗的牌去除消耗。
 /// </summary>
-[Pool(typeof(EventRelicPool))]
+[Pool(typeof(SharedRelicPool))]
 public sealed class SoulContract : Sts2RelicModel
 {
     public override string FlashSfx => "event:/sfx/ui/relic_activate_general";
-    public override RelicRarity Rarity => RelicRarity.Ancient;
+    public override RelicRarity Rarity => RelicRarity.Shop;
 
     public override bool HasUponPickupEffect => true;
 
@@ -30,14 +30,6 @@ public sealed class SoulContract : Sts2RelicModel
     {
         if (Owner?.Creature == null)
             return;
-
-        // 扣除最大生命上限 10% 的代价
-        int maxHp = Owner.Creature.MaxHp;
-        int hpLoss = (int)Math.Round(maxHp * 0.1);
-        int newMaxHp = maxHp - hpLoss;
-        if (newMaxHp < 1)
-            newMaxHp = 1; // 至少保留 1 点最大生命值
-        await CreatureCmd.SetMaxHp(Owner.Creature, newMaxHp);
 
         // 给一张有消耗的牌去除消耗
         SoulsPower soulsPowerEnch = ModelDb.Enchantment<SoulsPower>();
