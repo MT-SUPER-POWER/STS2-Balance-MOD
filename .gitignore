@@ -1,5 +1,3 @@
-.godot/
-
 # Compile
 bin/
 dist/
@@ -25,6 +23,7 @@ Directory.Build.props
 # Godot
 *.uid
 *.import
+.godot/
 Directory.Build.props
 
 # NOTE: 参考 Mod 的 PCK 拆包资源需要完整保留 .godot/imported 与 .import 元数据。
@@ -32,9 +31,3 @@ Directory.Build.props
 !Assets/**/.godot/
 !Assets/**/.godot/**
 .claude/settings.local.json
-.omo/run-continuation/ses_10e5f8797ffeuzkidwVrcRgg9j.json
-.omo/run-continuation/ses_10e3483b4ffe08kgUZEwTCVScT.json
-
-# Skills
-.superpowers/
-.omo/
