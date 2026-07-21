@@ -52,6 +52,7 @@
   "STS2BALANCEMOD-HOVERING_KITE.flavor": "L'aquilone ti fluttua intorno in battaglia, spinto da una forza misteriosa.",
   "STS2BALANCEMOD-SOUL_CONTRACT.title": "Contratto dell'Anima",
   "STS2BALANCEMOD-SOUL_CONTRACT.description": "Quando lo raccogli, perdi il [red]10%[/red] dei tuoi PS Max. Scegli [blue]1[/blue] carta con [gold]Esaurimento[/gold] nel tuo mazzo per rimuovere permanentemente [gold]Esaurimento[/gold] da essa.",
-  "STS2BALANCEMOD-SOUL_CONTRACT.flavor": "Scambiare una parte della tua forza vitale per un'utilità eterna. Un prezzo alto, ma non negoziabile."
+  "STS2BALANCEMOD-SOUL_CONTRACT.flavor": "Scambiare una parte della tua forza vitale per un'utilità eterna. Un prezzo alto, ma non negoziabile.",
+  "HISTORY_COURSE.description": "All'inizio del tuo turno, ripeti l'ultima carta [gold]Attacco[/gold] o [gold]Abilita[/gold] che hai giocato nel turno precedente.",
+  "DIAMOND_DIADEM.description": "Ogni volta che giochi 2 o meno carte in un turno, subisci meta danni dai nemici."
 }
-

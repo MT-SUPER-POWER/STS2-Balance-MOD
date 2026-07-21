@@ -22,5 +22,7 @@
   "STS2BALANCEMOD-STEP_BY_STEP_POWER.smartDescription": "At the start of your turn, draw [blue]1[/blue] additional card and gain [blue]1[/blue] additional {energyPrefix:energyIcons(1)} for {Amount} more turns.",
   "STS2BALANCEMOD-EVOLVE_POWER.title": "Evolve",
   "STS2BALANCEMOD-EVOLVE_POWER.description": "Whenever you draw a Status card, draw {Amount} {Amount:plural:card|cards}.",
-  "STS2BALANCEMOD-EVOLVE_POWER.smartDescription": "Whenever you draw a Status card, draw {Amount} {Amount:plural:card|cards}."
+  "STS2BALANCEMOD-EVOLVE_POWER.smartDescription": "Whenever you draw a Status card, draw {Amount} {Amount:plural:card|cards}.",
+  "WELL_LAID_PLANS_POWER.description": "At the end of your turn, [gold]Retain[/gold] up to {Amount} {Amount:plural:card|cards}.",
+  "WELL_LAID_PLANS_POWER.smartDescription": "At the end of your turn, [gold]Retain[/gold] up to {Amount} {Amount:plural:card|cards}."
 }

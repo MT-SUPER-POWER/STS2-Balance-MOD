@@ -52,6 +52,7 @@
   "STS2BALANCEMOD-HOVERING_KITE.flavor": "The Kite floats around you in battle, propelled by a mysterious force.",
   "STS2BALANCEMOD-SOUL_CONTRACT.title": "Soul Contract",
   "STS2BALANCEMOD-SOUL_CONTRACT.description": "On pickup, lose [red]10%[/red] of your Max HP. Choose [blue]1[/blue] card with [gold]Exhaust[/gold] in your deck to permanently remove [gold]Exhaust[/gold] from it.",
-  "STS2BALANCEMOD-SOUL_CONTRACT.flavor": "Trading a portion of your life force for eternal utility. A steep price, but non-negotiable."
+  "STS2BALANCEMOD-SOUL_CONTRACT.flavor": "Trading a portion of your life force for eternal utility. A steep price, but non-negotiable.",
+  "HISTORY_COURSE.description": "At the start of your turn, replay the last [gold]Attack[/gold] or [gold]Skill[/gold] you played last turn.",
+  "DIAMOND_DIADEM.description": "Whenever you play 2 or fewer cards in a turn, take half damage from enemies."
 }
-

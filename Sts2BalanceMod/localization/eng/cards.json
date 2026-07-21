@@ -24,5 +24,8 @@
   "PULL_AGGRO.description": "Summon [gold]Osty[/gold] with {Summon:diff()} HP. Gain {Block:diff()} [gold]Block[/gold].",
   "STS2BALANCEMOD-EVOLVE.title": "Evolve",
   "STS2BALANCEMOD-EVOLVE.description": "Whenever you draw a Status card, draw {EvolvePower:diff()} {EvolvePower:plural:card|cards}.",
-  "PILLAR_OF_CREATION.description": "Whenever you generate a card, gain {Block:diff()} [gold]Block[/gold]."
+  "PILLAR_OF_CREATION.description": "Whenever you generate a card, gain {Block:diff()} [gold]Block[/gold].",
+  "GRAND_FINALE.description": "Can only be played if the number of cards in your draw pile is less than or equal to X. Deal {Damage:diff()} damage to all enemies.",
+  "WELL_LAID_PLANS.description": "At the end of your turn, [gold]Retain[/gold] up to {Cards:diff()} {Cards:plural:card|cards}.",
+  "WELL_LAID_PLANS.selectionScreenPrompt": "Choose up to {Amount} cards to [gold]Retain[/gold]."
 }

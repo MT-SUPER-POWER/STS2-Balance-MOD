@@ -52,6 +52,7 @@
   "STS2BALANCEMOD-HOVERING_KITE.flavor": "风筝在战斗中飘浮在你的身旁，不知是何种神秘的力量让它能浮在空中。",
   "STS2BALANCEMOD-SOUL_CONTRACT.title": "灵魂契约",
   "STS2BALANCEMOD-SOUL_CONTRACT.description": "拾起时扣除最大生命上限 [red]10%[/red]。选择牌组中的 [blue]1[/blue] 张有 [gold]消耗[/gold] 的牌，永久去除其 [gold]消耗[/gold] 属性。",
-  "STS2BALANCEMOD-SOUL_CONTRACT.flavor": "用鲜血作为代价换取永恒的知识，虽然惨痛，但似乎不可动摇。"
+  "STS2BALANCEMOD-SOUL_CONTRACT.flavor": "用鲜血作为代价换取永恒的知识，虽然惨痛，但似乎不可动摇。",
+  "HISTORY_COURSE.description": "在你的回合开始时，重复你上回合打出的最后一张[gold]攻击牌[/gold]或[gold]技能牌[/gold]。",
+  "DIAMOND_DIADEM.description": "每当你一回合打出 2 张或更少牌时，受到的敌人伤害减半。"
 }
-

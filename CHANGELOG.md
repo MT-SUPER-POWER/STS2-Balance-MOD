@@ -8,6 +8,15 @@
 
 # v0.1.1
 
+### Changed
+
+- 卡牌：回调魔球 [The Ball] 的每次打出成长幅度至 15 / 20（CARD-01）。
+- 卡牌：回调触媒 [Accelerant] 至稀有（CARD-02）。
+- 卡牌：恢复计划妥当 [Well-Laid Plans] 为 1 费、保留最多 1 / 2 张牌的效果；计划妥当仍支持多人游戏（CARD-03）。
+- 卡牌：调整华丽收场 [Grand Finale] 为 X 费卡牌，打出条件调整为抽牌堆的牌数小于或等于 X（即当前能量）（CARD-04）。
+- 遗物：历史课 [History Course] 恢复重复攻击牌与技能牌；诺努佩佩的钻石王冠 [Nonupeipe's Diamond Diadem] 恢复少牌回合受到敌人伤害减半（RELIC-01、RELIC-02）。
+- 本地化：同步更新上述调整与回调的中、英、意游戏内说明。
+
 ### Added
 
 - UI/UX：添加「猛撞」（Ram）卡牌立绘（卡图）
