@@ -6,6 +6,17 @@
 
 已完成的所有改动见 [README.md](../README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+# v0.1.1
+
+### Added
+
+- UI/UX：添加「猛撞」（Ram）卡牌立绘（卡图）
+- UI/UX：完善「进化」（Evolve）卡牌立绘（卡图）
+
+### Changed
+
+- 卡牌：探寻（Dowsing）任务要求从进入 5 个 ? 房间调整为进入 4 个 ? 房间（CARD-01）
+
 # v0.1.0
 
 ### Added
@@ -19,6 +30,7 @@
 
 ### Changed
 
+- 卡牌：探寻（Dowsing）任务要求从进入 5 个 ? 房间调整为进入 4 个 ? 房间（CARD-01）
 - 遗物：诅咒钥匙（CurseKey）跳过宝箱功能重构 + 诅咒时机调整（RELIC-01）
   - 移除独立跳过按钮，复用 ProceedButton，开箱前显示”跳过宝箱”+ 图标，点击后直接离开；开箱后恢复原生行为。
   - 诅咒改为选完遗物后生成（`UpdateText(ProceedLoc)` 时），而非开箱瞬间。
