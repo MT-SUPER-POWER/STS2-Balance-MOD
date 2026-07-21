@@ -17,7 +17,7 @@ docs/official-news/
 
 ### index.md columns
 
-`日期 | 版本号 | 标题 | 摘要 | 档案链接` — sorted newest-first; 摘要 is one sentence max.
+`日期 | 版本号 | 标题 | 档案链接` — sorted newest-first.
 
 ### original.md frontmatter
 
@@ -33,24 +33,29 @@ author: ...
 
 ### summary.md
 
+`summary.md` 全部用**中文**撰写：名称用 `中文 [English]` 双语格式，改动描述也翻译成中文，方便直接阅读。`original.md` 保持英文原文不动。
+
 ```markdown
 ## 游戏改动摘要
 
 - **卡牌** 吞噬暗影 [Devour Shadow]：费用 1→2
-- **遗物** 日晷 [Sundial]：触发条件修改
-- **能力** 力量 [Strength]：初始值调整
+- **遗物** 日晷 [Sundial]：触发条件改为「每打出 5 张牌时触发」
+- **能力** 魔像之心 [Juggernaut]：基础伤害 5→7
+- **机制** 能量上限现在在多人模式中正确共享
 ```
 
-Name format is `中文 [English]`. Look up translations from the game's localization files at `D:\Game\Sts2Code\localization`. Pattern: key `{ID}.title` in `eng/{file}.json` paired with the same key in `zhs/{file}.json`. Cover `cards.json`, `relics.json`, and `powers.json`. If a Chinese name is not found, keep English only.
+名称格式：`中文 [English]`。从 `D:\Game\Sts2Code\localization` 查翻译，规律：`{ID}.title` 在 `eng/{file}.json` 对应 `zhs/{file}.json` 同一 key。覆盖 `cards.json`、`relics.json`、`powers.json`。找不到中文时保留英文。
 
-Category prefixes: `**卡牌**`, `**遗物**`, `**能力**`, `**机制**`, `**其他**`.  
-If the article contains no gameplay-affecting changes, write a single line: `本期无游戏数值改动`.
+分类前缀：`**卡牌**`、`**遗物**`、`**能力**`、`**机制**`、`**其他**`。  
+无游戏数值改动时，写一行：`本期无游戏数值改动`。
 
 ## Steam API
 
 ```
-https://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=2868840&count=50&format=json
+https://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=2868840&count=200&maxlength=0&format=json
 ```
+
+> **`maxlength=0` is required.** The Steam API defaults to 300 characters — omitting it silently truncates every article body.
 
 No API key required. Key response fields per item: `gid`, `title`, `url`, `author`, `date` (Unix timestamp → convert to `YYYY-MM-DD`), `contents` (Steam BBCode).
 
@@ -64,8 +69,10 @@ No API key required. Key response fields per item: `gid`, `title`, `url`, `autho
 | `[b]…[/b]` | `**…**` |
 | `[i]…[/i]` | `*…*` |
 | `[url=X]Y[/url]` | `[Y](X)` |
-| `[img]{STEAM_CLAN_IMAGE}/…[/img]` | strip entirely |
-| `{STEAM_CLAN_IMAGE}/…` (bare) | strip entirely |
+| `[img]{STEAM_CLAN_IMAGE}/…[/img]` | `![](https://clan.fastly.steamstatic.com/images/…)` |
+| `{STEAM_CLAN_IMAGE}/…` (bare) | `![](https://clan.fastly.steamstatic.com/images/…)` |
+
+*Note: The script automatically filters out third-party media articles (e.g., PCGamesN) and only archives official `steam_community_announcements`.*
 
 ## Branches
 
@@ -73,16 +80,30 @@ No API key required. Key response fields per item: `gid`, `title`, `url`, `autho
 
 Triggered by: "同步", "更新官方新闻", "拉取推文", or when the archive is empty.
 
-1. Read `docs/official-news/index.md`. Find the latest archived `date`. If the file is missing or has no data rows → this is a full import; treat the cutoff as "all articles".
-2. Fetch the Steam API with `count=50`. For a full import, fetch again with `count=200` to reach all historical articles.
-3. For each article whose date is newer than the cutoff (all articles on first run), process newest-first:
-   - **a. Create folder** `docs/official-news/YYYY-MM-DD-{slug}/` where slug = lowercase title, spaces→hyphens, strip special chars (keep alphanumeric, hyphens, CJK characters).
-   - **b. Write `original.md`**: populate frontmatter (extract version number from article body using patterns like `v0.x`, `Patch x.y`, `0.x.x`; leave blank if none found). Convert BBCode body to Markdown using the rules above.
-   - **c. Translate names**: grep `D:\Game\Sts2Code\localization\eng\cards.json`, `relics.json`, and `powers.json` for all `.title` values. For each English name found verbatim in the article, look up its Chinese equivalent in `zhs\`. Build a replacement map and apply it to `summary.md` entries.
-   - **d. Write `summary.md`**: read the article body and extract only gameplay-affecting changes — card stat changes, relic effect changes, power description changes, mechanic rule changes. Format as a bullet list with the category prefixes above. Write `本期无游戏数值改动` if none found.
-4. Prepend new rows to `index.md` (newest-first). The 摘要 column = first meaningful sentence from `summary.md`, or "本期无游戏数值改动" if that's all it says.
+Sync is a **two-step process** — the script handles mechanical fetching, the Agent handles intelligent extraction.
 
-**Completion criterion**: every article not yet in `index.md` has a folder containing both `original.md` and `summary.md`, and `index.md` has been updated with one row per new article.
+**Step 1 — Run the script** (fetches articles and writes `original.md`):
+
+```powershell
+# From repo root. First run = full import; subsequent runs = incremental.
+python .agents/skills/sts2-news/scripts/sync_news.py
+
+# Force re-download everything:
+python .agents/skills/sts2-news/scripts/sync_news.py --force
+```
+
+The script writes `original.md` for each new official article and automatically updates `index.md`.
+
+**Step 2 — Generate `summary.md` for each new folder** (Agent task):
+
+For every folder in `docs/official-news/` that has `original.md` but no `summary.md`:
+
+1. Read `original.md`.
+2. Identify all English card/relic/power names mentioned. Look up Chinese translations from `D:\Game\Sts2Code\localization`: key pattern is `{ID}.title` in `eng/{file}.json` → same key in `zhs/{file}.json`. Cover `cards.json`, `relics.json`, `powers.json`.
+3. Extract gameplay-affecting changes (stat numbers, costs, effect descriptions, mechanic rules). Ignore art updates, community showcases, merch, and dev blogs.
+4. Write `summary.md` **entirely in Chinese**: translate the change descriptions, use `中文 [English]` format for names, and category prefixes. Write `本期无游戏数值改动` if the article has no balance changes.
+
+**Completion criterion**: every official article folder has both `original.md` and `summary.md`.
 
 ---
 
