@@ -14,6 +14,12 @@
   </a>
 </div>
 
+## 关于尖塔
+
+1. [杀戮尖塔2 Wiki](https://sts2.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5)
+2. [杀戮尖塔1 Wiki](https://sts.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5)
+3. [Steam 官方公告](https://steamcommunity.com/games/2868840/announcements/)
+
 
 ## 安装
 
@@ -160,11 +166,11 @@ Release 构建产物位于 `dist/Sts2BalanceMod/`（dll + json + pck），打包
 | **微笑面具 [Smiling Mask]** | 普通 | 删牌价格固定为 50 金币。 |
 | **咖啡杯 [Coffee Cup]** | 先古 | 无法在火堆休息，但每回合 +1 费用。 |
 | **融合之锤 [Fusion Hammer]** | 先古 | 无法锻造，但每回合 +1 费用。 |
-| **诅咒钥匙 [Curse Key]** | 先古 / RELIC-01 | 每回合 +1 费用，每次打开宝箱获得一张随机诅咒。**仅限单人模式出现，单人模式下可通过右下角的"跳过宝箱"按钮（ProceedButton）直接离开，同时规避诅咒。** |
+| **诅咒钥匙 [Curse Key]** | 先古 | 每回合 +1 费用，每次打开宝箱获得一张随机诅咒。**仅限单人模式出现，单人模式下可通过右下角的"跳过宝箱"按钮（ProceedButton）直接离开，同时规避诅咒。** |
 | **矮人铁砧 [Dwarf Anvil]** | 商店 | 拾起时为 3 张牌附加"锻造"附魔，被附魔的牌费用永久 -1（最低 0 费）。 |
 | **袖箭 [Wrist Blade]** | 罕见 | 猎人专属。费用为 0 的攻击牌额外造成 4 点伤害。 |
 | **悬浮风筝 [Hovering Kite]** | 普通 | 猎人专属。你在每回合第一次弃牌时，获得 1 点能量。 |
-| **灵魂契约 [Soul Contract]** | 商店 / RELIC-03 | 选择牌组中的 1 张有消耗的牌，永久去除其消耗属性。 |
+| **灵魂契约 [Soul Contract]** | 商店 | 选择牌组中的 1 张有消耗的牌，永久去除其消耗属性。 |
 
 
 #### 原版调整

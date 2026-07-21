@@ -54,6 +54,23 @@ dotnet publish -c Release                 # 本地发布编译到 dist/Sts2Balan
 | `image_gen/` | Python 图片批处理脚本（需 `uv`） |
 <!-- PATHS_END -->
 
+<!-- CHARACTER_NAMING_START -->
+## 人物称呼
+
+中文沟通中可使用下表的常用外号；外号、官方中文名和英文名均指向同一名可操作角色。涉及 C# 类型、卡池、资源 ID、本地化 key 或游戏 API 时，必须使用表中的英文标识符，不得将外号写入标识符。
+
+| 常用外号 | 官方中文名 | 英文标识符 |
+|------|------|------|
+| 战士 | 铁甲战士 | `Ironclad` |
+| 猎人 | 静默猎手 | `Silent` |
+| 骨妹 | 死灵缚者 | `Necrobinder` |
+| 机宝 | 故障机器人 | `Defect` |
+| 储君 | 储君 | `Regent` |
+
+- 面向玩家的文档和本地化优先使用官方中文名；首次出现时可附英文名以消除歧义。
+- 新增可操作角色或约定新的外号时，必须在同一改动中更新此表。
+<!-- CHARACTER_NAMING_END -->
+
 <!-- IMAGE_GEN_START -->
 ## 图片生成（需 [uv](https://docs.astral.sh/uv/)）
 
