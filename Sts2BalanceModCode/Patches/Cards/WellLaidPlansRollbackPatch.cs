@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -16,7 +17,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// <summary>
 /// Targets: CardModel.get_Rarity, CardModel.get_CanonicalVars,
 /// WellLaidPlans.OnUpgrade, WellLaidPlans.OnPlay, and
-/// WellLaidPlansPower.BeforeSideTurnEnd.
+/// WellLaidPlansPower.BeforeSideTurnEnd and WellLaidPlansPower.ShouldFlush.
 /// Reason: CARD-03 restores the 1-cost Uncommon card and its 1/2-card Retain effect,
 /// while preserving the game's current multiplayer availability.
 /// WARNING: Hook order and signatures are verified against decompiled game source; do not modify that source directly.
@@ -86,6 +87,22 @@ public static class WellLaidPlansRollbackPatch
         return false;
     }
 
+    [HarmonyPatch(typeof(WellLaidPlansPower), nameof(WellLaidPlansPower.ShouldFlush))]
+    [HarmonyPrefix]
+    public static bool ShouldFlushPrefix(
+        WellLaidPlansPower __instance,
+        Player player,
+        ref bool __result)
+    {
+        if (player != __instance.Owner.Player)
+            return true;
+
+        // The current game power returns false here and retains the entire hand.
+        // Restored behavior must let the normal flush retain only selected cards.
+        __result = true;
+        return false;
+    }
+
     private static async Task ApplyRetainPower(WellLaidPlans card, PlayerChoiceContext choiceContext)
     {
         await CreatureCmd.TriggerAnim(
@@ -102,7 +119,7 @@ public static class WellLaidPlansRollbackPatch
 
     private static async Task RetainCards(WellLaidPlansPower power, PlayerChoiceContext choiceContext)
     {
-        var player = power.Owner.Player;
+        Player? player = power.Owner.Player;
         if (player == null)
             return;
 
@@ -110,7 +127,7 @@ public static class WellLaidPlansRollbackPatch
             new LocString("cards", "WELL_LAID_PLANS.selectionScreenPrompt"),
             0,
             power.Amount);
-        var selectedCards = await CardSelectCmd.FromHand(
+        IEnumerable<CardModel> selectedCards = await CardSelectCmd.FromHand(
             choiceContext,
             player,
             prefs,
