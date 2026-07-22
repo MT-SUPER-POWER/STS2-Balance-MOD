@@ -1,22 +1,11 @@
 ---
 name: sts2-dev-workflow
-description: Use when working on game content modifications for STS2 Balance MOD. Triggers on requests to modify cards, relics, powers, encounters, or any game content. Conducts requirement analysis first, then implements after confirmation.
+description: Use when working on game-content modifications for STS2 Balance MOD, including cards, relics, powers, monsters, encounters, events, card pools, merchants, and rest-site options. Conduct requirement analysis and obtain confirmation before implementation; then resolve the authoritative mod and game sources with CodeGraph before editing.
 ---
 
 # STS2 Dev Workflow
 
-## Overview
-
-A two-phase workflow for game content modifications:
-1. **Phase 1: Requirement Analysis** — Interview user, write requirements to `docs/balance-changes.md`, get confirmation
-2. **Phase 2: Implementation** — Execute confirmed tasks following project conventions
-
-## When to Use
-
-- User wants to modify game content (cards, relics, powers, encounters, etc.)
-- User says "我想调整..." or "帮我改一下..."
-- User provides a task ID like "CARD-01"
-- Any request involving game balance changes
+Use this two-phase workflow: analyze and confirm the requirement first, then implement the confirmed task.
 
 ## Phase 1: Requirement Analysis
 
@@ -78,28 +67,58 @@ Show the user what you wrote:
 
 Only after user confirms the requirements document.
 
-### Step 1: Analyze Code
+### Step 1: Resolve the Source of Truth
 
-Use CodeGraph to understand target code:
+Do this **before** `rg`, directory scans, or reading C# files. Do not guess filenames from an English or localized game name. CodeGraph is the default tool for both locating **and reading** repository source.
 
-```bash
-# Find relevant code
-codegraph_explore "CardName" "PowerName" "RelicName"
+1. Check that the repository root contains `.codegraph/`, then run `codegraph status`. If it reports a stale index, run `codegraph sync` before investigating.
+2. Select and combine CodeGraph operations based on the unanswered question; do **not** mechanically run every command or rely on one fixed prompt. Use the MCP equivalents when available, otherwise use these repository CLI commands:
+
+| Need | CLI | Example |
+|------|-----|---------|
+| Orient to indexed paths | `codegraph files` | Identify the relevant `Cards/`, `Patches/`, or localization area without a filesystem scan |
+| Find a known ID, type, or method | `codegraph query <search>` | `codegraph query "Electrodynamics"` |
+| Read a known symbol or source file | `codegraph node <name>` | `codegraph node "GlowDrawCardPatch"` or `codegraph node "Sts2BalanceModCode/Patches/Cards/GlowDrawCardPatch.cs"` |
+| Understand a behavior spanning multiple symbols | `codegraph explore <question>` | `codegraph explore "Trace the card-pool path for Electrodynamics, including registration, injected models, and every patch that can add or remove it."` |
+| Find direct control-flow neighbors | `codegraph callers <symbol>` / `codegraph callees <symbol>` | `codegraph callers "Glow.OnPlay"` |
+| Assess the modification blast radius | `codegraph impact <symbol>` | `codegraph impact "GlowDrawCardPatch.Prefix"` |
+| Identify relevant tests after a code change | `codegraph affected <files...>` | `codegraph affected Sts2BalanceModCode/Patches/Cards/GlowDrawCardPatch.cs` |
+
+   `codegraph node` and `codegraph explore` return current on-disk source with line numbers; treat that output as the source read. Do **not** re-read a file returned there with filesystem tools. Start with `query` or `files` only when the symbol or area is unknown, then use `node` or `explore` to read the relevant code. Use `callers`, `callees`, or `impact` when the implementation decision depends on relationships rather than text alone. Fall back to `rg` or direct reads only after CodeGraph cannot surface the needed repository source.
+3. Determine which source governs the requested behavior. Use this map:
+
+| Source | Location | Use it for | Editing rule |
+|--------|----------|------------|--------------|
+| Mod source | `Sts2BalanceModCode/` | This mod's new content, patches, abstractions, and extensions | Authoritative editable implementation |
+| Vanilla game source | `D:\Game\Sts2Code\` | Exact target type, overload, control flow, private fields, and patch feasibility | Read-only decompiled reference; never modify |
+| Reference mods | `docs/references/WatcherMod/`, `docs/references/ActsFromThePast/` | Read-only examples and compatibility research | Never edit or treat as the target implementation |
+| Player resources | `Sts2BalanceMod/localization/{eng,zhs,ita}/`, `Sts2BalanceMod/images/` | Text and artwork for new or player-visible content | Update only when the task requires them |
+
+4. If CodeGraph finds no mod-side implementation, inspect the exact vanilla type and method in `D:\Game\Sts2Code\` before selecting a Harmony target. This external decompiled tree is not the repository's CodeGraph index; use a direct read there only after resolving the type with CodeGraph. Verify the fully qualified type, method overload, return type, relevant fields, and whether a Prefix/Postfix can safely express the change. Prefer Postfix, then Prefix, then Transpiler.
+
+Record this source-resolution result in the implementation plan:
+
+```markdown
+### Source resolution
+- Target behavior: `<Type>.<Method>(<signature>)`
+- Vanilla evidence: `D:\Game\Sts2Code\...` — `<relevant control flow/field>`
+- Existing mod evidence: `<repo path and symbol>` or `none found`
+- Chosen seam: `<existing patch | new patch | custom model>` — `<why>`
 ```
 
-Key locations:
-| Type | Primary | Secondary |
-|------|---------|-----------|
-| Card | `Sts2BalanceModCode/Cards/` | `Sts2BalanceModCode/Patches/Cards/` |
-| Relic | `Sts2BalanceModCode/Relics/` | `Sts2BalanceModCode/Patches/Relics/` |
-| Power | `Sts2BalanceModCode/Powers/` | `Sts2BalanceModCode/Patches/Powers/` |
-| Monster | `Sts2BalanceModCode/Monsters/` | `Sts2BalanceModCode/Patches/Monsters/` |
-| Encounter | `Sts2BalanceModCode/Encounters/` | `Sts2BalanceModCode/Patches/Encounters/` |
-| Event | `Sts2BalanceModCode/Events/` | `Sts2BalanceModCode/Patches/Events/` |
-| Localization | `Sts2BalanceMod/localization/{eng,zhs,ita}/` | |
-| Images | `Sts2BalanceMod/images/` | `image_gen/` |
+### Step 2: Locate the Edit Surface
 
-### Step 2: Present Implementation Plan
+Use the CodeGraph result to select the narrowest matching location. These are starting points, not substitutes for source resolution:
+
+| Change | New content | Existing-content patch |
+|--------|-------------|------------------------|
+| Card | `Sts2BalanceModCode/Cards/` | `Sts2BalanceModCode/Patches/Cards/` or `Patches/CardPools/` |
+| Relic | `Sts2BalanceModCode/Relics/` | `Sts2BalanceModCode/Patches/Relics/` |
+| Power or orb | `Sts2BalanceModCode/Powers/` | `Sts2BalanceModCode/Patches/Powers/` or `Patches/Orbs/` |
+| Monster or encounter | `Sts2BalanceModCode/Monsters/`, `Encounters/` | `Sts2BalanceModCode/Patches/Monsters/`, `Patches/Encounters/` |
+| Event, merchant, or rest site | `Events/`, `RestSite/` | `Sts2BalanceModCode/Patches/Events/`, `Patches/Merchant/` |
+
+### Step 3: Present Implementation Plan
 
 ```markdown
 ## Implementation Plan
@@ -117,18 +136,21 @@ Key locations:
 ### Technical Details
 - [Harmony patch type]
 - [Target type and method]
+- [Decompiled-source finding that makes this patch safe]
 ```
 
-### Step 3: Implement
+### Step 4: Implement
 
 Follow project conventions:
 
 **Harmony Patches:**
 ```csharp
-// Must include:
-// - Target type and method
-// - Modification reason
-// - Warning about decompiled source
+/// <summary>
+/// TASK-ID — <change summary>.
+/// Target: <fully qualified target type>.<method>.
+/// Reason: <why this behavior changes>.
+/// WARNING: Verified against D:\Game\Sts2Code\<file>.cs; game updates may change this decompiled implementation.
+/// </summary>
 
 [HarmonyPatch(typeof(TargetType), "MethodName")]
 public static class MyPatch
@@ -143,8 +165,9 @@ public static class MyPatch
 
 **New Cards/Relics:**
 - Inherit from `Sts2CardModel` / `Sts2RelicModel`
-- Add localization in all three languages
-- Generate images if needed
+- Add `eng`, `zhs`, and `ita` localization for player-visible new content
+- Generate matching images when the content needs artwork
+- Verify the generated filename matches the model's ID-derived image path
 
 **Image Generation:**
 ```bash
@@ -153,7 +176,9 @@ uv run cards filename.png
 uv run relics filename.png
 ```
 
-### Step 4: Document
+### Step 5: Verify and Document
+
+Run `dotnet build`. For behavior that requires runtime confirmation, restart the game and inspect the new portion of `%AppData%/SlayTheSpire2/logs/godot.log` for mod loading, Harmony target failures, missing resources, and exceptions.
 
 **Mark task complete in `docs/balance-changes.md`:**
 ```markdown
@@ -171,7 +196,9 @@ uv run relics filename.png
 **Update `README.md`:**
 - Update "调整内容" table
 
-### Step 5: Commit
+### Step 6: Review and Commit
+
+Before committing, inspect `git diff` and `git status`; stage only task-related files.
 
 ```
 <type>(<scope>): <summary>
@@ -181,19 +208,21 @@ uv run relics filename.png
 
 Types: `feat(card)`, `fix(relic)`, `refactor(patch)`, `chore(infra)`, `docs(docs)`
 
-### Step 6: Sync CodeGraph
+### Step 7: Sync CodeGraph
 
 ```bash
-codegraph index
+codegraph sync
 ```
 
-Or notify user to sync manually.
+Run this after any C# file is added, removed, renamed, or materially changed so the next task's source resolution is current. Use `codegraph index` only when there is no usable index or `status`/`sync` reports that a full rebuild is required. Report if synchronization cannot run; do not silently leave a stale graph.
 
 ---
 
 ## Anti-Patterns
 
 - **Don't** skip requirement confirmation
+- **Don't** start with `rg`, guessed paths, or direct source reads when `.codegraph/` exists
+- **Don't** choose a Harmony target without checking its decompiled implementation in `D:\Game\Sts2Code\`
 - **Don't** modify decompiled source directly
 - **Don't** forget to update all three doc files
 - **Don't** commit without checking git status
@@ -206,6 +235,7 @@ Or notify user to sync manually.
 | Entry point | `Sts2BalanceModCode/MainFile.cs` |
 | Abstract bases | `Sts2BalanceModCode/Abstract/` |
 | Harmony patches | `Sts2BalanceModCode/Patches/` |
+| Vanilla behavior reference | `D:\Game\Sts2Code\` |
 | Localization | `Sts2BalanceMod/localization/{eng,zhs,ita}/` |
 | Images | `Sts2BalanceMod/images/` |
 | Build | `dotnet build` |
