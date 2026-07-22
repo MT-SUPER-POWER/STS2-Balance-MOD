@@ -121,9 +121,17 @@ public static class InfestedPrismPatch
 
     foreach (List<DamageResult> hitResults in attack.Results)
     {
+      // Each outer list represents one actual attack hit. A hit that crosses a
+      // creature's Block can produce multiple DamageResults for that creature,
+      // but it must still apply Infection only once.
+      var infectedThisHit = new HashSet<Creature>();
+
       foreach (DamageResult result in hitResults)
       {
-        if (result.Receiver != null && result.Receiver.IsPlayer && result.UnblockedDamage > 0)
+        if (result.Receiver != null
+            && result.Receiver.IsPlayer
+            && result.UnblockedDamage > 0
+            && infectedThisHit.Add(result.Receiver))
         {
           await PowerCmd.Apply<InfectedPower>(
             new ThrowingPlayerChoiceContext(),
