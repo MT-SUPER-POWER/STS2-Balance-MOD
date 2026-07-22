@@ -6,6 +6,20 @@
 
 已完成的所有改动见 [README.md](../README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+
+# v0.1.2
+
+### Refactored
+
+- BOSS：重构感染棱柱 [InfestedPrism]，移除开场【活力火花】技能牌污染，改为受击穿透格挡叠加可计数的【感染】[InfectedPower] 机制，并重构 4 回合固定行动循环（轻击 / 重击 / 连击 / 强化）（BOSS-01）。
+
+### Changed
+
+- 卡牌：巨镰 [The Scythe] 初始伤害由 13 提高至 20，维持每次打出后 4 / 5 的伤害成长（CARD-05）。
+- 遗物：灵魂契约 [Soul Contract] 改为商店遗物，并移除拾取时扣除 10% 最大生命的代价（RELIC-03）。
+
+
+
 # v0.1.1
 
 ### Changed
@@ -14,10 +28,7 @@
 - 卡牌：回调触媒 [Accelerant] 至稀有（CARD-02）。
 - 卡牌：恢复计划妥当 [Well-Laid Plans] 为 1 费、保留最多 1 / 2 张牌的效果；未选择的手牌会正常弃置，计划妥当仍支持多人游戏（CARD-03）。
 - 卡牌：调整华丽收场 [Grand Finale] 为 X 费卡牌，打出条件调整为抽牌堆的牌数小于或等于 X（即当前能量）（CARD-04）。
-- 卡牌：巨镰 [The Scythe] 初始伤害由 13 提高至 20，维持每次打出后 4 / 5 的伤害成长（CARD-05）。
 - 遗物：历史课 [History Course] 恢复重复攻击牌与技能牌；诺努佩佩的钻石王冠 [Nonupeipe's Diamond Diadem] 恢复少牌回合受到敌人伤害减半（RELIC-01、RELIC-02）。
-- 遗物：灵魂契约 [Soul Contract] 改为商店遗物，并移除拾取时扣除 10% 最大生命的代价（RELIC-03）。
-- 本地化：同步更新上述调整与回调的中、英、意游戏内说明。
 
 ### Added
 

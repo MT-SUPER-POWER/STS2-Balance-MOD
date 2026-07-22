@@ -3,13 +3,13 @@
   "name": "Sts2BalanceMod",
   "author": "Momo",
   "description": "杀戮尖塔2自用平衡调整Mod",
-  "version": "v0.1.1",
+  "version": "v0.1.2",
   "has_pck": true,
   "has_dll": true,
   "dependencies": [
     {
       "id": "BaseLib",
-      "min_version": "3.3.3"
+      "min_version": "3.3.7"
     }
   ],
   "affects_gameplay": true,

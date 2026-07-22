@@ -24,5 +24,8 @@
   "STS2BALANCEMOD-EVOLVE_POWER.description": "每当你抽到一张状态牌，抽 {Amount} 张牌。",
   "STS2BALANCEMOD-EVOLVE_POWER.smartDescription": "每当你抽到一张状态牌，抽 {Amount} 张牌。",
   "WELL_LAID_PLANS_POWER.description": "在你的回合结束时，保留最多 {Amount} 张牌。",
-  "WELL_LAID_PLANS_POWER.smartDescription": "在你的回合结束时，保留最多 {Amount} 张牌。"
+  "WELL_LAID_PLANS_POWER.smartDescription": "在你的回合结束时，保留最多 {Amount} 张牌。",
+  "STS2BALANCEMOD-INFECTED_POWER.title": "感染",
+  "STS2BALANCEMOD-INFECTED_POWER.description": "在你的回合结束时，失去 {Amount} 点生命。",
+  "STS2BALANCEMOD-INFECTED_POWER.smartDescription": "在你的回合结束时，失去 {Amount} 点生命。"
 }

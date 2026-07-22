@@ -24,5 +24,8 @@
   "STS2BALANCEMOD-EVOLVE_POWER.description": "Ogni volta che peschi una carta Stato, peschi {Amount} {Amount:plural:carta|carte}.",
   "STS2BALANCEMOD-EVOLVE_POWER.smartDescription": "Ogni volta che peschi una carta Stato, peschi {Amount} {Amount:plural:carta|carte}.",
   "WELL_LAID_PLANS_POWER.description": "Alla fine del tuo turno, conserva fino a {Amount} {Amount:plural:carta|carte}.",
-  "WELL_LAID_PLANS_POWER.smartDescription": "Alla fine del tuo turno, conserva fino a {Amount} {Amount:plural:carta|carte}."
+  "WELL_LAID_PLANS_POWER.smartDescription": "Alla fine del tuo turno, conserva fino a {Amount} {Amount:plural:carta|carte}.",
+  "STS2BALANCEMOD-INFECTED_POWER.title": "Infetto",
+  "STS2BALANCEMOD-INFECTED_POWER.description": "Alla fine del tuo turno, perdi {Amount} PV.",
+  "STS2BALANCEMOD-INFECTED_POWER.smartDescription": "Alla fine del tuo turno, perdi {Amount} PV."
 }

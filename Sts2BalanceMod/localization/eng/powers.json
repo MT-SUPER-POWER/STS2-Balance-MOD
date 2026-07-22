@@ -24,5 +24,8 @@
   "STS2BALANCEMOD-EVOLVE_POWER.description": "Whenever you draw a Status card, draw {Amount} {Amount:plural:card|cards}.",
   "STS2BALANCEMOD-EVOLVE_POWER.smartDescription": "Whenever you draw a Status card, draw {Amount} {Amount:plural:card|cards}.",
   "WELL_LAID_PLANS_POWER.description": "At the end of your turn, [gold]Retain[/gold] up to {Amount} {Amount:plural:card|cards}.",
-  "WELL_LAID_PLANS_POWER.smartDescription": "At the end of your turn, [gold]Retain[/gold] up to {Amount} {Amount:plural:card|cards}."
+  "WELL_LAID_PLANS_POWER.smartDescription": "At the end of your turn, [gold]Retain[/gold] up to {Amount} {Amount:plural:card|cards}.",
+  "STS2BALANCEMOD-INFECTED_POWER.title": "Infected",
+  "STS2BALANCEMOD-INFECTED_POWER.description": "At the end of your turn, lose {Amount} HP.",
+  "STS2BALANCEMOD-INFECTED_POWER.smartDescription": "At the end of your turn, lose {Amount} HP."
 }
