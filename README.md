@@ -29,12 +29,6 @@
 1. **[Slay the Spire 2](https://store.steampowered.com/app/2868840/Slay_the_Spire_2/)** 版本 ≥ 0.108.0
 2. **[BaseLib](https://github.com/Alchyr/BaseLib-StS2)** — Mod 加载前置库，需先安装，版本 ≥ 3.3.7+
 
-> [!warning]
->
-> v3.3.5 开始的 baselib 又非常严重的加载同步冲突，杀戮尖塔2 在进入游戏的时候会开始云同步数据，baselib 加载好在这里会造成严重的冲突，具体去 issue 可以看看
->
-> 所以建议你在游戏的时候，关闭我们的 steam 云同步，点击 steam 游戏的齿轮，在通用里面关闭云存档的选项
-
 ### 安装步骤
 
 1. 下载本 Mod 的最新发布包（从 [Releases](https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/releases) 页面获取 `.zip`）
