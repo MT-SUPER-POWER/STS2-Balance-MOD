@@ -142,5 +142,8 @@
   "BUGSLAYER.pages.LEAVE.description": "你决定不招惹这些昆虫，径直走开了。",
   "TINKER_TIME.pages.INITIAL.options.LEAVE.title": "离开",
   "TINKER_TIME.pages.INITIAL.options.LEAVE.description": "",
-  "TINKER_TIME.pages.LEAVE.description": "科学往往伴随着风险。你决定放弃这次试验，明智地离开了。"
+  "TINKER_TIME.pages.LEAVE.description": "科学往往伴随着风险。你决定放弃这次试验，明智地离开了。",
+  "THE_FUTURE_OF_POTIONS.pages.INITIAL.options.LEAVE.title": "离开",
+  "THE_FUTURE_OF_POTIONS.pages.INITIAL.options.LEAVE.description": "",
+  "THE_FUTURE_OF_POTIONS.pages.LEAVE.description": "你决定保留手中的药水，继续前行。"
 }

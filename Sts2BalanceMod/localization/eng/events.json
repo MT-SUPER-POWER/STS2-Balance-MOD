@@ -142,5 +142,8 @@
   "BUGSLAYER.pages.LEAVE.description": "You decide not to mess with the bugs and walk away.",
   "TINKER_TIME.pages.INITIAL.options.LEAVE.title": "Leave",
   "TINKER_TIME.pages.INITIAL.options.LEAVE.description": "",
-  "TINKER_TIME.pages.LEAVE.description": "Science often carries risks. You decide to abort the experiment and leave."
+  "TINKER_TIME.pages.LEAVE.description": "Science often carries risks. You decide to abort the experiment and leave.",
+  "THE_FUTURE_OF_POTIONS.pages.INITIAL.options.LEAVE.title": "Leave",
+  "THE_FUTURE_OF_POTIONS.pages.INITIAL.options.LEAVE.description": "",
+  "THE_FUTURE_OF_POTIONS.pages.LEAVE.description": "You decide to keep your potions and move on."
 }

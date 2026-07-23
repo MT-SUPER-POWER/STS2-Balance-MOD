@@ -7,6 +7,14 @@
 已完成的所有改动见 [README.md](../README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
 
+# v0.1.3
+
+### Added
+
+- 事件：为「药水的未来？」（The Future of Potions）事件初始选项中新增「离开」分支，允许玩家保留药水直接离开（EVENT-01）。
+
+
+
 # v0.1.2
 
 ### Refactored

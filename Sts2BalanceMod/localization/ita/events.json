@@ -142,5 +142,8 @@
   "BUGSLAYER.pages.LEAVE.description": "Decidi di non rischiare con gli insetti e te ne vai.",
   "TINKER_TIME.pages.INITIAL.options.LEAVE.title": "Lascia",
   "TINKER_TIME.pages.INITIAL.options.LEAVE.description": "",
-  "TINKER_TIME.pages.LEAVE.description": "La scienza comporta dei rischi. Decidi di interrompere l'esperimento e te ne vai."
+  "TINKER_TIME.pages.LEAVE.description": "La scienza comporta dei rischi. Decidi di interrompere l'esperimento e te ne vai.",
+  "THE_FUTURE_OF_POTIONS.pages.INITIAL.options.LEAVE.title": "Lascia",
+  "THE_FUTURE_OF_POTIONS.pages.INITIAL.options.LEAVE.description": "",
+  "THE_FUTURE_OF_POTIONS.pages.LEAVE.description": "Decidi di tenere le tue pozioni e prosegui."
 }
