@@ -31,3 +31,12 @@ Directory.Build.props
 !Assets/**/.godot/
 !Assets/**/.godot/**
 .claude/settings.local.json
+
+# Agent
+.codex/
+.cursor
+.codegraph/
+.claude/
+.agents/
+.gemini/
+.opencode/
