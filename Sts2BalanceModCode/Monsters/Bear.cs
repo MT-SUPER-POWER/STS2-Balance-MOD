@@ -30,7 +30,7 @@ public sealed class Bear : Sts2MonsterModel
   private int MaulDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 20, 18);
   private int LungeDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 10, 9);
   private const int LungeBlock = 9;
-  private const int BearHugVulnerable = 1;
+  private const int BearHugDexterity = -2;
 
   private const string MAUL = "MAUL";
   private const string BEAR_HUG = "BEAR_HUG";
@@ -58,7 +58,7 @@ public sealed class Bear : Sts2MonsterModel
 
     foreach (var target in targets.Where(t => t.IsAlive))
     {
-      await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), target, BearHugVulnerable, Creature, null);
+      await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(), target, BearHugDexterity, Creature, null);
     }
   }
 
