@@ -50,6 +50,7 @@ dotnet publish -c Release                 # 本地发布编译到 dist/Sts2Balan
 | `Sts2BalanceModCode/Events/` | 新增事件 |
 | `Sts2BalanceModCode/RestSite/` | 火堆选项 |
 | `Sts2BalanceMod/localization/{eng,zhs,ita}/` | 本地化 JSON（cards.json / powers.json / relics.json 等） |
+| `D:\Game\Sts2Code\localization/{eng,zhs,ita}/` | 游戏原版本地化 JSON（查阅原版卡牌、遗物、能力、事件等的文本与 LocKey 规则） |
 | `Sts2BalanceMod/images/` | 图片资源（card_portraits/ / powers/ / relics/ / events/ / ui/） |
 | `image_gen/` | Python 图片批处理脚本（需 `uv`） |
 <!-- PATHS_END -->
@@ -177,10 +178,9 @@ uv run rest-site-options smoke.png            # 火堆选项图标（256×169）
 <!-- CODEGRAPH_START -->
 ## CodeGraph
 
-In repositories indexed by CodeGraph (a `.codegraph/` directory exists at the repo root), reach for it BEFORE grep/find or reading files when you need to understand or locate code:
+在支持或需分析的代码库中（如 Mod 项目或游戏反编译项目 `D:\Game\Sts2Code`），在阅读文件或 grep 之前优先使用 CodeGraph 了解及定位代码：
 
-- **MCP tool** (when available): `codegraph_explore` answers most code questions in one call — the relevant symbols' verbatim source plus the call paths between them, including dynamic-dispatch hops grep can't follow. Name a file or symbol in the query to read its current line-numbered source. If it's listed but deferred, load it by name via tool search.
-- **Shell** (always works): `codegraph explore "<symbol names or question>"` prints the same output.
-
-If there is no `.codegraph/` directory, skip CodeGraph entirely — indexing is the user's decision.
+- **MCP 工具**（推荐）：`codegraph_explore` 可以在一次调用中回答代码结构、符号源码与调用链。查询游戏原版代码时务必显式指定 `projectPath: "D:\\Game\\Sts2Code"`。
+- **Shell 命令行**：`codegraph explore "<symbol names or question>"`。
+- **兜底策略（自动建立索引）**：如果目标代码库（如 `D:\Game\Sts2Code` 或新项目）未生成 `.codegraph/` 索引或索引丢失，**允许且应当**直接通过 shell 运行 `codegraph init` 或 `codegraph index` 自动建立索引，建立完成后即可正常使用 `codegraph_explore` 进行深入分析，严禁回退到使用脚本/反射解包 DLL。
 <!-- CODEGRAPH_END -->
