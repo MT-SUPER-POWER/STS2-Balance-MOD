@@ -1,0 +1,8 @@
+{
+  "FileOptions": {
+    "ExcludeSearchPatterns": [
+      "**/docs/**",
+      "**/docs/references/**"
+    ]
+  }
+}

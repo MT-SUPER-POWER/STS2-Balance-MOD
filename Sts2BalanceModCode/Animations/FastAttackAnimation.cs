@@ -10,35 +10,35 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Animations;
 /// </summary>
 public static class FastAttackAnimation
 {
-  private const float AnimationDuration = 0.4f;
-  private const float ActionDuration = 0.25f;
-  private const float TargetDistance = 90f;
+    private const float _animationDuration = 0.4f;
+    private const float _actionDuration = 0.25f;
+    private const float _targetDistance = 90f;
 
-  public static async Task Play(Creature creature)
-  {
-    var creatureNode = NCombatRoom.Instance?.GetCreatureNode(creature);
-    if (creatureNode == null)
+    public static async Task Play(Creature creature)
     {
-      return;
+        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(creature);
+        if (creatureNode == null)
+        {
+            return;
+        }
+
+        var originalPosition = creatureNode.Position;
+        var direction = creature.IsPlayer ? 1f : -1f;
+        var tween = creatureNode.CreateTween();
+
+        tween.TweenMethod(
+          Callable.From<float>(timer =>
+          {
+              var t = timer < 0f ? 0f : timer * 2f;
+              var easedT = t * t * (3f - 2f * t);
+              var xOffset = Mathf.Lerp(0f, _targetDistance, easedT);
+
+              creatureNode.Position = new Vector2(originalPosition.X + xOffset * direction, originalPosition.Y);
+          }),
+          _animationDuration,
+          0f,
+          _animationDuration).SetTrans(Tween.TransitionType.Linear);
+
+        await Cmd.Wait(_actionDuration);
     }
-
-    var originalPosition = creatureNode.Position;
-    var direction = creature.IsPlayer ? 1f : -1f;
-    var tween = creatureNode.CreateTween();
-
-    tween.TweenMethod(
-      Callable.From<float>(timer =>
-      {
-        var t = timer < 0f ? 0f : timer * 2f;
-        var easedT = t * t * (3f - 2f * t);
-        var xOffset = Mathf.Lerp(0f, TargetDistance, easedT);
-
-        creatureNode.Position = new Vector2(originalPosition.X + xOffset * direction, originalPosition.Y);
-      }),
-      AnimationDuration,
-      0f,
-      AnimationDuration).SetTrans(Tween.TransitionType.Linear);
-
-    await Cmd.Wait(ActionDuration);
-  }
 }
