@@ -11,9 +11,12 @@
 
 ### Added
 
+- 卡牌：新增静默猎手（Silent）罕见攻击卡牌「内脏切除」（Eviscerate），耗能 3（本回合每丢弃 1 张牌耗能 -1），造成 7（升级 9）点伤害 3 次（CARD-01）。
 - 事件：为「药水的未来？」（The Future of Potions）事件初始选项中新增「离开」分支，允许玩家保留药水直接离开（EVENT-01）。
 
 ### Changed
+
+- 卡牌：从静默猎手卡池中移除原版卡牌「精密」（Pinpoint），由「内脏切除」（Eviscerate）替代（CARD-01）。
 
 - 怪物：红面具强盗 Bear（熊）首回合【熊抱 BEAR_HUG】的 Debuff 从施加 1 层【易伤】调整为减少 2 点【敏捷】（MONSTER-01）。
 

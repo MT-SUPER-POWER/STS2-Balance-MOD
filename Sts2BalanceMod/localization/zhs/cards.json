@@ -27,5 +27,7 @@
   "PILLAR_OF_CREATION.description": "每当你生成一张卡牌，获得 {Block:diff()} 点[gold]格挡[/gold]。",
   "GRAND_FINALE.description": "只有当抽牌堆的卡牌数小于或等于 X 时才能打出。对所有敌人造成 {Damage:diff()} 点伤害。",
   "WELL_LAID_PLANS.description": "在你的回合结束时，保留最多 {Cards:diff()} 张牌。",
-  "WELL_LAID_PLANS.selectionScreenPrompt": "选择最多 {Amount} 张要保留的牌。"
+  "WELL_LAID_PLANS.selectionScreenPrompt": "选择最多 {Amount} 张要保留的牌。",
+  "STS2BALANCEMOD-EVISCERATE.title": "内脏切除",
+  "STS2BALANCEMOD-EVISCERATE.description": "你在这个回合内每丢弃一张牌，耗能就减少 1{energyPrefix:energyIcons(1)}。\n造成 {Damage:diff()} 点伤害3次。"
 }

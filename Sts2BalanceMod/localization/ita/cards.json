@@ -27,5 +27,7 @@
   "PILLAR_OF_CREATION.description": "Ogni volta che generi una carta, ottieni {Block:diff()} [gold]Blocco[/gold].",
   "GRAND_FINALE.description": "Può essere giocata solo se il numero di carte nella tua pila di pesca è inferiore o uguale a X. Infliggi {Damage:diff()} danni a tutti i nemici.",
   "WELL_LAID_PLANS.description": "Alla fine del tuo turno, conserva fino a {Cards:diff()} {Cards:plural:carta|carte}.",
-  "WELL_LAID_PLANS.selectionScreenPrompt": "Scegli fino a {Amount} carte da conservare."
+  "WELL_LAID_PLANS.selectionScreenPrompt": "Scegli fino a {Amount} carte da conservare.",
+  "STS2BALANCEMOD-EVISCERATE.title": "Svisceramento",
+  "STS2BALANCEMOD-EVISCERATE.description": "Costa 1 {energyPrefix:energyIcons(1)} in meno per ogni carta scartata in questo turno.\nInfliggi {Damage:diff()} danni per 3 volte."
 }
