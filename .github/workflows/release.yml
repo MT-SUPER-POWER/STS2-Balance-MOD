@@ -22,7 +22,7 @@ jobs:
 
       - name: Extract Changelog
         id: changelog_reader
-        uses: mscoutermarsh/changelog-reader-action@v2
+        uses: mindsers/changelog-reader-action@v2
         with:
           version: ${{ github.ref_name }}
           path: CHANGELOG.md

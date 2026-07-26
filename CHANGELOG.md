@@ -16,7 +16,7 @@
 
 ### Refactored
 
-- CI/CD：重构 Release GitHub Actions 工作流，采用官方 `actions/github-script@v7` 原生提取 `CHANGELOG.md` 版本日志，移除 CI 对 PowerShell Hooks 脚本的强依赖。
+- CI/CD：重构 Release GitHub Actions 工作流，采用 `mindsers/changelog-reader-action@v2` 提取 `CHANGELOG.md` 版本日志，移除 CI 对 PowerShell Hooks 脚本的强依赖。
 
 ### Changed
 
