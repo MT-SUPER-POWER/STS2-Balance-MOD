@@ -2,17 +2,21 @@
 
 本文件记录 [Sts2BalanceMod](https://github.com/MT-SUPER-POWER/STS2-Balance-MOD) 的版本变更。
 
-每个版本以 `# vx.x.x` 为标题。推送 Tag 后 GitHub Actions 会自动在云端构建、打包，并将打包好的 zip 附件发布到对应的 Release 页面中，无须再本地手动上传。
+每个版本以 `## vX.X.X` 为标题。推送 Tag 后 GitHub Actions 会自动在云端构建、打包，并将打包好的 zip 附件发布到对应的 Release 页面中，无须再本地手动上传。
 
-已完成的所有改动见 [README.md](../README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
+已完成的所有改动见 [README.md](README.md##调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
 
-# v0.1.3
+## v0.1.3
 
 ### Added
 
 - 卡牌：新增静默猎手（Silent）罕见攻击卡牌「内脏切除」（Eviscerate），耗能 3（本回合每丢弃 1 张牌耗能 -1），造成 7（升级 9）点伤害 3 次（CARD-01）。
 - 事件：为「药水的未来？」（The Future of Potions）事件初始选项中新增「离开」分支，允许玩家保留药水直接离开（EVENT-01）。
+
+### Refactored
+
+- CI/CD：重构 Release GitHub Actions 工作流，采用官方 `actions/github-script@v7` 原生提取 `CHANGELOG.md` 版本日志，移除 CI 对 PowerShell Hooks 脚本的强依赖。
 
 ### Changed
 
@@ -22,7 +26,7 @@
 
 
 
-# v0.1.2
+## v0.1.2
 
 ### Refactored
 
@@ -39,7 +43,7 @@
 
 
 
-# v0.1.1
+## v0.1.1
 
 ### Changed
 
@@ -68,7 +72,7 @@
 
 
 
-# v0.1.0
+## v0.1.0
 
 ### Added
 

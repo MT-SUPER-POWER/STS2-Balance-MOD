@@ -20,16 +20,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Resolve version
-        id: version
-        shell: pwsh
-        run: |
-          $tag = $env:GITHUB_REF_NAME
-          if ($tag -notmatch '^v(?<ver>[0-9]+(\.[0-9]+)+(-[a-zA-Z0-9.-]+)?)$') {
-            throw "Tag 格式应为 vx.x.x，当前: $tag"
-          }
-          "tag=$tag" >> $env:GITHUB_OUTPUT
-          "version=$($Matches['ver'])" >> $env:GITHUB_OUTPUT
+      - name: Extract Changelog
+        id: changelog_reader
+        uses: mscoutermarsh/changelog-reader-action@v2
+        with:
+          version: ${{ github.ref_name }}
+          path: CHANGELOG.md
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -54,9 +50,8 @@ jobs:
           echo "$(pwd)" >> $GITHUB_PATH
 
       - name: Update version in mod json
-        shell: pwsh
         run: |
-          ./Hooks/release.ps1 -Version '${{ steps.version.outputs.version }}' -UpdateJson
+          jq '.version = "${{ github.ref_name }}"' Sts2BalanceMod.json > Sts2BalanceMod.json.tmp && mv Sts2BalanceMod.json.tmp Sts2BalanceMod.json
 
       - name: Compile & Publish
         run: |
@@ -78,27 +73,16 @@ jobs:
           fi
 
       - name: Compress Release Archive
-        shell: pwsh
         run: |
-          Compress-Archive -Path "dist/Sts2BalanceMod/*" -DestinationPath "dist/Sts2BalanceMod-v${{ steps.version.outputs.version }}.zip" -Force
+          cd dist/Sts2BalanceMod && zip -r ../Sts2BalanceMod-${{ github.ref_name }}.zip . && cd ../..
           ls -la dist/
-
-      - name: Extract changelog
-        shell: pwsh
-        run: |
-          ./Hooks/extract-changelog.ps1 `
-            -Version '${{ steps.version.outputs.version }}' `
-            -OutputPath release_notes.md
-          Write-Host "----- Release Notes Preview -----"
-          Get-Content release_notes.md
-          Write-Host "---------------------------------"
 
       - name: Create GitHub Release and Upload Asset
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.version.outputs.tag }}
-          name: ${{ env.MOD_NAME }} ${{ steps.version.outputs.tag }}
-          body_path: release_notes.md
-          files: dist/Sts2BalanceMod-v${{ steps.version.outputs.version }}.zip
+          tag_name: ${{ github.ref_name }}
+          name: ${{ env.MOD_NAME }} ${{ github.ref_name }}
+          body: ${{ steps.changelog_reader.outputs.log_entry }}
+          files: dist/Sts2BalanceMod-${{ github.ref_name }}.zip
           generate_release_notes: false
           make_latest: true
