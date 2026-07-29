@@ -131,7 +131,7 @@ public static class WellLaidPlansRollbackPatch
             choiceContext,
             player,
             prefs,
-            null,
+            c => !c.ShouldRetainThisTurn,
             power);
 
         foreach (CardModel card in selectedCards)

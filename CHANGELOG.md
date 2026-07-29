@@ -7,6 +7,12 @@
 已完成的所有改动见 [README.md](README.md##调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
 
+## v0.1.4
+
+### FIXED
+
+- 卡牌：修复「计划妥当」（Well-Laid Plans）回合结束选卡保留界面，自动过滤掉手牌中已经具有【保留】属性的卡牌（CARD-04）。
+
 ## v0.1.3
 
 ### Added

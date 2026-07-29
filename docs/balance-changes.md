@@ -17,6 +17,11 @@
   - 稀有度: 罕见 (Uncommon)
   - 资源: 立绘位于 `image_gen/source/cards/Eviscerate.png`。
 
+- [x] **CARD-04** — 优化「计划妥当」（Well-Laid Plans）回合结束保留卡牌的选择逻辑
+  - 目前: 回合结束触发「计划妥当」选卡保留时，手牌中所有卡牌（包括自带【保留】/本回合已获得保留属性的卡牌）均会出现在选择界面中。
+  - 目标: 选卡界面自动过滤掉手牌中已经具有【保留】属性（`ShouldRetainThisTurn`）的卡牌，避免玩家浪费选择额度去选择本身就会保留的牌。
+  - 数值: 无。
+  - 备注: 在 `WellLaidPlansRollbackPatch.RetainCards` 的 `CardSelectCmd.FromHand` 过滤条件中传入 `c => !c.ShouldRetainThisTurn`。
 
 
 ### 美术
