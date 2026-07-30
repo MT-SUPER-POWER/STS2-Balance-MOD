@@ -12,6 +12,9 @@
   <a href="https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/issues">
     <img src="https://img.shields.io/github/issues/MT-SUPER-POWER/STS2-Balance-MOD" alt="Issues" />
   </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/github/license/MT-SUPER-POWER/STS2-Balance-MOD" alt="License" />
+  </a>
 </div>
 
 ## 关于尖塔
@@ -296,3 +299,13 @@ uv run rest-site-options smoke.png
    ```
 
 当推送 Tag 后，GitHub Actions 流水线会自动触发，在云端拉取依赖、自动配置 Godot 4.5.1 Mono 编译器与导出模板进行构建，并将最终的 `.zip` 附件自动关联并上传至对应的 GitHub Release 页面中，无须本地手动执行任何打包或上传命令。
+
+---
+
+## 许可证 (License)
+
+本项目基于 **[GNU General Public License v3.0 (GPL-3.0)](LICENSE)** 协议开源。
+
+- 允许免费使用、修改（二次开发）及商业分发。
+- **开源传染性约束**：任何使用本项目代码进行二次开发（二开）或商业分发衍生作品，**必须以 GPL-3.0 协议开源其全部源代码**，不得闭源。
+
