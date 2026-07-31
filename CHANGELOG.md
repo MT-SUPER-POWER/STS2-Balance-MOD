@@ -7,7 +7,22 @@
 已完成的所有改动见 [README.md](README.md##调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
 
+## v0.1.5
+
+### Added/Changed
+
+- 卡牌：回调「火箭飞拳」（Rocket Punch）为降至 0 费效果，生成状态牌时直接降为 0 费（CARD-09）。
+- 卡牌：调整「巨镰」（The Scythe）初始伤害为 16 点（CARD-08）。
+- 卡牌：调整「创世之柱」（Pillar of Creation）格挡数值为 3 点（升级后 4 点）（CARD-07）。
+- 遗物：重构「烘焙手套」（Toasty Mittens），回合开始可从手牌选择 1 张卡牌消耗（提供 Skip 选项），成功消耗后获得 1 点力量（RELIC-02）。
+- 遗物：回调「图章戒指」（Signet Ring）获得金币为 999（RELIC-03）。
+
+### Removed
+
+- 卡牌：撤销「放松」（Relax）格挡增强 Patch，保持官方原版属性（CARD-06）。
+
 ## v0.1.4
+
 
 ### FIXED
 

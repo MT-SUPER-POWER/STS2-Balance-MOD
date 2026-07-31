@@ -4,18 +4,13 @@ using MegaCrit.Sts2.Core.Models.Cards;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 
 /// <summary>
-/// CARD-05 — 将巨镰的初始伤害从 13 提高至 20。
+/// CARD-08 — 将巨镰的初始伤害调整为 16 点（配合官方增至 5(7) 的成长数值）。
 /// </summary>
-/// <remarks>
-/// 目标：<see cref="TheScythe"/> 构造函数及其私有 <c>UpdateDamage</c> 方法。
-/// 原因：原版在构造时和伤害重算时均硬编码 13；只修改构造结果会使第一次打出后伤害回落。
-/// WARNING: 此补丁依赖游戏反编译源码中的私有字段 <c>_currentDamage</c> 和方法
-/// <c>UpdateDamage</c>。游戏更新后必须重新核对其实现。
-/// </remarks>
 [HarmonyPatch]
 public static class TheScytheDamagePatch
 {
-    private const int BaseDamage = 20;
+    private const int BaseDamage = 16;
+
 
     [HarmonyPatch(typeof(TheScythe), MethodType.Constructor)]
     [HarmonyPostfix]
