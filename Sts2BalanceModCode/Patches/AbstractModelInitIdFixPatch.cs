@@ -12,13 +12,22 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches;
 [HarmonyPatch(typeof(AbstractModel), nameof(AbstractModel.InitId))]
 public static class AbstractModelInitIdFixPatch
 {
+    private static readonly FieldInfo? IdBackingField = typeof(AbstractModel).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+
     [HarmonyPrefix]
-    public static void Prefix(AbstractModel __instance, ModelId id)
+    public static bool Prefix(AbstractModel __instance, ModelId id)
     {
         if (__instance.Id == null)
         {
-            PropertyInfo? prop = typeof(AbstractModel).GetProperty(nameof(AbstractModel.Id));
-            prop?.SetValue(__instance, id);
+            IdBackingField?.SetValue(__instance, id);
         }
+
+        if (__instance.Id == null)
+        {
+            return false;
+        }
+
+        return true;
     }
 }
+
