@@ -9,9 +9,10 @@
 
 ## v0.1.5
 
-### Added/Changed
+### Changed
 
 - 卡牌：回调「火箭飞拳」（Rocket Punch）为降至 0 费效果，生成状态牌时直接降为 0 费（CARD-09）。
+- 卡牌：调整「华丽收场」（Grand Finale）升级效果为抽牌堆卡牌数 ≤ X + 2 时允许打出，且升级不再增加伤害（CARD-10）。
 - 卡牌：调整「巨镰」（The Scythe）初始伤害为 16 点（CARD-08）。
 - 卡牌：调整「创世之柱」（Pillar of Creation）格挡数值为 3 点（升级后 4 点）（CARD-07）。
 - 遗物：重构「烘焙手套」（Toasty Mittens），回合开始可从手牌选择 1 张卡牌消耗（提供 Skip 选项），成功消耗后获得 1 点力量（RELIC-02）。
