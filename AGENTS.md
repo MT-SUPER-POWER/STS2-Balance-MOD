@@ -67,6 +67,7 @@ dotnet publish -c Release                 # 本地发布编译到 dist/Sts2Balan
 | 骨妹 | 死灵缚者 | `Necrobinder` |
 | 机宝 | 故障机器人 | `Defect` |
 | 储君 | 储君 | `Regent` |
+| - | 先古之民 | `Ancients` |
 
 - 面向玩家的文档和本地化优先使用官方中文名；首次出现时可附英文名以消除歧义。
 - 新增可操作角色或约定新的外号时，必须在同一改动中更新此表。
