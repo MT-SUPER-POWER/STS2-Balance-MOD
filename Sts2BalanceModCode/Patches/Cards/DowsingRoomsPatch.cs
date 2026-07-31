@@ -45,17 +45,17 @@ public static class DowsingRoomsPatch
         }
     }
 
-    [HarmonyPatch(typeof(Dowsing), nameof(Dowsing.AfterRoomEntered))]
-    public static class AfterRoomEnteredPatch
+    [HarmonyPatch(typeof(Dowsing), nameof(Dowsing.BeforeRoomEntered))]
+    public static class BeforeRoomEnteredPatch
     {
         [HarmonyPrefix]
         public static bool Prefix(Dowsing __instance, AbstractRoom room, ref Task __result)
         {
-            __result = AfterRoomEntered(__instance, room);
+            __result = ProcessBeforeRoomEntered(__instance, room);
             return false;
         }
 
-        private static async Task AfterRoomEntered(Dowsing card, AbstractRoom room)
+        private static async Task ProcessBeforeRoomEntered(Dowsing card, AbstractRoom room)
         {
             CardPile? pile = card.Pile;
             if (pile == null || pile.Type != PileType.Deck || card.Owner.RunState.CurrentRoomCount > 1)
@@ -75,3 +75,4 @@ public static class DowsingRoomsPatch
         }
     }
 }
+

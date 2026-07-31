@@ -60,17 +60,18 @@ public static class GrandFinaleHasEnergyCostXPatch
 /// CARD-10 — 华丽收场 (Grand Finale) 升级逻辑重写。
 /// 
 /// 目标类型: MegaCrit.Sts2.Core.Models.Cards.GrandFinale
-/// 目标方法: CanonicalUpgrade
+/// 目标方法: OnUpgrade
 /// 修改原因: 升级后扩大打出条件至 X+2，不再增加伤害数值。
 /// </summary>
-[HarmonyPatch(typeof(GrandFinale), "CanonicalUpgrade")]
+[HarmonyPatch(typeof(GrandFinale), "OnUpgrade")]
 public static class GrandFinaleCanonicalUpgradePatch
 {
   [HarmonyPrefix]
   public static bool Prefix(GrandFinale __instance)
   {
-    // 不调用原版 UpgradeDamage，保持基础伤害不变，仅应用通用升级状态
+    // 不调用原版 OnUpgrade(UpgradeValueBy 15m)，保持基础伤害不变
     return false;
   }
 }
+
 

@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.CardSelection;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -16,18 +16,18 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 
 /// <summary>
 /// RELIC-02 — 烘焙手套 (Toasty Mittens)
-/// 效果改为：在你的回合开始时，允许选择 1 张手牌消耗（带 Skip 跳过选项）；
-/// 只有成功消耗卡牌时才获得 1 点力量，若点击 Skip 跳过则不增加力量。
+/// 官方最新版 Hook 为 AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)。
+/// Mod 效果：允许在抽牌后从手牌选择 1 张消耗（提供 Skip 跳过选项）；
+/// 只有成功消耗卡牌时才获得 1 点力量，若 Skip 跳过则不加力量。
 /// </summary>
-[HarmonyPatch(typeof(ToastyMittens), nameof(ToastyMittens.BeforeHandDraw))]
+[HarmonyPatch(typeof(ToastyMittens), nameof(ToastyMittens.AfterPlayerTurnStart))]
 public static class ToastyMittensPatch
 {
     [HarmonyPrefix]
     public static bool Prefix(
         ToastyMittens __instance,
-        Player player,
         PlayerChoiceContext choiceContext,
-        ICombatState combatState,
+        Player player,
         ref Task __result)
     {
         if (player != __instance.Owner.Creature.Player)
@@ -57,7 +57,7 @@ public static class ToastyMittensPatch
             choiceContext,
             player,
             prefs,
-            c => true,
+            null,
             relic);
 
         CardModel? cardToExhaust = selectedCards.FirstOrDefault();
@@ -74,4 +74,3 @@ public static class ToastyMittensPatch
         }
     }
 }
-
