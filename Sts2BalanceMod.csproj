@@ -1,5 +1,5 @@
 <Project Sdk="Godot.NET.Sdk/4.5.1" InitialTargets="CheckDependencyPaths">
-    <Import Project=".\Sts2PathDiscovery.props"/>
+    <Import Project=".\Sts2PathDiscovery.props" />
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>true</ImplicitUsings>
@@ -24,7 +24,7 @@
         <ModOutputDir Condition="'$(Configuration)' != 'Release'">$(ModsPath)$(MSBuildProjectName)\</ModOutputDir>
     </PropertyGroup>
 
-    <ItemGroup Condition="Exists('$(Sts2DataDir)')" >
+    <ItemGroup Condition="Exists('$(Sts2DataDir)')">
         <Reference Include="0Harmony">
             <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
             <Private>true</Private>
@@ -52,13 +52,13 @@
 
     <ItemGroup>
         <!-- NOTE: Baselib 版本控制的地方 -->
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="*" PrivateAssets="All"/>
-        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.4.0" PrivateAssets="All" />
+        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All" />
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />
         <!-- NOTE: 包仍保留为可选工具，但当前通过 PckPackerEnabled=false 禁用，避免生成缺少 Assets/ 的半截 PCK。 -->
         <PackageReference Include="BSchneppe.StS2.PckPacker" Version="0.1.1" PrivateAssets="All" />
         <!-- NOTE: ModAnalyzers 按文件名匹配本地化（Power → powers.json），需显式列入 AdditionalFiles -->
-        <AdditionalFiles Include="Sts2BalanceMod/localization/**/*.json"/>
+        <AdditionalFiles Include="Sts2BalanceMod/localization/**/*.json" />
     </ItemGroup>
 
     <ItemGroup>
@@ -76,10 +76,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Condition="Exists('Directory.Build.props')" Include="Directory.Build.props"/>
+        <None Condition="Exists('Directory.Build.props')" Include="Directory.Build.props" />
         <None Include=".gitignore" />
         <None Include="Sts2BalanceMod.json" />
-        <None Include="project.godot"/>
+        <None Include="project.godot" />
         <None Include="Sts2BalanceMod.sln" />
         <None Include="Sts2BalanceMod/**" />
     </ItemGroup>
@@ -98,9 +98,7 @@
     </ItemGroup>
 
     <Target Name="CheckDependencyPaths" Condition="'$(ContinuousIntegrationBuild)' != 'true' and '$(IsInnerGodotExport)' == ''">
-        <Error
-            Text=" Slay the Spire 2 data not found at path '$(Sts2DataDir)'"
-            Condition="'$(Sts2DataDir)' == '' or !Exists('$(Sts2DataDir)')" />
+        <Error Text=" Slay the Spire 2 data not found at path '$(Sts2DataDir)'" Condition="'$(Sts2DataDir)' == '' or !Exists('$(Sts2DataDir)')" />
     </Target>
 
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
@@ -108,31 +106,22 @@
         <Message Text="Copying mod files to $(ModOutputDir)" Importance="high" />
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModOutputDir)" />
         <Copy SourceFiles="$(AssemblyName).json" DestinationFolder="$(ModOutputDir)" />
-        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(ModOutputDir)"
-              Condition="'$(Configuration)' != 'Release'" />
+        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(ModOutputDir)" Condition="'$(Configuration)' != 'Release'" />
 
         <!-- NOTE: 仅 Debug 构建时同步 BaseLib 到游戏 mods，方便本机联机调试 -->
-        <Message Text="Copying BaseLib to mods folder." Importance="high"
-                 Condition="'$(Configuration)' != 'Release'"/>
+        <Message Text="Copying BaseLib to mods folder." Importance="high" Condition="'$(Configuration)' != 'Release'" />
         <ItemGroup Condition="'$(Configuration)' != 'Release'">
-            <BaseLibFiles Include="$(NuGetPackageRoot)alchyr.sts2.baselib/**/lib/**/BaseLib.dll;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.pck;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.json;"/>
+            <BaseLibFiles Include="$(NuGetPackageRoot)alchyr.sts2.baselib/**/lib/**/BaseLib.dll;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.pck;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.json;" />
         </ItemGroup>
-        <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/"
-              Condition="'$(Configuration)' != 'Release'"/>
+        <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/" Condition="'$(Configuration)' != 'Release'" />
 
     </Target>
 
-    <Target Name="GodotExportPckOnBuild" AfterTargets="CopyToModsFolderOnBuild"
-            Condition="'$(SkipGodotExport)' != 'true' and '$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'"
-            Inputs="@(PckResources)"
-            Outputs="$(ModOutputDir)$(MSBuildProjectName).pck">
+    <Target Name="GodotExportPckOnBuild" AfterTargets="CopyToModsFolderOnBuild" Condition="'$(SkipGodotExport)' != 'true' and '$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'" Inputs="@(PckResources)" Outputs="$(ModOutputDir)$(MSBuildProjectName).pck">
         <Message Text="🔄 资源文件有变动，正在重新导出 PCK..." Importance="high" />
         <Delete Files="$(ModOutputDir)$(MSBuildProjectName).pck" />
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;$(MSBuildProjectName)&quot; &quot;$(ModOutputDir)$(MSBuildProjectName).pck&quot;"
-              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
-              IgnoreExitCode="true" />
-        <Error Text="Godot export did not produce PCK: $(ModOutputDir)$(MSBuildProjectName).pck"
-               Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).pck')" />
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;$(MSBuildProjectName)&quot; &quot;$(ModOutputDir)$(MSBuildProjectName).pck&quot;" EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1" IgnoreExitCode="true" />
+        <Error Text="Godot export did not produce PCK: $(ModOutputDir)$(MSBuildProjectName).pck" Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).pck')" />
     </Target>
 
     <Target Name="NeedGodotForBuildPck" AfterTargets="CopyToModsFolderOnBuild" Condition="'$(SkipGodotExport)' != 'true' and ('$(GodotPath)' == '' or !Exists('$(GodotPath)')) and '$(IsInnerGodotExport)' != 'true'">
@@ -140,36 +129,28 @@
     </Target>
 
     <Target Name="NeedGodotForPublish" BeforeTargets="Publish" Condition="'$(SkipGodotExport)' != 'true'">
-        <Error Text=" Godot path must be set up before publishing; Godot not found at path '$(GodotPath)'. Check Directory.Build.props file."
-            Condition="'$(GodotPath)' == '' or !Exists('$(GodotPath)')"/>
+        <Error Text=" Godot path must be set up before publishing; Godot not found at path '$(GodotPath)'. Check Directory.Build.props file." Condition="'$(GodotPath)' == '' or !Exists('$(GodotPath)')" />
     </Target>
 
     <Target Name="GodotPublish" AfterTargets="Publish" Condition="'$(SkipGodotExport)' != 'true' and '$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
         <MakeDir Directories="$(ModOutputDir)" />
-        <Message Text="Exporting Godot .pck to $(ModOutputDir)" Importance="high"/>
+        <Message Text="Exporting Godot .pck to $(ModOutputDir)" Importance="high" />
         <Delete Files="$(ModOutputDir)$(MSBuildProjectName).pck" />
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;$(MSBuildProjectName)&quot; &quot;$(ModOutputDir)$(MSBuildProjectName).pck&quot;"
-            EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
-            IgnoreExitCode="true" />
-        <Error Text="Godot export did not produce PCK: $(ModOutputDir)$(MSBuildProjectName).pck"
-            Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).pck')" />
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;$(MSBuildProjectName)&quot; &quot;$(ModOutputDir)$(MSBuildProjectName).pck&quot;" EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1" IgnoreExitCode="true" />
+        <Error Text="Godot export did not produce PCK: $(ModOutputDir)$(MSBuildProjectName).pck" Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).pck')" />
     </Target>
 
     <!-- NOTE: Release 发布必须产出完整 pck，避免 Godot 导出失败后仍误报成功 -->
     <Target Name="VerifyReleaseOutputs" AfterTargets="GodotPublish;GodotExportPckOnBuild" Condition="'$(Configuration)' == 'Release'">
-        <Error Text="Missing release dll: $(ModOutputDir)$(MSBuildProjectName).dll"
-            Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).dll')" />
-        <Error Text="Missing release json: $(ModOutputDir)$(MSBuildProjectName).json"
-            Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).json')" />
-        <Error Text="Missing release pck: $(ModOutputDir)$(MSBuildProjectName).pck. Check Godot export logs and Sts2BalanceMod.sln."
-            Condition="'$(SkipGodotExport)' != 'true' and !Exists('$(ModOutputDir)$(MSBuildProjectName).pck')" />
+        <Error Text="Missing release dll: $(ModOutputDir)$(MSBuildProjectName).dll" Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).dll')" />
+        <Error Text="Missing release json: $(ModOutputDir)$(MSBuildProjectName).json" Condition="!Exists('$(ModOutputDir)$(MSBuildProjectName).json')" />
+        <Error Text="Missing release pck: $(ModOutputDir)$(MSBuildProjectName).pck. Check Godot export logs and Sts2BalanceMod.sln." Condition="'$(SkipGodotExport)' != 'true' and !Exists('$(ModOutputDir)$(MSBuildProjectName).pck')" />
     </Target>
 
     <!-- 本地开发时自动剥离并更新 libs/ 下的 API Stub DLL，保证 CI 编译使用的 Stub 与本地完全同步 -->
     <Target Name="UpdateStubDlls" BeforeTargets="BeforeBuild" Condition="Exists('$(Sts2DataDir)')">
         <Message Text="🔄 检测到本地游戏目录，正在全自动更新 libs/ 目录下的 API Stub DLL..." Importance="high" />
         <MakeDir Directories="$(MSBuildProjectDirectory)/libs/" />
-        <Exec Command="refasmer --all -O &quot;$(MSBuildProjectDirectory)/libs/&quot; &quot;$(Sts2DataDir)/sts2.dll&quot; &quot;$(Sts2DataDir)/0Harmony.dll&quot;"
-              ContinueOnError="WarnAndContinue" />
+        <Exec Command="refasmer --all -O &quot;$(MSBuildProjectDirectory)/libs/&quot; &quot;$(Sts2DataDir)/sts2.dll&quot; &quot;$(Sts2DataDir)/0Harmony.dll&quot;" ContinueOnError="WarnAndContinue" />
     </Target>
 </Project>
