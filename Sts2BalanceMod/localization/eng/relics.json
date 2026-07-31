@@ -54,5 +54,7 @@
   "STS2BALANCEMOD-SOUL_CONTRACT.description": "Choose [blue]1[/blue] card with [gold]Exhaust[/gold] in your deck to permanently remove [gold]Exhaust[/gold] from it.",
   "STS2BALANCEMOD-SOUL_CONTRACT.flavor": "A pact that lets what should be exhausted endure.",
   "HISTORY_COURSE.description": "At the start of your turn, replay the last [gold]Attack[/gold] or [gold]Skill[/gold] you played last turn.",
-  "DIAMOND_DIADEM.description": "Whenever you play 2 or fewer cards in a turn, take half damage from enemies."
+  "DIAMOND_DIADEM.description": "Whenever you play 2 or fewer cards in a turn, take half damage from enemies.",
+  "TOASTY_MITTENS.description": "At the start of your turn, you may choose [blue]1[/blue] card in your hand to [gold]Exhaust[/gold] (includes a Skip option). Upon exhausting a card, gain [blue]1[/blue] [red]Strength[/red].",
+  "SIGNET_RING.description": "Upon pickup, gain [blue]999[/blue] Gold."
 }

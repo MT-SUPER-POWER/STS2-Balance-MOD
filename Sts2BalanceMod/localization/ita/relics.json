@@ -53,6 +53,8 @@
   "STS2BALANCEMOD-SOUL_CONTRACT.title": "Contratto dell'Anima",
   "STS2BALANCEMOD-SOUL_CONTRACT.description": "Scegli [blue]1[/blue] carta con [gold]Esaurimento[/gold] nel tuo mazzo per rimuovere permanentemente [gold]Esaurimento[/gold] da essa.",
   "STS2BALANCEMOD-SOUL_CONTRACT.flavor": "Un patto che permette a ciò che dovrebbe esaurirsi di durare.",
-  "HISTORY_COURSE.description": "All'inizio del tuo turno, ripeti l'ultima carta [gold]Attacco[/gold] o [gold]Abilita[/gold] che hai giocato nel turno precedente.",
-  "DIAMOND_DIADEM.description": "Ogni volta che giochi 2 o meno carte in un turno, subisci meta danni dai nemici."
+  "HISTORY_COURSE.description": "All'inizio del tuo turno, ripeti l'ultima carta [gold]Attacco[/gold] o [gold]Abilità[/gold] che hai giocato nel turno precedente.",
+  "DIAMOND_DIADEM.description": "Ogni volta che giochi 2 o meno carte in un turno, subisci metà danni dai nemici.",
+  "TOASTY_MITTENS.description": "All'inizio del tuo turno, puoi scegliere [blue]1[/blue] carta dalla tua mano da [gold]Esaurire[/gold] (include l'opzione Salta). Dopo aver esaurito una carta, ottieni [blue]1[/blue] [red]Forza[/red].",
+  "SIGNET_RING.description": "Quando la raccogli, ottieni [blue]999[/blue] Oro."
 }

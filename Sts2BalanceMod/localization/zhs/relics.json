@@ -54,5 +54,7 @@
   "STS2BALANCEMOD-SOUL_CONTRACT.description": "选择牌组中的 [blue]1[/blue] 张有 [gold]消耗[/gold] 的牌，永久去除其 [gold]消耗[/gold] 属性。",
   "STS2BALANCEMOD-SOUL_CONTRACT.flavor": "一纸契约，让本该消逝的力量得以长存。",
   "HISTORY_COURSE.description": "在你的回合开始时，重复你上回合打出的最后一张[gold]攻击牌[/gold]或[gold]技能牌[/gold]。",
-  "DIAMOND_DIADEM.description": "每当你一回合打出 2 张或更少牌时，受到的敌人伤害减半。"
+  "DIAMOND_DIADEM.description": "每当你一回合打出 2 张或更少牌时，受到的敌人伤害减半。",
+  "TOASTY_MITTENS.description": "在你的回合开始时，你可以选择[gold]消耗[/gold] [blue]1[/blue] 张手牌（包含跳过选项）。成功消耗手牌后，获得 [blue]1[/blue] 点[red]力量[/red]。",
+  "SIGNET_RING.description": "拾起时，获得 [blue]999[/blue] 金币。"
 }

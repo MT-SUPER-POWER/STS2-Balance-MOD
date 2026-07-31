@@ -29,5 +29,6 @@
   "WELL_LAID_PLANS.description": "Alla fine del tuo turno, conserva fino a {Cards:diff()} {Cards:plural:carta|carte}.",
   "WELL_LAID_PLANS.selectionScreenPrompt": "Scegli fino a {Amount} carte da conservare.",
   "STS2BALANCEMOD-EVISCERATE.title": "Svisceramento",
-  "STS2BALANCEMOD-EVISCERATE.description": "Costa 1 {energyPrefix:energyIcons(1)} in meno per ogni carta scartata in questo turno.\nInfliggi {Damage:diff()} danni per 3 volte."
+  "STS2BALANCEMOD-EVISCERATE.description": "Costa 1 {energyPrefix:energyIcons(1)} in meno per ogni carta scartata in questo turno.\nInfliggi {Damage:diff()} danni per 3 volte.",
+  "ROCKET_PUNCH.description": "Ogni volta che viene generata una carta [gold]Stato[/gold], il costo di questa carta diventa 0{energyPrefix:energyIcons(0)} finché non viene giocata.\nInfliggi {Damage:diff()} danni."
 }
