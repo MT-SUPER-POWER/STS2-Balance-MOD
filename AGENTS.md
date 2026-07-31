@@ -73,6 +73,16 @@ dotnet publish -c Release                 # 本地发布编译到 dist/Sts2Balan
 - 新增可操作角色或约定新的外号时，必须在同一改动中更新此表。
 <!-- CHARACTER_NAMING_END -->
 
+<!-- TERMINOLOGY_START -->
+## 游戏术语与约定
+
+下表记录了项目中的通用游戏术语翻译约定。面向玩家的文档、代码注释及本地化中，必须统一使用表中的规范中文名。
+
+| 英文名 / 概念 | 规范中文名 | 禁用/弃用旧称 | 备注 |
+|------|------|------|------|
+| `Focus` | 集中 | 聚焦 | 故障机器人 (`Defect`) 属性与能力词条 |
+<!-- TERMINOLOGY_END -->
+
 <!-- IMAGE_GEN_START -->
 ## 图片生成（需 [uv](https://docs.astral.sh/uv/)）
 
