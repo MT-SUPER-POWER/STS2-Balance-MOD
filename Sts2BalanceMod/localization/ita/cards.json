@@ -25,7 +25,7 @@
   "STS2BALANCEMOD-EVOLVE.title": "Evoluzione",
   "STS2BALANCEMOD-EVOLVE.description": "Ogni volta che peschi una carta Stato, peschi {EvolvePower:diff()} {EvolvePower:plural:carta|carte}.",
   "PILLAR_OF_CREATION.description": "Ogni volta che generi una carta, ottieni {Block:diff()} [gold]Blocco[/gold].",
-  "GRAND_FINALE.description": "Può essere giocata solo se il numero di carte nella tua pila di pesca è inferiore o uguale a X. Infliggi {Damage:diff()} danni a tutti i nemici.",
+  "GRAND_FINALE.description": "Può essere giocata solo se il numero di carte nel tuo [gold]mazzo di pesca[/gold] è inferiore o uguale a {IfUpgraded:show:X+2|X}.\nInfliggi {Damage:diff()} di danno a TUTTI i nemici.",
   "WELL_LAID_PLANS.description": "Alla fine del tuo turno, conserva fino a {Cards:diff()} {Cards:plural:carta|carte}.",
   "WELL_LAID_PLANS.selectionScreenPrompt": "Scegli fino a {Amount} carte da conservare.",
   "STS2BALANCEMOD-EVISCERATE.title": "Svisceramento",
