@@ -30,5 +30,5 @@
   "WELL_LAID_PLANS.selectionScreenPrompt": "选择最多 {Amount} 张要保留的牌。",
   "STS2BALANCEMOD-EVISCERATE.title": "内脏切除",
   "STS2BALANCEMOD-EVISCERATE.description": "你在这个回合内每丢弃一张牌，耗能就减少 1{energyPrefix:energyIcons(1)}。\n造成 {Damage:diff()} 点伤害3次。",
-  "ROCKET_PUNCH.description": "每当生成一张[gold]状态[/gold]牌时，这张牌在打出前耗能降为 0{energyPrefix:energyIcons(0)}。\n造成 {Damage:diff()} 点伤害。"
+  "ROCKET_PUNCH.description": "造成 {Damage:diff()} 点伤害。\n抽 {Cards:diff()} 张牌。\n每当你生成[gold]状态[/gold]牌时，此牌的耗能在下一次打出前降为{energyPrefix:energyIcons(0)}。"
 }

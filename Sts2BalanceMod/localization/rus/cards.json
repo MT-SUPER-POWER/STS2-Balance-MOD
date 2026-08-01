@@ -30,5 +30,5 @@
   "WELL_LAID_PLANS.selectionScreenPrompt": "Выберите до {Amount} {Amount:plural(ru):карты|карт|карт} для [gold]Сохранения[/gold].",
   "STS2BALANCEMOD-EVISCERATE.title": "Потрошение",
   "STS2BALANCEMOD-EVISCERATE.description": "Стоит на 1{energyPrefix:energyIcons(1)} меньше за каждую карту, сброшенную на этом ходу.\nНаносит {Damage:diff()} урона 3 раза.",
-  "ROCKET_PUNCH.description": "Каждый раз, когда создается карта [gold]Статуса[/gold], эта карта стоит 0{energyPrefix:energyIcons(0)} до разыгрывания.\nНаносит {Damage:diff()} урона."
+  "ROCKET_PUNCH.description": "Наносит {Damage:diff()} урона.\nВозьмите {Cards:diff()} {Cards:plural(ru):карту|карты|карты}.\nКаждый раз, когда создается карта [gold]Статуса[/gold], эта карта стоит {energyPrefix:energyIcons(0)} до разыгрывания."
 }

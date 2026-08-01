@@ -37,6 +37,16 @@
   - 目前: 原版 `WellLaidPlansPower` 的 `StackType` 为 `Single`，重复打出计划妥当不会增加 `Amount`，导致保留张数无法叠加。
   - 目标: 将 `WellLaidPlansPower` 的 `StackType` 修改为 `Counter`，使多次打出计划妥牌时保留张数可以正常累加（例如打出两张 1 费计划妥当可保留 1+1=2 张牌）。
 
+- [x] **CARD-13** — 修正「火箭飞拳」（Rocket Punch）描述文本与抽牌文本
+  - 目前: 
+    1. 本地化描述包含 `0{energyPrefix:energyIcons(0)}` 导致游戏内渲染出 `00[能量图标]`。
+    2. 本地化描述遗漏了打出时抽牌的文本（基础 1 张，升级 2 张）。
+  - 目标: 
+    1. 移除多语言 JSON 中 `{energyPrefix:energyIcons(0)}` 变量，化简为纯数字 `0`。
+    2. 补全多语言 JSON (`zhs`, `eng`, `ita`, `rus`) 中「抽 {Cards:diff()} 张牌」相关描述。
+
+
+
 
 
 ### 遗物
