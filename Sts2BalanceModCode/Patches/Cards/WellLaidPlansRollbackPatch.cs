@@ -54,6 +54,7 @@ public static class WellLaidPlansRollbackPatch
     public static bool OnUpgradePrefix(WellLaidPlans __instance)
     {
         __instance.DynamicVars["Cards"].UpgradeValueBy(1m);
+        __instance.EnergyCost.UpgradeBy(-1);
         return false;
     }
 
