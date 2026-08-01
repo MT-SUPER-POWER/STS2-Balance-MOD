@@ -49,8 +49,8 @@ dotnet publish -c Release                 # 本地发布编译到 dist/Sts2Balan
 | `Sts2BalanceModCode/Encounters/` | 新增遭遇 |
 | `Sts2BalanceModCode/Events/` | 新增事件 |
 | `Sts2BalanceModCode/RestSite/` | 火堆选项 |
-| `Sts2BalanceMod/localization/{eng,zhs,ita}/` | 本地化 JSON（cards.json / powers.json / relics.json 等） |
-| `D:\Game\Sts2Code\localization/{eng,zhs,ita}/` | 游戏原版本地化 JSON（查阅原版卡牌、遗物、能力、事件等的文本与 LocKey 规则） |
+| `Sts2BalanceMod/localization/{eng,zhs,ita,rus}/` | 本地化 JSON（cards.json / powers.json / relics.json 等） |
+| `D:\Game\Sts2Code\localization/{eng,zhs,ita,rus}/` | 游戏原版本地化 JSON（查阅原版卡牌、遗物、能力、事件等的文本与 LocKey 规则） |
 | `Sts2BalanceMod/images/` | 图片资源（card_portraits/ / powers/ / relics/ / events/ / ui/） |
 | `image_gen/` | Python 图片批处理脚本（需 `uv`） |
 <!-- PATHS_END -->

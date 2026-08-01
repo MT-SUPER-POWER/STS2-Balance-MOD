@@ -92,7 +92,7 @@ Do this **before** `rg`, directory scans, or reading C# files. Do not guess file
 | Mod source | `Sts2BalanceModCode/` | This mod's new content, patches, abstractions, and extensions | Authoritative editable implementation |
 | Vanilla game source | `D:\Game\Sts2Code\` | Exact target type, overload, control flow, private fields, and patch feasibility | Read-only decompiled reference; never modify |
 | Reference mods | `docs/references/WatcherMod/`, `docs/references/ActsFromThePast/` | Read-only examples and compatibility research | Never edit or treat as the target implementation |
-| Player resources | `Sts2BalanceMod/localization/{eng,zhs,ita}/`, `Sts2BalanceMod/images/` | Text and artwork for new or player-visible content | Update only when the task requires them |
+| Player resources | `Sts2BalanceMod/localization/{eng,zhs,ita,rus}/`, `Sts2BalanceMod/images/` | Text and artwork for new or player-visible content | Update only when the task requires them |
 
 4. If CodeGraph finds no mod-side implementation, inspect the exact vanilla type and method in `D:\Game\Sts2Code\` before selecting a Harmony target. This external decompiled tree is not the repository's CodeGraph index; use a direct read there only after resolving the type with CodeGraph. Verify the fully qualified type, method overload, return type, relevant fields, and whether a Prefix/Postfix can safely express the change. Prefer Postfix, then Prefix, then Transpiler.
 
@@ -165,7 +165,7 @@ public static class MyPatch
 
 **New Cards/Relics:**
 - Inherit from `Sts2CardModel` / `Sts2RelicModel`
-- Add `eng`, `zhs`, and `ita` localization for player-visible new content
+- Add `eng`, `zhs`, `ita`, and `rus` localization for player-visible new content
 - Generate matching images when the content needs artwork
 - Verify the generated filename matches the model's ID-derived image path
 
@@ -236,7 +236,7 @@ Run this after any C# file is added, removed, renamed, or materially changed so 
 | Abstract bases | `Sts2BalanceModCode/Abstract/` |
 | Harmony patches | `Sts2BalanceModCode/Patches/` |
 | Vanilla behavior reference | `D:\Game\Sts2Code\` |
-| Localization | `Sts2BalanceMod/localization/{eng,zhs,ita}/` |
+| Localization | `Sts2BalanceMod/localization/{eng,zhs,ita,rus}/` |
 | Images | `Sts2BalanceMod/images/` |
 | Build | `dotnet build` |
 | Logs | `%AppData%/SlayTheSpire2/logs/godot.log` |
