@@ -9,6 +9,14 @@
 
 ## v0.1.5
 
+### Fixed
+
+- baselib 底层 bug 修复 ModelID Patch 不正确
+
+### Added
+
+- 俄文本地化
+
 ### Changed
 
 - 卡牌：回调「火箭飞拳」（Rocket Punch）为降至 0 费效果，生成状态牌时直接降为 0 费（CARD-09）。
