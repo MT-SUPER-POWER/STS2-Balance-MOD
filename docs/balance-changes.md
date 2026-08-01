@@ -33,6 +33,11 @@
   - 目前: 升级后保留张数提升为 2，但由于 Harmony Prefix Patch 拦截了原生 OnUpgrade，导致耗能未降低，保持为 2 费。
   - 目标: 修复补丁逻辑，使升级时在提升保留张数的同时，耗能正常降低 1 点（2 费 -> 1 费）。
 
+- [x] **CARD-12** — 支持「计划妥当」（Well-Laid Plans）能力层数可叠加
+  - 目前: 原版 `WellLaidPlansPower` 的 `StackType` 为 `Single`，重复打出计划妥当不会增加 `Amount`，导致保留张数无法叠加。
+  - 目标: 将 `WellLaidPlansPower` 的 `StackType` 修改为 `Counter`，使多次打出计划妥牌时保留张数可以正常累加（例如打出两张 1 费计划妥当可保留 1+1=2 张牌）。
+
+
 
 ### 遗物
 

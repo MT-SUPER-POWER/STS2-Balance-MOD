@@ -7,6 +7,14 @@
 已完成的所有改动见 [README.md](README.md##调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
 
+## v0.1.6
+
+### Changed
+
+- 卡牌：修复「计划妥当」（Well-Laid Plans）升级时不降低耗能的问题，升级后正常从 2 费降至 1 费（CARD-11）。
+- 卡牌：支持「计划妥当」（Well-Laid Plans）能力层数可叠加，重复打出时保留卡牌张数正常累加（CARD-12）。
+
+
 ## v0.1.5
 
 ### Fixed
@@ -19,7 +27,6 @@
 
 ### Changed
 
-- 卡牌：修复「计划妥当」（Well-Laid Plans）升级时不降低耗能的问题，升级后正常从 2 费降至 1 费（CARD-11）。
 - 卡牌：回调「火箭飞拳」（Rocket Punch）为降至 0 费效果，生成状态牌时直接降为 0 费（CARD-09）。
 - 卡牌：调整「华丽收场」（Grand Finale）升级效果为抽牌堆卡牌数 ≤ X + 2 时允许打出，且升级不再增加伤害（CARD-10）。
 - 卡牌：调整「巨镰」（The Scythe）初始伤害为 16 点（CARD-08）。

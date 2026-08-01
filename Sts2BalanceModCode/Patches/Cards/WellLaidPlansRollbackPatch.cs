@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -101,6 +102,14 @@ public static class WellLaidPlansRollbackPatch
         // The current game power returns false here and retains the entire hand.
         // Restored behavior must let the normal flush retain only selected cards.
         __result = true;
+        return false;
+    }
+
+    [HarmonyPatch(typeof(WellLaidPlansPower), "get_StackType")]
+    [HarmonyPrefix]
+    public static bool PowerStackTypePrefix(ref PowerStackType __result)
+    {
+        __result = PowerStackType.Counter;
         return false;
     }
 
