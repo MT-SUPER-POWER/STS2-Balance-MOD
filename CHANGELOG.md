@@ -7,6 +7,19 @@
 已完成的所有改动见 [README.md](README.md##调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
 
+## v0.1.8
+
+### Added
+
+- 设置：接入 BaseLib Mod 配置页面与持久化，并补齐英语、简体中文、意大利语和俄语界面文本（CONFIG-01）。
+
+### Changed
+
+- 事件：重新设计“禅意织者”（Zen Weaver）删牌事件的价格。删 1 张牌 (Emotional Awareness) 从 125 金下调至 75 金（事件出现门槛降至 75 金）；删 2 张牌 (Arachnid Acupuncture) 从 250 金下调至 150 金；顿悟维持 50 金（ZEN-WEAVER-01）。
+- 事件：新增“为事件添加‘离开’选项”开关，统一控制“除虫者”“科学怪人”和“药水的未来？”三个事件的离开分支；默认开启，并在下次进入事件时生效（CONFIG-01）。
+
+
+
 ## v0.1.7
 
 ### Changed

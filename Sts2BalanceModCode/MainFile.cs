@@ -1,7 +1,9 @@
+using BaseLib.Config;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Modding;
+using Sts2BalanceMod.Sts2BalanceModCode.Config;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode;
 
@@ -17,7 +19,7 @@ public partial class MainFile : Node
   {
     // If you want to use scripts defined in your mod for Godot scenes, uncomment the following line.
     // Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(Assembly.GetExecutingAssembly());
-
+    ModConfigRegistry.Register(ModId, new BalanceModConfig());
 
     Harmony harmony = new(ModId);
     harmony.PatchAll();

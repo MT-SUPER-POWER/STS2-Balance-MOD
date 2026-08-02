@@ -1,0 +1,5 @@
+{
+  "STS2BALANCEMOD.mod_title": "STS2 Balance Mod",
+  "STS2BALANCEMOD-ENABLE_EVENT_LEAVE_OPTIONS.title": "Aggiungi l'opzione «Lascia» agli eventi",
+  "STS2BALANCEMOD-ENABLE_EVENT_LEAVE_OPTIONS.hover.desc": "Aggiunge un'opzione «Lascia» agli eventi Bugslayer, Tinker Time e The Future of Potions.\n\nAttiva per impostazione predefinita. Le modifiche si applicano quando uno di questi eventi viene aperto la volta successiva. In multigiocatore, tutti i giocatori devono usare lo stesso valore."
+}
