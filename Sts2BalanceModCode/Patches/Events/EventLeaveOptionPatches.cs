@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Events;
+using Sts2BalanceMod.Sts2BalanceModCode.Config;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Events
 {
@@ -23,6 +24,11 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Events
       [HarmonyPostfix]
       private static void Postfix(Bugslayer __instance, ref IReadOnlyList<EventOption> __result)
       {
+        if (!BalanceModConfig.EnableEventLeaveOptions)
+        {
+          return;
+        }
+
         var list = new List<EventOption>(__result);
         
         Func<Task> leaveAction = async () =>
@@ -42,6 +48,11 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Events
       [HarmonyPostfix]
       private static void Postfix(TinkerTime __instance, ref IReadOnlyList<EventOption> __result)
       {
+        if (!BalanceModConfig.EnableEventLeaveOptions)
+        {
+          return;
+        }
+
         var list = new List<EventOption>(__result);
         
         Func<Task> leaveAction = async () =>
@@ -61,6 +72,11 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Events
       [HarmonyPostfix]
       private static void Postfix(TheFutureOfPotions __instance, ref IReadOnlyList<EventOption> __result)
       {
+        if (!BalanceModConfig.EnableEventLeaveOptions)
+        {
+          return;
+        }
+
         var list = new List<EventOption>(__result);
         
         Func<Task> leaveAction = async () =>
