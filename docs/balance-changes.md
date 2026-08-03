@@ -88,6 +88,11 @@
   - 保持遭遇的 `RoomType.Monster`，不改变事件出现条件、交钱分支、进入战斗流程、25–35 金币与红面具奖励，也不加入任何幕的普通怪物池。
   - 编译验证通过；游戏更新后需复核 `NBestiary.AddEvents` 仍直接枚举 `ModelDb.EventEncounters`。
 
+- [x] **MIND-BLOOM-03** — 将心灵绽放遭遇注册为事件战斗
+  - 将第一战动态包装遭遇以及守护者、六火亡魂、史莱姆老大三场预留第二战遭遇幂等追加到 `ModelDb.EventEncounters`。
+  - 第一战包装遭遇稳定公开密林与暗港全部可能的一层 Boss，供怪物图鉴「事件」分组和资源预加载使用；实际战斗仍只生成本局抽中的 Boss。
+  - 所有遭遇保持 `RoomType.Monster`，不进入普通地图池；本次注册不启用尚未完成奖励与强化设计的第二战入口。
+
 - [x] **ZEN-WEAVER-01** — 禅意织者（Zen Weaver）删牌事件价格下调
   - 删 1 张牌 (Emotional Awareness) 价格从 125 金币下调至 75 金币（出现门槛降至 75 金）。
   - 删 2 张牌 (Arachnid Acupuncture) 价格从 250 金币下调至 150 金币。

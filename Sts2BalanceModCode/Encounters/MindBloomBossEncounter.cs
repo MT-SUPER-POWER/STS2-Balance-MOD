@@ -1,4 +1,5 @@
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Rooms;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 
@@ -25,8 +26,15 @@ public sealed class MindBloomBossEncounter : Sts2EncounterModel
     _bossEncounter = boss;
   }
 
+  /// <summary>
+  /// 图鉴和资源预加载需要稳定的候选集合，不能依赖某一局临时抽中的 Boss。
+  /// 实际战斗怪物仍由 <see cref="SetBoss"/> 选中的遭遇生成。
+  /// </summary>
   public override IEnumerable<MonsterModel> AllPossibleMonsters =>
-    _bossEncounter?.AllPossibleMonsters ?? [];
+    ModelDb.Act<Overgrowth>().AllBossEncounters
+      .Concat(ModelDb.Act<Underdocks>().AllBossEncounters)
+      .SelectMany(encounter => encounter.AllPossibleMonsters)
+      .DistinctBy(monster => monster.Id);
 
   protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters()
   {
