@@ -152,7 +152,7 @@
 | :--- | :--- | :--- |
 | **老乞丐 [Old Beggar]** | 所有玩家金币 ≥ 75 | 给金币后切换为牧师删牌。 |
 | **诅咒书本 [Cursed Tome]** | Act 2，且牌组无对应书籍遗物 | 可获得 <img src="Assets/relics/necronomicon.png" width="18" height="18" valign="middle"> **死灵之书**、<img src="Assets/relics/nilrys_codex.png" width="18" height="18" valign="middle"> **尼利的宝典**、<img src="Assets/relics/enchiridion.png" width="18" height="18" valign="middle"> **英雄宝典**。 |
-| **红面具 [Masked Bandits]** | Act 2，层数 ≥ 23，且无人持有红面具 | 可选择交金或与红面具三人帮战斗获取 <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **红面具**。 |
+| **红面具 [Masked Bandits]** | Act 2，层数 ≥ 23，且无人持有红面具 | 可选择交金或与红面具三人帮战斗获取 <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **红面具**；尖头（Pointy）、罗密欧（Romeo）、熊（Bear）归入怪物图鉴的「事件」分组。 |
 | **J.A.X. [Augmenter]** | Act 2，且所有玩家牌组中可移除牌 ≥ 2 张 | 获得 J.A.X. 卡牌 / 变2张牌 / 获得 <img src="Assets/relics/mutagenic_strength.png" width="18" height="18" valign="middle"> **突变之力** 遗物。 |
 | **神圣泉水 [The Divine Fountain]** | 所有玩家牌组中存在可移除的诅咒牌 | 移除牌组中全部可移除诅咒（删除原版的伤害副作用）。 |
 | **牧师 [Cleric]** | 所有玩家金币 ≥ 35 | 提供付钱选择治疗（25% 最大 HP）/ 删牌选项（75 金）。 |

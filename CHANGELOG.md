@@ -24,6 +24,7 @@
 - 事件：重新设计“禅意织者”（Zen Weaver）删牌事件的价格。删 1 张牌 (Emotional Awareness) 从 125 金下调至 75 金（事件出现门槛降至 75 金）；删 2 张牌 (Arachnid Acupuncture) 从 250 金下调至 150 金；顿悟维持 50 金（ZEN-WEAVER-01）。
 - 事件：新增“为事件添加‘离开’选项”开关，统一控制“除虫者”“科学怪人”和“药水的未来？”三个事件的离开分支；默认开启，并在下次进入事件时生效（CONFIG-01）。
 - 事件：心灵绽放第一战结算后恢复事件并允许玩家带着 50 金币与稀有遗物离开；第二战以独立计划模块预留随机 AFP Boss、追加奖励与随机强化接缝，规则未确认前保持入口隐藏（MIND-BLOOM-02）。
+- 图鉴：将红面具劫匪遭遇注册为事件战斗，使尖头（Pointy）、罗密欧（Romeo）、熊（Bear）显示在怪物图鉴「事件」分组中；保留 `RoomType.Monster` 与原有事件、奖励流程（MASKED-BANDITS-02）。
 - 构建：删除 `Sts2BalanceMod/monsters/.gdignore`，让全部自定义怪物资源进入 Godot 扫描；移除场景对游戏本体 C# 源文件的导出期依赖，改由运行时视觉补丁包装 `NCreatureVisuals`，并将 LibGDX `.atlas` 加入 PCK 导出白名单。
 
 ### Fixed
