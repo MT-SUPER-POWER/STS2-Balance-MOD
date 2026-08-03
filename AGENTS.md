@@ -88,10 +88,12 @@ dotnet publish -c Release                 # 本地发布编译到 dist/Sts2Balan
 
 ```bash
 cd image_gen && uv sync && cd ..
-uv run cards death_reap.png                   # 卡牌立绘（1000×760 + 500×380）
+uv run cards death_reap.png                   # 普通卡牌立绘（1000×760 + 500×380）
+uv run cards sorcery_strike.png --fullart     # 先古卡/满画幅立绘（606×852 + 303×426）
 uv run relics Sundial.png                     # 遗物图标（256×256 + 94×94 + 轮廓图）
 uv run powers                                 # 能力图标
 uv run rest-site-options smoke.png            # 火堆选项图标（256×169）
+uv run events                                 # 事件背景图（3440×1616）
 ```
 
 图片路径自动解析：文件名 `{id小写}.png`，基类自动拼接完整路径。
@@ -100,8 +102,9 @@ uv run rest-site-options smoke.png            # 火堆选项图标（256×169）
 > **!必须做的检查!**
 >
 如果你使用了 `image_gen` 里面生成了任意相关的图片之后，做一个检查：
-1. 检查一下 `Sts2BalanceMod/images/` 下面是否有有对应的生成
-2. 用于 xxx 资源的图片名是否按照对应的 `xxx.cs` 文件的需求，负责图片无法使用
+1. 检查一下 `Sts2BalanceMod/images/` 下面是否有对应的生成
+2. 用于 xxx 资源的图片名是否按照对应的 `xxx.cs` 文件的需求，否则图片无法使用
+3. 先古卡 (`CardRarity.Ancient`) 或满画幅卡牌切图时必须附加 `--fullart` / `--ancient` 参数，输出 `606×852` 大图与 `303×426` 小图以匹配先古卡满画幅底图要求。
 
 
 <!-- IMAGE_GEN_END -->
