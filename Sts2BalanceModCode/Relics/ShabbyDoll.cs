@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.RelicPools;
 using Sts2BalanceMod.Sts2BalanceModCode.Cards;
+using Sts2BalanceMod.Sts2BalanceModCode.Powers;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
@@ -29,7 +30,9 @@ public sealed class ShabbyDoll : Sts2RelicModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
     {
         HoverTipFactory.FromCard<SorceryStrike>(upgrade: true),
-        HoverTipFactory.FromCard<SorceryDefend>(upgrade: true)
+        HoverTipFactory.FromCard<SorceryDefend>(upgrade: true),
+        HoverTipFactory.FromPower<SorceryVulnerable>(),
+        HoverTipFactory.FromPower<SorceryWeak>()
     };
 
     public override async Task AfterObtained()
