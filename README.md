@@ -170,7 +170,7 @@
 
 | 遗物 | 类型 | 描述 |
 | :--- | :--- | :--- |
-| <img src="Assets/relics/sundial.png" width="22" height="22" valign="middle"> **日晷 [Sundial]** | <img src="Assets/map/shop.png" width="22" height="22" title="商店 (Shop)"> | 每将抽牌堆洗牌 3 次（跨战斗保留计数），获得 2 点能量。 |
+| <img src="Assets/relics/sundial.png" width="22" height="22" valign="middle"> **日晷 [Sundial]** | <img src="Assets/map/shop.png" width="22" height="22" title="商店 (Shop)"> | 每将抽牌堆洗牌 3 次（跨战斗保留计数），获得 3 点能量。 |
 | <img src="Assets/relics/orange_pill.png" width="22" height="22" valign="middle"> **橙色药丸 [Orange Pill]** | <img src="Assets/map/shop.png" width="22" height="22" title="商店 (Shop)"> | 同一回合打出攻击 / 技能 / 能力各一张后，移除所有负面效果（女王的魂缚锁链除外）。 |
 | <img src="Assets/relics/dead_branch.png" width="22" height="22" valign="middle"> **枯木树枝 [Dead Branch]** | 稀有 | 每消耗一张牌，随机将一张牌加入手牌（虚无牌触发时给当回合保留）。 |
 | <img src="Assets/relics/omamori.png" width="22" height="22" valign="middle"> **御守 [Omamori]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 抵消接下来获得的 2 张诅咒牌（带计数器）。 |
@@ -191,7 +191,7 @@
 
 | 遗物 | 类型 | 原版 | MOD 改后 |
 | :--- | :--- | :--- | :--- |
-| <img src="Assets/relics/sturdy_clamp.png" width="22" height="22" valign="middle"> **坚固钳子 [Sturdy Clamp]** | 稀有 | 保留 10 护甲 | 保留 **20 护甲** |
+| <img src="Assets/relics/sturdy_clamp.png" width="22" height="22" valign="middle"> **坚固钳子 [Sturdy Clamp]** | 稀有 | 保留 10 护甲 | 保留 **15 护甲** |
 | <img src="Assets/relics/preserved_fog.png" width="22" height="22" valign="middle"> **活雾 [Preserved Fog]** | <img src="Assets/profile/vakuu.png" width="22" height="22" title="瓦库 (Vakuu)"> | 删除 3 张牌 | 删除 **4 张牌** |
 | <img src="Assets/relics/red_mask.png" width="22" height="22" valign="middle"> **红面具 [Red Mask]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 在一般共享遗物池中 | 从一般共享遗物池**移除**，只通过红面具相关事件获得 |
 | <img src="Assets/relics/history_course.png" width="22" height="22" valign="middle"> **历史课 [History Course]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 只重复上回合最后打出的攻击牌 | 回调为重复上回合最后打出的**攻击牌或技能牌** |

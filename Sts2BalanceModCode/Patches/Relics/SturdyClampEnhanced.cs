@@ -12,7 +12,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 [HarmonyPatch(typeof(SturdyClamp), nameof(SturdyClamp.AfterPreventingBlockClear))]
 public static class SturdyClampEnhancedPatch
 {
-    private const int _retainedBlock = 20;
+    private const int _retainedBlock = 15;
 
     [HarmonyPrefix]
     public static bool Prefix(SturdyClamp __instance, AbstractModel preventer, Creature creature, ref Task __result)
@@ -25,14 +25,14 @@ public static class SturdyClampEnhancedPatch
 
         int block = creature.Block;
 
-        // 2. 如果护甲 > 20，扣除多余护甲，将 Task 赋给 __result
+        // 2. 如果护甲 > 15，扣除多余护甲，将 Task 赋给 __result
         if (block != 0 && block > _retainedBlock)
         {
             __result = CreatureCmd.LoseBlock(new ThrowingPlayerChoiceContext(), creature, block - _retainedBlock, null);
         }
         else
         {
-            // 3. 【关键修复】如果护甲 <= 20，不需要扣除，但必须赋一个空的 Task 防止上层 await 时报空引用异常！
+            // 3. 【关键修复】如果护甲 <= 15，不需要扣除，但必须赋一个空的 Task 防止上层 await 时报空引用异常！
             __result = Task.CompletedTask;
         }
 
@@ -51,7 +51,7 @@ public static class SturdyClampGetVarPatch
     {
         __result =
         [
-        new BlockVar(20m, ValueProp.Unpowered)
+        new BlockVar(15m, ValueProp.Unpowered)
         ];
         return false;
     }

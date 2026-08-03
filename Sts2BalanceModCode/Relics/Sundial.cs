@@ -14,7 +14,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 // ======================== RELIC-01: 日晷 ========================
 
 /// <summary>
-/// 日晷（Sundial）— 每将抽牌堆洗牌 3 次，获得 2 点能量。
+/// 日晷（Sundial）— 每将抽牌堆洗牌 3 次，获得 3 点能量。
 /// 洗牌次数跨战斗保留（不重置）。
 ///
 /// 核心逻辑：
@@ -65,7 +65,7 @@ public sealed class Sundial : Sts2RelicModel
   protected override IEnumerable<DynamicVar> CanonicalVars =>
   [
     new DynamicVar(ShufflesKey, 3m),   // 需要 3 次洗牌触发回能
-    new EnergyVar(2),                  // 触发后获得 2 点能量
+    new EnergyVar(3),                  // 触发后获得 3 点能量
   ];
 
   /// <summary>
