@@ -111,6 +111,8 @@ def process_image(
     anchor: str,
     out_big: Path,
     out_small: Path,
+    big_size: tuple[int, int] = BIG_SIZE,
+    small_size: tuple[int, int] = SMALL_SIZE,
 ) -> None:
     """
     处理单张卡牌立绘，输出大图与小图。
@@ -121,6 +123,8 @@ def process_image(
         anchor: 裁切锚点（仅 cover 模式有效）
         out_big: 大图输出路径
         out_small: 小图输出路径
+        big_size: 大图目标尺寸
+        small_size: 小图目标尺寸
     """
     fitters = {
         "cover": lambda img, size: fit_cover(img, size, anchor),
@@ -132,8 +136,8 @@ def process_image(
     with Image.open(src) as raw:
         img = raw.convert("RGBA")
 
-    big = fit(img, BIG_SIZE)
-    small = fit(img, SMALL_SIZE)
+    big = fit(img, big_size)
+    small = fit(img, small_size)
 
     out_big.parent.mkdir(parents=True, exist_ok=True)
     out_small.parent.mkdir(parents=True, exist_ok=True)
@@ -141,7 +145,7 @@ def process_image(
     big.save(out_big)
     small.save(out_small)
 
-    print(f"  {src.name}: {img.size[0]}x{img.size[1]} -> big {BIG_SIZE[0]}x{BIG_SIZE[1]}, small {SMALL_SIZE[0]}x{SMALL_SIZE[1]}")
+    print(f"  {src.name}: {img.size[0]}x{img.size[1]} -> big {big_size[0]}x{big_size[1]}, small {small_size[0]}x{small_size[1]}")
 
 
 def collect_sources(input_dir: Path, names: list[str] | None) -> list[Path]:
@@ -202,13 +206,23 @@ def main() -> None:
         default="center",
         help="cover 模式的垂直裁切锚点（默认: center）",
     )
+    parser.add_argument(
+        "--fullart",
+        "--ancient",
+        action="store_true",
+        help="生成先古卡/满画幅卡牌尺寸 (大图 606x852, 小图 303x426)",
+    )
     args = parser.parse_args()
+
+    big_target_size = (606, 852) if args.fullart else BIG_SIZE
+    small_target_size = (303, 426) if args.fullart else SMALL_SIZE
 
     sources = collect_sources(args.input, args.files or None)
     out_big_dir = args.output / "big"
     out_small_dir = args.output
 
-    print(f"模式: {args.mode}  锚点: {args.anchor}")
+    print(f"模式: {args.mode}  锚点: {args.anchor}  满画幅/先古卡: {args.fullart}")
+    print(f"目标尺寸: 大图 {big_target_size[0]}x{big_target_size[1]}, 小图 {small_target_size[0]}x{small_target_size[1]}")
     print(f"输入: {args.input}")
     print(f"输出: {out_small_dir} + {out_big_dir}")
     print(f"共 {len(sources)} 张\n")
@@ -221,6 +235,8 @@ def main() -> None:
             args.anchor,
             out_big_dir / out_name,
             out_small_dir / out_name,
+            big_size=big_target_size,
+            small_size=small_target_size,
         )
 
     print("\n完成!")
