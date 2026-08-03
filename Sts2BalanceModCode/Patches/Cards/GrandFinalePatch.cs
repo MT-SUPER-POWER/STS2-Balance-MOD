@@ -86,7 +86,9 @@ public static class GrandFinaleEnergyToSpendPatch
 }
 
 /// <summary>
-/// 动态注册 CalculatedSpend 变量，用于战斗中实时展示实际扣除能量（考虑升级减 2 与化学 X 减 2 等）。
+/// 动态注册 DynamicVar（EnergySaved 与 CalculatedSpend）：
+/// - EnergySaved: 用于非战斗/图鉴界面展示 X-{EnergySaved:diff()} 动态高亮数值；
+/// - CalculatedSpend: 用于战斗中手牌实时计算并渲染具体的扣除能量。
 /// </summary>
 [HarmonyPatch(typeof(GrandFinale), "get_CanonicalVars")]
 public static class GrandFinaleCanonicalVarsPatch
@@ -95,6 +97,7 @@ public static class GrandFinaleCanonicalVarsPatch
     public static void Postfix(GrandFinale __instance, ref IEnumerable<DynamicVar> __result)
     {
         var list = __result.ToList();
+        list.Add(new EnergyVar("EnergySaved", 0));
         list.Add(new CalculatedVar("CalculatedSpend").WithMultiplier((CardModel card, Creature? _) =>
         {
             if (card.Owner?.PlayerCombatState == null) return 0;
@@ -109,7 +112,7 @@ public static class GrandFinaleCanonicalVarsPatch
 }
 
 /// <summary>
-/// CARD-10 — 华丽收场 (Grand Finale) 升级逻辑重写。
+/// CARD-10 — 华丽收场 (Grand Finale) 升级逻辑重写：对 EnergySaved 变量执行 UpgradeValueBy(2m)。
 /// </summary>
 [HarmonyPatch(typeof(GrandFinale), "OnUpgrade")]
 public static class GrandFinaleCanonicalUpgradePatch
@@ -117,7 +120,10 @@ public static class GrandFinaleCanonicalUpgradePatch
     [HarmonyPrefix]
     public static bool Prefix(GrandFinale __instance)
     {
-        // 不调用原版 OnUpgrade(UpgradeValueBy 15m)，保持基础伤害不变
+        if (__instance.DynamicVars.ContainsKey("EnergySaved"))
+        {
+            __instance.DynamicVars["EnergySaved"].UpgradeValueBy(2m);
+        }
         return false;
     }
 }

@@ -29,7 +29,7 @@
   "STS2BALANCEMOD-EVOLVE.title": "进化",
   "STS2BALANCEMOD-EVOLVE.description": "每当你抽到一张状态牌，抽 {EvolvePower:diff()} 张牌。",
   "PILLAR_OF_CREATION.description": "每当你生成一张卡牌，获得 {Block:diff()} 点[gold]格挡[/gold]。",
-  "GRAND_FINALE.description": "只能在你的[gold]抽牌堆[/gold]中卡牌数量小于或等于 X 时打出。\n对所有敌人造成 {Damage:diff()} 点伤害。{InCombat:\n（消耗 {CalculatedSpend:energyIcons()}）|{IfUpgraded:show:\n打出时消耗 X-2 能量。|}}",
+  "GRAND_FINALE.description": "只能在你的[gold]抽牌堆[/gold]中卡牌数量小于或等于 X 时打出。\n对所有敌人造成 {Damage:diff()} 点伤害。{InCombat:\n（消耗 {CalculatedSpend:energyIcons()}）|{IfUpgraded:show:\n打出时少扣除 {EnergySaved:diff()} 点费用。|}}",
   "WELL_LAID_PLANS.description": "在你的回合结束时，保留最多 {Cards:diff()} 张牌。",
   "WELL_LAID_PLANS.selectionScreenPrompt": "选择最多 {Amount} 张要保留的牌。",
   "STS2BALANCEMOD-EVISCERATE.title": "内脏切除",
