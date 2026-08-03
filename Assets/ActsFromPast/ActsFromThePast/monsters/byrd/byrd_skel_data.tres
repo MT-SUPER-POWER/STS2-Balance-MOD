@@ -1,10 +1,10 @@
 [gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3]
 
 [sub_resource type="Resource" id="Resource_yh6k0"]
-metadata/__load_path__ = "res://Assets/ActsFromPast/ActsFromThePast/monsters/byrd/byrd.spatlas"
+metadata/__load_path__ = "res://ActsFromThePast/monsters/byrd/byrd.spatlas"
 
 [sub_resource type="Resource" id="Resource_gk4ls"]
-metadata/__load_path__ = "res://Assets/ActsFromPast/ActsFromThePast/monsters/byrd/byrd.spskel"
+metadata/__load_path__ = "res://ActsFromThePast/monsters/byrd/byrd.spskel"
 
 [resource]
 atlas_res = SubResource("Resource_yh6k0")

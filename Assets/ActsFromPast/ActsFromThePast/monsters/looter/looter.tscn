@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_script"]
-[ext_resource type="SpineSkeletonDataResource" path="res://Assets/ActsFromPast/ActsFromThePast/monsters/looter/looter_skel_data.tres" id="2_skel"]
+[ext_resource type="SpineSkeletonDataResource" path="res://ActsFromThePast/monsters/looter/looter_skel_data.tres" id="2_skel"]
 
 [node name="Looter" type="Node2D"]
 script = ExtResource("1_script")
