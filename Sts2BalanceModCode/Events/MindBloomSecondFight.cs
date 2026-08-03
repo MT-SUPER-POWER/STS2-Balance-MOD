@@ -1,8 +1,11 @@
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Random;
 using MegaCrit.Sts2.Core.Rewards;
 using Sts2BalanceMod.Sts2BalanceModCode.Encounters;
+using Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 
@@ -20,10 +23,9 @@ internal sealed record MindBloomSecondFightPlan(
 /// </summary>
 internal static class MindBloomSecondFight
 {
-  /// <summary>
-  /// NOTE: 奖励与随机强化尚待产品讨论。在两者落地前，不向玩家暴露未完成的第二战选项。
-  /// </summary>
-  internal static bool IsReady => false;
+  private const int ExtraGold = 100;
+
+  internal static bool IsReady => true;
 
   internal static bool TryCreatePlan(
     Player owner,
@@ -36,21 +38,55 @@ internal static class MindBloomSecondFight
       return false;
     }
 
-    var encounter = rng.NextItem<EncounterModel>(
+    EncounterModel[] encounterPool =
     [
       ModelDb.Encounter<MindBloomGuardian>(),
       ModelDb.Encounter<MindBloomHexaghost>(),
       ModelDb.Encounter<MindBloomSlimeBoss>(),
-    ]);
-    if (encounter == null)
+    ];
+    MindBloomDurabilityEnhancement[] durabilityPool =
+    [
+      MindBloomDurabilityEnhancement.Giant,
+      MindBloomDurabilityEnhancement.Plating,
+      MindBloomDurabilityEnhancement.Regeneration,
+    ];
+    MindBloomThreatEnhancement[] threatPool =
+    [
+      MindBloomThreatEnhancement.Strength,
+      MindBloomThreatEnhancement.Ritual,
+    ];
+
+    var encounter = encounterPool[rng.NextInt(0, encounterPool.Length)];
+    var enhancementPlan = new MindBloomBossEnhancementPlan(
+      durabilityPool[rng.NextInt(0, durabilityPool.Length)],
+      threatPool[rng.NextInt(0, threatPool.Length)]);
+
+    switch (encounter)
     {
-      plan = null;
-      return false;
+      case MindBloomGuardian guardian:
+        guardian.SetEnhancementPlan(enhancementPlan);
+        break;
+      case MindBloomHexaghost hexaghost:
+        hexaghost.SetEnhancementPlan(enhancementPlan);
+        break;
+      case MindBloomSlimeBoss slimeBoss:
+        slimeBoss.SetEnhancementPlan(enhancementPlan);
+        break;
+      default:
+        plan = null;
+        return false;
     }
 
-    // TODO(MIND-BLOOM-02): 在这里生成第二战追加奖励，并为所选 Boss 生成随机强化计划。
-    // 在奖励与强化规则确认前 IsReady 保持 false，本空列表不会进入玩家流程。
-    plan = new MindBloomSecondFightPlan(encounter, Array.Empty<Reward>());
+    var rareRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Rare).ToMutable();
+    var uncommonRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Uncommon).ToMutable();
+    var rewards = new List<Reward>
+    {
+      new GoldReward(ExtraGold, owner),
+      new RelicReward(rareRelic, owner),
+      new RelicReward(uncommonRelic, owner),
+    };
+
+    plan = new MindBloomSecondFightPlan(encounter, rewards);
     return true;
   }
 }

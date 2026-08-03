@@ -32,7 +32,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 /// AFP-BOSS-03 — 史莱姆老大。
 /// 循环执行黏液喷射、蓄力、重击，并在半血时强制分裂为一只大型尖刺史莱姆和一只大型酸液史莱姆。
 /// </summary>
-public sealed class SlimeBoss : Sts2MonsterModel
+public sealed class SlimeBoss : MindBloomBossMonsterModel
 {
   private const string SlamMove = "SLAM";
   private const string PrepSlamMove = "PREP_SLAM";
@@ -76,6 +76,7 @@ public sealed class SlimeBoss : Sts2MonsterModel
   {
     await base.AfterAddedToRoom();
     await PowerCmd.Apply<SplitPower>(new ThrowingPlayerChoiceContext(), Creature, 1M, Creature, null);
+    await ApplyMindBloomEnhancements();
     Creature.Died += OnDeath;
   }
 

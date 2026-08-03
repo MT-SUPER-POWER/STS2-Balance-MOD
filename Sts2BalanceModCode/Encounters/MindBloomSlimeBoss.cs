@@ -14,6 +14,7 @@ public sealed class MindBloomSlimeBoss : Sts2EncounterModel
 {
   private const string SplitPowerIcon =
     "res://Sts2BalanceMod/images/powers/actsfromthepast-split_power.png";
+  private MindBloomBossEnhancementPlan? _enhancementPlan;
 
   public override RoomType RoomType => RoomType.Monster;
 
@@ -39,8 +40,16 @@ public sealed class MindBloomSlimeBoss : Sts2EncounterModel
     ModelDb.Monster<AcidSlimeMedium>(),
   ];
 
-  protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
-  [
-    (ModelDb.Monster<SlimeBoss>().ToMutable(), "slime_boss"),
-  ];
+  internal void SetEnhancementPlan(MindBloomBossEnhancementPlan plan)
+  {
+    // NOTE: EventModel 要求传入 canonical 遭遇，配置字段会在进入战斗时随 ToMutable 一起复制。
+    _enhancementPlan = plan;
+  }
+
+  protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters()
+  {
+    var boss = (SlimeBoss)ModelDb.Monster<SlimeBoss>().ToMutable();
+    boss.MindBloomEnhancementPlan = _enhancementPlan;
+    return [(boss, "slime_boss")];
+  }
 }

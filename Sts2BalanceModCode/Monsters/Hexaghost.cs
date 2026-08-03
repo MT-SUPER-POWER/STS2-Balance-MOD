@@ -34,7 +34,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 /// AFP-BOSS-02 — STS1 Hexaghost Boss。
 /// 先根据队伍存活角色的平均当前生命动态计算 Divider，之后按六枚火球数量执行固定循环。
 /// </summary>
-public sealed class Hexaghost : Sts2MonsterModel
+public sealed class Hexaghost : MindBloomBossMonsterModel
 {
   private const string ActivateMove = "ACTIVATE";
   private const string DividerMove = "DIVIDER";
@@ -84,6 +84,8 @@ public sealed class Hexaghost : Sts2MonsterModel
     var creatureNode = NCombatRoom.Instance?.GetCreatureNode(Creature);
     if (creatureNode != null)
       _visuals = new HexaghostVisuals(Creature, creatureNode);
+
+    await ApplyMindBloomEnhancements();
   }
 
   protected override MonsterMoveStateMachine GenerateMoveStateMachine()

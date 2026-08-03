@@ -9,7 +9,6 @@
     <img src="Assets/profile/necrobinder.png" width="28" height="28" title="死灵缚者 (Necrobinder)" />
     <img src="Assets/profile/defect.png" width="28" height="28" title="故障机器人 (Defect)" />
   </p>
-  <br/>
   <a href="https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/stargazers">
     <img src="https://img.shields.io/github/stars/MT-SUPER-POWER/STS2-Balance-MOD?style=flat" alt="Stars" />
   </a>
@@ -68,6 +67,7 @@
 | 设置项 | 默认值 | 效果 |
 | :--- | :---: | :--- |
 | **为事件添加“离开”选项** | 开启 | 控制是否为“除虫者”“科学怪人”和“药水的未来？”添加可直接离开的选项；修改后会在下次进入这些事件时生效。 |
+| **启用感染棱柱重做** | 开启 | 开启时使用固定四回合循环与【感染】机制；关闭时恢复原版【活力火花】与原版行动状态机。修改后会在下次进入感染棱柱战斗时生效。 |
 
 ### 商店
 
@@ -129,7 +129,7 @@
 | 名称 | 编号 | 原版机制 | MOD 改后机制 |
 | :--- | :--- | :--- | :--- |
 | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" valign="middle"> **永世沙漏 [Aeonglass]** | MON-01 | 永世沙漏 Boss 生成的凋零卡无法打出，直接进入消耗堆。 | 凋零卡可以**1c打出并消耗**，保留成长机制。 |
-| <img src="Assets/map/elite.png" width="22" height="22" valign="middle"> **感染棱柱 [InfestedPrism]** | BOSS-01 | 开场污染玩家技能牌（活力火花），玩家打出污染技能为棱柱增加力量；4回合循环均为攻击。 | 移除【活力火花】污染机制，改为每段攻击穿透格挡时叠加【感染】[InfectedPower] 压力（同一攻击段对每名玩家只结算一次，连击按每段结算），并重构4回合固定行动循环（轻击 6/8 + 2脆弱、重击 16/18 + 8/10格挡、连击 5x3/6x3、强化 16/18格挡 + 1/2力量）。 |
+| <img src="Assets/map/elite.png" width="22" height="22" valign="middle"> **感染棱柱 [InfestedPrism]** | BOSS-01 | 开场污染玩家技能牌（活力火花），玩家打出污染技能为棱柱增加力量；4回合循环均为攻击。 | 移除【活力火花】污染机制，改为每段攻击穿透格挡时叠加【感染】[InfectedPower] 压力（同一攻击段对每名玩家只结算一次，连击按每段结算），并重构4回合固定行动循环（轻击 6/8 + 2脆弱、重击 16/18 + 8/10格挡、连击 5x3/6x3、强化 16/18格挡 + 1/2力量）。可在 Mod 设置中关闭并恢复原版机制。 |
 | <img src="Assets/map/monster.png" width="22" height="22" valign="middle"> **红面具强盗 Bear [Bear]** | MONSTER-01 | 首回合【熊抱 BEAR_HUG】给予目标 1 层【易伤】 (`VulnerablePower`)。 | 【熊抱 BEAR_HUG】Debuff 修改为减少 2 点【敏捷】 (`DexterityPower` -2)。 |
 | <img src="Assets/map/guardian_boss.png" width="22" height="22" valign="middle"> **守护者 [Guardian]** | AFP-BOSS-01 | 《杀戮尖塔 1》第一幕 Boss，当前本体未提供。 | 按 Acts From the Past v1.0.5 移植完整行动循环、形态转换、Mode Shift、Sharp Hide、动画与音效；提供不进入普通地图池的心灵绽放专用遭遇。 |
 | <img src="Assets/map/hexaghost_boss.png" width="22" height="22" valign="middle"> **六火亡魂 [Hexaghost]** | AFP-BOSS-02 | 《杀戮尖塔 1》第一幕 Boss，当前本体未提供。 | 按 Acts From the Past v1.0.5 移植六火球状态、Divider/Sear/Inferno、灼伤升级、火焰特效与音效；提供不进入普通地图池的心灵绽放专用遭遇。 |
@@ -156,9 +156,10 @@
 | **J.A.X. [Augmenter]** | Act 2，且所有玩家牌组中可移除牌 ≥ 2 张 | 获得 J.A.X. 卡牌 / 变2张牌 / 获得 <img src="Assets/relics/mutagenic_strength.png" width="18" height="18" valign="middle"> **突变之力** 遗物。 |
 | **神圣泉水 [The Divine Fountain]** | 所有玩家牌组中存在可移除的诅咒牌 | 移除牌组中全部可移除诅咒（删除原版的伤害副作用）。 |
 | **牧师 [Cleric]** | 所有玩家金币 ≥ 35 | 提供付钱选择治疗（25% 最大 HP）/ 删牌选项（75 金）。 |
-| **心灵绽放 [Mind Bloom]** | Act 3 | 1. **战斗**——随机挑战本局第一幕原版 Boss，胜利获得 50 金 + 稀有遗物；奖励结算后返回事件，可带着奖励离开。预留的守护者、六火亡魂、史莱姆老大三场 DIY 第二战遭遇登记为事件战斗，并在怪物图鉴「事件」分组显示；第一战的原版 Boss 不会重复归入该分组。第二战在追加奖励与随机强化规则确认前不会显示继续挑战选项。<br>2. **升级**——升级牌组中所有可升级的牌，并获得 <img src="Assets/relics/mark_of_the_bloom.png" width="18" height="18" valign="middle"> **「绽放印记」** 遗物。<br>3. **宝库**（层数 < 41，多人 < 38）获得 999 金 + 牌组加入 2 张「凡庸」。|
+| **心灵绽放 [Mind Bloom]** | Act 3 | 1. **战斗**——随机挑战本局第一幕原版 Boss，胜利获得 50 金 + 稀有遗物；结算后可直接离开，或接受一场完全未知的第二战。点击继续后才等概率抽取守护者、六火亡魂或史莱姆老大，并从耐久池（生命 +25% / 10 层覆甲 / 10 层再生）与威胁池（力量 / 1 层仪式）各抽取一项；力量分别为 2 / 1 / 3，史莱姆分裂体不继承强化。第二战胜利额外获得 100 金 + 稀有遗物 + 罕见遗物，同时保留普通金币、卡牌与药水概率。三场第二战遭遇登记为事件战斗，第一战原版 Boss 不会重复归入「事件」图鉴。<br>2. **升级**——升级牌组中所有可升级的牌，并获得 <img src="Assets/relics/mark_of_the_bloom.png" width="18" height="18" valign="middle"> **「绽放印记」** 遗物。<br>3. **宝库**（层数 < 41，多人 < 38）获得 999 金 + 牌组加入 2 张「凡庸」。|
 | **大转盘 [Wheel of Change]** | - | 自定义转盘小游戏，随机获得金/遗物/治疗/诅咒/删牌/受伤。 |
 | **红面具大人之墓 [Tomb of Lord Red Mask]** | Act 3，且无人持有红面具 | 可献上全部金币获得 <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **红面具**，或（持有红面具时）收获 222 金。 |
+| **大图书馆 [The Library]** | Act 3 | 提供 **【阅读】**（从 20 张跨职业卡牌中选择 1 张加入牌组）与 **【睡觉】**（回复 33% 最大生命值）两个选项。 |
 
 
 ### 遗物

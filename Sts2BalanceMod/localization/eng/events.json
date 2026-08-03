@@ -74,7 +74,7 @@
   "STS2BALANCEMOD-MIND_BLOOM.pages.HEAL.description": "Your wounds close, and doubt remains.",
   "STS2BALANCEMOD-MIND_BLOOM.pages.POST_FIRST.description": "The fallen foe dissolves into memory. Another, stronger presence waits beyond it.",
   "STS2BALANCEMOD-MIND_BLOOM.pages.POST_FIRST.options.CONTINUE_FIGHT.title": "Press deeper",
-  "STS2BALANCEMOD-MIND_BLOOM.pages.POST_FIRST.options.CONTINUE_FIGHT.description": "Fight a legacy Act 1 Boss for greater rewards.",
+  "STS2BALANCEMOD-MIND_BLOOM.pages.POST_FIRST.options.CONTINUE_FIGHT.description": "Accept a completely unknown challenge. Win to gain an extra [gold]100[/gold] Gold, a [gold]Rare Relic[/gold], and an [gold]Uncommon Relic[/gold].",
   "STS2BALANCEMOD-MIND_BLOOM.pages.POST_FIRST.options.LEAVE_AFTER_FIRST_FIGHT.title": "Wake up",
   "STS2BALANCEMOD-MIND_BLOOM.pages.POST_FIRST.options.LEAVE_AFTER_FIRST_FIGHT.description": "Leave with your current rewards.",
   "STS2BALANCEMOD-MIND_BLOOM.pages.LEAVE_AFTER_FIRST.description": "You turn away from the deeper challenge and return with what you have won.",
@@ -151,5 +151,16 @@
   "TINKER_TIME.pages.LEAVE.description": "Science often carries risks. You decide to abort the experiment and leave.",
   "THE_FUTURE_OF_POTIONS.pages.INITIAL.options.LEAVE.title": "Leave",
   "THE_FUTURE_OF_POTIONS.pages.INITIAL.options.LEAVE.description": "",
-  "THE_FUTURE_OF_POTIONS.pages.LEAVE.description": "You decide to keep your potions and move on."
+  "THE_FUTURE_OF_POTIONS.pages.LEAVE.description": "You decide to keep your potions and move on.",
+  "STS2BALANCEMOD-THE_LIBRARY.title": "The Library",
+  "STS2BALANCEMOD-THE_LIBRARY.pages.INITIAL.description": "You happen upon a grand, abandoned building.\nA plaque near the doorway reads: [blue]The Library[/blue].\nInside are endless rows of scrolls, manuscripts, and books.\nYou pick one up and sink comfortably into an armchair.",
+  "STS2BALANCEMOD-THE_LIBRARY.pages.INITIAL.options.READ.title": "Read",
+  "STS2BALANCEMOD-THE_LIBRARY.pages.INITIAL.options.READ.description": "Choose [blue]1[/blue] of [blue]{CardChoiceCount}[/blue] cross-class cards to add to your [gold]deck[/gold].",
+  "STS2BALANCEMOD-THE_LIBRARY.pages.INITIAL.options.SLEEP.title": "Sleep",
+  "STS2BALANCEMOD-THE_LIBRARY.pages.INITIAL.options.SLEEP.description": "Heal [green]{Heal}[/green] HP.",
+  "STS2BALANCEMOD-THE_LIBRARY.pages.READ.selectionScreenPrompt": "Choose a card to add to your [gold]deck[/gold].",
+  "STS2BALANCEMOD-THE_LIBRARY.pages.READ.description_1": "A story of an insect-controlling heroine striving to become a true hero. Creative power usage and tactical depth.\n\nSatisfying.",
+  "STS2BALANCEMOD-THE_LIBRARY.pages.READ.description_2": "A tale of a lonely traveler stranded on a distant world, surviving through wit, luck, and humor.\n\nEngrossing.",
+  "STS2BALANCEMOD-THE_LIBRARY.pages.READ.description_3": "A dark chronicle set inside a colossal subterranean structure. You wonder if the Spire shares a similar fate.\n\nUnsettling.",
+  "STS2BALANCEMOD-THE_LIBRARY.pages.SLEEP.description": "Reading is for fools.\nYou take a quick nap in the comfy armchair.\n[sine]Zzz...[/sine][sine]zzz...[/sine][sine]..Zz....[/sine]\nYou wake up feeling refreshed."
 }

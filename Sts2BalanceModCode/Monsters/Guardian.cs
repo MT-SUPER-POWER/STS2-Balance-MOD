@@ -26,7 +26,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 /// 输入：受到的未格挡伤害、当前形态与行动序列。
 /// 输出：在进攻形态执行固定循环，达到 Mode Shift 阈值后切换为防御形态，再通过双重猛击返回进攻形态。
 /// </summary>
-public sealed class Guardian : Sts2MonsterModel
+public sealed class Guardian : MindBloomBossMonsterModel
 {
   private const string CloseUp = "CLOSE_UP";
   private const string FierceBash = "FIERCE_BASH";
@@ -105,6 +105,7 @@ public sealed class Guardian : Sts2MonsterModel
     _nextThreshold = DamageThresholdBase;
     await PowerCmd.Apply<ModeShiftPower>(
       new ThrowingPlayerChoiceContext(), Creature, _nextThreshold, Creature, null);
+    await ApplyMindBloomEnhancements();
   }
 
   protected override MonsterMoveStateMachine GenerateMoveStateMachine()

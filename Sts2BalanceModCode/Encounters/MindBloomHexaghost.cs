@@ -14,6 +14,7 @@ public sealed class MindBloomHexaghost : Sts2EncounterModel
 {
   private const string VisualRoot = "res://Sts2BalanceMod/monsters/hexaghost";
   private const string VfxTexture = "res://Sts2BalanceMod/vfx/vfx.png";
+  private MindBloomBossEnhancementPlan? _enhancementPlan;
 
   public override RoomType RoomType => RoomType.Monster;
 
@@ -28,8 +29,16 @@ public sealed class MindBloomHexaghost : Sts2EncounterModel
 
   public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<Hexaghost>()];
 
-  protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
-  [
-    (ModelDb.Monster<Hexaghost>().ToMutable(), null),
-  ];
+  internal void SetEnhancementPlan(MindBloomBossEnhancementPlan plan)
+  {
+    // NOTE: EventModel 要求传入 canonical 遭遇，配置字段会在进入战斗时随 ToMutable 一起复制。
+    _enhancementPlan = plan;
+  }
+
+  protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters()
+  {
+    var boss = (Hexaghost)ModelDb.Monster<Hexaghost>().ToMutable();
+    boss.MindBloomEnhancementPlan = _enhancementPlan;
+    return [(boss, null)];
+  }
 }

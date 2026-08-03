@@ -16,6 +16,7 @@ public sealed class MindBloomGuardian : Sts2EncounterModel
     "res://Sts2BalanceMod/images/powers/actsfromthepast-mode_shift_power.png";
   private const string SharpHideIcon =
     "res://Sts2BalanceMod/images/powers/actsfromthepast-sharp_hide_power.png";
+  private MindBloomBossEnhancementPlan? _enhancementPlan;
 
   public override RoomType RoomType => RoomType.Monster;
 
@@ -23,8 +24,16 @@ public sealed class MindBloomGuardian : Sts2EncounterModel
 
   public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<Guardian>()];
 
-  protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
-  [
-    (ModelDb.Monster<Guardian>().ToMutable(), null),
-  ];
+  internal void SetEnhancementPlan(MindBloomBossEnhancementPlan plan)
+  {
+    // NOTE: EventModel 要求传入 canonical 遭遇，配置字段会在进入战斗时随 ToMutable 一起复制。
+    _enhancementPlan = plan;
+  }
+
+  protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters()
+  {
+    var boss = (Guardian)ModelDb.Monster<Guardian>().ToMutable();
+    boss.MindBloomEnhancementPlan = _enhancementPlan;
+    return [(boss, null)];
+  }
 }
