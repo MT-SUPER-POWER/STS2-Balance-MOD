@@ -57,18 +57,24 @@ public sealed class ShabbyDoll : Sts2RelicModel
             c.Id.Entry.Contains("STRIKE", StringComparison.OrdinalIgnoreCase) || 
             c.Id.Entry.Contains("DEFEND", StringComparison.OrdinalIgnoreCase)).ToList();
 
+        var addResults = new List<CardPileAddResult>();
         foreach (var card in cardsToReplace)
         {
             await CardPileCmd.RemoveFromDeck(card, showPreview: true);
 
             bool isStrike = card.Tags.Contains(CardTag.Strike) || card.Id.Entry.Contains("STRIKE", StringComparison.OrdinalIgnoreCase);
             CardModel newCard = isStrike
-                ? ModelDb.Card<SorceryStrike>().ToMutable()
-                : ModelDb.Card<SorceryDefend>().ToMutable();
+                ? Owner.RunState.CreateCard(ModelDb.Card<SorceryStrike>(), Owner)
+                : Owner.RunState.CreateCard(ModelDb.Card<SorceryDefend>(), Owner);
 
             CardCmd.Upgrade(newCard);
             var result = await CardPileCmd.Add(newCard, PileType.Deck);
-            CardCmd.PreviewCardPileAdd(result);
+            addResults.Add(result);
+        }
+
+        if (addResults.Count > 0)
+        {
+            CardCmd.PreviewCardPileAdd(addResults);
         }
     }
 }
