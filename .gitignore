@@ -2,6 +2,7 @@
 bin/
 dist/
 workshop/content/
+workshop/tmp/
 /android/
 publish/
 .git/
