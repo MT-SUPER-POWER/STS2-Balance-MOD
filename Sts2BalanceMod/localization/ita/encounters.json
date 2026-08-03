@@ -4,5 +4,11 @@
   "STS2BALANCEMOD-COLLECTOR_BOSS.title": "The Collector",
   "STS2BALANCEMOD-COLLECTOR_BOSS.loss": "{name} was collected.",
   "STS2BALANCEMOD-RED_MASK_BANDITS.title": "Banditi Mascherati",
-  "STS2BALANCEMOD-RED_MASK_BANDITS.loss": "{name} fu derubato."
+  "STS2BALANCEMOD-RED_MASK_BANDITS.loss": "{name} fu derubato.",
+  "STS2BALANCEMOD-MIND_BLOOM_GUARDIAN.title": "Il Guardiano",
+  "STS2BALANCEMOD-MIND_BLOOM_GUARDIAN.loss": "{name} fu schiacciato dal Guardiano.",
+  "STS2BALANCEMOD-MIND_BLOOM_HEXAGHOST.title": "Hexaghost",
+  "STS2BALANCEMOD-MIND_BLOOM_HEXAGHOST.loss": "{name} fu consumato da sei fiamme.",
+  "STS2BALANCEMOD-MIND_BLOOM_SLIME_BOSS.title": "Boss Melma",
+  "STS2BALANCEMOD-MIND_BLOOM_SLIME_BOSS.loss": "{name} fu inghiottito dalla melma."
 }

@@ -19,16 +19,14 @@ using Sts2BalanceMod.Sts2BalanceModCode.Relics;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 
 /// <summary>
-/// STS1-EVENT-06 — 心灵绽放：本批先移植非战斗分支。
-/// 来源参考 ActsFromThePast.Acts.TheBeyond.Events.MindBloom。
+/// STS1-EVENT-06 / MIND-BLOOM-02 — 心灵绽放。
+/// 第一战使用本局第一幕原版 Boss；胜利结算后恢复事件，第二战通过 MindBloomSecondFight 模块接入。
 /// </summary>
 public sealed class MindBloom : CustomEventModel
 {
   private const int FightGold = 50;
   private const int GoldRewardAmount = 999;
   private bool _isBeforeTreasure;
-  internal static bool CombatActive { get; set; }
-
   public override ActModel[] Acts => [];
 
   public override bool IsShared => true;
@@ -96,8 +94,39 @@ public sealed class MindBloom : CustomEventModel
       new GoldReward(FightGold, owner),
       new RelicReward(rareRelic, owner),
     };
-    CombatActive = true;
-    EnterCombatWithoutExitingEvent(mindBloomEncounter, rewards, false);
+
+    // 先写入战后页面；第一战奖励结算后 EventRoom.Resume 会重建该页面。
+    SetEventState(PageDescription("POST_FIRST"), GeneratePostFirstOptions());
+    EnterCombatWithoutExitingEvent(mindBloomEncounter, rewards, true);
+    return Task.CompletedTask;
+  }
+
+  private IReadOnlyList<EventOption> GeneratePostFirstOptions()
+  {
+    var options = new List<EventOption>();
+    if (MindBloomSecondFight.IsReady)
+      options.Add(Option(ContinueFight, "POST_FIRST"));
+
+    options.Add(Option(LeaveAfterFirstFight, "POST_FIRST"));
+    return options;
+  }
+
+  private Task ContinueFight()
+  {
+    var owner = Owner;
+    if (owner == null || Rng == null ||
+        !MindBloomSecondFight.TryCreatePlan(owner, Rng, out var plan) || plan == null)
+    {
+      return Task.CompletedTask;
+    }
+
+    EnterCombatWithoutExitingEvent(plan.Encounter, plan.Rewards, false);
+    return Task.CompletedTask;
+  }
+
+  private Task LeaveAfterFirstFight()
+  {
+    SetEventFinished(PageDescription("LEAVE_AFTER_FIRST"));
     return Task.CompletedTask;
   }
 
@@ -161,8 +190,4 @@ public sealed class MindBloom : CustomEventModel
     SetEventFinished(PageDescription("HEAL"));
   }
 
-  protected override void OnEventFinished()
-  {
-    CombatActive = false;
-  }
 }

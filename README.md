@@ -131,6 +131,9 @@
 | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" valign="middle"> **永世沙漏 [Aeonglass]** | MON-01 | 永世沙漏 Boss 生成的凋零卡无法打出，直接进入消耗堆。 | 凋零卡可以**1c打出并消耗**，保留成长机制。 |
 | <img src="Assets/map/elite.png" width="22" height="22" valign="middle"> **感染棱柱 [InfestedPrism]** | BOSS-01 | 开场污染玩家技能牌（活力火花），玩家打出污染技能为棱柱增加力量；4回合循环均为攻击。 | 移除【活力火花】污染机制，改为每段攻击穿透格挡时叠加【感染】[InfectedPower] 压力（同一攻击段对每名玩家只结算一次，连击按每段结算），并重构4回合固定行动循环（轻击 6/8 + 2脆弱、重击 16/18 + 8/10格挡、连击 5x3/6x3、强化 16/18格挡 + 1/2力量）。 |
 | <img src="Assets/map/monster.png" width="22" height="22" valign="middle"> **红面具强盗 Bear [Bear]** | MONSTER-01 | 首回合【熊抱 BEAR_HUG】给予目标 1 层【易伤】 (`VulnerablePower`)。 | 【熊抱 BEAR_HUG】Debuff 修改为减少 2 点【敏捷】 (`DexterityPower` -2)。 |
+| <img src="Assets/map/guardian_boss.png" width="22" height="22" valign="middle"> **守护者 [Guardian]** | AFP-BOSS-01 | 《杀戮尖塔 1》第一幕 Boss，当前本体未提供。 | 按 Acts From the Past v1.0.5 移植完整行动循环、形态转换、Mode Shift、Sharp Hide、动画与音效；提供不进入普通地图池的心灵绽放专用遭遇。 |
+| <img src="Assets/map/hexaghost_boss.png" width="22" height="22" valign="middle"> **六火亡魂 [Hexaghost]** | AFP-BOSS-02 | 《杀戮尖塔 1》第一幕 Boss，当前本体未提供。 | 按 Acts From the Past v1.0.5 移植六火球状态、Divider/Sear/Inferno、灼伤升级、火焰特效与音效；提供不进入普通地图池的心灵绽放专用遭遇。 |
+| <img src="Assets/map/slime_boss.png" width="22" height="22" valign="middle"> **史莱姆老大 [Slime Boss]** | AFP-BOSS-03 | 《杀戮尖塔 1》第一幕 Boss，当前本体未提供。 | 按 Acts From the Past v1.0.5 移植 Boss、酸液/尖刺史莱姆大型与中型单位及完整两级分裂链；提供七槽位的心灵绽放专用遭遇。 |
 
 ### 事件
 
@@ -153,7 +156,7 @@
 | **J.A.X. [Augmenter]** | Act 2，且所有玩家牌组中可移除牌 ≥ 2 张 | 获得 J.A.X. 卡牌 / 变2张牌 / 获得 <img src="Assets/relics/mutagenic_strength.png" width="18" height="18" valign="middle"> **突变之力** 遗物。 |
 | **神圣泉水 [The Divine Fountain]** | 所有玩家牌组中存在可移除的诅咒牌 | 移除牌组中全部可移除诅咒（删除原版的伤害副作用）。 |
 | **牧师 [Cleric]** | 所有玩家金币 ≥ 35 | 提供付钱选择治疗（25% 最大 HP）/ 删牌选项（75 金）。 |
-| **心灵绽放 [Mind Bloom]** | Act 3 | 1. **战斗**——随机召唤第一幕的 Boss 进行决战，胜利获得 50 金 + 稀有遗物。<br>2. **升级**——升级牌组中所有可升级的牌，并获得 <img src="Assets/relics/mark_of_the_bloom.png" width="18" height="18" valign="middle"> **「绽放印记」** 遗物。<br>3. **宝库**（层数 < 41，多人 < 38）获得 999 金 + 牌组加入 2 张「凡庸」。|
+| **心灵绽放 [Mind Bloom]** | Act 3 | 1. **战斗**——随机挑战本局第一幕原版 Boss，胜利获得 50 金 + 稀有遗物；奖励结算后返回事件，可带着奖励离开。往昔 Boss 第二战接口已准备，但在追加奖励与随机强化规则确认前不会显示继续挑战选项。<br>2. **升级**——升级牌组中所有可升级的牌，并获得 <img src="Assets/relics/mark_of_the_bloom.png" width="18" height="18" valign="middle"> **「绽放印记」** 遗物。<br>3. **宝库**（层数 < 41，多人 < 38）获得 999 金 + 牌组加入 2 张「凡庸」。|
 | **大转盘 [Wheel of Change]** | - | 自定义转盘小游戏，随机获得金/遗物/治疗/诅咒/删牌/受伤。 |
 | **红面具大人之墓 [Tomb of Lord Red Mask]** | Act 3，且无人持有红面具 | 可献上全部金币获得 <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **红面具**，或（持有红面具时）收获 222 金。 |
 

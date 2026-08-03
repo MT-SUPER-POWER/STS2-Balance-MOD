@@ -14,12 +14,23 @@
 - 设置：接入 BaseLib Mod 配置页面与持久化，并补齐英语、简体中文、意大利语和俄语界面文本（CONFIG-01）。
 - 设置：新增“启用感染棱柱重做”开关，默认开启，关闭时完整恢复原版开场能力与行动状态机，并补齐四语言设置文本（CONFIG-02）。
 - 基础设施：新增 Steam 创意工坊配置文件目录 `workshop/` 与 `sync-workshop` Python 自动转换脚本。
+- Boss：按 Acts From the Past v1.0.5 移植守护者、六火亡魂、史莱姆老大及史莱姆完整两级分裂怪物链，并补齐 Mode Shift、Sharp Hide、Split 能力、行动状态机、动画、音效与 VFX（AFP-BOSS-01/02/03）。
+- Encounter：新增三个 `RoomType.Monster` 心灵绽放专用遭遇；不进入普通地图池，史莱姆遭遇包含七个固定分裂槽位。
+- 本地化：补齐三个 Boss、分裂怪物、专用遭遇和心灵绽放战间页面的英语、简体中文、意大利语与俄语文本。
 
 ### Changed
 
 - 卡牌：调整「华丽收场」（Grand Finale）升级效果，取消 X+2 打出判断（基础与升级统一为抽牌堆卡牌数 ≤ X），改为打出时少扣除 2 点费用（扣除 Max(0, X-2) 能量）（GRAND-FINALE-02）。
 - 事件：重新设计“禅意织者”（Zen Weaver）删牌事件的价格。删 1 张牌 (Emotional Awareness) 从 125 金下调至 75 金（事件出现门槛降至 75 金）；删 2 张牌 (Arachnid Acupuncture) 从 250 金下调至 150 金；顿悟维持 50 金（ZEN-WEAVER-01）。
 - 事件：新增“为事件添加‘离开’选项”开关，统一控制“除虫者”“科学怪人”和“药水的未来？”三个事件的离开分支；默认开启，并在下次进入事件时生效（CONFIG-01）。
+- 事件：心灵绽放第一战结算后恢复事件并允许玩家带着 50 金币与稀有遗物离开；第二战以独立计划模块预留随机 AFP Boss、追加奖励与随机强化接缝，规则未确认前保持入口隐藏（MIND-BLOOM-02）。
+- 构建：删除 `Sts2BalanceMod/monsters/.gdignore`，让全部自定义怪物资源进入 Godot 扫描；移除场景对游戏本体 C# 源文件的导出期依赖，改由运行时视觉补丁包装 `NCreatureVisuals`，并将 LibGDX `.atlas` 加入 PCK 导出白名单。
+
+### Fixed
+
+- 事件：第一战返回心灵绽放时重置并重新绑定原版 `EventCombatSynchronizer`，避免未来从同一事件进入第二战时抛出 `already ready`。
+- 资源：修复 `.gdignore` 导致自定义怪物场景、Spine 与贴图未进入 PCK 的问题；最终 PCK 已核对包含全部怪物资源、VFX 图集和三组 Boss 音效。
+- 文档：修正 README.md 中守护者、六火亡魂与史莱姆老大 Boss 图标错用为普通怪物图标的问题，提取并补齐对应的 Boss 地图图标。
 
 
 
