@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.RelicPools;
 using Sts2BalanceMod.Sts2BalanceModCode.Cards;
@@ -23,6 +25,12 @@ public sealed class ShabbyDoll : Sts2RelicModel
     public override RelicRarity Rarity => RelicRarity.Ancient;
 
     public override bool HasUponPickupEffect => true;
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
+    {
+        HoverTipFactory.FromCard<SorceryStrike>(upgrade: true),
+        HoverTipFactory.FromCard<SorceryDefend>(upgrade: true)
+    };
 
     public override async Task AfterObtained()
     {
