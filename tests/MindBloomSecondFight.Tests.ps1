@@ -25,7 +25,9 @@ function Assert-NotContains {
 }
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
+$mindBloom = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Events/MindBloom.cs")
 $secondFight = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Events/MindBloomSecondFight.cs")
+$combatPatch = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Patches/Events/MindBloomCombatPatch.cs")
 $enhancements = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Monsters/MindBloomBossMonsterModel.cs")
 $guardianEncounter = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Encounters/MindBloomGuardian.cs")
 $hexaghostEncounter = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Encounters/MindBloomHexaghost.cs")
@@ -47,6 +49,20 @@ foreach ($encounter in @("MindBloomGuardian", "MindBloomHexaghost", "MindBloomSl
 Assert-Contains $secondFight "new GoldReward\(ExtraGold, owner\)" "The second fight must grant 100 extra Gold."
 Assert-Contains $secondFight "RelicRarity\.Rare" "The second fight must grant a Rare relic."
 Assert-Contains $secondFight "RelicRarity\.Uncommon" "The second fight must grant an Uncommon relic."
+
+Assert-Contains $mindBloom "NeedsReplayInitialization\s*=\s*true" "The second fight must arm replay initialization before entering combat."
+$armReplayIndex = $mindBloom.IndexOf("NeedsReplayInitialization = true;", [StringComparison]::Ordinal)
+$enterSecondCombatIndex = $mindBloom.IndexOf(
+  "EnterCombatWithoutExitingEvent(plan.Encounter", [StringComparison]::Ordinal)
+if ($armReplayIndex -lt 0 -or $enterSecondCombatIndex -lt 0 -or $armReplayIndex -ge $enterSecondCombatIndex) {
+  throw "Replay initialization must be armed before entering Mind Bloom's second combat."
+}
+Assert-Contains $combatPatch 'HarmonyPatch\(typeof\(CombatManager\), "StartCombatInternal"\)' "The second fight must initialize replay before CombatManager starts it."
+Assert-Contains $combatPatch "RecordInitialState" "The second fight must record a fresh replay initial state."
+Assert-Contains $combatPatch "IsRecordingReplay" "Replay initialization must not overwrite an active replay."
+Assert-Contains $combatPatch "NeedsReplayInitialization\s*=\s*false" "The replay initialization flag must be consumed exactly once."
+Assert-Contains $combatPatch "Encounter:\s*MindBloomBossEncounter" "Automatic Gold filtering must only apply to the first fight wrapper."
+Assert-NotContains $combatPatch "IsMindBloomEncounter" "Second-fight encounters must retain normal monster-room Gold rewards."
 
 foreach ($durability in @("Giant", "Plating", "Regeneration")) {
   Assert-Contains $secondFight "MindBloomDurabilityEnhancement\.$durability" "Missing durability enhancement: $durability"

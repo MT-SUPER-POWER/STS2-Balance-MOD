@@ -1,25 +1,21 @@
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Multiplayer.Game;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Runs;
 using Sts2BalanceMod.Sts2BalanceModCode.Encounters;
+using Sts2BalanceMod.Sts2BalanceModCode.Events;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Events;
 
 /// <summary>
 /// 心灵绽放 Boss 战斗补丁。
-/// 输入：战斗房间奖励与自定义遭遇房间类型。
-/// 输出：心灵绽放战斗只保留事件指定的金币与遗物奖励。
+/// 输入：连续事件战斗的同步、回放与奖励状态。
+/// 输出：第二战正常初始化回放；第一战只保留事件指定的金币与遗物奖励。
 /// </summary>
 public static class MindBloomCombatPatch
 {
-  private static bool IsMindBloomEncounter(EncounterModel encounter) =>
-    encounter is MindBloomBossEncounter or
-      MindBloomGuardian or
-      MindBloomHexaghost or
-      MindBloomSlimeBoss;
-
   /// <summary>
   /// 目标：EventSynchronizer.ResumeEvents(AbstractRoom)。
   /// 原因：原版 EventCombatSynchronizer 的单场事件战斗状态在恢复事件后仍保持 ready，
@@ -44,8 +40,34 @@ public static class MindBloomCombatPatch
   }
 
   /// <summary>
+  /// 目标：CombatManager.StartCombatInternal(CombatTurnState, Func&lt;Task&gt;)。
+  /// 原因：第一战结束会停止并清空 CombatReplayWriter；事件房间内直接进入第二战时，
+  /// RunManager.EnterRoomWithoutExitingCurrentRoom 不会像进入新地图点那样重新记录初始状态。
+  /// WARNING：依赖反编译确认的私有方法名与第二战启动时序；游戏更新后需复核。
+  /// </summary>
+  [HarmonyPatch(typeof(CombatManager), "StartCombatInternal")]
+  public static class ReplayWriterPatch
+  {
+    [HarmonyPrefix]
+    private static void Prefix()
+    {
+      if (!MindBloom.NeedsReplayInitialization)
+        return;
+
+      MindBloom.NeedsReplayInitialization = false;
+      var runManager = RunManager.Instance;
+      var replayWriter = runManager.CombatReplayWriter;
+      if (!replayWriter.IsEnabled || replayWriter.IsRecordingReplay)
+        return;
+
+      replayWriter.RecordInitialState(runManager.ToSave(null));
+    }
+  }
+
+  /// <summary>
   /// 目标：RewardsSet.WithRewardsFromRoom(AbstractRoom)。
-  /// 原因：心灵绽放两场战斗使用事件明确传入的金币/遗物，移除房间类型自动生成的同类奖励。
+  /// 原因：第一战使用事件明确传入的 50 金币与稀有遗物，移除房间类型自动生成的同类奖励；
+  /// 第二战保留普通怪物房金币、卡牌与药水概率，因此不进入该过滤逻辑。
   /// WARNING：依赖反编译确认的 ExtraRewards 与 RewardsSet 合并顺序；游戏更新后需复核。
   /// </summary>
   [HarmonyPatch(typeof(RewardsSet), nameof(RewardsSet.WithRewardsFromRoom))]
@@ -54,9 +76,7 @@ public static class MindBloomCombatPatch
     [HarmonyPostfix]
     private static void Postfix(RewardsSet __result, AbstractRoom room)
     {
-      if (room is not CombatRoom combatRoom)
-        return;
-      if (!IsMindBloomEncounter(combatRoom.Encounter))
+      if (room is not CombatRoom { Encounter: MindBloomBossEncounter } combatRoom)
         return;
 
       var extraRewards = combatRoom.ExtraRewards.Values

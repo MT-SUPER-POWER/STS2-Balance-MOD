@@ -27,6 +27,9 @@ public sealed class MindBloom : CustomEventModel
   private const int FightGold = 50;
   private const int GoldRewardAmount = 999;
   private bool _isBeforeTreasure;
+
+  internal static bool NeedsReplayInitialization { get; set; }
+
   public override ActModel[] Acts => [];
 
   public override bool IsShared => true;
@@ -35,6 +38,11 @@ public sealed class MindBloom : CustomEventModel
   [
     new GoldVar(GoldRewardAmount),
   ];
+
+  public override void OnRoomEnter()
+  {
+    NeedsReplayInitialization = false;
+  }
 
   public override bool IsAllowed(IRunState runState)
   {
@@ -120,6 +128,7 @@ public sealed class MindBloom : CustomEventModel
       return Task.CompletedTask;
     }
 
+    NeedsReplayInitialization = true;
     EnterCombatWithoutExitingEvent(plan.Encounter, plan.Rewards, false);
     return Task.CompletedTask;
   }
