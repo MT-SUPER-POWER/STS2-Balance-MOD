@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -51,7 +52,7 @@ public sealed class ShabbyDoll : Sts2RelicModel
             Owner.Creature.SetCurrentHpInternal(newMaxHp);
         }
 
-        // 2. 将牌组中所有的基础【打击】与【防御】卡牌替换为升级后的【巫术打击+】与【巫术防御+】
+        // 2. 将牌组中所有的基础【打击】与【防御】卡牌转换为升级后的【巫术打击+】与【巫术防御+】（使用 Claws 同款 Transform 变牌动画）
         var deckCards = Owner.Deck.Cards.ToList();
         var cardsToReplace = deckCards.Where(c => 
             c.IsBasicStrikeOrDefend ||
@@ -60,24 +61,20 @@ public sealed class ShabbyDoll : Sts2RelicModel
             c.Id.Entry.Contains("STRIKE", StringComparison.OrdinalIgnoreCase) || 
             c.Id.Entry.Contains("DEFEND", StringComparison.OrdinalIgnoreCase)).ToList();
 
-        var addResults = new List<CardPileAddResult>();
-        foreach (var card in cardsToReplace)
-        {
-            await CardPileCmd.RemoveFromDeck(card, showPreview: true);
+        if (cardsToReplace.Count == 0)
+            return;
 
-            bool isStrike = card.Tags.Contains(CardTag.Strike) || card.Id.Entry.Contains("STRIKE", StringComparison.OrdinalIgnoreCase);
+        List<CardTransformation> transformations = cardsToReplace.Select(original =>
+        {
+            bool isStrike = original.Tags.Contains(CardTag.Strike) || original.Id.Entry.Contains("STRIKE", StringComparison.OrdinalIgnoreCase);
             CardModel newCard = isStrike
-                ? Owner.RunState.CreateCard(ModelDb.Card<SorceryStrike>(), Owner)
-                : Owner.RunState.CreateCard(ModelDb.Card<SorceryDefend>(), Owner);
+                ? Owner.RunState.CreateCard<SorceryStrike>(Owner)
+                : Owner.RunState.CreateCard<SorceryDefend>(Owner);
 
             CardCmd.Upgrade(newCard);
-            var result = await CardPileCmd.Add(newCard, PileType.Deck);
-            addResults.Add(result);
-        }
+            return new CardTransformation(original, newCard);
+        }).ToList();
 
-        if (addResults.Count > 0)
-        {
-            CardCmd.PreviewCardPileAdd(addResults);
-        }
+        await CardCmd.Transform(transformations, Owner.PlayerRng.Transformations);
     }
 }
