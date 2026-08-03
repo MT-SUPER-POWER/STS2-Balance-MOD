@@ -1,5 +1,7 @@
 {
   "STS2BALANCEMOD.mod_title": "STS2 平衡调整",
   "STS2BALANCEMOD-ENABLE_EVENT_LEAVE_OPTIONS.title": "为事件添加“离开”选项",
-  "STS2BALANCEMOD-ENABLE_EVENT_LEAVE_OPTIONS.hover.desc": "为“除虫者”“科学怪人”和“药水的未来？”添加“离开”选项。\n\n默认开启；修改后会在下次进入这些事件时生效。多人游戏时，所有玩家必须使用相同设置。"
+  "STS2BALANCEMOD-ENABLE_EVENT_LEAVE_OPTIONS.hover.desc": "为“除虫者”“科学怪人”和“药水的未来？”添加“离开”选项。\n\n默认开启；修改后会在下次进入这些事件时生效。多人游戏时，所有玩家必须使用相同设置。",
+  "STS2BALANCEMOD-ENABLE_INFESTED_PRISM_REWORK.title": "启用感染棱柱重做",
+  "STS2BALANCEMOD-ENABLE_INFESTED_PRISM_REWORK.hover.desc": "使用 Mod 的固定四回合循环与【感染】机制，替换感染棱柱原版的【活力火花】机制和行动模式。\n\n默认开启；修改后会在下次进入感染棱柱战斗时生效。多人游戏时，所有玩家必须使用相同设置。"
 }

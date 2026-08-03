@@ -1,5 +1,7 @@
 {
   "STS2BALANCEMOD.mod_title": "STS2 Balance Mod",
   "STS2BALANCEMOD-ENABLE_EVENT_LEAVE_OPTIONS.title": "Add Leave Options to Events",
-  "STS2BALANCEMOD-ENABLE_EVENT_LEAVE_OPTIONS.hover.desc": "Adds a Leave option to Bugslayer, Tinker Time, and The Future of Potions.\n\nEnabled by default. Changes apply the next time one of these events is opened. In multiplayer, every player must use the same value."
+  "STS2BALANCEMOD-ENABLE_EVENT_LEAVE_OPTIONS.hover.desc": "Adds a Leave option to Bugslayer, Tinker Time, and The Future of Potions.\n\nEnabled by default. Changes apply the next time one of these events is opened. In multiplayer, every player must use the same value.",
+  "STS2BALANCEMOD-ENABLE_INFESTED_PRISM_REWORK.title": "Enable Infested Prism Rework",
+  "STS2BALANCEMOD-ENABLE_INFESTED_PRISM_REWORK.hover.desc": "Replaces Infested Prism's Vital Spark mechanic and original move set with the mod's four-turn cycle and Infection mechanic.\n\nEnabled by default. Changes apply the next time an Infested Prism combat begins. In multiplayer, every player must use the same value."
 }
