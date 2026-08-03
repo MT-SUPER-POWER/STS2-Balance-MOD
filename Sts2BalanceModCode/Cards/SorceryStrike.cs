@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Powers;
@@ -18,7 +17,7 @@ public sealed class SorceryStrike : Sts2CardModel
     public SorceryStrike() : base(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithDamage(9);
-        WithVar(new DynamicVar("SorceryVulnerable", 1));
+        WithPower<SorceryVulnerable>(1);
         WithTags(CardTag.Strike);
         WithKeywords(CardKeyword.Exhaust);
     }

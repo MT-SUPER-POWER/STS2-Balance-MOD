@@ -1,8 +1,8 @@
 {
   "STS2BALANCEMOD-SORCERY_STRIKE.title": "Sorcery Strike",
-  "STS2BALANCEMOD-SORCERY_STRIKE.description": "Deal {Damage:diff()} damage.\nDraw 1 card.\nApply 1 [gold]Sorcery Vulnerable[/gold].\nExhaust.",
+  "STS2BALANCEMOD-SORCERY_STRIKE.description": "Deal {Damage:diff()} damage.\nDraw 1 card.\nApply 1 [gold]Sorcery Vulnerable[/gold].",
   "STS2BALANCEMOD-SORCERY_DEFEND.title": "Sorcery Defend",
-  "STS2BALANCEMOD-SORCERY_DEFEND.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw 1 card.\nApply 1 [gold]Sorcery Weak[/gold].\nExhaust.",
+  "STS2BALANCEMOD-SORCERY_DEFEND.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw 1 card.\nApply 1 [gold]Sorcery Weak[/gold].",
   "STS2BALANCEMOD-DEATH_REAP.title": "Death Reap",
   "STS2BALANCEMOD-DEATH_REAP.description": "Deal {Damage:diff()} damage to all enemies. Heal HP equal to [gold]unblocked damage[/gold].",
   "STS2BALANCEMOD-POWER_THOUGHT.title": "Power Through",

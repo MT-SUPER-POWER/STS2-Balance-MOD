@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Powers;
@@ -18,7 +17,7 @@ public sealed class SorceryDefend : Sts2CardModel
     public SorceryDefend() : base(1, CardType.Skill, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithBlock(8);
-        WithVar(new DynamicVar("SorceryWeak", 1));
+        WithPower<SorceryWeak>(1);
         WithTags(CardTag.Defend);
         WithKeywords(CardKeyword.Exhaust);
     }

@@ -1,8 +1,8 @@
 {
   "STS2BALANCEMOD-SORCERY_STRIKE.title": "巫术打击",
-  "STS2BALANCEMOD-SORCERY_STRIKE.description": "造成 {Damage:diff()} 点伤害。\n抽 1 张牌。\n施加 1 层[gold]巫术易伤[/gold]。\n消耗。",
+  "STS2BALANCEMOD-SORCERY_STRIKE.description": "造成 {Damage:diff()} 点伤害。\n抽 1 张牌。\n施加 1 层[gold]巫术易伤[/gold]。",
   "STS2BALANCEMOD-SORCERY_DEFEND.title": "巫术防御",
-  "STS2BALANCEMOD-SORCERY_DEFEND.description": "获得 {Block:diff()} 点[gold]格挡[/gold]。\n抽 1 张牌。\n施加 1 层[gold]巫术虚弱[/gold]。\n消耗。",
+  "STS2BALANCEMOD-SORCERY_DEFEND.description": "获得 {Block:diff()} 点[gold]格挡[/gold]。\n抽 1 张牌。\n施加 1 层[gold]巫术虚弱[/gold]。",
   "STS2BALANCEMOD-DEATH_REAP.title": "死亡收割",
   "STS2BALANCEMOD-DEATH_REAP.description": "对所有敌人造成 {Damage:diff()} 点伤害。回复等量于造成的[gold]非格挡伤害[/gold]的生命。 \n消耗 。",
   "STS2BALANCEMOD-POWER_THOUGHT.title": "硬撑",
