@@ -19,7 +19,7 @@ using Sts2BalanceMod.Sts2BalanceModCode.Relics;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 
 /// <summary>
-/// STS1-EVENT-06 / MIND-BLOOM-02 — 心灵绽放。
+/// STS1-EVENT-06 / MIND-BLOOM-02 / MIND-BLOOM-04 — 心灵绽放。
 /// 第一战使用本局第一幕原版 Boss；胜利结算后恢复事件，第二战通过 MindBloomSecondFight 模块接入。
 /// </summary>
 public sealed class MindBloom : CustomEventModel
@@ -57,6 +57,17 @@ public sealed class MindBloom : CustomEventModel
 
     var threshold = owner.RunState.Players.Count > 1 ? 38 : 41;
     _isBeforeTreasure = owner.RunState.TotalFloor < threshold;
+  }
+
+  protected override void SetInitialEventState(bool isPreFinished)
+  {
+    if (HasCompletedFirstFight())
+    {
+      SetEventState(PageDescription("POST_FIRST"), GeneratePostFirstOptions());
+      return;
+    }
+
+    base.SetInitialEventState(isPreFinished);
   }
 
   protected override IReadOnlyList<EventOption> GenerateInitialOptions()
@@ -117,6 +128,17 @@ public sealed class MindBloom : CustomEventModel
 
     options.Add(Option(LeaveAfterFirstFight, "POST_FIRST"));
     return options;
+  }
+
+  private bool HasCompletedFirstFight()
+  {
+    var rooms = Owner?.RunState.CurrentMapPointHistoryEntry?.Rooms;
+    if (rooms == null)
+      return false;
+
+    var firstFightEncounterId = ModelDb.Encounter<MindBloomBossEncounter>().Id;
+    return rooms.Any(room =>
+      room.ModelId == firstFightEncounterId && room.TurnsTaken > 0);
   }
 
   private Task ContinueFight()

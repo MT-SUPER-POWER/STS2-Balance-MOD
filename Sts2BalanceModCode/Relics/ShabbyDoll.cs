@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -26,30 +29,38 @@ public sealed class ShabbyDoll : Sts2RelicModel
         if (Owner?.Creature == null)
             return;
 
-        // 1. 扣除 50% 最大生命值上限
+        Flash();
+
+        // 1. 扣除 50% 最大生命值上限并调整当前生命
         int currentMaxHp = Owner.Creature.MaxHp;
         int newMaxHp = Math.Max(1, currentMaxHp / 2);
         Owner.Creature.SetMaxHpInternal(newMaxHp);
+        if (Owner.Creature.CurrentHp > newMaxHp)
+        {
+            Owner.Creature.SetCurrentHpInternal(newMaxHp);
+        }
 
         // 2. 将牌组中所有的基础【打击】与【防御】卡牌替换为升级后的【巫术打击+】与【巫术防御+】
         var deckCards = Owner.Deck.Cards.ToList();
         var cardsToReplace = deckCards.Where(c => 
+            c.IsBasicStrikeOrDefend ||
             c.Tags.Contains(CardTag.Strike) || 
             c.Tags.Contains(CardTag.Defend) || 
-            c.Id.Entry.Contains("Strike") || 
-            c.Id.Entry.Contains("Defend")).ToList();
+            c.Id.Entry.Contains("STRIKE", StringComparison.OrdinalIgnoreCase) || 
+            c.Id.Entry.Contains("DEFEND", StringComparison.OrdinalIgnoreCase)).ToList();
 
         foreach (var card in cardsToReplace)
         {
-            await CardPileCmd.RemoveFromDeck(card, showPreview: false);
+            await CardPileCmd.RemoveFromDeck(card, showPreview: true);
 
-            bool isStrike = card.Tags.Contains(CardTag.Strike) || card.Id.Entry.Contains("Strike");
+            bool isStrike = card.Tags.Contains(CardTag.Strike) || card.Id.Entry.Contains("STRIKE", StringComparison.OrdinalIgnoreCase);
             CardModel newCard = isStrike
                 ? ModelDb.Card<SorceryStrike>().ToMutable()
                 : ModelDb.Card<SorceryDefend>().ToMutable();
 
             CardCmd.Upgrade(newCard);
-            await CardPileCmd.Add(newCard, PileType.Deck);
+            var result = await CardPileCmd.Add(newCard, PileType.Deck);
+            CardCmd.PreviewCardPileAdd(result);
         }
     }
 }

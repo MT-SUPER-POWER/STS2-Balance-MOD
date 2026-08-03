@@ -51,6 +51,13 @@ Assert-Contains $secondFight "RelicRarity\.Rare" "The second fight must grant a 
 Assert-Contains $secondFight "RelicRarity\.Uncommon" "The second fight must grant an Uncommon relic."
 
 Assert-Contains $mindBloom "NeedsReplayInitialization\s*=\s*true" "The second fight must arm replay initialization before entering combat."
+$restoreStatePattern = 'protected\s+override\s+void\s+SetInitialEventState\(bool\s+isPreFinished\)'
+Assert-Contains $mindBloom $restoreStatePattern "Mind Bloom must restore its post-first-fight page when an event save is loaded."
+Assert-Contains $mindBloom "CurrentMapPointHistoryEntry" "Mind Bloom restoration must use the persisted current map-point history."
+Assert-Contains $mindBloom "ModelDb\.Encounter<MindBloomBossEncounter>\(\)\.Id" "Mind Bloom restoration must identify the first-fight wrapper encounter."
+Assert-Contains $mindBloom "TurnsTaken\s*>\s*0" "Mind Bloom must not treat an encounter history entry without a completed turn count as a finished first fight."
+Assert-Contains $mindBloom 'SetEventState\(PageDescription\("POST_FIRST"\),\s*GeneratePostFirstOptions\(\)\)' "A completed first fight must restore the post-first-fight decision page."
+Assert-Contains $mindBloom "base\.SetInitialEventState\(isPreFinished\)" "A fresh Mind Bloom event must retain the original initial page."
 $armReplayIndex = $mindBloom.IndexOf("NeedsReplayInitialization = true;", [StringComparison]::Ordinal)
 $enterSecondCombatIndex = $mindBloom.IndexOf(
   "EnterCombatWithoutExitingEvent(plan.Encounter", [StringComparison]::Ordinal)
