@@ -7,7 +7,7 @@
 已完成的所有改动见 [README.md](README.md##调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
 
-## v0.1.8
+## v0.2.0
 
 ### Added
 
