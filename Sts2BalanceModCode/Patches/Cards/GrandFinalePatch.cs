@@ -1,7 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Hooks;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
@@ -77,6 +82,29 @@ public static class GrandFinaleEnergyToSpendPatch
             return false;
         }
         return true;
+    }
+}
+
+/// <summary>
+/// 动态注册 CalculatedSpend 变量，用于战斗中实时展示实际扣除能量（考虑升级减 2 与化学 X 减 2 等）。
+/// </summary>
+[HarmonyPatch(typeof(GrandFinale), "get_CanonicalVars")]
+public static class GrandFinaleCanonicalVarsPatch
+{
+    [HarmonyPostfix]
+    public static void Postfix(GrandFinale __instance, ref IEnumerable<DynamicVar> __result)
+    {
+        var list = __result.ToList();
+        list.Add(new CalculatedVar("CalculatedSpend").WithMultiplier((CardModel card, Creature? _) =>
+        {
+            if (card.Owner?.PlayerCombatState == null) return 0;
+            int currentEnergy = card.Owner.PlayerCombatState.Energy;
+            int upgradeSavings = card.IsUpgraded ? 2 : 0;
+            int xModifierBonus = card.CombatState != null ? Hook.ModifyXValue(card.CombatState, card, 0) : 0;
+            int totalSavings = upgradeSavings + xModifierBonus;
+            return Math.Max(0, currentEnergy - totalSavings);
+        }));
+        __result = list;
     }
 }
 

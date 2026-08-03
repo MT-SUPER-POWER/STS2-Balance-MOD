@@ -29,7 +29,7 @@
   "STS2BALANCEMOD-EVOLVE.title": "Evolve",
   "STS2BALANCEMOD-EVOLVE.description": "Whenever you draw a Status card, draw {EvolvePower:diff()} {EvolvePower:plural:card|cards}.",
   "PILLAR_OF_CREATION.description": "Whenever you generate a card, gain {Block:diff()} [gold]Block[/gold].",
-  "GRAND_FINALE.description": "Can only be played if the number of cards in your [gold]Draw Pile[/gold] is less than or equal to X.\nDeal {Damage:diff()} damage to ALL enemies.{IfUpgraded:show:\nSpend 2 less Energy when played.|}",
+  "GRAND_FINALE.description": "Can only be played if the number of cards in your [gold]Draw Pile[/gold] is less than or equal to X.\nDeal {Damage:diff()} damage to ALL enemies.{InCombat:\n(Spend {CalculatedSpend:energyIcons()})|{IfUpgraded:show:\nSpend X-2 Energy when played.|}}",
   "WELL_LAID_PLANS.description": "At the end of your turn, [gold]Retain[/gold] up to {Cards:diff()} {Cards:plural:card|cards}.",
   "WELL_LAID_PLANS.selectionScreenPrompt": "Choose up to {Amount} cards to [gold]Retain[/gold].",
   "STS2BALANCEMOD-EVISCERATE.title": "Eviscerate",
