@@ -21,7 +21,6 @@ internal static class EventEncounterRegistrationPatch
     EncounterModel[] modEventEncounters =
     [
       ModelDb.Encounter<RedMaskBandits>(),
-      ModelDb.Encounter<MindBloomBossEncounter>(),
       ModelDb.Encounter<MindBloomGuardian>(),
       ModelDb.Encounter<MindBloomHexaghost>(),
       ModelDb.Encounter<MindBloomSlimeBoss>(),
