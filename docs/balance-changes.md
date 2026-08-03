@@ -62,6 +62,15 @@
   - 删除 `Sts2BalanceMod/monsters/.gdignore`，让该目录的全部怪物资源进入 Godot 扫描；场景根节点由既有 `Sts2MonsterVisualsPatch` 在运行时包装为 `NCreatureVisuals`。
   - 将 LibGDX `vfx.atlas` 加入导出白名单；最终 PCK 已核对包含全部自定义怪物场景、Spine、六火亡魂贴图、VFX 与三组音效。
 
+### 遗物
+
+- [x] **RELIC-01** — 先古遗物「破旧的玩偶」（ShabbyDoll）及【巫术打击】/【巫术防御】卡牌
+  - 遗物代价: 拾起时扣除 50% 最大生命值上限。
+  - 遗物效果: 将玩家牌组中所有的基础【打击】与【防御】卡牌替换为升级后的【巫术打击+】与【巫术防御+】。
+  - 巫术打击+: 先古卡 (`CardRarity.Ancient`)，0 费 攻击牌 (消耗)。造成 9 点伤害，抽 1 张牌，施加 1 层巫术易伤。
+  - 巫术防御+: 先古卡 (`CardRarity.Ancient`)，0 费 技能牌 (消耗)。获得 8 点格挡，抽 1 张牌，施加 1 层巫术虚弱。
+  - 事件关联: 通过 Harmony Postfix 拦截先古之民 Tanx 事件 (`Tanx.GenerateInitialOptions`)，为玩家提供【破旧的玩偶】作为先古遗物选项。
+
 ### 卡牌
 
 - [x] **GRAND-FINALE-02** — 华丽收场 (Grand Finale) 升级扣费逻辑调整

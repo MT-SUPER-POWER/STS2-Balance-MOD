@@ -11,6 +11,9 @@
 
 ### Added
 
+- 遗物：新增先古遗物「破旧的玩偶」（ShabbyDoll），获得时扣除 50% 最大生命值上限，并将玩家牌组中所有的基础【打击】与【防御】卡牌替换为升级后的【巫术打击+】与【巫术防御+】（RELIC-01）。
+- 卡牌：新增卡牌【巫术打击】(SorceryStrike) 与【巫术防御】(SorceryDefend)，及其巫术易伤/巫术虚弱能力（RELIC-01）。
+- 事件：Patch 先古之民 Tanx 事件（`Tanx.GenerateInitialOptions`），为玩家提供【破旧的玩偶】作为先古遗物选项（RELIC-01）。
 - 设置：接入 BaseLib Mod 配置页面与持久化，并补齐英语、简体中文、意大利语和俄语界面文本（CONFIG-01）。
 - 设置：新增“启用感染棱柱重做”开关，默认开启，关闭时完整恢复原版开场能力与行动状态机，并补齐四语言设置文本（CONFIG-02）。
 - 基础设施：新增 Steam 创意工坊配置文件目录 `workshop/` 与 `sync-workshop` Python 自动转换脚本。

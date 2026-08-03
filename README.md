@@ -123,6 +123,8 @@
 | **比试 [Sparring]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 罕见 | 2 | 消耗。玩家对单个敌人造成 **8** 点伤害，奥斯提造成 **7 / 9** 点伤害；实际造成非格挡伤害较少的一方回复 **4 / 6** 点生命。 |
 | **猛撞 [Ram]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 普通 | 2 | 奥斯提失去 **6 / 5** 点生命，对所有敌人造成 **20 / 26** 点伤害；奥斯提生命不足时无法触发效果。 |
 | **步步为营 [Step by Step]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 稀有 | X | 消耗。接下来 X（升级：X+1）回合，每回合多抽 1 张牌并多获得 1 点能量。升级后额外获得保留词条。 |
+| **巫术打击 [Sorcery Strike]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 攻击 | 先古 | 1（升级：0） | 消耗。造成 **9** 点伤害，抽 **1** 张牌，施加 **1** 层巫术易伤。 |
+| **巫术防御 [Sorcery Defend]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 技能 | 先古 | 1（升级：0） | 消耗。获得 **8** 点格挡，抽 **1** 张牌，施加 **1** 层巫术虚弱。 |
 
 ### 怪物与 Boss
 
@@ -182,6 +184,7 @@
 | <img src="Assets/relics/hovering_kite.png" width="22" height="22" valign="middle"> **悬浮风筝 [Hovering Kite]** | 普通 | <img src="Assets/profile/silent.png" width="18" height="18" valign="middle" title="静默猎手"> 猎人专属。你在每回合第一次弃牌时，获得 1 点能量。 |
 | <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **灵魂契约 [Soul Contract]** | <img src="Assets/map/shop.png" width="22" height="22" title="商店 (Shop)"> | 选择牌组中的 1 张有消耗的牌，永久去除其消耗属性。 |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **尼利的宝典 [Nilry's Codex]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 每回合结束时，从 3 张随机**升级版**卡牌中选择 1 张洗入抽牌堆。（RELIC-04：MOD 改为展示升级版） |
+| <img src="Assets/relics/shabbydoll.png" width="22" height="22" valign="middle"> **破旧的玩偶 [Shabby Doll]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 拾起时，扣除 50% 最大生命值上限，并将牌组中所有的基础【打击】与【防御】替换为升级后的【巫术打击+】与【巫术防御+】。（先古之民 Tanx 专属替换撕咬机制选项） |
 
 
 #### 原版调整
