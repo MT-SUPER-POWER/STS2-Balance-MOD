@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -13,8 +14,7 @@ using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 
 /// <summary>
-/// 巫术易伤 - 受到的攻击伤害增加 75%（普通易伤 50% + 额外 25%）
-/// 施加给敌人，在敌方回合结束时递减。
+/// 巫术易伤 - 受到的攻击伤害增加 75%。受到攻击后减少 1 层。
 /// </summary>
 public sealed class SorceryVulnerable() : Sts2PowerModel(PowerType.Debuff, PowerStackType.Counter)
 {
@@ -27,10 +27,18 @@ public sealed class SorceryVulnerable() : Sts2PowerModel(PowerType.Debuff, Power
         return 1.75m;
     }
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterAttack(PlayerChoiceContext choiceContext, AttackCommand command)
     {
-        if (side == CombatSide.Enemy)
+        if (!command.DamageProps.IsPoweredAttack())
+            return;
+
+        bool hitOwner = command.Results
+            .SelectMany(r => r)
+            .Any(r => r.Receiver == Owner);
+
+        if (hitOwner)
         {
+            Flash();
             await PowerCmd.TickDownDuration(this);
         }
     }

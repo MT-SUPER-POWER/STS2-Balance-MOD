@@ -16,6 +16,7 @@
 
 ### 事件
 
+
 ### BOSS
 
 - [ ] **AFP-BOSS-TEST-01** — 三场第一幕 Boss 战独立验收
@@ -60,12 +61,6 @@
 
 ### 遗物
 
-- [x] **RELIC-01** — 先古遗物「破旧的玩偶」（ShabbyDoll）及【巫术打击】/【巫术防御】卡牌
-  - 遗物代价: 拾起时扣除 50% 最大生命值上限。
-  - 遗物效果: 将玩家牌组中所有的基础【打击】与【防御】卡牌替换为升级后的【巫术打击+】与【巫术防御+】。
-  - 巫术打击+: 先古卡 (`CardRarity.Ancient`)，0 费 攻击牌 (消耗)。造成 9 点伤害，抽 1 张牌，施加 1 层巫术易伤。
-  - 巫术防御+: 先古卡 (`CardRarity.Ancient`)，0 费 技能牌 (消耗)。获得 8 点格挡，抽 1 张牌，施加 1 层巫术虚弱。
-  - 事件关联: 通过 Harmony Postfix 拦截先古之民 Tanx 事件 (`Tanx.GenerateInitialOptions`)，为玩家提供【破旧的玩偶】作为先古遗物选项。
 
 ### 卡牌
 
@@ -80,7 +75,6 @@
   - 通过 Harmony Postfix 将 `RedMaskBandits` 幂等追加到 `ModelDb.EventEncounters`，使 Pointy、Romeo、Bear 归入怪物图鉴的「事件」分组。
   - 保持遭遇的 `RoomType.Monster`，不改变事件出现条件、交钱分支、进入战斗流程、25–35 金币与红面具奖励，也不加入任何幕的普通怪物池。
   - 编译验证通过；游戏更新后需复核 `NBestiary.AddEvents` 仍直接枚举 `ModelDb.EventEncounters`。
-
 
 
 ---
