@@ -5,6 +5,7 @@ description = "Slay the Spire 2 Mod 卡牌/遗物/能力/事件图生成与裁�
 requires-python = ">=3.11"
 dependencies = [
     "Pillow>=10.0.0",
+    "md2steam>=1.0.0",
 ]
 
 [project.scripts]
@@ -14,10 +15,11 @@ relics            = "relics:main"
 rest-site-options = "rest_site_options:main"
 enchantments      = "enchantments:main"
 events            = "events:main"
+sync-workshop     = "sync_workshop:main"
 
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-py-modules = ["cards", "powers", "relics", "rest_site_options", "enchantments", "events"]
+py-modules = ["cards", "powers", "relics", "rest_site_options", "enchantments", "events", "sync_workshop"]

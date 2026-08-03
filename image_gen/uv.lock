@@ -3,6 +3,15 @@ revision = 3
 requires-python = ">=3.11"
 
 [[package]]
+name = "md2steam"
+version = "1.0.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/b7/04/b42819bc444dfcc2e50a7df62f1c00ecbc290a6a54d0b2553a83fa21c3c4/md2steam-1.0.1.tar.gz", hash = "sha256:d9479af55d7e43a5c985b6a1ede8b28ae04a3de84dacc6b5788aefe98ccb314f", size = 4432, upload-time = "2025-03-06T12:34:06.754Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a6/73/0d5b3c1555ae28929a7646cfb4a45d5ce5977f16d01b1d19734e905495b8/md2steam-1.0.1-py3-none-any.whl", hash = "sha256:979429369d01b383b28b846fd9464f87d7919f68763d6ea1ead361b18e07a5dc", size = 5042, upload-time = "2025-03-06T12:34:05.917Z" },
+]
+
+[[package]]
 name = "pillow"
 version = "12.2.0"
 source = { registry = "https://pypi.org/simple" }
@@ -94,8 +103,12 @@ name = "sts2-image-gen"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "md2steam" },
     { name = "pillow" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "pillow", specifier = ">=10.0.0" }]
+requires-dist = [
+    { name = "md2steam", specifier = ">=1.0.0" },
+    { name = "pillow", specifier = ">=10.0.0" },
+]

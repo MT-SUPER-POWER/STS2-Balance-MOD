@@ -1,0 +1,21 @@
+{
+  "title": "STS2 Balance MOD | 《杀戮尖塔2》平衡调整 Mod",
+  "description": "[ZH]\n本 Mod 旨在优化《杀戮尖塔 2》的游戏平衡性与游玩体验，针对部分卡牌、遗物、商店价格及随机事件进行了机制重构与数值调优。支持 BaseLib 原生配置菜单。\n\n🌐 支持语言：简体中文、English、Italiano、Русский\n📌 前置需求：需在创意工坊订阅并启用 BaseLib (>= 3.4.0)\n\n[EN]\nA balance and quality-of-life mod for Slay the Spire 2, tweaking cards, relics, shop prices, and events for an improved gameplay experience. Supports full BaseLib config menu.\n\n🌐 Languages: English, Simplified Chinese, Italian, Russian\n📌 Dependency: BaseLib (>= 3.4.0)\n\nGitHub & Feedback: https://github.com/MT-SUPER-POWER/STS2-Balance-MOD",
+  "visibility": "private",
+  "changeNote": "v0.1.8 版本更新日志：\n\n【新增与设置】\n- 接入 BaseLib Mod 配置页面，支持多语言（中/英/意/俄）持久化设置。\n- 新增“启用感染棱柱重做”配置开关（默认开启，关闭恢复原版机制）。\n- 新增“事件离开选项”配置开关（控制除虫者、科学怪人、药水的未来等事件）。\n\n【卡牌与事件调整】\n- 华丽收场 (Grand Finale)：调整升级效果，判定统一为抽牌堆卡牌数 ≤ X，升级改为少扣除 2 点费用。\n- 禅意织者 (Zen Weaver)：下调删牌价格（删1张降至 75 金，删2张降至 150 金）。",
+  "tags": [
+    "Balance",
+    "Cards",
+    "Relics",
+    "Events",
+    "QoL",
+    "Chinese",
+    "English",
+    "Italian",
+    "Russian"
+  ],
+  "dependencies": [
+    3737335127
+  ],
+  "contentDescriptors": []
+}
