@@ -29,6 +29,7 @@
 2. [杀戮尖塔1 Wiki](https://sts.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5)
 3. [Steam 官方公告](https://steamcommunity.com/games/2868840/announcements/)
 4. [玩家数据统计](https://spire-codex.com/)
+5. [模组开发教程](https://tutorials.sts2modding.com/)
 
 
 ## 安装
@@ -87,16 +88,16 @@
 | **多重释放 [Multicast]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 升级后 X+1 次释放 | 升级改为仅追加**保留**词条（取消原版 X+1）|
 | **幽魂形态 [Wraith Form]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 获得无实体后每回合累积减敏捷负面 | 打出时只施加无实体，**彻底删除减敏捷负面效果** |
 | **袖里乾坤 [Up My Sleeve]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 每次打出后减少费用，定位与刀舞冲突 | 从猎人卡池中**完全移除** |
-| **燃料 [Fuel]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 将所有状态牌转换，2 费 | 改为 **1 费**，获得 1 点能量并**抽 1（升级：2）张牌** |
+| **燃料 [Fuel]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 将所有状态牌转换获得 2 费 | 改为获得 1 点能量并**抽 1（升级：2）张牌** |
 | **能量汲取 [Drain Power]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 造成 10/12 伤害，升级后随机升级弃牌堆 3 张 | 伤害降为 **6/8**；基础随机升级弃牌堆 **2 张**，升级后改为升级弃牌堆**全部可升级牌** |
 | **吸引仇恨 [Pull Aggro]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 技能 | 升级后原版数值 | 升级后调整为：**召唤骨头 6 个，格挡 9 点** |
 | **凋零 [Wither]** | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" title="永世沙漏 (Aeonglass)"> | 状态 | 不可打出，进入消耗堆 | 改为 **1 费可打出**，打出后消耗 |
 | **辉光 [Glow]** | <img src="Assets/profile/regent.png" width="22" height="22" title="储君 (Regent)"> | 技能 | 获得星尘，下回合额外抽牌 | 改为**当回合立即抽 2 张**，升级额外多获得 1 星尘 |
 | **放血 [Bloodletting]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | 蓝卡（罕见）（v1.0.9 修改） | 稀有度改回**白卡（普通）** |
-| **创世之柱 [Pillar of Creation]** | <img src="Assets/profile/regent.png" width="22" height="22" title="储君 (Regent)"> | 能力 | 每回合第一次生成卡牌时获得 5/8 点格挡 | 格挡数值调整为 **3 / 4 点** |
+| **创世之柱 [Pillar of Creation]** | <img src="Assets/profile/regent.png" width="22" height="22" title="储君 (Regent)"> | 能力 | 每回合第一次生成卡牌时获得 5/8 点格挡 | 回调为每生成一张牌，格挡数值调整为 **3 / 4 点** |
 | **残酷 [Cruelty]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 能力 | 升级后原版数值，下放为战士卡牌 | 从战士卡池中**完全移除**（由“进化”卡牌替代） |
 | **探寻 [Dowsing]** | <img src="Assets/profile/neow.png" width="22" height="22" title="涅奥 (Neow)"> | 任务 | 进入 5 个 ? 房间后转化为「丰饶」 | 调整为进入 **4 个 ? 房间**后转化为「丰饶」 |
-| **魔球 [The Ball]** | <img src="Assets/profile/colorless.png" width="22" height="22" title="无色 (Colorless)"> | 攻击 | 每次打出后伤害成长 **10 / 15** | 成长幅度回调为 **15 / 20** |
+| **魔球 [The Ball]** | <img src="Assets/profile/colorless.png" width="22" height="22" title="无色 (Colorless)"> | 攻击 | 每次打出后伤害成长 **10 / 15** | 成长幅度改为 **15 / 20** |
 | **巨镰 [The Scythe]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 2 费，消耗；造成 13 点伤害，每次打出后伤害成长 **4 / 5** | 初始伤害调整为 **16** 点，配合官方 **5 / 7** 的成长幅度 |
 | **火箭飞拳 [Rocket Punch]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 攻击 | 2 费；生成状态牌时减 1 费 | 回调至此前效果，每当生成状态牌时耗能**直接降至 0 费** |
 | **触媒 [Accelerant]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 能力 | 蓝卡（罕见） | 稀有度回调为**金卡（稀有）** |

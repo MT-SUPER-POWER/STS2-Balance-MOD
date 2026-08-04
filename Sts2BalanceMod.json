@@ -2,7 +2,7 @@
   "id": "Sts2BalanceMod",
   "name": "Sts2BalanceMod",
   "author": "Momo",
-  "description": "杀戮尖塔2自用平衡调整Mod",
+  "description": "《杀戮尖塔2》平衡调整 Mod。详细改动清单与 README 请查阅：https://github.com/MT-SUPER-POWER/STS2-Balance-MOD",
   "version": "v0.2.0",
   "has_pck": true,
   "has_dll": true,
