@@ -36,12 +36,24 @@ def main():
         return
 
     # 1. 固定精炼主描述 (Fixed Concise Description + GitHub Link)
-    desc_markdown = """《杀戮尖塔 2》平衡调整 Mod / Slay the Spire 2 Balance MOD
+    desc_markdown = """【中文介绍】
+《杀戮尖塔 2》平衡调整 Mod
 
 本 Mod 旨在优化《杀戮尖塔 2》的游戏平衡性与游玩体验，针对部分卡牌、遗物、商店价格及随机事件进行了机制重构与数值调优。
 
-📌 **前置需求 / Dependency**: 需在创意工坊订阅并启用 [b]BaseLib (>= 3.4.0)[/b]
-📖 **详细调整清单与 README / Detailed Changes**:
+📌 **前置需求**: 需在创意工坊订阅并启用 **BaseLib (>= 3.4.0)**
+📖 **详细调整清单与 README**:
+https://github.com/MT-SUPER-POWER/STS2-Balance-MOD
+
+----------------------------------------
+
+【English Description】
+Slay the Spire 2 Balance MOD
+
+This mod aims to optimize the balance and gameplay experience of Slay the Spire 2 by reworking mechanics and fine-tuning values for select cards, relics, shop prices, and random events.
+
+📌 **Dependency**: Requires **BaseLib (>= 3.4.0)** from Steam Workshop
+📖 **Detailed Changes & README**:
 https://github.com/MT-SUPER-POWER/STS2-Balance-MOD"""
 
     description_bbcode = md2steam.markdown_to_steam_bbcode(desc_markdown)
