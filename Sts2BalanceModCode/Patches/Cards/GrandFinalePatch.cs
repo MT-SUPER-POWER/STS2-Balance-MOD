@@ -1,7 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Hooks;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
@@ -81,7 +86,36 @@ public static class GrandFinaleEnergyToSpendPatch
 }
 
 /// <summary>
-/// CARD-10 — 华丽收场 (Grand Finale) 升级逻辑重写。
+/// 动态注册 DynamicVar（CalculationBase, CalculationExtra, EnergySaved 与 CalculatedSpend）：
+/// - CalculationBase/CalculationExtra: 防止 CalculatedVar 在 SetOwner/UpdateValues 初始化时抛出 KeyNotFoundException('CalculationBase') 报错；
+/// - EnergySaved: 用于非战斗/图鉴界面展示 {EnergySaved:diff()} 动态高亮数值；
+/// - CalculatedSpend: 用于战斗中手牌实时计算并渲染具体的扣除能量。
+/// </summary>
+[HarmonyPatch(typeof(GrandFinale), "get_CanonicalVars")]
+public static class GrandFinaleCanonicalVarsPatch
+{
+    [HarmonyPostfix]
+    public static void Postfix(GrandFinale __instance, ref IEnumerable<DynamicVar> __result)
+    {
+        var list = __result.ToList();
+        list.Add(new CalculationBaseVar(0m));
+        list.Add(new CalculationExtraVar(1m));
+        list.Add(new EnergyVar("EnergySaved", 0));
+        list.Add(new CalculatedVar("CalculatedSpend").WithMultiplier((CardModel card, Creature? _) =>
+        {
+            if (card.Owner?.PlayerCombatState == null) return 0;
+            int currentEnergy = card.Owner.PlayerCombatState.Energy;
+            int upgradeSavings = card.IsUpgraded ? 2 : 0;
+            int xModifierBonus = card.CombatState != null ? Hook.ModifyXValue(card.CombatState, card, 0) : 0;
+            int totalSavings = upgradeSavings + xModifierBonus;
+            return Math.Max(0, currentEnergy - totalSavings);
+        }));
+        __result = list;
+    }
+}
+
+/// <summary>
+/// CARD-10 — 华丽收场 (Grand Finale) 升级逻辑重写：对 EnergySaved 变量执行 UpgradeValueBy(2m)。
 /// </summary>
 [HarmonyPatch(typeof(GrandFinale), "OnUpgrade")]
 public static class GrandFinaleCanonicalUpgradePatch
@@ -89,7 +123,10 @@ public static class GrandFinaleCanonicalUpgradePatch
     [HarmonyPrefix]
     public static bool Prefix(GrandFinale __instance)
     {
-        // 不调用原版 OnUpgrade(UpgradeValueBy 15m)，保持基础伤害不变
+        if (__instance.DynamicVars.ContainsKey("EnergySaved"))
+        {
+            __instance.DynamicVars["EnergySaved"].UpgradeValueBy(2m);
+        }
         return false;
     }
 }

@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.ValueProps;
+using Sts2BalanceMod.Sts2BalanceModCode.Config;
 using Sts2BalanceMod.Sts2BalanceModCode.Powers;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Monsters;
@@ -29,6 +30,12 @@ public static class InfestedPrismPatch
   [HarmonyPrefix]
   public static bool AfterAddedToRoomPrefix(InfestedPrism __instance, ref Task __result)
   {
+    // CONFIG-02: 关闭重做时执行原版方法，恢复 VitalSparkPower 开场机制。
+    if (!BalanceModConfig.EnableInfestedPrismRework)
+    {
+      return true;
+    }
+
     // 阻止原版在 AfterAddedToRoom 中对玩家赋予 VitalSparkPower
     __result = Task.CompletedTask;
     return false;
@@ -38,6 +45,12 @@ public static class InfestedPrismPatch
   [HarmonyPrefix]
   public static bool GenerateMoveStateMachinePrefix(InfestedPrism __instance, ref MonsterMoveStateMachine __result)
   {
+    // CONFIG-02: 与开场能力使用同一个开关，确保关闭时完整恢复原版行动状态机。
+    if (!BalanceModConfig.EnableInfestedPrismRework)
+    {
+      return true;
+    }
+
     int lightDamage = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 8, 6);
     int heavyDamage = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 18, 16);
     int multiDamage = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 6, 5);

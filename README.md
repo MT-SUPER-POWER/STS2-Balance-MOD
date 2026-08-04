@@ -9,7 +9,6 @@
     <img src="Assets/profile/necrobinder.png" width="28" height="28" title="死灵缚者 (Necrobinder)" />
     <img src="Assets/profile/defect.png" width="28" height="28" title="故障机器人 (Defect)" />
   </p>
-  <br/>
   <a href="https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/stargazers">
     <img src="https://img.shields.io/github/stars/MT-SUPER-POWER/STS2-Balance-MOD?style=flat" alt="Stars" />
   </a>
@@ -68,6 +67,7 @@
 | 设置项 | 默认值 | 效果 |
 | :--- | :---: | :--- |
 | **为事件添加“离开”选项** | 开启 | 控制是否为“除虫者”“科学怪人”和“药水的未来？”添加可直接离开的选项；修改后会在下次进入这些事件时生效。 |
+| **启用感染棱柱重做** | 开启 | 开启时使用固定四回合循环与【感染】机制；关闭时恢复原版【活力火花】与原版行动状态机。修改后会在下次进入感染棱柱战斗时生效。 |
 
 ### 商店
 
@@ -123,14 +123,19 @@
 | **比试 [Sparring]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 罕见 | 2 | 消耗。玩家对单个敌人造成 **8** 点伤害，奥斯提造成 **7 / 9** 点伤害；实际造成非格挡伤害较少的一方回复 **4 / 6** 点生命。 |
 | **猛撞 [Ram]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 普通 | 2 | 奥斯提失去 **6 / 5** 点生命，对所有敌人造成 **20 / 26** 点伤害；奥斯提生命不足时无法触发效果。 |
 | **步步为营 [Step by Step]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 稀有 | X | 消耗。接下来 X（升级：X+1）回合，每回合多抽 1 张牌并多获得 1 点能量。升级后额外获得保留词条。 |
+| **巫术打击 [Sorcery Strike]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 攻击 | 先古 | 1（升级：0） | 消耗。造成 **9** 点伤害，抽 **1** 张牌，施加 **1** 层巫术易伤。 |
+| **巫术防御 [Sorcery Defend]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 技能 | 先古 | 1（升级：0） | 消耗。获得 **8** 点格挡，抽 **1** 张牌，施加 **1** 层巫术虚弱。 |
 
 ### 怪物与 Boss
 
 | 名称 | 编号 | 原版机制 | MOD 改后机制 |
 | :--- | :--- | :--- | :--- |
 | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" valign="middle"> **永世沙漏 [Aeonglass]** | MON-01 | 永世沙漏 Boss 生成的凋零卡无法打出，直接进入消耗堆。 | 凋零卡可以**1c打出并消耗**，保留成长机制。 |
-| <img src="Assets/map/elite.png" width="22" height="22" valign="middle"> **感染棱柱 [InfestedPrism]** | BOSS-01 | 开场污染玩家技能牌（活力火花），玩家打出污染技能为棱柱增加力量；4回合循环均为攻击。 | 移除【活力火花】污染机制，改为每段攻击穿透格挡时叠加【感染】[InfectedPower] 压力（同一攻击段对每名玩家只结算一次，连击按每段结算），并重构4回合固定行动循环（轻击 6/8 + 2脆弱、重击 16/18 + 8/10格挡、连击 5x3/6x3、强化 16/18格挡 + 1/2力量）。 |
+| <img src="Assets/map/elite.png" width="22" height="22" valign="middle"> **感染棱柱 [InfestedPrism]** | BOSS-01 | 开场污染玩家技能牌（活力火花），玩家打出污染技能为棱柱增加力量；4回合循环均为攻击。 | 移除【活力火花】污染机制，改为每段攻击穿透格挡时叠加【感染】[InfectedPower] 压力（同一攻击段对每名玩家只结算一次，连击按每段结算），并重构4回合固定行动循环（轻击 6/8 + 2脆弱、重击 16/18 + 8/10格挡、连击 5x3/6x3、强化 16/18格挡 + 1/2力量）。可在 Mod 设置中关闭并恢复原版机制。 |
 | <img src="Assets/map/monster.png" width="22" height="22" valign="middle"> **红面具强盗 Bear [Bear]** | MONSTER-01 | 首回合【熊抱 BEAR_HUG】给予目标 1 层【易伤】 (`VulnerablePower`)。 | 【熊抱 BEAR_HUG】Debuff 修改为减少 2 点【敏捷】 (`DexterityPower` -2)。 |
+| <img src="Assets/map/guardian_boss.png" width="22" height="22" valign="middle"> **守护者 [Guardian]** | AFP-BOSS-01 | 《杀戮尖塔 1》第一幕 Boss，当前本体未提供。 | 按 Acts From the Past v1.0.5 移植完整行动循环、形态转换、Mode Shift、Sharp Hide、动画与音效；提供不进入普通地图池的心灵绽放专用遭遇。 |
+| <img src="Assets/map/hexaghost_boss.png" width="22" height="22" valign="middle"> **六火亡魂 [Hexaghost]** | AFP-BOSS-02 | 《杀戮尖塔 1》第一幕 Boss，当前本体未提供。 | 按 Acts From the Past v1.0.5 移植六火球状态、Divider/Sear/Inferno、灼伤升级、火焰特效与音效；提供不进入普通地图池的心灵绽放专用遭遇。 |
+| <img src="Assets/map/slime_boss.png" width="22" height="22" valign="middle"> **史莱姆老大 [Slime Boss]** | AFP-BOSS-03 | 《杀戮尖塔 1》第一幕 Boss，当前本体未提供。 | 按 Acts From the Past v1.0.5 移植 Boss、酸液/尖刺史莱姆大型与中型单位及完整两级分裂链；提供七槽位的心灵绽放专用遭遇。 |
 
 ### 事件
 
@@ -149,13 +154,14 @@
 | :--- | :--- | :--- |
 | **老乞丐 [Old Beggar]** | 所有玩家金币 ≥ 75 | 给金币后切换为牧师删牌。 |
 | **诅咒书本 [Cursed Tome]** | Act 2，且牌组无对应书籍遗物 | 可获得 <img src="Assets/relics/necronomicon.png" width="18" height="18" valign="middle"> **死灵之书**、<img src="Assets/relics/nilrys_codex.png" width="18" height="18" valign="middle"> **尼利的宝典**、<img src="Assets/relics/enchiridion.png" width="18" height="18" valign="middle"> **英雄宝典**。 |
-| **红面具 [Masked Bandits]** | Act 2，层数 ≥ 23，且无人持有红面具 | 可选择交金或与红面具三人帮战斗获取 <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **红面具**。 |
+| **红面具 [Masked Bandits]** | Act 2，层数 ≥ 23，且无人持有红面具 | 可选择交金或与红面具三人帮战斗获取 <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **红面具**；尖头（Pointy）、罗密欧（Romeo）、熊（Bear）归入怪物图鉴的「事件」分组。 |
 | **J.A.X. [Augmenter]** | Act 2，且所有玩家牌组中可移除牌 ≥ 2 张 | 获得 J.A.X. 卡牌 / 变2张牌 / 获得 <img src="Assets/relics/mutagenic_strength.png" width="18" height="18" valign="middle"> **突变之力** 遗物。 |
 | **神圣泉水 [The Divine Fountain]** | 所有玩家牌组中存在可移除的诅咒牌 | 移除牌组中全部可移除诅咒（删除原版的伤害副作用）。 |
 | **牧师 [Cleric]** | 所有玩家金币 ≥ 35 | 提供付钱选择治疗（25% 最大 HP）/ 删牌选项（75 金）。 |
-| **心灵绽放 [Mind Bloom]** | Act 3 | 1. **战斗**——随机召唤第一幕的 Boss 进行决战，胜利获得 50 金 + 稀有遗物。<br>2. **升级**——升级牌组中所有可升级的牌，并获得 <img src="Assets/relics/mark_of_the_bloom.png" width="18" height="18" valign="middle"> **「绽放印记」** 遗物。<br>3. **宝库**（层数 < 41，多人 < 38）获得 999 金 + 牌组加入 2 张「凡庸」。|
+| **心灵绽放 [Mind Bloom]** | Act 3 | 1. **战斗**——随机挑战本局第一幕原版 Boss，胜利获得 50 金 + 稀有遗物；结算后可直接离开，或接受一场完全未知的第二战。第一战胜利状态会随当前地图点保存，退出并读档后仍回到战间抉择，不会重新开放第一战。点击继续后才等概率抽取守护者、六火亡魂或史莱姆老大，并从耐久池（生命 +25% / 10 层覆甲 / 10 层再生）与威胁池（力量 / 1 层仪式）各抽取一项；力量分别为 2 / 1 / 3，史莱姆分裂体不继承强化。第二战会建立独立战斗记录以保证回合正常推进；胜利额外获得 100 金 + 稀有遗物 + 罕见遗物，同时保留普通金币、卡牌与药水概率。三场第二战遭遇登记为事件战斗，第一战原版 Boss 不会重复归入「事件」图鉴。<br>2. **升级**——升级牌组中所有可升级的牌，并获得 <img src="Assets/relics/mark_of_the_bloom.png" width="18" height="18" valign="middle"> **「绽放印记」** 遗物。<br>3. **宝库**（层数 < 41，多人 < 38）获得 999 金 + 牌组加入 2 张「凡庸」。|
 | **大转盘 [Wheel of Change]** | - | 自定义转盘小游戏，随机获得金/遗物/治疗/诅咒/删牌/受伤。 |
 | **红面具大人之墓 [Tomb of Lord Red Mask]** | Act 3，且无人持有红面具 | 可献上全部金币获得 <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **红面具**，或（持有红面具时）收获 222 金。 |
+| **大图书馆 [The Library]** | Act 3 | 提供 **【阅读】**（从 20 张跨职业卡牌中选择 1 张加入牌组）与 **【睡觉】**（回复 33% 最大生命值）两个选项。 |
 
 
 ### 遗物
@@ -164,7 +170,7 @@
 
 | 遗物 | 类型 | 描述 |
 | :--- | :--- | :--- |
-| <img src="Assets/relics/sundial.png" width="22" height="22" valign="middle"> **日晷 [Sundial]** | <img src="Assets/map/shop.png" width="22" height="22" title="商店 (Shop)"> | 每将抽牌堆洗牌 3 次（跨战斗保留计数），获得 2 点能量。 |
+| <img src="Assets/relics/sundial.png" width="22" height="22" valign="middle"> **日晷 [Sundial]** | <img src="Assets/map/shop.png" width="22" height="22" title="商店 (Shop)"> | 每将抽牌堆洗牌 3 次（跨战斗保留计数），获得 3 点能量。 |
 | <img src="Assets/relics/orange_pill.png" width="22" height="22" valign="middle"> **橙色药丸 [Orange Pill]** | <img src="Assets/map/shop.png" width="22" height="22" title="商店 (Shop)"> | 同一回合打出攻击 / 技能 / 能力各一张后，移除所有负面效果（女王的魂缚锁链除外）。 |
 | <img src="Assets/relics/dead_branch.png" width="22" height="22" valign="middle"> **枯木树枝 [Dead Branch]** | 稀有 | 每消耗一张牌，随机将一张牌加入手牌（虚无牌触发时给当回合保留）。 |
 | <img src="Assets/relics/omamori.png" width="22" height="22" valign="middle"> **御守 [Omamori]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 抵消接下来获得的 2 张诅咒牌（带计数器）。 |
@@ -178,13 +184,14 @@
 | <img src="Assets/relics/hovering_kite.png" width="22" height="22" valign="middle"> **悬浮风筝 [Hovering Kite]** | 普通 | <img src="Assets/profile/silent.png" width="18" height="18" valign="middle" title="静默猎手"> 猎人专属。你在每回合第一次弃牌时，获得 1 点能量。 |
 | <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **灵魂契约 [Soul Contract]** | <img src="Assets/map/shop.png" width="22" height="22" title="商店 (Shop)"> | 选择牌组中的 1 张有消耗的牌，永久去除其消耗属性。 |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **尼利的宝典 [Nilry's Codex]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 每回合结束时，从 3 张随机**升级版**卡牌中选择 1 张洗入抽牌堆。（RELIC-04：MOD 改为展示升级版） |
+| <img src="Assets/relics/shabbydoll.png" width="22" height="22" valign="middle"> **破旧的玩偶 [Shabby Doll]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 拾起时，扣除 50% 最大生命值上限，并将牌组中所有的基础【打击】与【防御】替换为升级后的【巫术打击+】与【巫术防御+】。（先古之民 Tanx 专属替换撕咬机制选项） |
 
 
 #### 原版调整
 
 | 遗物 | 类型 | 原版 | MOD 改后 |
 | :--- | :--- | :--- | :--- |
-| <img src="Assets/relics/sturdy_clamp.png" width="22" height="22" valign="middle"> **坚固钳子 [Sturdy Clamp]** | 稀有 | 保留 10 护甲 | 保留 **20 护甲** |
+| <img src="Assets/relics/sturdy_clamp.png" width="22" height="22" valign="middle"> **坚固钳子 [Sturdy Clamp]** | 稀有 | 保留 10 护甲 | 保留 **15 护甲** |
 | <img src="Assets/relics/preserved_fog.png" width="22" height="22" valign="middle"> **活雾 [Preserved Fog]** | <img src="Assets/profile/vakuu.png" width="22" height="22" title="瓦库 (Vakuu)"> | 删除 3 张牌 | 删除 **4 张牌** |
 | <img src="Assets/relics/red_mask.png" width="22" height="22" valign="middle"> **红面具 [Red Mask]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 在一般共享遗物池中 | 从一般共享遗物池**移除**，只通过红面具相关事件获得 |
 | <img src="Assets/relics/history_course.png" width="22" height="22" valign="middle"> **历史课 [History Course]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 只重复上回合最后打出的攻击牌 | 回调为重复上回合最后打出的**攻击牌或技能牌** |

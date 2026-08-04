@@ -1,4 +1,8 @@
 {
+  "STS2BALANCEMOD-SORCERY_STRIKE.title": "Sorcery Strike",
+  "STS2BALANCEMOD-SORCERY_STRIKE.description": "Deal {Damage:diff()} damage.\nDraw 1 card.\nApply 1 [gold]Sorcery Vulnerable[/gold].",
+  "STS2BALANCEMOD-SORCERY_DEFEND.title": "Sorcery Defend",
+  "STS2BALANCEMOD-SORCERY_DEFEND.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw 1 card.\nApply 1 [gold]Sorcery Weak[/gold].",
   "STS2BALANCEMOD-DEATH_REAP.title": "Death Reap",
   "STS2BALANCEMOD-DEATH_REAP.description": "Deal {Damage:diff()} damage to all enemies. Heal HP equal to [gold]unblocked damage[/gold].",
   "STS2BALANCEMOD-POWER_THOUGHT.title": "Power Through",
@@ -25,7 +29,7 @@
   "STS2BALANCEMOD-EVOLVE.title": "Evolve",
   "STS2BALANCEMOD-EVOLVE.description": "Whenever you draw a Status card, draw {EvolvePower:diff()} {EvolvePower:plural:card|cards}.",
   "PILLAR_OF_CREATION.description": "Whenever you generate a card, gain {Block:diff()} [gold]Block[/gold].",
-  "GRAND_FINALE.description": "Can only be played if the number of cards in your [gold]Draw Pile[/gold] is less than or equal to X.\nDeal {Damage:diff()} damage to ALL enemies.{IfUpgraded:show:\nSpend 2 less Energy when played.|}",
+  "GRAND_FINALE.description": "Can only be played if the number of cards in your [gold]Draw Pile[/gold] is less than or equal to X.\nDeal {Damage:diff()} damage to ALL enemies.{InCombat:\n(Spend {CalculatedSpend:energyIcons()})|{IfUpgraded:show:\nSpend {EnergySaved:energyIcons()} less when played.|}}",
   "WELL_LAID_PLANS.description": "At the end of your turn, [gold]Retain[/gold] up to {Cards:diff()} {Cards:plural:card|cards}.",
   "WELL_LAID_PLANS.selectionScreenPrompt": "Choose up to {Amount} cards to [gold]Retain[/gold].",
   "STS2BALANCEMOD-EVISCERATE.title": "Eviscerate",

@@ -1,4 +1,7 @@
 {
+  "STS2BALANCEMOD-SHABBY_DOLL.title": "Shabby Doll",
+  "STS2BALANCEMOD-SHABBY_DOLL.description": "Upon pickup, lose [red]50%[/red] Max HP and replace all basic [gold]Strikes[/gold] and [gold]Defends[/gold] in your deck with upgraded [gold]Sorcery Strike+[/gold] and [gold]Sorcery Defend+[/gold].",
+  "STS2BALANCEMOD-SHABBY_DOLL.flavor": "A cursed, tattered doll emanating dark energy.",
   "STS2BALANCEMOD-SUNDIAL.title": "Sundial",
   "STS2BALANCEMOD-SUNDIAL.description": "Every [blue]{Shuffles}[/blue] times you shuffle your [blue]Draw Pile[/blue], gain [blue]{Energy}[/blue].",
   "STS2BALANCEMOD-SUNDIAL.flavor": "\"Early man's foolish obsession with time caused them to look to the sky for guidance, hoping for something permanent.\" - Zoroth",

@@ -2,7 +2,12 @@
   "FileOptions": {
     "ExcludeSearchPatterns": [
       "**/docs/**",
-      "**/docs/references/**"
+      "**/docs/references/**",
+      "workshop/**",
+      "dist/**",
+      "bin/**",
+      "node_modules/**",
+      ".godot/**"
     ]
   }
 }

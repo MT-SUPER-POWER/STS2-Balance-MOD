@@ -53,8 +53,8 @@
     <ItemGroup>
         <!-- NOTE: Baselib 版本控制的地方 -->
         <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.4.0" PrivateAssets="All" />
-        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All" />
-        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />
+        <PackageReference Include="Krafs.Publicizer" Version="2.3.1" PrivateAssets="all" />
+        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.1.9" />
         <!-- NOTE: 包仍保留为可选工具，但当前通过 PckPackerEnabled=false 禁用，避免生成缺少 Assets/ 的半截 PCK。 -->
         <PackageReference Include="BSchneppe.StS2.PckPacker" Version="0.1.1" PrivateAssets="All" />
         <!-- NOTE: ModAnalyzers 按文件名匹配本地化（Power → powers.json），需显式列入 AdditionalFiles -->

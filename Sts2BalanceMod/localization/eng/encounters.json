@@ -4,5 +4,11 @@
   "STS2BALANCEMOD-COLLECTOR_BOSS.title": "The Collector",
   "STS2BALANCEMOD-COLLECTOR_BOSS.loss": "{name} was collected.",
   "STS2BALANCEMOD-RED_MASK_BANDITS.title": "Masked Bandits",
-  "STS2BALANCEMOD-RED_MASK_BANDITS.loss": "{name} was robbed."
+  "STS2BALANCEMOD-RED_MASK_BANDITS.loss": "{name} was robbed.",
+  "STS2BALANCEMOD-MIND_BLOOM_GUARDIAN.title": "The Guardian",
+  "STS2BALANCEMOD-MIND_BLOOM_GUARDIAN.loss": "{name} was crushed by the Guardian.",
+  "STS2BALANCEMOD-MIND_BLOOM_HEXAGHOST.title": "Hexaghost",
+  "STS2BALANCEMOD-MIND_BLOOM_HEXAGHOST.loss": "{name} was consumed by six flames.",
+  "STS2BALANCEMOD-MIND_BLOOM_SLIME_BOSS.title": "Slime Boss",
+  "STS2BALANCEMOD-MIND_BLOOM_SLIME_BOSS.loss": "{name} was engulfed by slime."
 }

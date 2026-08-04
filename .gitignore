@@ -1,6 +1,8 @@
 # Compile
 bin/
 dist/
+workshop/content/
+workshop/tmp/
 /android/
 publish/
 .git/
@@ -40,3 +42,4 @@ Directory.Build.props
 .agents/
 .gemini/
 .opencode/
+mod-uploader.log

@@ -10,4 +10,7 @@ public sealed class BalanceModConfig : SimpleModConfig
 {
   [ConfigHoverTip]
   public static bool EnableEventLeaveOptions { get; set; } = true;
+
+  [ConfigHoverTip]
+  public static bool EnableInfestedPrismRework { get; set; } = true;
 }

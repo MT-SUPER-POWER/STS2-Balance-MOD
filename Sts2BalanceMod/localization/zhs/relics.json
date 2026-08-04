@@ -1,4 +1,7 @@
 {
+  "STS2BALANCEMOD-SHABBY_DOLL.title": "破旧的玩偶",
+  "STS2BALANCEMOD-SHABBY_DOLL.description": "拾起时，失去 [red]50%[/red] 最大生命值上限，并将牌组中所有的基础[gold]打击[/gold]与[gold]防御[/gold]替换为升级后的[gold]巫术打击+[/gold]与[gold]巫术防御+[/gold]。",
+  "STS2BALANCEMOD-SHABBY_DOLL.flavor": "一只被诅咒所缠绕的破旧玩偶，散发着阴暗的气息。",
   "STS2BALANCEMOD-SUNDIAL.title": "日晷",
   "STS2BALANCEMOD-SUNDIAL.description": "每将[blue]抽牌堆[/blue]洗牌[blue]{Shuffles}[/blue]次，获得[blue]{Energy}[/blue]。",
   "STS2BALANCEMOD-SUNDIAL.flavor": "「早期人类对时间的愚蠢痴迷导致他们仰望天空寻求指引，希望找到永恒之物。」——佐罗斯",

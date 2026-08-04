@@ -1,7 +1,7 @@
 [gd_resource type="SpineSkeletonDataResource" format=3]
 
-[ext_resource type="SpineAtlasResource" path="res://Assets/ActsFromPast/ActsFromThePast/monsters/gremlin_wizard/gremlin_wizard.spatlas" id="1_atlas"]
-[ext_resource type="SpineSkeletonFileResource" path="res://Assets/ActsFromPast/ActsFromThePast/monsters/gremlin_wizard/gremlin_wizard.spskel" id="2_skel"]
+[ext_resource type="SpineAtlasResource" path="res://ActsFromThePast/monsters/gremlin_wizard/gremlin_wizard.spatlas" id="1_atlas"]
+[ext_resource type="SpineSkeletonFileResource" path="res://ActsFromThePast/monsters/gremlin_wizard/gremlin_wizard.spskel" id="2_skel"]
 
 [resource]
 atlas_res = ExtResource("1_atlas")

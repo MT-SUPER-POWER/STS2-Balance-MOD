@@ -1,0 +1,80 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using BaseLib.Utils;
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.RelicPools;
+using Sts2BalanceMod.Sts2BalanceModCode.Cards;
+using Sts2BalanceMod.Sts2BalanceModCode.Powers;
+
+namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
+
+/// <summary>
+/// 先古遗物：破旧的玩偶 (Shabby Doll)
+/// 代价: 获得遗物时扣除 50% 最大生命值上限。
+/// 效果: 将牌组中所有的基础【打击】与【防御】全部替换为升级后的【巫术打击+】与【巫术防御+】。
+/// </summary>
+[Pool(typeof(SharedRelicPool))]
+public sealed class ShabbyDoll : Sts2RelicModel
+{
+    public override string FlashSfx => "event:/sfx/ui/relic_activate_general";
+    public override RelicRarity Rarity => RelicRarity.Ancient;
+
+    public override bool HasUponPickupEffect => true;
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
+    {
+        HoverTipFactory.FromCard<SorceryStrike>(upgrade: true),
+        HoverTipFactory.FromCard<SorceryDefend>(upgrade: true),
+        HoverTipFactory.FromPower<SorceryVulnerable>(),
+        HoverTipFactory.FromPower<SorceryWeak>()
+    };
+
+    public override async Task AfterObtained()
+    {
+        if (Owner?.Creature == null)
+            return;
+
+        Flash();
+
+        // 1. 扣除 50% 最大生命值上限并调整当前生命
+        int currentMaxHp = Owner.Creature.MaxHp;
+        int newMaxHp = Math.Max(1, currentMaxHp / 2);
+        Owner.Creature.SetMaxHpInternal(newMaxHp);
+        if (Owner.Creature.CurrentHp > newMaxHp)
+        {
+            Owner.Creature.SetCurrentHpInternal(newMaxHp);
+        }
+
+        // 2. 将牌组中所有的基础【打击】与【防御】卡牌转换为升级后的【巫术打击+】与【巫术防御+】（使用 Claws 同款 Transform 变牌动画）
+        var deckCards = Owner.Deck.Cards.ToList();
+        var cardsToReplace = deckCards.Where(c => 
+            c.IsBasicStrikeOrDefend ||
+            c.Tags.Contains(CardTag.Strike) || 
+            c.Tags.Contains(CardTag.Defend) || 
+            c.Id.Entry.Contains("STRIKE", StringComparison.OrdinalIgnoreCase) || 
+            c.Id.Entry.Contains("DEFEND", StringComparison.OrdinalIgnoreCase)).ToList();
+
+        if (cardsToReplace.Count == 0)
+            return;
+
+        List<CardTransformation> transformations = cardsToReplace.Select(original =>
+        {
+            bool isStrike = original.Tags.Contains(CardTag.Strike) || original.Id.Entry.Contains("STRIKE", StringComparison.OrdinalIgnoreCase);
+            CardModel newCard = isStrike
+                ? Owner.RunState.CreateCard<SorceryStrike>(Owner)
+                : Owner.RunState.CreateCard<SorceryDefend>(Owner);
+
+            CardCmd.Upgrade(newCard);
+            return new CardTransformation(original, newCard);
+        }).ToList();
+
+        await CardCmd.Transform(transformations, Owner.PlayerRng.Transformations);
+    }
+}

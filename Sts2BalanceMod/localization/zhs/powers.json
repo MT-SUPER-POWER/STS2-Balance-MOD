@@ -1,4 +1,10 @@
 {
+  "STS2BALANCEMOD-SORCERY_VULNERABLE.title": "巫术易伤",
+  "STS2BALANCEMOD-SORCERY_VULNERABLE.description": "易伤的生物从攻击中受到的伤害增加 [red]75%[/red]。若本回合受到过攻击，回合结束时减少 1 层。",
+  "STS2BALANCEMOD-SORCERY_VULNERABLE.smartDescription": "受到的攻击伤害增加 [red]75%[/red]。剩余 [blue]{Amount}[/blue] 层（若本回合受到过攻击，回合结束时减少 1 层）。",
+  "STS2BALANCEMOD-SORCERY_WEAK.title": "巫术虚弱",
+  "STS2BALANCEMOD-SORCERY_WEAK.description": "虚弱的生物造成的攻击伤害减少 [red]50%[/red]。若本回合进行过攻击，回合结束时减少 1 层。",
+  "STS2BALANCEMOD-SORCERY_WEAK.smartDescription": "造成的攻击伤害减少 [red]50%[/red]。剩余 [blue]{Amount}[/blue] 层（若本回合进行过攻击，回合结束时减少 1 层）。",
   "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.title": "电动力学",
   "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.description": "[gold]闪电[/gold]球改为[gold]攻击所有敌人[/gold]。",
   "STS2BALANCEMOD-ELECTRODYNAMICS_POWER.smartDescription": "[gold]闪电[/gold]球改为[gold]攻击所有敌人[/gold]。",

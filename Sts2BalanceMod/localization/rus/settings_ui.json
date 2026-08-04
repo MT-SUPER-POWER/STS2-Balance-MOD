@@ -1,5 +1,7 @@
 {
   "STS2BALANCEMOD.mod_title": "STS2 Balance Mod",
   "STS2BALANCEMOD-ENABLE_EVENT_LEAVE_OPTIONS.title": "Добавлять вариант «Уйти» в события",
-  "STS2BALANCEMOD-ENABLE_EVENT_LEAVE_OPTIONS.hover.desc": "Добавляет вариант «Уйти» в события Bugslayer, Tinker Time и The Future of Potions.\n\nВключено по умолчанию. Изменение применяется при следующем открытии одного из этих событий. В сетевой игре все игроки должны использовать одинаковое значение."
+  "STS2BALANCEMOD-ENABLE_EVENT_LEAVE_OPTIONS.hover.desc": "Добавляет вариант «Уйти» в события Bugslayer, Tinker Time и The Future of Potions.\n\nВключено по умолчанию. Изменение применяется при следующем открытии одного из этих событий. В сетевой игре все игроки должны использовать одинаковое значение.",
+  "STS2BALANCEMOD-ENABLE_INFESTED_PRISM_REWORK.title": "Включить переработку Заражённой призмы",
+  "STS2BALANCEMOD-ENABLE_INFESTED_PRISM_REWORK.hover.desc": "Заменяет механику «Живая искра» и исходный набор ходов Заражённой призмы на четырёхходовый цикл и механику «Инфекция» из мода.\n\nВключено по умолчанию. Изменение применяется в следующем бою с Заражённой призмой. В сетевой игре все игроки должны использовать одинаковое значение."
 }
