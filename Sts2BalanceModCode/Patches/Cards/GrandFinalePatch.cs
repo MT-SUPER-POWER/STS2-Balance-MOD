@@ -86,8 +86,9 @@ public static class GrandFinaleEnergyToSpendPatch
 }
 
 /// <summary>
-/// 动态注册 DynamicVar（EnergySaved 与 CalculatedSpend）：
-/// - EnergySaved: 用于非战斗/图鉴界面展示 X-{EnergySaved:diff()} 动态高亮数值；
+/// 动态注册 DynamicVar（CalculationBase, CalculationExtra, EnergySaved 与 CalculatedSpend）：
+/// - CalculationBase/CalculationExtra: 防止 CalculatedVar 在 SetOwner/UpdateValues 初始化时抛出 KeyNotFoundException('CalculationBase') 报错；
+/// - EnergySaved: 用于非战斗/图鉴界面展示 {EnergySaved:diff()} 动态高亮数值；
 /// - CalculatedSpend: 用于战斗中手牌实时计算并渲染具体的扣除能量。
 /// </summary>
 [HarmonyPatch(typeof(GrandFinale), "get_CanonicalVars")]
@@ -97,6 +98,8 @@ public static class GrandFinaleCanonicalVarsPatch
     public static void Postfix(GrandFinale __instance, ref IEnumerable<DynamicVar> __result)
     {
         var list = __result.ToList();
+        list.Add(new CalculationBaseVar(0m));
+        list.Add(new CalculationExtraVar(1m));
         list.Add(new EnergyVar("EnergySaved", 0));
         list.Add(new CalculatedVar("CalculatedSpend").WithMultiplier((CardModel card, Creature? _) =>
         {
