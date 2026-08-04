@@ -23,14 +23,16 @@ dotnet publish -c Release                 # 本地发布编译到 dist/Sts2Balan
 
 
 <!-- DOCUMENTATION_RULE_START -->
-## 文档同步约定（重要！！！）
+## 文档同步约定与知识库（重要！！！）
 
-每当你完成我发布给你的任务，记得更新对应的文档。
+本项目以 **[docs/README.md](docs/README.md)** 作为中央**知识库总索引（Knowledge Base Hub）**。在进行任何架构设计、事件/能力/遗物改动或查阅参考规范时，优先阅读 `docs/README.md`。
 
-1. 在 `docs/` 文件夹里有一个 `balance-changes.md` 的文件，里面记录了所有我要求做的调整项。你务必确保这个文件里的我分配给你的任务完成后，更新这个文件里对应任务的状态。
-2. 每一个完成的改动必须同步更新 **`CHANGELOG.md`** 和 **`README.md`**：
-  - 在 `CHANGELOG.md` 文件中记录你的任务，尽可能明细分环节，你可以参考别的记录模式，至少保证清晰可读。任何图的绘制使用 `mermaid`，文字总结规律一致的内容使用 `table`。
-  - 在 `README.md` 的「调整内容」章节中同步更新对应的表格（例如卡牌调整、新增遗物等），确保玩家可见的说明文档与代码完全一致。
+每当你完成我发布给你的任务，记得更新对应的文档：
+1. **知识库总索引**：若新增或重构了独立文档（如 `docs/powers.md` / `docs/events.md` 等），务必在 **[docs/README.md](docs/README.md)** 中登记索引。
+2. **需求清单**：在 `docs/balance-changes.md` 中更新对应任务的完成状态。
+3. **变更与说明**：
+  - 在 `CHANGELOG.md` 中记录改动明细（图表使用 `mermaid`，文字表格使用 `table`）。
+  - 在 `README.md` 的「调整内容」章节中同步更新对应的表格与跳转链接。
 
 <!-- DOCUMENTATION_RULE_END -->
 
@@ -39,6 +41,9 @@ dotnet publish -c Release                 # 本地发布编译到 dist/Sts2Balan
 
 | 路径 | 用途 |
 |------|------|
+| `docs/README.md` | **知识库总索引（Knowledge Base Hub）** |
+| `docs/powers.md` | 能力与效果手册（Buff / Debuff / Boss 机制） |
+| `docs/events.md` | 事件与遭遇手册（原版调整 / 1 代回归事件） |
 | `Sts2BalanceModCode/MainFile.cs` | Mod 入口：`[ModInitializer]` → `Harmony.PatchAll()` |
 | `Sts2BalanceModCode/Abstract/` | 基类：`Sts2CardModel`、`Sts2RelicModel`、`Sts2PowerModel`、`Sts2MonsterModel`、`Sts2EncounterModel` |
 | `Sts2BalanceModCode/Patches/` | Harmony Patch（子目录：Cards/ / Relics/ / Powers/ / Orbs/ / Merchant/ / Events/ / CardPools/ / Encounters/ / Monsters/） |

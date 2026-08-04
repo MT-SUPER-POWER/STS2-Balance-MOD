@@ -23,14 +23,6 @@
   </a>
 </div>
 
-## 关于尖塔
-
-1. [杀戮尖塔2 Wiki](https://sts2.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5)
-2. [杀戮尖塔1 Wiki](https://sts.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5)
-3. [Steam 官方公告](https://steamcommunity.com/games/2868840/announcements/)
-4. [玩家数据统计](https://spire-codex.com/)
-5. [模组开发教程](https://tutorials.sts2modding.com/)
-
 
 ## 安装
 
@@ -56,7 +48,7 @@
 > [!note]
 > 以下是本 Mod 已经实装的所有平衡与内容调整。
 >
-> 版本变更记录见 **[CHANGELOG.md](CHANGELOG.md)**，未完成的待办项见 **[docs/balance-changes.md](docs/balance-changes.md)**。
+> 版本变更记录见 **[CHANGELOG.md](CHANGELOG.md)**，能力与效果手册见 **[docs/powers.md](docs/powers.md)**，事件与遭遇手册见 **[docs/events.md](docs/events.md)**，待办项见 **[docs/balance-changes.md](docs/balance-changes.md)**。
 
 ### Mod 设置
 
@@ -90,12 +82,12 @@
 | **袖里乾坤 [Up My Sleeve]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 每次打出后减少费用，定位与刀舞冲突 | 从猎人卡池中**完全移除** |
 | **燃料 [Fuel]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 将所有状态牌转换获得 2 费 | 改为获得 1 点能量并**抽 1（升级：2）张牌** |
 | **能量汲取 [Drain Power]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 造成 10/12 伤害，升级后随机升级弃牌堆 3 张 | 伤害降为 **6/8**；基础随机升级弃牌堆 **2 张**，升级后改为升级弃牌堆**全部可升级牌** |
-| **吸引仇恨 [Pull Aggro]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 技能 | 升级后原版数值 | 升级后调整为：**召唤骨头 6 个，格挡 9 点** |
+| **吸引仇恨 [Pull Aggro]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 技能 | 升级后原版数值 | 升级后调整为：**召唤 6，格挡 9 点** |
 | **凋零 [Wither]** | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" title="永世沙漏 (Aeonglass)"> | 状态 | 不可打出，进入消耗堆 | 改为 **1 费可打出**，打出后消耗 |
 | **辉光 [Glow]** | <img src="Assets/profile/regent.png" width="22" height="22" title="储君 (Regent)"> | 技能 | 获得星尘，下回合额外抽牌 | 改为**当回合立即抽 2 张**，升级额外多获得 1 星尘 |
 | **放血 [Bloodletting]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | 蓝卡（罕见）（v1.0.9 修改） | 稀有度改回**白卡（普通）** |
 | **创世之柱 [Pillar of Creation]** | <img src="Assets/profile/regent.png" width="22" height="22" title="储君 (Regent)"> | 能力 | 每回合第一次生成卡牌时获得 5/8 点格挡 | 回调为每生成一张牌，格挡数值调整为 **3 / 4 点** |
-| **残酷 [Cruelty]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 能力 | 升级后原版数值，下放为战士卡牌 | 从战士卡池中**完全移除**（由“进化”卡牌替代） |
+| **残酷 [Cruelty]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 能力 | 下放为战士蓝卡 | 从战士卡池中**完全移除**（由“进化”卡牌替代） |
 | **探寻 [Dowsing]** | <img src="Assets/profile/neow.png" width="22" height="22" title="涅奥 (Neow)"> | 任务 | 进入 5 个 ? 房间后转化为「丰饶」 | 调整为进入 **4 个 ? 房间**后转化为「丰饶」 |
 | **魔球 [The Ball]** | <img src="Assets/profile/colorless.png" width="22" height="22" title="无色 (Colorless)"> | 攻击 | 每次打出后伤害成长 **10 / 15** | 成长幅度改为 **15 / 20** |
 | **巨镰 [The Scythe]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 2 费，消耗；造成 13 点伤害，每次打出后伤害成长 **4 / 5** | 初始伤害调整为 **16** 点，配合官方 **5 / 7** 的成长幅度 |
@@ -127,42 +119,60 @@
 | **巫术打击 [Sorcery Strike]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 攻击 | 先古 | 1（升级：0） | 消耗。造成 **9** 点伤害，抽 **1** 张牌，施加 **1** 层巫术易伤。 |
 | **巫术防御 [Sorcery Defend]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 技能 | 先古 | 1（升级：0） | 消耗。获得 **8** 点格挡，抽 **1** 张牌，施加 **1** 层巫术虚弱。 |
 
+### 能力调整
+
+> [!tip]
+> 完整的能力、减益与 Boss 机制说明见 **[docs/powers.md](docs/powers.md)**。
+
+| 能力 / 效果 | 分类 | 来源 | 效果说明 |
+| :--- | :---: | :--- | :--- |
+| <img src="Assets/powers/electrodynamics_power.png" width="22" height="22" valign="middle"> **电动力学 [Electrodynamics]** | 玩家 Buff | <img src="Assets/profile/defect.png" width="18" height="18" title="故障机器人"> 故障机器人卡牌「电动力学」 | [闪电]球改为攻击所有敌人。 |
+| <img src="Assets/powers/evolve_power.png" width="22" height="22" valign="middle"> **进化 [Evolve]** | 玩家 Buff | <img src="Assets/profile/ironclad.png" width="18" height="18" title="铁甲战士"> 铁甲战士卡牌「进化」 | 每当你抽到状态牌，抽 **1 / 2** 张牌。 |
+| <img src="Assets/powers/step_by_step_power.png" width="22" height="22" valign="middle"> **步步为营 [Step by Step]** | 玩家 Buff | <img src="Assets/profile/silent.png" width="18" height="18" title="静默猎手"> 静默猎手卡牌「步步为营」 | 每回合多抽 1 张牌并多获得 1 点能量，持续 **X / X+1** 回合。 |
+| <img src="Assets/powers/sorcery_vulnerable.png" width="22" height="22" valign="middle"> **巫术易伤 [Sorcery Vulnerable]** | Debuff | <img src="Assets/profile/tanx.png" width="18" height="18" title="探克斯"> 先古卡「巫术打击」 | 受到的攻击伤害增加 **75%**；本回合受到过攻击则回合结束减 1 层。 |
+| <img src="Assets/powers/sorcery_weak.png" width="22" height="22" valign="middle"> **巫术虚弱 [Sorcery Weak]** | Debuff | <img src="Assets/profile/tanx.png" width="18" height="18" title="探克斯"> 先古卡「巫术防御」 | 造成的攻击伤害减少 **50%**；本回合进行过攻击则回合结束减 1 层。 |
+| <img src="Assets/powers/infected_power.png" width="22" height="22" valign="middle"> **感染 [Infected]** | Debuff | <img src="Assets/map/elite.png" width="18" height="18"> 感染棱柱 Boss | 回合结束时失去 **{Amount}** 点生命（穿透格挡攻击施加）。 |
+| <img src="Assets/powers/mode_shift_power.png" width="22" height="22" valign="middle"> **形态转换 [Mode Shift]** | Boss 机制 | <img src="Assets/map/guardian_boss.png" width="18" height="18"> 守护者 Boss | 受到 **{Amount}** 点未被格挡伤害后转入防御模式。 |
+| <img src="Assets/powers/sharp_hide_power.png" width="22" height="22" valign="middle"> **尖刺外壳 [Sharp Hide]** | Boss 机制 | <img src="Assets/map/guardian_boss.png" width="18" height="18"> 守护者 Boss | 攻击者每次攻击受到 **{Amount}** 点伤害。 |
+| <img src="Assets/powers/split_power.png" width="22" height="22" valign="middle"> **分裂 [Split]** | Boss 机制 | <img src="Assets/map/slime_boss.png" width="18" height="18"> 史莱姆老大 Boss | 生命值 ≤ **50%** 时分裂成 2 只较小的史莱姆。 |
+| <img src="Assets/powers/time_warp_power.png" width="22" height="22" valign="middle"> **时间扭曲 [Time Warp]** | Boss 机制 | 1 代 Boss 时间吞噬者（代码预留） | 玩家再打出 **{Amount}** 张牌后结束其回合并获得 2 力量。 |
+
+
+
 ### 怪物与 Boss
 
 | 名称 | 编号 | 原版机制 | MOD 改后机制 |
 | :--- | :--- | :--- | :--- |
 | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" valign="middle"> **永世沙漏 [Aeonglass]** | MON-01 | 永世沙漏 Boss 生成的凋零卡无法打出，直接进入消耗堆。 | 凋零卡可以**1c打出并消耗**，保留成长机制。 |
-| <img src="Assets/map/elite.png" width="22" height="22" valign="middle"> **感染棱柱 [InfestedPrism]** | BOSS-01 | 开场污染玩家技能牌（活力火花），玩家打出污染技能为棱柱增加力量；4回合循环均为攻击。 | 移除【活力火花】污染机制，改为每段攻击穿透格挡时叠加【感染】[InfectedPower] 压力（同一攻击段对每名玩家只结算一次，连击按每段结算），并重构4回合固定行动循环（轻击 6/8 + 2脆弱、重击 16/18 + 8/10格挡、连击 5x3/6x3、强化 16/18格挡 + 1/2力量）。可在 Mod 设置中关闭并恢复原版机制。 |
+| <img src="Assets/map/elite.png" width="22" height="22" valign="middle"> **感染棱柱 [InfestedPrism]** | BOSS-01 | 开场污染玩家技能牌（活力火花），玩家打出污染技能为棱柱增加力量；4回合循环均为攻击。 | 移除【活力火花】机制，改为穿透格挡攻击时叠加【感染】[InfectedPower]，并重构 4 回合固定行动循环（支持 Mod 设置切换）。 |
 | <img src="Assets/map/monster.png" width="22" height="22" valign="middle"> **红面具强盗 Bear [Bear]** | MONSTER-01 | 首回合【熊抱 BEAR_HUG】给予目标 1 层【易伤】 (`VulnerablePower`)。 | 【熊抱 BEAR_HUG】Debuff 修改为减少 2 点【敏捷】 (`DexterityPower` -2)。 |
-| <img src="Assets/map/guardian_boss.png" width="22" height="22" valign="middle"> **守护者 [Guardian]** | AFP-BOSS-01 | 《杀戮尖塔 1》第一幕 Boss，当前本体未提供。 | 按 Acts From the Past v1.0.5 移植完整行动循环、形态转换、Mode Shift、Sharp Hide、动画与音效；提供不进入普通地图池的心灵绽放专用遭遇。 |
-| <img src="Assets/map/hexaghost_boss.png" width="22" height="22" valign="middle"> **六火亡魂 [Hexaghost]** | AFP-BOSS-02 | 《杀戮尖塔 1》第一幕 Boss，当前本体未提供。 | 按 Acts From the Past v1.0.5 移植六火球状态、Divider/Sear/Inferno、灼伤升级、火焰特效与音效；提供不进入普通地图池的心灵绽放专用遭遇。 |
-| <img src="Assets/map/slime_boss.png" width="22" height="22" valign="middle"> **史莱姆老大 [Slime Boss]** | AFP-BOSS-03 | 《杀戮尖塔 1》第一幕 Boss，当前本体未提供。 | 按 Acts From the Past v1.0.5 移植 Boss、酸液/尖刺史莱姆大型与中型单位及完整两级分裂链；提供七槽位的心灵绽放专用遭遇。 |
+| <img src="Assets/map/guardian_boss.png" width="22" height="22" valign="middle"> **守护者 [Guardian]** | AFP-BOSS-01 | - | 按 Acts From the Past v1.0.5 移植完整行动循环、形态转换、Mode Shift、Sharp Hide、动画与音效；提供不进入普通地图池的心灵绽放专用遭遇。 |
+| <img src="Assets/map/hexaghost_boss.png" width="22" height="22" valign="middle"> **六火亡魂 [Hexaghost]** | AFP-BOSS-02 | - | 按 Acts From the Past v1.0.5 移植六火球状态、Divider/Sear/Inferno、灼伤升级、火焰特效与音效；提供不进入普通地图池的心灵绽放专用遭遇。 |
+| <img src="Assets/map/slime_boss.png" width="22" height="22" valign="middle"> **史莱姆老大 [Slime Boss]** | AFP-BOSS-03 | - | 按 Acts From the Past v1.0.5 移植 Boss、酸液/尖刺史莱姆大型与中型单位及完整两级分裂链；提供七槽位的心灵绽放专用遭遇。 |
 
-### 事件
+### 事件与遭遇
 
-| 事件名称 | 详情 |
-| :--- | :--- |
-| **禅意织者 [Zen Weaver]** | 删牌价格调整：删 1 张牌价格从 125 金币**下调至 75 金币**（事件触发门槛同步降至 75 金），删 2 张牌价格从 250 金币**下调至 150 金币**。 |
-| **旧日垃圾堆 [Trash Heap]** | 遗物奖励池加入 <img src="Assets/relics/omamori.png" width="18" height="18" valign="middle"> **御守 [Omamori]**。 |
-| **除虫者 [Bugslayer]** | 初始选项中**新增「离开」分支**，允许玩家直接走开而无须获取卡牌。 |
-| **科学怪人 [Tinker Time]** | 初始选项中**新增「离开」分支**，允许玩家直接走开而不用强制接受突变卡。 |
-| **药水的未来？ [The Future of Potions]** | 初始选项中**新增「离开」分支**，允许玩家保留药水直接离开。 |
+> [!tip]
+> 完整的事件选择分支、触发条件与详细逻辑请查阅 **[docs/events.md](docs/events.md)**。
 
+#### 原版事件调整
+- **禅意织者 [Zen Weaver]**：删牌价格分别下调至 **75 / 150 金币**。
+- **旧日垃圾堆 [Trash Heap]**：遗物奖励池加入 <img src="Assets/relics/omamori.png" width="18" height="18" valign="middle"> **御守**。
+- **除虫者 / 科学怪人 / 药水的未来？**：初始选项中新增可配置的 **「离开」** 分支。
 
-### 一代事件回归
-
-| 事件名称 | 先行条件 | 详情 |
+#### 一代事件回归
+| 事件名称 | 先行条件 | 简要说明 |
 | :--- | :--- | :--- |
-| **老乞丐 [Old Beggar]** | 所有玩家金币 ≥ 75 | 给金币后切换为牧师删牌。 |
-| **诅咒书本 [Cursed Tome]** | Act 2，且牌组无对应书籍遗物 | 可获得 <img src="Assets/relics/necronomicon.png" width="18" height="18" valign="middle"> **死灵之书**、<img src="Assets/relics/nilrys_codex.png" width="18" height="18" valign="middle"> **尼利的宝典**、<img src="Assets/relics/enchiridion.png" width="18" height="18" valign="middle"> **英雄宝典**。 |
-| **红面具 [Masked Bandits]** | Act 2，层数 ≥ 23，且无人持有红面具 | 可选择交金或与红面具三人帮战斗获取 <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **红面具**；尖头（Pointy）、罗密欧（Romeo）、熊（Bear）归入怪物图鉴的「事件」分组。 |
-| **J.A.X. [Augmenter]** | Act 2，且所有玩家牌组中可移除牌 ≥ 2 张 | 获得 J.A.X. 卡牌 / 变2张牌 / 获得 <img src="Assets/relics/mutagenic_strength.png" width="18" height="18" valign="middle"> **突变之力** 遗物。 |
-| **神圣泉水 [The Divine Fountain]** | 所有玩家牌组中存在可移除的诅咒牌 | 移除牌组中全部可移除诅咒（删除原版的伤害副作用）。 |
-| **牧师 [Cleric]** | 所有玩家金币 ≥ 35 | 提供付钱选择治疗（25% 最大 HP）/ 删牌选项（75 金）。 |
-| **心灵绽放 [Mind Bloom]** | Act 3 | 1. **战斗**——随机挑战本局第一幕原版 Boss，胜利获得 50 金 + 稀有遗物；结算后可直接离开，或接受一场完全未知的第二战。第一战胜利状态会随当前地图点保存，退出并读档后仍回到战间抉择，不会重新开放第一战。点击继续后才等概率抽取守护者、六火亡魂或史莱姆老大，并从耐久池（生命 +25% / 10 层覆甲 / 10 层再生）与威胁池（力量 / 1 层仪式）各抽取一项；力量分别为 2 / 1 / 3，史莱姆分裂体不继承强化。第二战会建立独立战斗记录以保证回合正常推进；胜利额外获得 100 金 + 稀有遗物 + 罕见遗物，同时保留普通金币、卡牌与药水概率。三场第二战遭遇登记为事件战斗，第一战原版 Boss 不会重复归入「事件」图鉴。<br>2. **升级**——升级牌组中所有可升级的牌，并获得 <img src="Assets/relics/mark_of_the_bloom.png" width="18" height="18" valign="middle"> **「绽放印记」** 遗物。<br>3. **宝库**（层数 < 41，多人 < 38）获得 999 金 + 牌组加入 2 张「凡庸」。|
-| **大转盘 [Wheel of Change]** | - | 自定义转盘小游戏，随机获得金/遗物/治疗/诅咒/删牌/受伤。 |
-| **红面具大人之墓 [Tomb of Lord Red Mask]** | Act 3，且无人持有红面具 | 可献上全部金币获得 <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **红面具**，或（持有红面具时）收获 222 金。 |
-| **大图书馆 [The Library]** | Act 3 | 提供 **【阅读】**（从 20 张跨职业卡牌中选择 1 张加入牌组）与 **【睡觉】**（回复 33% 最大生命值）两个选项。 |
+| **老乞丐 [Old Beggar]** | 所有玩家金币 ≥ 75 | 给 75 金币后变身为牧师提供删牌服务。 |
+| **诅咒书本 [Cursed Tome]** | Act 2（且无书） | 连续翻页测试，可获 <img src="Assets/relics/necronomicon.png" width="18" height="18" valign="middle"> **死灵之书** / <img src="Assets/relics/nilrys_codex.png" width="18" height="18" valign="middle"> **尼利的宝典** / <img src="Assets/relics/enchiridion.png" width="18" height="18" valign="middle"> **英雄宝典**。 |
+| **面具强盗 [Masked Bandits]** | Act 2，层数 ≥ 23 | 交出所有金币或战斗获胜获得 <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **红面具**。 |
+| **J.A.X. [Augmenter]** | Act 2（可删牌 ≥ 2） | 获得 J.A.X. / 变化 2 张牌 / 获得 <img src="Assets/relics/mutagenic_strength.png" width="18" height="18" valign="middle"> **突变之力**。 |
+| **神圣泉水 [The Divine Fountain]** | 牌组有诅咒牌 | 彻底清除牌组中所有诅咒牌（无伤害副作用）。 |
+| **牧师 [Cleric]** | 所有玩家金币 ≥ 35 | 提供付钱回复 25% HP / 75 金删牌选项。 |
+| **心灵绽放 [Mind Bloom]** | Act 3 | 可选一幕 Boss 战（支持连战挑战强化二战）、全牌升级（得 <img src="Assets/relics/mark_of_the_bloom.png" width="18" height="18" valign="middle"> **绽放印记**）或 999 金币。 |
+| **大转盘 [Wheel of Change]** | - | 旋转随机转盘获得金币/遗物/全满治疗/删牌/诅咒/伤害。 |
+| **红面具大人之墓 [Tomb of Lord Red Mask]** | Act 3 | 献上全部金币获得 <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **红面具**（或持面具收获 222 金币）。 |
+| **大图书馆 [The Library]** | Act 3 | 提供 **【阅读】**（跨职业选卡 1 张）与 **【睡觉】**（回复 33% HP）。 |
 
 
 ### 遗物
@@ -201,6 +211,24 @@
 | <img src="Assets/relics/signet_ring.png" width="22" height="22" valign="middle"> **图章戒指 [Signet Ring]** | <img src="Assets/profile/nonupeipe.png" width="22" height="22" title="诺努佩佩 (Nonupeipe)"> | 获得 888 金币 | 回调获得 **999** 金币 |
 
 ---
+
+## 项目知识库
+
+👉 **[文档知识库总索引 (docs/README.md)](docs/README.md)**
+
+-  **[能力与效果手册](docs/powers.md)**：包含 Mod 内所有 Buff、Debuff、Boss 机制能力及原版修改说明。
+-  **[事件与遭遇手册](docs/events.md)**：包含 1 代回归事件、原版事件调整、选择分支与触发条件。
+-  **[STS2 Mod 制作指南](docs/sts2-modding-guide.md)**：从零开始制作 STS2 Mod 的教程。
+-  **[技术分析报告](docs/README.md#技术分析报告)**：红面具事件分层架构分析、宝箱房跳过功能技术报告等。
+-  **[未完成需求清单](docs/balance-changes.md)** 与 **[版本变更日志](CHANGELOG.md)**。
+
+## 关于尖塔
+
+1. [杀戮尖塔2 Wiki](https://sts2.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5)
+2. [杀戮尖塔1 Wiki](https://sts.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5)
+3. [Steam 官方公告](https://steamcommunity.com/games/2868840/announcements/)
+4. [玩家数据统计](https://spire-codex.com/)
+5. [模组开发教程](https://tutorials.sts2modding.com/)
 
 ## 许可证 (License)
 
