@@ -3,7 +3,8 @@
   <h2> Sts2BalanceMod </h2>
   <p> Sts2BalanceMod — Slay the Spire 2 Balance & Content Mod </p>
   <p>
-    <a href="README.md"><b>[ 🇨🇳 简体中文 ]</b></a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="README_EN.md"><b>[ 🇺🇸 English ]</b></a>
+    <a href="README.md"><img src="https://img.shields.io/badge/Language-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-lightgrey?style=flat-square" alt="简体中文" /></a>
+    <img src="https://img.shields.io/badge/Language-English-blue?style=flat-square" alt="English" />
   </p>
   <p>
     <img src="Assets/profile/ironclad.png" width="28" height="28" title="Ironclad" />
