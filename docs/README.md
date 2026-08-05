@@ -30,6 +30,7 @@
 ## 📋 需求与版本追踪
 
 - 📝 **[更新日志 (CHANGELOG.md)](../CHANGELOG.md)** — 各版本已实现功能、修复与重构记录。
+- 🌐 **[英文 README 文档 (README_EN.md)](../README_EN.md)** — 本 Mod 项目的完整英文版本说明与调整内容表。
 - 🎯 **[平衡调整需求清单 (balance-changes.md)](balance-changes.md)** — 所有需求项的编号、描述、状态、落地进度与资源补齐记录。
 - 📦 **[STS1 内容回归盘点清单 (sts1-content-inventory.md)](sts1-content-inventory.md)** — 基于 ActsFromThePast 整理的一代内容候选池与合并优先级。
 

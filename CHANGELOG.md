@@ -20,6 +20,7 @@
 - Boss：按 Acts From the Past v1.0.5 移植守护者、六火亡魂、史莱姆老大及史莱姆完整两级分裂怪物链，并补齐 Mode Shift、Sharp Hide、Split 能力、行动状态机、动画、音效与 VFX（AFP-BOSS-01/02/03）。
 - Encounter：新增三个 `RoomType.Monster` 心灵绽放专用遭遇；不进入普通地图池，史莱姆遭遇包含七个固定分裂槽位。
 - 事件：新增第三幕（Glory / 荣耀之地）事件“大图书馆”（The Library），提供 20 张跨职业卡牌中选择 1 张及回复 33% 最大生命值两个选项，并补齐英语、简体中文、意大利语和俄语本地化（THE-LIBRARY-01）。
+- 文档：新增 README 中英文语言切换 Tab 导航 ([README.md](README.md) / [README_EN.md](README_EN.md))，并将商店区域及商店遗物来源图标替换为商人 Profile 头像图标 (`Assets/profile/merchant.png`)。
 - 本地化：补齐三个 Boss、分裂怪物、专用遭遇和心灵绽放战间页面的英语、简体中文、意大利语与俄语文本。
 
 ### Changed

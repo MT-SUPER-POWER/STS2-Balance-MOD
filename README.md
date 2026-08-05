@@ -3,6 +3,9 @@
   <h2> Sts2BalanceMod </h2>
   <p> Sts2BalanceMod — 《杀戮尖塔 2》平衡调整 Mod </p>
   <p>
+    <a href="README.md"><b>[ 🇨🇳 简体中文 ]</b></a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="README_EN.md"><b>[ 🇺🇸 English ]</b></a>
+  </p>
+  <p>
     <img src="Assets/profile/ironclad.png" width="28" height="28" title="铁甲战士 (Ironclad)" />
     <img src="Assets/profile/silent.png" width="28" height="28" title="静默猎手 (Silent)" />
     <img src="Assets/profile/regent.png" width="28" height="28" title="储君 (Regent)" />
@@ -181,19 +184,19 @@
 
 | 遗物 | 类型 | 描述 |
 | :--- | :--- | :--- |
-| <img src="Assets/relics/sundial.png" width="22" height="22" valign="middle"> **日晷 [Sundial]** | <img src="Assets/map/shop.png" width="22" height="22" title="商店 (Shop)"> | 每将抽牌堆洗牌 3 次（跨战斗保留计数），获得 3 点能量。 |
-| <img src="Assets/relics/orange_pill.png" width="22" height="22" valign="middle"> **橙色药丸 [Orange Pill]** | <img src="Assets/map/shop.png" width="22" height="22" title="商店 (Shop)"> | 同一回合打出攻击 / 技能 / 能力各一张后，移除所有负面效果（女王的魂缚锁链除外）。 |
+| <img src="Assets/relics/sundial.png" width="22" height="22" valign="middle"> **日晷 [Sundial]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 每将抽牌堆洗牌 3 次（跨战斗保留计数），获得 3 点能量。 |
+| <img src="Assets/relics/orange_pill.png" width="22" height="22" valign="middle"> **橙色药丸 [Orange Pill]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 同一回合打出攻击 / 技能 / 能力各一张后，移除所有负面效果（女王的魂缚锁链除外）。 |
 | <img src="Assets/relics/dead_branch.png" width="22" height="22" valign="middle"> **枯木树枝 [Dead Branch]** | 稀有 | 每消耗一张牌，随机将一张牌加入手牌（虚无牌触发时给当回合保留）。 |
 | <img src="Assets/relics/omamori.png" width="22" height="22" valign="middle"> **御守 [Omamori]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 抵消接下来获得的 2 张诅咒牌（带计数器）。 |
 | <img src="Assets/relics/peace_pipe.png" width="22" height="22" valign="middle"> **宁静烟斗 [Peace Pipe]** | 稀有 | 在火堆新增"烟斗"选项，可删除一张牌。 |
-| <img src="Assets/relics/smiling_mask.png" width="22" height="22" valign="middle"> **微笑面具 [Smiling Mask]** | 普通 | 删牌价格固定为 50 金币。 |
+| <img src="Assets/relics/smiling_mask.png" width="22" height="22" valign="middle"> **微笑面具 [Smiling Mask]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 删牌价格固定为 50 金币。 |
 | <img src="Assets/relics/coffie_cup.png" width="22" height="22" valign="middle"> **咖啡杯 [Coffee Cup]** | <img src="Assets/profile/darv.png" width="22" height="22" title="达尔夫 (Darv)"> | 无法在火堆休息，但每回合 +1 费用。 |
 | <img src="Assets/relics/fusion_hammer.png" width="22" height="22" valign="middle"> **融合之锤 [Fusion Hammer]** | <img src="Assets/profile/darv.png" width="22" height="22" title="达尔夫 (Darv)"> | 无法锻造，但每回合 +1 费用。 |
 | <img src="Assets/relics/curse_key.png" width="22" height="22" valign="middle"> **诅咒钥匙 [Curse Key]** | <img src="Assets/profile/darv.png" width="22" height="22" title="达尔夫 (Darv)"> | 每回合 +1 费用，每次打开宝箱获得一张随机诅咒。**仅限单人模式出现，单人模式下可通过右下角的"跳过宝箱"按钮（ProceedButton）直接离开，同时规避诅咒。** |
-| <img src="Assets/relics/dwarf_anvil.png" width="22" height="22" valign="middle"> **矮人铁砧 [Dwarf Anvil]** | <img src="Assets/map/shop.png" width="22" height="22" title="商店 (Shop)"> | 拾起时为 3 张牌附加"锻造"附魔，被附魔的牌费用永久 -1（最低 0 费）。 |
+| <img src="Assets/relics/dwarf_anvil.png" width="22" height="22" valign="middle"> **矮人铁砧 [Dwarf Anvil]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 拾起时为 3 张牌附加"锻造"附魔，被附魔的牌费用永久 -1（最低 0 费）。 |
 | <img src="Assets/relics/wrist_blade.png" width="22" height="22" valign="middle"> **袖箭 [Wrist Blade]** | 罕见 | <img src="Assets/profile/silent.png" width="18" height="18" valign="middle" title="静默猎手"> 猎人专属。费用为 0 的攻击牌额外造成 4 点伤害。 |
 | <img src="Assets/relics/hovering_kite.png" width="22" height="22" valign="middle"> **悬浮风筝 [Hovering Kite]** | 普通 | <img src="Assets/profile/silent.png" width="18" height="18" valign="middle" title="静默猎手"> 猎人专属。你在每回合第一次弃牌时，获得 1 点能量。 |
-| <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **灵魂契约 [Soul Contract]** | <img src="Assets/map/shop.png" width="22" height="22" title="商店 (Shop)"> | 选择牌组中的 1 张有消耗的牌，永久去除其消耗属性。 |
+| <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **灵魂契约 [Soul Contract]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 选择牌组中的 1 张有消耗的牌，永久去除其消耗属性。 |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **尼利的宝典 [Nilry's Codex]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 每回合结束时，从 3 张随机**升级版**卡牌中选择 1 张洗入抽牌堆。（RELIC-04：MOD 改为展示升级版） |
 | <img src="Assets/relics/shabbydoll.png" width="22" height="22" valign="middle"> **破旧的玩偶 [Shabby Doll]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 拾起时，扣除 50% 最大生命值上限，并将牌组中所有的基础【打击】与【防御】替换为升级后的【巫术打击+】与【巫术防御+】。（先古之民 Tanx 专属替换撕咬机制选项） |
 
