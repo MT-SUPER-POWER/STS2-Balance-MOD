@@ -34,6 +34,7 @@
 - 图鉴：将红面具劫匪遭遇注册为事件战斗，使尖头（Pointy）、罗密欧（Romeo）、熊（Bear）显示在怪物图鉴「事件」分组中；保留 `RoomType.Monster` 与原有事件、奖励流程（MASKED-BANDITS-02）。
 - 图鉴：仅将心灵绽放三场预留的往昔 Boss 第二战遭遇注册为事件战斗；第一战原版 Boss 包装遭遇不进入「事件」分组，实际战斗抽选与第二战入口状态保持不变（MIND-BLOOM-03）。
 - 构建：删除 `Sts2BalanceMod/monsters/.gdignore`，让全部自定义怪物资源进入 Godot 扫描；移除场景对游戏本体 C# 源文件的导出期依赖，改由运行时视觉补丁包装 `NCreatureVisuals`，并将 LibGDX `.atlas` 加入 PCK 导出白名单。
+- 遗物：鉴于先古遗物「破旧的玩偶」（ShabbyDoll）强度过高，暂时注释并禁用 ShabbyDoll 遗物代码及 Tanx 事件 Patch。
 
 ### Fixed
 

@@ -1,3 +1,4 @@
+/*
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,3 +79,4 @@ public sealed class ShabbyDoll : Sts2RelicModel
         await CardCmd.Transform(transformations, Owner.PlayerRng.Transformations);
     }
 }
+*/

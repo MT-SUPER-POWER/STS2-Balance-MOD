@@ -198,7 +198,7 @@ This Mod is integrated into the game's native Mod Settings UI. Settings are auto
 | <img src="Assets/relics/hovering_kite.png" width="22" height="22" valign="middle"> **Hovering Kite** | Common | Silent exclusive. The first time you discard a card each turn, gain 1 Energy. |
 | <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **Soul Contract** | <img src="Assets/profile/merchant.png" width="22" height="22" title="Merchant"> | Select 1 card in your deck with Exhaust and permanently remove its Exhaust property. |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **Nilry's Codex** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | At turn end, choose 1 of 3 random **Upgraded** cards to shuffle into your draw pile. |
-| <img src="Assets/relics/shabbydoll.png" width="22" height="22" valign="middle"> **Shabby Doll** | <img src="Assets/profile/tanx.png" width="22" height="22" title="Tanx"> | Upon pickup, lose 50% max HP, and replace all starter Strikes and Defends with upgraded **Sorcery Strike+** and **Sorcery Defend+**. |
+<!-- | <img src="Assets/relics/shabbydoll.png" width="22" height="22" valign="middle"> **Shabby Doll** | <img src="Assets/profile/tanx.png" width="22" height="22" title="Tanx"> | Upon pickup, lose 50% max HP, and replace all starter Strikes and Defends with upgraded **Sorcery Strike+** and **Sorcery Defend+**. | -->
 
 #### Vanilla Relic Adjustments
 
