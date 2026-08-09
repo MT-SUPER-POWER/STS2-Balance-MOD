@@ -1,4 +1,3 @@
-using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -13,10 +12,11 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.Runs.History;
+using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 using Sts2BalanceMod.Sts2BalanceModCode.Relics;
-
-using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 
@@ -27,199 +27,199 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 [RegisterSharedEvent]
 public sealed class MindBloom : BalanceEventTemplate
 {
-  private const int FightGold = 50;
-  private const int GoldRewardAmount = 999;
-  private bool _isBeforeTreasure;
+    private const int _fightGold = 50;
+    private const int _goldRewardAmount = 999;
+    private bool _isBeforeTreasure;
 
-  internal static bool NeedsReplayInitialization { get; set; }
+    internal static bool NeedsReplayInitialization { get; set; }
 
-  public override bool IsShared => true;
+    public override bool IsShared => true;
 
-  protected override IEnumerable<DynamicVar> CanonicalVars =>
-  [
-    new GoldVar(GoldRewardAmount),
-  ];
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+      new GoldVar(_goldRewardAmount),
+    ];
 
-  public override void OnRoomEnter()
-  {
-    NeedsReplayInitialization = false;
-  }
-
-  public override bool IsAllowed(IRunState runState)
-  {
-    return runState.CurrentActIndex == 2;
-  }
-
-  public override void CalculateVars()
-  {
-    var owner = Owner;
-    if (owner == null)
-      return;
-
-    var threshold = owner.RunState.Players.Count > 1 ? 38 : 41;
-    _isBeforeTreasure = owner.RunState.TotalFloor < threshold;
-  }
-
-  protected override void SetInitialEventState(bool isPreFinished)
-  {
-    if (HasCompletedFirstFight())
+    public override void OnRoomEnter()
     {
-      SetEventState(PageDescription("POST_FIRST"), GeneratePostFirstOptions());
-      return;
+        NeedsReplayInitialization = false;
     }
 
-    base.SetInitialEventState(isPreFinished);
-  }
-
-  protected override IReadOnlyList<EventOption> GenerateInitialOptions()
-  {
-    var options = new List<EventOption>
+    public override bool IsAllowed(IRunState runState)
     {
-      Option(Fight),
-      Option(Upgrade, "INITIAL", HoverTipFactory.FromRelic(ModelDb.Relic<MarkOfTheBloom>()).ToArray()),
-    };
-
-    options.Add(_isBeforeTreasure
-      ? Option(Gold, "INITIAL", HoverTipFactory.FromCardWithCardHoverTips<Normality>().ToArray())
-      : Option(Heal, "INITIAL", HoverTipFactory.FromCardWithCardHoverTips<Doubt>().ToArray()));
-
-    return options;
-  }
-
-  private Task Fight()
-  {
-    var owner = Owner;
-    if (owner == null || Rng == null)
-      return Task.CompletedTask;
-
-    var bosses = GetFightBosses(owner);
-    if (bosses.Count == 0)
-      return Task.CompletedTask;
-
-    var bossEncounter = Rng.NextItem(bosses);
-    if (bossEncounter == null)
-      return Task.CompletedTask;
-    bossEncounter = bossEncounter.ToMutable();
-    bossEncounter.GenerateMonstersWithSlots(owner.RunState);
-
-    var mindBloomEncounter = ModelDb.Encounter<MindBloomBossEncounter>();
-    mindBloomEncounter.SetBoss(bossEncounter);
-
-    var rareRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Rare)?.ToMutable();
-    if (rareRelic == null)
-      return Task.CompletedTask;
-
-    var rewards = new List<Reward>
-    {
-      new GoldReward(FightGold, owner),
-      new RelicReward(rareRelic, owner),
-    };
-
-    // 先写入战后页面；第一战奖励结算后 EventRoom.Resume 会重建该页面。
-    SetEventState(PageDescription("POST_FIRST"), GeneratePostFirstOptions());
-    EnterCombatWithoutExitingEvent(mindBloomEncounter, rewards, true);
-    return Task.CompletedTask;
-  }
-
-  private IReadOnlyList<EventOption> GeneratePostFirstOptions()
-  {
-    var options = new List<EventOption>();
-    if (MindBloomSecondFight.IsReady)
-      options.Add(Option(ContinueFight, "POST_FIRST"));
-
-    options.Add(Option(LeaveAfterFirstFight, "POST_FIRST"));
-    return options;
-  }
-
-  private bool HasCompletedFirstFight()
-  {
-    var rooms = Owner?.RunState.CurrentMapPointHistoryEntry?.Rooms;
-    if (rooms == null)
-      return false;
-
-    var firstFightEncounterId = ModelDb.Encounter<MindBloomBossEncounter>().Id;
-    return rooms.Any(room =>
-      room.ModelId == firstFightEncounterId && room.TurnsTaken > 0);
-  }
-
-  private Task ContinueFight()
-  {
-    var owner = Owner;
-    if (owner == null || Rng == null ||
-        !MindBloomSecondFight.TryCreatePlan(owner, Rng, out var plan) || plan == null)
-    {
-      return Task.CompletedTask;
+        return runState.CurrentActIndex == 2;
     }
 
-    NeedsReplayInitialization = true;
-    EnterCombatWithoutExitingEvent(plan.Encounter, plan.Rewards, false);
-    return Task.CompletedTask;
-  }
-
-  private Task LeaveAfterFirstFight()
-  {
-    SetEventFinished(PageDescription("LEAVE_AFTER_FIRST"));
-    return Task.CompletedTask;
-  }
-
-  /// <summary>
-  /// 从本局第一层（密林 Overgrowth 或暗港 Underdocks）全量 Boss 池中真随机选取。
-  /// </summary>
-  private static IReadOnlyList<EncounterModel> GetFightBosses(Player owner)
-  {
-    var firstAct = owner.RunState.Acts.FirstOrDefault();
-    if (firstAct is not (Overgrowth or Underdocks))
-      return [];
-
-    return firstAct.AllBossEncounters.ToList();
-  }
-
-  private async Task Upgrade()
-  {
-    var owner = Owner;
-    if (owner == null)
-      return;
-
-    foreach (var card in PileType.Deck.GetPile(owner).Cards)
+    public override void CalculateVars()
     {
-      if (card.IsUpgradable)
-        CardCmd.Upgrade(card);
+        Player? owner = Owner;
+        if (owner == null)
+            return;
+
+        int threshold = owner.RunState.Players.Count > 1 ? 38 : 41;
+        _isBeforeTreasure = owner.RunState.TotalFloor < threshold;
     }
 
-    await RelicCmd.Obtain(ModelDb.Relic<MarkOfTheBloom>().ToMutable(), owner);
-    SetEventFinished(PageDescription("UPGRADE"));
-  }
-
-  private async Task Gold()
-  {
-    var owner = Owner;
-    if (owner == null)
-      return;
-
-    await PlayerCmd.GainGold(GoldRewardAmount, owner);
-    for (var i = 0; i < 2; i++)
+    protected override void SetInitialEventState(bool isPreFinished)
     {
-      var card = owner.RunState.CreateCard(ModelDb.Card<Normality>(), owner);
-      var result = await CardPileCmd.Add(card, PileType.Deck);
-      CardCmd.PreviewCardPileAdd([result], 2f);
+        if (HasCompletedFirstFight())
+        {
+            SetEventState(PageDescription("POST_FIRST"), GeneratePostFirstOptions());
+            return;
+        }
+
+        base.SetInitialEventState(isPreFinished);
     }
 
-    await Cmd.Wait(0.75f);
-    SetEventFinished(PageDescription("GOLD"));
-  }
+    protected override IReadOnlyList<EventOption> GenerateInitialOptions()
+    {
+        List<EventOption> options =
+        [
+          Option(Fight),
+          Option(Upgrade, "INITIAL", [.. HoverTipFactory.FromRelic(ModelDb.Relic<MarkOfTheBloom>())]),
+        ];
 
-  private async Task Heal()
-  {
-    var owner = Owner;
-    if (owner?.Creature == null)
-      return;
+        options.Add(_isBeforeTreasure
+          ? Option(Gold, "INITIAL", [.. HoverTipFactory.FromCardWithCardHoverTips<Normality>()])
+          : Option(Heal, "INITIAL", [.. HoverTipFactory.FromCardWithCardHoverTips<Doubt>()]));
 
-    await CreatureCmd.Heal(owner.Creature, owner.Creature.MaxHp);
-    var card = owner.RunState.CreateCard(ModelDb.Card<Doubt>(), owner);
-    var result = await CardPileCmd.Add(card, PileType.Deck);
-    CardCmd.PreviewCardPileAdd([result], 2f);
-    await Cmd.Wait(0.75f);
-    SetEventFinished(PageDescription("HEAL"));
-  }
+        return options;
+    }
+
+    private Task Fight()
+    {
+        Player? owner = Owner;
+        if (owner == null || Rng == null)
+            return Task.CompletedTask;
+
+        List<EncounterModel> bosses = GetFightBosses(owner);
+        if (bosses.Count == 0)
+            return Task.CompletedTask;
+
+        EncounterModel? bossEncounter = Rng.NextItem(bosses);
+        if (bossEncounter == null)
+            return Task.CompletedTask;
+        bossEncounter = bossEncounter.ToMutable();
+        bossEncounter.GenerateMonstersWithSlots(owner.RunState);
+
+        MindBloomBossEncounter mindBloomEncounter = ModelDb.Encounter<MindBloomBossEncounter>();
+        mindBloomEncounter.SetBoss(bossEncounter);
+
+        RelicModel? rareRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Rare)?.ToMutable();
+        if (rareRelic == null)
+            return Task.CompletedTask;
+
+        List<Reward> rewards =
+        [
+          new GoldReward(_fightGold, owner),
+          new RelicReward(rareRelic, owner),
+        ];
+
+        // 先写入战后页面；第一战奖励结算后 EventRoom.Resume 会重建该页面。
+        SetEventState(PageDescription("POST_FIRST"), GeneratePostFirstOptions());
+        EnterCombatWithoutExitingEvent(mindBloomEncounter, rewards, true);
+        return Task.CompletedTask;
+    }
+
+    private List<EventOption> GeneratePostFirstOptions()
+    {
+        List<EventOption> options = [];
+        if (MindBloomSecondFight.IsReady)
+            options.Add(Option(ContinueFight, "POST_FIRST"));
+
+        options.Add(Option(LeaveAfterFirstFight, "POST_FIRST"));
+        return options;
+    }
+
+    private bool HasCompletedFirstFight()
+    {
+        IReadOnlyList<MapPointRoomHistoryEntry>? rooms = Owner?.RunState.CurrentMapPointHistoryEntry?.Rooms;
+        if (rooms == null)
+            return false;
+
+        ModelId firstFightEncounterId = ModelDb.Encounter<MindBloomBossEncounter>().Id;
+        return rooms.Any(room =>
+          room.ModelId == firstFightEncounterId && room.TurnsTaken > 0);
+    }
+
+    private Task ContinueFight()
+    {
+        Player? owner = Owner;
+        if (owner == null || Rng == null ||
+            !MindBloomSecondFight.TryCreatePlan(owner, Rng, out MindBloomSecondFightPlan? plan) || plan == null)
+        {
+            return Task.CompletedTask;
+        }
+
+        NeedsReplayInitialization = true;
+        EnterCombatWithoutExitingEvent(plan.Encounter, plan.Rewards, false);
+        return Task.CompletedTask;
+    }
+
+    private Task LeaveAfterFirstFight()
+    {
+        SetEventFinished(PageDescription("LEAVE_AFTER_FIRST"));
+        return Task.CompletedTask;
+    }
+
+    /// <summary>
+    /// 从本局第一层（密林 Overgrowth 或暗港 Underdocks）全量 Boss 池中真随机选取。
+    /// </summary>
+    private static List<EncounterModel> GetFightBosses(Player owner)
+    {
+        ActModel? firstAct = owner.RunState.Acts.Count > 0 ? owner.RunState.Acts[0] : null;
+        if (firstAct is not (Overgrowth or Underdocks))
+            return [];
+
+        return [.. firstAct.AllBossEncounters];
+    }
+
+    private async Task Upgrade()
+    {
+        Player? owner = Owner;
+        if (owner == null)
+            return;
+
+        foreach (CardModel card in PileType.Deck.GetPile(owner).Cards)
+        {
+            if (card.IsUpgradable)
+                CardCmd.Upgrade(card);
+        }
+
+        await RelicCmd.Obtain(ModelDb.Relic<MarkOfTheBloom>().ToMutable(), owner);
+        SetEventFinished(PageDescription("UPGRADE"));
+    }
+
+    private async Task Gold()
+    {
+        Player? owner = Owner;
+        if (owner == null)
+            return;
+
+        await PlayerCmd.GainGold(_goldRewardAmount, owner);
+        for (int i = 0; i < 2; i++)
+        {
+            CardModel card = owner.RunState.CreateCard(ModelDb.Card<Normality>(), owner);
+            CardPileAddResult result = await CardPileCmd.Add(card, PileType.Deck);
+            CardCmd.PreviewCardPileAdd([result], 2f);
+        }
+
+        await Cmd.Wait(0.75f);
+        SetEventFinished(PageDescription("GOLD"));
+    }
+
+    private async Task Heal()
+    {
+        Player? owner = Owner;
+        if (owner?.Creature == null)
+            return;
+
+        await CreatureCmd.Heal(owner.Creature, owner.Creature.MaxHp);
+        CardModel card = owner.RunState.CreateCard(ModelDb.Card<Doubt>(), owner);
+        CardPileAddResult result = await CardPileCmd.Add(card, PileType.Deck);
+        CardCmd.PreviewCardPileAdd([result], 2f);
+        await Cmd.Wait(0.75f);
+        SetEventFinished(PageDescription("HEAL"));
+    }
 
 }
