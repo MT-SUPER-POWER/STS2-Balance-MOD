@@ -4,7 +4,27 @@
 
 每个版本以 `## vX.X.X` 为标题。推送 Tag 后 GitHub Actions 会自动在云端构建、打包，并将打包好的 zip 附件发布到对应的 Release 页面中，无须再本地手动上传。
 
-已完成的所有改动见 [README.md](README.md##调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
+已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
+
+## v0.3.0
+
+### Changed
+
+- 基础设施：迁移至 RitsuLib，移除本 Mod 对 BaseLib 的包引用、manifest 依赖及 Debug 部署逻辑；构建时自动解析最新稳定版以跟随游戏与上游框架更新。本版本不包含刻意的玩法或平衡改动。
+- 内容：卡牌、遗物、能力、事件、怪物和遭遇改用 RitsuLib 自动注册与模板资源配置；事件专用遭遇不进入常规章节池。
+- 配置：两个可选平衡开关改由 RitsuLib 数据存储与设置页持久化。
+- 路径与本地化：集中资源路径管理，迁移本地化 key 以匹配 RitsuLib 规范化 Model ID。
+- 结构：代码根目录改为 `Sts2BalanceModCode/`，以 `BalanceModEntry` 作为唯一入口；共享模板集中在 `Abstract/`，视觉、音频与战斗状态辅助代码收拢至 `Runtime/`。
+- 附魔：铁砧附魔改为 RitsuLib 自动注册与标准 `enchantments.json` 本地化；共享模板集中图标和默认值，授予来源通过统一扩展完成附魔与预览，玩家可见效果保持不变（ENCHANTMENT-01）。
+- 规范：参考 `D:\Github\sts2-arknights-mod` 全面规范图片资源与生成器命名为大驼峰（PascalCase），遗物轮廓图统一收拢至 `images/relics/outlines/{Name}.png`，`ModAssetPaths` 统一自动解析大驼峰资源路径。
+- 图片工具链：移植参考项目的遗物 outline 生成算法；清理 Alpha 碎片、从主图提取主题色，并以 4 倍超采样生成 94×94 的白色主体与固定 3px 主题色外环（IMAGE-GEN-01）。
+- 遗物资源：替换矮人铁砧（DwarfAnvil）高清母版并重新生成 94×94 主图、256×256 大图；全部 19 张 Mod 遗物 outline 统一改用主图自动取色算法重新生成（IMAGE-GEN-02）。
+- 图片工具链：遗物生成器收敛为 `files / --input / --output` 三个必要入口，删除手工 outline、描边宽度及仅生成轮廓图的分支，并清理 19 张已无消费者的手工 outline 母版（IMAGE-GEN-03）。
+
+### Fixed
+
+- 兼容性：保留通用 Model ID 初始化守卫，避免同时安装 BaseLib 的其他 Mod 时在 `ModelDb.InitIds` 触发空引用。
+- 构建：使用 NuGet 部署的唯一 `mod_manifest.json`，并清理旧 `STS2-RitsuLib.json`，避免游戏重复加载同一 RitsuLib Mod ID。
 
 
 ## v0.2.0

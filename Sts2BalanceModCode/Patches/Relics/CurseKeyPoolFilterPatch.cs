@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using HarmonyLib;
@@ -16,35 +16,35 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 [HarmonyPatch(typeof(EventRelicPool), "GenerateAllRelics")]
 public static class EventPoolCurseKeyFilterPatch
 {
-  [HarmonyPostfix]
-  public static IEnumerable<RelicModel> Postfix(IEnumerable<RelicModel> __result)
-  {
-    var runState = typeof(RunManager)
-        .GetProperty("State", BindingFlags.NonPublic | BindingFlags.Instance)
-        ?.GetValue(RunManager.Instance) as IRunState;
-
-    if (runState != null && runState.Players.Count > 1)
+    [HarmonyPostfix]
+    public static IEnumerable<RelicModel> Postfix(IEnumerable<RelicModel> __result)
     {
-      return __result.Where(r => r is not CurseKey);
+        var runState = typeof(RunManager)
+            .GetProperty("State", BindingFlags.NonPublic | BindingFlags.Instance)
+            ?.GetValue(RunManager.Instance) as IRunState;
+
+        if (runState != null && runState.Players.Count > 1)
+        {
+            return __result.Where(r => r is not CurseKey);
+        }
+        return __result;
     }
-    return __result;
-  }
 }
 
 [HarmonyPatch(typeof(SharedRelicPool), "GenerateAllRelics")]
 public static class SharedPoolCurseKeyFilterPatch
 {
-  [HarmonyPostfix]
-  public static IEnumerable<RelicModel> Postfix(IEnumerable<RelicModel> __result)
-  {
-    var runState = typeof(RunManager)
-        .GetProperty("State", BindingFlags.NonPublic | BindingFlags.Instance)
-        ?.GetValue(RunManager.Instance) as IRunState;
-
-    if (runState != null && runState.Players.Count > 1)
+    [HarmonyPostfix]
+    public static IEnumerable<RelicModel> Postfix(IEnumerable<RelicModel> __result)
     {
-      return __result.Where(r => r is not CurseKey);
+        var runState = typeof(RunManager)
+            .GetProperty("State", BindingFlags.NonPublic | BindingFlags.Instance)
+            ?.GetValue(RunManager.Instance) as IRunState;
+
+        if (runState != null && runState.Players.Count > 1)
+        {
+            return __result.Where(r => r is not CurseKey);
+        }
+        return __result;
     }
-    return __result;
-  }
 }

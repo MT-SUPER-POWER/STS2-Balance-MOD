@@ -1,7 +1,10 @@
-using MegaCrit.Sts2.Core.Models;
+﻿using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
+using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
 using Sts2BalanceMod.Sts2BalanceModCode.Monsters;
+using STS2RitsuLib.Content;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 
@@ -12,31 +15,28 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 /// 包含 Pointy（尖头）、Romeo（罗密欧）、Bear（熊）三个怪物。
 /// 未注册到任何 Act 的遭遇池，仅通过 MaskedBandits 事件触发。
 /// </summary>
-public sealed class RedMaskBandits : Sts2EncounterModel
+[RegisterGlobalEncounter]
+public sealed class RedMaskBandits : BalanceEncounterTemplate
 {
-  public override RoomType RoomType => RoomType.Monster;
+    public override RoomType RoomType => RoomType.Monster;
 
-  public override bool IsWeak => false;
+    public override bool IsWeak => false;
 
-  public override bool HasScene => true;
+    public override EncounterAssetProfile AssetProfile => new(
+      EncounterScenePath: ModAssetPaths.Resource("scenes", "actsfromthepast-red_mask_bandits_event.tscn"));
 
-  public override string CustomScenePath =>
-    "res://Sts2BalanceMod/scenes/actsfromthepast-red_mask_bandits_event.tscn";
+    public override IReadOnlyList<string> Slots => ["pointy", "romeo", "bear"];
 
-  public override IEnumerable<string> ExtraAssetPaths => [CustomScenePath];
-
-  public override IReadOnlyList<string> Slots => ["pointy", "romeo", "bear"];
-
-  public override IEnumerable<MonsterModel> AllPossibleMonsters =>
-  [
-    ModelDb.Monster<Pointy>(),
+    public override IEnumerable<MonsterModel> AllPossibleMonsters =>
+    [
+      ModelDb.Monster<Pointy>(),
     ModelDb.Monster<Romeo>(),
     ModelDb.Monster<Bear>(),
   ];
 
-  protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
-  [
-    (ModelDb.Monster<Pointy>().ToMutable(), "pointy"),
+    protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
+    [
+      (ModelDb.Monster<Pointy>().ToMutable(), "pointy"),
     (ModelDb.Monster<Romeo>().ToMutable(), "romeo"),
     (ModelDb.Monster<Bear>().ToMutable(), "bear"),
   ];

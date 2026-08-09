@@ -1,9 +1,9 @@
+﻿using STS2RitsuLib.Interop.AutoRegistration;
 /*
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,15 +21,15 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 /// 代价: 获得遗物时扣除 50% 最大生命值上限。
 /// 效果: 将牌组中所有的基础【打击】与【防御】全部替换为升级后的【巫术打击+】与【巫术防御+】。
 /// </summary>
-[Pool(typeof(SharedRelicPool))]
-public sealed class ShabbyDoll : Sts2RelicModel
+[RegisterRelic(typeof(SharedRelicPool), FullPublicEntry = "STS2_BALANCEMOD_SHABBY_DOLL")]
+public sealed class ShabbyDoll : BalanceRelicTemplate
 {
     public override string FlashSfx => "event:/sfx/ui/relic_activate_general";
     public override RelicRarity Rarity => RelicRarity.Ancient;
 
     public override bool HasUponPickupEffect => true;
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new IHoverTip[]
     {
         HoverTipFactory.FromCard<SorceryStrike>(upgrade: true),
         HoverTipFactory.FromCard<SorceryDefend>(upgrade: true),

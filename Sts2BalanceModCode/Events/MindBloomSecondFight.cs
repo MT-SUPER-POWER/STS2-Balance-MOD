@@ -4,8 +4,10 @@ using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Random;
 using MegaCrit.Sts2.Core.Rewards;
+using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 using Sts2BalanceMod.Sts2BalanceModCode.Monsters;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 
@@ -23,70 +25,70 @@ internal sealed record MindBloomSecondFightPlan(
 /// </summary>
 internal static class MindBloomSecondFight
 {
-  private const int ExtraGold = 100;
+    private const int ExtraGold = 100;
 
-  internal static bool IsReady => true;
+    internal static bool IsReady => true;
 
-  internal static bool TryCreatePlan(
-    Player owner,
-    Rng rng,
-    out MindBloomSecondFightPlan? plan)
-  {
-    if (!IsReady)
+    internal static bool TryCreatePlan(
+      Player owner,
+      Rng rng,
+      out MindBloomSecondFightPlan? plan)
     {
-      plan = null;
-      return false;
-    }
+        if (!IsReady)
+        {
+            plan = null;
+            return false;
+        }
 
-    EncounterModel[] encounterPool =
-    [
-      ModelDb.Encounter<MindBloomGuardian>(),
+        EncounterModel[] encounterPool =
+        [
+          ModelDb.Encounter<MindBloomGuardian>(),
       ModelDb.Encounter<MindBloomHexaghost>(),
       ModelDb.Encounter<MindBloomSlimeBoss>(),
     ];
-    MindBloomDurabilityEnhancement[] durabilityPool =
-    [
-      MindBloomDurabilityEnhancement.Giant,
+        MindBloomDurabilityEnhancement[] durabilityPool =
+        [
+          MindBloomDurabilityEnhancement.Giant,
       MindBloomDurabilityEnhancement.Plating,
       MindBloomDurabilityEnhancement.Regeneration,
     ];
-    MindBloomThreatEnhancement[] threatPool =
-    [
-      MindBloomThreatEnhancement.Strength,
+        MindBloomThreatEnhancement[] threatPool =
+        [
+          MindBloomThreatEnhancement.Strength,
       MindBloomThreatEnhancement.Ritual,
     ];
 
-    var encounter = encounterPool[rng.NextInt(0, encounterPool.Length)];
-    var enhancementPlan = new MindBloomBossEnhancementPlan(
-      durabilityPool[rng.NextInt(0, durabilityPool.Length)],
-      threatPool[rng.NextInt(0, threatPool.Length)]);
+        EncounterModel encounter = encounterPool[rng.NextInt(0, encounterPool.Length)];
+        var enhancementPlan = new MindBloomBossEnhancementPlan(
+          durabilityPool[rng.NextInt(0, durabilityPool.Length)],
+          threatPool[rng.NextInt(0, threatPool.Length)]);
 
-    switch (encounter)
-    {
-      case MindBloomGuardian guardian:
-        guardian.SetEnhancementPlan(enhancementPlan);
-        break;
-      case MindBloomHexaghost hexaghost:
-        hexaghost.SetEnhancementPlan(enhancementPlan);
-        break;
-      case MindBloomSlimeBoss slimeBoss:
-        slimeBoss.SetEnhancementPlan(enhancementPlan);
-        break;
-      default:
-        plan = null;
-        return false;
-    }
+        switch (encounter)
+        {
+            case MindBloomGuardian guardian:
+                guardian.SetEnhancementPlan(enhancementPlan);
+                break;
+            case MindBloomHexaghost hexaghost:
+                hexaghost.SetEnhancementPlan(enhancementPlan);
+                break;
+            case MindBloomSlimeBoss slimeBoss:
+                slimeBoss.SetEnhancementPlan(enhancementPlan);
+                break;
+            default:
+                plan = null;
+                return false;
+        }
 
-    var rareRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Rare).ToMutable();
-    var uncommonRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Uncommon).ToMutable();
-    var rewards = new List<Reward>
+        RelicModel rareRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Rare).ToMutable();
+        RelicModel uncommonRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Uncommon).ToMutable();
+        var rewards = new List<Reward>
     {
       new GoldReward(ExtraGold, owner),
       new RelicReward(rareRelic, owner),
       new RelicReward(uncommonRelic, owner),
     };
 
-    plan = new MindBloomSecondFightPlan(encounter, rewards);
-    return true;
-  }
+        plan = new MindBloomSecondFightPlan(encounter, rewards);
+        return true;
+    }
 }

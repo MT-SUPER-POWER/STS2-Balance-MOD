@@ -1,4 +1,4 @@
-using HarmonyLib;
+﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Powers;

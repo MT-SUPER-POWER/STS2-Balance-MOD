@@ -1,12 +1,13 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 
@@ -24,29 +25,30 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 ///   Turn 2: +1 能量 / +1 抽 → 回合末 Amount=1
 ///   Turn 3: +1 能量 / +1 抽 → 回合末 Amount=0 → 自动移除
 /// </summary>
-public sealed class StepByStepPower() : Sts2PowerModel(PowerType.Buff, PowerStackType.Counter)
+[RegisterPower]
+public sealed class StepByStepPower() : BalancePowerTemplate(PowerType.Buff, PowerStackType.Counter)
 {
-  public override async Task AfterEnergyReset(Player player)
-  {
-    if (player != Owner.Player)
-      return;
+    public override async Task AfterEnergyReset(Player player)
+    {
+        if (player != Owner.Player)
+            return;
 
-    await PlayerCmd.GainEnergy(1, player);
-  }
+        await PlayerCmd.GainEnergy(1, player);
+    }
 
-  public override decimal ModifyHandDraw(Player player, decimal count)
-  {
-    if (player != Owner.Player)
-      return count;
+    public override decimal ModifyHandDraw(Player player, decimal count)
+    {
+        if (player != Owner.Player)
+            return count;
 
-    return count + 1m;
-  }
+        return count + 1m;
+    }
 
-  public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
-  {
-    if (side != Owner.Side)
-      return;
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    {
+        if (side != Owner.Side)
+            return;
 
-    await PowerCmd.TickDownDuration(this);
-  }
+        await PowerCmd.TickDownDuration(this);
+    }
 }

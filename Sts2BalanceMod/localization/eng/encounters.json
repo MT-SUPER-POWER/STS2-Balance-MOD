@@ -1,14 +1,14 @@
 {
-  "STS2BALANCEMOD-TIME_EATER_BOSS.title": "Time Eater",
-  "STS2BALANCEMOD-TIME_EATER_BOSS.loss": "{name} was stopped by time.",
-  "STS2BALANCEMOD-COLLECTOR_BOSS.title": "The Collector",
-  "STS2BALANCEMOD-COLLECTOR_BOSS.loss": "{name} was collected.",
-  "STS2BALANCEMOD-RED_MASK_BANDITS.title": "Masked Bandits",
-  "STS2BALANCEMOD-RED_MASK_BANDITS.loss": "{name} was robbed.",
-  "STS2BALANCEMOD-MIND_BLOOM_GUARDIAN.title": "The Guardian",
-  "STS2BALANCEMOD-MIND_BLOOM_GUARDIAN.loss": "{name} was crushed by the Guardian.",
-  "STS2BALANCEMOD-MIND_BLOOM_HEXAGHOST.title": "Hexaghost",
-  "STS2BALANCEMOD-MIND_BLOOM_HEXAGHOST.loss": "{name} was consumed by six flames.",
-  "STS2BALANCEMOD-MIND_BLOOM_SLIME_BOSS.title": "Slime Boss",
-  "STS2BALANCEMOD-MIND_BLOOM_SLIME_BOSS.loss": "{name} was engulfed by slime."
+  "STS2_BALANCE_MOD_ENCOUNTER_TIME_EATER_BOSS.title": "Time Eater",
+  "STS2_BALANCE_MOD_ENCOUNTER_TIME_EATER_BOSS.loss": "{name} was stopped by time.",
+  "STS2_BALANCE_MOD_ENCOUNTER_COLLECTOR_BOSS.title": "The Collector",
+  "STS2_BALANCE_MOD_ENCOUNTER_COLLECTOR_BOSS.loss": "{name} was collected.",
+  "STS2_BALANCE_MOD_ENCOUNTER_RED_MASK_BANDITS.title": "Masked Bandits",
+  "STS2_BALANCE_MOD_ENCOUNTER_RED_MASK_BANDITS.loss": "{name} was robbed.",
+  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_GUARDIAN.title": "The Guardian",
+  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_GUARDIAN.loss": "{name} was crushed by the Guardian.",
+  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_HEXAGHOST.title": "Hexaghost",
+  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_HEXAGHOST.loss": "{name} was consumed by six flames.",
+  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_SLIME_BOSS.title": "Slime Boss",
+  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_SLIME_BOSS.loss": "{name} was engulfed by slime."
 }

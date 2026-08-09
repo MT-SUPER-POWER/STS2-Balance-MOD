@@ -1,4 +1,4 @@
-using HarmonyLib;
+﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -11,14 +11,14 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 [HarmonyPatch(typeof(CardModel), "get_Rarity")]
 public static class BloodlettingRarityPatch
 {
-  [HarmonyPrefix]
-  public static bool Prefix(CardModel __instance, ref CardRarity __result)
-  {
-    if (__instance is Bloodletting)
+    [HarmonyPrefix]
+    public static bool Prefix(CardModel __instance, ref CardRarity __result)
     {
-      __result = CardRarity.Common;
-      return false;
+        if (__instance is Bloodletting)
+        {
+            __result = CardRarity.Common;
+            return false;
+        }
+        return true;
     }
-    return true;
-  }
 }

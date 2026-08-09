@@ -49,10 +49,10 @@ Assert-NotContains $timeEater "Apply<TimeWarpPower>\([^;]*12M" "Time Eater must 
 Assert-Contains $timeWarpPower "BaseCardsPerWarp\s*\+\s*CardsPerExtraPlayer\s*\*\s*\(PlayerCount\s*-\s*1\)" "TimeWarpPower must reset to the multiplayer-scaled counter."
 Assert-NotContains $timeWarpPower "private\s+const\s+decimal\s+CardsPerWarp\s*=\s*12M" "TimeWarpPower must not reset to a fixed 12-card counter."
 
-Assert-Contains $guardian "res://Sts2BalanceMod/monsters/guardian/guardian\.tscn" "Guardian visual path must use packed Sts2BalanceMod assets."
-Assert-Contains $hexaghost "res://Sts2BalanceMod/monsters/hexaghost/hexaghost\.tscn" "Hexaghost visual path must use packed Sts2BalanceMod assets."
-Assert-Contains $slimeBoss "res://Sts2BalanceMod/monsters/slime_boss/slime_boss\.tscn" "Slime Boss visual path must use packed Sts2BalanceMod assets."
-Assert-Contains $mindBloomSlimeBoss "res://Sts2BalanceMod/scenes/actsfromthepast-mind_bloom_slime_boss\.tscn" "Mind Bloom Slime Boss encounter must use packed Sts2BalanceMod scene assets."
+Assert-Contains $guardian 'ModAssetPaths\.Resource\("monsters", "guardian", "guardian\.tscn"\)' "Guardian visual path must use packed Sts2BalanceMod assets."
+Assert-Contains $hexaghost 'ModAssetPaths\.Resource\("monsters", "hexaghost", "hexaghost\.tscn"\)' "Hexaghost visual path must use packed Sts2BalanceMod assets."
+Assert-Contains $slimeBoss 'ModAssetPaths\.Resource\("monsters", "slime_boss", "slime_boss\.tscn"\)' "Slime Boss visual path must use packed Sts2BalanceMod assets."
+Assert-Contains $mindBloomSlimeBoss 'ModAssetPaths\.Resource\("scenes", "actsfromthepast-mind_bloom_slime_boss\.tscn"\)' "Mind Bloom Slime Boss encounter must use packed Sts2BalanceMod scene assets."
 
 foreach ($relativePath in @(
   "Sts2BalanceMod/monsters/guardian/guardian.tscn",

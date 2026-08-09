@@ -1,6 +1,6 @@
 # STS2-Balance-MOD
 
-《杀戮尖塔 2》平衡调整 Mod（Godot 4.5.1 / C# 12 / .NET 9 / Harmony 2.x / BaseLib 3.3.0+）。
+《杀戮尖塔 2》平衡调整 Mod（Godot 4.5.1 / C# 12 / .NET 9 / Harmony 2.x / RitsuLib 最新稳定版）。
 
 <!-- BUILD_START -->
 ## Build & Verify
@@ -44,16 +44,12 @@ dotnet publish -c Release                 # 本地发布编译到 dist/Sts2Balan
 | `docs/README.md` | **知识库总索引（Knowledge Base Hub）** |
 | `docs/powers.md` | 能力与效果手册（Buff / Debuff / Boss 机制） |
 | `docs/events.md` | 事件与遭遇手册（原版调整 / 1 代回归事件） |
-| `Sts2BalanceModCode/MainFile.cs` | Mod 入口：`[ModInitializer]` → `Harmony.PatchAll()` |
-| `Sts2BalanceModCode/Abstract/` | 基类：`Sts2CardModel`、`Sts2RelicModel`、`Sts2PowerModel`、`Sts2MonsterModel`、`Sts2EncounterModel` |
+| `Sts2BalanceModCode/BalanceModEntry.cs` | Mod 入口：注册 RitsuLib 程序集、设置与 Harmony Patch |
+| `Sts2BalanceModCode/Abstract/` | 共享模板：`BalanceCardTemplate`、`BalanceRelicTemplate`、`BalancePowerTemplate`、`BalanceMonsterTemplate`、`BalanceEncounterTemplate` |
 | `Sts2BalanceModCode/Patches/` | Harmony Patch（子目录：Cards/ / Relics/ / Powers/ / Orbs/ / Merchant/ / Events/ / CardPools/ / Encounters/ / Monsters/） |
-| `Sts2BalanceModCode/Cards/` | 新增卡牌 |
-| `Sts2BalanceModCode/Relics/` | 新增遗物 |
-| `Sts2BalanceModCode/Powers/` | 新增能力 |
-| `Sts2BalanceModCode/Monsters/` | 新增怪物 |
-| `Sts2BalanceModCode/Encounters/` | 新增遭遇 |
-| `Sts2BalanceModCode/Events/` | 新增事件 |
-| `Sts2BalanceModCode/RestSite/` | 火堆选项 |
+| `Sts2BalanceModCode/{Cards,Relics,Powers,Monsters,Encounters,Events,RestSite,Enchantments}/` | 按内容类别组织的 RitsuLib 模型 |
+| `Sts2BalanceModCode/Runtime/` | 运行时视觉、音频与战斗状态辅助代码 |
+| `Sts2BalanceModCode/{Extensions,Settings}/` | 路径约定与玩家可编辑设置 |
 | `Sts2BalanceMod/localization/{eng,zhs,ita,rus}/` | 本地化 JSON（cards.json / powers.json / relics.json 等） |
 | `D:\Game\Sts2Code\localization/{eng,zhs,ita,rus}/` | 游戏原版本地化 JSON（查阅原版卡牌、遗物、能力、事件等的文本与 LocKey 规则） |
 | `Sts2BalanceMod/images/` | 图片资源（card_portraits/ / powers/ / relics/ / events/ / ui/） |
@@ -93,15 +89,17 @@ dotnet publish -c Release                 # 本地发布编译到 dist/Sts2Balan
 
 ```bash
 cd image_gen && uv sync && cd ..
-uv run cards death_reap.png                   # 普通卡牌立绘（1000×760 + 500×380）
-uv run cards sorcery_strike.png --fullart     # 先古卡/满画幅立绘（606×852 + 303×426）
+uv run cards DeathReap.png                   # 普通卡牌立绘（1000×760 + 500×380）
+uv run cards SorceryStrike.png --fullart     # 先古卡/满画幅立绘（606×852 + 303×426）
 uv run relics Sundial.png                     # 遗物图标（256×256 + 94×94 + 轮廓图）
 uv run powers                                 # 能力图标
-uv run rest-site-options smoke.png            # 火堆选项图标（256×169）
+uv run rest-site-options Smoke.png            # 火堆选项图标（256×169）
 uv run events                                 # 事件背景图（3440×1616）
 ```
 
-图片路径自动解析：文件名 `{id小写}.png`，基类自动拼接完整路径。
+遗物 outline 固定由主图自动提取主题色，并生成白色主体与 3px 主题色外环；遗物生成器只接受母版输入与输出目录，不维护手工 outline、颜色或描边宽度覆盖配置。
+
+图片路径自动解析：文件名 `{PascalCase}.png`（大驼峰命名，参考 `D:\Github\sts2-arknights-mod`），基类自动拼接完整路径。遗物轮廓图统一存放于 `images/relics/outlines/{PascalCase}.png` 目录下。
 
 > [!warning]
 > **!必须做的检查!**

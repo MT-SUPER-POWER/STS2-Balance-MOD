@@ -1,6 +1,6 @@
-using System.Reflection;
-using HarmonyLib;
+﻿using System.Reflection;
 using Godot;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
@@ -65,7 +65,7 @@ public static class TreasureRoomSkipPatch
             return;
 
         // NOTE: 如何获取文字翻译内容
-        proceedButton.UpdateText(new LocString("gameplay_ui", "STS2BALANCEMOD-SKIP_CHEST"));
+        proceedButton.UpdateText(new LocString("gameplay_ui", "STS2_BALANCEMOD_SKIP_CHEST"));
         proceedButton.Enable();
 
         // NOTE: 在按钮左侧添加 <诅咒钥匙图标>
@@ -76,7 +76,7 @@ public static class TreasureRoomSkipPatch
             _skipIcon = new TextureRect
             {
                 Name = "CurseKeyIcon",
-                Texture = ResourceLoader.Load<Texture2D>("res://Sts2BalanceMod/images/relics/curse_key.png"),
+                Texture = ResourceLoader.Load<Texture2D>(ModAssetPaths.RelicIcon("CurseKey.png")),
                 Size = new Vector2I(24, 24),
                 Position = new Vector2(6, 34),
                 StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered

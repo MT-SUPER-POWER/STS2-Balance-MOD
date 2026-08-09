@@ -1,94 +1,19 @@
-﻿using Godot;
+﻿namespace Sts2BalanceMod.Sts2BalanceModCode.Extensions;
 
-namespace Sts2BalanceMod.Sts2BalanceModCode.Extensions;
-
-//Mostly utilities to get asset paths.
+/// <summary>
+/// Compatibility facade for existing content. New code should use <see cref="ModAssetPaths"/> directly.
+/// </summary>
 public static class StringExtensions
 {
-    public static string ImagePath(this string path)
-    {
-        return Path.Join(MainFile.ResPath, "images", path);
-    }
-
-    public static string CardImagePath(this string path)
-    {
-        path = Path.Join(MainFile.ResPath, "images", "card_portraits", path);
-        if (ResourceLoader.Exists(path)) return path;
-        
-        MainFile.Logger.Info("Could not find card image path: " + path);
-        return Path.Join(MainFile.ResPath, "images", "card_portraits", "card.png");
-    }
-
-    public static string BigCardImagePath(this string path)
-    {
-        path = Path.Join(MainFile.ResPath, "images", "card_portraits", "big", path);
-        if (ResourceLoader.Exists(path)) return path;
-        
-        MainFile.Logger.Info("Could not find big card image path: " + path);
-        return Path.Join(MainFile.ResPath, "images", "card_portraits", "big", "card.png");
-    }
-
-    public static string PowerImagePath(this string path)
-    {
-        path = Path.Join(MainFile.ResPath, "images", "powers", path);
-        if (ResourceLoader.Exists(path)) return path;
-        
-        MainFile.Logger.Info("Could not find power image path: " + path);
-        return Path.Join(MainFile.ResPath, "images", "powers", "power.png");
-    }
-
-    public static string BigPowerImagePath(this string path)
-    {
-        path = Path.Join(MainFile.ResPath, "images", "powers", "big", path);
-        if (ResourceLoader.Exists(path)) return path;
-        
-        MainFile.Logger.Info("Could not find big power image path: " + path);
-        return Path.Join(MainFile.ResPath, "images", "powers", "big", "power.png");
-    }
-
-    public static string RelicImagePath(this string path)
-    {
-        path = Path.Join(MainFile.ResPath, "images", "relics", path);
-        if (ResourceLoader.Exists(path)) return path;
-        
-        MainFile.Logger.Info("Could not find relic image path: " + path);
-        return Path.Join(MainFile.ResPath, "images", "relics", "relic.png");
-    }
-
-    public static string BigRelicImagePath(this string path)
-    {
-        path = Path.Join(MainFile.ResPath, "images", "relics", "big", path);
-        if (ResourceLoader.Exists(path)) return path;
-        
-        MainFile.Logger.Info("Could not find big relic image path: " + path);
-        return Path.Join(MainFile.ResPath, "images", "relics", "big", "relic.png");
-    }
-
-    public static string RestSiteOptionImagePath(this string path)
-    {
-        path = Path.Join(MainFile.ResPath, "images", "ui", "rest_site", path);
-        if (ResourceLoader.Exists(path)) return path;
-
-        MainFile.Logger.Info("Could not find rest site option image path: " + path);
-        return Path.Join(MainFile.ResPath, "images", "ui", "rest_site", "option.png");
-    }
-
-    public static string CharacterUiPath(this string path)
-    {
-        return Path.Join(MainFile.ResPath, "images", "charui", path);
-    }
-
-    public static string EventImagePath(this string path)
-    {
-        path = Path.Join(MainFile.ResPath, "images", "events", path);
-        if (ResourceLoader.Exists(path)) return path;
-
-        MainFile.Logger.Info("Could not find event image path: " + path);
-        return Path.Join(MainFile.ResPath, "images", "events", "event.png");
-    }
-
-    public static string EncounterImagePath(this string path)
-    {
-        return Path.Join(MainFile.ResPath, "images", "encounters", path);
-    }
+    public static string ImagePath(this string path) => ModAssetPaths.Image(path);
+    public static string CardImagePath(this string path) => ModAssetPaths.CardPortrait(path);
+    public static string BigCardImagePath(this string path) => ModAssetPaths.LargeCardPortrait(path);
+    public static string PowerImagePath(this string path) => ModAssetPaths.PowerIcon(path);
+    public static string BigPowerImagePath(this string path) => ModAssetPaths.LargePowerIcon(path);
+    public static string RelicImagePath(this string path) => ModAssetPaths.RelicIcon(path);
+    public static string BigRelicImagePath(this string path) => ModAssetPaths.LargeRelicIcon(path);
+    public static string RestSiteOptionImagePath(this string path) => ModAssetPaths.RestSiteOptionIcon(path);
+    public static string CharacterUiPath(this string path) => ModAssetPaths.CharacterUi(path);
+    public static string EventImagePath(this string path) => ModAssetPaths.EventImage(path);
+    public static string EncounterImagePath(this string path) => ModAssetPaths.EncounterImage(path);
 }

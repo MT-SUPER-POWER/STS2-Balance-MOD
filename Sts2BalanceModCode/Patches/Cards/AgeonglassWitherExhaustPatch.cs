@@ -1,4 +1,4 @@
-using HarmonyLib;
+﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -11,12 +11,12 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 [HarmonyPatch(typeof(Wither), "get_CanonicalKeywords")]
 public static class AgeonglassWitherKeywordsPatch
 {
-  [HarmonyPrefix]
-  public static bool Prefix(ref IEnumerable<CardKeyword> __result)
-  {
-    __result = [CardKeyword.Exhaust];
-    return false;
-  }
+    [HarmonyPrefix]
+    public static bool Prefix(ref IEnumerable<CardKeyword> __result)
+    {
+        __result = [CardKeyword.Exhaust];
+        return false;
+    }
 }
 
 /// <summary>
@@ -25,11 +25,12 @@ public static class AgeonglassWitherKeywordsPatch
 [HarmonyPatch(typeof(CardModel), "get_CanonicalEnergyCost")]
 public static class AgeonglassWitherCostPatch
 {
-  [HarmonyPrefix]
-  public static bool Prefix(CardModel __instance, ref int __result)
-  {
-    if (__instance is not Wither) return true;
-    __result = 1;
-    return false;
-  }
+    [HarmonyPrefix]
+    public static bool Prefix(CardModel __instance, ref int __result)
+    {
+        if (__instance is not Wither)
+            return true;
+        __result = 1;
+        return false;
+    }
 }

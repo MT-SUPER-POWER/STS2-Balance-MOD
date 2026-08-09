@@ -1,7 +1,7 @@
 # Harmony 补丁目录
 
 补丁按**修改对象**分子目录，命名空间与目录一致（如 `Patches.Cards`）。
-`MainFile.Initialize()` 中的 `harmony.PatchAll()` 会扫描整个程序集，无需手动注册。
+`BalanceModEntry.Initialize()` 中的 `Harmony.PatchAll()` 会扫描整个程序集，无需手动注册。
 
 ## 目录说明
 

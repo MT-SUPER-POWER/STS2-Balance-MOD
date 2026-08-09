@@ -1,5 +1,5 @@
 {
-  "FORGE_ENCHANTMENT.title": "Forgiato",
-  "FORGE_ENCHANTMENT.description": "Costa 1 {Amount:energyIcons()} in meno.",
-  "FORGE_ENCHANTMENT.extraCardText": ""
+  "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.title": "Forgiato",
+  "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.description": "Costa 1 {Amount:energyIcons()} in meno.",
+  "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.extraCardText": ""
 }

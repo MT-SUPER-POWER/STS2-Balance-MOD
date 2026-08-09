@@ -1,28 +1,29 @@
-using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Powers;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 
-[Pool(typeof(IroncladCardPool))]
-public sealed class Evolve : Sts2CardModel
+[RegisterCard(typeof(IroncladCardPool), FullPublicEntry = "STS2_BALANCEMOD_EVOLVE")]
+public sealed class Evolve : BalanceCardTemplate
 {
-    public Evolve() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
-    {
-        WithPower<EvolvePower>(1, 1);
-    }
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<EvolvePower>(1M)];
+
+    public Evolve() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<EvolvePower>(choiceContext, Owner.Creature, IsUpgraded ? 2 : 1, Owner.Creature, this);
+        await PowerCmd.Apply<EvolvePower>(choiceContext, Owner.Creature, DynamicVars[nameof(EvolvePower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
+        DynamicVars[nameof(EvolvePower)].UpgradeValueBy(1M);
     }
 }

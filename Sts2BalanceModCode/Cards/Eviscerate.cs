@@ -1,12 +1,14 @@
-using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Combat;
+﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.ValueProps;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 
@@ -16,14 +18,12 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 /// 你在这个回合内每丢弃一张牌，耗能就减少 1 点能量。造成 7 点伤害 3 次。
 /// 升级：伤害 7 -> 9
 /// </summary>
-[Pool(typeof(SilentCardPool))]
-public sealed class Eviscerate : Sts2CardModel
+[RegisterCard(typeof(SilentCardPool), FullPublicEntry = "STS2_BALANCEMOD_EVISCERATE")]
+public sealed class Eviscerate : BalanceCardTemplate
 {
-    public Eviscerate()
-        : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
-    {
-        WithDamage(7, 2); // 基础 7，升级 +2 = 9
-    }
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7M, ValueProp.Move)];
+
+    public Eviscerate() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -67,4 +67,6 @@ public sealed class Eviscerate : Sts2CardModel
             EnergyCost.AddThisTurn(-amount);
         }
     }
+
+    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(2M);
 }

@@ -1,4 +1,4 @@
-using HarmonyLib;
+﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 
@@ -12,28 +12,28 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Encounters;
 [HarmonyPatch(typeof(ModelDb), nameof(ModelDb.EventEncounters), MethodType.Getter)]
 internal static class EventEncounterRegistrationPatch
 {
-  [HarmonyPostfix]
-  private static void Postfix(ref IEnumerable<EncounterModel> __result)
-  {
-    var eventEncounters = __result.ToList();
-    var registeredIds = eventEncounters.Select(encounter => encounter.Id).ToHashSet();
+    [HarmonyPostfix]
+    private static void Postfix(ref IEnumerable<EncounterModel> __result)
+    {
+        var eventEncounters = __result.ToList();
+        var registeredIds = eventEncounters.Select(encounter => encounter.Id).ToHashSet();
 
-    EncounterModel[] modEventEncounters =
-    [
-      ModelDb.Encounter<RedMaskBandits>(),
+        EncounterModel[] modEventEncounters =
+        [
+          ModelDb.Encounter<RedMaskBandits>(),
       ModelDb.Encounter<MindBloomGuardian>(),
       ModelDb.Encounter<MindBloomHexaghost>(),
       ModelDb.Encounter<MindBloomSlimeBoss>(),
     ];
 
-    foreach (var encounter in modEventEncounters)
-    {
-      if (registeredIds.Add(encounter.Id))
-      {
-        eventEncounters.Add(encounter);
-      }
-    }
+        foreach (var encounter in modEventEncounters)
+        {
+            if (registeredIds.Add(encounter.Id))
+            {
+                eventEncounters.Add(encounter);
+            }
+        }
 
-    __result = eventEncounters;
-  }
+        __result = eventEncounters;
+    }
 }

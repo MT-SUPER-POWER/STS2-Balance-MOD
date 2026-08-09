@@ -33,7 +33,7 @@
 ### 前置要求
 
 1. **[Slay the Spire 2](https://store.steampowered.com/app/2868840/Slay_the_Spire_2/)** 版本 ≥ 0.110.0
-2. **[BaseLib](https://github.com/Alchyr/BaseLib-StS2)** — Mod 加载前置库，需先安装，版本 ≥ 3.4.0+
+2. **[RitsuLib](https://github.com/BAKAOLC/STS2-RitsuLib)** — Mod 加载前置库，需先安装与当前游戏版本兼容的最新稳定版
 
 ### 安装步骤
 
@@ -42,7 +42,7 @@
    - **Windows**: `%AppData%/SlayTheSpire2/mods/`
    - **macOS**: `~/Library/Application Support/SlayTheSpire2/mods/`
    - **Linux**: `~/.local/share/SlayTheSpire2/mods/`
-3. 确保 `BaseLib` 也已安装在同一目录
+3. 确保 `STS2-RitsuLib` 也已安装在同一目录
 4. 启动游戏，在 Mod 管理页面确认 `Sts2BalanceMod` 已勾选
 
 ---
@@ -56,7 +56,7 @@
 
 ### Mod 设置
 
-本 Mod 已接入游戏的 Mod 设置页面；配置会由 BaseLib 自动保存并在后续游戏中恢复。
+本 Mod 已接入 RitsuLib 的 Mod 设置页面；配置会自动保存并在后续游戏中恢复。
 
 > [!warning]
 > 多人游戏不会自动同步 Mod 配置。所有玩家必须使用相同设置，否则事件选项或游戏内容可能不一致。
@@ -194,7 +194,7 @@
 | <img src="Assets/relics/coffie_cup.png" width="22" height="22" valign="middle"> **咖啡杯 [Coffee Cup]** | <img src="Assets/profile/darv.png" width="22" height="22" title="达尔夫 (Darv)"> | 无法在火堆休息，但每回合 +1 费用。 |
 | <img src="Assets/relics/fusion_hammer.png" width="22" height="22" valign="middle"> **融合之锤 [Fusion Hammer]** | <img src="Assets/profile/darv.png" width="22" height="22" title="达尔夫 (Darv)"> | 无法锻造，但每回合 +1 费用。 |
 | <img src="Assets/relics/curse_key.png" width="22" height="22" valign="middle"> **诅咒钥匙 [Curse Key]** | <img src="Assets/profile/darv.png" width="22" height="22" title="达尔夫 (Darv)"> | 每回合 +1 费用，每次打开宝箱获得一张随机诅咒。**仅限单人模式出现，单人模式下可通过右下角的"跳过宝箱"按钮（ProceedButton）直接离开，同时规避诅咒。** |
-| <img src="Assets/relics/dwarf_anvil.png" width="22" height="22" valign="middle"> **矮人铁砧 [Dwarf Anvil]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 拾起时为 3 张牌附加"锻造"附魔，被附魔的牌费用永久 -1（最低 0 费）。 |
+| <img src="Assets/relics/dwarf_anvil.png" width="22" height="22" valign="middle"> **矮人铁砧 [Dwarf Anvil]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 拾起时选择 3 张牌附加"锻造"附魔，被附魔的牌费用永久 -1（最低 0 费）。 |
 | <img src="Assets/relics/wrist_blade.png" width="22" height="22" valign="middle"> **袖箭 [Wrist Blade]** | 罕见 | <img src="Assets/profile/silent.png" width="18" height="18" valign="middle" title="静默猎手"> 猎人专属。费用为 0 的攻击牌额外造成 4 点伤害。 |
 | <img src="Assets/relics/hovering_kite.png" width="22" height="22" valign="middle"> **悬浮风筝 [Hovering Kite]** | 普通 | <img src="Assets/profile/silent.png" width="18" height="18" valign="middle" title="静默猎手"> 猎人专属。你在每回合第一次弃牌时，获得 1 点能量。 |
 | <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **灵魂契约 [Soul Contract]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 选择牌组中的 1 张有消耗的牌，永久去除其消耗属性。 |
@@ -223,6 +223,7 @@
 -  **[能力与效果手册](docs/powers.md)**：包含 Mod 内所有 Buff、Debuff、Boss 机制能力及原版修改说明。
 -  **[事件与遭遇手册](docs/events.md)**：包含 1 代回归事件、原版事件调整、选择分支与触发条件。
 -  **[STS2 Mod 制作指南](docs/sts2-modding-guide.md)**：从零开始制作 STS2 Mod 的教程。
+-  **[图片生成自动化脚本](image_gen/)**：遗物工具从主图自动提取主题色，一次生成 94×94 主图、256×256 大图和带 3px 主题色外环的 94×94 outline。
 -  **[技术分析报告](docs/README.md#技术分析报告)**：红面具事件分层架构分析、宝箱房跳过功能技术报告等。
 -  **[未完成需求清单](docs/balance-changes.md)** 与 **[版本变更日志](CHANGELOG.md)**。
 

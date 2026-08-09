@@ -36,7 +36,7 @@
 ### 基础设施
 
 - [x] **CONFIG-01** — Mod 设置页面 MVP
-  - 注册 BaseLib 配置页面并启用自动持久化。
+  - 注册 RitsuLib 设置页面并启用自动持久化。
   - 首个开关控制“除虫者”“科学怪人”和“药水的未来？”的离开选项，默认开启。
   - 补齐英语、简体中文、意大利语和俄语设置界面文本。
 
@@ -44,6 +44,33 @@
   - 默认开启，保持 BOSS-01 当前的固定四回合循环与【感染】机制。
   - 关闭时完整恢复原版【活力火花】开场能力与原版行动状态机。
   - 下次进入感染棱柱战斗时生效；多人游戏时所有玩家必须使用相同设置。
+
+- [x] **MIGRATION-01** — RitsuLib 基础设施迁移
+  - 移除 BaseLib 的包引用、运行时依赖和部署逻辑；内容改由 RitsuLib 自动注册。
+  - 卡牌、遗物、能力、事件、怪物和遭遇统一采用 RitsuLib 模板与资源配置；路径集中于 `ModAssetPaths`。
+  - 对齐参考项目的可维护结构：代码根目录统一为 `Sts2BalanceModCode/`，共享模板集中在 `Abstract/`，内容按类别并列，运行时辅助代码集中在 `Runtime/`。
+  - 将本地化 key 迁移到 RitsuLib 的规范化 Model ID，并完成本地游戏启动到主菜单的日志验证。
+
+- [x] **IMAGE-GEN-01** — 遗物 outline 自动生成
+  - 复刻 `sts2-arknights-mod` 的主题色轮廓算法，并适配本项目 94×94 遗物资源规格。
+  - 固定从遗物主图自动生成白色主体与 3px 主题色外环，不维护手工或颜色覆盖配置。
+  - 在输出前校验空图、贴边裁切和颜色层缺失。
+
+- [x] **IMAGE-GEN-02** — 全部遗物 outline 批量更新
+  - 使用新制 1254×1254 RGBA 母版替换矮人铁砧（DwarfAnvil），重新生成 94×94 主图与 256×256 大图。
+  - 全部 19 张 Mod 遗物 outline 统一绕过旧手工图，按各自主图色调自动提取主题色并重新生成。
+  - 核对每张输出均为 94×94、文件名与 C# 类型一致，且没有空图、贴边裁切或颜色层缺失。
+
+- [x] **IMAGE-GEN-03** — 收敛遗物图片生成接口
+  - 保留 `files`、`--input`、`--output` 三个必要入口，单次生成主图、大图和自动主题色 outline。
+  - 删除手工 outline、描边宽度与 `--outline-only` 分支，将主题色提取、3px 外环和输出校验全部封装在模块实现内部。
+  - 清理 `image_gen/source/relics/outlines/` 下 19 张已无消费者的旧手工母版，并验证当前生成物哈希不变。
+
+- [x] **ENCHANTMENT-01** — RitsuLib 附魔模块重构
+  - 目前：`ForgeEnchantment` 直接继承游戏 `EnchantmentModel`，图标与本地化分别由专用 Harmony Patch 兜底；`DwarfAnvil` 直接处理附魔模型克隆、应用和卡牌预览。
+  - 目标：保留铁砧“选择 3 张牌、每张费用永久 -1（最低 0）”的玩家可见行为，改用教程中的 `[RegisterEnchantment]` 与 `ModEnchantmentTemplate`。
+  - 结构：新增 `BalanceEnchantmentTemplate` 作为深模块，集中附魔图标路径、本地化与公共默认值；新增 `EnchantmentExtensions`，将“获取可变附魔、应用到卡牌、刷新预览”的流程封装为单一扩展接口。具体附魔只声明筛选条件和效果，授予来源只调用扩展接口。
+  - 清理：删除仅服务于 ForgeEnchantment 的图标与本地化注入 Patch；四种语言改为标准 `enchantments.json`，图标遵循统一资源命名约定。
 
 ### BOSS
 
@@ -56,7 +83,7 @@
   - 新增包含七个固定分裂槽位的 `RoomType.Monster` 专用遭遇，保持 AFP 原始数值与进阶分档。
 
 - [x] **AFP-BOSS-PACK-01** — Boss 资源打包链
-  - 删除 `Sts2BalanceMod/monsters/.gdignore`，让该目录的全部怪物资源进入 Godot 扫描；场景根节点由既有 `Sts2MonsterVisualsPatch` 在运行时包装为 `NCreatureVisuals`。
+  - 删除 `Sts2BalanceMod/monsters/.gdignore`，让该目录的全部怪物资源进入 Godot 扫描；场景根节点由既有 `MonsterVisualsPatch` 在运行时包装为 `NCreatureVisuals`。
   - 将 LibGDX `vfx.atlas` 加入导出白名单；最终 PCK 已核对包含全部自定义怪物场景、Spine、六火亡魂贴图、VFX 与三组音效。
 
 ### 遗物

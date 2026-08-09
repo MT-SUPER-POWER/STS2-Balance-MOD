@@ -232,7 +232,7 @@ Run this after any C# file is added, removed, renamed, or materially changed so 
 | What | Where |
 |------|-------|
 | Requirements | `docs/balance-changes.md` |
-| Entry point | `Sts2BalanceModCode/MainFile.cs` |
+| Entry point | `Sts2BalanceModCode/BalanceModEntry.cs` |
 | Abstract bases | `Sts2BalanceModCode/Abstract/` |
 | Harmony patches | `Sts2BalanceModCode/Patches/` |
 | Vanilla behavior reference | `D:\Game\Sts2Code\` |

@@ -1,4 +1,4 @@
-using HarmonyLib;
+﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -12,12 +12,12 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 [HarmonyPatch(typeof(BladeDance), "get_CanonicalKeywords")]
 public static class BladeDanceExhaustPatch
 {
-  [HarmonyPrefix]
-  public static bool Prefix(ref IEnumerable<CardKeyword> __result)
-  {
-    __result = System.Array.Empty<CardKeyword>();
-    return false; // 跳过原方法
-  }
+    [HarmonyPrefix]
+    public static bool Prefix(ref IEnumerable<CardKeyword> __result)
+    {
+        __result = System.Array.Empty<CardKeyword>();
+        return false; // 跳过原方法
+    }
 }
 
 /// <summary>
@@ -26,14 +26,14 @@ public static class BladeDanceExhaustPatch
 [HarmonyPatch(typeof(CardModel), "get_Rarity")]
 public static class BladeDanceRarityPatch
 {
-  [HarmonyPrefix]
-  public static bool Prefix(CardModel __instance, ref CardRarity __result)
-  {
-    if (__instance is BladeDance)
+    [HarmonyPrefix]
+    public static bool Prefix(CardModel __instance, ref CardRarity __result)
     {
-      __result = CardRarity.Uncommon;
-      return false; // 跳过原 getter
+        if (__instance is BladeDance)
+        {
+            __result = CardRarity.Uncommon;
+            return false; // 跳过原 getter
+        }
+        return true;
     }
-    return true;
-  }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -103,7 +103,8 @@ public static class GrandFinaleCanonicalVarsPatch
         list.Add(new EnergyVar("EnergySaved", 0));
         list.Add(new CalculatedVar("CalculatedSpend").WithMultiplier((CardModel card, Creature? _) =>
         {
-            if (card.Owner?.PlayerCombatState == null) return 0;
+            if (card.Owner?.PlayerCombatState == null)
+                return 0;
             int currentEnergy = card.Owner.PlayerCombatState.Energy;
             int upgradeSavings = card.IsUpgraded ? 2 : 0;
             int xModifierBonus = card.CombatState != null ? Hook.ModifyXValue(card.CombatState, card, 0) : 0;

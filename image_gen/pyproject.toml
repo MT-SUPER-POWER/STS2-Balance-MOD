@@ -4,6 +4,8 @@ version = "0.1.0"
 description = "Slay the Spire 2 Mod 卡牌/遗物/能力/事件图生成与裁剪工具"
 requires-python = ">=3.11"
 dependencies = [
+    "numpy>=2.0.0",
+    "opencv-python-headless>=4.10.0",
     "Pillow>=10.0.0",
     "md2steam>=1.0.0",
 ]
