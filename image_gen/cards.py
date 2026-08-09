@@ -101,8 +101,8 @@ def to_snake_case(name: str) -> str:
 
 
 def output_name(src: Path) -> str:
-    """输出文件名：驼峰转下划线小写。"""
-    return f"{to_snake_case(src.stem)}.png"
+    """输出文件名：保持 PascalCase 大驼峰。"""
+    return f"{src.stem}.png"
 
 
 def process_image(

@@ -131,14 +131,14 @@ def to_snake_case(name: str) -> str:
 
 
 def output_name(src: Path) -> str:
-    """输出文件名：去掉模组前缀后驼峰转下划线小写。"""
+    """输出文件名：保持 PascalCase 大驼峰。"""
     name = src.stem
     name_lower = name.lower()
     for prefix in ("sts2balancemod-", "sts2balancemod_", "actsfromthepast-"):
         if name_lower.startswith(prefix):
             name = name[len(prefix):]
             break
-    return f"{to_snake_case(name)}.png"
+    return f"{name}.png"
 
 
 def collect_sources(input_dir: Path, names: list[str] | None) -> list[Path]:

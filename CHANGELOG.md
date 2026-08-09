@@ -10,6 +10,7 @@
 
 ### Fixed
 
+- 资源规范：清理 `images/` 目录下所有混杂的旧 `snake_case` 下划线遗留文件，并将 `image_gen` 工具链与 `ModAssetPaths` 全面规范为 100% PascalCase（大驼峰）格式，生成全量干净、无内容重叠的卡牌立绘、满画幅先古卡、遗物轮廓图与事件图片。
 - 资源路径：修正 `ModAssetPaths` 中拼接 `res://` 资源路径时使用 `Path.Join` 产生 Windows 反斜杠 `\` 的问题，解决游戏中卡牌立绘、能力与遗物图标丢失以及事件背景图片加载失败导致的崩溃。
 - 事件兼容：修复 `MindBloom` 心灵绽放事件与战斗 Patch 中的 API 命名空间和类型引用错误（`MapPointRoomHistoryEntry` / `CombatReplayWriter`）。
 
