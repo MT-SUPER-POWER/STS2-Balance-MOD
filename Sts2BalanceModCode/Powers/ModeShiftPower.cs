@@ -18,9 +18,6 @@ public sealed class ModeShiftPower() : BalancePowerTemplate(PowerType.Buff, Powe
 {
   public override bool ShouldScaleInMultiplayer => true;
 
-  public override PowerAssetProfile AssetProfile => new(
-    IconPath: ModAssetPaths.PowerIcon("actsfromthepast-mode_shift_power.png"),
-    BigIconPath: ModAssetPaths.PowerIcon("actsfromthepast-mode_shift_power.png"));
 
   public override async Task AfterDamageReceived(
     PlayerChoiceContext choiceContext,

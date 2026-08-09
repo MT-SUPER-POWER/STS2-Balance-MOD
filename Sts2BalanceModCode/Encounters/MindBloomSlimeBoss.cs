@@ -22,7 +22,7 @@ public sealed class MindBloomSlimeBoss : BalanceEncounterTemplate
 
   public override EncounterAssetProfile AssetProfile => new(
     EncounterScenePath: ModAssetPaths.Resource("scenes", "actsfromthepast-mind_bloom_slime_boss.tscn"),
-    ExtraAssetPaths: [ModAssetPaths.PowerIcon("actsfromthepast-split_power.png")]);
+    ExtraAssetPaths: [ModAssetPaths.PowerIcon("SplitPower.png")]);
 
   public override IReadOnlyList<string> Slots =>
   [

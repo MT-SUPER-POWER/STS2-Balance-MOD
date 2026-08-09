@@ -14,7 +14,6 @@ public abstract class BalanceRelicTemplate : ModRelicTemplate
 {
   public override RelicAssetProfile AssetProfile => new(
     IconPath: ModAssetPaths.RelicIcon(ModAssetPaths.ContentFileName(Id.Entry)),
-    IconOutlinePath: ModAssetPaths.RelicIcon(
-      $"{Path.GetFileNameWithoutExtension(ModAssetPaths.ContentFileName(Id.Entry))}_outline.png"),
+    IconOutlinePath: ModAssetPaths.RelicOutlineIcon(ModAssetPaths.ContentFileName(Id.Entry)),
     BigIconPath: ModAssetPaths.LargeRelicIcon(ModAssetPaths.ContentFileName(Id.Entry)));
 }

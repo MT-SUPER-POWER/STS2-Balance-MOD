@@ -59,7 +59,6 @@
 - 📦 **[ActsFromThePast 拆包资源目录](../Assets/ActsFromThePast/)** — 已从 release PCK 完整拆包的一代 Boss、怪物、事件、贴图、音频与本地化资源。
 - 🖼️ **[一代事件贴图](../Sts2BalanceMod/images/events/)** — 转存并按 Mod 事件 ID 命名的事件 Portrait 贴图。
 - 🐍 **[图片生成自动化脚本 (image_gen/)](../image_gen/)** — Python CLI 切图工具（包含卡牌、遗物、能力、火堆选项、事件背景的裁切脚本）。
-- 🔧 **[打包与发布脚本 (Hooks/)](../Hooks/)** — PowerShell 构建打包与 Release 说明提取脚本。
 
 ---
 

@@ -29,9 +29,6 @@ public sealed class TimeWarpPower() : BalancePowerTemplate(PowerType.Buff, Power
   private const decimal StrengthGain = 2M;
   private static readonly string TimeWarpSfx = ModAssetPaths.Resource("sfx", "time_eater", "time_warp.ogg");
 
-  public override PowerAssetProfile AssetProfile => new(
-    IconPath: ModAssetPaths.PowerIcon("actsfromthepast-time_warp_power.png"),
-    BigIconPath: ModAssetPaths.PowerIcon("actsfromthepast-time_warp_power.png"));
 
   private int PlayerCount => Math.Max(1, Owner?.CombatState?.Players.Count ?? 1);
 

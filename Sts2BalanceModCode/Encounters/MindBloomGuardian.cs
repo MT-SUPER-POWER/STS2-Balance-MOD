@@ -23,8 +23,8 @@ public sealed class MindBloomGuardian : BalanceEncounterTemplate
   public override EncounterAssetProfile AssetProfile => new(
     ExtraAssetPaths:
     [
-      ModAssetPaths.PowerIcon("actsfromthepast-mode_shift_power.png"),
-      ModAssetPaths.PowerIcon("actsfromthepast-sharp_hide_power.png"),
+      ModAssetPaths.PowerIcon("ModeShiftPower.png"),
+      ModAssetPaths.PowerIcon("SharpHidePower.png"),
     ]);
 
   public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<Guardian>()];

@@ -23,9 +23,9 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 public sealed class OldBeggar : BalanceEventTemplate
 {
   private const int GoldCost = 75;
-  protected override string PortraitFileName => "cleric.png";
+  protected override string PortraitFileName => "Cleric.png";
 
-  private static readonly string ClericPortraitPath = ModAssetPaths.EventImage("cleric.png");
+  private static readonly string ClericPortraitPath = ModAssetPaths.EventImage("Cleric.png");
 
   protected override IEnumerable<DynamicVar> CanonicalVars =>
   [

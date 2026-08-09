@@ -19,9 +19,6 @@ public sealed class DrawReductionPower() : BalancePowerTemplate(PowerType.Debuff
 {
   private const decimal DrawPenalty = 1M;
 
-  public override PowerAssetProfile AssetProfile => new(
-    IconPath: ModAssetPaths.PowerIcon("actsfromthepast-draw_reduction_power.png"),
-    BigIconPath: ModAssetPaths.PowerIcon("actsfromthepast-draw_reduction_power.png"));
 
   public override decimal ModifyHandDraw(Player player, decimal count)
   {

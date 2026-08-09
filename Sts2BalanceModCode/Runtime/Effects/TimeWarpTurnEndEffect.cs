@@ -13,7 +13,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Runtime.Effects;
 /// </summary>
 public sealed class TimeWarpTurnEndEffect
 {
-  private static readonly string AtlasPath = ModAssetPaths.PowerIcon("time_warp.png");
+  private static readonly string AtlasPath = ModAssetPaths.PowerIcon("TimeWarpPower.png");
   private static readonly Vector2 AtlasRegionPos = new(92f, 390f);
   private static readonly Vector2 AtlasRegionSize = new(86f, 87f);
 

@@ -24,9 +24,6 @@ public sealed class InfectedPower() : BalancePowerTemplate(PowerType.Debuff, Pow
 {
   public const int InfectionPerHit = 2;
 
-  public override PowerAssetProfile AssetProfile => new(
-    IconPath: ModAssetPaths.PowerIcon("infected_power.png"),
-    BigIconPath: ModAssetPaths.LargePowerIcon("infected_power.png"));
 
   public override async Task BeforeSideTurnEnd(
     PlayerChoiceContext choiceContext,

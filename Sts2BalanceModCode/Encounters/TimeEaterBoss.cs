@@ -26,8 +26,8 @@ public sealed class TimeEaterBoss : BalanceEncounterTemplate
     BossNodeSpinePath: ModAssetPaths.Resource("map_boss_icons", "time_eater"),
     ExtraAssetPaths:
     [
-      ModAssetPaths.PowerIcon("actsfromthepast-time_warp_power.png"),
-      ModAssetPaths.PowerIcon("actsfromthepast-draw_reduction_power.png"),
+      ModAssetPaths.PowerIcon("TimeWarpPower.png"),
+      ModAssetPaths.PowerIcon("DrawReductionPower.png"),
     ]);
 
   public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<TimeEater>()];

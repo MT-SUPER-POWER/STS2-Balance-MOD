@@ -11,7 +11,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Enchantments;
 [HarmonyPatch(typeof(EnchantmentModel), "get_" + nameof(EnchantmentModel.IconPath))]
 public static class ForgeEnchantmentIconPatch
 {
-  private static readonly string ModIconPath = ModAssetPaths.Resource("images", "enchantments", "forge_enchantment.png");
+  private static readonly string ModIconPath = ModAssetPaths.Resource("images", "enchantments", "ForgeEnchantment.png");
 
   [HarmonyPrefix]
   public static bool Prefix(EnchantmentModel __instance, ref string __result)

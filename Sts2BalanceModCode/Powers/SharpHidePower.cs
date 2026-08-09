@@ -16,9 +16,6 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 [RegisterPower]
 public sealed class SharpHidePower() : BalancePowerTemplate(PowerType.Buff, PowerStackType.Counter)
 {
-  public override PowerAssetProfile AssetProfile => new(
-    IconPath: ModAssetPaths.PowerIcon("actsfromthepast-sharp_hide_power.png"),
-    BigIconPath: ModAssetPaths.PowerIcon("actsfromthepast-sharp_hide_power.png"));
 
   public bool AttackInProgress { get; private set; }
 

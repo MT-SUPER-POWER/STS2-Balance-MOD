@@ -76,7 +76,7 @@ public static class TreasureRoomSkipPatch
             _skipIcon = new TextureRect
             {
                 Name = "CurseKeyIcon",
-                Texture = ResourceLoader.Load<Texture2D>(ModAssetPaths.RelicIcon("curse_key.png")),
+                Texture = ResourceLoader.Load<Texture2D>(ModAssetPaths.RelicIcon("CurseKey.png")),
                 Size = new Vector2I(24, 24),
                 Position = new Vector2(6, 34),
                 StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered

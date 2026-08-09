@@ -89,15 +89,15 @@ dotnet publish -c Release                 # 本地发布编译到 dist/Sts2Balan
 
 ```bash
 cd image_gen && uv sync && cd ..
-uv run cards death_reap.png                   # 普通卡牌立绘（1000×760 + 500×380）
-uv run cards sorcery_strike.png --fullart     # 先古卡/满画幅立绘（606×852 + 303×426）
+uv run cards DeathReap.png                   # 普通卡牌立绘（1000×760 + 500×380）
+uv run cards SorceryStrike.png --fullart     # 先古卡/满画幅立绘（606×852 + 303×426）
 uv run relics Sundial.png                     # 遗物图标（256×256 + 94×94 + 轮廓图）
 uv run powers                                 # 能力图标
-uv run rest-site-options smoke.png            # 火堆选项图标（256×169）
+uv run rest-site-options Smoke.png            # 火堆选项图标（256×169）
 uv run events                                 # 事件背景图（3440×1616）
 ```
 
-图片路径自动解析：文件名 `{id小写}.png`，基类自动拼接完整路径。
+图片路径自动解析：文件名 `{PascalCase}.png`（大驼峰命名，参考 `D:\Github\sts2-arknights-mod`），基类自动拼接完整路径。遗物轮廓图统一存放于 `images/relics/outlines/{PascalCase}.png` 目录下。
 
 > [!warning]
 > **!必须做的检查!**

@@ -16,9 +16,6 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 [RegisterPower]
 public sealed class SplitPower() : BalancePowerTemplate(PowerType.Buff, PowerStackType.Single)
 {
-  public override PowerAssetProfile AssetProfile => new(
-    IconPath: ModAssetPaths.PowerIcon("actsfromthepast-split_power.png"),
-    BigIconPath: ModAssetPaths.PowerIcon("actsfromthepast-split_power.png"));
 
   public override bool ShouldStopCombatFromEnding() => true;
 

@@ -29,12 +29,6 @@ public sealed class Omamori : BalanceRelicTemplate
   private bool _isActivating;
   private int _cursesRemaining = 2;
 
-  // The source artwork predates the normalized filename convention and keeps an uppercase large-icon filename.
-  public override RelicAssetProfile AssetProfile => new(
-    IconPath: ModAssetPaths.RelicIcon("omamori.png"),
-    IconOutlinePath: ModAssetPaths.RelicIcon("omamori_outline.png"),
-    BigIconPath: ModAssetPaths.Resource("images", "relics", "big", "Omamori.png"));
-
   public override string FlashSfx => "event:/sfx/ui/relic_activate_general";
   public override RelicRarity Rarity => RelicRarity.Event;
 

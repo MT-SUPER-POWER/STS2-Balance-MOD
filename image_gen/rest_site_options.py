@@ -46,21 +46,15 @@ def fit_contain(img: Image.Image, size: tuple[int, int]) -> Image.Image:
     return canvas
 
 
-def to_snake_case(name: str) -> str:
-    s1 = re.sub(r'([a-z0-9])([A-Z])', r'\1_\2', name)
-    s2 = re.sub(r'([A-Z])([A-Z][a-z])', r'\1_\2', s1)
-    s3 = re.sub(r'[\s\-]+', '_', s2)
-    return re.sub(r'_+', '_', s3).lower()
-
-
 def output_name(src: Path) -> str:
-    """输出文件名必须符合 option_{OptionId下划线小写}.png。"""
+    """输出文件名：Option{Name}.png（PascalCase 驼峰）。"""
     stem = src.stem
-    stem_lower = stem.lower()
-    if stem_lower.startswith("option_"):
+    if stem.lower().startswith("option_"):
         stem = stem[7:]
-    snake = to_snake_case(stem)
-    return f"option_{snake}.png"
+    elif stem.lower().startswith("option"):
+        stem = stem[6:]
+    stem = stem.capitalize()
+    return f"Option{stem}.png"
 
 
 def collect_sources(input_dir: Path, names: list[str] | None) -> list[Path]:
