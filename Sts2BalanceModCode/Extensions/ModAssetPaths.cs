@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Extensions;
 
@@ -12,13 +12,7 @@ public static class ModAssetPaths
 
     public static string Resource(params string[] segments)
     {
-        var path = Root;
-        foreach (var segment in segments)
-        {
-            path = Path.Join(path, segment);
-        }
-
-        return path;
+        return Root + "/" + string.Join('/', segments);
     }
 
     public static string Image(string fileName) => Resource("images", fileName);

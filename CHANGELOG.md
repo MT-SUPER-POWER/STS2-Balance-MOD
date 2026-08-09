@@ -6,6 +6,14 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+## v0.3.1
+
+### Fixed
+
+- 资源路径：修正 `ModAssetPaths` 中拼接 `res://` 资源路径时使用 `Path.Join` 产生 Windows 反斜杠 `\` 的问题，解决游戏中卡牌立绘、能力与遗物图标丢失以及事件背景图片加载失败导致的崩溃。
+- 事件兼容：修复 `MindBloom` 心灵绽放事件与战斗 Patch 中的 API 命名空间和类型引用错误（`MapPointRoomHistoryEntry` / `CombatReplayWriter`）。
+
+
 ## v0.3.0
 
 ### Changed
