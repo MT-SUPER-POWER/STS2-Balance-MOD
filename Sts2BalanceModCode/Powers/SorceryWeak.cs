@@ -1,5 +1,4 @@
-using STS2RitsuLib.Interop.AutoRegistration;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
@@ -12,6 +11,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 

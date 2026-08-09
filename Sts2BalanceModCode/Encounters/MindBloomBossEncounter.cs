@@ -1,7 +1,7 @@
-using MegaCrit.Sts2.Core.Models;
+﻿using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
-using STS2RitsuLib.Interop.AutoRegistration;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 
@@ -12,29 +12,29 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 [RegisterGlobalEncounter]
 public sealed class MindBloomBossEncounter : BalanceEncounterTemplate
 {
-  private EncounterModel? _bossEncounter;
+    private EncounterModel? _bossEncounter;
 
-  /// <summary>
-  /// 关键：RoomType 不为 Boss，让奖励界面不走换幕逻辑。
-  /// </summary>
-  public override RoomType RoomType => RoomType.Monster;
+    /// <summary>
+    /// 关键：RoomType 不为 Boss，让奖励界面不走换幕逻辑。
+    /// </summary>
+    public override RoomType RoomType => RoomType.Monster;
 
-  /// <summary>
-  /// 设置实际要打的 Boss 遭遇引用。
-  /// </summary>
-  public void SetBoss(EncounterModel boss)
-  {
-    _bossEncounter = boss;
-  }
+    /// <summary>
+    /// 设置实际要打的 Boss 遭遇引用。
+    /// </summary>
+    public void SetBoss(EncounterModel boss)
+    {
+        _bossEncounter = boss;
+    }
 
-  public override IEnumerable<MonsterModel> AllPossibleMonsters =>
-    _bossEncounter?.AllPossibleMonsters ?? [];
+    public override IEnumerable<MonsterModel> AllPossibleMonsters =>
+      _bossEncounter?.AllPossibleMonsters ?? [];
 
-  protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters()
-  {
-    // MonstersWithSlots 里的怪物已经是 mutable 的（Boss 遭遇 GenerateMonsters 已调用 ToMutable）
-    return _bossEncounter?.MonstersWithSlots
-      .Select(m => (m.Item1, m.Item2))
-      .ToList() ?? [];
-  }
+    protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters()
+    {
+        // MonstersWithSlots 里的怪物已经是 mutable 的（Boss 遭遇 GenerateMonsters 已调用 ToMutable）
+        return _bossEncounter?.MonstersWithSlots
+          .Select(m => (m.Item1, m.Item2))
+          .ToList() ?? [];
+    }
 }

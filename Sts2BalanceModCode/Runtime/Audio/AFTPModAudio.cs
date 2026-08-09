@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes;
@@ -13,61 +13,61 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Runtime.Audio;
 /// </summary>
 public static class AFTPModAudio
 {
-  private static readonly string AudioRoot = ModAssetPaths.Resource("sfx");
-  private const float SfxVolumeOffset = 0f;
+    private static readonly string AudioRoot = ModAssetPaths.Resource("sfx");
+    private const float SfxVolumeOffset = 0f;
 
-  private static readonly Dictionary<string, AudioStream> CachedStreams = new();
+    private static readonly Dictionary<string, AudioStream> CachedStreams = new();
 
-  public static void Play(
-    string folder,
-    string soundName,
-    float volume = 0f,
-    float pitchVariation = 0f,
-    float basePitch = 1f)
-  {
-    var stream = GetOrLoadStream(folder, soundName);
-    if (stream == null)
-      return;
-
-    var player = new AudioStreamPlayer
+    public static void Play(
+      string folder,
+      string soundName,
+      float volume = 0f,
+      float pitchVariation = 0f,
+      float basePitch = 1f)
     {
-      Stream = stream,
-      VolumeDb = volume + SfxVolumeOffset,
-      Bus = "SFX",
-      PitchScale = pitchVariation > 0f
-        ? basePitch + (float)Rng.Chaotic.NextDouble() * 2f * pitchVariation - pitchVariation
-        : basePitch,
-    };
+        var stream = GetOrLoadStream(folder, soundName);
+        if (stream == null)
+            return;
 
-    Node? parent = NRun.Instance;
-    parent ??= NGame.Instance;
-    parent ??= (Engine.GetMainLoop() as SceneTree)?.Root;
-    if (parent == null)
-    {
-      player.QueueFree();
-      return;
+        var player = new AudioStreamPlayer
+        {
+            Stream = stream,
+            VolumeDb = volume + SfxVolumeOffset,
+            Bus = "SFX",
+            PitchScale = pitchVariation > 0f
+            ? basePitch + (float)Rng.Chaotic.NextDouble() * 2f * pitchVariation - pitchVariation
+            : basePitch,
+        };
+
+        Node? parent = NRun.Instance;
+        parent ??= NGame.Instance;
+        parent ??= (Engine.GetMainLoop() as SceneTree)?.Root;
+        if (parent == null)
+        {
+            player.QueueFree();
+            return;
+        }
+
+        parent.AddChildSafely(player);
+        player.Finished += player.QueueFree;
+        player.Play();
     }
 
-    parent.AddChildSafely(player);
-    player.Finished += player.QueueFree;
-    player.Play();
-  }
+    public static void Play(Creature creature, string folder, string soundName, float volume = 0f)
+    {
+        Play(folder, soundName, volume);
+    }
 
-  public static void Play(Creature creature, string folder, string soundName, float volume = 0f)
-  {
-    Play(folder, soundName, volume);
-  }
+    private static AudioStream? GetOrLoadStream(string folder, string soundName)
+    {
+        var key = $"{folder}/{soundName}";
+        if (CachedStreams.TryGetValue(key, out var cached))
+            return cached;
 
-  private static AudioStream? GetOrLoadStream(string folder, string soundName)
-  {
-    var key = $"{folder}/{soundName}";
-    if (CachedStreams.TryGetValue(key, out var cached))
-      return cached;
+        var stream = ResourceLoader.Load<AudioStream>($"{AudioRoot}/{key}.ogg");
+        if (stream != null)
+            CachedStreams[key] = stream;
 
-    var stream = ResourceLoader.Load<AudioStream>($"{AudioRoot}/{key}.ogg");
-    if (stream != null)
-      CachedStreams[key] = stream;
-
-    return stream;
-  }
+        return stream;
+    }
 }

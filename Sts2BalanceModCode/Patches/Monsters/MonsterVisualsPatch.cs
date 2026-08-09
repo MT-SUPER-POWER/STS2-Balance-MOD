@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Models;
@@ -15,59 +15,59 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Monsters;
 [HarmonyPatch(typeof(MonsterModel), nameof(MonsterModel.CreateVisuals))]
 internal static class MonsterVisualsPatch
 {
-  [HarmonyPrefix]
-  private static bool Prefix(MonsterModel __instance, ref NCreatureVisuals __result)
-  {
-    if (__instance is not BalanceMonsterTemplate monster)
+    [HarmonyPrefix]
+    private static bool Prefix(MonsterModel __instance, ref NCreatureVisuals __result)
     {
-      return true;
+        if (__instance is not BalanceMonsterTemplate monster)
+        {
+            return true;
+        }
+
+        var scene = PreloadManager.Cache.GetScene(monster.ModVisualsPath);
+        var node = scene.Instantiate<Node2D>(PackedScene.GenEditState.Disabled);
+
+        if (node is NCreatureVisuals visuals)
+        {
+            __result = visuals;
+            return false;
+        }
+
+        __result = WrapNode2D(node);
+        return false;
     }
 
-    var scene = PreloadManager.Cache.GetScene(monster.ModVisualsPath);
-    var node = scene.Instantiate<Node2D>(PackedScene.GenEditState.Disabled);
-
-    if (node is NCreatureVisuals visuals)
+    private static NCreatureVisuals WrapNode2D(Node2D source)
     {
-      __result = visuals;
-      return false;
+        var visuals = new NCreatureVisuals
+        {
+            Name = source.Name,
+            Position = source.Position,
+            Rotation = source.Rotation,
+            Scale = source.Scale,
+            Skew = source.Skew,
+            Visible = source.Visible,
+            ZIndex = source.ZIndex,
+            YSortEnabled = source.YSortEnabled,
+        };
+
+        foreach (var child in source.GetChildren())
+        {
+            source.RemoveChild(child);
+            visuals.AddChild(child);
+            SetOwnerRecursive(child, visuals);
+        }
+
+        source.QueueFree();
+        return visuals;
     }
 
-    __result = WrapNode2D(node);
-    return false;
-  }
-
-  private static NCreatureVisuals WrapNode2D(Node2D source)
-  {
-    var visuals = new NCreatureVisuals
+    private static void SetOwnerRecursive(Node node, Node owner)
     {
-      Name = source.Name,
-      Position = source.Position,
-      Rotation = source.Rotation,
-      Scale = source.Scale,
-      Skew = source.Skew,
-      Visible = source.Visible,
-      ZIndex = source.ZIndex,
-      YSortEnabled = source.YSortEnabled,
-    };
+        node.Owner = owner;
 
-    foreach (var child in source.GetChildren())
-    {
-      source.RemoveChild(child);
-      visuals.AddChild(child);
-      SetOwnerRecursive(child, visuals);
+        foreach (var child in node.GetChildren())
+        {
+            SetOwnerRecursive(child, owner);
+        }
     }
-
-    source.QueueFree();
-    return visuals;
-  }
-
-  private static void SetOwnerRecursive(Node node, Node owner)
-  {
-    node.Owner = owner;
-
-    foreach (var child in node.GetChildren())
-    {
-      SetOwnerRecursive(child, owner);
-    }
-  }
 }

@@ -1,11 +1,11 @@
-using STS2RitsuLib.Interop.AutoRegistration;
-using MegaCrit.Sts2.Core.CardSelection;
+﻿using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 
@@ -17,27 +17,27 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 [RegisterCard(typeof(SilentCardPool), FullPublicEntry = "STS2_BALANCEMOD_CONCENTRATE")]
 public sealed class Concentrate : BalanceCardTemplate
 {
-  protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(3), new EnergyVar(2)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(3), new EnergyVar(2)];
 
-  public Concentrate() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
+    public Concentrate() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
 
-  protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-  {
-    int discardCount = DynamicVars.Cards.IntValue;
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        int discardCount = DynamicVars.Cards.IntValue;
 
-    var cards = (await CardSelectCmd.FromHandForDiscard(
-        choiceContext,
-        Owner,
-        new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, discardCount),
-        null,
-        this
-    )).ToList();
+        var cards = (await CardSelectCmd.FromHandForDiscard(
+            choiceContext,
+            Owner,
+            new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, discardCount),
+            null,
+            this
+        )).ToList();
 
-    foreach (var card in cards)
-      await CardCmd.Discard(choiceContext, card);
+        foreach (var card in cards)
+            await CardCmd.Discard(choiceContext, card);
 
-    await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
-  }
+        await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
+    }
 
-  protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(-1);
+    protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(-1);
 }

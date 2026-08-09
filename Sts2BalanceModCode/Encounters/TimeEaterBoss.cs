@@ -1,11 +1,11 @@
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+﻿using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
-using STS2RitsuLib.Content;
-using STS2RitsuLib.Interop.AutoRegistration;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
 using Sts2BalanceMod.Sts2BalanceModCode.Monsters;
+using STS2RitsuLib.Content;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 
@@ -18,22 +18,22 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 [RegisterGlobalEncounter]
 public sealed class TimeEaterBoss : BalanceEncounterTemplate
 {
-  public override RoomType RoomType => RoomType.Boss;
+    public override RoomType RoomType => RoomType.Boss;
 
-  public override MegaSkeletonDataResource? BossNodeSpineResource => null;
+    public override MegaSkeletonDataResource? BossNodeSpineResource => null;
 
-  public override EncounterAssetProfile AssetProfile => new(
-    BossNodeSpinePath: ModAssetPaths.Resource("map_boss_icons", "time_eater"),
-    ExtraAssetPaths:
-    [
-      ModAssetPaths.PowerIcon("TimeWarpPower.png"),
+    public override EncounterAssetProfile AssetProfile => new(
+      BossNodeSpinePath: ModAssetPaths.Resource("map_boss_icons", "time_eater"),
+      ExtraAssetPaths:
+      [
+        ModAssetPaths.PowerIcon("TimeWarpPower.png"),
       ModAssetPaths.PowerIcon("DrawReductionPower.png"),
-    ]);
+      ]);
 
-  public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<TimeEater>()];
+    public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<TimeEater>()];
 
-  protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
-  [
-    (ModelDb.Monster<TimeEater>().ToMutable(), null),
+    protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
+    [
+      (ModelDb.Monster<TimeEater>().ToMutable(), null),
   ];
 }

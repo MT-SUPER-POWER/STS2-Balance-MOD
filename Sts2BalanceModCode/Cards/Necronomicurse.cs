@@ -1,11 +1,11 @@
-using STS2RitsuLib.Interop.AutoRegistration;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Relics;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 
@@ -16,34 +16,34 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 [RegisterCard(typeof(CurseCardPool), FullPublicEntry = "STS2_BALANCEMOD_NECRONOMICURSE")]
 public sealed class Necronomicurse : BalanceCardTemplate
 {
-  public Necronomicurse() : base(-1, CardType.Curse, CardRarity.Curse, TargetType.None)
-  {
-  }
+    public Necronomicurse() : base(-1, CardType.Curse, CardRarity.Curse, TargetType.None)
+    {
+    }
 
-  public override bool CanBeGeneratedByModifiers => false;
+    public override bool CanBeGeneratedByModifiers => false;
 
-  public override int MaxUpgradeLevel => 0;
+    public override int MaxUpgradeLevel => 0;
 
-  public override IEnumerable<CardKeyword> CanonicalKeywords =>
-  [
-    CardKeyword.Unplayable,
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+      CardKeyword.Unplayable,
     CardKeyword.Eternal,
   ];
 
-  protected override Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-  {
-    return Task.CompletedTask;
-  }
+    protected override Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        return Task.CompletedTask;
+    }
 
-  public override async Task AfterCardExhausted(
-    PlayerChoiceContext choiceContext,
-    CardModel card,
-    bool causedByEthereal)
-  {
-    if (card != this)
-      return;
+    public override async Task AfterCardExhausted(
+      PlayerChoiceContext choiceContext,
+      CardModel card,
+      bool causedByEthereal)
+    {
+        if (card != this)
+            return;
 
-    Owner.Relics.FirstOrDefault(r => r is Necronomicon)?.Flash();
-    await CardPileCmd.Add(this, PileType.Hand);
-  }
+        Owner.Relics.FirstOrDefault(r => r is Necronomicon)?.Flash();
+        await CardPileCmd.Add(this, PileType.Hand);
+    }
 }

@@ -1,11 +1,11 @@
-using STS2RitsuLib.Interop.AutoRegistration;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.RelicPools;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
@@ -16,27 +16,27 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 [RegisterRelic(typeof(EventRelicPool), FullPublicEntry = "STS2_BALANCEMOD_ENCHIRIDION")]
 public sealed class Enchiridion : BalanceRelicTemplate
 {
-  public override RelicRarity Rarity => RelicRarity.Event;
+    public override RelicRarity Rarity => RelicRarity.Event;
 
-  public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
-  {
-    if (player != Owner || Owner.Creature?.CombatState?.RoundNumber != 1)
-      return;
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    {
+        if (player != Owner || Owner.Creature?.CombatState?.RoundNumber != 1)
+            return;
 
-    Flash();
+        Flash();
 
-    var powerCards = Owner.Character.CardPool
-      .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
-      .Where(c => c.Type == CardType.Power)
-      .ToList();
+        var powerCards = Owner.Character.CardPool
+          .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
+          .Where(c => c.Type == CardType.Power)
+          .ToList();
 
-    var card = CardFactory.GetDistinctForCombat(
-      Owner,
-      powerCards,
-      1,
-      Owner.RunState.Rng.CombatCardGeneration).First();
+        var card = CardFactory.GetDistinctForCombat(
+          Owner,
+          powerCards,
+          1,
+          Owner.RunState.Rng.CombatCardGeneration).First();
 
-    card.SetToFreeThisTurn();
-    await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
-  }
+        card.SetToFreeThisTurn();
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
+    }
 }

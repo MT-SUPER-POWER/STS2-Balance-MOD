@@ -1,4 +1,4 @@
-using HarmonyLib;
+﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -17,9 +17,9 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.CardPools;
 [HarmonyPatch(typeof(SilentCardPool), "GenerateAllCards")]
 public static class SilentCardPoolPatch
 {
-  [HarmonyPostfix]
-  public static CardModel[] Postfix(CardModel[] __result)
-  {
-    return __result.Where(c => c is not UpMySleeve && c is not Pinpoint).ToArray();
-  }
+    [HarmonyPostfix]
+    public static CardModel[] Postfix(CardModel[] __result)
+    {
+        return __result.Where(c => c is not UpMySleeve && c is not Pinpoint).ToArray();
+    }
 }

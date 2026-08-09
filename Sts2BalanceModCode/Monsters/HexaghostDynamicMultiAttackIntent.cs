@@ -1,4 +1,4 @@
-using MegaCrit.Sts2.Core.Entities.Creatures;
+﻿using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 
@@ -9,28 +9,28 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 /// </summary>
 internal sealed class HexaghostDynamicMultiAttackIntent : AttackIntent
 {
-  private readonly int _repeats;
+    private readonly int _repeats;
 
-  protected override LocString IntentLabelFormat => new("intents", "FORMAT_DAMAGE_MULTI");
+    protected override LocString IntentLabelFormat => new("intents", "FORMAT_DAMAGE_MULTI");
 
-  public override int Repeats => _repeats;
+    public override int Repeats => _repeats;
 
-  public HexaghostDynamicMultiAttackIntent(Func<int> damage, int repeats)
-  {
-    _repeats = repeats;
-    DamageCalc = () => damage();
-  }
+    public HexaghostDynamicMultiAttackIntent(Func<int> damage, int repeats)
+    {
+        _repeats = repeats;
+        DamageCalc = () => damage();
+    }
 
-  public override int GetTotalDamage(IEnumerable<Creature> targets, Creature owner)
-  {
-    return GetSingleDamage(targets, owner) * Repeats;
-  }
+    public override int GetTotalDamage(IEnumerable<Creature> targets, Creature owner)
+    {
+        return GetSingleDamage(targets, owner) * Repeats;
+    }
 
-  public override LocString GetIntentLabel(IEnumerable<Creature> targets, Creature owner)
-  {
-    var label = IntentLabelFormat;
-    label.Add("Damage", (decimal)GetSingleDamage(targets, owner));
-    label.Add("Repeat", (decimal)Repeats);
-    return label;
-  }
+    public override LocString GetIntentLabel(IEnumerable<Creature> targets, Creature owner)
+    {
+        var label = IntentLabelFormat;
+        label.Add("Damage", (decimal)GetSingleDamage(targets, owner));
+        label.Add("Repeat", (decimal)Repeats);
+        return label;
+    }
 }

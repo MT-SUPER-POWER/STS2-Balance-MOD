@@ -1,10 +1,10 @@
-using MegaCrit.Sts2.Core.Models;
+﻿using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
-using STS2RitsuLib.Content;
-using STS2RitsuLib.Interop.AutoRegistration;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
 using Sts2BalanceMod.Sts2BalanceModCode.Monsters;
+using STS2RitsuLib.Content;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 
@@ -18,25 +18,25 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 [RegisterGlobalEncounter]
 public sealed class RedMaskBandits : BalanceEncounterTemplate
 {
-  public override RoomType RoomType => RoomType.Monster;
+    public override RoomType RoomType => RoomType.Monster;
 
-  public override bool IsWeak => false;
+    public override bool IsWeak => false;
 
-  public override EncounterAssetProfile AssetProfile => new(
-    EncounterScenePath: ModAssetPaths.Resource("scenes", "actsfromthepast-red_mask_bandits_event.tscn"));
+    public override EncounterAssetProfile AssetProfile => new(
+      EncounterScenePath: ModAssetPaths.Resource("scenes", "actsfromthepast-red_mask_bandits_event.tscn"));
 
-  public override IReadOnlyList<string> Slots => ["pointy", "romeo", "bear"];
+    public override IReadOnlyList<string> Slots => ["pointy", "romeo", "bear"];
 
-  public override IEnumerable<MonsterModel> AllPossibleMonsters =>
-  [
-    ModelDb.Monster<Pointy>(),
+    public override IEnumerable<MonsterModel> AllPossibleMonsters =>
+    [
+      ModelDb.Monster<Pointy>(),
     ModelDb.Monster<Romeo>(),
     ModelDb.Monster<Bear>(),
   ];
 
-  protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
-  [
-    (ModelDb.Monster<Pointy>().ToMutable(), "pointy"),
+    protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
+    [
+      (ModelDb.Monster<Pointy>().ToMutable(), "pointy"),
     (ModelDb.Monster<Romeo>().ToMutable(), "romeo"),
     (ModelDb.Monster<Bear>().ToMutable(), "bear"),
   ];

@@ -1,8 +1,8 @@
-using STS2RitsuLib.Interop.AutoRegistration;
-using STS2RitsuLib.Combat.Healing;
-using MegaCrit.Sts2.Core.Entities.Creatures;
+﻿using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models.RelicPools;
+using STS2RitsuLib.Combat.Healing;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
@@ -13,16 +13,16 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 [RegisterRelic(typeof(EventRelicPool), FullPublicEntry = "STS2_BALANCEMOD_MARK_OF_THE_BLOOM")]
 public sealed class MarkOfTheBloom : BalanceRelicTemplate, IHealHookListener
 {
-  public override RelicRarity Rarity => RelicRarity.Event;
+    public override RelicRarity Rarity => RelicRarity.Event;
 
-  public decimal ModifyHealMultiplicative(HealContext context, decimal amount)
-  {
-    if (context.Creature.Player != Owner)
-      return 1M;
+    public decimal ModifyHealMultiplicative(HealContext context, decimal amount)
+    {
+        if (context.Creature.Player != Owner)
+            return 1M;
 
-    if (amount > 0)
-      Flash();
+        if (amount > 0)
+            Flash();
 
-    return 0M;
-  }
+        return 0M;
+    }
 }

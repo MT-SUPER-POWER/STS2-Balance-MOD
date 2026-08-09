@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Nodes.Events;
 
@@ -12,15 +12,15 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Events;
 [HarmonyPatch(typeof(NEventLayout), nameof(NEventLayout.SetPortrait))]
 internal static class EventPortraitAspectRatioPatch
 {
-  [HarmonyPostfix]
-  private static void Postfix(NEventLayout __instance)
-  {
-    if (__instance.GetNodeOrNull<TextureRect>("%Portrait") is not { } portrait)
+    [HarmonyPostfix]
+    private static void Postfix(NEventLayout __instance)
     {
-      return;
-    }
+        if (__instance.GetNodeOrNull<TextureRect>("%Portrait") is not { } portrait)
+        {
+            return;
+        }
 
-    portrait.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
-    portrait.StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered;
-  }
+        portrait.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
+        portrait.StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered;
+    }
 }

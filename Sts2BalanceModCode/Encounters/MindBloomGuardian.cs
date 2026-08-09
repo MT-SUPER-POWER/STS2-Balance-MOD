@@ -1,10 +1,10 @@
-using MegaCrit.Sts2.Core.Models;
+﻿using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
-using STS2RitsuLib.Content;
-using STS2RitsuLib.Interop.AutoRegistration;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
 using Sts2BalanceMod.Sts2BalanceModCode.Monsters;
+using STS2RitsuLib.Content;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 
@@ -16,29 +16,29 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 [RegisterGlobalEncounter]
 public sealed class MindBloomGuardian : BalanceEncounterTemplate
 {
-  private MindBloomBossEnhancementPlan? _enhancementPlan;
+    private MindBloomBossEnhancementPlan? _enhancementPlan;
 
-  public override RoomType RoomType => RoomType.Monster;
+    public override RoomType RoomType => RoomType.Monster;
 
-  public override EncounterAssetProfile AssetProfile => new(
-    ExtraAssetPaths:
-    [
-      ModAssetPaths.PowerIcon("ModeShiftPower.png"),
+    public override EncounterAssetProfile AssetProfile => new(
+      ExtraAssetPaths:
+      [
+        ModAssetPaths.PowerIcon("ModeShiftPower.png"),
       ModAssetPaths.PowerIcon("SharpHidePower.png"),
-    ]);
+      ]);
 
-  public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<Guardian>()];
+    public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<Guardian>()];
 
-  internal void SetEnhancementPlan(MindBloomBossEnhancementPlan plan)
-  {
-    // NOTE: EventModel 要求传入 canonical 遭遇，配置字段会在进入战斗时随 ToMutable 一起复制。
-    _enhancementPlan = plan;
-  }
+    internal void SetEnhancementPlan(MindBloomBossEnhancementPlan plan)
+    {
+        // NOTE: EventModel 要求传入 canonical 遭遇，配置字段会在进入战斗时随 ToMutable 一起复制。
+        _enhancementPlan = plan;
+    }
 
-  protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters()
-  {
-    var boss = (Guardian)ModelDb.Monster<Guardian>().ToMutable();
-    boss.MindBloomEnhancementPlan = _enhancementPlan;
-    return [(boss, null)];
-  }
+    protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters()
+    {
+        var boss = (Guardian)ModelDb.Monster<Guardian>().ToMutable();
+        boss.MindBloomEnhancementPlan = _enhancementPlan;
+        return [(boss, null)];
+    }
 }

@@ -4,7 +4,7 @@
 
 每个版本以 `## vX.X.X` 为标题。推送 Tag 后 GitHub Actions 会自动在云端构建、打包，并将打包好的 zip 附件发布到对应的 Release 页面中，无须再本地手动上传。
 
-已完成的所有改动见 [README.md](README.md##调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
+已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
 ## v0.3.0
 

@@ -1,4 +1,4 @@
-using MegaCrit.Sts2.Core.Entities.Creatures;
+﻿using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.Random;
 
@@ -12,19 +12,19 @@ public sealed class RngConditionalBranchState(
   string stateId,
   Func<Creature, Rng, MonsterMoveStateMachine, string> selectNextState) : MonsterState
 {
-  public override string Id => stateId;
+    public override string Id => stateId;
 
-  public override bool ShouldAppearInLogs => false;
+    public override bool ShouldAppearInLogs => false;
 
-  public override string GetNextState(Creature owner, Rng rng)
-  {
-    var stateMachine = owner.Monster?.MoveStateMachine
-      ?? throw new InvalidOperationException("RNG branch state requires an initialized monster state machine.");
-    return selectNextState(owner, rng, stateMachine);
-  }
+    public override string GetNextState(Creature owner, Rng rng)
+    {
+        var stateMachine = owner.Monster?.MoveStateMachine
+          ?? throw new InvalidOperationException("RNG branch state requires an initialized monster state machine.");
+        return selectNextState(owner, rng, stateMachine);
+    }
 
-  public override void RegisterStates(Dictionary<string, MonsterState> monsterStates)
-  {
-    monsterStates.Add(Id, this);
-  }
+    public override void RegisterStates(Dictionary<string, MonsterState> monsterStates)
+    {
+        monsterStates.Add(Id, this);
+    }
 }

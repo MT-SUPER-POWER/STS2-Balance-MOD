@@ -1,4 +1,4 @@
-using HarmonyLib;
+﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -14,14 +14,14 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 [HarmonyPatch(typeof(CardModel), "OnUpgrade")]
 public static class MultiCastRetainPatch
 {
-  [HarmonyPrefix]
-  public static bool Prefix(CardModel __instance)
-  {
-    if (__instance is not MultiCast)
-      return true; // 其他卡正常升级
+    [HarmonyPrefix]
+    public static bool Prefix(CardModel __instance)
+    {
+        if (__instance is not MultiCast)
+            return true; // 其他卡正常升级
 
-    __instance.AddKeyword(CardKeyword.Retain);
+        __instance.AddKeyword(CardKeyword.Retain);
 
-    return false; // 也就是取消原本的 X+1
-  }
+        return false; // 也就是取消原本的 X+1
+    }
 }

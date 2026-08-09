@@ -1,11 +1,11 @@
-using STS2RitsuLib.Interop.AutoRegistration;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 
@@ -17,27 +17,27 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 [RegisterCard(typeof(IroncladCardPool), FullPublicEntry = "STS2_BALANCEMOD_DEATH_REAP")]
 public sealed class DeathReap : BalanceCardTemplate
 {
-  public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
-  protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(4M, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(4M, ValueProp.Move)];
 
-  public DeathReap() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies) { }
+    public DeathReap() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies) { }
 
-  protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-  {
-    var result = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-        .FromCard(this, cardPlay)
-        .TargetingAllOpponents(CombatState!)
-        .WithHitFx("vfx/vfx_giant_horizontal_slash")
-        .Execute(choiceContext);
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        var result = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCard(this, cardPlay)
+            .TargetingAllOpponents(CombatState!)
+            .WithHitFx("vfx/vfx_giant_horizontal_slash")
+            .Execute(choiceContext);
 
-    int healed = result.Results
-        .SelectMany(r => r)
-        .Sum(r => r.UnblockedDamage);
+        int healed = result.Results
+            .SelectMany(r => r)
+            .Sum(r => r.UnblockedDamage);
 
-    if (healed > 0)
-      await CreatureCmd.Heal(Owner.Creature, healed);
-  }
+        if (healed > 0)
+            await CreatureCmd.Heal(Owner.Creature, healed);
+    }
 
-  protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(2M);
+    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(2M);
 }

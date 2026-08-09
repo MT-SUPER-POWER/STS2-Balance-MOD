@@ -1,6 +1,6 @@
-using MegaCrit.Sts2.Core.Entities.Enchantments;
-using STS2RitsuLib.Scaffolding.Content;
+﻿using MegaCrit.Sts2.Core.Entities.Enchantments;
 using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
+using STS2RitsuLib.Scaffolding.Content;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 
@@ -10,9 +10,9 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 /// </summary>
 public abstract class BalanceEnchantmentTemplate : ModEnchantmentTemplate
 {
-  public override bool ShowAmount => false;
-  public override bool IsStackable => false;
+    public override bool ShowAmount => false;
+    public override bool IsStackable => false;
 
-  public override EnchantmentAssetProfile AssetProfile => new(
-    IconPath: ModAssetPaths.EnchantmentIcon(ModAssetPaths.TypeFileName(GetType())));
+    public override EnchantmentAssetProfile AssetProfile => new(
+      IconPath: ModAssetPaths.EnchantmentIcon(ModAssetPaths.TypeFileName(GetType())));
 }

@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 
@@ -14,17 +14,17 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches;
 [HarmonyPatch(typeof(AbstractModel), nameof(AbstractModel.InitId))]
 internal static class ModelIdInitializationGuardPatch
 {
-  private static readonly FieldInfo? IdBackingField = typeof(AbstractModel)
-    .GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+    private static readonly FieldInfo? IdBackingField = typeof(AbstractModel)
+      .GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
 
-  [HarmonyPrefix]
-  private static bool Prefix(AbstractModel __instance, ModelId id)
-  {
-    if (__instance.Id == null)
+    [HarmonyPrefix]
+    private static bool Prefix(AbstractModel __instance, ModelId id)
     {
-      IdBackingField?.SetValue(__instance, id);
-    }
+        if (__instance.Id == null)
+        {
+            IdBackingField?.SetValue(__instance, id);
+        }
 
-    return __instance.Id != null;
-  }
+        return __instance.Id != null;
+    }
 }

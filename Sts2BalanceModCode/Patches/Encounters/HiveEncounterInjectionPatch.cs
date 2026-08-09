@@ -1,4 +1,4 @@
-/* using HarmonyLib;
+﻿/* using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Acts;
 using Sts2BalanceMod.Sts2BalanceModCode.Encounters;

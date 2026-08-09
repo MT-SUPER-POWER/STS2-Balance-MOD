@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Runtime.Effects;
 
@@ -8,105 +8,105 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Runtime.Effects;
 /// </summary>
 public abstract class NSts1Effect
 {
-  private SceneTree? _sceneTree;
-  private bool _isDisposed;
+    private SceneTree? _sceneTree;
+    private bool _isDisposed;
 
-  protected float Duration;
-  protected float StartingDuration;
-  protected Color EffectColor = Colors.White;
-  protected bool IsDone;
+    protected float Duration;
+    protected float StartingDuration;
+    protected Color EffectColor = Colors.White;
+    protected bool IsDone;
 
-  public Node2D Root { get; } = new();
+    public Node2D Root { get; } = new();
 
-  protected Vector2 Position
-  {
-    get => Root.Position;
-    set => Root.Position = value;
-  }
-
-  protected void Setup()
-  {
-    Root.ProcessMode = Node.ProcessModeEnum.Always;
-    Root.TreeEntered += OnTreeEntered;
-    Root.TreeExited += OnTreeExited;
-  }
-
-  protected void AddChild(Node child)
-  {
-    Root.AddChild(child);
-  }
-
-  protected Node? GetParent()
-  {
-    return Root.GetParent();
-  }
-
-  private void OnTreeEntered()
-  {
-    if (_isDisposed)
-      return;
-
-    Initialize();
-    if (IsDone)
+    protected Vector2 Position
     {
-      Dispose();
-      return;
+        get => Root.Position;
+        set => Root.Position = value;
     }
 
-    _sceneTree = Root.GetTree();
-    _sceneTree.ProcessFrame += OnProcessFrame;
-  }
-
-  private void OnTreeExited()
-  {
-    UnsubscribeFromProcessFrame();
-  }
-
-  private void OnProcessFrame()
-  {
-    if (_isDisposed || !GodotObject.IsInstanceValid(Root) || !Root.IsInsideTree())
+    protected void Setup()
     {
-      UnsubscribeFromProcessFrame();
-      return;
+        Root.ProcessMode = Node.ProcessModeEnum.Always;
+        Root.TreeEntered += OnTreeEntered;
+        Root.TreeExited += OnTreeExited;
     }
 
-    Update((float)Root.GetProcessDeltaTime());
-    if (IsDone)
-      Dispose();
-  }
+    protected void AddChild(Node child)
+    {
+        Root.AddChild(child);
+    }
 
-  private void Dispose()
-  {
-    if (_isDisposed)
-      return;
+    protected Node? GetParent()
+    {
+        return Root.GetParent();
+    }
 
-    _isDisposed = true;
-    UnsubscribeFromProcessFrame();
-    if (GodotObject.IsInstanceValid(Root))
-      Root.QueueFree();
-  }
+    private void OnTreeEntered()
+    {
+        if (_isDisposed)
+            return;
 
-  private void UnsubscribeFromProcessFrame()
-  {
-    if (_sceneTree != null && GodotObject.IsInstanceValid(_sceneTree))
-      _sceneTree.ProcessFrame -= OnProcessFrame;
+        Initialize();
+        if (IsDone)
+        {
+            Dispose();
+            return;
+        }
 
-    _sceneTree = null;
-  }
+        _sceneTree = Root.GetTree();
+        _sceneTree.ProcessFrame += OnProcessFrame;
+    }
 
-  protected virtual void Initialize()
-  {
-  }
+    private void OnTreeExited()
+    {
+        UnsubscribeFromProcessFrame();
+    }
 
-  protected abstract void Update(float delta);
+    private void OnProcessFrame()
+    {
+        if (_isDisposed || !GodotObject.IsInstanceValid(Root) || !Root.IsInsideTree())
+        {
+            UnsubscribeFromProcessFrame();
+            return;
+        }
 
-  protected static float Lerp(float from, float to, float t)
-  {
-    return from + (to - from) * t;
-  }
+        Update((float)Root.GetProcessDeltaTime());
+        if (IsDone)
+            Dispose();
+    }
 
-  protected static float EaseOut(float t)
-  {
-    return 1f - (1f - t) * (1f - t);
-  }
+    private void Dispose()
+    {
+        if (_isDisposed)
+            return;
+
+        _isDisposed = true;
+        UnsubscribeFromProcessFrame();
+        if (GodotObject.IsInstanceValid(Root))
+            Root.QueueFree();
+    }
+
+    private void UnsubscribeFromProcessFrame()
+    {
+        if (_sceneTree != null && GodotObject.IsInstanceValid(_sceneTree))
+            _sceneTree.ProcessFrame -= OnProcessFrame;
+
+        _sceneTree = null;
+    }
+
+    protected virtual void Initialize()
+    {
+    }
+
+    protected abstract void Update(float delta);
+
+    protected static float Lerp(float from, float to, float t)
+    {
+        return from + (to - from) * t;
+    }
+
+    protected static float EaseOut(float t)
+    {
+        return 1f - (1f - t) * (1f - t);
+    }
 }

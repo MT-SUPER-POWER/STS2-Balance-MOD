@@ -1,7 +1,7 @@
-using MegaCrit.Sts2.Core.Entities.Powers;
+﻿using MegaCrit.Sts2.Core.Entities.Powers;
+using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Scaffolding.Content;
-using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 
@@ -11,11 +11,11 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 /// </summary>
 public abstract class BalancePowerTemplate(PowerType type, PowerStackType stackType) : ModPowerTemplate
 {
-  public override PowerAssetProfile AssetProfile => new(
-    IconPath: ModAssetPaths.PowerIcon(ModAssetPaths.TypeFileName(GetType())),
-    BigIconPath: ModAssetPaths.LargePowerIcon(ModAssetPaths.TypeFileName(GetType())));
+    public override PowerAssetProfile AssetProfile => new(
+      IconPath: ModAssetPaths.PowerIcon(ModAssetPaths.TypeFileName(GetType())),
+      BigIconPath: ModAssetPaths.LargePowerIcon(ModAssetPaths.TypeFileName(GetType())));
 
-  // ======================== POWER PROPERTIES ========================
-  public override PowerType Type => type;
-  public override PowerStackType StackType => stackType;
+    // ======================== POWER PROPERTIES ========================
+    public override PowerType Type => type;
+    public override PowerStackType StackType => stackType;
 }

@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -17,9 +17,9 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.CardPools;
 [HarmonyPatch(typeof(DefectCardPool), "GenerateAllCards")]
 public static class DefectCardPoolPatch
 {
-  [HarmonyPostfix]
-  public static CardModel[] Postfix(CardModel[] __result)
-  {
-    return __result.Where(c => c is not ConsumingShadow).ToArray();
-  }
+    [HarmonyPostfix]
+    public static CardModel[] Postfix(CardModel[] __result)
+    {
+        return __result.Where(c => c is not ConsumingShadow).ToArray();
+    }
 }

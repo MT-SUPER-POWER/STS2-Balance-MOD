@@ -1,7 +1,7 @@
-using STS2RitsuLib.Interop.AutoRegistration;
-using MegaCrit.Sts2.Core.Models;
+﻿using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Sts2BalanceMod.Sts2BalanceModCode.Relics;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 
@@ -12,5 +12,5 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 [RegisterPower]
 public sealed class MutagenicStrengthPower : TemporaryStrengthPower
 {
-  public override AbstractModel OriginModel => ModelDb.Relic<MutagenicStrength>();
+    public override AbstractModel OriginModel => ModelDb.Relic<MutagenicStrength>();
 }

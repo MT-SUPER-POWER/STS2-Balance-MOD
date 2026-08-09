@@ -1,3 +1,6 @@
+﻿using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,9 +12,6 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Runs;
 using Sts2BalanceMod.Sts2BalanceModCode.Relics;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 
@@ -27,56 +27,59 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 [HarmonyPatch(typeof(NProceedButton), "UpdateText")]
 public static class CurseKeyPatch
 {
-  [HarmonyPostfix]
-  static void Postfix(NProceedButton __instance, LocString loc)
-  {
-    // 仅当文字被设为 ProceedLoc（= OpenChest 结尾，遗物已选）
-    if (loc.LocEntryKey != NProceedButton.ProceedLoc.LocEntryKey)
-      return;
+    [HarmonyPostfix]
+    static void Postfix(NProceedButton __instance, LocString loc)
+    {
+        // 仅当文字被设为 ProceedLoc（= OpenChest 结尾，遗物已选）
+        if (loc.LocEntryKey != NProceedButton.ProceedLoc.LocEntryKey)
+            return;
 
-    // 不是在开箱流程中 → 过滤掉 _Ready 中的 UpdateText(ProceedLoc)
-    if (!TreasureRoomSkipPatch.IsAfterChestOpen())
-      return;
+        // 不是在开箱流程中 → 过滤掉 _Ready 中的 UpdateText(ProceedLoc)
+        if (!TreasureRoomSkipPatch.IsAfterChestOpen())
+            return;
 
-    // 如果是 mod 跳过宝箱 → 不生成诅咒
-    if (TreasureRoomSkipPatch.SkipChestForCurseKey)
-      return;
+        // 如果是 mod 跳过宝箱 → 不生成诅咒
+        if (TreasureRoomSkipPatch.SkipChestForCurseKey)
+            return;
 
-    var runState = typeof(RunManager)
-        .GetProperty("State", BindingFlags.NonPublic | BindingFlags.Instance)
-        ?.GetValue(RunManager.Instance) as IRunState;
+        var runState = typeof(RunManager)
+            .GetProperty("State", BindingFlags.NonPublic | BindingFlags.Instance)
+            ?.GetValue(RunManager.Instance) as IRunState;
 
-    if (runState == null || runState.Players.Count != 1)
-      return;
+        if (runState == null || runState.Players.Count != 1)
+            return;
 
-    var player = runState.Players[0];
-    if (player.GetRelic<CurseKey>() == null)
-      return;
+        var player = runState.Players[0];
+        if (player.GetRelic<CurseKey>() == null)
+            return;
 
-    TaskHelper.RunSafely(AddRandomCurse(player));
-  }
+        TaskHelper.RunSafely(AddRandomCurse(player));
+    }
 
-  private static async Task AddRandomCurse(Player player)
-  {
-    var curseKey = player.GetRelic<CurseKey>();
-    if (curseKey == null) return;
+    private static async Task AddRandomCurse(Player player)
+    {
+        var curseKey = player.GetRelic<CurseKey>();
+        if (curseKey == null)
+            return;
 
-    var availableCurses = ModelDb.CardPool<CurseCardPool>()
-        .GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
-        .Where(c => c.CanBeGeneratedByModifiers)
-        .ToList();
+        var availableCurses = ModelDb.CardPool<CurseCardPool>()
+            .GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
+            .Where(c => c.CanBeGeneratedByModifiers)
+            .ToList();
 
-    if (availableCurses.Count == 0) return;
+        if (availableCurses.Count == 0)
+            return;
 
-    var canonicalCurse = player.RunState.Rng.Niche.NextItem(availableCurses);
-    if (canonicalCurse == null) return;
+        var canonicalCurse = player.RunState.Rng.Niche.NextItem(availableCurses);
+        if (canonicalCurse == null)
+            return;
 
-    var curseCard = player.RunState.CreateCard(canonicalCurse, player);
+        var curseCard = player.RunState.CreateCard(canonicalCurse, player);
 
-    curseKey.Flash();
-    await Cmd.Wait(0.5f);
+        curseKey.Flash();
+        await Cmd.Wait(0.5f);
 
-    var result = await CardPileCmd.Add(curseCard, PileType.Deck);
-    CardCmd.PreviewCardPileAdd(result, 2f);
-  }
+        var result = await CardPileCmd.Add(curseCard, PileType.Deck);
+        CardCmd.PreviewCardPileAdd(result, 2f);
+    }
 }

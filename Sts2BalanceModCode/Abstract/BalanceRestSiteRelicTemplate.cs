@@ -1,4 +1,4 @@
-using MegaCrit.Sts2.Core.Entities.Players;
+﻿using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.RestSite;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 
@@ -12,36 +12,36 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 /// </summary>
 public abstract class BalanceRestSiteRelicTemplate : BalanceRelicTemplate
 {
-  public sealed override bool TryModifyRestSiteOptions(Player player, ICollection<RestSiteOption> options)
-  {
-    if (player != Owner)
+    public sealed override bool TryModifyRestSiteOptions(Player player, ICollection<RestSiteOption> options)
     {
-      return false;
+        if (player != Owner)
+        {
+            return false;
+        }
+
+        if (!CanAddRestSiteOption(player, options))
+        {
+            return false;
+        }
+
+        options.Add(CreateRestSiteOption(player));
+        return true;
     }
 
-    if (!CanAddRestSiteOption(player, options))
+    /// <summary>
+    /// 判断当前火堆是否应该展示该遗物提供的选项。
+    /// 输入：持有者玩家与当前火堆选项集合。
+    /// 输出：true 表示允许追加选项。
+    /// </summary>
+    protected virtual bool CanAddRestSiteOption(Player player, ICollection<RestSiteOption> options)
     {
-      return false;
+        return true;
     }
 
-    options.Add(CreateRestSiteOption(player));
-    return true;
-  }
-
-  /// <summary>
-  /// 判断当前火堆是否应该展示该遗物提供的选项。
-  /// 输入：持有者玩家与当前火堆选项集合。
-  /// 输出：true 表示允许追加选项。
-  /// </summary>
-  protected virtual bool CanAddRestSiteOption(Player player, ICollection<RestSiteOption> options)
-  {
-    return true;
-  }
-
-  /// <summary>
-  /// 创建该遗物提供的火堆选项实例。
-  /// 输入：持有者玩家。
-  /// 输出：用于显示和执行的 RestSiteOption。
-  /// </summary>
-  protected abstract RestSiteOption CreateRestSiteOption(Player player);
+    /// <summary>
+    /// 创建该遗物提供的火堆选项实例。
+    /// 输入：持有者玩家。
+    /// 输出：用于显示和执行的 RestSiteOption。
+    /// </summary>
+    protected abstract RestSiteOption CreateRestSiteOption(Player player);
 }

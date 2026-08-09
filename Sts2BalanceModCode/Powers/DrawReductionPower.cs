@@ -1,11 +1,11 @@
-using STS2RitsuLib.Interop.AutoRegistration;
-using MegaCrit.Sts2.Core.Combat;
+﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 
@@ -17,27 +17,27 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 [RegisterPower]
 public sealed class DrawReductionPower() : BalancePowerTemplate(PowerType.Debuff, PowerStackType.Counter)
 {
-  private const decimal DrawPenalty = 1M;
+    private const decimal DrawPenalty = 1M;
 
 
-  public override decimal ModifyHandDraw(Player player, decimal count)
-  {
-    if (player != Owner.Player)
+    public override decimal ModifyHandDraw(Player player, decimal count)
     {
-      return count;
+        if (player != Owner.Player)
+        {
+            return count;
+        }
+
+        Flash();
+        return count - DrawPenalty;
     }
 
-    Flash();
-    return count - DrawPenalty;
-  }
-
-  public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
-  {
-    if (side != Owner.Side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
-      return;
-    }
+        if (side != Owner.Side)
+        {
+            return;
+        }
 
-    await PowerCmd.TickDownDuration(this);
-  }
+        await PowerCmd.TickDownDuration(this);
+    }
 }

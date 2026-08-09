@@ -1,4 +1,4 @@
-using HarmonyLib;
+﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
@@ -11,31 +11,31 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Monsters;
 [HarmonyPatch(typeof(Burn))]
 internal static class HexaghostBurnUpgradePatch
 {
-  internal static bool AllowBurnUpgrade { get; set; }
+    internal static bool AllowBurnUpgrade { get; set; }
 
-  /// <summary>
-  /// 目标：Burn.MaxUpgradeLevel getter。
-  /// 原因：原版 Burn 不可升级，而 Hexaghost 的 Inferno 必须把场内灼伤升级一次。
-  /// </summary>
-  [HarmonyPatch(nameof(Burn.MaxUpgradeLevel), MethodType.Getter)]
-  [HarmonyPostfix]
-  private static void MaxUpgradeLevelPostfix(ref int __result)
-  {
-    if (AllowBurnUpgrade)
-      __result = 1;
-  }
+    /// <summary>
+    /// 目标：Burn.MaxUpgradeLevel getter。
+    /// 原因：原版 Burn 不可升级，而 Hexaghost 的 Inferno 必须把场内灼伤升级一次。
+    /// </summary>
+    [HarmonyPatch(nameof(Burn.MaxUpgradeLevel), MethodType.Getter)]
+    [HarmonyPostfix]
+    private static void MaxUpgradeLevelPostfix(ref int __result)
+    {
+        if (AllowBurnUpgrade)
+            __result = 1;
+    }
 
-  /// <summary>
-  /// 目标：CardModel.UpgradeInternal。
-  /// 原因：为 Hexaghost 强化的 Burn 增加 AFP 原版规定的 2 点伤害。
-  /// </summary>
-  [HarmonyPatch(typeof(CardModel), nameof(CardModel.UpgradeInternal))]
-  [HarmonyPostfix]
-  private static void UpgradeInternalPostfix(CardModel __instance)
-  {
-    if (!AllowBurnUpgrade || __instance is not Burn { IsUpgraded: true } burn)
-      return;
+    /// <summary>
+    /// 目标：CardModel.UpgradeInternal。
+    /// 原因：为 Hexaghost 强化的 Burn 增加 AFP 原版规定的 2 点伤害。
+    /// </summary>
+    [HarmonyPatch(typeof(CardModel), nameof(CardModel.UpgradeInternal))]
+    [HarmonyPostfix]
+    private static void UpgradeInternalPostfix(CardModel __instance)
+    {
+        if (!AllowBurnUpgrade || __instance is not Burn { IsUpgraded: true } burn)
+            return;
 
-    burn.DynamicVars.Damage.UpgradeValueBy(2M);
-  }
+        burn.DynamicVars.Damage.UpgradeValueBy(2M);
+    }
 }

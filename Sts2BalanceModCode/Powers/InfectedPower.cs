@@ -1,5 +1,4 @@
-using STS2RitsuLib.Interop.AutoRegistration;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
@@ -9,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 
@@ -22,20 +22,20 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 [RegisterPower]
 public sealed class InfectedPower() : BalancePowerTemplate(PowerType.Debuff, PowerStackType.Counter)
 {
-  public const int InfectionPerHit = 2;
+    public const int InfectionPerHit = 2;
 
 
-  public override async Task BeforeSideTurnEnd(
-    PlayerChoiceContext choiceContext,
-    CombatSide side,
-    IEnumerable<Creature> participants)
-  {
-    if (side != Owner.Side || !participants.Contains(Owner) || Amount <= 0)
+    public override async Task BeforeSideTurnEnd(
+      PlayerChoiceContext choiceContext,
+      CombatSide side,
+      IEnumerable<Creature> participants)
     {
-      return;
-    }
+        if (side != Owner.Side || !participants.Contains(Owner) || Amount <= 0)
+        {
+            return;
+        }
 
-    Flash();
-    await CreatureCmd.Damage(choiceContext, Owner, Amount, ValueProp.Unpowered, null, null);
-  }
+        Flash();
+        await CreatureCmd.Damage(choiceContext, Owner, Amount, ValueProp.Unpowered, null, null);
+    }
 }

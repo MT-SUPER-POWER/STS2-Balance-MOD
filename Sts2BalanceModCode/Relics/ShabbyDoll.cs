@@ -1,4 +1,4 @@
-using STS2RitsuLib.Interop.AutoRegistration;
+﻿using STS2RitsuLib.Interop.AutoRegistration;
 /*
 using System;
 using System.Collections.Generic;
