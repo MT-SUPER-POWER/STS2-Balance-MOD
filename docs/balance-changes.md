@@ -51,6 +51,21 @@
   - 对齐参考项目的可维护结构：代码根目录统一为 `Sts2BalanceModCode/`，共享模板集中在 `Abstract/`，内容按类别并列，运行时辅助代码集中在 `Runtime/`。
   - 将本地化 key 迁移到 RitsuLib 的规范化 Model ID，并完成本地游戏启动到主菜单的日志验证。
 
+- [x] **IMAGE-GEN-01** — 遗物 outline 自动生成
+  - 复刻 `sts2-arknights-mod` 的主题色轮廓算法，并适配本项目 94×94 遗物资源规格。
+  - 固定从遗物主图自动生成白色主体与 3px 主题色外环，不维护手工或颜色覆盖配置。
+  - 在输出前校验空图、贴边裁切和颜色层缺失。
+
+- [x] **IMAGE-GEN-02** — 全部遗物 outline 批量更新
+  - 使用新制 1254×1254 RGBA 母版替换矮人铁砧（DwarfAnvil），重新生成 94×94 主图与 256×256 大图。
+  - 全部 19 张 Mod 遗物 outline 统一绕过旧手工图，按各自主图色调自动提取主题色并重新生成。
+  - 核对每张输出均为 94×94、文件名与 C# 类型一致，且没有空图、贴边裁切或颜色层缺失。
+
+- [x] **IMAGE-GEN-03** — 收敛遗物图片生成接口
+  - 保留 `files`、`--input`、`--output` 三个必要入口，单次生成主图、大图和自动主题色 outline。
+  - 删除手工 outline、描边宽度与 `--outline-only` 分支，将主题色提取、3px 外环和输出校验全部封装在模块实现内部。
+  - 清理 `image_gen/source/relics/outlines/` 下 19 张已无消费者的旧手工母版，并验证当前生成物哈希不变。
+
 - [x] **ENCHANTMENT-01** — RitsuLib 附魔模块重构
   - 目前：`ForgeEnchantment` 直接继承游戏 `EnchantmentModel`，图标与本地化分别由专用 Harmony Patch 兜底；`DwarfAnvil` 直接处理附魔模型克隆、应用和卡牌预览。
   - 目标：保留铁砧“选择 3 张牌、每张费用永久 -1（最低 0）”的玩家可见行为，改用教程中的 `[RegisterEnchantment]` 与 `ModEnchantmentTemplate`。

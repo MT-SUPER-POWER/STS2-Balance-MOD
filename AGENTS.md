@@ -97,6 +97,8 @@ uv run rest-site-options Smoke.png            # 火堆选项图标（256×169）
 uv run events                                 # 事件背景图（3440×1616）
 ```
 
+遗物 outline 固定由主图自动提取主题色，并生成白色主体与 3px 主题色外环；遗物生成器只接受母版输入与输出目录，不维护手工 outline、颜色或描边宽度覆盖配置。
+
 图片路径自动解析：文件名 `{PascalCase}.png`（大驼峰命名，参考 `D:\Github\sts2-arknights-mod`），基类自动拼接完整路径。遗物轮廓图统一存放于 `images/relics/outlines/{PascalCase}.png` 目录下。
 
 > [!warning]

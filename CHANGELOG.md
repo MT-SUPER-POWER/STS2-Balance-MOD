@@ -17,6 +17,9 @@
 - 结构：代码根目录改为 `Sts2BalanceModCode/`，以 `BalanceModEntry` 作为唯一入口；共享模板集中在 `Abstract/`，视觉、音频与战斗状态辅助代码收拢至 `Runtime/`。
 - 附魔：铁砧附魔改为 RitsuLib 自动注册与标准 `enchantments.json` 本地化；共享模板集中图标和默认值，授予来源通过统一扩展完成附魔与预览，玩家可见效果保持不变（ENCHANTMENT-01）。
 - 规范：参考 `D:\Github\sts2-arknights-mod` 全面规范图片资源与生成器命名为大驼峰（PascalCase），遗物轮廓图统一收拢至 `images/relics/outlines/{Name}.png`，`ModAssetPaths` 统一自动解析大驼峰资源路径。
+- 图片工具链：移植参考项目的遗物 outline 生成算法；清理 Alpha 碎片、从主图提取主题色，并以 4 倍超采样生成 94×94 的白色主体与固定 3px 主题色外环（IMAGE-GEN-01）。
+- 遗物资源：替换矮人铁砧（DwarfAnvil）高清母版并重新生成 94×94 主图、256×256 大图；全部 19 张 Mod 遗物 outline 统一改用主图自动取色算法重新生成（IMAGE-GEN-02）。
+- 图片工具链：遗物生成器收敛为 `files / --input / --output` 三个必要入口，删除手工 outline、描边宽度及仅生成轮廓图的分支，并清理 19 张已无消费者的手工 outline 母版（IMAGE-GEN-03）。
 
 ### Fixed
 

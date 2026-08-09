@@ -223,6 +223,7 @@
 -  **[能力与效果手册](docs/powers.md)**：包含 Mod 内所有 Buff、Debuff、Boss 机制能力及原版修改说明。
 -  **[事件与遭遇手册](docs/events.md)**：包含 1 代回归事件、原版事件调整、选择分支与触发条件。
 -  **[STS2 Mod 制作指南](docs/sts2-modding-guide.md)**：从零开始制作 STS2 Mod 的教程。
+-  **[图片生成自动化脚本](image_gen/)**：遗物工具从主图自动提取主题色，一次生成 94×94 主图、256×256 大图和带 3px 主题色外环的 94×94 outline。
 -  **[技术分析报告](docs/README.md#技术分析报告)**：红面具事件分层架构分析、宝箱房跳过功能技术报告等。
 -  **[未完成需求清单](docs/balance-changes.md)** 与 **[版本变更日志](CHANGELOG.md)**。
 
