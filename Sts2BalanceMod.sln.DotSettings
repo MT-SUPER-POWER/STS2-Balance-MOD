@@ -42,7 +42,7 @@
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=1BE313041F989B4185D2966033C031C3/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=1BE313041F989B4185D2966033C031C3/Text/@EntryValue">namespace $NAMESPACE$;
 
-public class $CLASS$() : Sts2BalanceMod.src.Abstract.BalanceCardTemplate($COST$, MegaCrit.Sts2.Core.Entities.Cards.CardType.$TYPE$, MegaCrit.Sts2.Core.Entities.Cards.CardRarity.$RARITY$, MegaCrit.Sts2.Core.Entities.Cards.TargetType.$TARGET$) {
+public class $CLASS$() : Sts2BalanceMod.Sts2BalanceModCode.Abstract.BalanceCardTemplate($COST$, MegaCrit.Sts2.Core.Entities.Cards.CardType.$TYPE$, MegaCrit.Sts2.Core.Entities.Cards.CardRarity.$RARITY$, MegaCrit.Sts2.Core.Entities.Cards.TargetType.$TARGET$) {
     protected override IEnumerable&lt;MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar&gt; CanonicalVars =&gt; [];
 	
 	protected override async System.Threading.Tasks.Task OnPlay(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext choiceContext, MegaCrit.Sts2.Core.Entities.Cards.CardPlay play)
@@ -80,7 +80,7 @@ public class $CLASS$() : Sts2BalanceMod.src.Abstract.BalanceCardTemplate($COST$,
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B4D0CA86CBDACD42AD544A77CAE9FDEC/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B4D0CA86CBDACD42AD544A77CAE9FDEC/Text/@EntryValue">namespace $NAMESPACE$;
 
-public class $CLASS$() : Sts2BalanceMod.src.Abstract.BalanceRelicTemplate {
+public class $CLASS$() : Sts2BalanceMod.Sts2BalanceModCode.Abstract.BalanceRelicTemplate {
     public override MegaCrit.Sts2.Core.Entities.Relics.RelicRarity Rarity =&gt; MegaCrit.Sts2.Core.Entities.Relics.RelicRarity.$RARITY$;
     
     $END$
@@ -108,7 +108,7 @@ public class $CLASS$() : Sts2BalanceMod.src.Abstract.BalanceRelicTemplate {
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00E2BB0BE57C7344A9558AF85C99E086/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00E2BB0BE57C7344A9558AF85C99E086/Text/@EntryValue">namespace $NAMESPACE$;
 
-public class $CLASS$() : Sts2BalanceMod.src.Abstract.BalancePowerTemplate {
+public class $CLASS$() : Sts2BalanceMod.Sts2BalanceModCode.Abstract.BalancePowerTemplate {
     public override MegaCrit.Sts2.Core.Entities.Powers.PowerType Type =&gt; MegaCrit.Sts2.Core.Entities.Powers.PowerType.$TYPE$;
     public override MegaCrit.Sts2.Core.Entities.Powers.PowerStackType StackType =&gt; MegaCrit.Sts2.Core.Entities.Powers.PowerStackType.Counter;
     

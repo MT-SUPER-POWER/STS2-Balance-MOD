@@ -44,12 +44,12 @@ dotnet publish -c Release                 # 本地发布编译到 dist/Sts2Balan
 | `docs/README.md` | **知识库总索引（Knowledge Base Hub）** |
 | `docs/powers.md` | 能力与效果手册（Buff / Debuff / Boss 机制） |
 | `docs/events.md` | 事件与遭遇手册（原版调整 / 1 代回归事件） |
-| `src/BalanceModEntry.cs` | Mod 入口：注册 RitsuLib 程序集、设置与 Harmony Patch |
-| `src/Abstract/` | 共享模板：`BalanceCardTemplate`、`BalanceRelicTemplate`、`BalancePowerTemplate`、`BalanceMonsterTemplate`、`BalanceEncounterTemplate` |
-| `src/Patches/` | Harmony Patch（子目录：Cards/ / Relics/ / Powers/ / Orbs/ / Merchant/ / Events/ / CardPools/ / Encounters/ / Monsters/） |
-| `src/{Cards,Relics,Powers,Monsters,Encounters,Events,RestSite,Enchantments}/` | 按内容类别组织的 RitsuLib 模型 |
-| `src/Runtime/` | 运行时视觉、音频与战斗状态辅助代码 |
-| `src/{Extensions,Settings}/` | 路径约定与玩家可编辑设置 |
+| `Sts2BalanceModCode/BalanceModEntry.cs` | Mod 入口：注册 RitsuLib 程序集、设置与 Harmony Patch |
+| `Sts2BalanceModCode/Abstract/` | 共享模板：`BalanceCardTemplate`、`BalanceRelicTemplate`、`BalancePowerTemplate`、`BalanceMonsterTemplate`、`BalanceEncounterTemplate` |
+| `Sts2BalanceModCode/Patches/` | Harmony Patch（子目录：Cards/ / Relics/ / Powers/ / Orbs/ / Merchant/ / Events/ / CardPools/ / Encounters/ / Monsters/） |
+| `Sts2BalanceModCode/{Cards,Relics,Powers,Monsters,Encounters,Events,RestSite,Enchantments}/` | 按内容类别组织的 RitsuLib 模型 |
+| `Sts2BalanceModCode/Runtime/` | 运行时视觉、音频与战斗状态辅助代码 |
+| `Sts2BalanceModCode/{Extensions,Settings}/` | 路径约定与玩家可编辑设置 |
 | `Sts2BalanceMod/localization/{eng,zhs,ita,rus}/` | 本地化 JSON（cards.json / powers.json / relics.json 等） |
 | `D:\Game\Sts2Code\localization/{eng,zhs,ita,rus}/` | 游戏原版本地化 JSON（查阅原版卡牌、遗物、能力、事件等的文本与 LocKey 规则） |
 | `Sts2BalanceMod/images/` | 图片资源（card_portraits/ / powers/ / relics/ / events/ / ui/） |

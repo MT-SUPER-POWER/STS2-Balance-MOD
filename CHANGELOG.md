@@ -14,7 +14,7 @@
 - 内容：卡牌、遗物、能力、事件、怪物和遭遇改用 RitsuLib 自动注册与模板资源配置；事件专用遭遇不进入常规章节池。
 - 配置：两个可选平衡开关改由 RitsuLib 数据存储与设置页持久化。
 - 路径与本地化：集中资源路径管理，迁移本地化 key 以匹配 RitsuLib 规范化 Model ID。
-- 结构：代码根目录改为 `src/`，以 `BalanceModEntry` 作为唯一入口；共享模板集中在 `Abstract/`，视觉、音频与战斗状态辅助代码收拢至 `Runtime/`。
+- 结构：代码根目录改为 `Sts2BalanceModCode/`，以 `BalanceModEntry` 作为唯一入口；共享模板集中在 `Abstract/`，视觉、音频与战斗状态辅助代码收拢至 `Runtime/`。
 
 ### Fixed
 

@@ -25,20 +25,20 @@ function Assert-NotContains {
 }
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
-$mindBloom = Get-Content -Raw (Join-Path $repoRoot "src/Events/MindBloom.cs")
-$secondFight = Get-Content -Raw (Join-Path $repoRoot "src/Events/MindBloomSecondFight.cs")
-$combatPatch = Get-Content -Raw (Join-Path $repoRoot "src/Patches/Events/MindBloomCombatPatch.cs")
-$enhancements = Get-Content -Raw (Join-Path $repoRoot "src/Monsters/MindBloomBossMonsterModel.cs")
-$guardianEncounter = Get-Content -Raw (Join-Path $repoRoot "src/Encounters/MindBloomGuardian.cs")
-$hexaghostEncounter = Get-Content -Raw (Join-Path $repoRoot "src/Encounters/MindBloomHexaghost.cs")
-$slimeBossEncounter = Get-Content -Raw (Join-Path $repoRoot "src/Encounters/MindBloomSlimeBoss.cs")
+$mindBloom = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Events/MindBloom.cs")
+$secondFight = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Events/MindBloomSecondFight.cs")
+$combatPatch = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Patches/Events/MindBloomCombatPatch.cs")
+$enhancements = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Monsters/MindBloomBossMonsterModel.cs")
+$guardianEncounter = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Encounters/MindBloomGuardian.cs")
+$hexaghostEncounter = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Encounters/MindBloomHexaghost.cs")
+$slimeBossEncounter = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Encounters/MindBloomSlimeBoss.cs")
 $splitMonsters = @(
   "AcidSlimeLarge.cs",
   "AcidSlimeMedium.cs",
   "SpikeSlimeLarge.cs",
   "SpikeSlimeMedium.cs"
 ) | ForEach-Object {
-  Get-Content -Raw (Join-Path $repoRoot "src/Monsters/$_")
+  Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Monsters/$_")
 }
 
 Assert-Contains $secondFight "IsReady\s*=>\s*true" "Mind Bloom's second fight must be visible."

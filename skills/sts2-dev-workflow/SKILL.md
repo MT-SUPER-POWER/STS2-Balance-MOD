@@ -78,18 +78,18 @@ Do this **before** `rg`, directory scans, or reading C# files. Do not guess file
 |------|-----|---------|
 | Orient to indexed paths | `codegraph files` | Identify the relevant `Cards/`, `Patches/`, or localization area without a filesystem scan |
 | Find a known ID, type, or method | `codegraph query <search>` | `codegraph query "Electrodynamics"` |
-| Read a known symbol or source file | `codegraph node <name>` | `codegraph node "GlowDrawCardPatch"` or `codegraph node "src/Patches/Cards/GlowDrawCardPatch.cs"` |
+| Read a known symbol or source file | `codegraph node <name>` | `codegraph node "GlowDrawCardPatch"` or `codegraph node "Sts2BalanceModCode/Patches/Cards/GlowDrawCardPatch.cs"` |
 | Understand a behavior spanning multiple symbols | `codegraph explore <question>` | `codegraph explore "Trace the card-pool path for Electrodynamics, including registration, injected models, and every patch that can add or remove it."` |
 | Find direct control-flow neighbors | `codegraph callers <symbol>` / `codegraph callees <symbol>` | `codegraph callers "Glow.OnPlay"` |
 | Assess the modification blast radius | `codegraph impact <symbol>` | `codegraph impact "GlowDrawCardPatch.Prefix"` |
-| Identify relevant tests after a code change | `codegraph affected <files...>` | `codegraph affected src/Patches/Cards/GlowDrawCardPatch.cs` |
+| Identify relevant tests after a code change | `codegraph affected <files...>` | `codegraph affected Sts2BalanceModCode/Patches/Cards/GlowDrawCardPatch.cs` |
 
    `codegraph node` and `codegraph explore` return current on-disk source with line numbers; treat that output as the source read. Do **not** re-read a file returned there with filesystem tools. Start with `query` or `files` only when the symbol or area is unknown, then use `node` or `explore` to read the relevant code. Use `callers`, `callees`, or `impact` when the implementation decision depends on relationships rather than text alone. Fall back to `rg` or direct reads only after CodeGraph cannot surface the needed repository source.
 3. Determine which source governs the requested behavior. Use this map:
 
 | Source | Location | Use it for | Editing rule |
 |--------|----------|------------|--------------|
-| Mod source | `src/` | This mod's new content, patches, abstractions, and extensions | Authoritative editable implementation |
+| Mod source | `Sts2BalanceModCode/` | This mod's new content, patches, abstractions, and extensions | Authoritative editable implementation |
 | Vanilla game source | `D:\Game\Sts2Code\` | Exact target type, overload, control flow, private fields, and patch feasibility | Read-only decompiled reference; never modify |
 | Reference mods | `docs/references/WatcherMod/`, `docs/references/ActsFromThePast/` | Read-only examples and compatibility research | Never edit or treat as the target implementation |
 | Player resources | `Sts2BalanceMod/localization/{eng,zhs,ita,rus}/`, `Sts2BalanceMod/images/` | Text and artwork for new or player-visible content | Update only when the task requires them |
@@ -112,11 +112,11 @@ Use the CodeGraph result to select the narrowest matching location. These are st
 
 | Change | New content | Existing-content patch |
 |--------|-------------|------------------------|
-| Card | `src/Cards/` | `src/Patches/Cards/` or `Patches/CardPools/` |
-| Relic | `src/Relics/` | `src/Patches/Relics/` |
-| Power or orb | `src/Powers/` | `src/Patches/Powers/` or `Patches/Orbs/` |
-| Monster or encounter | `src/Monsters/`, `Encounters/` | `src/Patches/Monsters/`, `Patches/Encounters/` |
-| Event, merchant, or rest site | `Events/`, `RestSite/` | `src/Patches/Events/`, `Patches/Merchant/` |
+| Card | `Sts2BalanceModCode/Cards/` | `Sts2BalanceModCode/Patches/Cards/` or `Patches/CardPools/` |
+| Relic | `Sts2BalanceModCode/Relics/` | `Sts2BalanceModCode/Patches/Relics/` |
+| Power or orb | `Sts2BalanceModCode/Powers/` | `Sts2BalanceModCode/Patches/Powers/` or `Patches/Orbs/` |
+| Monster or encounter | `Sts2BalanceModCode/Monsters/`, `Encounters/` | `Sts2BalanceModCode/Patches/Monsters/`, `Patches/Encounters/` |
+| Event, merchant, or rest site | `Events/`, `RestSite/` | `Sts2BalanceModCode/Patches/Events/`, `Patches/Merchant/` |
 
 ### Step 3: Present Implementation Plan
 
@@ -232,9 +232,9 @@ Run this after any C# file is added, removed, renamed, or materially changed so 
 | What | Where |
 |------|-------|
 | Requirements | `docs/balance-changes.md` |
-| Entry point | `src/BalanceModEntry.cs` |
-| Abstract bases | `src/Abstract/` |
-| Harmony patches | `src/Patches/` |
+| Entry point | `Sts2BalanceModCode/BalanceModEntry.cs` |
+| Abstract bases | `Sts2BalanceModCode/Abstract/` |
+| Harmony patches | `Sts2BalanceModCode/Patches/` |
 | Vanilla behavior reference | `D:\Game\Sts2Code\` |
 | Localization | `Sts2BalanceMod/localization/{eng,zhs,ita,rus}/` |
 | Images | `Sts2BalanceMod/images/` |

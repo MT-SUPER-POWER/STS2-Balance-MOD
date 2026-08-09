@@ -65,10 +65,10 @@
 
 ## 📐 架构约定与代码规范
 
-1. **`src/BalanceModEntry.cs`**：唯一 Mod 入口，负责 RitsuLib 程序集注册、设置注册和 Harmony Patch 应用。
-2. **`src/Abstract/`**：共享 RitsuLib 内容模板；内容类别目录只承载各自的具体模型。
-3. **`src/{Cards,Relics,Powers,Monsters,Events,Encounters,RestSite,Enchantments}/`**：按内容类别组织的具体模型。
-4. **`src/Patches/`**：包含对游戏原版现有逻辑、卡牌、遗物、怪物和事件的 Harmony Patch 修改。
-5. **`src/Runtime/`**：运行时视觉、音频与战斗状态辅助代码；不得混入内容模型目录。
-6. **`src/Extensions/ModAssetPaths.cs`**：统一 PCK 内资源路径、常规内容图片命名与回退资源；内容模型不得自行拼接 `res://` 路径。
+1. **`Sts2BalanceModCode/BalanceModEntry.cs`**：唯一 Mod 入口，负责 RitsuLib 程序集注册、设置注册和 Harmony Patch 应用。
+2. **`Sts2BalanceModCode/Abstract/`**：共享 RitsuLib 内容模板；内容类别目录只承载各自的具体模型。
+3. **`Sts2BalanceModCode/{Cards,Relics,Powers,Monsters,Events,Encounters,RestSite,Enchantments}/`**：按内容类别组织的具体模型。
+4. **`Sts2BalanceModCode/Patches/`**：包含对游戏原版现有逻辑、卡牌、遗物、怪物和事件的 Harmony Patch 修改。
+5. **`Sts2BalanceModCode/Runtime/`**：运行时视觉、音频与战斗状态辅助代码；不得混入内容模型目录。
+6. **`Sts2BalanceModCode/Extensions/ModAssetPaths.cs`**：统一 PCK 内资源路径、常规内容图片命名与回退资源；内容模型不得自行拼接 `res://` 路径。
 4. **资源放置**：游戏运行时使用的图片存放在 `Sts2BalanceMod/images/`，文档与 Markdown 预览使用的图标与贴图同步放置于 `Assets/`。

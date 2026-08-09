@@ -48,7 +48,7 @@
 - [x] **MIGRATION-01** — RitsuLib 基础设施迁移
   - 移除 BaseLib 的包引用、运行时依赖和部署逻辑；内容改由 RitsuLib 自动注册。
   - 卡牌、遗物、能力、事件、怪物和遭遇统一采用 RitsuLib 模板与资源配置；路径集中于 `ModAssetPaths`。
-  - 对齐参考项目的可维护结构：代码根目录统一为 `src/`，共享模板集中在 `Abstract/`，内容按类别并列，运行时辅助代码集中在 `Runtime/`。
+  - 对齐参考项目的可维护结构：代码根目录统一为 `Sts2BalanceModCode/`，共享模板集中在 `Abstract/`，内容按类别并列，运行时辅助代码集中在 `Runtime/`。
   - 将本地化 key 迁移到 RitsuLib 的规范化 Model ID，并完成本地游戏启动到主菜单的日志验证。
 
 ### BOSS
