@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.RelicPools;
 using MegaCrit.Sts2.Core.Models.Enchantments;
+using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
@@ -43,8 +44,7 @@ public sealed class SoulContract : BalanceRelicTemplate
         IEnumerable<CardModel> selectedCards = await CardSelectCmd.FromDeckForEnchantment(Owner, soulsPowerEnch, 1, prefs);
         foreach (CardModel card in selectedCards)
         {
-            CardCmd.Enchant(soulsPowerEnch.ToMutable(), card, 0);
-            CardCmd.Preview(card);
+            card.ApplyEnchantmentAndPreview<SoulsPower>(0m);
         }
     }
 }

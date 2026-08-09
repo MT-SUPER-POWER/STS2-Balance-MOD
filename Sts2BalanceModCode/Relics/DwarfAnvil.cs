@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.RelicPools;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Enchantments;
+using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
@@ -51,8 +52,7 @@ public sealed class DwarfAnvil : BalanceRelicTemplate
 
     foreach (var card in await CardSelectCmd.FromDeckForEnchantment(Owner, forge, 1, prefs))
     {
-      CardCmd.Enchant(forge.ToMutable(), card, base.DynamicVars[EnergyKey].IntValue);
-      CardCmd.Preview(card);
+      card.ApplyEnchantmentAndPreview<ForgeEnchantment>(base.DynamicVars[EnergyKey].IntValue);
     }
   }
 }

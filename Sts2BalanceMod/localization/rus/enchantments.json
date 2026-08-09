@@ -1,4 +1,5 @@
 {
-  "FORGE_ENCHANTMENT.title": "Ковка",
-  "FORGE_ENCHANTMENT.description": "Стоимость этой карты навсегда снижена на 1 {Energy:energyIcons()}."
+  "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.title": "Ковка",
+  "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.description": "Стоимость этой карты навсегда снижена на 1 {Amount:energyIcons()}.",
+  "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.extraCardText": ""
 }

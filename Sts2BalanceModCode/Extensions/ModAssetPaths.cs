@@ -39,6 +39,9 @@ public static class ModAssetPaths
     ExistingOrFallback(Resource("images", "powers", "big", fileName),
       Resource("images", "powers", "big", "Power.png"), "large power image");
 
+  public static string EnchantmentIcon(string fileName) =>
+    Resource("images", "enchantments", fileName);
+
   public static string RelicIcon(string fileName) =>
     ExistingOrFallback(Resource("images", "relics", fileName),
       Resource("images", "relics", "Relic.png"), "relic image");

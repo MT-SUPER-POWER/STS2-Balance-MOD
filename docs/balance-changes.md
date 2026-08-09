@@ -51,6 +51,12 @@
   - 对齐参考项目的可维护结构：代码根目录统一为 `Sts2BalanceModCode/`，共享模板集中在 `Abstract/`，内容按类别并列，运行时辅助代码集中在 `Runtime/`。
   - 将本地化 key 迁移到 RitsuLib 的规范化 Model ID，并完成本地游戏启动到主菜单的日志验证。
 
+- [x] **ENCHANTMENT-01** — RitsuLib 附魔模块重构
+  - 目前：`ForgeEnchantment` 直接继承游戏 `EnchantmentModel`，图标与本地化分别由专用 Harmony Patch 兜底；`DwarfAnvil` 直接处理附魔模型克隆、应用和卡牌预览。
+  - 目标：保留铁砧“选择 3 张牌、每张费用永久 -1（最低 0）”的玩家可见行为，改用教程中的 `[RegisterEnchantment]` 与 `ModEnchantmentTemplate`。
+  - 结构：新增 `BalanceEnchantmentTemplate` 作为深模块，集中附魔图标路径、本地化与公共默认值；新增 `EnchantmentExtensions`，将“获取可变附魔、应用到卡牌、刷新预览”的流程封装为单一扩展接口。具体附魔只声明筛选条件和效果，授予来源只调用扩展接口。
+  - 清理：删除仅服务于 ForgeEnchantment 的图标与本地化注入 Patch；四种语言改为标准 `enchantments.json`，图标遵循统一资源命名约定。
+
 ### BOSS
 
 - [x] **AFP-BOSS-02** — 六火亡魂（Hexaghost）及心灵绽放专用遭遇

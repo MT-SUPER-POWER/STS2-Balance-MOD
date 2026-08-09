@@ -15,6 +15,7 @@
 - 配置：两个可选平衡开关改由 RitsuLib 数据存储与设置页持久化。
 - 路径与本地化：集中资源路径管理，迁移本地化 key 以匹配 RitsuLib 规范化 Model ID。
 - 结构：代码根目录改为 `Sts2BalanceModCode/`，以 `BalanceModEntry` 作为唯一入口；共享模板集中在 `Abstract/`，视觉、音频与战斗状态辅助代码收拢至 `Runtime/`。
+- 附魔：铁砧附魔改为 RitsuLib 自动注册与标准 `enchantments.json` 本地化；共享模板集中图标和默认值，授予来源通过统一扩展完成附魔与预览，玩家可见效果保持不变（ENCHANTMENT-01）。
 - 规范：参考 `D:\Github\sts2-arknights-mod` 全面规范图片资源与生成器命名为大驼峰（PascalCase），遗物轮廓图统一收拢至 `images/relics/outlines/{Name}.png`，`ModAssetPaths` 统一自动解析大驼峰资源路径。
 
 ### Fixed
