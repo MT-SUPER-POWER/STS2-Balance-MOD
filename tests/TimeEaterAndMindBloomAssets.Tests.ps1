@@ -36,12 +36,12 @@ function Assert-FileExists {
 }
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
-$timeEater = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Monsters/TimeEater.cs")
-$timeWarpPower = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Powers/TimeWarpPower.cs")
-$guardian = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Monsters/Guardian.cs")
-$hexaghost = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Monsters/Hexaghost.cs")
-$slimeBoss = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Monsters/SlimeBoss.cs")
-$mindBloomSlimeBoss = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Encounters/MindBloomSlimeBoss.cs")
+$timeEater = Get-Content -Raw (Join-Path $repoRoot "src/Monsters/TimeEater.cs")
+$timeWarpPower = Get-Content -Raw (Join-Path $repoRoot "src/Powers/TimeWarpPower.cs")
+$guardian = Get-Content -Raw (Join-Path $repoRoot "src/Monsters/Guardian.cs")
+$hexaghost = Get-Content -Raw (Join-Path $repoRoot "src/Monsters/Hexaghost.cs")
+$slimeBoss = Get-Content -Raw (Join-Path $repoRoot "src/Monsters/SlimeBoss.cs")
+$mindBloomSlimeBoss = Get-Content -Raw (Join-Path $repoRoot "src/Encounters/MindBloomSlimeBoss.cs")
 
 Assert-Contains $timeEater "BaseTimeWarpCounter\s*\+\s*TimeWarpCounterPerExtraPlayer\s*\*\s*\(PlayerCount\s*-\s*1\)" "Time Eater must scale TimeWarp counter by +3 for each extra player."
 Assert-Contains $timeEater "BaseInitialHp\s*\*\s*PlayerCount" "Time Eater HP must scale by player count from the ascension base HP."

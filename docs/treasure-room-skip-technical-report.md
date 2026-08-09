@@ -4,7 +4,7 @@
 
 本文档记录诅咒钥匙（CurseKey）的宝箱房跳过功能如何从「额外创建跳过按钮」重构为「复用 ProceedButton」，以及诅咒钥匙图标在按钮上的放置方式。
 
-相关代码：`Sts2BalanceModCode/Patches/Relics/TreasureRoomSkipPatch.cs`、`CurseKeyPatch.cs`
+相关代码：`src/Patches/Relics/TreasureRoomSkipPatch.cs`、`CurseKeyPatch.cs`
 
 ---
 
@@ -221,6 +221,6 @@ Label 从 x=57 开始（中心对齐），图标放在 x=12、宽 32px，到 x=4
 
 | 文件 | 用途 |
 |------|------|
-| `Sts2BalanceModCode/Patches/Relics/TreasureRoomSkipPatch.cs` | ProceedButton 复用、状态追踪、图标管理 |
-| `Sts2BalanceModCode/Patches/Relics/CurseKeyPatch.cs` | 诅咒生成时机（选遗物后） |
+| `src/Patches/Relics/TreasureRoomSkipPatch.cs` | ProceedButton 复用、状态追踪、图标管理 |
+| `src/Patches/Relics/CurseKeyPatch.cs` | 诅咒生成时机（选遗物后） |
 | `Sts2BalanceMod/localization/{eng,zhs,ita}/gameplay_ui.json` | 按钮文字本地化 |

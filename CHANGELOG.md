@@ -6,6 +6,21 @@
 
 已完成的所有改动见 [README.md](README.md##调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+## v0.3.0
+
+### Changed
+
+- 基础设施：迁移至 RitsuLib，移除本 Mod 对 BaseLib 的包引用、manifest 依赖及 Debug 部署逻辑；构建时自动解析最新稳定版以跟随游戏与上游框架更新。本版本不包含刻意的玩法或平衡改动。
+- 内容：卡牌、遗物、能力、事件、怪物和遭遇改用 RitsuLib 自动注册与模板资源配置；事件专用遭遇不进入常规章节池。
+- 配置：两个可选平衡开关改由 RitsuLib 数据存储与设置页持久化。
+- 路径与本地化：集中资源路径管理，迁移本地化 key 以匹配 RitsuLib 规范化 Model ID。
+- 结构：代码根目录改为 `src/`，以 `BalanceModEntry` 作为唯一入口；共享模板集中在 `Abstract/`，视觉、音频与战斗状态辅助代码收拢至 `Runtime/`。
+
+### Fixed
+
+- 兼容性：保留通用 Model ID 初始化守卫，避免同时安装 BaseLib 的其他 Mod 时在 `ModelDb.InitIds` 触发空引用。
+- 构建：使用 NuGet 部署的唯一 `mod_manifest.json`，并清理旧 `STS2-RitsuLib.json`，避免游戏重复加载同一 RitsuLib Mod ID。
+
 
 ## v0.2.0
 

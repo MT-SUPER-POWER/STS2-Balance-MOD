@@ -25,7 +25,7 @@ function Assert-NotContains {
 }
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
-$registration = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Patches/Encounters/EventEncounterRegistrationPatch.cs")
+$registration = Get-Content -Raw (Join-Path $repoRoot "src/Patches/Encounters/EventEncounterRegistrationPatch.cs")
 
 foreach ($encounter in @(
   "RedMaskBandits",

@@ -33,7 +33,7 @@
 ### Prerequisites
 
 1. **[Slay the Spire 2](https://store.steampowered.com/app/2868840/Slay_the_Spire_2/)** Version ≥ 0.110.0
-2. **[BaseLib](https://github.com/Alchyr/BaseLib-StS2)** — Mod loader dependency, must be installed first, Version ≥ 3.4.0+
+2. **[RitsuLib](https://github.com/BAKAOLC/STS2-RitsuLib)** — Mod loader dependency; install the latest stable release compatible with your game version
 
 ### Installation Steps
 
@@ -42,7 +42,7 @@
    - **Windows**: `%AppData%/SlayTheSpire2/mods/`
    - **macOS**: `~/Library/Application Support/SlayTheSpire2/mods/`
    - **Linux**: `~/.local/share/SlayTheSpire2/mods/`
-3. Ensure `BaseLib` is also installed in the same `mods` directory.
+3. Ensure `STS2-RitsuLib` is also installed in the same `mods` directory.
 4. Launch the game and confirm `Sts2BalanceMod` is checked in the Mod Manager menu.
 
 ---
@@ -56,7 +56,7 @@
 
 ### Mod Settings
 
-This Mod is integrated into the game's native Mod Settings UI. Settings are auto-saved by BaseLib and restored across game sessions.
+This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted and restored across game sessions.
 
 > [!warning]
 > Multiplayer games do not auto-sync Mod settings. All players must use identical settings to avoid desynchronized event choices or battle states.

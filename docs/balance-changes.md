@@ -36,7 +36,7 @@
 ### 基础设施
 
 - [x] **CONFIG-01** — Mod 设置页面 MVP
-  - 注册 BaseLib 配置页面并启用自动持久化。
+  - 注册 RitsuLib 设置页面并启用自动持久化。
   - 首个开关控制“除虫者”“科学怪人”和“药水的未来？”的离开选项，默认开启。
   - 补齐英语、简体中文、意大利语和俄语设置界面文本。
 
@@ -44,6 +44,12 @@
   - 默认开启，保持 BOSS-01 当前的固定四回合循环与【感染】机制。
   - 关闭时完整恢复原版【活力火花】开场能力与原版行动状态机。
   - 下次进入感染棱柱战斗时生效；多人游戏时所有玩家必须使用相同设置。
+
+- [x] **MIGRATION-01** — RitsuLib 基础设施迁移
+  - 移除 BaseLib 的包引用、运行时依赖和部署逻辑；内容改由 RitsuLib 自动注册。
+  - 卡牌、遗物、能力、事件、怪物和遭遇统一采用 RitsuLib 模板与资源配置；路径集中于 `ModAssetPaths`。
+  - 对齐参考项目的可维护结构：代码根目录统一为 `src/`，共享模板集中在 `Abstract/`，内容按类别并列，运行时辅助代码集中在 `Runtime/`。
+  - 将本地化 key 迁移到 RitsuLib 的规范化 Model ID，并完成本地游戏启动到主菜单的日志验证。
 
 ### BOSS
 
@@ -56,7 +62,7 @@
   - 新增包含七个固定分裂槽位的 `RoomType.Monster` 专用遭遇，保持 AFP 原始数值与进阶分档。
 
 - [x] **AFP-BOSS-PACK-01** — Boss 资源打包链
-  - 删除 `Sts2BalanceMod/monsters/.gdignore`，让该目录的全部怪物资源进入 Godot 扫描；场景根节点由既有 `Sts2MonsterVisualsPatch` 在运行时包装为 `NCreatureVisuals`。
+  - 删除 `Sts2BalanceMod/monsters/.gdignore`，让该目录的全部怪物资源进入 Godot 扫描；场景根节点由既有 `MonsterVisualsPatch` 在运行时包装为 `NCreatureVisuals`。
   - 将 LibGDX `vfx.atlas` 加入导出白名单；最终 PCK 已核对包含全部自定义怪物场景、Spine、六火亡魂贴图、VFX 与三组音效。
 
 ### 遗物

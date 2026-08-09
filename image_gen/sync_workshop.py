@@ -41,7 +41,7 @@ def main():
 
 本 Mod 旨在优化《杀戮尖塔 2》的游戏平衡性与游玩体验，针对部分卡牌、遗物、商店价格及随机事件进行了机制重构与数值调优。
 
-📌 **前置需求**: 需在创意工坊订阅并启用 **BaseLib (>= 3.4.0)**
+📌 **前置需求**: 需从 [RitsuLib Releases](https://github.com/BAKAOLC/STS2-RitsuLib/releases) 安装并启用与游戏版本兼容的最新稳定版 **RitsuLib**
 📖 **详细调整清单与 README**:
 https://github.com/MT-SUPER-POWER/STS2-Balance-MOD
 
@@ -52,7 +52,7 @@ Slay the Spire 2 Balance MOD
 
 This mod aims to optimize the balance and gameplay experience of Slay the Spire 2 by reworking mechanics and fine-tuning values for select cards, relics, shop prices, and random events.
 
-📌 **Dependency**: Requires **BaseLib (>= 3.4.0)** from Steam Workshop
+📌 **Dependency**: Requires the latest stable **RitsuLib** compatible with your game version, from [GitHub Releases](https://github.com/BAKAOLC/STS2-RitsuLib/releases)
 📖 **Detailed Changes & README**:
 https://github.com/MT-SUPER-POWER/STS2-Balance-MOD"""
 
@@ -79,7 +79,9 @@ https://github.com/MT-SUPER-POWER/STS2-Balance-MOD"""
     data["tags"] = [
         "Balance"
     ]
-    data["dependencies"] = [3737335127]
+    # RitsuLib is distributed through GitHub Releases rather than Steam Workshop,
+    # so it must not be published as a stale BaseLib Workshop dependency.
+    data["dependencies"] = []
     data["minBranch"] = "public-beta"
     data["maxBranch"] = "public-beta"
 

@@ -25,8 +25,8 @@ function Assert-NotContains {
 }
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
-$mindBloom = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Events/MindBloom.cs")
-$bear = Get-Content -Raw (Join-Path $repoRoot "Sts2BalanceModCode/Monsters/Bear.cs")
+$mindBloom = Get-Content -Raw (Join-Path $repoRoot "src/Events/MindBloom.cs")
+$bear = Get-Content -Raw (Join-Path $repoRoot "src/Monsters/Bear.cs")
 
 Assert-Contains $mindBloom "Option\(Fight" "Mind Bloom must expose the Act 1 boss fight option."
 Assert-NotContains $mindBloom "FIGHT_LOCKED" "Mind Bloom fight option must not stay locked."

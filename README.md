@@ -33,7 +33,7 @@
 ### 前置要求
 
 1. **[Slay the Spire 2](https://store.steampowered.com/app/2868840/Slay_the_Spire_2/)** 版本 ≥ 0.110.0
-2. **[BaseLib](https://github.com/Alchyr/BaseLib-StS2)** — Mod 加载前置库，需先安装，版本 ≥ 3.4.0+
+2. **[RitsuLib](https://github.com/BAKAOLC/STS2-RitsuLib)** — Mod 加载前置库，需先安装与当前游戏版本兼容的最新稳定版
 
 ### 安装步骤
 
@@ -42,7 +42,7 @@
    - **Windows**: `%AppData%/SlayTheSpire2/mods/`
    - **macOS**: `~/Library/Application Support/SlayTheSpire2/mods/`
    - **Linux**: `~/.local/share/SlayTheSpire2/mods/`
-3. 确保 `BaseLib` 也已安装在同一目录
+3. 确保 `STS2-RitsuLib` 也已安装在同一目录
 4. 启动游戏，在 Mod 管理页面确认 `Sts2BalanceMod` 已勾选
 
 ---
@@ -56,7 +56,7 @@
 
 ### Mod 设置
 
-本 Mod 已接入游戏的 Mod 设置页面；配置会由 BaseLib 自动保存并在后续游戏中恢复。
+本 Mod 已接入 RitsuLib 的 Mod 设置页面；配置会自动保存并在后续游戏中恢复。
 
 > [!warning]
 > 多人游戏不会自动同步 Mod 配置。所有玩家必须使用相同设置，否则事件选项或游戏内容可能不一致。

@@ -1,6 +1,6 @@
 # STS2-Balance-MOD
 
-《杀戮尖塔 2》平衡调整 Mod（Godot 4.5.1 / C# 12 / .NET 9 / Harmony 2.x / BaseLib 3.3.0+）。
+《杀戮尖塔 2》平衡调整 Mod（Godot 4.5.1 / C# 12 / .NET 9 / Harmony 2.x / RitsuLib 最新稳定版）。
 
 <!-- BUILD_START -->
 ## Build & Verify
@@ -44,16 +44,12 @@ dotnet publish -c Release                 # 本地发布编译到 dist/Sts2Balan
 | `docs/README.md` | **知识库总索引（Knowledge Base Hub）** |
 | `docs/powers.md` | 能力与效果手册（Buff / Debuff / Boss 机制） |
 | `docs/events.md` | 事件与遭遇手册（原版调整 / 1 代回归事件） |
-| `Sts2BalanceModCode/MainFile.cs` | Mod 入口：`[ModInitializer]` → `Harmony.PatchAll()` |
-| `Sts2BalanceModCode/Abstract/` | 基类：`Sts2CardModel`、`Sts2RelicModel`、`Sts2PowerModel`、`Sts2MonsterModel`、`Sts2EncounterModel` |
-| `Sts2BalanceModCode/Patches/` | Harmony Patch（子目录：Cards/ / Relics/ / Powers/ / Orbs/ / Merchant/ / Events/ / CardPools/ / Encounters/ / Monsters/） |
-| `Sts2BalanceModCode/Cards/` | 新增卡牌 |
-| `Sts2BalanceModCode/Relics/` | 新增遗物 |
-| `Sts2BalanceModCode/Powers/` | 新增能力 |
-| `Sts2BalanceModCode/Monsters/` | 新增怪物 |
-| `Sts2BalanceModCode/Encounters/` | 新增遭遇 |
-| `Sts2BalanceModCode/Events/` | 新增事件 |
-| `Sts2BalanceModCode/RestSite/` | 火堆选项 |
+| `src/BalanceModEntry.cs` | Mod 入口：注册 RitsuLib 程序集、设置与 Harmony Patch |
+| `src/Abstract/` | 共享模板：`BalanceCardTemplate`、`BalanceRelicTemplate`、`BalancePowerTemplate`、`BalanceMonsterTemplate`、`BalanceEncounterTemplate` |
+| `src/Patches/` | Harmony Patch（子目录：Cards/ / Relics/ / Powers/ / Orbs/ / Merchant/ / Events/ / CardPools/ / Encounters/ / Monsters/） |
+| `src/{Cards,Relics,Powers,Monsters,Encounters,Events,RestSite,Enchantments}/` | 按内容类别组织的 RitsuLib 模型 |
+| `src/Runtime/` | 运行时视觉、音频与战斗状态辅助代码 |
+| `src/{Extensions,Settings}/` | 路径约定与玩家可编辑设置 |
 | `Sts2BalanceMod/localization/{eng,zhs,ita,rus}/` | 本地化 JSON（cards.json / powers.json / relics.json 等） |
 | `D:\Game\Sts2Code\localization/{eng,zhs,ita,rus}/` | 游戏原版本地化 JSON（查阅原版卡牌、遗物、能力、事件等的文本与 LocKey 规则） |
 | `Sts2BalanceMod/images/` | 图片资源（card_portraits/ / powers/ / relics/ / events/ / ui/） |

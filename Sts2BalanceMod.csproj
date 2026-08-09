@@ -10,6 +10,10 @@
         <GodotDisabledSourceGenerators>GodotPluginsInitializer</GodotDisabledSourceGenerators>
         <!-- NOTE: 项目包含 .tscn/.gdextension 等 Godot 资源，必须用 Godot export 生成完整 PCK。 -->
         <PckPackerEnabled>false</PckPackerEnabled>
+        <!-- RitsuLib NuGet target 会将运行时框架部署到游戏 mods 目录。 -->
+        <RitsuLibDeployDir>$(ModsPath)STS2-RitsuLib/</RitsuLibDeployDir>
+        <!-- 游戏与框架都处于快速迭代期；每次构建重新解析 RitsuLib 的最新稳定版本。 -->
+        <RestoreForceEvaluate>true</RestoreForceEvaluate>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -51,14 +55,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <!-- NOTE: Baselib 版本控制的地方 -->
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="3.4.0" PrivateAssets="All" />
+        <PackageReference Include="STS2.RitsuLib" Version="*" PrivateAssets="All" />
         <PackageReference Include="Krafs.Publicizer" Version="2.3.1" PrivateAssets="all" />
-        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.1.9" />
         <!-- NOTE: 包仍保留为可选工具，但当前通过 PckPackerEnabled=false 禁用，避免生成缺少 Assets/ 的半截 PCK。 -->
         <PackageReference Include="BSchneppe.StS2.PckPacker" Version="0.1.1" PrivateAssets="All" />
-        <!-- NOTE: ModAnalyzers 按文件名匹配本地化（Power → powers.json），需显式列入 AdditionalFiles -->
-        <AdditionalFiles Include="Sts2BalanceMod/localization/**/*.json" />
     </ItemGroup>
 
     <ItemGroup>
@@ -108,13 +108,13 @@
         <Copy SourceFiles="$(AssemblyName).json" DestinationFolder="$(ModOutputDir)" />
         <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(ModOutputDir)" Condition="'$(Configuration)' != 'Release'" />
 
-        <!-- NOTE: 仅 Debug 构建时同步 BaseLib 到游戏 mods，方便本机联机调试 -->
-        <Message Text="Copying BaseLib to mods folder." Importance="high" Condition="'$(Configuration)' != 'Release'" />
-        <ItemGroup Condition="'$(Configuration)' != 'Release'">
-            <BaseLibFiles Include="$(NuGetPackageRoot)alchyr.sts2.baselib/**/lib/**/BaseLib.dll;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.pck;$(NuGetPackageRoot)alchyr.sts2.baselib/**/Content/BaseLib.json;" />
-        </ItemGroup>
-        <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/" Condition="'$(Configuration)' != 'Release'" />
+    </Target>
 
+    <!-- RitsuLib's NuGet target deploys its canonical mod_manifest.json. Remove the legacy filename left by earlier
+         development installs, otherwise the game discovers the same framework Mod ID twice. -->
+    <Target Name="RemoveLegacyRitsuLibManifest" AfterTargets="CopyRitsuLibPackageModFiles"
+            Condition="'$(RitsuLibDeployDir)' != ''">
+        <Delete Files="$(RitsuLibDeployDir)STS2-RitsuLib.json" />
     </Target>
 
     <Target Name="GodotExportPckOnBuild" AfterTargets="CopyToModsFolderOnBuild" Condition="'$(SkipGodotExport)' != 'true' and '$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'" Inputs="@(PckResources)" Outputs="$(ModOutputDir)$(MSBuildProjectName).pck">
