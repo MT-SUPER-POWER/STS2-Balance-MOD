@@ -95,7 +95,7 @@
 | **探寻 [Dowsing]** | <img src="Assets/profile/neow.png" width="22" height="22" title="涅奥 (Neow)"> | 任务 | 进入 5 个 ? 房间后转化为「丰饶」 | 调整为进入 **4 个 ? 房间**后转化为「丰饶」 |
 | **魔球 [The Ball]** | <img src="Assets/profile/colorless.png" width="22" height="22" title="无色 (Colorless)"> | 攻击 | 每次打出后伤害成长 **10 / 15** | 成长幅度改为 **15 / 20** |
 | **巨镰 [The Scythe]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 2 费，消耗；造成 13 点伤害，每次打出后伤害成长 **4 / 5** | 初始伤害调整为 **16** 点，配合官方 **5 / 7** 的成长幅度 |
-| **火箭飞拳 [Rocket Punch]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 攻击 | 2 费；生成状态牌时减 1 费 | 每当生成状态牌时，获得**单次 0 费打出额度**（不按张数/张数累加），打出任意 1 张后立刻恢复 2 费 |
+| **火箭飞拳 [Rocket Punch]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 攻击 | 2 费；生成状态牌时减 1 费 | 回调至此前效果，每当生成状态牌时此牌耗能**降至 0 费（在下一次打出前）** |
 | **触媒 [Accelerant]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 能力 | 蓝卡（罕见） | 稀有度回调为**金卡（稀有）** |
 | **计划妥当 [Well-Laid Plans]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 能力 | 金卡（稀有），1 / 0 费；回合结束时不弃牌 | 罕见，2 / 1 费；回合结束时保留最多 **1 / 2** 张牌（再次打出保留张数可叠加，选卡界面自动过滤手牌中已有【保留】属性的牌），未选择的手牌正常弃置，并保留多人可用支持 |
 | **华丽收场 [Grand Finale]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | 0 费，抽牌堆有 0 张牌时打出 | **X 费**卡牌，打出条件调整为**抽牌堆卡牌数 ≤ X**；**升级后打出少扣除 2 点费用**（扣除 $\max(0, X - 2)$ 能量） |
