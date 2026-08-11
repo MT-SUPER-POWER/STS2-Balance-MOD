@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -22,7 +22,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 public sealed class OldBeggar : BalanceEventTemplate
 {
     private const int GoldCost = 75;
-    protected override string PortraitFileName => "Cleric.png";
+    protected override string PortraitFileName => "OldBeggar.png";
 
     private static readonly string ClericPortraitPath = ModAssetPaths.EventImage("Cleric.png");
 

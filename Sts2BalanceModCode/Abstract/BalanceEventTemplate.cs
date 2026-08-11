@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Events;
+using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.HoverTips;
 using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
 using STS2RitsuLib.Content;
@@ -29,11 +29,17 @@ public abstract class BalanceEventTemplate : ModEventTemplate
       string pageKey,
       IEnumerable<IHoverTip> hoverTips)
     {
-        var optionKey = action.Method.Name.ToUpperInvariant();
+        var optionKey = ToSnakeCase(action.Method.Name).ToUpperInvariant();
         var localizationKey = pageKey == "INITIAL"
           ? InitialOptionKey(optionKey)
           : ModOptionKey(pageKey, optionKey);
 
         return new EventOption(this, action, localizationKey, hoverTips);
+    }
+
+    private static string ToSnakeCase(string str)
+    {
+        if (string.IsNullOrEmpty(str)) return str;
+        return System.Text.RegularExpressions.Regex.Replace(str, @"(?<!^)(?=[A-Z])", "_");
     }
 }

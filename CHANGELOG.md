@@ -13,6 +13,7 @@
 - 卡牌平衡：核对并修正「火箭飞拳」（Rocket Punch）生成状态牌后的降费逻辑。严格匹配文本“此牌的耗能在下一次打出前降为0”，生成状态牌时将每张飞拳实体的费用置为 0 费 (`SetUntilPlayed(0)`)；单张飞拳打出后其各自 0 费效果随打出正常清空，洗回牌组再抽到时恢复 2 费（CARD-14）。
 - 资源规范：清理 `images/` 目录下所有混杂的旧 `snake_case` 下划线遗留文件，并将 `image_gen` 工具链与 `ModAssetPaths` 全面规范为 100% PascalCase（大驼峰）格式，生成全量干净、无内容重叠的卡牌立绘、满画幅先古卡、遗物轮廓图与事件图片。
 - 修复大图书馆事件缺少背景图的问题
+- 事件兼容：修复老乞丐（[OldBeggar](file:///d:/Github/STS2-Balance-MOD/Sts2BalanceModCode/Events/OldBeggar.cs)）事件在进入时由于选项方法名与本地化 Key (SNAKE_CASE) 不匹配导致 `Description` 为 `null` 进而触发 `NullReferenceException` 崩溃的问题，同时修正初始立绘文件名为 `OldBeggar.png`。
 
 ## v0.3.1
 
