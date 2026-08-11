@@ -6,12 +6,18 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
-## v0.3.1
+## v0.3.2
 
 ### Fixed
 
 - 卡牌平衡：核对并修正「火箭飞拳」（Rocket Punch）生成状态牌后的降费逻辑。严格匹配文本“此牌的耗能在下一次打出前降为0”，生成状态牌时将每张飞拳实体的费用置为 0 费 (`SetUntilPlayed(0)`)；单张飞拳打出后其各自 0 费效果随打出正常清空，洗回牌组再抽到时恢复 2 费（CARD-14）。
 - 资源规范：清理 `images/` 目录下所有混杂的旧 `snake_case` 下划线遗留文件，并将 `image_gen` 工具链与 `ModAssetPaths` 全面规范为 100% PascalCase（大驼峰）格式，生成全量干净、无内容重叠的卡牌立绘、满画幅先古卡、遗物轮廓图与事件图片。
+- 修复大图书馆事件缺少背景图的问题
+
+## v0.3.1
+
+### Fixed
+
 - 资源路径：修正 `ModAssetPaths` 中拼接 `res://` 资源路径时使用 `Path.Join` 产生 Windows 反斜杠 `\` 的问题，解决游戏中卡牌立绘、能力与遗物图标丢失以及事件背景图片加载失败导致的崩溃。
 - 事件兼容：修复 `MindBloom` 心灵绽放事件与战斗 Patch 中的 API 命名空间和类型引用错误（`MapPointRoomHistoryEntry` / `CombatReplayWriter`）。
 
