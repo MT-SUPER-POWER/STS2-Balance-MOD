@@ -38,20 +38,23 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore /p:ContinuousIntegrationBuild=true
+        # 与 release 一致：CI 无本机 GodotPath，跳过 PCK 导出
+        run: dotnet restore /p:ContinuousIntegrationBuild=true /p:SkipGodotExport=true
 
       - name: Build project
-        run: dotnet build --no-restore -c Debug /p:ContinuousIntegrationBuild=true
+        # lint CI 需要编译校验，但不安装 Godot；参考 release 的 SkipGodotExport
+        run: dotnet build --no-restore -c Debug /p:ContinuousIntegrationBuild=true /p:SkipGodotExport=true
 
       - name: Run dotnet format check
         id: format
         run: |
+          set -o pipefail
           dotnet format \
             --verify-no-changes \
-            --severity info \
+            --verbosity info \
             /p:ContinuousIntegrationBuild=true \
+            /p:SkipGodotExport=true \
             2>&1 | tee format-output.txt
-          echo "exit_code=${PIPESTATUS[0]}" >> $GITHUB_OUTPUT
 
       - name: Run C# xUnit Tests
         run: dotnet test --no-build -c Debug /p:ContinuousIntegrationBuild=true /p:SkipGodotExport=true
