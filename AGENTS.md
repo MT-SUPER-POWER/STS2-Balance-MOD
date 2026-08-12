@@ -199,5 +199,6 @@ uv run events                                 # 事件背景图（3440×1616）
 
 - **MCP 工具**（推荐）：`codegraph_explore` 可以在一次调用中回答代码结构、符号源码与调用链。查询游戏原版代码时务必显式指定 `projectPath: "D:\\Game\\Sts2Code"`。
 - **Shell 命令行**：`codegraph explore "<symbol names or question>"`。
+- **自动同步（Auto-Sync）**：CodeGraph 默认开启自动监听与同步。编辑、新增或删除文件时会自动实时更新索引，无需手动执行 `codegraph sync`。
 - **兜底策略（自动建立索引）**：如果目标代码库（如 `D:\Game\Sts2Code` 或新项目）未生成 `.codegraph/` 索引或索引丢失，**允许且应当**直接通过 shell 运行 `codegraph init` 或 `codegraph index` 自动建立索引，建立完成后即可正常使用 `codegraph_explore` 进行深入分析，严禁回退到使用脚本/反射解包 DLL。
 <!-- CODEGRAPH_END -->

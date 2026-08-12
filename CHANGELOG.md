@@ -6,6 +6,12 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+## [Unreleased]
+
+### Changed
+
+- 基础设施：更新 Agent 工作流与 CodeGraph 规范，集成 CodeGraph 默认开启的自动监听与实时同步（Auto-Sync）特性，移除手动执行 `codegraph sync` 的繁琐步骤。
+
 ## v0.3.2
 
 ### Fixed

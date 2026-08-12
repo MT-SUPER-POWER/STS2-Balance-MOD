@@ -71,7 +71,7 @@ Only after user confirms the requirements document.
 
 Do this **before** `rg`, directory scans, or reading C# files. Do not guess filenames from an English or localized game name. CodeGraph is the default tool for both locating **and reading** repository source.
 
-1. Check that the repository root contains `.codegraph/`, then run `codegraph status`. If it reports a stale index, run `codegraph sync` before investigating.
+1. Check that the repository root contains `.codegraph/`. CodeGraph automatically watches the workspace and updates the index on every file change, so no manual status check or sync command is required.
 2. Select and combine CodeGraph operations based on the unanswered question; do **not** mechanically run every command or rely on one fixed prompt. Use the MCP equivalents when available, otherwise use these repository CLI commands:
 
 | Need | CLI | Example |
@@ -208,13 +208,9 @@ Before committing, inspect `git diff` and `git status`; stage only task-related 
 
 Types: `feat(card)`, `fix(relic)`, `refactor(patch)`, `chore(infra)`, `docs(docs)`
 
-### Step 7: Sync CodeGraph
+### Step 7: CodeGraph Auto-Sync
 
-```bash
-codegraph sync
-```
-
-Run this after any C# file is added, removed, renamed, or materially changed so the next task's source resolution is current. Use `codegraph index` only when there is no usable index or `status`/`sync` reports that a full rebuild is required. Report if synchronization cannot run; do not silently leave a stale graph.
+CodeGraph automatically watches the repository and syncs file changes in the background as you edit, add, or delete files. No manual `codegraph sync` or `codegraph index` step is required.
 
 ---
 

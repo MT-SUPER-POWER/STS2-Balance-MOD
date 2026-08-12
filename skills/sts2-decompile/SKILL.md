@@ -96,11 +96,14 @@ git status
 git diff --stat
 ```
 
-### Step 7: Update CodeGraph Index
+### Step 7: Initialize / Verify CodeGraph Index
 
 ```bash
+# If D:\Game\Sts2Code does not have a .codegraph/ index yet, run:
 codegraph index
 ```
+
+Once initialized, CodeGraph automatically watches and updates the index on file changes.
 
 ### Step 8: Review and Commit
 
