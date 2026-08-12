@@ -49,11 +49,11 @@ jobs:
         id: format
         run: |
           set -o pipefail
+          # format 不接受 /p: MSBuild 属性；restore/build 已带 SkipGodotExport
           dotnet format \
             --verify-no-changes \
-            --verbosity info \
-            /p:ContinuousIntegrationBuild=true \
-            /p:SkipGodotExport=true \
+            --severity info \
+            --no-restore \
             2>&1 | tee format-output.txt
 
       - name: Run C# xUnit Tests
