@@ -49,8 +49,9 @@ jobs:
         id: format
         run: |
           set -o pipefail
+          # 根目录同时有 .sln 与 .csproj，必须显式指定 workspace
           # format 不接受 /p: MSBuild 属性；restore/build 已带 SkipGodotExport
-          dotnet format \
+          dotnet format Sts2BalanceMod.sln \
             --verify-no-changes \
             --severity info \
             --no-restore \
