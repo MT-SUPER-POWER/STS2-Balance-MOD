@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sts2BalanceMod", "Sts2BalanceMod.csproj", "{C8894CEF-A1F0-4BE9-BD9A-316C2BD033EB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sts2BalanceMod.Tests", "tests\Sts2BalanceMod.Tests\Sts2BalanceMod.Tests.csproj", "{0912E6C0-3E6F-47C0-BEE9-3385525FE669}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +31,23 @@ Global
 		{C8894CEF-A1F0-4BE9-BD9A-316C2BD033EB}.Release|x64.Build.0 = Release|Any CPU
 		{C8894CEF-A1F0-4BE9-BD9A-316C2BD033EB}.Release|x86.ActiveCfg = Release|Any CPU
 		{C8894CEF-A1F0-4BE9-BD9A-316C2BD033EB}.Release|x86.Build.0 = Release|Any CPU
+		{0912E6C0-3E6F-47C0-BEE9-3385525FE669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0912E6C0-3E6F-47C0-BEE9-3385525FE669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0912E6C0-3E6F-47C0-BEE9-3385525FE669}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0912E6C0-3E6F-47C0-BEE9-3385525FE669}.Debug|x64.Build.0 = Debug|Any CPU
+		{0912E6C0-3E6F-47C0-BEE9-3385525FE669}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0912E6C0-3E6F-47C0-BEE9-3385525FE669}.Debug|x86.Build.0 = Debug|Any CPU
+		{0912E6C0-3E6F-47C0-BEE9-3385525FE669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0912E6C0-3E6F-47C0-BEE9-3385525FE669}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0912E6C0-3E6F-47C0-BEE9-3385525FE669}.Release|x64.ActiveCfg = Release|Any CPU
+		{0912E6C0-3E6F-47C0-BEE9-3385525FE669}.Release|x64.Build.0 = Release|Any CPU
+		{0912E6C0-3E6F-47C0-BEE9-3385525FE669}.Release|x86.ActiveCfg = Release|Any CPU
+		{0912E6C0-3E6F-47C0-BEE9-3385525FE669}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0912E6C0-3E6F-47C0-BEE9-3385525FE669} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
 EndGlobal

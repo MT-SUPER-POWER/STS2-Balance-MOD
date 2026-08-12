@@ -1,5 +1,8 @@
 # Compile
 bin/
+**/bin/
+obj/
+**/obj/
 dist/
 /android/
 publish/

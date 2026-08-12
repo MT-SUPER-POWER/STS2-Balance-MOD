@@ -53,6 +53,9 @@ jobs:
             2>&1 | tee format-output.txt
           echo "exit_code=${PIPESTATUS[0]}" >> $GITHUB_OUTPUT
 
+      - name: Run C# xUnit Tests
+        run: dotnet test --no-build -c Debug /p:ContinuousIntegrationBuild=true /p:SkipGodotExport=true
+
       - name: Run PowerShell Tests
         shell: pwsh
         run: |

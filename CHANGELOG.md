@@ -6,11 +6,12 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
-## [Unreleased]
+## v0.3.3
 
 ### Added
 
-- 基础设施：新增 `.github/workflows/code-check.yml`（`Code Check & Test`）工作流，在 `main` 分支的 Push 和 PR 触发时自动进行依赖还原、C# 项目编译、`dotnet format` 格式验证及 `tests/*.Tests.ps1` PowerShell 单元测试。
+- 基础设施：新增 `tests/Sts2BalanceMod.Tests` C# xUnit 测试工程，包含文件 PascalCase 规范、本地化覆盖率、模型与资源文件匹配、Harmony Patch 反射真实性及版本号一致性等 23 项正向与反向自动化测试用例，并将其接入 `.github/workflows/code-check.yml` CI 流程。
+- 基础设施：新增 `.github/workflows/code-check.yml`（`Code Check & Test`）工作流，在 `main` 分支的 Push 和 PR 触发时自动进行依赖还原、C# 项目编译、`dotnet format` 格式验证及 `dotnet test` 单元测试。
 - 基础设施：在 `README.md` 与 `README_EN.md` 顶部新增 `Code Check & Test` 工作流状态 Badge 徽章。
 
 ### Changed

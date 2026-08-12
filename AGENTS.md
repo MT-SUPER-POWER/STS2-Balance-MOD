@@ -6,19 +6,10 @@
 ## Build & Verify
 
 ```powershell
-dotnet build                              # 编译（Debug 自动拷贝 dll/json/pck 到游戏 mods/ 目录，同时自动从本地游戏 DLL 更新 libs/ 目录下的 API Stub）
-dotnet publish -c Release                 # 本地发布编译到 dist/Sts2BalanceMod/（仅限本地发布验证，正式发布由 CI/CD 自动进行）
+dotnet test                               # 执行 C# xUnit 规则测试工程（校验 PascalCase 规范、本地化覆盖、资源文件存在性、Harmony Patch 安全性与版本一致性）
 ```
 
-**前置**：`Sts2PathDiscovery.props` 自动检测游戏路径；`Directory.Build.props` 需配置 `GodotPath`（PCK 导出需要 Godot 4.5.1 mono 命令行）。该文件在 `.gitignore` 中。
-
-**PCK 导出**：由 `.csproj` 的 `GodotExportPckOnBuild` target 自动触发，仅资源有变动时重新导出。Release 构建如缺少 PCK 会报错。
-
-**API Stub 自动同步**：由 `.csproj` 的 `UpdateStubDlls` target 自动触发。本地开发编译时，若本地游戏 DLL 存在，会自动使用 `refasmer` 重新剥离 API Stub DLL 输出到 `libs/`，确保提交后 CI/CD 能永远获得匹配的 API。
-
-**没有单元测试**，因为是三方 mod 的缘故，没办法做 godot测试
-- 只能够输出检查 `godot.log` 日志文件的内容，具体日志位置在[调试](AGENTS.md#调试)中有说明。
-- 或者使用 `dotnet build` 检查报错信息。
+**单元测试**：静态规则与逻辑测试置于 `tests/Sts2BalanceMod.Tests` 下（包含正面与负面测试集），每次编译或 CI/CD 时自动执行 `dotnet test`；运行时调试问题可在[调试](AGENTS.md#调试)中查阅 `godot.log` 日志。
 <!-- BUILD_END -->
 
 
