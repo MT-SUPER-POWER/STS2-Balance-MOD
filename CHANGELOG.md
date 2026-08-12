@@ -8,6 +8,11 @@
 
 ## [Unreleased]
 
+### Added
+
+- 基础设施：新增 `.github/workflows/code-check.yml`（`Code Check & Test`）工作流，在 `main` 分支的 Push 和 PR 触发时自动进行依赖还原、C# 项目编译、`dotnet format` 格式验证及 `tests/*.Tests.ps1` PowerShell 单元测试。
+- 基础设施：在 `README.md` 与 `README_EN.md` 顶部新增 `Code Check & Test` 工作流状态 Badge 徽章。
+
 ### Changed
 
 - 基础设施：更新 Agent 工作流与 CodeGraph 规范，集成 CodeGraph 默认开启的自动监听与实时同步（Auto-Sync）特性，移除手动执行 `codegraph sync` 的繁琐步骤。

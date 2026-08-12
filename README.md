@@ -22,6 +22,9 @@
   <a href="https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/issues">
     <img src="https://img.shields.io/github/issues/MT-SUPER-POWER/STS2-Balance-MOD" alt="Issues" />
   </a>
+  <a href="https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/actions/workflows/code-check.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/MT-SUPER-POWER/STS2-Balance-MOD/code-check.yml?branch=main&label=Code%20Check%20%26%20Test&logo=github" alt="Code Check & Test" />
+  </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/github/license/MT-SUPER-POWER/STS2-Balance-MOD" alt="License" />
   </a>
