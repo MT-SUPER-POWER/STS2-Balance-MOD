@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -35,7 +35,7 @@ public abstract class BalanceRestSiteOption : RestSiteOption
     /// 输入：无。
     /// 输出：位于 Mod 资源目录内的 PNG 路径。
     /// </summary>
-    public virtual string CustomIconPath => $"Option{char.ToUpperInvariant(OptionId[0])}{OptionId[1..].ToLowerInvariant()}.png".RestSiteOptionImagePath();
+    public virtual string CustomIconPath => ModAssetPaths.RestSiteOptionIcon(ModAssetPaths.ContentFileName($"Option_{OptionId}"));
 
     public override IEnumerable<string> AssetPaths => [CustomIconPath];
 

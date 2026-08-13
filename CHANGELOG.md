@@ -14,8 +14,15 @@
 - 基础设施：新增 `.github/workflows/code-check.yml`（`Code Check & Test`）工作流，在 `main` 分支的 Push 和 PR 触发时自动进行依赖还原、C# 项目编译、`dotnet format` 格式验证及 `dotnet test` 单元测试。
 - 基础设施：在 `README.md` 与 `README_EN.md` 顶部新增 `Code Check & Test` 工作流状态 Badge 徽章。
 
+### Fixed
+
+- 事件联机：修复了多人模式自定义事件是否选项一致导致的冲突问题。
+- 遗物图标：修复了火堆界面悬停/选中 Mod 选项时（如 Smoke 宁静烟斗），因为遗物命名规则和官方不一样导致的问题
+
+
 ### Changed
 
+- Boss 平衡：战损能力加强感染棱柱 [InfestedPrism]。提升前 3 回合基础攻击与防御面板（轻击 14/12 +2 易碎、重击 22/20 +12/10 格挡、连击 7×3/6×3）；第 4 回合【强化】保留喘息机制（无攻击意图），获得的【力量】提升为 3/2（高阶 A2+ / 低阶 A0）；未格挡命中施加的【感染】层数从 2 提高至 3 层（BOSS-01-BUFF）。
 - 基础设施：更新 Agent 工作流与 CodeGraph 规范，集成 CodeGraph 默认开启的自动监听与实时同步（Auto-Sync）特性，移除手动执行 `codegraph sync` 的繁琐步骤。
 
 ## v0.3.2

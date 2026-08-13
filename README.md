@@ -151,7 +151,7 @@
 | 名称 | 编号 | 原版机制 | MOD 改后机制 |
 | :--- | :--- | :--- | :--- |
 | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" valign="middle"> **永世沙漏 [Aeonglass]** | MON-01 | 永世沙漏 Boss 生成的凋零卡无法打出，直接进入消耗堆。 | 凋零卡可以**1c打出并消耗**，保留成长机制。 |
-| <img src="Assets/map/elite.png" width="22" height="22" valign="middle"> **感染棱柱 [InfestedPrism]** | BOSS-01 | 开场污染玩家技能牌（活力火花），玩家打出污染技能为棱柱增加力量；4回合循环均为攻击。 | 移除【活力火花】机制，改为穿透格挡攻击时叠加【感染】[InfectedPower]，并重构 4 回合固定行动循环（支持 Mod 设置切换）。 |
+| <img src="Assets/map/elite.png" width="22" height="22" valign="middle"> **感染棱柱 [InfestedPrism]** | BOSS-01 | 开场污染玩家技能牌（活力火花），玩家打出污染技能为棱柱增加力量；4回合循环均为攻击。 | 移除【活力火花】机制，改为未格挡攻击时叠加【感染】[InfectedPower]（每段+3层），重构为前3回合高伤害攻击 + 第4回合防守加强（+3/+2力量）的4回合循环（支持 Mod 设置切换）。 |
 | <img src="Assets/map/monster.png" width="22" height="22" valign="middle"> **红面具强盗 Bear [Bear]** | MONSTER-01 | 首回合【熊抱 BEAR_HUG】给予目标 1 层【易伤】 (`VulnerablePower`)。 | 【熊抱 BEAR_HUG】Debuff 修改为减少 2 点【敏捷】 (`DexterityPower` -2)。 |
 | <img src="Assets/map/guardian_boss.png" width="22" height="22" valign="middle"> **守护者 [Guardian]** | AFP-BOSS-01 | - | 按 Acts From the Past v1.0.5 移植完整行动循环、形态转换、Mode Shift、Sharp Hide、动画与音效；提供不进入普通地图池的心灵绽放专用遭遇。 |
 | <img src="Assets/map/hexaghost_boss.png" width="22" height="22" valign="middle"> **六火亡魂 [Hexaghost]** | AFP-BOSS-02 | - | 按 Acts From the Past v1.0.5 移植六火球状态、Divider/Sear/Inferno、灼伤升级、火焰特效与音效；提供不进入普通地图池的心灵绽放专用遭遇。 |

@@ -5,6 +5,7 @@ using System.Reflection;
 using FluentAssertions;
 using MegaCrit.Sts2.Core.Events;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
+using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
 using Xunit;
 
 namespace Sts2BalanceMod.Tests;
@@ -111,6 +112,30 @@ public class AssetExistenceTests
 
             File.Exists(expectedImagePath).Should().BeTrue(
                 $"power class '{powerType.Name}' must have a matching icon image at 'images/powers/{expectedImageName}'"
+            );
+        }
+    }
+
+    [Fact]
+    public void RestSiteOptions_ShouldHaveMatchingOptionImages()
+    {
+        string restSitePath = TestPathHelper.GetPath("Sts2BalanceMod", "images", "ui", "rest_site");
+        Directory.Exists(restSitePath).Should().BeTrue("images/ui/rest_site directory must exist");
+
+        var optionTypes = GetModAssembly().GetTypes()
+            .Where(t => !t.IsAbstract && typeof(BalanceRestSiteOption).IsAssignableFrom(t))
+            .ToList();
+
+        optionTypes.Should().NotBeEmpty("mod assembly should contain concrete rest site option classes");
+
+        foreach (var optionType in optionTypes)
+        {
+            var instance = (BalanceRestSiteOption)System.Runtime.CompilerServices.RuntimeHelpers.GetUninitializedObject(optionType);
+            string expectedImageName = ModAssetPaths.ContentFileName($"Option_{instance.OptionId}");
+            string expectedImagePath = Path.Combine(restSitePath, expectedImageName);
+
+            File.Exists(expectedImagePath).Should().BeTrue(
+                $"rest site option class '{optionType.Name}' must have a matching icon image at 'images/ui/rest_site/{expectedImageName}'"
             );
         }
     }
