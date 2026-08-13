@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
@@ -51,9 +51,9 @@ public static class InfestedPrismPatch
             return true;
         }
 
-        int lightDamage = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 8, 6);
-        int heavyDamage = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 18, 16);
-        int multiDamage = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 6, 5);
+        int lightDamage = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 14, 12);
+        int heavyDamage = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 22, 20);
+        int multiDamage = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 7, 6);
 
         MoveState move1 = new MoveState("LIGHT_ATTACK_MOVE", targets => LightAttackMove(__instance, targets), new SingleAttackIntent(lightDamage), new DebuffIntent());
         MoveState move2 = new MoveState("HEAVY_ATTACK_MOVE", targets => HeavyAttackMove(__instance, targets), new SingleAttackIntent(heavyDamage), new DefendIntent());
@@ -72,7 +72,7 @@ public static class InfestedPrismPatch
 
     private static async Task LightAttackMove(InfestedPrism prism, IReadOnlyList<Creature> targets)
     {
-        int lightDamage = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 8, 6);
+        int lightDamage = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 14, 12);
         AttackCommand attack = await DamageCmd.Attack(lightDamage).FromMonster(prism)
           .WithAttackerAnim("Attack", 0.1f)
           .WithAttackerFx(null, "event:/sfx/enemy/enemy_attacks/infested_prisms/infested_prisms_attack")
@@ -89,8 +89,8 @@ public static class InfestedPrismPatch
 
     private static async Task HeavyAttackMove(InfestedPrism prism, IReadOnlyList<Creature> targets)
     {
-        int heavyDamage = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 18, 16);
-        int heavyBlock = AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 10, 8);
+        int heavyDamage = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 22, 20);
+        int heavyBlock = AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 12, 10);
 
         AttackCommand attack = await DamageCmd.Attack(heavyDamage).FromMonster(prism)
           .WithAttackerAnim("AttackBlock", 0.25f)
@@ -105,7 +105,7 @@ public static class InfestedPrismPatch
 
     private static async Task MultiAttackMove(InfestedPrism prism, IReadOnlyList<Creature> targets)
     {
-        int multiDamage = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 6, 5);
+        int multiDamage = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 7, 6);
         AttackCommand attack = await DamageCmd.Attack(multiDamage).WithHitCount(3).FromMonster(prism)
           .WithAttackerAnim("AttackDouble", 0.2f)
           .OnlyPlayAnimOnce()
@@ -119,7 +119,7 @@ public static class InfestedPrismPatch
     private static async Task FortifyMove(InfestedPrism prism, IReadOnlyList<Creature> targets)
     {
         int fortifyBlock = AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 18, 16);
-        int fortifyStrength = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 2, 1);
+        int fortifyStrength = AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 3, 2);
 
         await CreatureCmd.GainBlock(prism.Creature, fortifyBlock, ValueProp.Move, null);
         await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), prism.Creature, fortifyStrength, prism.Creature, null);

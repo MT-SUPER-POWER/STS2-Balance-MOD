@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
@@ -16,13 +16,13 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 /// 【感染】能力模型。
 /// 输入：玩家回合结束事件。
 /// 输出：在玩家回合结束时，使拥有者受到等同于感染层数的伤害（可被格挡）。
-/// 注：感染的施加统一由 InfestedPrismPatch 的 ApplyInfectionFromAttack 负责（只要有未格挡伤害，每段固定+2层），
+/// 注：感染的施加统一由 InfestedPrismPatch 的 ApplyInfectionFromAttack 负责（只要有未格挡伤害，每段固定+3层），
 ///      本类中不重写 AfterDamageReceived，避免双重触发或误将 UnblockedDamage 值当成层数施加。
 /// </summary>
 [RegisterPower]
 public sealed class InfectedPower() : BalancePowerTemplate(PowerType.Debuff, PowerStackType.Counter)
 {
-    public const int InfectionPerHit = 2;
+    public const int InfectionPerHit = 3;
 
 
     public override async Task BeforeSideTurnEnd(
