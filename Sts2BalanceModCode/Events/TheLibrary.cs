@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,6 +26,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 [RegisterSharedEvent]
 public sealed class TheLibrary : BalanceEventTemplate
 {
+    public override bool IsShared => false;
     private const int CardChoiceCount = 20;
     private const decimal HealPercent = 0.33M;
 

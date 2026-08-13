@@ -27,13 +27,12 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 [RegisterSharedEvent]
 public sealed class MindBloom : BalanceEventTemplate
 {
+    public override bool IsShared => true;
     private const int _fightGold = 50;
     private const int _goldRewardAmount = 999;
     private bool _isBeforeTreasure;
 
     internal static bool NeedsReplayInitialization { get; set; }
-
-    public override bool IsShared => true;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

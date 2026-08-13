@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -16,6 +16,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 [RegisterSharedEvent]
 public sealed class TheDivineFountain : BalanceEventTemplate
 {
+    public override bool IsShared => false;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,6 +21,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 [RegisterSharedEvent]
 public sealed class WheelOfChange : BalanceEventTemplate
 {
+    public override bool IsShared => false;
     private const decimal HpLossPercent = 0.15M;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>

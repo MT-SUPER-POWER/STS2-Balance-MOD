@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Gold;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -18,6 +18,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 [RegisterSharedEvent]
 public sealed class TombOfLordRedMask : BalanceEventTemplate
 {
+    public override bool IsShared => false;
     private const int GoldAmount = 222;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>

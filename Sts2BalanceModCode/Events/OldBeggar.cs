@@ -21,6 +21,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 [RegisterSharedEvent]
 public sealed class OldBeggar : BalanceEventTemplate
 {
+    public override bool IsShared => false;
     private const int GoldCost = 75;
     protected override string PortraitFileName => "OldBeggar.png";
 
