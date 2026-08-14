@@ -12,7 +12,9 @@ docs/official-news/
 ├── index.md                              ← speed-read entry point (newest first)
 └── YYYY-MM-DD-{title-slug}/
     ├── original.md                       ← full article, BBCode → Markdown
+    ├── original-zh.md                    ← full article translated to Chinese
     └── summary.md                        ← game-change extract; "本期无游戏数值改动" if none
+```
 ```
 
 ### index.md columns
