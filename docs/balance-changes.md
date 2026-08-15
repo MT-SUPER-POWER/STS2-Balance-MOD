@@ -67,25 +67,6 @@
 
 ### 遗物
 
-- [x] **RELIC-05** — 华美手镯 (Beautiful Bracelet) 随机附魔改为定向自选
-  - 目前: 拾起时，为你牌组中的随机 4 张牌附魔【迅捷 2】。
-  - 目标: 拾起时，弹出卡牌选择界面，由玩家定向自选 4 张牌（不足 4 张则全部附魔）附魔【迅捷 2】。
-  - 数值: 4 张牌，附魔迅捷 2 (`Swift 2`)。
-  - 备注: 增加 `BeautifulBraceletPatch.cs` 并同步调整多语言遗物描述文本（去掉“随机”字样）。
-
-### 卡牌
-
-- [x] **CARD-16** — 撤销火箭飞拳 (Rocket Punch) 降费补丁，恢复官方原版效果
-  - 目前: 生成状态牌时直接将费用降为 0 费（`SetUntilPlayed(0)`）。
-  - 目标: 撤销 `RocketPunchRollbackPatch` 与相关多语言卡牌文本覆盖，完全恢复游戏原版机制（生成状态牌时费用 -1，即 `AddUntilPlayed(-1)`）。
-  - 数值: 2 费，造成 13(14) 点伤害，抽 1(2) 张牌；生成状态牌时此牌耗能 -1 直到打出。
-  - 备注: 删除 `RocketPunchRollbackPatch.cs` 并清理 `localization/{zhs,eng,ita,rus}/cards.json` 中的 `ROCKET_PUNCH.description`。
-
-- [x] **CARD-15** — 跃跃欲试 (Expect a Fight) 中文译名调整为「且战且退」
-  - 目前: 铁甲战士罕见技能牌 `ExpectAFight` 官方中文译名为「跃跃欲试」。
-  - 目标: 将其中文译名调整为「且战且退」，保持英文名 `Expect a Fight` 与原有卡牌机制/数值不变。
-  - 数值: 保持 3 费，15(16) 基础格挡，每点力量 +5(+8) 格挡。
-  - 备注: 仅修改简体中文本地化 `cards.json`。
 
 
 ---

@@ -93,7 +93,6 @@
 | **凋零 [Wither]** | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" title="永世沙漏 (Aeonglass)"> | 状态 | 不可打出，进入消耗堆 | 改为 **1 费可打出**，打出后消耗 |
 | **辉光 [Glow]** | <img src="Assets/profile/regent.png" width="22" height="22" title="储君 (Regent)"> | 技能 | 获得星尘，下回合额外抽牌 | 改为**当回合立即抽 2 张**，升级额外多获得 1 星尘 |
 | **放血 [Bloodletting]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | 蓝卡（罕见）（v1.0.9 修改） | 稀有度改回**白卡（普通）** |
-| **创世之柱 [Pillar of Creation]** | <img src="Assets/profile/regent.png" width="22" height="22" title="储君 (Regent)"> | 能力 | 每回合第一次生成卡牌时获得 5/8 点格挡 | 回调为每生成一张牌，格挡数值调整为 **3 / 4 点** |
 | **且战且退 [Expect a Fight]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | 原官方中文名为「跃跃欲试」 | 仅调整中文名为**「且战且退」**，机制与数值保持原版一致 |
 | **残酷 [Cruelty]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 能力 | 下放为战士蓝卡 | 从战士卡池中**完全移除**（由“进化”卡牌替代） |
 | **探寻 [Dowsing]** | <img src="Assets/profile/neow.png" width="22" height="22" title="涅奥 (Neow)"> | 任务 | 进入 5 个 ? 房间后转化为「丰饶」 | 调整为进入 **4 个 ? 房间**后转化为「丰饶」 |

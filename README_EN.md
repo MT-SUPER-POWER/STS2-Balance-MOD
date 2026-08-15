@@ -93,7 +93,6 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 | **Wither** | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" title="Aeonglass"> | Status | Unplayable, goes directly to Exhaust pile | Changed to **1-cost Playable**, Exhausts on play |
 | **Glow** | <img src="Assets/profile/regent.png" width="22" height="22" title="Regent"> | Skill | Gain Stardust, draw extra card next turn | Changed to **immediately draw 2 cards** this turn; upgrade grants +1 Stardust |
 | **Bloodletting** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="Ironclad"> | Skill | Uncommon (v1.0.9 change) | Rarity reverted back to **Common** |
-| **Pillar of Creation** | <img src="Assets/profile/regent.png" width="22" height="22" title="Regent"> | Power | Gain 5/8 Block on first card created each turn | Reverted: Gain **3/4 Block** every time a card is created |
 | **Cruelty** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="Ironclad"> | Power | Shifted to Ironclad Uncommon | **Completely removed** from Ironclad card pool (replaced by Evolve) |
 | **Dowsing** | <img src="Assets/profile/neow.png" width="22" height="22" title="Neow"> | Quest | Transform into Abundance after 5 ? rooms | Adjusted to transform after **4 ? rooms** |
 | **The Ball** | <img src="Assets/profile/colorless.png" width="22" height="22" title="Colorless"> | Attack | Scaling damage +10/15 per play | Damage scaling increased to **+15/20** |
