@@ -26,65 +26,26 @@ GDRE Tools can directly process the EXE file — it extracts the embedded PCK an
 
 ## Workflow
 
-### Step 1: Locate Game EXE
+### Recommended: One-Click Automated Decompile
+
+Run the automated decompiler script from the repository root:
 
 ```powershell
-# STS2 EXE path
-$exePath = "D:\Game\Steam\steamapps\common\Slay the Spire 2\SlayTheSpire2.exe"
-
-# Verify it exists
-if (-not (Test-Path $exePath)) {
-    Write-Host "EXE not found at: $exePath"
-    # Ask user for correct path
-}
+python skills/sts2-decompile/scripts/decompile.py
 ```
 
-### Step 2: Check Current Version
+This script automatically:
+1. **Recovers all Godot assets and localization**: Runs GDRE Tools CLI on `SlayTheSpire2.exe` to decompile PCK resources, translations, shaders, and configs to `D:\Game\Sts2Code`.
+2. **Cleans & Decompiles C# Assembly**: Uses `ilspycmd` on `sts2.dll` directly to generate 100% clean, conflict-free C# source files under `D:\Game\Sts2Code\src\`.
+3. **Verifies Output**: Validates that all `.cs` and `.json` localization files are fully extracted.
 
+#### Variations:
 ```powershell
-# List files to see version info
-$exePath = "D:\Game\Steam\steamapps\common\Slay the Spire 2\SlayTheSpire2.exe"
+# Only decompile C# assembly (faster when only checking code logic):
+python skills/sts2-decompile/scripts/decompile.py --csharp-only
 
-& "D:\Game\Godot\GDRE_tools-v2.6.0-windows\gdre_tools.exe" --headless --list-files="$exePath"
-```
-
-### Step 3: Backup Current Source (Optional)
-
-```powershell
-# Create timestamped backup
-$timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
-Copy-Item -Path "D:\Game\Sts2Code" -Destination "D:\Game\Sts2Code_backup_$timestamp" -Recurse
-```
-
-### Step 4: Fully Decompile EXE
-
-```powershell
-# Full EXE recovery (PCK + C# assemblies + all resources)
-$exePath = "D:\Game\Steam\steamapps\common\Slay the Spire 2\SlayTheSpire2.exe"
-
-& "D:\Game\Godot\GDRE_tools-v2.6.0-windows\gdre_tools.exe" `
-    --headless `
-    --recover="$exePath" `
-    --output="D:\Game\Sts2Code"
-```
-
-**Note:** When recovering from EXE, GDRE Tools automatically:
-- Extracts the embedded PCK
-- Decompiles GDScript bytecode (.gdc → .gd)
-- Converts binary resources to text format (.tres/.tscn)
-- Decompiles C# assemblies if present
-
-### Step 5: If C# Assembly Not Auto-Detected
-
-```powershell
-# Manually specify C# assembly path
-$assemblyPath = "D:\Game\Sts2Code\SEMB_0.dll"  # or wherever it's located
-
-& "D:\Game\Godot\GDRE_tools-v2.6.0-windows\gdre_tools.exe" `
-    --headless `
-    --recover="$exePath" `
-    --output="D:\Game\Sts2Code" `
-    --csharp-assembly="$assemblyPath"
+# Only recover PCK resources:
+python skills/sts2-decompile/scripts/decompile.py --resources-only
 ```
 
 ### Step 6: Compare Changes
