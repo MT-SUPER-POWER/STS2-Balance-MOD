@@ -10,15 +10,11 @@
 
 ### 卡牌
 
-- [x] **CARD-14** — 火箭飞拳 (Rocket Punch) 降费逻辑核对与说明
-  - 目前: 生成状态牌时，火箭飞拳降至 0 费效果在打出前对该张牌单独生效。
-  - 目标: 匹配卡牌描述“每当你生成状态牌时，此牌的耗能在下一次打出前降为0”。生成状态牌时将每张【火箭飞拳】实体的费用置为 0 费 (`SetUntilPlayed(0)`)；单张飞拳打出后其各自的 0 费效果正常随打出清空，未打出的飞拳保留 0 费，打出过且未重新触发状态牌生成再抽到时恢复 2 费。
-  - 数值: 基础 2 费；生成状态牌时在下一次打出前降为 0 费。
-  - 备注: 校验 `RocketPunchRollbackPatch.cs` 中 `SetUntilPlayed(0)` 机制与“此牌”独立作用域。
-
-
 
 ### 遗物
+
+
+### 事件
 
 
 ### 事件
@@ -52,32 +48,6 @@
   - 关闭时完整恢复原版【活力火花】开场能力与原版行动状态机。
   - 下次进入感染棱柱战斗时生效；多人游戏时所有玩家必须使用相同设置。
 
-- [x] **MIGRATION-01** — RitsuLib 基础设施迁移
-  - 移除 BaseLib 的包引用、运行时依赖和部署逻辑；内容改由 RitsuLib 自动注册。
-  - 卡牌、遗物、能力、事件、怪物和遭遇统一采用 RitsuLib 模板与资源配置；路径集中于 `ModAssetPaths`。
-  - 对齐参考项目的可维护结构：代码根目录统一为 `Sts2BalanceModCode/`，共享模板集中在 `Abstract/`，内容按类别并列，运行时辅助代码集中在 `Runtime/`。
-  - 将本地化 key 迁移到 RitsuLib 的规范化 Model ID，并完成本地游戏启动到主菜单的日志验证。
-
-- [x] **IMAGE-GEN-01** — 遗物 outline 自动生成
-  - 复刻 `sts2-arknights-mod` 的主题色轮廓算法，并适配本项目 94×94 遗物资源规格。
-  - 固定从遗物主图自动生成白色主体与 3px 主题色外环，不维护手工或颜色覆盖配置。
-  - 在输出前校验空图、贴边裁切和颜色层缺失。
-
-- [x] **IMAGE-GEN-02** — 全部遗物 outline 批量更新
-  - 使用新制 1254×1254 RGBA 母版替换矮人铁砧（DwarfAnvil），重新生成 94×94 主图与 256×256 大图。
-  - 全部 19 张 Mod 遗物 outline 统一绕过旧手工图，按各自主图色调自动提取主题色并重新生成。
-  - 核对每张输出均为 94×94、文件名与 C# 类型一致，且没有空图、贴边裁切或颜色层缺失。
-
-- [x] **IMAGE-GEN-03** — 收敛遗物图片生成接口
-  - 保留 `files`、`--input`、`--output` 三个必要入口，单次生成主图、大图和自动主题色 outline。
-  - 删除手工 outline、描边宽度与 `--outline-only` 分支，将主题色提取、3px 外环和输出校验全部封装在模块实现内部。
-  - 清理 `image_gen/source/relics/outlines/` 下 19 张已无消费者的旧手工母版，并验证当前生成物哈希不变。
-
-- [x] **ENCHANTMENT-01** — RitsuLib 附魔模块重构
-  - 目前：`ForgeEnchantment` 直接继承游戏 `EnchantmentModel`，图标与本地化分别由专用 Harmony Patch 兜底；`DwarfAnvil` 直接处理附魔模型克隆、应用和卡牌预览。
-  - 目标：保留铁砧“选择 3 张牌、每张费用永久 -1（最低 0）”的玩家可见行为，改用教程中的 `[RegisterEnchantment]` 与 `ModEnchantmentTemplate`。
-  - 结构：新增 `BalanceEnchantmentTemplate` 作为深模块，集中附魔图标路径、本地化与公共默认值；新增 `EnchantmentExtensions`，将“获取可变附魔、应用到卡牌、刷新预览”的流程封装为单一扩展接口。具体附魔只声明筛选条件和效果，授予来源只调用扩展接口。
-  - 清理：删除仅服务于 ForgeEnchantment 的图标与本地化注入 Patch；四种语言改为标准 `enchantments.json`，图标遵循统一资源命名约定。
 
 ### BOSS
 
@@ -94,22 +64,28 @@
   - 移植史莱姆 Boss、尖刺/酸液大型与中型史莱姆、Split Power、两级分裂链、动画与音效。
   - 新增包含七个固定分裂槽位的 `RoomType.Monster` 专用遭遇，保持 AFP 原始数值与进阶分档。
 
-- [x] **AFP-BOSS-PACK-01** — Boss 资源打包链
-  - 删除 `Sts2BalanceMod/monsters/.gdignore`，让该目录的全部怪物资源进入 Godot 扫描；场景根节点由既有 `MonsterVisualsPatch` 在运行时包装为 `NCreatureVisuals`。
-  - 将 LibGDX `vfx.atlas` 加入导出白名单；最终 PCK 已核对包含全部自定义怪物场景、Spine、六火亡魂贴图、VFX 与三组音效。
 
 ### 遗物
 
+- [x] **RELIC-05** — 华美手镯 (Beautiful Bracelet) 随机附魔改为定向自选
+  - 目前: 拾起时，为你牌组中的随机 4 张牌附魔【迅捷 2】。
+  - 目标: 拾起时，弹出卡牌选择界面，由玩家定向自选 4 张牌（不足 4 张则全部附魔）附魔【迅捷 2】。
+  - 数值: 4 张牌，附魔迅捷 2 (`Swift 2`)。
+  - 备注: 增加 `BeautifulBraceletPatch.cs` 并同步调整多语言遗物描述文本（去掉“随机”字样）。
 
 ### 卡牌
 
+- [x] **CARD-16** — 撤销火箭飞拳 (Rocket Punch) 降费补丁，恢复官方原版效果
+  - 目前: 生成状态牌时直接将费用降为 0 费（`SetUntilPlayed(0)`）。
+  - 目标: 撤销 `RocketPunchRollbackPatch` 与相关多语言卡牌文本覆盖，完全恢复游戏原版机制（生成状态牌时费用 -1，即 `AddUntilPlayed(-1)`）。
+  - 数值: 2 费，造成 13(14) 点伤害，抽 1(2) 张牌；生成状态牌时此牌耗能 -1 直到打出。
+  - 备注: 删除 `RocketPunchRollbackPatch.cs` 并清理 `localization/{zhs,eng,ita,rus}/cards.json` 中的 `ROCKET_PUNCH.description`。
 
-### 事件
-
-- [x] **MASKED-BANDITS-02** — 将红面具劫匪注册为事件战斗
-  - 通过 Harmony Postfix 将 `RedMaskBandits` 幂等追加到 `ModelDb.EventEncounters`，使 Pointy、Romeo、Bear 归入怪物图鉴的「事件」分组。
-  - 保持遭遇的 `RoomType.Monster`，不改变事件出现条件、交钱分支、进入战斗流程、25–35 金币与红面具奖励，也不加入任何幕的普通怪物池。
-  - 编译验证通过；游戏更新后需复核 `NBestiary.AddEvents` 仍直接枚举 `ModelDb.EventEncounters`。
+- [x] **CARD-15** — 跃跃欲试 (Expect a Fight) 中文译名调整为「且战且退」
+  - 目前: 铁甲战士罕见技能牌 `ExpectAFight` 官方中文译名为「跃跃欲试」。
+  - 目标: 将其中文译名调整为「且战且退」，保持英文名 `Expect a Fight` 与原有卡牌机制/数值不变。
+  - 数值: 保持 3 费，15(16) 基础格挡，每点力量 +5(+8) 格挡。
+  - 备注: 仅修改简体中文本地化 `cards.json`。
 
 
 ---

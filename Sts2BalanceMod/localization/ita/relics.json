@@ -56,5 +56,7 @@
   "HISTORY_COURSE.description": "All'inizio del tuo turno, ripeti l'ultima carta [gold]Attacco[/gold] o [gold]Abilità[/gold] che hai giocato nel turno precedente.",
   "DIAMOND_DIADEM.description": "Ogni volta che giochi 2 o meno carte in un turno, subisci metà danni dai nemici.",
   "TOASTY_MITTENS.description": "All'inizio del tuo turno, puoi scegliere [blue]1[/blue] carta dalla tua mano da [gold]Esaurire[/gold] (include l'opzione Salta). Dopo aver esaurito una carta, ottieni [blue]1[/blue] [red]Forza[/red].",
-  "SIGNET_RING.description": "Quando la raccogli, ottieni [blue]999[/blue] Oro."
+  "SIGNET_RING.description": "Quando la raccogli, ottieni [blue]999[/blue] Oro.",
+  "BEAUTIFUL_BRACELET.description": "Dopo aver ottenuto questa reliquia, scegli [blue]{Cards}[/blue] {Cards:plural:carta nel tuo [gold]mazzo[/gold]. [gold]Incantala[/gold]|carte nel tuo [gold]mazzo[/gold]. [gold]Incantale[/gold]} con [blue]2[/blue] di [purple]Rapidità[/purple] .",
+  "BEAUTIFUL_BRACELET.eventDescription": "Scegli [blue]{Cards}[/blue] {Cards:plural:carta nel tuo [gold]mazzo[/gold]. [gold]Incantala[/gold]|carte nel tuo [gold]mazzo[/gold]. [gold]Incantale[/gold]} con [purple]{Swift} di Rapidità[/purple]."
 }

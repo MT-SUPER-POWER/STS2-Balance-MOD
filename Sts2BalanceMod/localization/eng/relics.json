@@ -59,5 +59,7 @@
   "HISTORY_COURSE.description": "At the start of your turn, replay the last [gold]Attack[/gold] or [gold]Skill[/gold] you played last turn.",
   "DIAMOND_DIADEM.description": "Whenever you play 2 or fewer cards in a turn, take half damage from enemies.",
   "TOASTY_MITTENS.description": "At the start of your turn, you may choose [blue]1[/blue] card in your hand to [gold]Exhaust[/gold] (includes a Skip option). Upon exhausting a card, gain [blue]1[/blue] [red]Strength[/red].",
-  "SIGNET_RING.description": "Upon pickup, gain [blue]999[/blue] Gold."
+  "SIGNET_RING.description": "Upon pickup, gain [blue]999[/blue] Gold.",
+  "BEAUTIFUL_BRACELET.description": "Upon pickup, choose [blue]{Cards}[/blue] {Cards:plural:card|cards} in your [gold]Deck[/gold]. [gold]Enchant[/gold] them with [purple]Swift[/purple] [blue]2[/blue].",
+  "BEAUTIFUL_BRACELET.eventDescription": "Choose [blue]{Cards}[/blue] {Cards:plural:card|cards} in your [gold]Deck[/gold]. [gold]Enchant[/gold] them with [purple]Swift {Swift}[/purple]."
 }

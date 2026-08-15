@@ -98,7 +98,6 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 | **Dowsing** | <img src="Assets/profile/neow.png" width="22" height="22" title="Neow"> | Quest | Transform into Abundance after 5 ? rooms | Adjusted to transform after **4 ? rooms** |
 | **The Ball** | <img src="Assets/profile/colorless.png" width="22" height="22" title="Colorless"> | Attack | Scaling damage +10/15 per play | Damage scaling increased to **+15/20** |
 | **The Scythe** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Attack | 2-cost, Exhaust; deal 13 damage, scaling +4/5 | Base damage increased to **16**, pairing with official +5/7 scaling |
-| **Rocket Punch** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Attack | 2-cost; cost -1 when Status card generated | Reverted to legacy effect: Cost **drops directly to 0** when Status card is generated |
 | **Accelerant** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Power | Uncommon card | Rarity reverted to **Rare** |
 | **Well-Laid Plans** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Power | Rare, 1/0 cost; non-discard turn end | Uncommon, 2/1 cost; Retain up to **1/2** cards at turn end (stackable on multiple plays, filters existing Retain cards) |
 | **Grand Finale** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Attack | 0-cost, requires exactly 0 cards in draw pile | **X-Cost** card, playable when **draw pile count ≤ X**; **Upgraded reduces cost by 2** (consumes $\max(0, X - 2)$ energy) |
@@ -214,6 +213,7 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 | <img src="Assets/relics/diamond_diadem.png" width="22" height="22" valign="middle"> **Nonupeipe's Diamond Diadem** | <img src="Assets/profile/nonupeipe.png" width="22" height="22" title="Nonupeipe"> | Combat start gain 20 Block, retained next turn | Reverted: Halves incoming damage when playing ≤ 2 cards in a turn |
 | <img src="Assets/relics/toasty_mittens.png" width="22" height="22" valign="middle"> **Toasty Mittens** | <img src="Assets/profile/tezcatara.png" width="22" height="22" title="Tezcatara"> | Auto-exhausts 1 draw card at turn start for +1 Str | Allows selecting 1 hand card to exhaust (**provides Skip option**), granting +1 Str upon success |
 | <img src="Assets/relics/signet_ring.png" width="22" height="22" valign="middle"> **Signet Ring** | <img src="Assets/profile/nonupeipe.png" width="22" height="22" title="Nonupeipe"> | Gain 888 Gold | Reverted to gain **999 Gold** |
+| <img src="Assets/relics/beautiful_bracelet.png" width="22" height="22" valign="middle"> **Beautiful Bracelet** | <img src="Assets/profile/nonupeipe.png" width="22" height="22" title="Nonupeipe"> | Enchants 4 random cards with Swift 2 | Allows player to **choose 4 cards** to enchant with Swift 2 |
 
 ---
 

@@ -33,6 +33,5 @@
   "WELL_LAID_PLANS.description": "At the end of your turn, [gold]Retain[/gold] up to {Cards:diff()} {Cards:plural:card|cards}.",
   "WELL_LAID_PLANS.selectionScreenPrompt": "Choose up to {Amount} cards to [gold]Retain[/gold].",
   "STS2_BALANCEMOD_EVISCERATE.title": "Eviscerate",
-  "STS2_BALANCEMOD_EVISCERATE.description": "Costs 1 less {energyPrefix:energyIcons(1)} for each card discarded this turn.\nDeal {Damage:diff()} damage 3 times.",
-  "ROCKET_PUNCH.description": "Deal {Damage:diff()} damage.\nDraw {Cards:diff()} {Cards:plural:card|cards}.\nWhenever a [gold]Status[/gold] card is generated, this card costs {energyPrefix:energyIcons(0)} until played."
+  "STS2_BALANCEMOD_EVISCERATE.description": "Costs 1 less {energyPrefix:energyIcons(1)} for each card discarded this turn.\nDeal {Damage:diff()} damage 3 times."
 }

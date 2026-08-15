@@ -56,5 +56,7 @@
   "HISTORY_COURSE.description": "В начале своего хода повторите последнюю карту [gold]Атаки[/gold] или [gold]Навыка[/gold], разыгранную на прошлом ходу.",
   "DIAMOND_DIADEM.description": "Каждый раз, когда вы разыгрываете 2 или менее карт за ход, вы получаете вдвое меньше урона от врагов.",
   "TOASTY_MITTENS.description": "В начале своего хода вы можете выбрать [blue]1[/blue] карту в своей руке для [gold]Сжигания[/gold] (содержит вариант Пропустить). При сжигании карты вы получаете [blue]1[/blue] [red]силу[/red].",
-  "SIGNET_RING.description": "При получении дает [blue]999[/blue] золота."
+  "SIGNET_RING.description": "При получении дает [blue]999[/blue] золота.",
+  "BEAUTIFUL_BRACELET.description": "При получении выберите [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в вашей [gold]колоде[/gold] и наложите [gold]чары[/gold] [purple]«Скорость»[/purple] [blue]2[/blue].",
+  "BEAUTIFUL_BRACELET.eventDescription": "Выберите [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в вашей [gold]колоде[/gold] и наложите [gold]чары[/gold] [purple]«Скорость» {Swift}[/purple]."
 }
