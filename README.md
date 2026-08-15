@@ -35,7 +35,7 @@
 
 ### 前置要求
 
-1. **[Slay the Spire 2](https://store.steampowered.com/app/2868840/Slay_the_Spire_2/)** 版本 ≥ 0.110.0
+1. **[Slay the Spire 2](https://store.steampowered.com/app/2868840/Slay_the_Spire_2/)** 版本 ≥ 0.111.0
 2. **[RitsuLib](https://github.com/BAKAOLC/STS2-RitsuLib)** — Mod 加载前置库，需先安装与当前游戏版本兼容的最新稳定版
 
 ### 安装步骤

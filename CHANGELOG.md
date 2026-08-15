@@ -6,13 +6,7 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
-## v0.3.3
-
-### Added
-
-- 基础设施：新增 `tests/Sts2BalanceMod.Tests` C# xUnit 测试工程，包含文件 PascalCase 规范、本地化覆盖率、模型与资源文件匹配、Harmony Patch 反射真实性及版本号一致性等 23 项正向与反向自动化测试用例，并将其接入 `.github/workflows/code-check.yml` CI 流程。
-- 基础设施：新增 `.github/workflows/code-check.yml`（`Code Check & Test`）工作流，在 `main` 分支的 Push 和 PR 触发时自动进行依赖还原、C# 项目编译、`dotnet format` 格式验证及 `dotnet test` 单元测试。
-- 基础设施：在 `README.md` 与 `README_EN.md` 顶部新增 `Code Check & Test` 工作流状态 Badge 徽章。
+## v0.3.4
 
 ### Fixed
 
@@ -23,7 +17,20 @@
 ### Changed
 
 - Boss 平衡：战损能力加强感染棱柱 [InfestedPrism]。提升前 3 回合基础攻击与防御面板（轻击 14/12 +2 易碎、重击 22/20 +12/10 格挡、连击 7×3/6×3）；第 4 回合【强化】保留喘息机制（无攻击意图），获得的【力量】提升为 3/2（高阶 A2+ / 低阶 A0）；未格挡命中施加的【感染】层数从 2 提高至 3 层（BOSS-01-BUFF）。
+
+
+## v0.3.3
+
+### Added
+
+- 基础设施：新增 `tests/Sts2BalanceMod.Tests` C# xUnit 测试工程，包含文件 PascalCase 规范、本地化覆盖率、模型与资源文件匹配、Harmony Patch 反射真实性及版本号一致性等 23 项正向与反向自动化测试用例，并将其接入 `.github/workflows/code-check.yml` CI 流程。
+- 基础设施：新增 `.github/workflows/code-check.yml`（`Code Check & Test`）工作流，在 `main` 分支的 Push 和 PR 触发时自动进行依赖还原、C# 项目编译、`dotnet format` 格式验证及 `dotnet test` 单元测试。
+- 基础设施：在 `README.md` 与 `README_EN.md` 顶部新增 `Code Check & Test` 工作流状态 Badge 徽章。
+
+### Changed
+
 - 基础设施：更新 Agent 工作流与 CodeGraph 规范，集成 CodeGraph 默认开启的自动监听与实时同步（Auto-Sync）特性，移除手动执行 `codegraph sync` 的繁琐步骤。
+
 
 ## v0.3.2
 
