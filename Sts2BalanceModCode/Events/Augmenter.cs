@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Events;
@@ -21,6 +21,8 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 [RegisterActEvent(typeof(Hive))]
 public sealed class Augmenter : BalanceEventTemplate
 {
+    public override bool IsShared => false;
+
     /// <summary>仅限 Act 2（Hive）出现，太早遇到 J.A.X. 过于强大。</summary>
 
     public override bool IsAllowed(IRunState runState)

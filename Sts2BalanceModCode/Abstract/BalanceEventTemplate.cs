@@ -12,6 +12,8 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 /// </summary>
 public abstract class BalanceEventTemplate : ModEventTemplate
 {
+    public override bool IsShared => false;
+
     protected virtual string PortraitFileName => ModAssetPaths.TypeFileName(GetType());
 
     public override EventAssetProfile AssetProfile => new(

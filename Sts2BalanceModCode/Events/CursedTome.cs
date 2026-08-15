@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -20,6 +20,8 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 [RegisterActEvent(typeof(Hive))]
 public sealed class CursedTome : BalanceEventTemplate
 {
+    public override bool IsShared => false;
+
     private const int DmgPage1 = 1;
     private const int DmgPage2 = 2;
     private const int DmgPage3 = 3;
