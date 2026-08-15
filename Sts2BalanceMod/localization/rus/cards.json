@@ -24,7 +24,6 @@
   "PULL_AGGRO.description": "Призывает [gold]Ости[/gold] с {Summon:diff()} ОЗ.\nДает {Block:diff()} [gold]защиты[/gold].",
   "STS2_BALANCEMOD_EVOLVE.title": "Эволюция",
   "STS2_BALANCEMOD_EVOLVE.description": "Каждый раз, когда вы добираете карту Статуса, вы добираете еще {EvolvePower:diff()} {EvolvePower:plural(ru):карту|карты|карт}.",
-  "PILLAR_OF_CREATION.description": "Каждый раз, когда вы создаете карту, вы получаете {Block:diff()} [gold]защиты[/gold].",
   "GRAND_FINALE.description": "Можно разыграть, только если в вашей [gold]стопке добора[/gold] не более X карт.\nНаносит {Damage:diff()} урона ВСЕМ врагам.{IfUpgraded:show:\nТратит на 2 Энергии меньше при разыгрывании.|}",
   "WELL_LAID_PLANS.description": "В конце своего хода [gold]Сохраните[/gold] до {Cards:diff()} {Cards:plural(ru):карты|карт|карт}.",
   "WELL_LAID_PLANS.selectionScreenPrompt": "Выберите до {Amount} {Amount:plural(ru):карты|карт|карт} для [gold]Сохранения[/gold].",

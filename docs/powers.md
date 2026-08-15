@@ -61,5 +61,4 @@
 | **幽魂形态负面 [Wraith Form Power]** | <img src="../Assets/profile/silent.png" width="18" height="18"> 静默猎手技能卡「幽魂形态」 | 打出后获得无实体，同时施加 `WraithFormPower` 负面效果（每回合结束时 -1 敏捷）。 | 打出时直接拦截 `WraithFormPower` 的施加，**彻底删除每回合减敏捷负面效果**，卡牌悬浮提示同步移除了敏捷说明。 |
 | **红面具熊抱 [Bear Hug]** | <img src="../Assets/map/monster.png" width="18" height="18"> 红面具强盗熊 Bear | 首回合【熊抱 BEAR_HUG】给予目标 1 层【易伤】 (`VulnerablePower`)。 | 【熊抱 BEAR_HUG】Debuff 效果修改为**减少 2 点敏捷** (`DexterityPower` -2)。 |
 | **认知偏差 [Biased Cognition]** | <img src="../Assets/profile/defect.png" width="18" height="18"> 故障机器人能力卡「认知偏差」 | 每回合开始时 -1 集中，永久持续倒扣（导致负集中无限累积）。 | 当集中降至 0 时自动移除该能力，不再倒扣超出提升数值的集中点数，同时彻底修复集中归零后结束回合按钮不响应的 BUG。 |
-| **创世之柱 [Pillar of Creation]** | <img src="../Assets/profile/regent.png" width="18" height="18"> 储君能力卡「创世之柱」 | 每回合第一次生成卡牌时获得 5 / 8 点格挡。 | 回调为每生成一张牌触发，格挡数值调整为 **3 / 4 点**。 |
 
