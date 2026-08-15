@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using Sts2BalanceMod.Sts2BalanceModCode.Runtime.Audio;
 using Sts2BalanceMod.Sts2BalanceModCode.Runtime.Combat;
@@ -38,9 +38,9 @@ public sealed class NWheelSpinScreen
     private const float WheelBaseY = 50f;
 
     // ─── 资源路径 ───
-    private static readonly string WheelTexPath = ModAssetPaths.Resource("images", "event_extras", "wheel.png");
-    private static readonly string ArrowTexPath = ModAssetPaths.Resource("images", "event_extras", "wheelArrow.png");
-    private static readonly string ButtonTexPath = ModAssetPaths.Resource("images", "event_extras", "spinButton.png");
+    private static readonly string WheelTexPath = ModAssetPaths.Resource("images", "event_extras", "Wheel.png");
+    private static readonly string ArrowTexPath = ModAssetPaths.Resource("images", "event_extras", "WheelArrow.png");
+    private static readonly string ButtonTexPath = ModAssetPaths.Resource("images", "event_extras", "SpinButton.png");
     private static readonly string SpinSfxPath = ModAssetPaths.Resource("sfx", "events", "wheel.ogg");
 
     // ─── 实例 ───

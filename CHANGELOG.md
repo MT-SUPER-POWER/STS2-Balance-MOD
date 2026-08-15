@@ -6,12 +6,24 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+
+## v0.3.5
+
+### Fixed
+
+- JAX 多人事件修复
+- 修复创世之柱找不到的问题
+- 修复大转盘图片改名字丢失的问题
+
+
+
 ## v0.3.4
 
 ### Fixed
 
 - 事件联机：修复了多人模式自定义事件是否选项一致导致的冲突问题。
 - 事件联机：修复了「增益研究者」（Augmenter / J.A.X. 事件）与「诅咒书本」（Cursed Tome）未声明 `IsShared => false` 导致的多人联机事件同步冲突与报错问题。
+- 事件 UI：修复了大转盘（Wheel of Change）事件转盘与按钮素材文件名大小写不匹配（`Wheel.png` / `WheelArrow.png` / `SpinButton.png`）导致的加载报错与转盘无法弹出问题。
 - 遗物图标：修复了火堆界面悬停/选中 Mod 选项时（如 Smoke 宁静烟斗），因为遗物命名规则和官方不一样导致的问题
 
 
