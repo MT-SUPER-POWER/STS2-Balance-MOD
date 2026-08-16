@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Audio;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
@@ -119,17 +119,6 @@ public sealed class AcidSlimeMedium : BalanceMonsterTemplate
         return LastMove(stateMachine, LickMove)
           ? rng.NextFloat() < 0.4f ? CorrosiveSpitMove : TackleMove
           : LickMove;
-    }
-
-    private static bool LastMove(MonsterMoveStateMachine stateMachine, string moveId)
-    {
-        return stateMachine.StateLog.Count > 0 && stateMachine.StateLog[^1].Id == moveId;
-    }
-
-    private static bool LastTwoMoves(MonsterMoveStateMachine stateMachine, string moveId)
-    {
-        var log = stateMachine.StateLog;
-        return log.Count >= 2 && log[^1].Id == moveId && log[^2].Id == moveId;
     }
 
     private async Task CorrosiveSpit(IReadOnlyList<Creature> targets)

@@ -14,7 +14,9 @@
 - JAX 多人事件修复
 - 修复创世之柱找不到的问题
 - 修复大转盘图片改名字丢失的问题
-
+- 遭遇战与事件：修复心灵绽放事件遇到同族小队（The Kin）、史莱姆 Boss（Slime Boss）等多敌人时，由于未继承/适配遭遇场景（`EncounterScene`）与槽位（`Slots`）导致站位挤压错位与相机未正确缩放的问题。
+- 修复六火亡魂缺少流动动画的问题
+- 架构与解耦：重构 `BalanceMonsterTemplate` 怪物抽象基类，将分散在各子类（`AcidSlimeLarge`、`AcidSlimeMedium`、`SpikeSlimeLarge`、`SpikeSlimeMedium`、`Romeo` 等）中的状态机历史判定逻辑（`LastMove` / `LastTwoMoves` / `LastMoveBefore`）与本地化方法（`MoveTitle` / `MonsterLoc`）统一收敛至基类中复用。
 
 
 ## v0.3.4

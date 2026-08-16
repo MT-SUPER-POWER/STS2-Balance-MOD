@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ascension;
@@ -90,16 +90,6 @@ public sealed class Romeo : BalanceMonsterTemplate
 
         machine = new MonsterMoveStateMachine([mockState, crossSlashState, agonizingSlashState, moveBranch], mockState);
         return machine;
-    }
-
-    private static bool LastTwoMoves(MonsterMoveStateMachine? machine, string moveId)
-    {
-        if (machine == null)
-            return false;
-        var log = machine.StateLog;
-        if (log.Count < 2)
-            return false;
-        return log[^1].Id == moveId && log[^2].Id == moveId;
     }
 
     private Task Mock(IReadOnlyList<Creature> targets)

@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Audio;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -121,17 +121,6 @@ public sealed class SpikeSlimeLarge : BalanceMonsterTemplate
             return LastTwoMoves(stateMachine, FlameTackleMove) ? LickMove : FlameTackleMove;
 
         return LastMove(stateMachine, LickMove) ? FlameTackleMove : LickMove;
-    }
-
-    private static bool LastMove(MonsterMoveStateMachine stateMachine, string moveId)
-    {
-        return stateMachine.StateLog.Count > 0 && stateMachine.StateLog[^1].Id == moveId;
-    }
-
-    private static bool LastTwoMoves(MonsterMoveStateMachine stateMachine, string moveId)
-    {
-        var log = stateMachine.StateLog;
-        return log.Count >= 2 && log[^1].Id == moveId && log[^2].Id == moveId;
     }
 
     private async Task FlameTackle(IReadOnlyList<Creature> targets)

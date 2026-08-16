@@ -65,7 +65,7 @@ public sealed class Pointy : BalanceMonsterTemplate
 
     protected override MonsterMoveStateMachine GenerateMoveStateMachine()
     {
-        var stabState = new MoveState(STAB, Stab, new AbstractIntent[] { new MultiAttackIntent(AttackDamage, AttackHits) });
+        var stabState = new MoveState(STAB, Stab, [new MultiAttackIntent(AttackDamage, AttackHits)]);
         stabState.FollowUpState = stabState;
         return new MonsterMoveStateMachine([stabState], stabState);
     }
