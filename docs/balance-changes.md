@@ -51,15 +51,6 @@
 
 ### BOSS
 
-- [x] **BOSS-01-BUFF** — 感染棱柱 [InfestedPrism] 战损能力加强
-  - 提升前三回合攻击面板：轻击 14/12（+2 易碎），重击 22/20（+12/10 格挡），连击 7×3/6×3。
-  - 第 4 回合【强化】保留喘息机制（无攻击意图），获得的【力量】提升为 3/2（高阶 A2+ / 低阶 A0）。
-  - 每次未格挡伤害命中施加的【感染】层数从 2 提高至 3 层。
-
-- [x] **AFP-BOSS-02** — 六火亡魂（Hexaghost）及心灵绽放专用遭遇
-  - 按 Acts From the Past v1.0.5 移植六颗火球状态、Divider/Sear/Inferno 行动、灼伤升级补丁、动画、音效与图集特效。
-  - 新增不可进入普通地图池的 `RoomType.Monster` 专用遭遇，保持 AFP 原始数值与进阶分档。
-
 - [x] **AFP-BOSS-03** — 史莱姆 Boss（Slime Boss）及心灵绽放专用遭遇
   - 移植史莱姆 Boss、尖刺/酸液大型与中型史莱姆、Split Power、两级分裂链、动画与音效。
   - 新增包含七个固定分裂槽位的 `RoomType.Monster` 专用遭遇，保持 AFP 原始数值与进阶分档。
@@ -67,6 +58,10 @@
 
 ### 遗物
 
+- [x] **RELIC-SWAP-01** — 骨妹（Silent）DIY 遗物稀有度互换
+  - 目前: 悬浮风筝（HoveringKite）为 Common，袖箭（WristBlade）为 Uncommon
+  - 目标: 悬浮风筝改为 Uncommon，袖箭改为 Common
+  - 备注: 两者均注册在 `SilentRelicPool`，仅需修改 `Rarity` 属性
 
 
 ---

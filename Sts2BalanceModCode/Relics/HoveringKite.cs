@@ -20,14 +20,14 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
 /// <summary>
 /// RELIC-02 — 悬浮风筝：你在每回合第一次弃牌时，获得1点能量。
-/// 猎人（silent）专属遗物，罕见度：普通。
+/// 猎人（silent）专属遗物，罕见度：罕见。
 /// </summary>
 [RegisterRelic(typeof(SilentRelicPool), FullPublicEntry = "STS2_BALANCEMOD_HOVERING_KITE")]
 public sealed class HoveringKite : BalanceRelicTemplate
 {
     private const string EnergyKey = "Energy";
 
-    public override RelicRarity Rarity => RelicRarity.Common;
+    public override RelicRarity Rarity => RelicRarity.Uncommon;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new[]
     {

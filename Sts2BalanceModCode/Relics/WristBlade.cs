@@ -15,14 +15,14 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
 /// <summary>
 /// RELIC-01 — 袖箭：费用为0的 攻击牌 额外造成 4 点伤害。
-/// 猎人（silent）专属遗物，罕见度：罕见。
+/// 猎人（silent）专属遗物，罕见度：普通。
 /// </summary>
 [RegisterRelic(typeof(SilentRelicPool), FullPublicEntry = "STS2_BALANCEMOD_WRIST_BLADE")]
 public sealed class WristBlade : BalanceRelicTemplate
 {
     private const string ExtraDamageKey = "Damage";
 
-    public override RelicRarity Rarity => RelicRarity.Uncommon;
+    public override RelicRarity Rarity => RelicRarity.Common;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new[]
     {

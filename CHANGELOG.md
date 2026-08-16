@@ -7,6 +7,16 @@
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
 
+## v0.3.6
+
+### Changed
+
+- 遗物：交换骨妹（Silent）两个 DIY 遗物的稀有度——悬浮风筝（HoveringKite）从普通改为罕见，袖箭（WristBlade）从罕见改为普通。 (RELIC-SWAP-01)
+
+
+
+
+
 ## v0.3.5
 
 ### Fixed
