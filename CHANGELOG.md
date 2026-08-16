@@ -18,6 +18,7 @@
 - 修复六火亡魂缺少流动动画的问题
 - 架构与解耦：重构 `BalanceMonsterTemplate` 怪物抽象基类，将分散在各子类（`AcidSlimeLarge`、`AcidSlimeMedium`、`SpikeSlimeLarge`、`SpikeSlimeMedium`、`Romeo` 等）中的状态机历史判定逻辑（`LastMove` / `LastTwoMoves` / `LastMoveBefore`）与本地化方法（`MoveTitle` / `MonsterLoc`）统一收敛至基类中复用。
 - 怪物图鉴动作修复：重构怪物图鉴动作生成机制，完全对齐游戏原生 `FromState` 规范，解决图鉴中 DIY 怪物招式预览不全或动画无法完整执行的问题；补全 Hexaghost 动作本地化 Key（`SEAR` / `TACKLE`），并使动画工具（`FastAttack` / `Jump` / `Shake`）全面兼容图鉴预览环境。
+- 史莱姆分裂视觉修复：修复史莱姆老大（`Slime Boss`）与大型史莱姆（`AcidSlimeLarge` / `SpikeSlimeLarge`）在执行分裂（`Split`）时，因大史莱姆死亡消散淡出延迟导致与新生成的两只小史莱姆视觉重叠同屏三图的问题；在分裂瞬间立即隐藏大史莱姆节点并增加图鉴安全判断。
 
 
 ## v0.3.4

@@ -170,14 +170,25 @@ public sealed class SlimeBoss : MindBloomBossMonsterModel
 
     private async Task Split(IReadOnlyList<Creature> targets)
     {
-        int currentHp = Creature.CurrentHp;
-        ICombatState combatState = Creature.CombatState
-          ?? throw new InvalidOperationException("Slime Boss split requires an active combat state.");
-        Vector2 originalPosition = NCombatRoom.Instance?.GetCreatureNode(Creature)?.Position ?? Vector2.Zero;
-
         _ = ShakeAnimation.Play(Creature, 1f, 3f);
         await Cmd.Wait(1f);
         AFTPModAudio.Play("general", "slime_split");
+
+        // NOTE: 在图鉴环境中仅播放分裂音效与蓄力动画，不执行实际生成与杀死
+        if (Creature.CombatState is not CombatState combatState)
+            return;
+
+        int currentHp = Creature.CurrentHp;
+        NCreature? originalCreatureNode = NCombatRoom.Instance?.GetCreatureNode(Creature);
+        Vector2 originalPosition = originalCreatureNode?.Position ?? Vector2.Zero;
+
+        // 立即隐藏大史莱姆的视觉节点，避免死亡消散动画残留与分裂生成的两只史莱姆重叠显示
+        if (originalCreatureNode != null)
+        {
+            originalCreatureNode.Visuals.Visible = false;
+            originalCreatureNode.Visible = false;
+        }
+
         await CreatureCmd.Kill(Creature);
 
         var occupiedSlots = combatState.GetTeammatesOf(Creature)
