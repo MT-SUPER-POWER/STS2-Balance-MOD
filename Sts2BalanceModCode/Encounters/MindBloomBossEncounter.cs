@@ -43,8 +43,6 @@ public sealed class MindBloomBossEncounter : BalanceEncounterTemplate
 
     public override string CustomBgm => _bossEncounter?.CustomBgm ?? "";
 
-    protected override bool HasCustomBackground => _bossEncounter != null;
-
     public override IEnumerable<string> ExtraAssetPaths => _bossEncounter?.ExtraAssetPaths ?? [];
 
     public override IEnumerable<MonsterModel> AllPossibleMonsters =>

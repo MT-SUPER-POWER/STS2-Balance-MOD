@@ -22,6 +22,7 @@
 - 守护者图鉴与动画修复：修复守护者（`Guardian`）在图鉴中形态切换与 Spine 动作脱节的问题；支持图鉴环境下节点自适应解析与 Spine 动画（`idle` / `transition` / `defensive`）平滑过渡，并为各招式（`CloseUp` / `RollAttack` / `TwinSlam` / `Bash` 等）添加前置形态自适应保障。
 - 特效与资源完整性补全：地毯式排查所有特效与粒子资源，补齐 TimeWarp 回合结束时钟旋转特效专用图集资源（`powers.atlas` / `powers.png`）与材质切片，修正 Hexaghost 火焰打击特效的原生场景路径解析（`SceneHelper`）。
 - 六火亡魂图鉴视效修复：修复六火亡魂（`Hexaghost`）在图鉴（Bestiary）中因非战斗房间环境下未初始化 `HexaghostVisuals` 导致等离子流动层与六枚火球特效缺失的问题；通过 `EnsureVisuals` 并在 `GenerateBestiaryMoveList` 阶段自适应初始化视效控制器，重构各等离子层为正数 `ZIndex` 避免被 UI 背景板遮挡，并默认点燃火球以便图鉴预览。
+- 修复心灵绽放战斗黑屏崩溃：移除 `MindBloomBossEncounter` 错误设置的 `HasCustomBackground` 标志，避免游戏在从事件切入 Boss 战预加载资源时因查找不存在的背景层目录（`scenes/backgrounds/...`）抛出 `InvalidOperationException` 导致淡出后永久黑屏。
 
 
 ## v0.3.4
