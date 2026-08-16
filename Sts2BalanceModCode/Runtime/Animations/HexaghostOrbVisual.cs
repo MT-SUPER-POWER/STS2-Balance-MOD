@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using Sts2BalanceMod.Sts2BalanceModCode.Runtime.Audio;
@@ -103,22 +103,35 @@ public sealed class HexaghostOrbVisual : IDisposable
         }
     }
 
-    private static void SpawnIgniteEffect(Vector2 position)
+    private void SpawnIgniteEffect(Vector2 position)
     {
-        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(
-          GhostIgniteEffect.Create(position.X, position.Y).Root);
+        var node = GhostIgniteEffect.Create(position.X, position.Y).Root;
+        AddVfxChild(node);
     }
 
-    private static void SpawnFireEffect(Vector2 position)
+    private void SpawnFireEffect(Vector2 position)
     {
-        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(
-          GhostlyFireEffect.Create(position.X, position.Y).Root);
+        var node = GhostlyFireEffect.Create(position.X, position.Y).Root;
+        AddVfxChild(node);
     }
 
-    private static void SpawnWeakFireEffect(Vector2 position)
+    private void SpawnWeakFireEffect(Vector2 position)
     {
-        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(
-          GhostlyWeakFireEffect.Create(position.X, position.Y).Root);
+        var node = GhostlyWeakFireEffect.Create(position.X, position.Y).Root;
+        AddVfxChild(node);
+    }
+
+    private void AddVfxChild(Node2D node)
+    {
+        if (NCombatRoom.Instance != null)
+        {
+            NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(node);
+        }
+        else if (_parentNode != null && GodotObject.IsInstanceValid(_parentNode))
+        {
+            var targetParent = _parentNode.GetTree()?.CurrentScene ?? _parentNode;
+            targetParent.AddChildSafely(node);
+        }
     }
 
     private static void PlayIgniteSound()

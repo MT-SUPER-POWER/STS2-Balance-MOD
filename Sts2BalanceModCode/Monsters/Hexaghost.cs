@@ -16,8 +16,10 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Screens.Bestiary;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.Random;
@@ -76,6 +78,29 @@ public sealed class Hexaghost : MindBloomBossMonsterModel
     private int SearBurnCount =>
       AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 2, 1);
 
+    private static NCreature? GetCreatureNode(Creature creature)
+    {
+        return NCombatRoom.Instance?.GetCreatureNode(creature)
+            ?? NBestiary.Instance?.GetCreatureNode(creature);
+    }
+
+    public void EnsureVisuals(NCreature? creatureNode = null)
+    {
+        if (_visuals != null)
+            return;
+
+        creatureNode ??= GetCreatureNode(Creature);
+        if (creatureNode != null)
+            _visuals = new HexaghostVisuals(Creature, creatureNode);
+    }
+
+    public override List<BestiaryMonsterMove> GenerateBestiaryMoveList(NCreatureVisuals? visuals)
+    {
+        var creatureNode = visuals?.GetParent<NCreature>() ?? GetCreatureNode(Creature);
+        EnsureVisuals(creatureNode);
+        return base.GenerateBestiaryMoveList(visuals);
+    }
+
     public override async Task AfterAddedToRoom()
     {
         await base.AfterAddedToRoom();
@@ -83,10 +108,7 @@ public sealed class Hexaghost : MindBloomBossMonsterModel
         _orbActiveCount = 0;
         _dividerDamage = 0;
 
-        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(Creature);
-        if (creatureNode != null)
-            _visuals = new HexaghostVisuals(Creature, creatureNode);
-
+        EnsureVisuals();
         await ApplyMindBloomEnhancements();
     }
 
@@ -147,6 +169,7 @@ public sealed class Hexaghost : MindBloomBossMonsterModel
 
     private Task Activate(IReadOnlyList<Creature> targets)
     {
+        EnsureVisuals();
         _orbActiveCount = 6;
         _visuals?.ActivateAllOrbs();
         _visuals?.SetTargetRotationSpeed(120f);
