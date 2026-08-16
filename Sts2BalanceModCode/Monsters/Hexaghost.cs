@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Audio.Debug;
@@ -178,7 +178,8 @@ public sealed class Hexaghost : MindBloomBossMonsterModel
         if (creatureNode == null || !creatureNode.IsInteractable)
             return null;
 
-        var vfx = PreloadManager.Cache.GetScene("scenes/vfx/vfx_fire_burst.tscn").Instantiate<Node2D>();
+        var scenePath = SceneHelper.GetScenePath("vfx/vfx_fire_burst");
+        var vfx = PreloadManager.Cache.GetScene(scenePath).Instantiate<Node2D>();
         vfx.GlobalPosition = creatureNode.VfxSpawnPosition;
         vfx.Modulate = new Color(0.455f, 0.918f, 0.027f, 1f);
         return vfx;

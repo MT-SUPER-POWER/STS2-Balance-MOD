@@ -20,6 +20,7 @@
 - 怪物图鉴动作修复：重构怪物图鉴动作生成机制，完全对齐游戏原生 `FromState` 规范，解决图鉴中 DIY 怪物招式预览不全或动画无法完整执行的问题；补全 Hexaghost 动作本地化 Key（`SEAR` / `TACKLE`），并使动画工具（`FastAttack` / `Jump` / `Shake`）全面兼容图鉴预览环境。
 - 史莱姆分裂视觉修复：修复史莱姆老大（`Slime Boss`）与大型史莱姆（`AcidSlimeLarge` / `SpikeSlimeLarge`）在执行分裂（`Split`）时，因大史莱姆死亡消散淡出延迟导致与新生成的两只小史莱姆视觉重叠同屏三图的问题；在分裂瞬间立即隐藏大史莱姆节点并增加图鉴安全判断。
 - 守护者图鉴与动画修复：修复守护者（`Guardian`）在图鉴中形态切换与 Spine 动作脱节的问题；支持图鉴环境下节点自适应解析与 Spine 动画（`idle` / `transition` / `defensive`）平滑过渡，并为各招式（`CloseUp` / `RollAttack` / `TwinSlam` / `Bash` 等）添加前置形态自适应保障。
+- 特效与资源完整性补全：地毯式排查所有特效与粒子资源，补齐 TimeWarp 回合结束时钟旋转特效专用图集资源（`powers.atlas` / `powers.png`）与材质切片，修正 Hexaghost 火焰打击特效的原生场景路径解析（`SceneHelper`）。
 
 
 ## v0.3.4

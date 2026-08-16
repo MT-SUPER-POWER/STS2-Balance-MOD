@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
@@ -13,9 +13,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Runtime.Effects;
 /// </summary>
 public sealed class TimeWarpTurnEndEffect
 {
-    private static readonly string AtlasPath = ModAssetPaths.PowerIcon("TimeWarpPower.png");
-    private static readonly Vector2 AtlasRegionPos = new(92f, 390f);
-    private static readonly Vector2 AtlasRegionSize = new(86f, 87f);
+    private static readonly string AtlasPath = ModAssetPaths.Resource("literally_just_here_for_time_warp", "powers.atlas");
 
     private readonly Node2D _root;
     private Sprite2D? _sprite;
@@ -42,8 +40,8 @@ public sealed class TimeWarpTurnEndEffect
 
     private void Initialize()
     {
-        var texture = ResourceLoader.Load<Texture2D>(AtlasPath);
-        if (texture == null)
+        var textureRegion = LibGdxAtlas.GetRegion(AtlasPath, "128/time");
+        if (textureRegion == null)
         {
             _root.QueueFree();
             _disposed = true;
@@ -52,9 +50,9 @@ public sealed class TimeWarpTurnEndEffect
 
         _sprite = new Sprite2D
         {
-            Texture = texture,
+            Texture = textureRegion.Value.Texture,
             RegionEnabled = true,
-            RegionRect = new Rect2(AtlasRegionPos, AtlasRegionSize),
+            RegionRect = textureRegion.Value.Region,
             Centered = true,
         };
         _root.AddChild(_sprite);
