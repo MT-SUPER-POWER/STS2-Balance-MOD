@@ -1,5 +1,6 @@
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Audio;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Combat;
@@ -15,8 +16,11 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.Random;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Powers;
@@ -180,6 +184,7 @@ public sealed class AcidSlimeLarge : BalanceMonsterTemplate
         _ = ShakeAnimation.Play(Creature, 1f, 3f);
         await Cmd.Wait(1f);
         AFTPModAudio.Play("general", "slime_split");
+        NGame.Instance?.ScreenShake(ShakeStrength.Weak, ShakeDuration.Short);
 
         // NOTE: 在图鉴环境中仅播放分裂音效与蓄力动画，不执行实际生成与杀死
         if (Creature.CombatState is not CombatState combatState)
@@ -189,9 +194,15 @@ public sealed class AcidSlimeLarge : BalanceMonsterTemplate
         var originalCreatureNode = NCombatRoom.Instance?.GetCreatureNode(Creature);
         var originalPosition = originalCreatureNode?.Position ?? Vector2.Zero;
 
-        // 立即隐藏大史莱姆的视觉节点，避免死亡消散动画残留与分裂生成的两只史莱姆重叠显示
+        // 立即生成粘液爆裂特效并隐藏大史莱姆的视觉节点，避免死亡消散残留与分裂生成的两只史莱姆重叠显示
         if (originalCreatureNode != null)
         {
+            var vfxScenePath = SceneHelper.GetScenePath("vfx/vfx_slime_impact");
+            var vfx = PreloadManager.Cache.GetScene(vfxScenePath).Instantiate<Node2D>();
+            vfx.GlobalPosition = originalCreatureNode.VfxSpawnPosition;
+            vfx.Scale = new Vector2(1.4f, 1.4f);
+            NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
+
             originalCreatureNode.Visuals.Visible = false;
             originalCreatureNode.Visible = false;
         }

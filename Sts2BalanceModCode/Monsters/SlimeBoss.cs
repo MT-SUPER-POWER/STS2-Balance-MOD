@@ -173,6 +173,7 @@ public sealed class SlimeBoss : MindBloomBossMonsterModel
         _ = ShakeAnimation.Play(Creature, 1f, 3f);
         await Cmd.Wait(1f);
         AFTPModAudio.Play("general", "slime_split");
+        NGame.Instance?.ScreenShake(ShakeStrength.Weak, ShakeDuration.Short);
 
         // NOTE: 在图鉴环境中仅播放分裂音效与蓄力动画，不执行实际生成与杀死
         if (Creature.CombatState is not CombatState combatState)
@@ -182,9 +183,15 @@ public sealed class SlimeBoss : MindBloomBossMonsterModel
         NCreature? originalCreatureNode = NCombatRoom.Instance?.GetCreatureNode(Creature);
         Vector2 originalPosition = originalCreatureNode?.Position ?? Vector2.Zero;
 
-        // 立即隐藏大史莱姆的视觉节点，避免死亡消散动画残留与分裂生成的两只史莱姆重叠显示
+        // 立即生成粘液大爆裂特效并隐藏大史莱姆的视觉节点，避免死亡消散残留与分裂生成的小史莱姆重叠
         if (originalCreatureNode != null)
         {
+            var vfxScenePath = SceneHelper.GetScenePath("vfx/vfx_slime_impact");
+            var vfx = PreloadManager.Cache.GetScene(vfxScenePath).Instantiate<Node2D>();
+            vfx.GlobalPosition = originalCreatureNode.VfxSpawnPosition;
+            vfx.Scale = new Vector2(2.0f, 2.0f);
+            NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
+
             originalCreatureNode.Visuals.Visible = false;
             originalCreatureNode.Visible = false;
         }
