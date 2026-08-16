@@ -34,6 +34,7 @@ public sealed class MindBloomHexaghost : BalanceEncounterTemplate
       ModAssetPaths.Resource("monsters", "hexaghost", "shadow.png"),
       ModAssetPaths.Resource("vfx", "vfx.atlas"),
       ModAssetPaths.Resource("vfx", "vfx.png"),
+      ModAssetPaths.Resource("vfx", "vfx2.png"),
       ]);
 
     public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<Hexaghost>()];

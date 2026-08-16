@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Runtime.Effects;
 
@@ -51,7 +51,10 @@ public static class LibGdxAtlas
         var data = new AtlasData();
         using var file = Godot.FileAccess.Open(atlasPath, Godot.FileAccess.ModeFlags.Read);
         if (file == null)
+        {
+            BalanceModEntry.Logger?.Warn($"[LibGdxAtlas] Failed to open atlas file at: {atlasPath}");
             return data;
+        }
 
         var lines = file.GetAsText(skipCr: true).Split('\n');
         var directory = atlasPath.GetBaseDir();

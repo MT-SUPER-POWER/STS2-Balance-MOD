@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Helpers;
@@ -71,9 +71,10 @@ public sealed class HexaghostVisuals : IDisposable
 
     private static Sprite2D CreateLayer(string path, int zIndex)
     {
+        var texture = PreloadManager.Cache.GetTexture2D(path) ?? ResourceLoader.Load<Texture2D>(path);
         return new Sprite2D
         {
-            Texture = PreloadManager.Cache.GetTexture2D(path),
+            Texture = texture,
             ZIndex = zIndex,
         };
     }
