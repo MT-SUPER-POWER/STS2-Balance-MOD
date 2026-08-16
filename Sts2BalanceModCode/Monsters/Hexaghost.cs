@@ -98,6 +98,7 @@ public sealed class Hexaghost : MindBloomBossMonsterModel
     {
         var creatureNode = visuals?.GetParent<NCreature>() ?? GetCreatureNode(Creature);
         EnsureVisuals(creatureNode);
+        _visuals?.ActivateAllOrbs();
         return base.GenerateBestiaryMoveList(visuals);
     }
 

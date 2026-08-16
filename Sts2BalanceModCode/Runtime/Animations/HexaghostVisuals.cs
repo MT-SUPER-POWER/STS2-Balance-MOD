@@ -49,6 +49,7 @@ public sealed class HexaghostVisuals : IDisposable
 
         CreatePlasmaLayers();
         CreateOrbs();
+        Update(0f);
         TaskHelper.RunSafely(UpdateLoop());
     }
 
@@ -56,16 +57,16 @@ public sealed class HexaghostVisuals : IDisposable
     {
         var visualsNode = _creatureNode.Visuals;
 
-        _plasma3 = CreateLayer($"{ResourceRoot}/plasma3.png", -3);
+        _plasma3 = CreateLayer($"{ResourceRoot}/plasma3.png", 2);
         visualsNode.AddChild(_plasma3);
 
-        _plasma2 = CreateLayer($"{ResourceRoot}/plasma2.png", -2);
+        _plasma2 = CreateLayer($"{ResourceRoot}/plasma2.png", 3);
         visualsNode.AddChild(_plasma2);
 
-        _plasma1 = CreateLayer($"{ResourceRoot}/plasma1.png", -1);
+        _plasma1 = CreateLayer($"{ResourceRoot}/plasma1.png", 4);
         visualsNode.AddChild(_plasma1);
 
-        _shadow = CreateLayer($"{ResourceRoot}/shadow.png", -4);
+        _shadow = CreateLayer($"{ResourceRoot}/shadow.png", 1);
         visualsNode.AddChild(_shadow);
     }
 
@@ -93,8 +94,19 @@ public sealed class HexaghostVisuals : IDisposable
     {
         while (!_disposed && GodotObject.IsInstanceValid(_creatureNode) && _creature.IsAlive)
         {
-            Update((float)_creatureNode.GetProcessDeltaTime());
-            await _creatureNode.ToSignal(_creatureNode.GetTree(), SceneTree.SignalName.ProcessFrame);
+            var tree = _creatureNode.GetTree();
+            if (tree == null)
+            {
+                await Task.Delay(50);
+                continue;
+            }
+
+            var delta = (float)_creatureNode.GetProcessDeltaTime();
+            if (delta <= 0f)
+                delta = 1f / 60f;
+
+            Update(delta);
+            await _creatureNode.ToSignal(tree, SceneTree.SignalName.ProcessFrame);
         }
     }
 
