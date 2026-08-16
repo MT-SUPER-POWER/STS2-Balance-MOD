@@ -1,7 +1,8 @@
-﻿using Godot;
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Screens.Bestiary;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Runtime.Animations;
 
@@ -16,7 +17,7 @@ public static class ShakeAnimation
 
     public static async Task Play(Creature creature, float awaitDuration = 1.0f, float? totalDuration = null)
     {
-        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(creature);
+        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(creature) ?? NBestiary.Instance?.GetCreatureNode(creature);
         if (creatureNode == null)
             return;
 

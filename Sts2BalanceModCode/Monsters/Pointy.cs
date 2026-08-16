@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ascension;
@@ -97,10 +97,5 @@ public sealed class Pointy : BalanceMonsterTemplate
         animator.AddAnyState("Hit", hit);
 
         return animator;
-    }
-
-    protected override string? GetBestiaryMoveAnimationId(string moveStateId)
-    {
-        return moveStateId == STAB ? "Attack" : base.GetBestiaryMoveAnimationId(moveStateId);
     }
 }

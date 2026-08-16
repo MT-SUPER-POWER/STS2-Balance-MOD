@@ -86,19 +86,10 @@ public abstract class BalanceMonsterTemplate : ModMonsterTemplate
 
             var moveId = stateId;
             var moveName = MoveTitle(moveId);
-            var animationId = GetBestiaryMoveAnimationId(moveId);
 
-            if (moveName.Exists() && animationId != null)
-            {
-                moves.Add(BestiaryMonsterMove.FromAction(moveName,
-                  () => PlayBestiaryAnimation(creatureVisuals, animationId)));
-            }
-            else
-            {
-                moves.Add(moveName.Exists()
-                  ? BestiaryMonsterMove.FromState(moveName, moveId)
-                  : BestiaryMonsterMove.FromState(moveId));
-            }
+            moves.Add(moveName.Exists()
+              ? BestiaryMonsterMove.FromState(moveName, moveId)
+              : BestiaryMonsterMove.FromState(moveId));
         }
 
         MegaSkeletonDataResource? skeletonData = creatureVisuals?.SpineBody?.GetSkeleton()?.GetData();
@@ -118,34 +109,5 @@ public abstract class BalanceMonsterTemplate : ModMonsterTemplate
         }
 
         return moves;
-    }
-
-    protected virtual string? GetBestiaryMoveAnimationId(string moveStateId)
-    {
-        return null;
-    }
-
-    private static Task PlayBestiaryAnimation(NCreatureVisuals? creatureVisuals, string animationId)
-    {
-        var spine = creatureVisuals?.SpineBody;
-        var skeletonData = spine?.GetSkeleton()?.GetData();
-        if (spine == null || skeletonData == null || !skeletonData.HasAnimation(animationId))
-        {
-            return Task.CompletedTask;
-        }
-
-        var animationState = spine.GetAnimationState();
-        animationState.SetAnimation(animationId, loop: false);
-
-        if (skeletonData.HasAnimation("Idle"))
-        {
-            animationState.AddAnimation("Idle", 0f, loop: true);
-        }
-        else if (skeletonData.HasAnimation("idle_loop"))
-        {
-            animationState.AddAnimation("idle_loop", 0f, loop: true);
-        }
-
-        return Task.CompletedTask;
     }
 }

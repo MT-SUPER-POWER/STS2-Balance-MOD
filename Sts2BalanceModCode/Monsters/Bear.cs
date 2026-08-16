@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ascension;
@@ -103,14 +103,5 @@ public sealed class Bear : BalanceMonsterTemplate
         animator.AddAnyState("Hit", hit);
 
         return animator;
-    }
-
-    protected override string? GetBestiaryMoveAnimationId(string moveStateId)
-    {
-        return moveStateId switch
-        {
-            BEAR_HUG or MAUL or LUNGE => "Attack",
-            _ => base.GetBestiaryMoveAnimationId(moveStateId),
-        };
     }
 }

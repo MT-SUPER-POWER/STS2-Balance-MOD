@@ -1,7 +1,8 @@
-﻿using Godot;
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Screens.Bestiary;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Runtime.Animations;
 
@@ -16,7 +17,7 @@ public static class JumpAnimation
 
     public static async Task Play(Creature creature)
     {
-        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(creature);
+        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(creature) ?? NBestiary.Instance?.GetCreatureNode(creature);
         var visuals = creatureNode?.Visuals;
         if (creatureNode == null || visuals == null)
             return;

@@ -17,6 +17,7 @@
 - 遭遇战与事件：修复心灵绽放事件遇到同族小队（The Kin）、史莱姆 Boss（Slime Boss）等多敌人时，由于未继承/适配遭遇场景（`EncounterScene`）与槽位（`Slots`）导致站位挤压错位与相机未正确缩放的问题。
 - 修复六火亡魂缺少流动动画的问题
 - 架构与解耦：重构 `BalanceMonsterTemplate` 怪物抽象基类，将分散在各子类（`AcidSlimeLarge`、`AcidSlimeMedium`、`SpikeSlimeLarge`、`SpikeSlimeMedium`、`Romeo` 等）中的状态机历史判定逻辑（`LastMove` / `LastTwoMoves` / `LastMoveBefore`）与本地化方法（`MoveTitle` / `MonsterLoc`）统一收敛至基类中复用。
+- 怪物图鉴动作修复：重构怪物图鉴动作生成机制，完全对齐游戏原生 `FromState` 规范，解决图鉴中 DIY 怪物招式预览不全或动画无法完整执行的问题；补全 Hexaghost 动作本地化 Key（`SEAR` / `TACKLE`），并使动画工具（`FastAttack` / `Jump` / `Shake`）全面兼容图鉴预览环境。
 
 
 ## v0.3.4

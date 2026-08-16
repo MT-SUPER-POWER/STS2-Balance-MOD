@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Audio.Debug;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Combat;
@@ -282,14 +282,5 @@ public sealed class TimeEater : BalanceMonsterTemplate
         controller.GetAnimationState().SetTimeScale(0.8f);
 
         return animator;
-    }
-
-    protected override string? GetBestiaryMoveAnimationId(string moveStateId)
-    {
-        return moveStateId switch
-        {
-            Reverberate or HeadSlam or Haste => "Attack",
-            _ => base.GetBestiaryMoveAnimationId(moveStateId),
-        };
     }
 }

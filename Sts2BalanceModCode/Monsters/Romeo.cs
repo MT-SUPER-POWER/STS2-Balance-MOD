@@ -146,13 +146,4 @@ public sealed class Romeo : BalanceMonsterTemplate
 
         return animator;
     }
-
-    protected override string? GetBestiaryMoveAnimationId(string moveStateId)
-    {
-        return moveStateId switch
-        {
-            MOCK or CROSS_SLASH or AGONIZING_SLASH => "Attack",
-            _ => base.GetBestiaryMoveAnimationId(moveStateId),
-        };
-    }
 }
