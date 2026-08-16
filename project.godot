@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Sts2BalanceMod"
-config/features=PackedStringArray("4.5", "C#", "Mobile")
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://Sts2BalanceMod/mod_image.png"
 
 [display]
@@ -28,5 +28,8 @@ project/assembly_name="Sts2BalanceMod"
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="forward_plus"
+textures/vram_compression/import_s3tc_bptc=true
+textures/vram_compression/import_etc2_astc=false
 environment/defaults/default_clear_color=Color(0.0923724, 0.122398, 0.116929, 1)
+
