@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Models;
+using Godot;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -15,6 +16,11 @@ public sealed class MindBloomBossEncounter : BalanceEncounterTemplate
     private EncounterModel? _bossEncounter;
 
     /// <summary>
+    /// 实际要打的 Boss 遭遇引用。
+    /// </summary>
+    public EncounterModel? BossEncounter => _bossEncounter;
+
+    /// <summary>
     /// 关键：RoomType 不为 Boss，让奖励界面不走换幕逻辑。
     /// </summary>
     public override RoomType RoomType => RoomType.Monster;
@@ -26,6 +32,20 @@ public sealed class MindBloomBossEncounter : BalanceEncounterTemplate
     {
         _bossEncounter = boss;
     }
+
+    public override bool HasScene => _bossEncounter?.HasScene ?? false;
+
+    public override IReadOnlyList<string> Slots => _bossEncounter?.Slots ?? [];
+
+    public override float GetCameraScaling() => _bossEncounter?.GetCameraScaling() ?? 1f;
+
+    public override Vector2 GetCameraOffset() => _bossEncounter?.GetCameraOffset() ?? Vector2.Zero;
+
+    public override string CustomBgm => _bossEncounter?.CustomBgm ?? "";
+
+    protected override bool HasCustomBackground => _bossEncounter != null;
+
+    public override IEnumerable<string> ExtraAssetPaths => _bossEncounter?.ExtraAssetPaths ?? [];
 
     public override IEnumerable<MonsterModel> AllPossibleMonsters =>
       _bossEncounter?.AllPossibleMonsters ?? [];

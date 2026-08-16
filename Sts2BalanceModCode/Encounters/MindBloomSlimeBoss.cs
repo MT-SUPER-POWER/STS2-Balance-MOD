@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Models;
+using Godot;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
@@ -19,6 +20,10 @@ public sealed class MindBloomSlimeBoss : BalanceEncounterTemplate
     private MindBloomBossEnhancementPlan? _enhancementPlan;
 
     public override RoomType RoomType => RoomType.Monster;
+
+    public override float GetCameraScaling() => 0.85f;
+
+    public override Vector2 GetCameraOffset() => Vector2.Down * 40f;
 
     public override EncounterAssetProfile AssetProfile => new(
       EncounterScenePath: ModAssetPaths.Resource("scenes", "actsfromthepast-mind_bloom_slime_boss.tscn"),
