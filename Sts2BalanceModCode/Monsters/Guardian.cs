@@ -1,5 +1,6 @@
-﻿using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -9,7 +10,9 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Screens.Bestiary;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Random;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -183,6 +186,12 @@ public sealed class Guardian : MindBloomBossMonsterModel
         };
     }
 
+    private static NCreature? GetCreatureNode(Creature creature)
+    {
+        return NCombatRoom.Instance?.GetCreatureNode(creature)
+            ?? NBestiary.Instance?.GetCreatureNode(creature);
+    }
+
     private async Task CheckPendingModeShift()
     {
         if (!_pendingModeShift)
@@ -195,6 +204,9 @@ public sealed class Guardian : MindBloomBossMonsterModel
 
     private async Task ChargeUpMove(IReadOnlyList<Creature> targets)
     {
+        if (!_isOpen)
+            await TransitionToOffensiveMode();
+
         await CreatureCmd.GainBlock(Creature, ChargeUpBlock, ValueProp.Move, null);
         AFTPModAudio.Play("guardian", "guardian_destroy");
         TalkCmd.Play(DestroyDialog, Creature, VfxColor.Gold, VfxDuration.VeryLong);
@@ -203,6 +215,9 @@ public sealed class Guardian : MindBloomBossMonsterModel
 
     private async Task FierceBashMove(IReadOnlyList<Creature> targets)
     {
+        if (!_isOpen)
+            await TransitionToOffensiveMode();
+
         _isExecutingMove = true;
         await FastAttackAnimation.Play(Creature);
         await DamageCmd.Attack(FierceBashDamage)
@@ -215,6 +230,9 @@ public sealed class Guardian : MindBloomBossMonsterModel
 
     private async Task VentSteamMove(IReadOnlyList<Creature> targets)
     {
+        if (!_isOpen)
+            await TransitionToOffensiveMode();
+
         foreach (var target in targets.Where(target => target.IsAlive))
         {
             await PowerCmd.Apply<WeakPower>(
@@ -228,6 +246,9 @@ public sealed class Guardian : MindBloomBossMonsterModel
 
     private async Task WhirlwindMove(IReadOnlyList<Creature> targets)
     {
+        if (!_isOpen)
+            await TransitionToOffensiveMode();
+
         _isExecutingMove = true;
         await FastAttackAnimation.Play(Creature);
         AFTPModAudio.Play("general", "whirlwind");
@@ -237,11 +258,11 @@ public sealed class Guardian : MindBloomBossMonsterModel
             AFTPModAudio.Play("general", "attack_heavy");
 
             var target = targets.FirstOrDefault(candidate => candidate.IsAlive);
-            var targetNode = target == null ? null : NCombatRoom.Instance?.GetCreatureNode(target);
-            if (targetNode != null)
+            var targetNode = target == null ? null : GetCreatureNode(target);
+            if (targetNode != null && NCombatRoom.Instance != null)
             {
                 var cleaveVfx = CleaveEffect.Create(targetNode.VfxSpawnPosition);
-                NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(cleaveVfx.Root);
+                NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(cleaveVfx.Root);
             }
 
             await Cmd.Wait(0.15f);
@@ -256,12 +277,18 @@ public sealed class Guardian : MindBloomBossMonsterModel
 
     private async Task CloseUpMove(IReadOnlyList<Creature> targets)
     {
+        if (_isOpen)
+            await TransitionToDefensiveMode(setMove: false);
+
         await PowerCmd.Apply<SharpHidePower>(
           new ThrowingPlayerChoiceContext(), Creature, SharpHideThorns, Creature, null);
     }
 
     private async Task RollAttackMove(IReadOnlyList<Creature> targets)
     {
+        if (_isOpen)
+            await TransitionToDefensiveMode(setMove: false);
+
         await FastAttackAnimation.Play(Creature);
         await DamageCmd.Attack(RollDamage)
           .FromMonster(this)
@@ -274,7 +301,10 @@ public sealed class Guardian : MindBloomBossMonsterModel
     private async Task TwinSlamMove(IReadOnlyList<Creature> targets)
     {
         _isExecutingMove = true;
-        await TransitionToOffensiveMode();
+        if (!_isOpen)
+            await TransitionToOffensiveMode();
+
+        await FastAttackAnimation.Play(Creature);
         await DamageCmd.Attack(TwinSlamDamage)
           .WithHitCount(TwinSlamHits)
           .FromMonster(this)
@@ -282,24 +312,31 @@ public sealed class Guardian : MindBloomBossMonsterModel
             sfx: "event:/sfx/enemy/enemy_attacks/punch_construct/punch_construct_attack_double")
           .WithHitFx("vfx/vfx_attack_blunt")
           .Execute(null);
-        await PowerCmd.Remove<SharpHidePower>(Creature);
+
+        if (Creature.CombatState is CombatState)
+            await PowerCmd.Remove<SharpHidePower>(Creature);
+
         _isExecutingMove = false;
         await CheckPendingModeShift();
     }
 
     public async Task TransitionToDefensiveMode(bool setMove = true)
     {
-        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(Creature);
-        if (creatureNode != null)
+        var creatureNode = GetCreatureNode(Creature);
+        if (creatureNode != null && NCombatRoom.Instance != null)
         {
             var vfx = IntenseZoomEffect.Create(creatureNode.VfxSpawnPosition, false);
-            NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx.Root);
+            NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx.Root);
         }
 
-        await PowerCmd.Remove<ModeShiftPower>(Creature);
-        _nextThreshold += DamageThresholdIncrease;
+        if (Creature.CombatState is CombatState)
+        {
+            await PowerCmd.Remove<ModeShiftPower>(Creature);
+            _nextThreshold += DamageThresholdIncrease;
+            await CreatureCmd.GainBlock(Creature, DefensiveBlock, ValueProp.Move, null);
+        }
+
         AFTPModAudio.Play("guardian", "guardian_boss_transform");
-        await CreatureCmd.GainBlock(Creature, DefensiveBlock, ValueProp.Move, null);
         await CreatureCmd.TriggerAnim(Creature, "transition", 0f);
 
         var spineBody = creatureNode?.Visuals.SpineBody;
@@ -317,26 +354,35 @@ public sealed class Guardian : MindBloomBossMonsterModel
         }
 
         _isOpen = false;
-        if (setMove)
+        if (setMove && Creature.CombatState is CombatState)
             SetMoveImmediate(_closeUpState, true);
     }
 
     private async Task TransitionToOffensiveMode()
     {
-        await PowerCmd.Apply<ModeShiftPower>(
-          new ThrowingPlayerChoiceContext(), Creature, _nextThreshold, Creature, null);
-
-        if (Creature.Block > 0)
+        if (Creature.CombatState is CombatState)
         {
-            await CreatureCmd.LoseBlock(
-              new ThrowingPlayerChoiceContext(), Creature, Creature.Block, null);
+            await PowerCmd.Apply<ModeShiftPower>(
+              new ThrowingPlayerChoiceContext(), Creature, _nextThreshold, Creature, null);
+
+            if (Creature.Block > 0)
+            {
+                await CreatureCmd.LoseBlock(
+                  new ThrowingPlayerChoiceContext(), Creature, Creature.Block, null);
+            }
         }
 
         await CreatureCmd.TriggerAnim(Creature, "idle", 0f);
 
-        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(Creature);
-        var trackEntry = creatureNode?.Visuals.SpineBody?.GetAnimationState().GetCurrent(0);
-        trackEntry?.SetMixDuration(0.2f);
+        var creatureNode = GetCreatureNode(Creature);
+        var spineBody = creatureNode?.Visuals.SpineBody;
+        if (spineBody != null)
+        {
+            var animState = spineBody.GetAnimationState();
+            animState.SetAnimation("idle", true, 0);
+            var trackEntry = animState.GetCurrent(0);
+            trackEntry?.SetMixDuration(0.2f);
+        }
 
         _isOpen = true;
         _closeUpTriggered = false;
