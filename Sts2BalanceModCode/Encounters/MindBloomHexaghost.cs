@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Models;
+using Godot;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
@@ -20,6 +21,10 @@ public sealed class MindBloomHexaghost : BalanceEncounterTemplate
 
     public override RoomType RoomType => RoomType.Monster;
 
+    public override float GetCameraScaling() => 0.9f;
+
+    public override Vector2 GetCameraOffset() => Vector2.Down * 50f;
+
     public override EncounterAssetProfile AssetProfile => new(
       ExtraAssetPaths:
       [
@@ -27,6 +32,7 @@ public sealed class MindBloomHexaghost : BalanceEncounterTemplate
       ModAssetPaths.Resource("monsters", "hexaghost", "plasma2.png"),
       ModAssetPaths.Resource("monsters", "hexaghost", "plasma3.png"),
       ModAssetPaths.Resource("monsters", "hexaghost", "shadow.png"),
+      ModAssetPaths.Resource("vfx", "vfx.atlas"),
       ModAssetPaths.Resource("vfx", "vfx.png"),
       ]);
 

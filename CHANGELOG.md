@@ -276,7 +276,7 @@
 - 遗物：修复坚固夹子（SturdyClamp）因为 API 更新接口导致的错误
 
 
-# v0.0.8.2-beta
+## v0.0.8.2-beta
 
 ### Added
 
@@ -289,7 +289,7 @@
 
 - 遗物：修复「枯木树枝」（DeadBranch）对回合结束时消耗的虚无牌生成新牌时，因重复调用生成函数导致新加入手牌没有正确获得保留（Retain）效果的 BUG。
 
-# v0.0.8.1-beta
+## v0.0.8.1-beta
 
 ### Added
 
@@ -313,7 +313,7 @@
 - 修复：解决悬浮风筝（HoveringKite.cs）中因未对 Owner 或 Owner.Creature 进行空值校验而导致的潜在空引用解引用编译警告（CS8602）
 - 修复：解决心灵绽放（MindBloom）事件点击 Boss 战斗分支时，由于传入了已 calls `.ToMutable()` 的 mutable 遭遇模型，导致 `EnterCombatWithoutExitingEvent` 内部重复调用 `ToMutable()` 触发 `MutableModelException` 崩溃的问题。改为直接传递 canonical 遭遇模型。
 
-# v0.0.8-beta
+## v0.0.8-beta
 
 ### Added
 
@@ -330,7 +330,7 @@
 - BUG：修复全神贯注的弃牌数量可选的问题
 
 
-# v0.0.7
+## v0.0.7
 
 ### Added
 
@@ -368,7 +368,7 @@
 - `docs/balance-changes.md`：精简为只保留未完成的待办项（CARD-08 / CARD-09）与未解决的 BUG / FEATURE；所有已完成项移到 README。
 
 
-# v0.0.6
+## v0.0.6
 
 **修复**
 - 联机：升级最低 BaseLib 依赖到 `3.2.1`，避免旧版自定义消息注册表在反序列化联机数据包时抛出 `KeyNotFoundException`。
@@ -430,7 +430,7 @@
 - 更新平衡调整清单，加入一代内容回归合并路线图
 
 
-# v0.0.5
+## v0.0.5
 
 **新增**
 - 遗物 · 宁静烟斗（PeacePipe）：在火堆新增烟斗选项，可移除一张牌（RELIC-05）。
@@ -442,7 +442,7 @@
 **变更**
 - 骨妹挽歌：升级后改为不消耗，且不再提高召唤次数（CARD-01）
 
-# v0.0.4
+## v0.0.4
 
 **新增**
 - 遗物 · 御守（Omamori）：抵消接下来获得的 2 张诅咒牌，带计数器显示（EVENT-04）
@@ -460,7 +460,7 @@
 - 新增 CHANGELOG 与 GitHub Actions 自动发布流程
 - 添加 WatcherMod 参考 Mod 为 git submodule
 
-# v0.0.3
+## v0.0.3
 
 **新增**
 - 遗物 · 日晷（Sundial）：每将抽牌堆洗牌 3 次，获得 2 点能量（RELIC-01）
@@ -482,7 +482,7 @@
 **文档**
 - 添加 README.md（安装指南、调整摘要、项目结构）
 
-# v0.0.2
+## v0.0.2
 
 **新增**
 - 卡牌回归 · 死亡收割（战士，LEGACY-01）
@@ -507,7 +507,7 @@
 - 添加 `docs/sts2-modding-guide.md` 与 `docs/balance-changes.md`
 - 添加 `AGENTS.md` 协作规范与知识库
 
-# v0.0.1
+## v0.0.1
 
 **新增**
 - 初始化 Godot 4 + C# + BaseLib + Harmony 项目框架
