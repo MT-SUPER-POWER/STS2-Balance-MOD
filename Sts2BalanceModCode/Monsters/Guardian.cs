@@ -1,3 +1,4 @@
+using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Combat;
@@ -259,10 +260,13 @@ public sealed class Guardian : MindBloomBossMonsterModel
 
             var target = targets.FirstOrDefault(candidate => candidate.IsAlive);
             var targetNode = target == null ? null : GetCreatureNode(target);
-            if (targetNode != null && NCombatRoom.Instance != null)
+            if (targetNode != null)
             {
                 var cleaveVfx = CleaveEffect.Create(targetNode.VfxSpawnPosition);
-                NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(cleaveVfx.Root);
+                var container = NCombatRoom.Instance?.CombatVfxContainer
+                    ?? NBestiary.Instance?.GetNodeOrNull<Control>("%MonsterVisualsContainer")
+                    ?? targetNode.GetParent();
+                container?.AddChildSafely(cleaveVfx.Root);
             }
 
             await Cmd.Wait(0.15f);
@@ -323,10 +327,13 @@ public sealed class Guardian : MindBloomBossMonsterModel
     public async Task TransitionToDefensiveMode(bool setMove = true)
     {
         var creatureNode = GetCreatureNode(Creature);
-        if (creatureNode != null && NCombatRoom.Instance != null)
+        if (creatureNode != null)
         {
             var vfx = IntenseZoomEffect.Create(creatureNode.VfxSpawnPosition, false);
-            NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(vfx.Root);
+            var container = NCombatRoom.Instance?.CombatVfxContainer
+                ?? NBestiary.Instance?.GetNodeOrNull<Control>("%MonsterVisualsContainer")
+                ?? creatureNode.GetParent();
+            container?.AddChildSafely(vfx.Root);
         }
 
         if (Creature.CombatState is CombatState)

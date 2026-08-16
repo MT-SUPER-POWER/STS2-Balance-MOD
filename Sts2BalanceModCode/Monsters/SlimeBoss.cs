@@ -18,6 +18,7 @@ using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Screens.Bestiary;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 using MegaCrit.Sts2.Core.Random;
@@ -144,21 +145,31 @@ public sealed class SlimeBoss : MindBloomBossMonsterModel
         await Cmd.Wait(0.3f);
     }
 
+    private static NCreature? GetCreatureNode(Creature creature)
+    {
+        return NCombatRoom.Instance?.GetCreatureNode(creature)
+            ?? NBestiary.Instance?.GetCreatureNode(creature);
+    }
+
     private async Task Slam(IReadOnlyList<Creature> targets)
     {
         await JumpAnimation.Play(Creature);
 
         foreach (Creature target in targets.Where(target => target.IsAlive))
         {
-            NCreature? creatureNode = target.GetCreatureNode();
+            NCreature? creatureNode = GetCreatureNode(target);
             if (creatureNode == null)
                 continue;
 
-            Node2D vfx = PreloadManager.Cache.GetScene(SceneHelper.GetScenePath("vfx/vfx_heavy_blunt"))
-              .Instantiate<Node2D>();
+            var scenePath = SceneHelper.GetScenePath("vfx/vfx_heavy_blunt");
+            var vfx = PreloadManager.Cache.GetScene(scenePath).Instantiate<Node2D>();
             vfx.Modulate = Colors.Green;
-            target.GetVfxContainer()?.AddChildSafely(vfx);
-            vfx.GlobalPosition = creatureNode.GlobalPosition;
+            vfx.GlobalPosition = creatureNode.VfxSpawnPosition;
+
+            var container = NCombatRoom.Instance?.CombatVfxContainer
+                ?? NBestiary.Instance?.GetNodeOrNull<Control>("%MonsterVisualsContainer")
+                ?? creatureNode.GetParent();
+            container?.AddChildSafely(vfx);
         }
 
         await Cmd.Wait(0.4f);
