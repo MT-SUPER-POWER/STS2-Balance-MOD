@@ -61,5 +61,8 @@
   "TOASTY_MITTENS.description": "在你的回合开始时，你可以选择[gold]消耗[/gold] [blue]1[/blue] 张手牌（包含跳过选项）。成功消耗手牌后，获得 [blue]1[/blue] 点[red]力量[/red]。",
   "SIGNET_RING.description": "拾起时，获得 [blue]999[/blue] 金币。",
   "BEAUTIFUL_BRACELET.description": "拾起时，为你[gold]牌组[/gold]中的[blue]{Cards}[/blue]张牌[gold]附魔[/gold]：[purple]迅捷[/purple][blue]2[/blue]。",
-  "BEAUTIFUL_BRACELET.eventDescription": "为你[gold]牌组[/gold]中的[blue]{Cards}[/blue]张牌[gold]附魔[/gold]：[purple]迅捷{Swift}[/purple]。"
+  "BEAUTIFUL_BRACELET.eventDescription": "为你[gold]牌组[/gold]中的[blue]{Cards}[/blue]张牌[gold]附魔[/gold]：[purple]迅捷{Swift}[/purple]。",
+  "STS2_BALANCEMOD_STRANGE_SPOON.title": "奇怪的勺子",
+  "STS2_BALANCEMOD_STRANGE_SPOON.description": "应该 [gold]消耗[/gold] 的牌在被打出时会有 [blue]50%[/blue] 几率只被丢弃。",
+  "STS2_BALANCEMOD_STRANGE_SPOON.flavor": "如果你盯着这把勺子看，它似乎就会在你眼前弯曲变形。"
 }

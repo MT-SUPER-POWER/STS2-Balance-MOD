@@ -58,5 +58,8 @@
   "TOASTY_MITTENS.description": "В начале своего хода вы можете выбрать [blue]1[/blue] карту в своей руке для [gold]Сжигания[/gold] (содержит вариант Пропустить). При сжигании карты вы получаете [blue]1[/blue] [red]силу[/red].",
   "SIGNET_RING.description": "При получении дает [blue]999[/blue] золота.",
   "BEAUTIFUL_BRACELET.description": "При получении выберите [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в вашей [gold]колоде[/gold] и наложите [gold]чары[/gold] [purple]«Скорость»[/purple] [blue]2[/blue].",
-  "BEAUTIFUL_BRACELET.eventDescription": "Выберите [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в вашей [gold]колоде[/gold] и наложите [gold]чары[/gold] [purple]«Скорость» {Swift}[/purple]."
+  "BEAUTIFUL_BRACELET.eventDescription": "Выберите [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в вашей [gold]колоде[/gold] и наложите [gold]чары[/gold] [purple]«Скорость» {Swift}[/purple].",
+  "STS2_BALANCEMOD_STRANGE_SPOON.title": "Странная ложка",
+  "STS2_BALANCEMOD_STRANGE_SPOON.description": "Карты со [gold]Сжиганием[/gold] при разыгрывании с вероятностью [blue]50%[/blue] сбрасываются вместо сжигания.",
+  "STS2_BALANCEMOD_STRANGE_SPOON.flavor": "Если приглядеться к ложке, кажется, будто она гнется и извивается прямо на глазах."
 }

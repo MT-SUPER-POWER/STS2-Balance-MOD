@@ -58,5 +58,8 @@
   "TOASTY_MITTENS.description": "All'inizio del tuo turno, puoi scegliere [blue]1[/blue] carta dalla tua mano da [gold]Esaurire[/gold] (include l'opzione Salta). Dopo aver esaurito una carta, ottieni [blue]1[/blue] [red]Forza[/red].",
   "SIGNET_RING.description": "Quando la raccogli, ottieni [blue]999[/blue] Oro.",
   "BEAUTIFUL_BRACELET.description": "Dopo aver ottenuto questa reliquia, scegli [blue]{Cards}[/blue] {Cards:plural:carta nel tuo [gold]mazzo[/gold]. [gold]Incantala[/gold]|carte nel tuo [gold]mazzo[/gold]. [gold]Incantale[/gold]} con [blue]2[/blue] di [purple]Rapidità[/purple] .",
-  "BEAUTIFUL_BRACELET.eventDescription": "Scegli [blue]{Cards}[/blue] {Cards:plural:carta nel tuo [gold]mazzo[/gold]. [gold]Incantala[/gold]|carte nel tuo [gold]mazzo[/gold]. [gold]Incantale[/gold]} con [purple]{Swift} di Rapidità[/purple]."
+  "BEAUTIFUL_BRACELET.eventDescription": "Scegli [blue]{Cards}[/blue] {Cards:plural:carta nel tuo [gold]mazzo[/gold]. [gold]Incantala[/gold]|carte nel tuo [gold]mazzo[/gold]. [gold]Incantale[/gold]} con [purple]{Swift} di Rapidità[/purple].",
+  "STS2_BALANCEMOD_STRANGE_SPOON.title": "Cucchiaio Strano",
+  "STS2_BALANCEMOD_STRANGE_SPOON.description": "Le carte che si [gold]Esauriscono[/gold] quando vengono giocate vengono invece scartate il [blue]50%[/blue] delle volte.",
+  "STS2_BALANCEMOD_STRANGE_SPOON.flavor": "Fissando il cucchiaio, sembra piegarsi e torcersi davanti ai tuoi occhi."
 }
