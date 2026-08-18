@@ -36,6 +36,25 @@
 
 ## 最近完成
 
+### 遗物
+
+- [x] **RELIC-SANDCASTLE-01** — 先古遗物「沙堡」（Sand Castle）调整
+  - 拾起时，先由玩家从牌组中选择 3 张可升级牌进行升级，随后在牌组剩余可升级牌中随机升级 3 张。
+  - 通过 Harmony Patch 拦截 `SandCastle.AfterObtained` 实现，并同步更新四国语言本地化说明文本。
+
+- [x] **RELIC-STRANGE-SPOON-01** — 商店遗物「奇怪的汤勺」（Strange Spoon）机制修复与【凋萎】必定消耗
+  - 规范中文名称为「奇怪的汤勺」；打出应消耗的牌时，有 50% 几率进入弃牌堆而不是消耗；打出【凋萎】（Wither）时 100% 必定消耗。
+  - 描述文本与 HoverTip 明确注明「（凋萎必定会被消耗。）」。
+  - 通过 Harmony Patch 拦截 `CardModel.GetResultLocationForCardPlay`，清理遗物内部不正确的 `AfterCardPlayed` 逻辑。
+
+### 卡牌
+
+- [x] **CARD-ROLLBACK-01** — 移除助燃剂（触媒 Accelerant）的稀有度 Patch，恢复原版
+  - 删除 `AccelerantRarityRollbackPatch.cs`，保持原版 Uncommon 稀有度。
+
+- [x] **CARD-ROLLBACK-02** — 移除战士卡池移除残酷（Cruelty）的 Patch，恢复原版
+  - 删除 `IroncladCardPoolPatch.cs`，恢复残酷在战士卡池中正常出现。
+
 ### 基础设施
 
 - [x] **CONFIG-01** — Mod 设置页面 MVP

@@ -94,11 +94,9 @@
 | **辉光 [Glow]** | <img src="Assets/profile/regent.png" width="22" height="22" title="储君 (Regent)"> | 技能 | 获得星尘，下回合额外抽牌 | 改为**当回合立即抽 2 张**，升级额外多获得 1 星尘 |
 | **放血 [Bloodletting]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | 蓝卡（罕见）（v1.0.9 修改） | 稀有度改回**白卡（普通）** |
 | **且战且退 [Expect a Fight]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | 原官方中文名为「跃跃欲试」 | 仅调整中文名为**「且战且退」**，机制与数值保持原版一致 |
-| **残酷 [Cruelty]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 能力 | 下放为战士蓝卡 | 从战士卡池中**完全移除**（由“进化”卡牌替代） |
 | **探寻 [Dowsing]** | <img src="Assets/profile/neow.png" width="22" height="22" title="涅奥 (Neow)"> | 任务 | 进入 5 个 ? 房间后转化为「丰饶」 | 调整为进入 **4 个 ? 房间**后转化为「丰饶」 |
 | **魔球 [The Ball]** | <img src="Assets/profile/colorless.png" width="22" height="22" title="无色 (Colorless)"> | 攻击 | 每次打出后伤害成长 **10 / 15** | 成长幅度改为 **15 / 20** |
 | **巨镰 [The Scythe]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 2 费，消耗；造成 13 点伤害，每次打出后伤害成长 **4 / 5** | 初始伤害调整为 **16** 点，配合官方 **5 / 7** 的成长幅度 |
-| **触媒 [Accelerant]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 能力 | 蓝卡（罕见） | 稀有度回调为**金卡（稀有）** |
 | **计划妥当 [Well-Laid Plans]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 能力 | 金卡（稀有），1 / 0 费；回合结束时不弃牌 | 罕见，2 / 1 费；回合结束时保留最多 **1 / 2** 张牌（再次打出保留张数可叠加，选卡界面自动过滤手牌中已有【保留】属性的牌），未选择的手牌正常弃置，并保留多人可用支持 |
 | **华丽收场 [Grand Finale]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | 0 费，抽牌堆有 0 张牌时打出 | **X 费**卡牌，打出条件调整为**抽牌堆卡牌数 ≤ X**；**升级后打出少扣除 2 点费用**（扣除 $\max(0, X - 2)$ 能量） |
 | **精密 [Pinpoint]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | 耗能按技能打出数减少，造成伤害 | 从猎人卡池中**完全移除**（由「内脏切除」替代） |
@@ -198,6 +196,7 @@
 | <img src="Assets/relics/wrist_blade.png" width="22" height="22" valign="middle"> **袖箭 [Wrist Blade]** | 普通 | <img src="Assets/profile/silent.png" width="18" height="18" valign="middle" title="静默猎手"> 猎人专属。费用为 0 的攻击牌额外造成 4 点伤害。 |
 | <img src="Assets/relics/hovering_kite.png" width="22" height="22" valign="middle"> **悬浮风筝 [Hovering Kite]** | 罕见 | <img src="Assets/profile/silent.png" width="18" height="18" valign="middle" title="静默猎手"> 猎人专属。你在每回合第一次弃牌时，获得 1 点能量。 |
 | <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **灵魂契约 [Soul Contract]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 选择牌组中的 1 张有消耗的牌，永久去除其消耗属性。 |
+| <img src="Assets/relics/strange_spoon.png" width="22" height="22" valign="middle"> **奇怪的汤勺 [Strange Spoon]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 应被消耗的牌在被打出时有 50% 几率改为被丢弃。（凋萎必定会被消耗） |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **尼利的宝典 [Nilry's Codex]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 每回合结束时，从 3 张随机**升级版**卡牌中选择 1 张洗入抽牌堆。（RELIC-04：MOD 改为展示升级版） |
 <!-- | <img src="Assets/relics/shabbydoll.png" width="22" height="22" valign="middle"> **破旧的玩偶 [Shabby Doll]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 拾起时，扣除 50% 最大生命值上限，并将牌组中所有的基础【打击】与【防御】替换为升级后的【巫术打击+】与【巫术防御+】。（先古之民 Tanx 专属替换撕咬机制选项） | -->
 
@@ -206,6 +205,7 @@
 
 | 遗物 | 类型 | 原版 | MOD 改后 |
 | :--- | :--- | :--- | :--- |
+| <img src="Assets/relics/sand_castle.png" width="22" height="22" valign="middle"> **沙堡 [Sand Castle]** | <img src="Assets/profile/orobos.png" width="22" height="22" title="奥罗波斯 (Orobos)"> | 拾起时随机升级 6 张牌 | 拾起时改为选择 3 张牌升级，然后随机升级 3 张牌 |
 | <img src="Assets/relics/sturdy_clamp.png" width="22" height="22" valign="middle"> **坚固钳子 [Sturdy Clamp]** | 稀有 | 保留 10 护甲 | 保留 **15 护甲** |
 | <img src="Assets/relics/preserved_fog.png" width="22" height="22" valign="middle"> **活雾 [Preserved Fog]** | <img src="Assets/profile/vakuu.png" width="22" height="22" title="瓦库 (Vakuu)"> | 删除 3 张牌 | 删除 **4 张牌** |
 | <img src="Assets/relics/red_mask.png" width="22" height="22" valign="middle"> **红面具 [Red Mask]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 在一般共享遗物池中 | 从一般共享遗物池**移除**，只通过红面具相关事件获得 |

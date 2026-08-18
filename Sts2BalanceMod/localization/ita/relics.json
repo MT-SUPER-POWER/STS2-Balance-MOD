@@ -59,7 +59,10 @@
   "SIGNET_RING.description": "Quando la raccogli, ottieni [blue]999[/blue] Oro.",
   "BEAUTIFUL_BRACELET.description": "Dopo aver ottenuto questa reliquia, scegli [blue]{Cards}[/blue] {Cards:plural:carta nel tuo [gold]mazzo[/gold]. [gold]Incantala[/gold]|carte nel tuo [gold]mazzo[/gold]. [gold]Incantale[/gold]} con [blue]2[/blue] di [purple]Rapidità[/purple] .",
   "BEAUTIFUL_BRACELET.eventDescription": "Scegli [blue]{Cards}[/blue] {Cards:plural:carta nel tuo [gold]mazzo[/gold]. [gold]Incantala[/gold]|carte nel tuo [gold]mazzo[/gold]. [gold]Incantale[/gold]} con [purple]{Swift} di Rapidità[/purple].",
+  "SAND_CASTLE.description": "Al momento della raccolta, scegli [blue]3[/blue] carte da [gold]Migliorare[/gold], poi [gold]Migliora[/gold] [blue]3[/blue] carte casuali.",
   "STS2_BALANCEMOD_STRANGE_SPOON.title": "Cucchiaio Strano",
-  "STS2_BALANCEMOD_STRANGE_SPOON.description": "Le carte che si [gold]Esauriscono[/gold] quando vengono giocate vengono invece scartate il [blue]50%[/blue] delle volte.",
-  "STS2_BALANCEMOD_STRANGE_SPOON.flavor": "Fissando il cucchiaio, sembra piegarsi e torcersi davanti ai tuoi occhi."
+  "STS2_BALANCEMOD_STRANGE_SPOON.description": "Le carte che si [gold]Esauriscono[/gold] quando vengono giocate vengono invece scartate il [blue]50%[/blue] delle volte. ([gold]Deperimento[/gold] si Esaurisce sempre.)",
+  "STS2_BALANCEMOD_STRANGE_SPOON.flavor": "Fissando il cucchiaio, sembra piegarsi e torcersi davanti ai tuoi occhi.",
+  "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.title": "Deperimento sempre Esaurito",
+  "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.description": "Quando giochi [gold]Deperimento[/gold], viene sempre Esaurito e non può essere scartato dal Cucchiaio Strano."
 }

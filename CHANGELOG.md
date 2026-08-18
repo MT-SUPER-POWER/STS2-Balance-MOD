@@ -11,12 +11,15 @@
 
 ### Changed
 
-- 遗物：交换骨妹（Silent）两个 DIY 遗物的稀有度——悬浮风筝（HoveringKite）从普通改为罕见，袖箭（WristBlade）从罕见改为普通。 (RELIC-SWAP-01)
-
+- 遗物：交换骨妹（Silent）两个 DIY 遗物的稀有度——悬浮风筝（HoveringKite）从普通改为罕见，袖箭（WristBlade）从罕见改为普通。(RELIC-SWAP-01)
+- 遗物：先古遗物「沙堡」（Sand Castle）调整——拾起时，先由玩家从牌组中选择 3 张可升级牌进行升级，随后在牌组剩余可升级牌中随机升级 3 张。(RELIC-SANDCASTLE-01)
+- 遗物：修复商店遗物「奇怪的汤勺」（Strange Spoon）机制——打出应消耗的牌时，有 50% 几率进入弃牌堆而不是消耗；打出【凋萎】（Wither）时 100% 必定消耗，并在说明文本与悬浮提示中明确说明。(RELIC-STRANGE-SPOON-01)
+- 卡牌：移除助燃剂（Accelerant）稀有度回退 Patch，恢复原版罕见稀有度。(CARD-ROLLBACK-01)
+- 卡牌：移除战士卡池移除残酷（Cruelty）的 Patch，恢复残酷正常在战士卡池出现。(CARD-ROLLBACK-02)
 
 ### Added
 
-- 奇怪的勺子: 应该 消耗 的牌在被打出时会有 50% 几率只被丢弃
+- 遗物：新增「奇怪的汤勺」（Strange Spoon）——应被消耗的牌在被打出时有 50% 几率改为被丢弃（凋萎必定会被消耗）。
 
 
 ## v0.3.5

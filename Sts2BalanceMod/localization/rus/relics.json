@@ -59,7 +59,10 @@
   "SIGNET_RING.description": "При получении дает [blue]999[/blue] золота.",
   "BEAUTIFUL_BRACELET.description": "При получении выберите [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в вашей [gold]колоде[/gold] и наложите [gold]чары[/gold] [purple]«Скорость»[/purple] [blue]2[/blue].",
   "BEAUTIFUL_BRACELET.eventDescription": "Выберите [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в вашей [gold]колоде[/gold] и наложите [gold]чары[/gold] [purple]«Скорость» {Swift}[/purple].",
+  "SAND_CASTLE.description": "При подборе выберите [blue]3[/blue] карты для [gold]Улучшения[/gold], затем [gold]Улучшите[/gold] [blue]3[/blue] случайные карты.",
   "STS2_BALANCEMOD_STRANGE_SPOON.title": "Странная ложка",
-  "STS2_BALANCEMOD_STRANGE_SPOON.description": "Карты со [gold]Сжиганием[/gold] при разыгрывании с вероятностью [blue]50%[/blue] сбрасываются вместо сжигания.",
-  "STS2_BALANCEMOD_STRANGE_SPOON.flavor": "Если приглядеться к ложке, кажется, будто она гнется и извивается прямо на глазах."
+  "STS2_BALANCEMOD_STRANGE_SPOON.description": "Карты со [gold]Сжиганием[/gold] при разыгрывании с вероятностью [blue]50%[/blue] сбрасываются вместо сжигания. ([gold]Увядание[/gold] всегда сжигается.)",
+  "STS2_BALANCEMOD_STRANGE_SPOON.flavor": "Если приглядеться к ложке, кажется, будто она гнется и извивается прямо на глазах.",
+  "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.title": "Увядание всегда сжигается",
+  "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.description": "При разыгрывании [gold]Увядание[/gold] всегда сжигается и не сбрасывается Странной ложкой."
 }
