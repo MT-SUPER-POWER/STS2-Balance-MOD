@@ -30,24 +30,18 @@ public static class CoolantPatch
         return false;
     }
 
-    [HarmonyPatch(typeof(CardModel), "get_CanonicalVars")]
+    [HarmonyPatch(typeof(Coolant), "get_CanonicalVars")]
     [HarmonyPrefix]
-    public static bool CanonicalVarsPrefix(CardModel __instance, ref IEnumerable<DynamicVar> __result)
+    public static bool CanonicalVarsPrefix(ref IEnumerable<DynamicVar> __result)
     {
-        if (__instance is not Coolant)
-            return true;
-
         __result = new DynamicVar[] { new PowerVar<CoolantPower>(1m) };
         return false;
     }
 
-    [HarmonyPatch(typeof(CardModel), "get_ExtraHoverTips")]
+    [HarmonyPatch(typeof(Coolant), "get_ExtraHoverTips")]
     [HarmonyPrefix]
-    public static bool ExtraHoverTipsPrefix(CardModel __instance, ref IEnumerable<IHoverTip> __result)
+    public static bool ExtraHoverTipsPrefix(ref IEnumerable<IHoverTip> __result)
     {
-        if (__instance is not Coolant)
-            return true;
-
         __result = Array.Empty<IHoverTip>();
         return false;
     }

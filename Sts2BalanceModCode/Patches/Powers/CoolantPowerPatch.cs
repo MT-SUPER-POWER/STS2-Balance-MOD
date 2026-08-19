@@ -20,7 +20,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Powers;
 [HarmonyPatch]
 public static class CoolantPowerPatch
 {
-    private static readonly Action<PowerModel>? FlashPower = 
+    private static readonly Action<PowerModel>? FlashPower =
         AccessTools.MethodDelegate<Action<PowerModel>>(AccessTools.Method(typeof(PowerModel), "Flash"));
 
     [HarmonyPatch(typeof(CoolantPower), nameof(CoolantPower.AfterSideTurnStart))]
@@ -34,10 +34,19 @@ public static class CoolantPowerPatch
 
     [HarmonyPatch(typeof(AbstractModel), nameof(AbstractModel.AfterCardPlayed))]
     [HarmonyPostfix]
-    public static async Task AfterCardPlayedPostfix(AbstractModel __instance, PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    public static void AfterCardPlayedPostfix(AbstractModel __instance, ref Task __result, PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (__instance is not CoolantPower power)
             return;
+
+        Task prevTask = __result;
+        __result = HandleAfterCardPlayed(prevTask, power, choiceContext, cardPlay);
+    }
+
+    private static async Task HandleAfterCardPlayed(Task prevTask, CoolantPower power, PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        if (prevTask != null)
+            await prevTask;
 
         if (power.Owner?.Player == null)
             return;
