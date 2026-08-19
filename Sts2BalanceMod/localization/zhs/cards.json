@@ -33,5 +33,7 @@
   "WELL_LAID_PLANS.selectionScreenPrompt": "选择最多 {Amount} 张要保留的牌。",
   "STS2_BALANCEMOD_EVISCERATE.title": "内脏切除",
   "STS2_BALANCEMOD_EVISCERATE.description": "你在这个回合内每丢弃一张牌，耗能就减少 1{energyPrefix:energyIcons(1)}。\n造成 {Damage:diff()} 点伤害3次。",
-  "EXPECT_A_FIGHT.title": "且战且退"
+  "EXPECT_A_FIGHT.title": "且战且退",
+  "COOLANT.description": "每当你打出一张[gold]能力牌[/gold]，抽 {CoolantPower:diff()} 张牌。"
 }
+

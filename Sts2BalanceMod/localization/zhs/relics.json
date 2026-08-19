@@ -66,5 +66,7 @@
   "STS2_BALANCEMOD_STRANGE_SPOON.description": "应被 [gold]消耗[/gold] 的牌在被打出时有 [blue]50%[/blue] 的几率改为被丢弃。（[gold]凋萎[/gold] 必定会被消耗。）",
   "STS2_BALANCEMOD_STRANGE_SPOON.flavor": "如果你盯着这把勺子看，它似乎就会在你眼前弯曲变形。",
   "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.title": "凋萎必定消耗",
-  "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.description": "打出 [gold]凋萎[/gold] 时必定会被消耗，不会触发汤勺的保留丢弃效果。"
+  "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.description": "打出 [gold]凋萎[/gold] 时必定会被消耗，不会触发汤勺的保留丢弃效果。",
+  "NEOWS_TALISMAN.description": "你遇到的接下来的 [blue]3[/blue] 场战斗中，所有敌人的生命值只有 [blue]1[/blue] 点。"
 }
+

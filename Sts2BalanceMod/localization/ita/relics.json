@@ -64,5 +64,7 @@
   "STS2_BALANCEMOD_STRANGE_SPOON.description": "Le carte che si [gold]Esauriscono[/gold] quando vengono giocate vengono invece scartate il [blue]50%[/blue] delle volte. ([gold]Deperimento[/gold] si Esaurisce sempre.)",
   "STS2_BALANCEMOD_STRANGE_SPOON.flavor": "Fissando il cucchiaio, sembra piegarsi e torcersi davanti ai tuoi occhi.",
   "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.title": "Deperimento sempre Esaurito",
-  "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.description": "Quando giochi [gold]Deperimento[/gold], viene sempre Esaurito e non può essere scartato dal Cucchiaio Strano."
+  "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.description": "Quando giochi [gold]Deperimento[/gold], viene sempre Esaurito e non può essere scartato dal Cucchiaio Strano.",
+  "NEOWS_TALISMAN.description": "I nemici nei tuoi prossimi [blue]3[/blue] combattimenti hanno [blue]1[/blue] PF."
 }
+

@@ -27,5 +27,7 @@
   "WELL_LAID_PLANS_POWER.smartDescription": "В конце своего хода Сохраните до {Amount} карт.",
   "STS2_BALANCE_MOD_POWER_INFECTED_POWER.title": "Заражение",
   "STS2_BALANCE_MOD_POWER_INFECTED_POWER.description": "В конце своего хода вы теряете {Amount} ОЗ.",
-  "STS2_BALANCE_MOD_POWER_INFECTED_POWER.smartDescription": "Теряйте {Amount} ОЗ в конце своего хода."
+  "STS2_BALANCE_MOD_POWER_INFECTED_POWER.smartDescription": "Теряйте {Amount} ОЗ в конце своего хода.",
+  "COOLANT_POWER.description": "Каждый раз, когда вы разыгрываете карту [gold]Таланта[/gold], возьмите {Amount} {Amount:plural(ru):карту|карты|карт}.",
+  "COOLANT_POWER.smartDescription": "Каждый раз, когда вы разыгрываете карту [gold]Таланта[/gold], возьмите {Amount} {Amount:plural(ru):карту|карты|карт}."
 }

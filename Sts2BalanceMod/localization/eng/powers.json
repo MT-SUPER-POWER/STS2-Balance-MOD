@@ -33,5 +33,8 @@
   "WELL_LAID_PLANS_POWER.smartDescription": "At the end of your turn, [gold]Retain[/gold] up to {Amount} {Amount:plural:card|cards}.",
   "STS2_BALANCE_MOD_POWER_INFECTED_POWER.title": "Infected",
   "STS2_BALANCE_MOD_POWER_INFECTED_POWER.description": "At the end of your turn, lose {Amount} HP.",
-  "STS2_BALANCE_MOD_POWER_INFECTED_POWER.smartDescription": "At the end of your turn, lose {Amount} HP."
+  "STS2_BALANCE_MOD_POWER_INFECTED_POWER.smartDescription": "At the end of your turn, lose {Amount} HP.",
+  "COOLANT_POWER.description": "Whenever you play a [gold]Power[/gold] card, draw {Amount} {Amount:plural:card|cards}.",
+  "COOLANT_POWER.smartDescription": "Whenever you play a [gold]Power[/gold] card, draw {Amount} {Amount:plural:card|cards}."
 }
+

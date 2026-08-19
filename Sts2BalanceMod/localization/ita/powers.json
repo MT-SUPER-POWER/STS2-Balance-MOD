@@ -27,5 +27,8 @@
   "WELL_LAID_PLANS_POWER.smartDescription": "Alla fine del tuo turno, conserva fino a {Amount} {Amount:plural:carta|carte}.",
   "STS2_BALANCE_MOD_POWER_INFECTED_POWER.title": "Infetto",
   "STS2_BALANCE_MOD_POWER_INFECTED_POWER.description": "Alla fine del tuo turno, perdi {Amount} PV.",
-  "STS2_BALANCE_MOD_POWER_INFECTED_POWER.smartDescription": "Alla fine del tuo turno, perdi {Amount} PV."
+  "STS2_BALANCE_MOD_POWER_INFECTED_POWER.smartDescription": "Alla fine del tuo turno, perdi {Amount} PV.",
+  "COOLANT_POWER.description": "Ogni volta che giochi una carta [gold]Potere[/gold], pesca {Amount} {Amount:plural:carta|carte}.",
+  "COOLANT_POWER.smartDescription": "Ogni volta che giochi una carta [gold]Potere[/gold], pesca {Amount} {Amount:plural:carta|carte}."
 }
+

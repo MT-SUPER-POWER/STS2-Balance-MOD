@@ -64,5 +64,6 @@
   "STS2_BALANCEMOD_STRANGE_SPOON.description": "Карты со [gold]Сжиганием[/gold] при разыгрывании с вероятностью [blue]50%[/blue] сбрасываются вместо сжигания. ([gold]Увядание[/gold] всегда сжигается.)",
   "STS2_BALANCEMOD_STRANGE_SPOON.flavor": "Если приглядеться к ложке, кажется, будто она гнется и извивается прямо на глазах.",
   "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.title": "Увядание всегда сжигается",
-  "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.description": "При разыгрывании [gold]Увядание[/gold] всегда сжигается и не сбрасывается Странной ложкой."
+  "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.description": "При разыгрывании [gold]Увядание[/gold] всегда сжигается и не сбрасывается Странной ложкой.",
+  "NEOWS_TALISMAN.description": "В следующих [blue]3[/blue] боях у всех врагов будет [blue]1[/blue] ОЗ."
 }

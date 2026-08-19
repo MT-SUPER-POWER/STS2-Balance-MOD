@@ -28,5 +28,6 @@
   "WELL_LAID_PLANS.description": "В конце своего хода [gold]Сохраните[/gold] до {Cards:diff()} {Cards:plural(ru):карты|карт|карт}.",
   "WELL_LAID_PLANS.selectionScreenPrompt": "Выберите до {Amount} {Amount:plural(ru):карты|карт|карт} для [gold]Сохранения[/gold].",
   "STS2_BALANCEMOD_EVISCERATE.title": "Потрошение",
-  "STS2_BALANCEMOD_EVISCERATE.description": "Стоит на 1{energyPrefix:energyIcons(1)} меньше за каждую карту, сброшенную на этом ходу.\nНаносит {Damage:diff()} урона 3 раза."
+  "STS2_BALANCEMOD_EVISCERATE.description": "Стоит на 1{energyPrefix:energyIcons(1)} меньше за каждую карту, сброшенную на этом ходу.\nНаносит {Damage:diff()} урона 3 раза.",
+  "COOLANT.description": "Каждый раз, когда вы разыгрываете карту [gold]Таланта[/gold], возьмите {CoolantPower:diff()} {CoolantPower:plural(ru):карту|карты|карт}."
 }

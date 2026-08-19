@@ -100,6 +100,7 @@
 | **计划妥当 [Well-Laid Plans]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 能力 | 金卡（稀有），1 / 0 费；回合结束时不弃牌 | 罕见，2 / 1 费；回合结束时保留最多 **1 / 2** 张牌（再次打出保留张数可叠加，选卡界面自动过滤手牌中已有【保留】属性的牌），未选择的手牌正常弃置，并保留多人可用支持 |
 | **华丽收场 [Grand Finale]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | 0 费，抽牌堆有 0 张牌时打出 | **X 费**卡牌，打出条件调整为**抽牌堆卡牌数 ≤ X**；**升级后打出少扣除 2 点费用**（扣除 $\max(0, X - 2)$ 能量） |
 | **精密 [Pinpoint]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | 耗能按技能打出数减少，造成伤害 | 从猎人卡池中**完全移除**（由「内脏切除」替代） |
+| **冷却剂 [Coolant]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 金卡（稀有），1 费；回合开始按充能球种类加格挡 | 稀有度降为**蓝卡（罕见）**，1 费；重做为能力抽牌引擎——每当你打出一张能力牌，抽 **1 / 2** 张牌（类似 1 代散热片） |
 
 
 ### 一代卡牌回归
@@ -214,6 +215,7 @@
 | <img src="Assets/relics/toasty_mittens.png" width="22" height="22" valign="middle"> **烘焙手套 [Toasty Mittens]** | <img src="Assets/profile/tezcatara.png" width="22" height="22" title="提兹卡塔拉 (Tezcatara)"> | 回合开始自动从抽牌堆消耗 1 张牌并 +1 力量 | 回合开始支持从手牌中选择 1 张卡牌消耗（**提供 Skip 选项**），成功消耗后才获得 1 点力量 |
 | <img src="Assets/relics/signet_ring.png" width="22" height="22" valign="middle"> **图章戒指 [Signet Ring]** | <img src="Assets/profile/nonupeipe.png" width="22" height="22" title="诺努佩佩 (Nonupeipe)"> | 获得 888 金币 | 回调获得 **999** 金币 |
 | <img src="Assets/relics/beautiful_bracelet.png" width="22" height="22" valign="middle"> **华美手镯 [Beautiful Bracelet]** | <img src="Assets/profile/nonupeipe.png" width="22" height="22" title="诺努佩佩 (Nonupeipe)"> | 随机 4 张牌附魔【迅捷 2】 | 拾起时改为由玩家**自选 4 张牌**定向附魔【迅捷 2】 |
+| <img src="Assets/profile/neow.png" width="22" height="22" valign="middle"> **涅奥的护符 [Neow's Talisman]** | <img src="Assets/profile/neow.png" width="22" height="22" title="涅奥 (Neow)"> | 拾起时升级 1 张打击和 1 张防御 | 重做为快速开局遗物（类似 1 代《涅奥的悲哀》）：你遇到的接下来 **3 场战斗**中，所有敌人的生命值变为 **1 点**（带 3 次充能计数器，消耗完毕后置灰失效） |
 
 ---
 
