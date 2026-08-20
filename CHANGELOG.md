@@ -12,14 +12,16 @@
 ### Changed
 
 - 卡牌：故障机器人能力牌「冷却剂」（Coolant）稀有度从金卡（Rare）降为蓝卡（Uncommon），重做为能力抽牌引擎——每当你打出一张能力牌，抽 1（升级后 2）张牌。(CARD-COOLANT-01)
-- 遗物：涅奥遗物「涅奥的护符」（Neow's Talisman）重做为快速开局遗物——拾起后，你遇到的接下来的 3 场战斗中，所有敌人的生命值变为 1 点（带 3 次充能计数器，消耗完毕后置灰失效）。(RELIC-NEOWS-TALISMAN-01)
+- 遗物：涅奥遗物「涅奥的护符」（Neow's Talisman）重做为快速开局遗物——拾起后，你遇到的接下来的 3 场战斗中，所有敌人的生命值变为 1 点（带 3 次充能计数器，消耗完毕后置灰失效）；并限制为仅单人模式可用与出现，与飞鞋规则一致。(RELIC-NEOWS-TALISMAN-01 & RELIC-NEOWS-TALISMAN-02)
 - 遗物：交换猎人（Silent）两个 DIY 遗物的稀有度——悬浮风筝（HoveringKite）从普通改为罕见，袖箭（WristBlade）从罕见改为普通。(RELIC-SWAP-01)
 - 遗物：先古遗物「沙堡」（Sand Castle）调整——拾起时，先由玩家从牌组中选择 3 张可升级牌进行升级，随后在牌组剩余可升级牌中随机升级 3 张。(RELIC-SANDCASTLE-01)
 - 卡牌：移除「助燃剂」（Accelerant）稀有度回退 Patch，恢复原版罕见稀有度。(CARD-ROLLBACK-01)
 - 卡牌：移除战士卡池移除「残酷」（Cruelty）的 Patch，恢复残酷正常在战士卡池出现。(CARD-ROLLBACK-02)
+- 卡牌：移除猎人的「侧步」（Step Aside）卡牌，不需要下回合加费卡，猎人已经有足够的当前回合收益卡
 
 ### Added
 
+- 卡牌：新增铁甲战士多人专属罕见攻击牌「好友撞击」（Buddy Slam）——1（升级后 0）费，造成等同于其他队友中最高格挡值的伤害。(CARD-BUDDY-SLAM-01)
 - 遗物：修复商店遗物「奇怪的汤勺」（Strange Spoon）机制——打出应消耗的牌时，有 50% 几率进入弃牌堆而不是消耗；打出【凋萎】（Wither）时 100% 必定消耗，并在说明文本与悬浮提示中明确说明。(RELIC-STRANGE-SPOON-01)
 
 

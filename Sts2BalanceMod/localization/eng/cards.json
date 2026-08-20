@@ -33,6 +33,8 @@
   "WELL_LAID_PLANS.selectionScreenPrompt": "Choose up to {Amount} cards to [gold]Retain[/gold].",
   "STS2_BALANCEMOD_EVISCERATE.title": "Eviscerate",
   "STS2_BALANCEMOD_EVISCERATE.description": "Costs 1 less {energyPrefix:energyIcons(1)} for each card discarded this turn.\nDeal {Damage:diff()} damage 3 times.",
-  "COOLANT.description": "Whenever you play a [gold]Power[/gold] card, draw {CoolantPower:diff()} {CoolantPower:plural:card|cards}."
+  "COOLANT.description": "Whenever you play a [gold]Power[/gold] card, draw {CoolantPower:diff()} {CoolantPower:plural:card|cards}.",
+  "STS2_BALANCEMOD_BUDDY_SLAM.title": "Buddy Slam",
+  "STS2_BALANCEMOD_BUDDY_SLAM.description": "Deal damage equal to the highest [gold]Block[/gold] among other players.{InCombat:\n(Deals {CalculatedDamage:diff()} damage)|}"
 }
 

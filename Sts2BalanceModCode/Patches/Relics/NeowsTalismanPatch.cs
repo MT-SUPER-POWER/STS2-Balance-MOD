@@ -15,19 +15,31 @@ using MegaCrit.Sts2.Core.Runs.History;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 
 /// <summary>
-/// RELIC-NEOWS-TALISMAN-01 — 涅奥遗物「涅奥的护符」（Neow's Talisman）重做为快速开局遗物（涅奥的悲哀）
+/// RELIC-NEOWS-TALISMAN-01 & RELIC-NEOWS-TALISMAN-02 — 涅奥遗物「涅奥的护符」（Neow's Talisman）重做为快速开局遗物（涅奥的悲哀）并限制单人模式可用
 /// Targets:
 /// - NeowsTalisman.AfterObtained
-/// - RelicModel.get_HasUponPickupEffect, get_ShowCounter, get_DisplayAmount, get_IsUsedUp, get_Status
+/// - RelicModel.get_HasUponPickupEffect, get_ShowCounter, get_DisplayAmount, get_IsUsedUp, get_Status, IsAllowed
 /// - Creature.SetUniqueMonsterHpValue, Creature.ScaleMonsterHpForMultiplayer
 /// - CombatRoom.StartCombat
-/// Reason: 取消原版升级1攻1防效果；改为使接下来3场战斗中的所有敌人初始生命值为1点，耗尽后置灰失效。
+/// Reason: 取消原版升级1攻1防效果；改为使接下来3场战斗中的所有敌人初始生命值为1点，耗尽后置灰失效；且与飞鞋一致仅在单人模式下可用。
 /// WARNING: Verified against D:\Game\Sts2Code\src\MegaCrit.Sts2.Core.Models.Relics\NeowsTalisman.cs.
 /// </summary>
 [HarmonyPatch]
 public static class NeowsTalismanPatch
 {
     private const int TotalLamentCombats = 3;
+
+    [HarmonyPatch(typeof(RelicModel), nameof(RelicModel.IsAllowed))]
+    [HarmonyPrefix]
+    public static bool IsAllowedPrefix(RelicModel __instance, IRunState runState, ref bool __result)
+    {
+        if (__instance is NeowsTalisman)
+        {
+            __result = runState.Players.Count == 1;
+            return false;
+        }
+        return true;
+    }
 
     [HarmonyPatch(typeof(NeowsTalisman), nameof(NeowsTalisman.AfterObtained))]
     [HarmonyPrefix]

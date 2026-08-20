@@ -29,5 +29,7 @@
   "WELL_LAID_PLANS.selectionScreenPrompt": "Выберите до {Amount} {Amount:plural(ru):карты|карт|карт} для [gold]Сохранения[/gold].",
   "STS2_BALANCEMOD_EVISCERATE.title": "Потрошение",
   "STS2_BALANCEMOD_EVISCERATE.description": "Стоит на 1{energyPrefix:energyIcons(1)} меньше за каждую карту, сброшенную на этом ходу.\nНаносит {Damage:diff()} урона 3 раза.",
-  "COOLANT.description": "Каждый раз, когда вы разыгрываете карту [gold]Таланта[/gold], возьмите {CoolantPower:diff()} {CoolantPower:plural(ru):карту|карты|карт}."
+  "COOLANT.description": "Каждый раз, когда вы разыгрываете карту [gold]Таланта[/gold], возьмите {CoolantPower:diff()} {CoolantPower:plural(ru):карту|карты|карт}.",
+  "STS2_BALANCEMOD_BUDDY_SLAM.title": "Бросок напарника",
+  "STS2_BALANCEMOD_BUDDY_SLAM.description": "Наносит урон, равный наибольшей [gold]защите[/gold] среди других игроков.{InCombat:\n(Наносит {CalculatedDamage:diff()} урона)|}"
 }

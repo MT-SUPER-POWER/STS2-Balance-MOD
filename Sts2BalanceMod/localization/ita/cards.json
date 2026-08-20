@@ -29,6 +29,8 @@
   "WELL_LAID_PLANS.selectionScreenPrompt": "Scegli fino a {Amount} carte da conservare.",
   "STS2_BALANCEMOD_EVISCERATE.title": "Svisceramento",
   "STS2_BALANCEMOD_EVISCERATE.description": "Costa 1 {energyPrefix:energyIcons(1)} in meno per ogni carta scartata in questo turno.\nInfliggi {Damage:diff()} danni per 3 volte.",
-  "COOLANT.description": "Ogni volta che giochi una carta [gold]Potere[/gold], pesca {CoolantPower:diff()} {CoolantPower:plural:carta|carte}."
+  "COOLANT.description": "Ogni volta che giochi una carta [gold]Potere[/gold], pesca {CoolantPower:diff()} {CoolantPower:plural:carta|carte}.",
+  "STS2_BALANCEMOD_BUDDY_SLAM.title": "Spanciata di Gruppo",
+  "STS2_BALANCEMOD_BUDDY_SLAM.description": "Infliggi danno pari al [gold]Blocco[/gold] più alto tra gli altri giocatori.{InCombat:\n(Infligge {CalculatedDamage:diff()} di danno)|}"
 }
 

@@ -123,6 +123,7 @@
 | **步步为营 [Step by Step]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 稀有 | X | 消耗。接下来 X（升级：X+1）回合，每回合多抽 1 张牌并多获得 1 点能量。升级后额外获得保留词条。 |
 | **巫术打击 [Sorcery Strike]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 攻击 | 先古 | 1（升级：0） | 消耗。造成 **9** 点伤害，抽 **1** 张牌，施加 **1** 层巫术易伤。 |
 | **巫术防御 [Sorcery Defend]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 技能 | 先古 | 1（升级：0） | 消耗。获得 **8** 点格挡，抽 **1** 张牌，施加 **1** 层巫术虚弱。 |
+| **好友撞击 [Buddy Slam]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 攻击 | 罕见 | 1（升级：0） | **仅多人模式出现**。造成等同于其他队友中最高格挡值的伤害。 |
 
 ### 能力调整
 
@@ -215,7 +216,7 @@
 | <img src="Assets/relics/toasty_mittens.png" width="22" height="22" valign="middle"> **烘焙手套 [Toasty Mittens]** | <img src="Assets/profile/tezcatara.png" width="22" height="22" title="提兹卡塔拉 (Tezcatara)"> | 回合开始自动从抽牌堆消耗 1 张牌并 +1 力量 | 回合开始支持从手牌中选择 1 张卡牌消耗（**提供 Skip 选项**），成功消耗后才获得 1 点力量 |
 | <img src="Assets/relics/signet_ring.png" width="22" height="22" valign="middle"> **图章戒指 [Signet Ring]** | <img src="Assets/profile/nonupeipe.png" width="22" height="22" title="诺努佩佩 (Nonupeipe)"> | 获得 888 金币 | 回调获得 **999** 金币 |
 | <img src="Assets/relics/beautiful_bracelet.png" width="22" height="22" valign="middle"> **华美手镯 [Beautiful Bracelet]** | <img src="Assets/profile/nonupeipe.png" width="22" height="22" title="诺努佩佩 (Nonupeipe)"> | 随机 4 张牌附魔【迅捷 2】 | 拾起时改为由玩家**自选 4 张牌**定向附魔【迅捷 2】 |
-| <img src="Assets/profile/neow.png" width="22" height="22" valign="middle"> **涅奥的护符 [Neow's Talisman]** | <img src="Assets/profile/neow.png" width="22" height="22" title="涅奥 (Neow)"> | 拾起时升级 1 张打击和 1 张防御 | 重做为快速开局遗物（类似 1 代《涅奥的悲哀》）：你遇到的接下来 **3 场战斗**中，所有敌人的生命值变为 **1 点**（带 3 次充能计数器，消耗完毕后置灰失效） |
+| <img src="Assets/profile/neow.png" width="22" height="22" valign="middle"> **涅奥的护符 [Neow's Talisman]** | <img src="Assets/profile/neow.png" width="22" height="22" title="涅奥 (Neow)"> | 拾起时升级 1 张打击和 1 张防御 | 重做为快速开局遗物（类似 1 代《涅奥的悲哀》）：你遇到的接下来 **3 场战斗**中，所有敌人的生命值变为 **1 点**（带 3 次充能计数器，消耗完毕后置灰失效）；**与飞鞋一致，仅限单人模式出现与选用**。 |
 
 ---
 

@@ -10,12 +10,7 @@
 
 ### 卡牌
 
-
 ### 遗物
-
-
-### 事件
-
 
 ### BOSS
 
@@ -35,12 +30,23 @@
 
 ### 卡牌
 
+- [x] **CARD-BUDDY-SLAM-01** — 铁甲战士多人专用攻击牌「好友撞击」（Buddy Slam）
+  - 类别: 铁甲战士（红卡）/ 攻击牌 / 罕见（Uncommon）/ 仅多人模式（MultiplayerOnly）
+  - 费用: 1 费（升级后 0 费）
+  - 效果: 造成等同于其他队友中最高格挡值的伤害。
+  - 立绘: 采用 Ironclad 挥掷 Defect 撞击敌人的专属立绘。
+  - 本地化: 补齐四国语言（zhs / eng / ita / rus）。
+
 - [x] **CARD-COOLANT-01** — 故障机器人能力牌「冷却剂」（Coolant）重做为能力抽牌引擎（散热片）并降为蓝卡
   - 稀有度降为蓝卡（Uncommon），1 费能力牌，重做效果为“每当你打出一张能力牌，抽 1(2) 张牌”（类似 1 代散热片 Heatsinks）。
   - 通过 Harmony Patch 拦截 `Coolant.Rarity`、`Coolant.CanonicalVars`，屏蔽原版充能球格挡逻辑，并在打出能力牌时触发抽牌。
   - 同步更新四国语言本地化说明文本。
 
 ### 遗物
+
+- [x] **RELIC-NEOWS-TALISMAN-02** — 「涅奥的护符」（Neow's Talisman）调整为单人模式专属遗物
+  - 与「飞鞋」（Winged Boots）一致，仅在单人模式下生成与可被选用（`runState.Players.Count == 1`）。
+  - 在 `NeowsTalismanPatch.cs` 中拦截 `RelicModel.IsAllowed`。
 
 - [x] **RELIC-NEOWS-TALISMAN-01** — 涅奥遗物「涅奥的护符」（Neow's Talisman）重做为快速开局遗物（涅奥的悲哀）
   - 拾起后，你遇到的接下来 3 场战斗中，所有敌人的初始生命值变为 1 点。
