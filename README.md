@@ -200,14 +200,13 @@
 | <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **灵魂契约 [Soul Contract]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 选择牌组中的 1 张有消耗的牌，永久去除其消耗属性。 |
 | <img src="Assets/relics/strange_spoon.png" width="22" height="22" valign="middle"> **奇怪的汤勺 [Strange Spoon]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 应被消耗的牌在被打出时有 50% 几率改为被丢弃。（凋萎必定会被消耗） |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **尼利的宝典 [Nilry's Codex]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 每回合结束时，从 3 张随机**升级版**卡牌中选择 1 张洗入抽牌堆。（RELIC-04：MOD 改为展示升级版） |
-<!-- | <img src="Assets/relics/shabbydoll.png" width="22" height="22" valign="middle"> **破旧的玩偶 [Shabby Doll]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 拾起时，扣除 50% 最大生命值上限，并将牌组中所有的基础【打击】与【防御】替换为升级后的【巫术打击+】与【巫术防御+】。（先古之民 Tanx 专属替换撕咬机制选项） | -->
 
 
 #### 原版调整
 
 | 遗物 | 类型 | 原版 | MOD 改后 |
 | :--- | :--- | :--- | :--- |
-| <img src="Assets/relics/sand_castle.png" width="22" height="22" valign="middle"> **沙堡 [Sand Castle]** | <img src="Assets/profile/orobos.png" width="22" height="22" title="奥罗波斯 (Orobos)"> | 拾起时随机升级 6 张牌 | 拾起时改为选择 3 张牌升级，然后随机升级 3 张牌 |
+| <img src="Assets/relics/sand_castle.png" width="22" height="22" valign="middle"> **沙堡 [Sand Castle]** | <img src="Assets/profile/orobas.png" width="22" height="22" title="奥罗波斯 (Orobos)"> | 拾起时随机升级 6 张牌 | 拾起时改为选择 3 张牌升级，然后随机升级 3 张牌 |
 | <img src="Assets/relics/sturdy_clamp.png" width="22" height="22" valign="middle"> **坚固钳子 [Sturdy Clamp]** | 稀有 | 保留 10 护甲 | 保留 **15 护甲** |
 | <img src="Assets/relics/preserved_fog.png" width="22" height="22" valign="middle"> **活雾 [Preserved Fog]** | <img src="Assets/profile/vakuu.png" width="22" height="22" title="瓦库 (Vakuu)"> | 删除 3 张牌 | 删除 **4 张牌** |
 | <img src="Assets/relics/red_mask.png" width="22" height="22" valign="middle"> **红面具 [Red Mask]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 在一般共享遗物池中 | 从一般共享遗物池**移除**，只通过红面具相关事件获得 |
