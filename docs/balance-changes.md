@@ -85,6 +85,10 @@
 
 ### BOSS
 
+- [x] **BOSS-INFESTED-PRISM-02** — 感染棱柱（Infested Prism）轻击脆弱层数下调
+  - 第 1 回合轻击（LIGHT_ATTACK_MOVE）对玩家施加的【脆弱】（`FrailPower`）从 2 层下调为 1 层。
+  - 缩短脆弱持续周期，使玩家在第 2 回合重击后即可恢复正常格挡能力，降低第 3 回合连击阶段的暴毙风险。
+
 - [x] **AFP-BOSS-03** — 史莱姆 Boss（Slime Boss）及心灵绽放专用遭遇
   - 移植史莱姆 Boss、尖刺/酸液大型与中型史莱姆、Split Power、两级分裂链、动画与音效。
   - 新增包含七个固定分裂槽位的 `RoomType.Monster` 专用遭遇，保持 AFP 原始数值与进阶分档。

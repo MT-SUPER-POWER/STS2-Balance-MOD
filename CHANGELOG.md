@@ -17,6 +17,7 @@
 - 遗物：先古遗物「沙堡」（Sand Castle）调整——拾起时，先由玩家从牌组中选择 3 张可升级牌进行升级，随后在牌组剩余可升级牌中随机升级 3 张。(RELIC-SANDCASTLE-01)
 - 卡牌：移除「助燃剂」（Accelerant）稀有度回退 Patch，恢复原版罕见稀有度。(CARD-ROLLBACK-01)
 - 卡牌：移除战士卡池移除「残酷」（Cruelty）的 Patch，恢复残酷正常在战士卡池出现。(CARD-ROLLBACK-02)
+- 怪物：感染棱柱（Infested Prism）第 1 回合轻击行动施加的【脆弱】（Frail）层数从 2 层下调为 1 层，缩短脆弱持续周期，降低后续连击阶段的防御压力。(BOSS-INFESTED-PRISM-02)
 - 卡牌：移除猎人的「侧步」（Step Aside）卡牌，不需要下回合加费卡，猎人已经有足够的当前回合收益卡
 
 ### Added

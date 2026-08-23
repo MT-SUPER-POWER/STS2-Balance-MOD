@@ -83,7 +83,7 @@ public static class InfestedPrismPatch
 
         foreach (Creature target in targets)
         {
-            await PowerCmd.Apply<FrailPower>(new ThrowingPlayerChoiceContext(), target, 2m, prism.Creature, null);
+            await PowerCmd.Apply<FrailPower>(new ThrowingPlayerChoiceContext(), target, 1m, prism.Creature, null);
         }
     }
 
