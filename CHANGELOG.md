@@ -11,9 +11,8 @@
 
 ### Changed
 
+- 遗物：先古遗物「潘多拉的魔盒」（Pandora's Box）在变牌展示界面增加异步等待确认环节。在玩家点击确认前不结束流程且不落盘存盘，允许玩家在看到变换结果后通过 SL（保存并退出）重新进入游戏选择其他遗物。(RELIC-PANDORAS-BOX-01)
 - 卡牌：静默猎手能力牌「计划妥当」（Well-Laid Plans）费用调整为始终 1 费（未升级 1 费，升级后保持 1 费，升级仅增加保留张数 1 -> 2）。(CARD-WELL-LAID-PLANS-01)
-
-
 
 
 ## v0.3.6
@@ -24,7 +23,7 @@
 - 遗物：涅奥遗物「涅奥的护符」（Neow's Talisman）重做为快速开局遗物——拾起后，你遇到的接下来的 3 场战斗中，所有敌人的生命值变为 1 点（带 3 次充能计数器，消耗完毕后置灰失效）；并限制为仅单人模式可用与出现，与飞鞋规则一致。(RELIC-NEOWS-TALISMAN-01 & RELIC-NEOWS-TALISMAN-02)
 - 遗物：交换猎人（Silent）两个 DIY 遗物的稀有度——悬浮风筝（HoveringKite）从普通改为罕见，袖箭（WristBlade）从罕见改为普通。(RELIC-SWAP-01)
 - 遗物：先古遗物「沙堡」（Sand Castle）调整——拾起时，先由玩家从牌组中选择 3 张可升级牌进行升级，随后在牌组剩余可升级牌中随机升级 3 张。(RELIC-SANDCASTLE-01)
-- 卡牌：移除「助燃剂」（Accelerant）稀有度回退 Patch，恢复原版罕见稀有度。(CARD-ROLLBACK-01)
+- 卡牌：猎人「催化剂」（Accelerant）稀有度回退 Patch，恢复原版蓝卡罕见稀有度。(CARD-ROLLBACK-01)
 - 卡牌：移除战士卡池移除「残酷」（Cruelty）的 Patch，恢复残酷正常在战士卡池出现。(CARD-ROLLBACK-02)
 - 怪物：感染棱柱（Infested Prism）第 1 回合轻击行动施加的【脆弱】（Frail）层数从 2 层下调为 1 层，缩短脆弱持续周期，降低后续连击阶段的防御压力。(BOSS-INFESTED-PRISM-02)
 - 卡牌：移除猎人的「侧步」（Step Aside）卡牌，不需要下回合加费卡，猎人已经有足够的当前回合收益卡

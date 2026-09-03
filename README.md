@@ -216,6 +216,7 @@
 | <img src="Assets/relics/signet_ring.png" width="22" height="22" valign="middle"> **图章戒指 [Signet Ring]** | <img src="Assets/profile/nonupeipe.png" width="22" height="22" title="诺努佩佩 (Nonupeipe)"> | 获得 888 金币 | 回调获得 **999** 金币 |
 | <img src="Assets/relics/beautiful_bracelet.png" width="22" height="22" valign="middle"> **华美手镯 [Beautiful Bracelet]** | <img src="Assets/profile/nonupeipe.png" width="22" height="22" title="诺努佩佩 (Nonupeipe)"> | 随机 4 张牌附魔【迅捷 2】 | 拾起时改为由玩家**自选 4 张牌**定向附魔【迅捷 2】 |
 | <img src="Assets/profile/neow.png" width="22" height="22" valign="middle"> **涅奥的护符 [Neow's Talisman]** | <img src="Assets/profile/neow.png" width="22" height="22" title="涅奥 (Neow)"> | 拾起时升级 1 张打击和 1 张防御 | 重做为快速开局遗物（类似 1 代《涅奥的悲哀》）：你遇到的接下来 **3 场战斗**中，所有敌人的生命值变为 **1 点**（带 3 次充能计数器，消耗完毕后置灰失效）；**与飞鞋一致，仅限单人模式出现与选用**。 |
+| <img src="Assets/relics/pandoras_box.png" width="22" height="22" valign="middle"> **潘多拉的魔盒 [Pandora's Box]** | <img src="Assets/profile/darv.png" width="22" height="22" title="达尔夫 (Darv)"> | 拾起后瞬间变换打击防御并立即落盘存盘，无法 SL 重选 | 变牌展示界面增加异步确认环节。在玩家点击确认前不结束流程且不存盘，允许通过 SL（保存并退出）重新选择其他遗物 |
 
 ---
 
