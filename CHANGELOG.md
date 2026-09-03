@@ -7,6 +7,15 @@
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
 
+## v0.3.7
+
+### Changed
+
+- 卡牌：静默猎手能力牌「计划妥当」（Well-Laid Plans）费用调整为始终 1 费（未升级 1 费，升级后保持 1 费，升级仅增加保留张数 1 -> 2）。(CARD-WELL-LAID-PLANS-01)
+
+
+
+
 ## v0.3.6
 
 ### Changed

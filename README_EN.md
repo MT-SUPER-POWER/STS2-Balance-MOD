@@ -98,7 +98,7 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 | **The Ball** | <img src="Assets/profile/colorless.png" width="22" height="22" title="Colorless"> | Attack | Scaling damage +10/15 per play | Damage scaling increased to **+15/20** |
 | **The Scythe** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Attack | 2-cost, Exhaust; deal 13 damage, scaling +4/5 | Base damage increased to **16**, pairing with official +5/7 scaling |
 | **Accelerant** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Power | Uncommon card | Rarity reverted to **Rare** |
-| **Well-Laid Plans** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Power | Rare, 1/0 cost; non-discard turn end | Uncommon, 2/1 cost; Retain up to **1/2** cards at turn end (stackable on multiple plays, filters existing Retain cards) |
+| **Well-Laid Plans** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Power | Rare, 2/1 cost; non-discard turn end | Uncommon, **1 cost (no cost reduction on upgrade)**; Retain up to **1/2** cards at turn end (stackable on multiple plays, filters existing Retain cards) |
 | **Grand Finale** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Attack | 0-cost, requires exactly 0 cards in draw pile | **X-Cost** card, playable when **draw pile count ≤ X**; **Upgraded reduces cost by 2** (consumes $\max(0, X - 2)$ energy) |
 | **Pinpoint** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Attack | Cost reduces based on skill count | **Completely removed** from Silent card pool (replaced by Eviscerate) |
 

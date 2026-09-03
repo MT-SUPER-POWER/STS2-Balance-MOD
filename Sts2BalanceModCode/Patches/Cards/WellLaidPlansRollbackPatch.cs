@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -16,10 +16,10 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 
 /// <summary>
-/// Targets: CardModel.get_Rarity, CardModel.get_CanonicalVars,
+/// Targets: CardModel.get_Rarity, CardModel.get_CanonicalVars, CardModel.get_CanonicalEnergyCost,
 /// WellLaidPlans.OnUpgrade, WellLaidPlans.OnPlay, and
 /// WellLaidPlansPower.BeforeSideTurnEnd and WellLaidPlansPower.ShouldFlush.
-/// Reason: CARD-03 restores the 1-cost Uncommon card and its 1/2-card Retain effect,
+/// Reason: CARD-WELL-LAID-PLANS-01 restores the 1-cost Uncommon card and its 1/2-card Retain effect,
 /// while preserving the game's current multiplayer availability.
 /// WARNING: Hook order and signatures are verified against decompiled game source; do not modify that source directly.
 /// </summary>
@@ -50,12 +50,22 @@ public static class WellLaidPlansRollbackPatch
         return false;
     }
 
+    [HarmonyPatch(typeof(CardModel), "get_CanonicalEnergyCost")]
+    [HarmonyPrefix]
+    public static bool CanonicalEnergyCostPrefix(CardModel __instance, ref int __result)
+    {
+        if (__instance is not WellLaidPlans)
+            return true;
+
+        __result = 1;
+        return false;
+    }
+
     [HarmonyPatch(typeof(WellLaidPlans), "OnUpgrade")]
     [HarmonyPrefix]
     public static bool OnUpgradePrefix(WellLaidPlans __instance)
     {
         __instance.DynamicVars["Cards"].UpgradeValueBy(1m);
-        __instance.EnergyCost.UpgradeBy(-1);
         return false;
     }
 
