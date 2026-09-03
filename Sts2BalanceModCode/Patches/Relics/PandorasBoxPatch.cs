@@ -62,15 +62,27 @@ public static class PandorasBoxPatch
         }
 
         TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+        bool isConfirmed = false;
 
         void AttachConfirmHandler(NSimpleCardsViewScreen s)
         {
             NButton? confirmBtn = s.GetNodeOrNull<NButton>("ConfirmButton");
             if (confirmBtn != null)
             {
-                confirmBtn.Connect(NClickableControl.SignalName.Released, Callable.From(() =>
+                // 先断开原版的 OnReturnButtonPressed 回调，避免原版 Close() 先行触发 CapstoneClosed 导致界面被二次弹出
+                foreach (var conn in confirmBtn.GetSignalConnectionList(NClickableControl.SignalName.Released))
                 {
+                    if (conn.ContainsKey("callable"))
+                    {
+                        confirmBtn.Disconnect(NClickableControl.SignalName.Released, conn["callable"].AsCallable());
+                    }
+                }
+
+                confirmBtn.Connect(NClickableControl.SignalName.Released, Callable.From<NClickableControl>(_ =>
+                {
+                    isConfirmed = true;
                     tcs.TrySetResult(true);
+                    NCapstoneContainer.Instance?.Close();
                 }));
             }
         }
@@ -81,7 +93,7 @@ public static class PandorasBoxPatch
         // 若玩家在确认前按 Esc 打开了暂停菜单并点击“继续游戏”（Resume），重新弹出卡牌展示界面供玩家点击确认
         void OnCapstoneClosed()
         {
-            if (tcs.Task.IsCompleted)
+            if (isConfirmed || tcs.Task.IsCompleted)
             {
                 return;
             }

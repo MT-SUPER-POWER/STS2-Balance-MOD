@@ -31,6 +31,12 @@
   - 效果: 回合结束时保留最多 1（升级后 2）张牌。
   - 实现: 通过 Harmony Patch 拦截 `CardModel.CanonicalEnergyCost` 为 1，并在 `OnUpgrade` 中移除减费逻辑。
 
+- [x] **CARD-GRAND-FINALE-02** — 静默猎手稀有攻击牌「华丽收场」（Grand Finale）重构为按抽牌堆卡牌数按需扣费
+  - 类别: 静默猎手（绿卡）/ 攻击牌 / 稀有（Rare）
+  - 费用: X 费，实际扣除能量 = `Max(0, 抽牌堆卡牌数 - 升级减费 - 化学X增益)`；打出条件 = `当前能量 >= 实际扣除能量`
+  - 效果: 对所有敌人造成 60 点伤害（升级不增加伤害，仅提供打出少扣除 2 点能量）。仅扣除满足抽牌堆数量所需的能量，保留剩余多余能量以维持运转。
+  - 实现: 更新 `GrandFinalePatch.cs` 中的 `IsPlayable`、`GetAmountToSpend` 以及 `CalculatedSpend` 动态变量，改为依据 `drawPileCount` 计算。
+
 
 ### 遗物
 
