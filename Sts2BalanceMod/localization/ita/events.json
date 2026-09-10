@@ -162,5 +162,15 @@
   "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.READ.description_1": "La storia di un'eroina che controlla gli insetti.\n\nSoddisfacente.",
   "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.READ.description_2": "La storia di un viaggiatore solitario bloccato su un mondo lontano.\n\nAvvincente.",
   "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.READ.description_3": "Una buia cronaca ambientata in una colossale struttura sotterranea.\n\nInquietante.",
-  "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.SLEEP.description": "Leggere è da stolti.\nFai un pisolino sulla comoda poltrona.\n[sine]Zzz...[/sine][sine]zzz...[/sine][sine]..Zz....[/sine]\nTi svegli riposato."
+  "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.SLEEP.description": "Leggere è da stolti.\nFai un pisolino sulla comoda poltrona.\n[sine]Zzz...[/sine][sine]zzz...[/sine][sine]..Zz....[/sine]\nTi svegli riposato.",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.title": "Il Colosseo",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.INITIAL.description": "Mentre attraversi uno stretto vicolo, il terreno sotto di te crolla! Sprofondi nel mezzo di una colossale arena circondata da spettatori sanguinari.\nUn boato si solleva quando una saracinesca di ferro si alza di fronte a te, rivelando due schiavisti armati!",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.INITIAL.options.FIGHT.title": "Combatti",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.INITIAL.options.FIGHT.description": "Affronta i primi contendenti dell'arena.",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.description": "Gli schiavisti crollano a terra e il pubblico esplode in un ruggito assordante! Oro e coriandoli piovono su di te!\n\"È ORA DELLA VERA SFIDA!!\"\nUna gigantesca grata di ferro si solleva lentamente. Il terreno trema sotto i passi del Nob Gremlin, accompagnato dallo schiocco di una frusta.\nUna fessura nel muro offre una via di fuga rapida mentre la folla è distratta. Rimani a combattere?",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FIGHT_AGAIN.title": "Vittoria",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FIGHT_AGAIN.description": "Affronta il Caposquadra e il Nob Gremlin.\nVinci per ottenere [gold]100 Oro[/gold], [gold]1 Reliquia Rara[/gold], [gold]1 Reliquia Non Comune[/gold] e una carta ricompensa.",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FLEE.title": "Codardia",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FLEE.description": "Fuggi dal Colosseo. (Nessuna ricompensa)",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.FLEE.description": "Ti infili nella fessura nel muro e fuggi nelle strade. I fischi adirati della folla si affievoliscono alle tue spalle."
 }

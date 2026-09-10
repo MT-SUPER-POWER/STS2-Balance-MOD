@@ -6,15 +6,20 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
-
 ## v0.3.7
+
+### Added
+
+- 事件：新增 1 代经典回归事件「竞技场」（Colosseum）——注入至第三幕（Glory 荣耀之都）。完整还原两阶段角斗机制：(EVENT-COLOSSEUM-01)
+  - **第一战**：对阵蓝奴隶贩子（SlaverBlue）+ 红奴隶贩子（SlaverRed），战胜不发放掉落奖励；
+  - **中场抉择**：可选择【懦弱 / 逃跑】离开，或选择【胜利 / 决战】迎击第二波；
+  - **第二战**：对阵奴隶贩子头目（Taskmaster）+ 地精大块头（GremlinNob），战胜斩获 100 金币 + 1 稀有遗物 + 1 罕见遗物 + 卡牌奖励。
 
 ### Changed
 
 - 遗物：先古遗物「潘多拉的魔盒」（Pandora's Box）在变牌展示界面增加异步等待确认环节。在玩家点击确认前不结束流程且不落盘存盘，允许玩家在看到变换结果后通过 SL（保存并退出）重新进入游戏选择其他遗物；并修复因关闭信号时序导致需要点击两次确认的问题。(RELIC-PANDORAS-BOX-01)
 - 卡牌：静默猎手稀有攻击牌「华丽收场」（Grand Finale）费用机制重构为按抽牌堆卡牌数按需扣费——实际消耗为 Max(0, 抽牌堆卡牌数 - 升级减费 - 化学X等增益)，打出条件为当前能量 >= 实际消耗。打出后仅扣除满足条件所需的费用，保留剩余能量以维持猎人当回合运转能力。(CARD-GRAND-FINALE-02)
 - 卡牌：静默猎手能力牌「计划妥当」（Well-Laid Plans）费用调整为始终 1 费（未升级 1 费，升级后保持 1 费，升级仅增加保留张数 1 -> 2）。(CARD-WELL-LAID-PLANS-01)
-
 
 ## v0.3.6
 
@@ -34,7 +39,6 @@
 - 卡牌：新增铁甲战士多人专属罕见攻击牌「好友撞击」（Buddy Slam）——1（升级后 0）费，造成等同于其他队友中最高格挡值的伤害。(CARD-BUDDY-SLAM-01)
 - 遗物：修复商店遗物「奇怪的汤勺」（Strange Spoon）机制——打出应消耗的牌时，有 50% 几率进入弃牌堆而不是消耗；打出【凋萎】（Wither）时 100% 必定消耗，并在说明文本与悬浮提示中明确说明。(RELIC-STRANGE-SPOON-01)
 
-
 ## v0.3.5
 
 ### Fixed
@@ -53,7 +57,6 @@
 - 修复心灵绽放战斗黑屏崩溃：移除 `MindBloomBossEncounter` 错误设置的 `HasCustomBackground` 标志，避免游戏在从事件切入 Boss 战预加载资源时因查找不存在的背景层目录（`scenes/backgrounds/...`）抛出 `InvalidOperationException` 导致淡出后永久黑屏。
 - 史莱姆老大与守护者动作特效兼容优化：参照 AFTP 标准，完善史莱姆老大（`Slime Boss`）准备猛击（`PrepSlam` 喊话/震屏）、猛击（`Slam` 跳跃动画 + 绿色重击 `vfx_heavy_blunt` 特效）以及守护者（`Guardian`）旋风斩（`CleaveEffect` 剑气横扫）与防御变形聚气（`IntenseZoomEffect`）在战斗房间与图鉴中的全容器挂载。
 
-
 ## v0.3.4
 
 ### Fixed
@@ -63,7 +66,6 @@
 - 事件 UI：修复了大转盘（Wheel of Change）事件转盘与按钮素材文件名大小写不匹配（`Wheel.png` / `WheelArrow.png` / `SpinButton.png`）导致的加载报错与转盘无法弹出问题。
 - 遗物图标：修复了火堆界面悬停/选中 Mod 选项时（如 Smoke 宁静烟斗），因为遗物命名规则和官方不一样导致的问题
 
-
 ### Changed
 
 - 遗物平衡：调整「华美手镯」（Beautiful Bracelet），拾起时由随机 4 张牌附魔改为玩家自选 4 张牌定向附魔【迅捷 2】（RELIC-05）。
@@ -71,7 +73,6 @@
 - 卡牌平衡：撤销「火箭飞拳」（Rocket Punch）降费补丁与文本覆盖，完全恢复官方原版效果（生成状态牌时费用 -1 直到打出）（CARD-16）。
 - 卡牌平衡：撤销「创世之柱」（Pillar of Creation）格挡数值补丁与文本覆盖，完全恢复官方原版机制与数值（CARD-17）。
 - Boss 平衡：战损能力加强感染棱柱 [InfestedPrism]。提升前 3 回合基础攻击与防御面板（轻击 14/12 +2 易碎、重击 22/20 +12/10 格挡、连击 7×3/6×3）；第 4 回合【强化】保留喘息机制（无攻击意图），获得的【力量】提升为 3/2（高阶 A2+ / 低阶 A0）；未格挡命中施加的【感染】层数从 2 提高至 3 层（BOSS-01-BUFF）。
-
 
 ## v0.3.3
 
@@ -84,7 +85,6 @@
 ### Changed
 
 - 基础设施：更新 Agent 工作流与 CodeGraph 规范，集成 CodeGraph 默认开启的自动监听与实时同步（Auto-Sync）特性，移除手动执行 `codegraph sync` 的繁琐步骤。
-
 
 ## v0.3.2
 
@@ -101,7 +101,6 @@
 
 - 资源路径：修正 `ModAssetPaths` 中拼接 `res://` 资源路径时使用 `Path.Join` 产生 Windows 反斜杠 `\` 的问题，解决游戏中卡牌立绘、能力与遗物图标丢失以及事件背景图片加载失败导致的崩溃。
 - 事件兼容：修复 `MindBloom` 心灵绽放事件与战斗 Patch 中的 API 命名空间和类型引用错误（`MapPointRoomHistoryEntry` / `CombatReplayWriter`）。
-
 
 ## v0.3.0
 
@@ -122,7 +121,6 @@
 
 - 兼容性：保留通用 Model ID 初始化守卫，避免同时安装 BaseLib 的其他 Mod 时在 `ModelDb.InitIds` 触发空引用。
 - 构建：使用 NuGet 部署的唯一 `mod_manifest.json`，并清理旧 `STS2-RitsuLib.json`，避免游戏重复加载同一 RitsuLib Mod ID。
-
 
 ## v0.2.0
 
@@ -162,15 +160,11 @@
 - 资源：修复 `.gdignore` 导致自定义怪物场景、Spine 与贴图未进入 PCK 的问题；最终 PCK 已核对包含全部怪物资源、VFX 图集和三组 Boss 音效。
 - 文档：修正 README.md 中守护者、六火亡魂与史莱姆老大 Boss 图标错用为普通怪物图标的问题，提取并补齐对应的 Boss 地图图标。
 
-
-
-
 ## v0.1.7
 
 ### Changed
 
 - 遗物：「尼利的宝典」（NilrysCodex）每回合末展示的 3 张候选卡牌改为升级版，玩家获得的将是升级后的卡牌（RELIC-04）。
-
 
 ## v0.1.6
 
@@ -179,7 +173,6 @@
 - 卡牌：修复「计划妥当」（Well-Laid Plans）升级时不降低耗能的问题，升级后正常从 2 费降至 1 费（CARD-11）。
 - 卡牌：支持「计划妥当」（Well-Laid Plans）能力层数可叠加，重复打出时保留卡牌张数正常累加（CARD-12）。
 - 卡牌：修正「火箭飞拳」（Rocket Punch）多语言描述文本，移除冗余的前置文本数字 0 并补齐抽牌文本（CARD-13）。
-
 
 ## v0.1.5
 
@@ -206,7 +199,6 @@
 
 ## v0.1.4
 
-
 ### FIXED
 
 - 卡牌：修复「计划妥当」（Well-Laid Plans）回合结束选卡保留界面，自动过滤掉手牌中已经具有【保留】属性的卡牌（CARD-04）。
@@ -228,8 +220,6 @@
 
 - 怪物：红面具强盗 Bear（熊）首回合【熊抱 BEAR_HUG】的 Debuff 从施加 1 层【易伤】调整为减少 2 点【敏捷】（MONSTER-01）。
 
-
-
 ## v0.1.2
 
 ### Refactored
@@ -244,8 +234,6 @@
 
 - 卡牌：巨镰 [The Scythe] 初始伤害由 13 提高至 20，维持每次打出后 4 / 5 的伤害成长（CARD-05）。
 - 遗物：灵魂契约 [Soul Contract] 改为商店遗物，并移除拾取时扣除 10% 最大生命的代价（RELIC-03）。
-
-
 
 ## v0.1.1
 
@@ -273,8 +261,6 @@
 ### Devops
 
 - AI：添加了一套 AI 开发工具（skills）
-
-
 
 ## v0.1.0
 
@@ -312,7 +298,6 @@
 
 - 遗物：修复坚固夹子（SturdyClamp）因为 API 更新接口导致的错误
 
-
 ## v0.0.8.2-beta
 
 ### Added
@@ -337,7 +322,6 @@
 - 基础设施：添加了 CodeGraph 相关的配置（如 Cursor/Gemini MCP、opencode、CLAUDE.md 等），方便在 Agent 中对项目源码进行快速索引和跳转
 - 基础设施：为 `image_gen` 中的所有图片处理脚本添加了命名规范化功能（驼峰/大写转下划线蛇形小写 `to_snake_case`），使输出的资源文件名自动匹配游戏内 `RemovePrefix().ToLowerInvariant()` 路径规则（例如 `DeathReap.png` 自动转换为 `death_reap.png`）
 
-
 ### Changed
 
 - 卡牌：能量汲取（Drain Power / DRAIN_POWER）伤害从 10/12 调整为 6/8，升级后由“随机升级 3 张”改为“升级弃牌堆的所有牌”（CARD-01）
@@ -359,13 +343,14 @@
 - 能力图标：新增 `step_by_step_power.png` 大小图
 
 ### Changed
+
 - BOSS：沙漏回归
 - CARD: 沙漏的凋零卡，改为可以用一费打出消耗
 - CARD: 鸡煲的压缩回调
 
 ### Fixed
-- BUG：修复全神贯注的弃牌数量可选的问题
 
+- BUG：修复全神贯注的弃牌数量可选的问题
 
 ## v0.0.7
 
@@ -404,10 +389,10 @@
 - README：重写「调整内容」章节，按商店 / 卡牌 / 回归卡牌 / 怪物 Boss / 事件 / 遗物 / 附魔分类，并标注每条改动的原版效果对照，方便玩家快速了解 Mod 改动。
 - `docs/balance-changes.md`：精简为只保留未完成的待办项（CARD-08 / CARD-09）与未解决的 BUG / FEATURE；所有已完成项移到 README。
 
-
 ## v0.0.6
 
 **修复**
+
 - 联机：升级最低 BaseLib 依赖到 `3.2.1`，避免旧版自定义消息注册表在反序列化联机数据包时抛出 `KeyNotFoundException`。
 - 编译：修复 `ModeShiftPower.cs` 中 `decimal→int` 类型转换错误。
 - 编译：修复 `Guardian.cs` 中 `ConditionalBranchState` 构造参数错误，创建 `SelectorBranchState` 自定义分支类替代。
@@ -422,10 +407,12 @@
 - Boss：按设计表修正 TimeEater 招式，Head Slam 改为 2 层抽牌减少，A19+ 才塞入 2 张黏液；Ripple 不再施加脆弱；Haste 仅在 A19+ 额外获得格挡。
 
 **补充修复**
+
 - 红面具事件：Bear/Pointy/Romeo 改用 `res://Assets/ActsFromPast/ActsFromThePast/monsters/` 下的新资源路径，并为 MaskedBandits 事件接入可预加载 portrait，避免迁移目录后事件或战斗视觉资源为空。
 - 构建：禁用只支持简单资源的 quick PCK，改由 Godot export 产出完整 PCK；Debug 不再把 `Assets`、`images`、`localization` 作为裸目录复制到 mods 目录。
 
 **新增**
+
 - 怪物：红面具三人帮 — Pointy（尖头）、Romeo（罗密欧）、Bear（熊）模型与战斗 AI。
 - 遭遇：RedMaskBandits 遭遇战，三个强盗同时登场。
 - 事件：MaskedBandits 事件，第 2 幕第 23 层后触发，可选择交金或战斗获取红面具。
@@ -438,12 +425,14 @@
 - 抽象基类：新增 `Sts2MonsterModel`（怪物基类）和 `Sts2EncounterModel`（遭遇基类），统一 MOD 怪物/遭遇代码模式。
 
 **变更**
+
 - Boss：时间吞噬者改为替换三层 `AeonglassBoss`（永世沙漏）候选，不再追加到三层 Boss 池，保持三层 Boss 数量不变。
 - Boss：Collector Boss 代码仍暂注释（`#if false`），资源与本地化保留，后续版本恢复开发。
 - 怪物：移除六火亡魂（Hexaghost）及其心灵绽放遭遇，资源不再需要。
 - 重构：Collector、TorchHead、TimeEater 改为继承 `Sts2MonsterModel`；CollectorBoss、TimeEaterBoss 改为继承 `Sts2EncounterModel`。
 
 **修复**
+
 - Boss：补充 `res://images/ui/run_history/time_eater_boss*.png` 兼容图标，修复进入第三幕时顶部 Boss 图标预加载失败导致的崩溃。
 - Boss：恢复 TimeEater/TimeEaterBoss 编译，补齐半血 Haste 转阶段台词气泡、`TalkPos` Marker2D、Head Slam 减抽牌能力与三语本地化。
 - ActsFromThePast 资源：修正 `Assets/ActsFromPast/ActsFromThePast/` 下场景、Spine 数据与导入元数据的 `res://ActsFromThePast/` 旧路径，改为当前项目实际路径，避免 monster `.tscn` 打开时视觉资源为空。
@@ -453,23 +442,26 @@
 - RedMaskBandits 遭遇注入 `Hive.GenerateAllEncounters`，三怪在 Compendium 图鉴可见。
 
 **本地化**
+
 - 新增 eng/zhs/ita 三语言红面具强盗团本地化（名字、技能、事件文案）。
 - 新增 eng/zhs/ita 三语言红面具强盗团本地化对话气泡文案
 
 **调整**
+
 - 骨妹挽歌：改为升级后不消耗，但不再提高召唤次数（CARD-01）
 - 红面具从一般共享遗物池移除，改为通过红面具相关事件获得（RELIC-08）。
 - 红面具大人之墓：移除支付敬意选项上的原生红面具 HoverTip，避免原生遗物描述解析能量图标池时中断事件初始化。
 - 心灵绽放先接入非战斗分支；打一层 Boss 分支等待 Boss/遭遇资源链移植。
 
 **文档**
+
 - 新增 STS1 内容回归盘点清单，基于 ActsFromThePast 整理一代候选池与合并优先级
 - 更新平衡调整清单，加入一代内容回归合并路线图
-
 
 ## v0.0.5
 
 **新增**
+
 - 遗物 · 宁静烟斗（PeacePipe）：在火堆新增烟斗选项，可移除一张牌（RELIC-05）。
 - 遗物 · 诅咒钥匙（CurseKey）：每回合 +1 费用，每次获取奖励时获得一张随机诅咒牌（RELIC-07）
 - 遗物 · 咖啡杯（CoffeeCup）：无法在火堆休息，每回合 +1 费用（RELIC-07）
@@ -477,11 +469,13 @@
 - 遗物 · 微笑面具（SmilingMask）：删牌价格固定 50 金币（RELIC-06）
 
 **变更**
+
 - 骨妹挽歌：升级后改为不消耗，且不再提高召唤次数（CARD-01）
 
 ## v0.0.4
 
 **新增**
+
 - 遗物 · 御守（Omamori）：抵消接下来获得的 2 张诅咒牌，带计数器显示（EVENT-04）
 - 遗物 · 枯木树枝（DeadBranch）：消耗牌时随机加入一张手牌（RELIC-03）
 - 事件：旧日垃圾堆奖励池加入御守
@@ -489,10 +483,12 @@
 - 本地化：新增意大利语（`ita`）翻译
 
 **修复**
+
 - 死亡收割：修复仅能攻击单体的问题，现对所有敌人生效（BUG-02）
 - 枯木树枝：虚无牌消耗后，树枝生成的牌保留在手牌，不再误入弃牌堆（BUG-03）
 
 **文档**
+
 - 修正 README 中从其他项目拷贝的错误链接与项目名
 - 新增 CHANGELOG 与 GitHub Actions 自动发布流程
 - 添加 WatcherMod 参考 Mod 为 git submodule
@@ -500,28 +496,33 @@
 ## v0.0.3
 
 **新增**
+
 - 遗物 · 日晷（Sundial）：每将抽牌堆洗牌 3 次，获得 2 点能量（RELIC-01）
 - 遗物 · 橙色药丸（OrangePill）：同一回合内打出攻击 / 技能 / 能力牌各一张后，移除所有负面效果（RELIC-02）
 - 补丁：Boss 沙漏凋零卡改为可打出并消耗，保留成长机制（MON-01）
 - 补丁：暂时从猎人卡池移除袖里乾坤，避免与刀舞定位冲突（CARD-08）
 
 **变更**
+
 - 刀舞：删除消耗词条，稀有度提升为蓝卡（CARD-02）
 - 声明最低游戏版本 `0.107.0`，锁定 BaseLib `3.2.0+`
 - 引入 `Sts2RelicModel` / `Sts2PowerModel` 抽象基类，重构遗物与能力注册方式
 
 **修复**
+
 - 橙色药丸：修复回合外未正确清理状态的问题
 - 电动力学：修复特斯拉电圈无法触发群伤的问题
 - 修复遗物图标文件命名不规范导致缺少图框的问题
 - 联机黑屏：修复 `ModelId entry ID out of range` 报错（BUG-01）
 
 **文档**
+
 - 添加 README.md（安装指南、调整摘要、项目结构）
 
 ## v0.0.2
 
 **新增**
+
 - 卡牌回归 · 死亡收割（战士，LEGACY-01）
 - 卡牌回归 · 硬撑（战士，LEGACY-02）
 - 卡牌回归 · 全神贯注（猎人，LEGACY-03）
@@ -529,6 +530,7 @@
 - 补丁：V6+ 高阶删牌价格调整为 75 基础 + 25/次递增（SHOP-01）
 
 **变更**
+
 - 骨妹挽歌：改为不消耗（CARD-01）
 - 杂技：蓝卡降为白卡（CARD-03）
 - 认知偏差：五回合内每回合扣 1 点聚焦，之后停止扣除（CARD-04）
@@ -538,15 +540,18 @@
 - 卡池注入方式由 Harmony Patch 改为 `ModHelper.AddModelToPool`
 
 **修复**
+
 - 声明不支持旧版游戏，避免版本不匹配时内部报错
 
 **文档**
+
 - 添加 `docs/sts2-modding-guide.md` 与 `docs/balance-changes.md`
 - 添加 `AGENTS.md` 协作规范与知识库
 
 ## v0.0.1
 
 **新增**
+
 - 初始化 Godot 4 + C# + BaseLib + Harmony 项目框架
 - Mod 入口 `MainFile.cs` 与资源路径工具 `StringExtensions`
 - 图片批处理脚本 `image_gen/`（卡牌 / 遗物 / 能力切图）

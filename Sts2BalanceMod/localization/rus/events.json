@@ -162,5 +162,15 @@
   "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.READ.description_1": "История о героине, повелевающей насекомыми.\n\nЗанимательно.",
   "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.READ.description_2": "Повесть о путникe, застрявшем на далекой планете.\n\nУвлекательно.",
   "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.READ.description_3": "Мрачная хроника о подземной структуре.\n\nТревожно.",
-  "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.SLEEP.description": "Чтение — для глупцов.\nВы дремлете в удобном кресле.\n[sine]Zzz...[/sine][sine]zzz...[/sine][sine]..Zz....[/sine]\nВы просыпаетесь отдохнувшим."
+  "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.SLEEP.description": "Чтение — для глупцов.\nВы дремлете в удобном кресле.\n[sine]Zzz...[/sine][sine]zzz...[/sine][sine]..Zz....[/sine]\nВы просыпаетесь отдохнувшим.",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.title": "Колизей",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.INITIAL.description": "Пробираясь по узкому переулку, земля под вами внезапно обрушивается! Вы падаете в центр огромной подземной арены, окруженной кровожадными зрителями.\nПод оглушительный рев трибун железная решетка напротив поднимается, являя двух вооруженных работорговцев!",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.INITIAL.options.FIGHT.title": "Драться",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.INITIAL.options.FIGHT.description": "Сразиться с первой волной гладиаторов.",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.description": "Работорговцы падают, и толпа взрывается оглушительным ревом! Золото и конфетти осыпают арену!\n«А ТЕПЕРЬ НАСТОЯЩЕЕ СРАЖЕНИЕ!!»\nМассивная железная решетка со скрипом поднимается. Земля дрожит под тяжелыми шагами Знатного гоблина под аккомпанемент свиста плети.\nБрешь в стене дает шанс сбежать, пока все отвлечены. Останетесь ли вы сражаться?",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FIGHT_AGAIN.title": "Победа",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FIGHT_AGAIN.description": "Сразиться с Надсмотрщиком и Знатным гоблином.\nНаграда: [gold]100 Золота[/gold], [gold]1 Редкая реликвия[/gold], [gold]1 Необычная реликвия[/gold] и карта.",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FLEE.title": "Трус",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FLEE.description": "Сбежать из Колизея. (Без наград)",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.FLEE.description": "Вы протискиваетесь в брешь в стене и выбираетесь на улицу. Разочарованный гул толпы затихает позади вас."
 }

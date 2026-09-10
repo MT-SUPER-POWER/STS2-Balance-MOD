@@ -162,5 +162,15 @@
   "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.READ.description_1": "故事讲述一个能操控昆虫的少女英雄梦想成为真正的英雄。书中充满了对能力的创意运用、战斗策略与多视角叙事。\n\n令人满意。",
   "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.READ.description_2": "故事讲述一个人穿越星际，却困于荒凉异星。机智、运气、坚持与幽默是他保持理智并重返家园的工具。\n\n引人入胜。",
   "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.READ.description_3": "故事发生在一座地下巨构中，外界已不堪生存。小说充斥着阴谋、宣传与不公。你不禁思索高塔内部是否也有类似格局。\n\n令人不安。",
-  "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.SLEEP.description": "傻子才读书呢。\n你在沙发椅上打了个盹儿。\n[sine]Zzz...[/sine][sine]zzz...[/sine][sine]..Zz....[/sine]\n醒来后，你觉得神清气爽。"
+  "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.SLEEP.description": "傻子才读书呢。\n你在沙发椅上打了个盹儿。\n[sine]Zzz...[/sine][sine]zzz...[/sine][sine]..Zz....[/sine]\n醒来后，你觉得神清气爽。",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.title": "竞技场",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.INITIAL.description": "你在穿过狭窄的小巷时，地面突然塌陷！你跌入了巨大的地下竞技场中央，四周看台上挤满了残忍狂热的看客。\n伴随着震天的喝彩声，对面的铁门升起，两名手持兵刃的奴隶贩子正朝你逼近！",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.INITIAL.options.FIGHT.title": "战斗",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.INITIAL.options.FIGHT.description": "迎战第一波角斗士。",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.description": "奴隶贩子倒下了，看台上的观众爆发出更为嗜血的咆哮与呐喊！金币和彩纸从天而降撒落在你身旁！\n“接下来才是真正的挑战！！”\n对面的巨型铁栅栏缓缓升起，传来了地精大块头沉重的脚步声与皮鞭的抽打声。\n趁着众人的注意力被吸引，竞技场围墙上似乎有一个缺口可以逃跑。你想要留下来继续战斗吗？",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FIGHT_AGAIN.title": "胜利",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FIGHT_AGAIN.description": "迎战头目与地精大块头。\n获得 [gold]100 金币[/gold]、[gold]1 件稀有遗物[/gold]、[gold]1 件罕见遗物[/gold] 和卡牌奖励。",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FLEE.title": "懦弱",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FLEE.description": "趁乱逃出竞技场。（没有奖励）",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.FLEE.description": "你从墙上的裂缝溜了出去，逃离了竞技场。身后观众失望与愤怒的嘘声渐渐远去。"
 }

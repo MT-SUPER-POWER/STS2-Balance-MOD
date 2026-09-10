@@ -162,5 +162,15 @@
   "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.READ.description_1": "A story of an insect-controlling heroine striving to become a true hero. Creative power usage and tactical depth.\n\nSatisfying.",
   "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.READ.description_2": "A tale of a lonely traveler stranded on a distant world, surviving through wit, luck, and humor.\n\nEngrossing.",
   "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.READ.description_3": "A dark chronicle set inside a colossal subterranean structure. You wonder if the Spire shares a similar fate.\n\nUnsettling.",
-  "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.SLEEP.description": "Reading is for fools.\nYou take a quick nap in the comfy armchair.\n[sine]Zzz...[/sine][sine]zzz...[/sine][sine]..Zz....[/sine]\nYou wake up feeling refreshed."
+  "STS2_BALANCE_MOD_EVENT_THE_LIBRARY.pages.SLEEP.description": "Reading is for fools.\nYou take a quick nap in the comfy armchair.\n[sine]Zzz...[/sine][sine]zzz...[/sine][sine]..Zz....[/sine]\nYou wake up feeling refreshed.",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.title": "The Colosseum",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.INITIAL.description": "While traversing a narrow alley, the ground collapses beneath you! You plummet into the center of a massive arena surrounded by bloodthirsty spectators.\nRoars of excitement erupt as an iron portcullis rises across from you, revealing two armed slavers advancing towards you!",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.INITIAL.options.FIGHT.title": "Fight",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.INITIAL.options.FIGHT.description": "Face the arena's initial contenders.",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.description": "The slavers fall, and the audience roars with deafening frenzy! Gold and confetti shower around you!\n\"TIME FOR THE REAL CHALLENGE!!\"\nA colossal iron grate slowly creaks open. The ground trembles under the footsteps of a Gremlin Nob, accompanied by the cruel snap of a whip.\nA crack in the arena wall offers a quick escape while the crowd is distracted. Do you stay and fight?",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FIGHT_AGAIN.title": "Victory",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FIGHT_AGAIN.description": "Face the Taskmaster and the Gremlin Nob.\nWin to gain [gold]100 Gold[/gold], [gold]1 Rare Relic[/gold], [gold]1 Uncommon Relic[/gold], and a card reward.",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FLEE.title": "Cowardice",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.POST_FIRST.options.FLEE.description": "Escape the Colosseum. (No rewards)",
+  "STS2_BALANCE_MOD_EVENT_COLOSSEUM.pages.FLEE.description": "You slip through the crack in the wall and escape into the streets. The angry jeers of the crowd fade behind you."
 }

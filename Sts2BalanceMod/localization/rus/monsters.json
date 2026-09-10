@@ -69,5 +69,18 @@
   "STS2_BALANCE_MOD_MONSTER_ACID_SLIME_MEDIUM.moves.LICK.title": "Лизание",
   "STS2_BALANCE_MOD_MONSTER_SPIKE_SLIME_MEDIUM.name": "Средний колючий слизень",
   "STS2_BALANCE_MOD_MONSTER_SPIKE_SLIME_MEDIUM.moves.FLAME_TACKLE.title": "Огненный таран",
-  "STS2_BALANCE_MOD_MONSTER_SPIKE_SLIME_MEDIUM.moves.LICK.title": "Лизание"
+  "STS2_BALANCE_MOD_MONSTER_SPIKE_SLIME_MEDIUM.moves.LICK.title": "Лизание",
+  "STS2_BALANCE_MOD_MONSTER_SLAVER_BLUE.name": "Синий работорговец",
+  "STS2_BALANCE_MOD_MONSTER_SLAVER_BLUE.moves.STAB.title": "Удар кинжалом",
+  "STS2_BALANCE_MOD_MONSTER_SLAVER_BLUE.moves.RAKE.title": "Зачистка",
+  "STS2_BALANCE_MOD_MONSTER_SLAVER_RED.name": "Красный работорговец",
+  "STS2_BALANCE_MOD_MONSTER_SLAVER_RED.moves.STAB.title": "Удар кинжалом",
+  "STS2_BALANCE_MOD_MONSTER_SLAVER_RED.moves.ENTANGLE.title": "Сеть",
+  "STS2_BALANCE_MOD_MONSTER_SLAVER_RED.moves.SCRAPE.title": "Царапанье",
+  "STS2_BALANCE_MOD_MONSTER_TASKMASTER.name": "Надсмотрщик",
+  "STS2_BALANCE_MOD_MONSTER_TASKMASTER.moves.SCOURING_WHIP.title": "Плеть угнетения",
+  "STS2_BALANCE_MOD_MONSTER_GREMLIN_NOB.name": "Знатный гоблин",
+  "STS2_BALANCE_MOD_MONSTER_GREMLIN_NOB.moves.BELLOW.title": "Рёв",
+  "STS2_BALANCE_MOD_MONSTER_GREMLIN_NOB.moves.SKULL_BASH.title": "Размозжение черепа",
+  "STS2_BALANCE_MOD_MONSTER_GREMLIN_NOB.moves.RUSH.title": "Рывок"
 }
