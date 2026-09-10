@@ -3,17 +3,17 @@
 
 root = true
 
-# ── 全局默认 ──────────────────────────────────────────────────────────────────
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 全局默认 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 [*]
 indent_style             = space
-end_of_line              = crlf
+end_of_line              = lf
 charset                  = utf-8-bom
 trim_trailing_whitespace = true
 insert_final_newline     = true
 
-# ── C# 源码 ───────────────────────────────────────────────────────────────────
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ C# 源码 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 [*.cs]
-indent_size = 4
+indent_size = 2
 
 # --- 换行风格（Allman，与 C# 社区惯例一致） ---
 csharp_new_line_before_open_brace                                  = all
@@ -92,7 +92,7 @@ dotnet_diagnostic.IDE0051.severity = suggestion   # 未使用的私有成员
 dotnet_diagnostic.IDE0052.severity = suggestion   # 未读取的私有成员
 dotnet_diagnostic.IDE0060.severity = suggestion   # 未使用的参数
 
-# ── JSON / YAML / Markdown ───────────────────────────────────────────────────
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ JSON / YAML / Markdown ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 [*.{json,yaml,yml}]
 indent_size              = 2
 trim_trailing_whitespace = true
@@ -100,6 +100,6 @@ trim_trailing_whitespace = true
 [*.md]
 trim_trailing_whitespace = false
 
-# ── MSBuild / XML ─────────────────────────────────────────────────────────────
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ MSBuild / XML ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 [*.{csproj,props,targets,xml}]
-indent_size = 4
+indent_size = 2

@@ -121,8 +121,6 @@
 | **比试 [Sparring]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 罕见 | 2 | 消耗。玩家对单个敌人造成 **8** 点伤害，奥斯提造成 **7 / 9** 点伤害；实际造成非格挡伤害较少的一方回复 **4 / 6** 点生命。 |
 | **猛撞 [Ram]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 普通 | 2 | 奥斯提失去 **6 / 5** 点生命，对所有敌人造成 **20 / 26** 点伤害；奥斯提生命不足时无法触发效果。 |
 | **步步为营 [Step by Step]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 稀有 | X | 消耗。接下来 X（升级：X+1）回合，每回合多抽 1 张牌并多获得 1 点能量。升级后额外获得保留词条。 |
-| **巫术打击 [Sorcery Strike]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 攻击 | 先古 | 1（升级：0） | 消耗。造成 **9** 点伤害，抽 **1** 张牌，施加 **1** 层巫术易伤。 |
-| **巫术防御 [Sorcery Defend]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 技能 | 先古 | 1（升级：0） | 消耗。获得 **8** 点格挡，抽 **1** 张牌，施加 **1** 层巫术虚弱。 |
 | **好友撞击 [Buddy Slam]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 攻击 | 罕见 | 1（升级：0） | **仅多人模式出现**。造成等同于其他队友中最高格挡值的伤害。 |
 
 ### 能力调整

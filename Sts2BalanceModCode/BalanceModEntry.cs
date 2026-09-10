@@ -27,6 +27,6 @@ public partial class BalanceModEntry : Node
         BalanceModSettings.Register();
 
         new Harmony(ModId).PatchAll(assembly);
-        Logger.Info("模组加载完成");
+        Logger.Info("Sts2BalanceMod 加载完成");
     }
 }

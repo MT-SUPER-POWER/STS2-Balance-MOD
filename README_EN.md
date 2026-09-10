@@ -121,8 +121,6 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 | **Sparring** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Attack | Uncommon | 2 | Exhaust. Deal **8** damage, Osty deals **7 / 9** damage. Whichever side deals less unblocked damage heals **4 / 6** HP. |
 | **Ram** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Attack | Common | 2 | Osty loses **6 / 5** HP, deal **20 / 26** damage to ALL enemies; cannot trigger if Osty HP is insufficient. |
 | **Step by Step** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | Rare | X | Exhaust. For next X (Upgraded: X+1) turns, draw +1 card and gain +1 Energy each turn. Upgraded gains Retain. |
-| **Sorcery Strike** | <img src="Assets/profile/tanx.png" width="22" height="22" title="Tanx"> | Attack | Ancient | 1 (0+) | Exhaust. Deal **9** damage, draw **1** card, apply **1** Sorcery Vulnerable. |
-| **Sorcery Defend** | <img src="Assets/profile/tanx.png" width="22" height="22" title="Tanx"> | Skill | Ancient | 1 (0+) | Exhaust. Gain **8** Block, draw **1** card, apply **1** Sorcery Weak. |
 
 ### Powers & Status Adjustments
 
@@ -134,8 +132,6 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 | <img src="Assets/powers/electrodynamics_power.png" width="22" height="22" valign="middle"> **Electrodynamics** | Player Buff | Defect Card "Electrodynamics" | Lightning Orbs hit ALL enemies. |
 | <img src="Assets/powers/evolve_power.png" width="22" height="22" valign="middle"> **Evolve** | Player Buff | Ironclad Card "Evolve" | Whenever you draw a Status card, draw **1 / 2** card(s). |
 | <img src="Assets/powers/step_by_step_power.png" width="22" height="22" valign="middle"> **Step by Step** | Player Buff | Silent Card "Step by Step" | Draw +1 card and gain +1 Energy each turn for **X / X+1** turns. |
-| <img src="Assets/powers/sorcery_vulnerable.png" width="22" height="22" valign="middle"> **Sorcery Vulnerable** | Debuff | Ancient Card "Sorcery Strike" | Takes **75%** more damage from attacks. Decreases by 1 at turn end if attacked this turn. |
-| <img src="Assets/powers/sorcery_weak.png" width="22" height="22" valign="middle"> **Sorcery Weak** | Debuff | Ancient Card "Sorcery Defend" | Deals **50%** less attack damage. Decreases by 1 at turn end if attacked this turn. |
 | <img src="Assets/powers/infected_power.png" width="22" height="22" valign="middle"> **Infected** | Debuff | Infested Prism Boss | At turn end, lose **{Amount}** HP (applied by unblocked attacks). |
 | <img src="Assets/powers/mode_shift_power.png" width="22" height="22" valign="middle"> **Mode Shift** | Boss Mechanic | Guardian Boss | Shift into Defensive Mode after taking **{Amount}** unblocked damage. |
 | <img src="Assets/powers/sharp_hide_power.png" width="22" height="22" valign="middle"> **Sharp Hide** | Boss Mechanic | Guardian Boss | Whenever attacked, deal **{Amount}** damage back to the attacker. |
@@ -199,7 +195,7 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 | <img src="Assets/relics/hovering_kite.png" width="22" height="22" valign="middle"> **Hovering Kite** | Common | Silent exclusive. The first time you discard a card each turn, gain 1 Energy. |
 | <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **Soul Contract** | <img src="Assets/profile/merchant.png" width="22" height="22" title="Merchant"> | Select 1 card in your deck with Exhaust and permanently remove its Exhaust property. |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **Nilry's Codex** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | At turn end, choose 1 of 3 random **Upgraded** cards to shuffle into your draw pile. |
-<!-- | <img src="Assets/relics/shabbydoll.png" width="22" height="22" valign="middle"> **Shabby Doll** | <img src="Assets/profile/tanx.png" width="22" height="22" title="Tanx"> | Upon pickup, lose 50% max HP, and replace all starter Strikes and Defends with upgraded **Sorcery Strike+** and **Sorcery Defend+**. | -->
+
 
 #### Vanilla Relic Adjustments
 
