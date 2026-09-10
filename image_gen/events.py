@@ -7,7 +7,7 @@
 用法:
   python events.py                          # 处理 source/events/ 下所有 PNG
   python events.py masked_bandits.png       # 只处理指定文件
-  python events.py --mode contain           # 完整显示（留透明边），默认 cover 居中裁切
+  python events.py --mode contain           # 可选完整显示、留透明边；重画宽幅母版默认 cover
 """
 
 from __future__ import annotations
@@ -63,7 +63,7 @@ def fit_cover(img: Image.Image, size: tuple[int, int], anchor: str) -> Image.Ima
 
 def fit_contain(img: Image.Image, size: tuple[int, int]) -> Image.Image:
     """
-    等比缩小后居中放置，不足区域填充透明。
+    等比缩放后居中放置，不足区域填充透明，不裁切或拉伸主体。
 
     参数:
         img: 输入 RGBA 图像
@@ -248,9 +248,9 @@ def main() -> None:
     )
     parser.add_argument(
         "--mode",
-        choices=["smart", "cover", "contain", "stretch"],
-        default="smart",
-        help="缩放模式: smart=左侧聚焦虚化过渡(推荐默认), cover=裁切填满, contain=完整显示留边, stretch=拉伸",
+        choices=["cover", "smart", "contain", "stretch"],
+        default="cover",
+        help="缩放模式: cover=等比铺满裁切(默认，适用于已重画的宽幅母版), contain=完整显示留边, smart=左侧聚焦虚化过渡, stretch=拉伸(会变形)",
     )
     parser.add_argument(
         "--anchor",
