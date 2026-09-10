@@ -30,7 +30,6 @@
   </a>
 </div>
 
-
 ## 安装
 
 ### 前置要求
@@ -154,28 +153,21 @@
 
 ### 事件与遭遇
 
+| 配图调整       | 说明                                                                                                                            |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| 自制事件图重画 | 配图采用宽幅构图；简化牧师与书本背景，修正石台与竞技场透视，改造师使用最终选定原图。见[事件配图说明](docs/events.md#事件配图)。 |
+
 > [!tip]
 > 完整的事件选择分支、触发条件与详细逻辑请查阅 **[docs/events.md](docs/events.md)**。
 
 #### 原版事件调整
+
 - **禅意织者 [Zen Weaver]**：删牌价格分别下调至 **75 / 150 金币**。
 - **旧日垃圾堆 [Trash Heap]**：遗物奖励池加入 <img src="Assets/relics/omamori.png" width="18" height="18" valign="middle"> **御守**。
 - **除虫者 / 科学怪人 / 药水的未来？**：初始选项中新增可配置的 **「离开」** 分支。
+- **探克斯 [Tanx]**：联动开关开启时，将先古遗物 <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="18" height="18" valign="middle"> **精致的玩偶** 加入随机 3 选 1 候选池。
 
 #### 一代事件回归
-| 事件名称 | 先行条件 | 简要说明 |
-| :--- | :--- | :--- |
-| **老乞丐 [Old Beggar]** | 所有玩家金币 ≥ 75 | 给 75 金币后变身为牧师提供删牌服务。 |
-| **诅咒书本 [Cursed Tome]** | Act 2（且无书） | 连续翻页测试，可获 <img src="Assets/relics/necronomicon.png" width="18" height="18" valign="middle"> **死灵之书** / <img src="Assets/relics/nilrys_codex.png" width="18" height="18" valign="middle"> **尼利的宝典** / <img src="Assets/relics/enchiridion.png" width="18" height="18" valign="middle"> **英雄宝典**。 |
-| **面具强盗 [Masked Bandits]** | Act 2，层数 ≥ 23 | 交出所有金币或战斗获胜获得 <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **红面具**。 |
-| **J.A.X. [Augmenter]** | Act 2（可删牌 ≥ 2） | 获得 J.A.X. / 变化 2 张牌 / 获得 <img src="Assets/relics/mutagenic_strength.png" width="18" height="18" valign="middle"> **突变之力**。 |
-| **神圣泉水 [The Divine Fountain]** | 牌组有诅咒牌 | 彻底清除牌组中所有诅咒牌（无伤害副作用）。 |
-| **牧师 [Cleric]** | 所有玩家金币 ≥ 35 | 提供付钱回复 25% HP / 75 金删牌选项。 |
-| **心灵绽放 [Mind Bloom]** | Act 3 | 可选一幕 Boss 战（支持连战挑战强化二战）、全牌升级（得 <img src="Assets/relics/mark_of_the_bloom.png" width="18" height="18" valign="middle"> **绽放印记**）或 999 金币。 |
-| **大转盘 [Wheel of Change]** | - | 旋转随机转盘获得金币/遗物/全满治疗/删牌/诅咒/伤害。 |
-| **红面具大人之墓 [Tomb of Lord Red Mask]** | Act 3 | 献上全部金币获得 <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **红面具**（或持面具收获 222 金币）。 |
-| **大图书馆 [The Library]** | Act 3 | 提供 **【阅读】**（跨职业选卡 1 张）与 **【睡觉】**（回复 33% HP）。 |
-| **竞技场 [Colosseum]** | Act 3（荣耀境） | 两阶段角斗博弈：先战蓝红双奴隶（无奖励）；中场可逃跑或决战头目+大块头，战胜斩获 100 金 + 1 稀有遗物 + 1 罕见遗物 + 卡牌。 |
 
 
 ### 遗物
@@ -223,12 +215,12 @@
 
 👉 **[文档知识库总索引 (docs/README.md)](docs/README.md)**
 
--  **[能力与效果手册](docs/powers.md)**：包含 Mod 内所有 Buff、Debuff、Boss 机制能力及原版修改说明。
--  **[事件与遭遇手册](docs/events.md)**：包含 1 代回归事件、原版事件调整、选择分支与触发条件。
--  **[STS2 Mod 制作指南](docs/sts2-modding-guide.md)**：从零开始制作 STS2 Mod 的教程。
--  **[图片生成自动化脚本](image_gen/)**：遗物工具从主图自动提取主题色，一次生成 94×94 主图、256×256 大图和带 3px 主题色外环的 94×94 outline。
--  **[技术分析报告](docs/README.md#技术分析报告)**：红面具事件分层架构分析、宝箱房跳过功能技术报告等。
--  **[未完成需求清单](docs/balance-changes.md)** 与 **[版本变更日志](CHANGELOG.md)**。
+- **[能力与效果手册](docs/powers.md)**：包含 Mod 内所有 Buff、Debuff、Boss 机制能力及原版修改说明。
+- **[事件与遭遇手册](docs/events.md)**：包含 1 代回归事件、原版事件调整、选择分支与触发条件。
+- **[STS2 Mod 制作指南](docs/sts2-modding-guide.md)**：从零开始制作 STS2 Mod 的教程。
+- **[图片生成自动化脚本](image_gen/)**：遗物工具从主图自动提取主题色，一次生成 94×94 主图、256×256 大图和带 3px 主题色外环的 94×94 outline。
+- **[技术分析报告](docs/README.md#技术分析报告)**：红面具事件分层架构分析、宝箱房跳过功能技术报告等。
+- **[未完成需求清单](docs/balance-changes.md)** 与 **[版本变更日志](CHANGELOG.md)**。
 
 ## 关于尖塔
 

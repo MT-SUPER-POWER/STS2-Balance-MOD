@@ -36,6 +36,8 @@
   "EXPECT_A_FIGHT.title": "且战且退",
   "COOLANT.description": "每当你打出一张[gold]能力牌[/gold]，抽 {CoolantPower:diff()} 张牌。",
   "STS2_BALANCEMOD_BUDDY_SLAM.title": "好友撞击",
-  "STS2_BALANCEMOD_BUDDY_SLAM.description": "造成等同于其他队友中最高[gold]格挡[/gold]值的伤害。{InCombat:\n（造成 {CalculatedDamage:diff()} 点伤害）|}"
+  "STS2_BALANCEMOD_BUDDY_SLAM.description": "造成等同于其他队友中最高[gold]格挡[/gold]值的伤害。{InCombat:\n（造成 {CalculatedDamage:diff()} 点伤害）|}",
+  "STS2_BALANCEMOD_WITCH_FORM.title": "女巫形态",
+  "STS2_BALANCEMOD_WITCH_FORM.description": "获得 {WitchFormPower:diff()} 层[gold]女巫形态[/gold]。结束你的回合。"
 }
 

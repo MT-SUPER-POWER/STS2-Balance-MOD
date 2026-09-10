@@ -23,6 +23,7 @@
 | <img src="../Assets/powers/evolve_power.png" width="22" height="22" valign="middle"> | **进化 [Evolve]** | `EvolvePower`<br>`STS2BALANCEMOD-EVOLVE_POWER` | <img src="../Assets/profile/ironclad.png" width="18" height="18"> 铁甲战士罕见能力卡「进化」 | 每当你抽到一张状态牌，抽 **1**（升级：**2**）张牌。 |
 | <img src="../Assets/powers/step_by_step_power.png" width="22" height="22" valign="middle"> | **步步为营 [Step by Step]** | `StepByStepPower`<br>`STS2BALANCEMOD-STEP_BY_STEP_POWER` | <img src="../Assets/profile/silent.png" width="18" height="18"> 静默猎手稀有技能卡「步步为营」 | 每回合开始时，多抽 1 张牌并获得 1 点能量。持续 **X**（升级：**X+1**）回合。 |
 | <img src="../Assets/powers/mutagenic_strength.png" width="22" height="22" valign="middle"> | **突变之力 [Mutagenic Strength]** | `MutagenicStrengthPower`<br>`STS2BALANCEMOD-MUTAGENIC_STRENGTH_POWER` | 遗物 <img src="../Assets/relics/mutagenic_strength.png" width="18" height="18"> 突变之力（J.A.X. 事件） | 战斗开始时获得 3 点临时力量，首个回合结束时失去 3 点力量。 |
+| <img src="../Sts2BalanceMod/images/powers/WitchFormPower.png" width="22" height="22" valign="middle"> | **女巫形态 [Witch Form]** | `WitchFormPower`<br>`STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER` | 先古卡「女巫形态」（遗物「精致的玩偶」/ Tanx 事件） | 回合开始额外抽 2 张牌，并将手牌中 2 张牌分别蜕变为升级后的「巫术打击+」与「巫术防御+」。 |
 
 ---
 

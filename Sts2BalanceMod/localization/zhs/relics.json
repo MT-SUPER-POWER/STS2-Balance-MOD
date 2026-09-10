@@ -1,4 +1,7 @@
 {
+  "STS2_BALANCEMOD_DELICATE_DOLL.title": "精致的玩偶",
+  "STS2_BALANCEMOD_DELICATE_DOLL.description": "拾起时，将一张已升级的[gold]女巫形态+[/gold]加入你的牌组。第 1 回合开始时，对所有敌人施加 [blue]{VulnerablePower}[/blue] 层[gold]易伤[/gold]与 [blue]{WeakPower}[/blue] 层[gold]虚弱[/gold]。",
+  "STS2_BALANCEMOD_DELICATE_DOLL.flavor": "一只华丽而精致的玩偶，光鲜外表下隐藏着更深的诅咒。",
   "STS2_BALANCEMOD_SHABBY_DOLL.title": "破旧的玩偶",
   "STS2_BALANCEMOD_SHABBY_DOLL.description": "拾起时，失去 [red]50%[/red] 最大生命值上限，并将牌组中所有的基础[gold]打击[/gold]与[gold]防御[/gold]替换为升级后的[gold]巫术打击+[/gold]与[gold]巫术防御+[/gold]。",
   "STS2_BALANCEMOD_SHABBY_DOLL.flavor": "一只被诅咒所缠绕的破旧玩偶，散发着阴暗的气息。",

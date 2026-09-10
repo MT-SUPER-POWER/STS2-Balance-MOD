@@ -2,6 +2,20 @@
 
 本文档归纳整理了 **Sts2BalanceMod** 中所有调整的原版事件以及新增回归的 1 代经典事件。
 
+## 事件配图
+
+改造师（Jax）采用用户最终指定的图片，母版、预览与游戏资源直接复制同一原图，不再重画、缩放或裁切；该图不套用下述尺寸规范化流程。
+
+诅咒书本配图修正石台透视与底座，简化背景柱饰、法阵和烟雾，突出发光书本。
+
+竞技场右侧前景观众采用局部入画的蓝色兜帽与连贯侧脸；底部观众通过排座、遮挡和大小递减表现远近关系。
+
+牧师配图采用简洁的暗蓝洞窟背景，移除浮石、符文、建筑与多余光源，突出角色及双手法术。
+
+常规事件图沿用原版 `3440×1616` 画布（约 `2.13:1`）。10 张自制图已使用内置 imagegen 逐张重画构图、补画背景，保留原主题与画风，并为事件正文预留较暗区域。使用的[逐图提示词](../image_gen/event-art-redraw.json)已保存。
+
+重画母版存放于 `image_gen/source/events/`，旧素材备份在其 `originals-before-redraw-20260910/` 子目录。运行 `uv run --project image_gen events`，通过等比缩放和极小边缘裁切，将已经重画为宽幅的母版规范到 `3440×1616`，输出到 `Sts2BalanceMod/images/events/`，预览同步至 `Assets/events/`。不使用透明留边修复构图，原版参考图不变。游戏内效果仍需重启游戏确认。
+
 ---
 
 ## 目录
@@ -22,6 +36,7 @@
 | <img src="../Assets/events/bugslayer.png" width="120"> | **除虫者 [Bugslayer]** | `EventLeaveOptionPatches` | 初始选项中**新增「离开」分支**，允许玩家直接走开而无须获取卡牌（可在 Mod 设置中开关）。 |
 | <img src="../Assets/events/tinker_time.png" width="120"> | **科学怪人 [Tinker Time]** | `EventLeaveOptionPatches` | 初始选项中**新增「离开」分支**，允许玩家直接走开而不用强制接受突变卡（可在 Mod 设置中开关）。 |
 | <img src="../Assets/events/the_future_of_potions.png" width="120"> | **药水的未来？ [The Future of Potions]** | `EventLeaveOptionPatches` | 初始选项中**新增「离开」分支**，允许玩家保留药水直接离开（可在 Mod 设置中开关）。 |
+| - | **探克斯 [Tanx]** | `TanxPatch` | 联动开关开启时，将先古遗物 <img src="../Sts2BalanceMod/images/relics/DelicateDoll.png" width="18" height="18"> **精致的玩偶 [Delicate Doll]** 加入随机候选池抽取。获得后将升级版先古卡 **女巫形态+** 加入牌组，第 1 回合开始对所有敌人施加 2 层易伤与 2 层虚弱。 |
 
 ---
 

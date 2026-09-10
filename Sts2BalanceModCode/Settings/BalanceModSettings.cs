@@ -1,4 +1,4 @@
-﻿using STS2RitsuLib;
+using STS2RitsuLib;
 using STS2RitsuLib.Settings;
 using STS2RitsuLib.Utils.Persistence;
 
@@ -15,9 +15,11 @@ public sealed class BalanceModSettings
 
     public bool EnableEventLeaveOptions { get; set; } = true;
     public bool EnableInfestedPrismRework { get; set; } = true;
+    public bool EnableDelicateDollCrossover { get; set; } = true;
 
     public static bool EventLeaveOptionsEnabled => Current.EnableEventLeaveOptions;
     public static bool InfestedPrismReworkEnabled => Current.EnableInfestedPrismRework;
+    public static bool DelicateDollEnabled => Current.EnableDelicateDollCrossover;
 
     private static BalanceModSettings Current =>
       RitsuLibFramework.GetDataStore(BalanceModEntry.ModId).Get<BalanceModSettings>(DataKey);
@@ -54,7 +56,16 @@ public sealed class BalanceModSettings
                 DataKey,
                 SaveScope.Global,
                 settings => settings.EnableInfestedPrismRework,
-                (settings, value) => settings.EnableInfestedPrismRework = value))),
+                (settings, value) => settings.EnableInfestedPrismRework = value))
+            .AddToggle(
+              "delicate-doll-crossover",
+              ModSettingsText.Literal("启用方舟联动：精致的玩偶（女巫形态）"),
+              new ModSettingsValueBinding<BalanceModSettings, bool>(
+                BalanceModEntry.ModId,
+                DataKey,
+                SaveScope.Global,
+                settings => settings.EnableDelicateDollCrossover,
+                (settings, value) => settings.EnableDelicateDollCrossover = value))),
           pageId: "settings");
     }
 }
