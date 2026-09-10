@@ -28,8 +28,5 @@ project/assembly_name="Sts2BalanceMod"
 
 [rendering]
 
-renderer/rendering_method="forward_plus"
 textures/vram_compression/import_s3tc_bptc=true
-textures/vram_compression/import_etc2_astc=false
 environment/defaults/default_clear_color=Color(0.0923724, 0.122398, 0.116929, 1)
-
