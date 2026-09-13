@@ -9,6 +9,19 @@
 
 ### 卡牌
 
+- [x] **CARD-WITHER-01** — 凋萎（Wither）打出费用随 FakeUpgrade 成长
+  - 目前: Mod 将【凋萎】由不可打出改为 1 费消耗；永世沙漏（Aeonglass）施放技能触发 `FakeUpgrade()` 时仅增加回合结束受到伤害（每次 +3），打出费用恒为 1 费。
+  - 目标: 对 `Wither.FakeUpgrade` 打 Harmony Patch，使其每经历 2 次升级，打出消耗的能量费用 +1。
+  - 数值: 
+    - 0 次升级（初始）：1 费
+    - 1 次升级：1 费
+    - 2 次升级：2 费（+1 费）
+    - 3 次升级：2 费
+    - 4 次升级：3 费（+2 费）
+    - 费用成长公式：`费用 = 1 + (FakeUpgradeLevel / 2)`
+  - 备注: 沙漏生成新【凋萎】时会通过 `MatchWitherToUpgradeCount` 自动补全 `FakeUpgrade()` 调用，费用随之同步增长。
+
+
 ### 遗物
 
 ### BOSS

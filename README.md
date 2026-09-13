@@ -89,7 +89,7 @@
 | **燃料 [Fuel]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 将所有状态牌转换获得 2 费 | 改为获得 1 点能量并**抽 1（升级：2）张牌** |
 | **能量汲取 [Drain Power]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 造成 10/12 伤害，升级后随机升级弃牌堆 3 张 | 伤害降为 **6/8**；基础随机升级弃牌堆 **2 张**，升级后改为升级弃牌堆**全部可升级牌** |
 | **吸引仇恨 [Pull Aggro]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 技能 | 升级后原版数值 | 升级后调整为：**召唤 6，格挡 9 点** |
-| **凋零 [Wither]** | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" title="永世沙漏 (Aeonglass)"> | 状态 | 不可打出，进入消耗堆 | 改为 **1 费可打出**，打出后消耗 |
+| **凋萎 [Wither]** | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" title="永世沙漏 (Aeonglass)"> | 状态 | 不可打出，回合结束受伤害，随沙漏成长 | 改为 **1 费可打出**，打出后消耗；且**每累计 2 次升级打出费用 +1**（保留成长机制） |
 | **辉光 [Glow]** | <img src="Assets/profile/regent.png" width="22" height="22" title="储君 (Regent)"> | 技能 | 获得星尘，下回合额外抽牌 | 改为**当回合立即抽 2 张**，升级额外多获得 1 星尘 |
 | **放血 [Bloodletting]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | 蓝卡（罕见）（v1.0.9 修改） | 稀有度改回**白卡（普通）** |
 | **且战且退 [Expect a Fight]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | 原官方中文名为「跃跃欲试」 | 仅调整中文名为**「且战且退」**，机制与数值保持原版一致 |
@@ -144,7 +144,7 @@
 
 | 名称 | 编号 | 原版机制 | MOD 改后机制 |
 | :--- | :--- | :--- | :--- |
-| <img src="Assets/map/aeonglass_boss.png" width="22" height="22" valign="middle"> **永世沙漏 [Aeonglass]** | MON-01 | 永世沙漏 Boss 生成的凋零卡无法打出，直接进入消耗堆。 | 凋零卡可以**1c打出并消耗**，保留成长机制。 |
+| <img src="Assets/map/aeonglass_boss.png" width="22" height="22" valign="middle"> **永世沙漏 [Aeonglass]** | MON-01 | 永世沙漏 Boss 生成的凋萎卡无法打出，进入手牌扣血且每次强化增加扣血量。 | 凋萎卡改为**可打出并消耗**；基础 1 费，随沙漏强化**每 2 次升级打出费用 +1**。 |
 | <img src="Assets/map/elite.png" width="22" height="22" valign="middle"> **感染棱柱 [InfestedPrism]** | BOSS-01 | 开场污染玩家技能牌（活力火花），玩家打出污染技能为棱柱增加力量；4回合循环均为攻击。 | 移除【活力火花】机制，改为未格挡攻击时叠加【感染】[InfectedPower]（每段+3层），重构为前3回合高伤害攻击 + 第4回合防守加强（+3/+2力量）的4回合循环（支持 Mod 设置切换）。 |
 | <img src="Assets/map/monster.png" width="22" height="22" valign="middle"> **红面具强盗 Bear [Bear]** | MONSTER-01 | 首回合【熊抱 BEAR_HUG】给予目标 1 层【易伤】 (`VulnerablePower`)。 | 【熊抱 BEAR_HUG】Debuff 修改为减少 2 点【敏捷】 (`DexterityPower` -2)。 |
 | <img src="Assets/map/guardian_boss.png" width="22" height="22" valign="middle"> **守护者 [Guardian]** | AFP-BOSS-01 | - | 按 Acts From the Past v1.0.5 移植完整行动循环、形态转换、Mode Shift、Sharp Hide、动画与音效；提供不进入普通地图池的心灵绽放专用遭遇。 |
