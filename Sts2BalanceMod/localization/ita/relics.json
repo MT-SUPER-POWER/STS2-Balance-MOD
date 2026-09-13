@@ -39,7 +39,7 @@
   "STS2_BALANCEMOD_MARK_OF_THE_BLOOM.description": "You can no longer heal.",
   "STS2_BALANCEMOD_MARK_OF_THE_BLOOM.flavor": "In the deepest parts of the Spire, thought and reality are one.",
   "STS2_BALANCEMOD_MUTAGENIC_STRENGTH.title": "Forza Mutagena",
-  "STS2_BALANCEMOD_MUTAGENIC_STRENGTH.description": "All'inizio di ogni combattimento, ottieni [blue]{StrengthPower}[/blue] [red]Forza[/red] temporanea.",
+  "STS2_BALANCEMOD_MUTAGENIC_STRENGTH.description": "All'inizio di ogni combattimento, ottieni [blue]{StrengthPower}[/blue] [gold]Forza[/gold] e [blue]{MutagenicDecayPower}[/blue] [red]Decadimento Mutageno[/red].",
   "STS2_BALANCEMOD_MUTAGENIC_STRENGTH.flavor": "Potere residuo di un esperimento genetico.",
   "STS2_BALANCEMOD_DWARF_ANVIL.title": "Incudine Nana",
   "STS2_BALANCEMOD_DWARF_ANVIL.description": "Quando lo raccogli, scegli 3 carte. Ogni carta scelta costa permanentemente 1 {Energy:energyIcons()} in meno.",

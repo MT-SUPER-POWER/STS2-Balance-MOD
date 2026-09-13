@@ -29,5 +29,8 @@
   "STS2_BALANCE_MOD_POWER_INFECTED_POWER.description": "В конце своего хода вы теряете {Amount} ОЗ.",
   "STS2_BALANCE_MOD_POWER_INFECTED_POWER.smartDescription": "Теряйте {Amount} ОЗ в конце своего хода.",
   "COOLANT_POWER.description": "Каждый раз, когда вы разыгрываете карту [gold]Таланта[/gold], возьмите {Amount} {Amount:plural(ru):карту|карты|карт}.",
-  "COOLANT_POWER.smartDescription": "Каждый раз, когда вы разыгрываете карту [gold]Таланта[/gold], возьмите {Amount} {Amount:plural(ru):карту|карты|карт}."
+  "COOLANT_POWER.smartDescription": "Каждый раз, когда вы разыгрываете карту [gold]Таланта[/gold], возьмите {Amount} {Amount:plural(ru):карту|карты|карт}.",
+  "STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER.title": "Мутагенный распад",
+  "STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER.description": "В конце своего хода вы теряете [blue]1[/blue] [gold]Силы[/gold]. Длится {Amount} {Amount:plural(ru):ход|хода|ходов}.",
+  "STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER.smartDescription": "Теряйте [blue]1[/blue] [gold]Силы[/gold] в конце своего хода. Осталось {Amount} {Amount:plural(ru):ход|хода|ходов}."
 }

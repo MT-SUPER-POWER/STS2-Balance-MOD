@@ -39,7 +39,7 @@
   "STS2_BALANCEMOD_MARK_OF_THE_BLOOM.description": "Вы больше не можете восстанавливать ОЗ.",
   "STS2_BALANCEMOD_MARK_OF_THE_BLOOM.flavor": "В самых глубоких уголках Шпиля мысль и реальность едины.",
   "STS2_BALANCEMOD_MUTAGENIC_STRENGTH.title": "Мутагенная сила",
-  "STS2_BALANCEMOD_MUTAGENIC_STRENGTH.description": "В начале каждого боя дает [blue]{StrengthPower}[/blue] временной [red]силы[/red].",
+  "STS2_BALANCEMOD_MUTAGENIC_STRENGTH.description": "В начале каждого боя даёт [blue]{StrengthPower}[/blue] [gold]Силы[/gold] и [blue]{MutagenicDecayPower}[/blue] [red]Мутагенного распада[/red].",
   "STS2_BALANCEMOD_MUTAGENIC_STRENGTH.flavor": "Остаточная сила генетического эксперимента.",
   "STS2_BALANCEMOD_DWARF_ANVIL.title": "Гномья наковальня",
   "STS2_BALANCEMOD_DWARF_ANVIL.description": "При получении выберите 3 карты. Каждая выбранная карта навсегда стоит на 1 {Energy:energyIcons()} меньше.",

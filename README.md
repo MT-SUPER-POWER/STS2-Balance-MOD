@@ -23,7 +23,7 @@
     <img src="https://img.shields.io/github/issues/MT-SUPER-POWER/STS2-Balance-MOD" alt="Issues" />
   </a>
   <a href="https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/actions/workflows/code-check.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/MT-SUPER-POWER/STS2-Balance-MOD/code-check.yml?branch=main&label=Code%20Check%20%26%20Test&logo=github" alt="Code Check & Test" />
+    <img src="https://img.shields.io/github/actions/workflow/status/MT-SUPER-POWER/STS2-Balance-MOD/code-check.yml?branch=main&label=Code%20Check&logo=github" alt="Code Check" />
   </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/github/license/MT-SUPER-POWER/STS2-Balance-MOD" alt="License" />
@@ -133,6 +133,7 @@
 | <img src="Assets/powers/evolve_power.png" width="22" height="22" valign="middle"> **进化 [Evolve]** | 玩家 Buff | <img src="Assets/profile/ironclad.png" width="18" height="18" title="铁甲战士"> 铁甲战士卡牌「进化」 | 每当你抽到状态牌，抽 **1 / 2** 张牌。 |
 | <img src="Assets/powers/step_by_step_power.png" width="22" height="22" valign="middle"> **步步为营 [Step by Step]** | 玩家 Buff | <img src="Assets/profile/silent.png" width="18" height="18" title="静默猎手"> 静默猎手卡牌「步步为营」 | 每回合多抽 1 张牌并多获得 1 点能量，持续 **X / X+1** 回合。 |
 | <img src="Assets/powers/infected_power.png" width="22" height="22" valign="middle"> **感染 [Infected]** | Debuff | <img src="Assets/map/elite.png" width="18" height="18"> 感染棱柱 Boss | 回合结束时失去 **{Amount}** 点生命（穿透格挡攻击施加）。 |
+| <img src="Assets/powers/MutagenicDecayPower.png" width="22" height="22" valign="middle"> **突变衰退 [Mutagenic Decay]** | Debuff | 遗物「突变之力」（J.A.X. 事件） | 回合结束时失去 1 点力量，持续 3 回合（层数逐回合递减至 0 移除）。 |
 | <img src="Assets/powers/mode_shift_power.png" width="22" height="22" valign="middle"> **形态转换 [Mode Shift]** | Boss 机制 | <img src="Assets/map/guardian_boss.png" width="18" height="18"> 守护者 Boss | 受到 **{Amount}** 点未被格挡伤害后转入防御模式。 |
 | <img src="Assets/powers/sharp_hide_power.png" width="22" height="22" valign="middle"> **尖刺外壳 [Sharp Hide]** | Boss 机制 | <img src="Assets/map/guardian_boss.png" width="18" height="18"> 守护者 Boss | 攻击者每次攻击受到 **{Amount}** 点伤害。 |
 | <img src="Assets/powers/split_power.png" width="22" height="22" valign="middle"> **分裂 [Split]** | Boss 机制 | <img src="Assets/map/slime_boss.png" width="18" height="18"> 史莱姆老大 Boss | 生命值 ≤ **50%** 时分裂成 2 只较小的史莱姆。 |
@@ -191,6 +192,7 @@
 | <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **灵魂契约 [Soul Contract]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 选择牌组中的 1 张有消耗的牌，永久去除其消耗属性。 |
 | <img src="Assets/relics/strange_spoon.png" width="22" height="22" valign="middle"> **奇怪的汤勺 [Strange Spoon]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 应被消耗的牌在被打出时有 50% 几率改为被丢弃。（凋萎必定会被消耗） |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **尼利的宝典 [Nilry's Codex]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 每回合结束时，从 3 张随机**升级版**卡牌中选择 1 张洗入抽牌堆。（RELIC-04：MOD 改为展示升级版） |
+| <img src="Assets/relics/mutagenic_strength.png" width="22" height="22" valign="middle"> **突变之力 [Mutagenic Strength]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 战斗开始时获得 3 点力量并附加 3 层「突变衰退」（每回合结束流失 1 点力量直到扣完；可与人工制品正常联动抵挡流失）。 |
 
 
 #### 原版调整

@@ -38,6 +38,9 @@
   "COOLANT_POWER.smartDescription": "Whenever you play a [gold]Power[/gold] card, draw {Amount} {Amount:plural:card|cards}.",
   "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.title": "Witch Form",
   "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.description": "At the start of your turn, draw [blue]2[/blue] additional cards, and transform [blue]2[/blue] cards in your hand into upgraded [gold]Sorcery Strike+[/gold] and [gold]Sorcery Defend+[/gold].",
-  "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.smartDescription": "At the start of your turn, draw [blue]2[/blue] additional cards, and transform [blue]2[/blue] cards in your hand into upgraded [gold]Sorcery Strike+[/gold] and [gold]Sorcery Defend+[/gold]."
+  "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.smartDescription": "At the start of your turn, draw [blue]2[/blue] additional cards, and transform [blue]2[/blue] cards in your hand into upgraded [gold]Sorcery Strike+[/gold] and [gold]Sorcery Defend+[/gold].",
+  "STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER.title": "Mutagenic Decay",
+  "STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER.description": "At the end of your turn, lose [blue]1[/blue] [gold]Strength[/gold]. Lasts for {Amount} {Amount:plural:turn|turns}.",
+  "STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER.smartDescription": "At the end of your turn, lose [blue]1[/blue] [gold]Strength[/gold]. {Amount} {Amount:plural:turn|turns} remaining."
 }
 

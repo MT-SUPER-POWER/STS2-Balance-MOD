@@ -45,7 +45,7 @@
   "STS2_BALANCEMOD_MARK_OF_THE_BLOOM.description": "You can no longer heal.",
   "STS2_BALANCEMOD_MARK_OF_THE_BLOOM.flavor": "In the deepest parts of the Spire, thought and reality are one.",
   "STS2_BALANCEMOD_MUTAGENIC_STRENGTH.title": "Mutagenic Strength",
-  "STS2_BALANCEMOD_MUTAGENIC_STRENGTH.description": "At the start of each combat, gain [blue]{StrengthPower}[/blue] temporary [red]Strength[/red].",
+  "STS2_BALANCEMOD_MUTAGENIC_STRENGTH.description": "At the start of each combat, gain [blue]{StrengthPower}[/blue] [gold]Strength[/gold] and [blue]{MutagenicDecayPower}[/blue] [red]Mutagenic Decay[/red].",
   "STS2_BALANCEMOD_MUTAGENIC_STRENGTH.flavor": "Residual power from a genetic experiment.",
   "STS2_BALANCEMOD_DWARF_ANVIL.title": "Dwarf Anvil",
   "STS2_BALANCEMOD_DWARF_ANVIL.description": "On pickup, choose 3 cards. Each chosen card permanently costs 1 less {Energy:energyIcons()}.",

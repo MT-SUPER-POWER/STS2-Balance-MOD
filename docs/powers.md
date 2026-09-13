@@ -22,7 +22,6 @@
 | <img src="../Assets/powers/electrodynamics_power.png" width="22" height="22" valign="middle"> | **电动力学 [Electrodynamics]** | `ElectrodynamicsPower`<br>`STS2BALANCEMOD-ELECTRODYNAMICS_POWER` | <img src="../Assets/profile/defect.png" width="18" height="18"> 故障机器人稀有能力卡「电动力学」 | [闪电]球改为攻击所有敌人。 |
 | <img src="../Assets/powers/evolve_power.png" width="22" height="22" valign="middle"> | **进化 [Evolve]** | `EvolvePower`<br>`STS2BALANCEMOD-EVOLVE_POWER` | <img src="../Assets/profile/ironclad.png" width="18" height="18"> 铁甲战士罕见能力卡「进化」 | 每当你抽到一张状态牌，抽 **1**（升级：**2**）张牌。 |
 | <img src="../Assets/powers/step_by_step_power.png" width="22" height="22" valign="middle"> | **步步为营 [Step by Step]** | `StepByStepPower`<br>`STS2BALANCEMOD-STEP_BY_STEP_POWER` | <img src="../Assets/profile/silent.png" width="18" height="18"> 静默猎手稀有技能卡「步步为营」 | 每回合开始时，多抽 1 张牌并获得 1 点能量。持续 **X**（升级：**X+1**）回合。 |
-| <img src="../Assets/powers/mutagenic_strength.png" width="22" height="22" valign="middle"> | **突变之力 [Mutagenic Strength]** | `MutagenicStrengthPower`<br>`STS2BALANCEMOD-MUTAGENIC_STRENGTH_POWER` | 遗物 <img src="../Assets/relics/mutagenic_strength.png" width="18" height="18"> 突变之力（J.A.X. 事件） | 战斗开始时获得 3 点临时力量，首个回合结束时失去 3 点力量。 |
 | <img src="../Sts2BalanceMod/images/powers/WitchFormPower.png" width="22" height="22" valign="middle"> | **女巫形态 [Witch Form]** | `WitchFormPower`<br>`STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER` | 先古卡「女巫形态」（遗物「精致的玩偶」/ Tanx 事件） | 回合开始额外抽 2 张牌，并将手牌中 2 张牌分别蜕变为升级后的「巫术打击+」与「巫术防御+」。 |
 
 ---
@@ -37,6 +36,7 @@
 | <img src="../Assets/powers/sorcery_weak.png" width="22" height="22" valign="middle"> | **巫术虚弱 [Sorcery Weak]** | `SorceryWeak`<br>`STS2BALANCEMOD-SORCERY_WEAK` | 先古卡「巫术防御」（探克斯 Tanx） | 造成的攻击伤害减少 **50%**。若本回合进行过攻击，回合结束时减少 1 层。 |
 | <img src="../Assets/powers/infected_power.png" width="22" height="22" valign="middle"> | **感染 [Infected]** | `InfectedPower`<br>`STS2BALANCEMOD-INFECTED_POWER` | Boss <img src="../Assets/map/elite.png" width="18" height="18"> 感染棱柱（穿透格挡攻击） | 在你的回合结束时，失去 **{Amount}** 点生命。 |
 | <img src="../Assets/powers/draw_reduction_power.png" width="22" height="22" valign="middle"> | **抽牌减少 [Draw Reduction]** | `DrawReductionPower`<br>`STS2BALANCEMOD-DRAW_REDUCTION_POWER` | 1 代回归减益 / 遭遇战 | 持续 **{Amount}** 回合，每回合开始时少抽 1 张牌。 |
+| <img src="../Assets/powers/MutagenicDecayPower.png" width="22" height="22" valign="middle"> | **突变衰退 [Mutagenic Decay]** | `MutagenicDecayPower`<br>`STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER` | 遗物 <img src="../Assets/relics/mutagenic_strength.png" width="18" height="18"> 突变之力（J.A.X. 事件） | 在你的回合结束时，失去 1 点力量。持续 **{Amount}** 回合（初始 3 层，每回合流失 1 点力量直到扣完）。 |
 
 ---
 

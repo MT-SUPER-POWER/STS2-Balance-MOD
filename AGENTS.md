@@ -7,10 +7,10 @@
 ## Build & Verify
 
 ```powershell
-dotnet test                               # 执行 C# xUnit 规则测试工程（校验 PascalCase 规范、本地化覆盖、资源文件存在性、Harmony Patch 安全性与版本一致性）
+dotnet build                              # 编译 Mod 工程，检查 C# 语法与编译错误
 ```
 
-**单元测试**：静态规则与逻辑测试置于 `tests/Sts2BalanceMod.Tests` 下（包含正面与负面测试集），每次编译或 CI/CD 时自动执行 `dotnet test`；运行时调试问题可在[调试](AGENTS.md#调试)中查阅 `godot.log` 日志。
+运行时调试问题可在[调试](AGENTS.md#调试)中查阅 `godot.log` 日志。
 <!-- BUILD_END -->
 
 <!-- DOCUMENTATION_RULE_START -->

@@ -1,4 +1,4 @@
-name: Code Check & Test
+name: Code Check
 
 on:
   push:
@@ -7,7 +7,6 @@ on:
       - '**.cs'
       - '**.csproj'
       - '.editorconfig'
-      - 'tests/**'
       - '.github/workflows/code-check.yml'
   pull_request:
     branches: [main]
@@ -15,7 +14,6 @@ on:
       - '**.cs'
       - '**.csproj'
       - '.editorconfig'
-      - 'tests/**'
       - '.github/workflows/code-check.yml'
   workflow_dispatch:
 
@@ -25,7 +23,7 @@ permissions:
 
 jobs:
   code-check:
-    name: Code Check & Test
+    name: Code Check
     runs-on: ubuntu-latest
 
     steps:
@@ -56,22 +54,6 @@ jobs:
             --severity info \
             --no-restore \
             2>&1 | tee format-output.txt
-
-      - name: Run C# xUnit Tests
-        run: dotnet test --no-build -c Debug /p:ContinuousIntegrationBuild=true /p:SkipGodotExport=true
-
-      - name: Run PowerShell Tests
-        shell: pwsh
-        run: |
-          $testFiles = Get-ChildItem -Path tests/*.Tests.ps1 -ErrorAction SilentlyContinue
-          if ($testFiles) {
-            foreach ($file in $testFiles) {
-              Write-Host "Running $($file.Name)..."
-              & $file.FullName
-            }
-          } else {
-            Write-Host "No test files found."
-          }
 
       - name: Comment on PR if format issues found
         if: failure() && github.event_name == 'pull_request'

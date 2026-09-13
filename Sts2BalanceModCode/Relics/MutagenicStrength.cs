@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -23,13 +23,15 @@ public sealed class MutagenicStrength : BalanceRelicTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-      new PowerVar<StrengthPower>(3M),
-  ];
+        new PowerVar<StrengthPower>(3M),
+        new PowerVar<MutagenicDecayPower>(3M),
+    ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
     [
-      HoverTipFactory.FromPower<StrengthPower>(),
-  ];
+        HoverTipFactory.FromPower<StrengthPower>(),
+        HoverTipFactory.FromPower<MutagenicDecayPower>(),
+    ];
 
     public override async Task AfterRoomEntered(AbstractRoom room)
     {
@@ -37,11 +39,17 @@ public sealed class MutagenicStrength : BalanceRelicTemplate
             return;
 
         Flash();
-        await PowerCmd.Apply<MutagenicStrengthPower>(
-          new ThrowingPlayerChoiceContext(),
-          Owner.Creature,
-          DynamicVars.Strength.BaseValue,
-          Owner.Creature,
-          null);
+        await PowerCmd.Apply<StrengthPower>(
+            new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
+            DynamicVars.Strength.BaseValue,
+            Owner.Creature,
+            null);
+        await PowerCmd.Apply<MutagenicDecayPower>(
+            new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
+            DynamicVars["MutagenicDecayPower"].BaseValue,
+            Owner.Creature,
+            null);
     }
 }
