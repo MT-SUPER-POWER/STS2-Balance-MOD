@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Gold;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -21,87 +22,84 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 [RegisterSharedEvent]
 public sealed class OldBeggar : BalanceEventTemplate
 {
-    public override bool IsShared => false;
-    private const int GoldCost = 75;
-    protected override string PortraitFileName => "OldBeggar.png";
+  public override bool IsShared => false;
+  private const int GoldCost = 75;
+  protected override string PortraitFileName => "OldBeggar.png";
 
-    private static readonly string ClericPortraitPath = ModAssetPaths.EventImage("Cleric.png");
+  private static readonly string ClericPortraitPath = ModAssetPaths.EventImage("Cleric.png");
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-      new IntVar("GoldCost", GoldCost),
+  protected override IEnumerable<DynamicVar> CanonicalVars =>
+  [
+    new IntVar("GoldCost", GoldCost),
   ];
 
-    public override bool IsAllowed(IRunState runState)
+  public override bool IsAllowed(IRunState runState) => runState.Players.All(p => p.Gold >= GoldCost);
+
+  protected override IReadOnlyList<EventOption> GenerateInitialOptions()
+  {
+    Player? owner = Owner;
+    if (owner == null)
+      return [Option(Leave)];
+
+    var options = new List<EventOption>();
+    if (owner.Gold >= GoldCost)
     {
-        return runState.Players.All(p => p.Gold >= GoldCost);
+      options.Add(Option(GiveGold));
+    }
+    else
+    {
+      options.Add(new EventOption(this, null,
+        $"{Id.Entry}.pages.INITIAL.options.GIVE_GOLD_LOCKED",
+        []));
     }
 
-    protected override IReadOnlyList<EventOption> GenerateInitialOptions()
+    options.Add(Option(Leave));
+    return options;
+  }
+
+  private async Task GiveGold()
+  {
+    Player? owner = Owner;
+    if (owner == null)
     {
-        var owner = Owner;
-        if (owner == null)
-            return [Option(Leave)];
-
-        var options = new List<EventOption>();
-        if (owner.Gold >= GoldCost)
-        {
-            options.Add(Option(GiveGold));
-        }
-        else
-        {
-            options.Add(new EventOption(this, null,
-              $"{Id.Entry}.pages.INITIAL.options.GIVE_GOLD_LOCKED",
-              Array.Empty<IHoverTip>()));
-        }
-
-        options.Add(Option(Leave));
-        return options;
+      SetEventFinished(PageDescription("LEAVE"));
+      return;
     }
 
-    private async Task GiveGold()
-    {
-        var owner = Owner;
-        if (owner == null)
-        {
-            SetEventFinished(PageDescription("LEAVE"));
-            return;
-        }
-
-        await PlayerCmd.LoseGold(GoldCost, owner, GoldLossType.Spent);
-        SetEventState(PageDescription("GAVE_GOLD"),
-        [
-          Option(RemoveCard, "GAVE_GOLD"),
+    await PlayerCmd.LoseGold(GoldCost, owner, GoldLossType.Spent);
+    SetEventState(PageDescription("GAVE_GOLD"),
+    [
+      Option(RemoveCard, "GAVE_GOLD"),
     ]);
-        SwitchToClericPortrait();
-    }
+    SwitchToClericPortrait();
+  }
 
-    private async Task RemoveCard()
+  private async Task RemoveCard()
+  {
+    Player? owner = Owner;
+    if (owner == null)
     {
-        var owner = Owner;
-        if (owner == null)
-        {
-            SetEventFinished(PageDescription("LEAVE"));
-            return;
-        }
-
-        var prefs = new CardSelectorPrefs(CardSelectorPrefs.RemoveSelectionPrompt, 1);
-        var selectedCards = await CardSelectCmd.FromDeckForRemoval(owner, prefs);
-        await CardPileCmd.RemoveFromDeck(selectedCards.ToList());
-        SetEventFinished(PageDescription("REMOVE_CARD"));
+      SetEventFinished(PageDescription("LEAVE"));
+      return;
     }
 
-    private Task Leave()
+    var prefs = new CardSelectorPrefs(CardSelectorPrefs.RemoveSelectionPrompt, 1);
+    IEnumerable<CardModel> selectedCards = await CardSelectCmd.FromDeckForRemoval(owner, prefs);
+    await CardPileCmd.RemoveFromDeck(selectedCards.ToList());
+    SetEventFinished(PageDescription("REMOVE_CARD"));
+  }
+
+  private Task Leave()
+  {
+    SetEventFinished(PageDescription("LEAVE"));
+    return Task.CompletedTask;
+  }
+
+  private void SwitchToClericPortrait()
+  {
+    if (Node?.FindChild("Portrait", true, false) is TextureRect portrait)
     {
-        SetEventFinished(PageDescription("LEAVE"));
-        return Task.CompletedTask;
+      portrait.Texture = PreloadManager.Cache.GetTexture2D(ClericPortraitPath);
     }
-
-    private void SwitchToClericPortrait()
-    {
-        if (Node?.FindChild("Portrait", true, false) is TextureRect portrait)
-        {
-            portrait.Texture = PreloadManager.Cache.GetTexture2D(ClericPortraitPath);
-        }
-    }
+  }
 }

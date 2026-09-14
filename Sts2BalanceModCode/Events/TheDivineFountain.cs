@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -16,48 +17,48 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 [RegisterSharedEvent]
 public sealed class TheDivineFountain : BalanceEventTemplate
 {
-    public override bool IsShared => false;
+  public override bool IsShared => false;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-      new IntVar("MaxHpGain", 0),
+  protected override IEnumerable<DynamicVar> CanonicalVars =>
+  [
+    new IntVar("MaxHpGain", 0),
   ];
 
-    public override bool IsAllowed(IRunState runState)
-    {
-        return runState.Players.All(p =>
-          PileType.Deck.GetPile(p).Cards.Any(c => c.Type == CardType.Curse && c.IsRemovable));
-    }
+  public override bool IsAllowed(IRunState runState)
+  {
+    return runState.Players.All(p =>
+      PileType.Deck.GetPile(p).Cards.Any(c => c.Type == CardType.Curse && c.IsRemovable));
+  }
 
-    protected override IReadOnlyList<EventOption> GenerateInitialOptions()
-    {
-        return
-        [
-          Option(Drink),
+  protected override IReadOnlyList<EventOption> GenerateInitialOptions()
+  {
+    return
+    [
+      Option(Drink),
       Option(Leave),
     ];
-    }
+  }
 
-    private async Task Drink()
+  private async Task Drink()
+  {
+    Player? owner = Owner;
+    if (owner == null)
     {
-        var owner = Owner;
-        if (owner == null)
-        {
-            SetEventFinished(PageDescription("LEAVE"));
-            return;
-        }
-
-        var curses = owner.Deck.Cards
-          .Where(c => c.Type == CardType.Curse && c.IsRemovable)
-          .ToList();
-
-        await CardPileCmd.RemoveFromDeck(curses);
-        SetEventFinished(PageDescription("DRINK"));
+      SetEventFinished(PageDescription("LEAVE"));
+      return;
     }
 
-    private Task Leave()
-    {
-        SetEventFinished(PageDescription("LEAVE"));
-        return Task.CompletedTask;
-    }
+    var curses = owner.Deck.Cards
+      .Where(c => c.Type == CardType.Curse && c.IsRemovable)
+      .ToList();
+
+    await CardPileCmd.RemoveFromDeck(curses);
+    SetEventFinished(PageDescription("DRINK"));
+  }
+
+  private Task Leave()
+  {
+    SetEventFinished(PageDescription("LEAVE"));
+    return Task.CompletedTask;
+  }
 }

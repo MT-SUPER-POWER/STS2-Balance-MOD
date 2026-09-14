@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -17,27 +17,27 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 [RegisterPower]
 public sealed class DrawReductionPower() : BalancePowerTemplate(PowerType.Debuff, PowerStackType.Counter)
 {
-    private const decimal DrawPenalty = 1M;
+  private const decimal DrawPenalty = 1M;
 
 
-    public override decimal ModifyHandDraw(Player player, decimal count)
+  public override decimal ModifyHandDraw(Player player, decimal count)
+  {
+    if (player != Owner.Player)
     {
-        if (player != Owner.Player)
-        {
-            return count;
-        }
-
-        Flash();
-        return count - DrawPenalty;
+      return count;
     }
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
-    {
-        if (side != Owner.Side)
-        {
-            return;
-        }
+    Flash();
+    return count - DrawPenalty;
+  }
 
-        await PowerCmd.TickDownDuration(this);
+  public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+  {
+    if (side != Owner.Side)
+    {
+      return;
     }
+
+    await PowerCmd.TickDownDuration(this);
+  }
 }

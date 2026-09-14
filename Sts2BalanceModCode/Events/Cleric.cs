@@ -19,93 +19,90 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 [RegisterSharedEvent]
 public sealed class Cleric : BalanceEventTemplate
 {
-    public override bool IsShared => false;
+  public override bool IsShared => false;
 
-    private const int HealCost = 35;
-    private const int PurifyCost = 75;
-    private const decimal HealPercent = 0.25M;
+  private const int HealCost = 35;
+  private const int PurifyCost = 75;
+  private const decimal HealPercent = 0.25M;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-      new HealVar(0M),
+  protected override IEnumerable<DynamicVar> CanonicalVars =>
+  [
+    new HealVar(0M),
     new IntVar("HealCost", HealCost),
     new IntVar("PurifyCost", PurifyCost),
   ];
 
-    public override void CalculateVars()
-    {
-        var owner = Owner;
-        if (owner?.Creature == null)
-            return;
+  public override void CalculateVars()
+  {
+    Player? owner = Owner;
+    if (owner?.Creature == null)
+      return;
 
-        DynamicVars.Heal.BaseValue = Math.Floor(owner.Creature.MaxHp * HealPercent);
+    DynamicVars.Heal.BaseValue = Math.Floor(owner.Creature.MaxHp * HealPercent);
+  }
+
+  protected override IReadOnlyList<EventOption> GenerateInitialOptions()
+  {
+    Player? owner = Owner;
+    if (owner == null)
+      return [Option(Leave)];
+
+    var options = new List<EventOption>();
+
+    if (owner.Gold >= HealCost)
+      options.Add(Option(Heal));
+    else
+      options.Add(new EventOption(this, null,
+        $"{Id.Entry}.pages.INITIAL.options.HEAL_LOCKED",
+        []));
+
+    bool canPurify = owner.Gold >= PurifyCost && owner.Deck.Cards.Any(c => c.IsRemovable);
+    if (canPurify)
+      options.Add(Option(Purify));
+    else
+      options.Add(new EventOption(this, null,
+        $"{Id.Entry}.pages.INITIAL.options.PURIFY_LOCKED",
+        []));
+
+    options.Add(Option(Leave));
+    return options;
+  }
+
+  private async Task Heal()
+  {
+    Player? owner = Owner;
+    if (owner?.Creature == null)
+    {
+      SetEventFinished(PageDescription("LEAVE"));
+      return;
     }
 
-    protected override IReadOnlyList<EventOption> GenerateInitialOptions()
+    await PlayerCmd.LoseGold(HealCost, owner, GoldLossType.Spent);
+    await CreatureCmd.Heal(owner.Creature, DynamicVars.Heal.BaseValue);
+    SetEventFinished(PageDescription("HEAL"));
+  }
+
+  private async Task Purify()
+  {
+    Player? owner = Owner;
+    if (owner == null)
     {
-        var owner = Owner;
-        if (owner == null)
-            return [Option(Leave)];
-
-        var options = new List<EventOption>();
-
-        if (owner.Gold >= HealCost)
-            options.Add(Option(Heal));
-        else
-            options.Add(new EventOption(this, null,
-              $"{Id.Entry}.pages.INITIAL.options.HEAL_LOCKED",
-              Array.Empty<IHoverTip>()));
-
-        var canPurify = owner.Gold >= PurifyCost && owner.Deck.Cards.Any(c => c.IsRemovable);
-        if (canPurify)
-            options.Add(Option(Purify));
-        else
-            options.Add(new EventOption(this, null,
-              $"{Id.Entry}.pages.INITIAL.options.PURIFY_LOCKED",
-              Array.Empty<IHoverTip>()));
-
-        options.Add(Option(Leave));
-        return options;
+      SetEventFinished(PageDescription("LEAVE"));
+      return;
     }
 
-    private async Task Heal()
-    {
-        var owner = Owner;
-        if (owner?.Creature == null)
-        {
-            SetEventFinished(PageDescription("LEAVE"));
-            return;
-        }
+    await PlayerCmd.LoseGold(PurifyCost, owner, GoldLossType.Spent);
+    var prefs = new CardSelectorPrefs(CardSelectorPrefs.RemoveSelectionPrompt, 1);
+    IEnumerable<CardModel> selectedCards = await CardSelectCmd.FromDeckForRemoval(owner, prefs);
+    await CardPileCmd.RemoveFromDeck(selectedCards.ToList());
+    SetEventFinished(PageDescription("PURIFY"));
+  }
 
-        await PlayerCmd.LoseGold(HealCost, owner, GoldLossType.Spent);
-        await CreatureCmd.Heal(owner.Creature, DynamicVars.Heal.BaseValue);
-        SetEventFinished(PageDescription("HEAL"));
-    }
+  private Task Leave()
+  {
+    SetEventFinished(PageDescription("LEAVE"));
+    return Task.CompletedTask;
+  }
 
-    private async Task Purify()
-    {
-        var owner = Owner;
-        if (owner == null)
-        {
-            SetEventFinished(PageDescription("LEAVE"));
-            return;
-        }
-
-        await PlayerCmd.LoseGold(PurifyCost, owner, GoldLossType.Spent);
-        var prefs = new CardSelectorPrefs(CardSelectorPrefs.RemoveSelectionPrompt, 1);
-        var selectedCards = await CardSelectCmd.FromDeckForRemoval(owner, prefs);
-        await CardPileCmd.RemoveFromDeck(selectedCards.ToList());
-        SetEventFinished(PageDescription("PURIFY"));
-    }
-
-    private Task Leave()
-    {
-        SetEventFinished(PageDescription("LEAVE"));
-        return Task.CompletedTask;
-    }
-
-    public override bool IsAllowed(IRunState runState)
-    {
-        return runState.Players.All<Player>(p => p.Gold >= HealCost);
-    }
+  public override bool IsAllowed(IRunState runState) => runState.Players.All<Player>(p => p.Gold >= HealCost);
 }

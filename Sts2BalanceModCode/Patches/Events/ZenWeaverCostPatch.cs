@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Events;
@@ -14,15 +14,15 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Events;
 [HarmonyPatch(typeof(ZenWeaver), "get_CanonicalVars")]
 public static class ZenWeaverCostPatch
 {
-    [HarmonyPrefix]
-    public static bool Prefix(ref IEnumerable<DynamicVar> __result)
+  [HarmonyPrefix]
+  public static bool Prefix(ref IEnumerable<DynamicVar> __result)
+  {
+    __result = new DynamicVar[]
     {
-        __result = new DynamicVar[]
-        {
-            new DynamicVar("BreathingTechniquesCost", 50m),
-            new DynamicVar("EmotionalAwarenessCost", 75m),
-            new DynamicVar("ArachnidAcupunctureCost", 150m)
-        };
-        return false;
-    }
+            new("BreathingTechniquesCost", 50m),
+            new("EmotionalAwarenessCost", 75m),
+            new("ArachnidAcupunctureCost", 150m)
+    };
+    return false;
+  }
 }

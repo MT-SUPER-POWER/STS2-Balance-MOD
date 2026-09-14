@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
@@ -9,27 +9,21 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 [HarmonyPatch]
 public static class TheScytheDamagePatch
 {
-    private const int BaseDamage = 16;
+  private const int BaseDamage = 16;
 
 
-    [HarmonyPatch(typeof(TheScythe), MethodType.Constructor)]
-    [HarmonyPostfix]
-    private static void ConstructorPostfix(TheScythe __instance)
-    {
-        SetCurrentDamage(__instance);
-    }
+  [HarmonyPatch(typeof(TheScythe), MethodType.Constructor)]
+  [HarmonyPostfix]
+  private static void ConstructorPostfix(TheScythe __instance) => SetCurrentDamage(__instance);
 
-    [HarmonyPatch(typeof(TheScythe), "UpdateDamage")]
-    [HarmonyPostfix]
-    private static void UpdateDamagePostfix(TheScythe __instance)
-    {
-        SetCurrentDamage(__instance);
-    }
+  [HarmonyPatch(typeof(TheScythe), "UpdateDamage")]
+  [HarmonyPostfix]
+  private static void UpdateDamagePostfix(TheScythe __instance) => SetCurrentDamage(__instance);
 
-    private static void SetCurrentDamage(TheScythe scythe)
-    {
-        int currentDamage = BaseDamage + scythe.IncreasedDamage;
-        Traverse.Create(scythe).Field("_currentDamage").SetValue(currentDamage);
-        scythe.DynamicVars["Damage"].BaseValue = currentDamage;
-    }
+  private static void SetCurrentDamage(TheScythe scythe)
+  {
+    int currentDamage = BaseDamage + scythe.IncreasedDamage;
+    Traverse.Create(scythe).Field("_currentDamage").SetValue(currentDamage);
+    scythe.DynamicVars["Damage"].BaseValue = currentDamage;
+  }
 }

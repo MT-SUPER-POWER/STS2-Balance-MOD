@@ -1,8 +1,8 @@
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
-using Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
+using Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 
@@ -15,24 +15,24 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 [RegisterGlobalEncounter]
 public sealed class ColosseumSecondEncounter : BalanceEncounterTemplate
 {
-    public override RoomType RoomType => RoomType.Elite;
+  public override RoomType RoomType => RoomType.Elite;
 
-    public override bool IsWeak => false;
+  public override bool IsWeak => false;
 
-    public override EncounterAssetProfile AssetProfile => new(
-        EncounterScenePath: ModAssetPaths.Resource("scenes", "colosseum_second_encounter.tscn"));
+  public override EncounterAssetProfile AssetProfile => new(
+      EncounterScenePath: ModAssetPaths.Resource("scenes", "colosseum_second_encounter.tscn"));
 
-    public override IReadOnlyList<string> Slots => ["taskmaster", "gremlin_nob"];
+  public override IReadOnlyList<string> Slots => ["taskmaster", "gremlin_nob"];
 
-    public override IEnumerable<MonsterModel> AllPossibleMonsters =>
-    [
-      ModelDb.Monster<Taskmaster>(),
+  public override IEnumerable<MonsterModel> AllPossibleMonsters =>
+  [
+    ModelDb.Monster<Taskmaster>(),
       ModelDb.Monster<GremlinNob>(),
     ];
 
-    protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
-    [
-      (ModelDb.Monster<Taskmaster>().ToMutable(), "taskmaster"),
+  protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
+  [
+    (ModelDb.Monster<Taskmaster>().ToMutable(), "taskmaster"),
       (ModelDb.Monster<GremlinNob>().ToMutable(), "gremlin_nob"),
     ];
 }

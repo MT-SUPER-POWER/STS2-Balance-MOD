@@ -17,24 +17,24 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 [RegisterRelic(typeof(SharedRelicPool), FullPublicEntry = "STS2_BALANCEMOD_STRANGE_SPOON")]
 public sealed class StrangeSpoon : BalanceRelicTemplate
 {
-    public override string FlashSfx => "event:/sfx/ui/relic_activate_general";
-    public override RelicRarity Rarity => RelicRarity.Shop;
+  public override string FlashSfx => "event:/sfx/ui/relic_activate_general";
+  public override RelicRarity Rarity => RelicRarity.Shop;
 
-    public override bool HasUponPickupEffect => true;
+  public override bool HasUponPickupEffect => true;
 
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-    [
-        HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
+  protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+  [
+      HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
         new HoverTip(
             new LocString("relics", "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.title"),
             new LocString("relics", "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.description")
         )
-    ];
+  ];
 
-    public override async Task AfterObtained()
-    {
-        if (Owner?.Creature == null)
-            return;
-        Flash();
-    }
+  public override async Task AfterObtained()
+  {
+    if (Owner?.Creature == null)
+      return;
+    Flash();
+  }
 }

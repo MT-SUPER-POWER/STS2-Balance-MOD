@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
@@ -21,37 +21,37 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 [RegisterPower]
 public sealed class SorceryWeak() : BalancePowerTemplate(PowerType.Debuff, PowerStackType.Counter)
 {
-    private bool _didAttackThisTurn;
+  private bool _didAttackThisTurn;
 
-    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
+  public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
+  {
+    if (dealer != Owner || !props.IsPoweredAttack())
     {
-        if (dealer != Owner || !props.IsPoweredAttack())
-        {
-            return 1m;
-        }
-        return 0.5m;
+      return 1m;
+    }
+    return 0.5m;
+  }
+
+  public override Task AfterAttack(PlayerChoiceContext choiceContext, AttackCommand command)
+  {
+    if (command.Attacker == Owner && command.DamageProps.IsPoweredAttack())
+    {
+      _didAttackThisTurn = true;
     }
 
-    public override Task AfterAttack(PlayerChoiceContext choiceContext, AttackCommand command)
-    {
-        if (command.Attacker == Owner && command.DamageProps.IsPoweredAttack())
-        {
-            _didAttackThisTurn = true;
-        }
+    return Task.CompletedTask;
+  }
 
-        return Task.CompletedTask;
-    }
-
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+  public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+  {
+    if (side == Owner.Side)
     {
-        if (side == Owner.Side)
-        {
-            if (_didAttackThisTurn)
-            {
-                _didAttackThisTurn = false;
-                Flash();
-                await PowerCmd.TickDownDuration(this);
-            }
-        }
+      if (_didAttackThisTurn)
+      {
+        _didAttackThisTurn = false;
+        Flash();
+        await PowerCmd.TickDownDuration(this);
+      }
     }
+  }
 }

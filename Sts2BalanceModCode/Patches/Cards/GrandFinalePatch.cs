@@ -13,37 +13,38 @@ using MegaCrit.Sts2.Core.Models.Cards;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 
 /// <summary>
-/// CARD-04 & CARD-10 — 华丽收场 (Grand Finale) X 费机制调整。
-///
+/// <para>CARD-04 & CARD-10 — 华丽收场 (Grand Finale) X 费机制调整。</para>
+/// <para>
 /// 打出条件与能量扣除均按“抽牌堆卡牌数”计算：
 /// - 基础能量需求 = 抽牌堆卡牌数；
 /// - 升级提供 2 点减费；
 /// - 化学 X (Chemical X) 等 X 额外增益通过 Hook.ModifyXValue 动态再减 2 点能量（可叠加）；
 /// - 实际扣除能量 = Max(0, 抽牌堆卡牌数 - 升级减费 - 化学X等X增益)；
 /// - 打出条件 = 当前能量 >= 实际扣除能量。
+/// </para>
 /// </summary>
 [HarmonyPatch(typeof(GrandFinale), "get_IsPlayable")]
 public static class GrandFinaleIsPlayablePatch
 {
-    [HarmonyPrefix]
-    public static bool Prefix(GrandFinale __instance, ref bool __result)
+  [HarmonyPrefix]
+  public static bool Prefix(GrandFinale __instance, ref bool __result)
+  {
+    if (__instance.Owner == null || __instance.Owner.PlayerCombatState == null)
     {
-        if (__instance.Owner == null || __instance.Owner.PlayerCombatState == null)
-        {
-            return true;
-        }
-
-        int drawPileCount = PileType.Draw.GetPile(__instance.Owner).Cards.Count;
-        int energy = __instance.Owner.PlayerCombatState.Energy;
-        int upgradeSavings = __instance.IsUpgraded ? 2 : 0;
-        int xModifierBonus = __instance.CombatState != null ? Hook.ModifyXValue(__instance.CombatState, __instance, 0) : 0;
-        int totalSavings = upgradeSavings + xModifierBonus;
-
-        int requiredEnergy = Math.Max(0, drawPileCount - totalSavings);
-        __result = energy >= requiredEnergy;
-
-        return false;
+      return true;
     }
+
+    int drawPileCount = PileType.Draw.GetPile(__instance.Owner).Cards.Count;
+    int energy = __instance.Owner.PlayerCombatState.Energy;
+    int upgradeSavings = __instance.IsUpgraded ? 2 : 0;
+    int xModifierBonus = __instance.CombatState != null ? Hook.ModifyXValue(__instance.CombatState, __instance, 0) : 0;
+    int totalSavings = upgradeSavings + xModifierBonus;
+
+    int requiredEnergy = Math.Max(0, drawPileCount - totalSavings);
+    __result = energy >= requiredEnergy;
+
+    return false;
+  }
 }
 
 /// <summary>
@@ -54,16 +55,16 @@ public static class GrandFinaleIsPlayablePatch
 [HarmonyPatch(typeof(CardModel), "get_HasEnergyCostX")]
 public static class GrandFinaleHasEnergyCostXPatch
 {
-    [HarmonyPrefix]
-    public static bool Prefix(CardModel __instance, ref bool __result)
+  [HarmonyPrefix]
+  public static bool Prefix(CardModel __instance, ref bool __result)
+  {
+    if (__instance is GrandFinale)
     {
-        if (__instance is GrandFinale)
-        {
-            __result = true;
-            return false;
-        }
-        return true;
+      __result = true;
+      return false;
     }
+    return true;
+  }
 }
 
 /// <summary>
@@ -72,23 +73,23 @@ public static class GrandFinaleHasEnergyCostXPatch
 [HarmonyPatch(typeof(CardEnergyCost), nameof(CardEnergyCost.GetAmountToSpend))]
 public static class GrandFinaleEnergyToSpendPatch
 {
-    private static readonly FieldInfo _cardField = AccessTools.Field(typeof(CardEnergyCost), "_card");
+  private static readonly FieldInfo _cardField = AccessTools.Field(typeof(CardEnergyCost), "_card");
 
-    [HarmonyPrefix]
-    public static bool Prefix(CardEnergyCost __instance, ref int __result)
+  [HarmonyPrefix]
+  public static bool Prefix(CardEnergyCost __instance, ref int __result)
+  {
+    if (_cardField?.GetValue(__instance) is GrandFinale grandFinale && grandFinale.Owner?.PlayerCombatState != null)
     {
-        if (_cardField?.GetValue(__instance) is GrandFinale grandFinale && grandFinale.Owner?.PlayerCombatState != null)
-        {
-            int drawPileCount = PileType.Draw.GetPile(grandFinale.Owner).Cards.Count;
-            int upgradeSavings = grandFinale.IsUpgraded ? 2 : 0;
-            int xModifierBonus = grandFinale.CombatState != null ? Hook.ModifyXValue(grandFinale.CombatState, grandFinale, 0) : 0;
-            int totalSavings = upgradeSavings + xModifierBonus;
+      int drawPileCount = PileType.Draw.GetPile(grandFinale.Owner).Cards.Count;
+      int upgradeSavings = grandFinale.IsUpgraded ? 2 : 0;
+      int xModifierBonus = grandFinale.CombatState != null ? Hook.ModifyXValue(grandFinale.CombatState, grandFinale, 0) : 0;
+      int totalSavings = upgradeSavings + xModifierBonus;
 
-            __result = Math.Max(0, drawPileCount - totalSavings);
-            return false;
-        }
-        return true;
+      __result = Math.Max(0, drawPileCount - totalSavings);
+      return false;
     }
+    return true;
+  }
 }
 
 /// <summary>
@@ -100,25 +101,25 @@ public static class GrandFinaleEnergyToSpendPatch
 [HarmonyPatch(typeof(GrandFinale), "get_CanonicalVars")]
 public static class GrandFinaleCanonicalVarsPatch
 {
-    [HarmonyPostfix]
-    public static void Postfix(GrandFinale __instance, ref IEnumerable<DynamicVar> __result)
+  [HarmonyPostfix]
+  public static void Postfix(ref IEnumerable<DynamicVar> __result)
+  {
+    var list = __result.ToList();
+    list.Add(new CalculationBaseVar(0m));
+    list.Add(new CalculationExtraVar(1m));
+    list.Add(new EnergyVar("EnergySaved", 0));
+    list.Add(new CalculatedVar("CalculatedSpend").WithMultiplier((card, _) =>
     {
-        var list = __result.ToList();
-        list.Add(new CalculationBaseVar(0m));
-        list.Add(new CalculationExtraVar(1m));
-        list.Add(new EnergyVar("EnergySaved", 0));
-        list.Add(new CalculatedVar("CalculatedSpend").WithMultiplier((CardModel card, Creature? _) =>
-        {
-            if (card.Owner?.PlayerCombatState == null)
-                return 0;
-            int drawPileCount = PileType.Draw.GetPile(card.Owner).Cards.Count;
-            int upgradeSavings = card.IsUpgraded ? 2 : 0;
-            int xModifierBonus = card.CombatState != null ? Hook.ModifyXValue(card.CombatState, card, 0) : 0;
-            int totalSavings = upgradeSavings + xModifierBonus;
-            return Math.Max(0, drawPileCount - totalSavings);
-        }));
-        __result = list;
-    }
+      if (card.Owner?.PlayerCombatState == null)
+        return 0;
+      int drawPileCount = PileType.Draw.GetPile(card.Owner).Cards.Count;
+      int upgradeSavings = card.IsUpgraded ? 2 : 0;
+      int xModifierBonus = card.CombatState != null ? Hook.ModifyXValue(card.CombatState, card, 0) : 0;
+      int totalSavings = upgradeSavings + xModifierBonus;
+      return Math.Max(0, drawPileCount - totalSavings);
+    }));
+    __result = list;
+  }
 }
 
 /// <summary>
@@ -127,13 +128,13 @@ public static class GrandFinaleCanonicalVarsPatch
 [HarmonyPatch(typeof(GrandFinale), "OnUpgrade")]
 public static class GrandFinaleCanonicalUpgradePatch
 {
-    [HarmonyPrefix]
-    public static bool Prefix(GrandFinale __instance)
+  [HarmonyPrefix]
+  public static bool Prefix(GrandFinale __instance)
+  {
+    if (__instance.DynamicVars.ContainsKey("EnergySaved"))
     {
-        if (__instance.DynamicVars.ContainsKey("EnergySaved"))
-        {
-            __instance.DynamicVars["EnergySaved"].UpgradeValueBy(2m);
-        }
-        return false;
+      __instance.DynamicVars["EnergySaved"].UpgradeValueBy(2m);
     }
+    return false;
+  }
 }

@@ -1,105 +1,259 @@
-# EditorConfig: https://editorconfig.org
-# 适用于 STS2-Balance-MOD (C# 12 / .NET 9 / Godot 4.5.1)
-
+# 声明为根配置文件，编译器不会继续向上级目录查找 .editorconfig
 root = true
 
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 全局默认 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# ====================================================================
+# 通用基础排版设置（适用于所有文件类型）
+# ====================================================================
 [*]
-indent_style             = space
-end_of_line              = lf
-charset                  = utf-8-bom
+# 缩进使用空格（可选 space 或 tab）
+indent_style = space
+# 缩进大小设为 2
+indent_size = 2
+# 统一换行符为 Unix 风格的 LF（\n），避免跨平台 Git 出现大量换行符冲突
+end_of_line = lf
+# 编码格式统一使用 UTF-8
+charset = utf-8
+# 保存时自动删除行末多余的无用空格
 trim_trailing_whitespace = true
-insert_final_newline     = true
+# 确保文件末尾始终保留一个空行（符合 POSIX 标准）
+insert_final_newline = true
 
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ C# 源码 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# ====================================================================
+# C# 专有代码风格与分析规则
+# ====================================================================
 [*.cs]
 indent_size = 2
 
-# --- 换行风格（Allman，与 C# 社区惯例一致） ---
-csharp_new_line_before_open_brace                                  = all
-csharp_new_line_before_else                                        = true
-csharp_new_line_before_catch                                       = true
-csharp_new_line_before_finally                                     = true
-csharp_new_line_before_members_in_object_initializers             = true
-csharp_new_line_before_members_in_anonymous_types                  = true
-csharp_new_line_between_query_expression_clauses                   = true
+# --------------------------------------------------------------------
+# 1. 基础代码组织 (Code Organization)
+# --------------------------------------------------------------------
 
-# --- 缩进 ---
-csharp_indent_case_contents              = true
-csharp_indent_switch_labels              = true
-csharp_indent_labels                     = flush_left
-csharp_indent_block_contents             = true
-csharp_indent_braces                     = false
-csharp_indent_case_contents_when_block   = true
+# 组织 using 时，强制将 System 开头的命名空间排在最前面（如 System.Collections 在 Newtonsoft.Json 前面）
+dotnet_sort_system_directives_first = true
 
-# --- 空格 ---
-csharp_space_after_cast                                             = false
-csharp_space_after_keywords_in_control_flow_statements             = true
-csharp_space_between_method_call_parameter_list_parentheses        = false
-csharp_space_between_method_declaration_parameter_list_parentheses = false
-csharp_space_between_parentheses                                    = false
-csharp_space_before_colon_in_inheritance_clause                    = true
-csharp_space_after_colon_in_inheritance_clause                     = true
-csharp_space_around_binary_operators                               = before_and_after
-csharp_space_between_method_declaration_empty_parameter_list_parentheses = false
-csharp_space_between_method_call_name_and_opening_parenthesis      = false
-csharp_space_between_method_call_empty_parameter_list_parentheses  = false
-csharp_space_after_comma                                            = true
-csharp_space_after_dot                                             = false
-csharp_space_after_semicolon_in_for_statement                      = true
-csharp_space_before_dot                                            = false
-csharp_space_before_semicolon_in_for_statement                     = false
-csharp_space_around_declaration_statements                         = false
+# using 指令的位置：outside_namespace 要求 using 放在 namespace 外面，违反报 warning
+csharp_using_directive_placement = outside_namespace:warning
 
-# --- 换行首选项 ---
-csharp_preserve_single_line_statements = false
-csharp_preserve_single_line_blocks     = true
+# 命名空间声明风格：file_scoped 表示使用 C# 10+ 的文件范围命名空间（减少一层全局缩进）
+# 例如：namespace MyApp; 而不是传统的 namespace MyApp { ... }
+csharp_style_namespace_declarations = file_scoped:warning
 
-# --- using 排序 ---
-dotnet_sort_system_directives_first    = true
-dotnet_separate_import_directive_groups = false
+# 必须显式声明访问修饰符（如必须写 private int _id; 而不能偷懒省略 private）
+dotnet_style_require_accessibility_modifiers = always:warning
 
-# --- var 使用偏好（C# 社区分歧较大，这里选显式类型，但不强制报错） ---
-csharp_style_var_for_built_in_types    = false:suggestion
+# 修饰符的排列顺序标准（例如建议写 public static readonly，而不是 readonly public static）
+csharp_preferred_modifier_order = public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async:suggestion
+
+# --------------------------------------------------------------------
+# 2. 语言特性与语法糖偏好 (Language Features)
+# --------------------------------------------------------------------
+
+# 内建基础类型（int, string, bool 等）不使用 var，显式声明类型（例如 string name = "abc";）
+csharp_style_var_for_built_in_types = false:suggestion
+
+# 当右侧类型一目了然时允许使用 var（例如 var user = new User();）
 csharp_style_var_when_type_is_apparent = true:suggestion
-csharp_style_var_elsewhere             = false:suggestion
 
-# --- 现代 C# 语言特性 ---
-csharp_style_expression_bodied_methods          = false:silent
-csharp_style_expression_bodied_constructors     = false:silent
-csharp_style_expression_bodied_operators        = false:silent
-csharp_style_expression_bodied_properties       = true:suggestion
-csharp_style_expression_bodied_indexers         = true:suggestion
-csharp_style_expression_bodied_accessors        = true:suggestion
-csharp_style_pattern_matching_over_is_with_cast = true:suggestion
-csharp_style_inlined_variable_declaration       = true:suggestion
-csharp_style_throw_expression                   = true:suggestion
-csharp_style_conditional_delegate_call          = true:suggestion
+# 其他推断不直观的场景（如方法返回值）不建议使用 var，优先显式写出类型
+csharp_style_var_elsewhere = false:suggestion
 
-# --- 命名规则（严重程度均为 suggestion，不阻断 CI） ---
-dotnet_naming_rule.private_fields_underscore.symbols              = private_fields
-dotnet_naming_rule.private_fields_underscore.style                = underscore_camel_case
-dotnet_naming_rule.private_fields_underscore.severity             = suggestion
+# 单行简单方法优先使用箭头函数表达式（例如 int Add(int a, int b) => a + b;）
+csharp_style_expression_bodied_methods = when_on_single_line:suggestion
 
-dotnet_naming_symbols.private_fields.applicable_kinds            = field
-dotnet_naming_symbols.private_fields.applicable_accessibilities  = private
+# 构造函数不建议使用 =>，保持标准的花括号块结构，方便后续扩充逻辑
+csharp_style_expression_bodied_constructors = false:suggestion
 
-dotnet_naming_style.underscore_camel_case.capitalization         = camel_case
-dotnet_naming_style.underscore_camel_case.required_prefix        = _
+# 简单只读属性使用 => 语法（例如 public string FullName => $"{First} {Last}";）
+csharp_style_expression_bodied_properties = true:suggestion
 
-# --- 不必要代码（suggestion 级别，CI 不报错） ---
-dotnet_diagnostic.IDE0051.severity = suggestion   # 未使用的私有成员
-dotnet_diagnostic.IDE0052.severity = suggestion   # 未读取的私有成员
-dotnet_diagnostic.IDE0060.severity = suggestion   # 未使用的参数
+# 简单的属性访问器（get/set）使用 =>
+csharp_style_expression_bodied_accessors = true:suggestion
 
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ JSON / YAML / Markdown ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[*.{json,yaml,yml}]
-indent_size              = 2
-trim_trailing_whitespace = true
+# 优先使用 is 模式匹配替代老式的 as 强转后判空（如 obj is User u 优于 var u = obj as User; if (u != null)）
+csharp_style_pattern_matching_over_as_with_null_check = true:warning
+csharp_style_pattern_matching_over_is_with_cast_check = true:warning
 
+# 优先使用空合并运算符 ??（如 x = y ?? "default";）
+dotnet_style_coalesce_expression = true:suggestion
+
+# 优先使用空条件运算符 ?.（如 user?.Profile?.Age）
+dotnet_style_null_propagation = true:suggestion
+
+# 优先使用 C# 12 引入的集合表达式（例如 int[] a = [1, 2, 3]; 替代 new int[] { 1, 2, 3 }）
+dotnet_style_prefer_collection_expression = true:suggestion
+
+# 实例化对象时，优先使用对象初始化器（如 new User { Name = "A" }）
+dotnet_style_object_initializer = true:suggestion
+
+# 访问当前类成员时，不强制加 this.（除非参数与字段重名冲突）
+dotnet_style_qualification_for_field = false:suggestion
+dotnet_style_qualification_for_property = false:suggestion
+dotnet_style_qualification_for_method = false:suggestion
+dotnet_style_qualification_for_event = false:suggestion
+
+# --------------------------------------------------------------------
+# 3. 命名规范 (Naming Conventions)
+# 机制：rule（规则级别）绑定 symbols（匹配目标）和 style（样式规范）
+# --------------------------------------------------------------------
+
+# 类型名称（类 class、结构体 struct、枚举 enum、委托 delegate）必须是 PascalCase（如 OrderService）
+dotnet_naming_rule.types_must_be_pascal_case.severity = warning
+dotnet_naming_rule.types_must_be_pascal_case.symbols = types
+dotnet_naming_rule.types_must_be_pascal_case.style = pascal_case_style
+
+# 接口（interface）必须以大写字母 I 开头并遵循 PascalCase（如 IUserRepository）
+dotnet_naming_rule.interfaces_must_be_prefixed_with_i.severity = warning
+dotnet_naming_rule.interfaces_must_be_prefixed_with_i.symbols = interfaces
+dotnet_naming_rule.interfaces_must_be_prefixed_with_i.style = i_prefix_style
+
+# 泛型类型参数必须以大写字母 T 开头（如 TEntity、TResult）
+dotnet_naming_rule.type_parameters_must_be_prefixed_with_t.severity = warning
+dotnet_naming_rule.type_parameters_must_be_prefixed_with_t.symbols = type_parameters
+dotnet_naming_rule.type_parameters_must_be_prefixed_with_t.style = t_prefix_style
+
+# 非私有字段（public/protected）以及常量必须是 PascalCase（如 public int MaxCount;）
+dotnet_naming_rule.non_private_fields_must_be_pascal_case.severity = warning
+dotnet_naming_rule.non_private_fields_must_be_pascal_case.symbols = non_private_fields
+dotnet_naming_rule.non_private_fields_must_be_pascal_case.style = pascal_case_style
+
+dotnet_naming_rule.constants_must_be_pascal_case.severity = warning
+dotnet_naming_rule.constants_must_be_pascal_case.symbols = constants
+dotnet_naming_rule.constants_must_be_pascal_case.style = pascal_case_style
+
+# 私有字段（private field）必须使用下划线 + 驼峰（如 private int _retryCount;）
+dotnet_naming_rule.private_fields_must_be_camel_case_with_underscore.severity = warning
+dotnet_naming_rule.private_fields_must_be_camel_case_with_underscore.symbols = private_fields
+dotnet_naming_rule.private_fields_must_be_camel_case_with_underscore.style = underscore_camel_case_style
+
+# 属性（Property）、方法（Method）、事件（Event）必须是 PascalCase（如 public string UserName { get; }）
+dotnet_naming_rule.properties_and_methods_must_be_pascal_case.severity = warning
+dotnet_naming_rule.properties_and_methods_must_be_pascal_case.symbols = properties_and_methods
+dotnet_naming_rule.properties_and_methods_must_be_pascal_case.style = pascal_case_style
+
+# 方法入参（parameter）和局部变量（local variable）必须使用 camelCase（如 int totalCount）
+dotnet_naming_rule.parameters_and_locals_must_be_camel_case.severity = warning
+dotnet_naming_rule.parameters_and_locals_must_be_camel_case.symbols = parameters_and_locals
+dotnet_naming_rule.parameters_and_locals_must_be_camel_case.style = camel_case_style
+
+# --- 命名目标定义 (Symbols Definitions) ---
+dotnet_naming_symbols.types.applicable_kinds = class, struct, interface, enum, delegate
+dotnet_naming_symbols.types.applicable_accessibilities = *
+
+dotnet_naming_symbols.interfaces.applicable_kinds = interface
+dotnet_naming_symbols.interfaces.applicable_accessibilities = *
+
+dotnet_naming_symbols.type_parameters.applicable_kinds = type_parameter
+dotnet_naming_symbols.type_parameters.applicable_accessibilities = *
+
+dotnet_naming_symbols.non_private_fields.applicable_kinds = field
+dotnet_naming_symbols.non_private_fields.applicable_accessibilities = public, internal, protected, protected_internal
+
+dotnet_naming_symbols.constants.applicable_kinds = field
+dotnet_naming_symbols.constants.applicable_accessibilities = public, internal, protected, protected_internal
+dotnet_naming_symbols.constants.required_modifiers = const
+
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+
+dotnet_naming_symbols.properties_and_methods.applicable_kinds = property, method, event
+dotnet_naming_symbols.properties_and_methods.applicable_accessibilities = *
+
+dotnet_naming_symbols.parameters_and_locals.applicable_kinds = parameter, local
+dotnet_naming_symbols.parameters_and_locals.applicable_accessibilities = *
+
+# --- 样式格式定义 (Style Formats) ---
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+dotnet_naming_style.camel_case_style.capitalization = camel_case
+
+dotnet_naming_style.i_prefix_style.capitalization = pascal_case
+dotnet_naming_style.i_prefix_style.required_prefix = I
+
+dotnet_naming_style.t_prefix_style.capitalization = pascal_case
+dotnet_naming_style.t_prefix_style.required_prefix = T
+
+dotnet_naming_style.underscore_camel_case_style.capitalization = camel_case
+dotnet_naming_style.underscore_camel_case_style.required_prefix = _
+
+# --------------------------------------------------------------------
+# 4. 高频代码质量与分析器诊断 (Roslyn Diagnostics)
+# --------------------------------------------------------------------
+
+# IDE0051：Harmony 补丁方法（Prefix/Postfix）为反射调用，设为 none 防止代码修复器误删方法体
+dotnet_diagnostic.IDE0051.severity = none
+
+# IDE0060：未使用的参数（保留作为代码质量建议，不完全静音）
+dotnet_diagnostic.IDE0060.severity = suggestion
+
+# IDE0044：未修改的字段提示添加 readonly 修饰符（保证不可变性与线程安全），作为建议
+dotnet_diagnostic.IDE0044.severity = suggestion
+
+# CA1707：标识符下划线规则（Harmony 的 __instance, __result, ___field 必须含下划线）
+dotnet_diagnostic.CA1707.severity = none
+
+# CA1822：成员可标记为 static（按约定设为建议，不阻断构建，留待后续评估）
+dotnet_diagnostic.CA1822.severity = suggestion
+
+# CA1310 & CA1305：字符串比较与区域设置（游戏内部资源路径与模型 ID 无需强制 StringComparison.Ordinal）
+dotnet_diagnostic.CA1310.severity = suggestion
+dotnet_diagnostic.CA1305.severity = suggestion
+
+# CA1001：拥有可释放字段（Godot 的 Node/Sprite 由引擎场景树生命周期管理，非 IDisposable 模式）
+dotnet_diagnostic.CA1001.severity = suggestion
+
+# CA1051：可见实例字段（用于轻量级数据包或 DTO 结构）
+dotnet_diagnostic.CA1051.severity = suggestion
+
+# CA1852：内部密封类建议
+dotnet_diagnostic.CA1852.severity = suggestion
+
+# CA1725：参数名与基声明匹配（重写方法中如使用 discard _ 容易被误报）
+dotnet_diagnostic.CA1725.severity = none
+
+# IDE1006：命名规则冲突（Harmony 的 __instance, __result, ___field 注入形参及丢弃参数）
+dotnet_diagnostic.IDE1006.severity = none
+
+# RCS1163: 声明变量却没有使用
+dotnet_diagnostic.RCS1163.severity = suggestion
+
+# ====================================================================
+# 5. 其他文件类型排版规则
+# ====================================================================
+
+# Python 遵循 PEP 8 规范使用 4 空格缩进
+[*.py]
+indent_size = 4
+
+# Markdown 允许行末空格（用于软换行），不限制缩进倍数以兼容列表与代码块
 [*.md]
+indent_size = unset
 trim_trailing_whitespace = false
 
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ MSBuild / XML ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Visual Studio 解决方案文件格式强制使用制表符
+[*.sln]
+indent_style = tab
+
+# JSON 与 YAML 使用 2 空格缩进
+[*.{json,yaml,yml}]
+indent_size = 2
+
+# MSBuild / XML 配置
 [*.{csproj,props,targets,xml}]
 indent_size = 2
+
+# Godot 引擎资源与外部动画/骨骼资产（由引擎与导出工具自动生成维护，不强制格式化）
+[*.{spatlas,spskel,tres,tscn,import,uid}]
+charset = unset
+end_of_line = unset
+indent_size = unset
+indent_style = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+
+# Steam 官方新闻归档（保持官方抓取的原始格式）
+[docs/official-news/**]
+charset = unset
+end_of_line = unset
+indent_size = unset
+indent_style = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset

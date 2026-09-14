@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -16,32 +16,29 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 [RegisterCard(typeof(EventCardPool), FullPublicEntry = "STS2_BALANCEMOD_SORCERY_DEFEND")]
 public sealed class SorceryDefend : BalanceCardTemplate
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+  public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
-    protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
+  protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new BlockVar(8M, ValueProp.Move),
+  protected override IEnumerable<DynamicVar> CanonicalVars =>
+  [
+      new BlockVar(8M, ValueProp.Move),
         new PowerVar<SorceryWeak>(1M),
     ];
 
-    public SorceryDefend() : base(1, CardType.Skill, CardRarity.Ancient, TargetType.AnyEnemy) { }
+  public SorceryDefend() : base(1, CardType.Skill, CardRarity.Ancient, TargetType.AnyEnemy) { }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+  protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+  {
+    await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+
+    await CardPileCmd.Draw(choiceContext, 1, Owner);
+
+    if (cardPlay.Target != null)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-
-        await CardPileCmd.Draw(choiceContext, 1, Owner);
-
-        if (cardPlay.Target != null)
-        {
-            await PowerCmd.Apply<SorceryWeak>(choiceContext, cardPlay.Target, DynamicVars[nameof(SorceryWeak)].BaseValue, Owner.Creature, this);
-        }
+      await PowerCmd.Apply<SorceryWeak>(choiceContext, cardPlay.Target, DynamicVars[nameof(SorceryWeak)].BaseValue, Owner.Creature, this);
     }
+  }
 
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
-    }
+  protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
 }

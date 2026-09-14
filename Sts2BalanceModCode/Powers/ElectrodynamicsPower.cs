@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using STS2RitsuLib.Interop.AutoRegistration;
 
@@ -11,5 +11,5 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 [RegisterPower]
 public sealed class ElectrodynamicsPower : BalancePowerTemplate
 {
-    public ElectrodynamicsPower() : base(PowerType.Buff, PowerStackType.Single) { }
+  public ElectrodynamicsPower() : base(PowerType.Buff, PowerStackType.Single) { }
 }

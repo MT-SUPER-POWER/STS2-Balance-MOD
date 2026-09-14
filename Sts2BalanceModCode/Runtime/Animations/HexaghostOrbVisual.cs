@@ -12,136 +12,124 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Runtime.Animations;
 /// </summary>
 public sealed class HexaghostOrbVisual : IDisposable
 {
-    private const float BobSpeed = 2f;
-    private const float BobAmount = 3f;
-    private const float ParticleInterval = 0.06f;
+  private const float BobSpeed = 2f;
+  private const float BobAmount = 3f;
+  private const float ParticleInterval = 0.06f;
 
-    private readonly int _index;
-    private readonly Vector2 _basePosition;
+  private readonly int _index;
+  private readonly Vector2 _basePosition;
 
-    private Node? _parentNode;
-    private Vector2 _currentPosition;
-    private float _activateTimer;
-    private float _bobTimer;
-    private float _particleTimer;
-    private bool _playedSfx;
+  private Node? _parentNode;
+  private Vector2 _currentPosition;
+  private float _activateTimer;
+  private float _bobTimer;
+  private float _particleTimer;
+  private bool _playedSfx;
 
-    public bool IsActivated { get; private set; }
-    public bool IsHidden { get; private set; } = true;
+  public bool IsActivated { get; private set; }
+  public bool IsHidden { get; private set; } = true;
 
-    public HexaghostOrbVisual(int index, Vector2 position)
+  public HexaghostOrbVisual(int index, Vector2 position)
+  {
+    _index = index;
+    _basePosition = position + new Vector2(
+      (float)GD.RandRange(-10f, 10f),
+      (float)GD.RandRange(-10f, 10f));
+    _currentPosition = _basePosition;
+    _activateTimer = index * 0.3f;
+  }
+
+  public void SetParentNode(Node parent) => _parentNode = parent;
+
+  public void Activate(bool immediate = false)
+  {
+    _playedSfx = false;
+    IsActivated = true;
+    IsHidden = false;
+    _activateTimer = immediate ? 0f : _index * 0.3f;
+  }
+
+  public void Deactivate() => IsActivated = false;
+
+  public void Hide() => IsHidden = true;
+
+  public void Update(float delta, Vector2 parentGlobalPosition)
+  {
+    if (IsHidden || _parentNode == null || !GodotObject.IsInstanceValid(_parentNode))
+      return;
+
+    _bobTimer += BobSpeed * delta;
+    float bobOffset = Mathf.Sin(_bobTimer) * BobAmount;
+    _currentPosition = _basePosition + new Vector2(bobOffset * 2f, bobOffset * 2f);
+    Vector2 globalPosition = parentGlobalPosition + _currentPosition;
+
+    if (IsActivated)
     {
-        _index = index;
-        _basePosition = position + new Vector2(
-          (float)GD.RandRange(-10f, 10f),
-          (float)GD.RandRange(-10f, 10f));
-        _currentPosition = _basePosition;
-        _activateTimer = index * 0.3f;
+      _activateTimer -= delta;
+      if (_activateTimer >= 0f)
+        return;
+
+      if (!_playedSfx)
+      {
+        _playedSfx = true;
+        SpawnIgniteEffect(globalPosition);
+        PlayIgniteSound();
+      }
+
+      _particleTimer -= delta;
+      if (_particleTimer < 0f)
+      {
+        SpawnFireEffect(globalPosition);
+        _particleTimer = ParticleInterval;
+      }
+
+      return;
     }
 
-    public void SetParentNode(Node parent)
+    _particleTimer -= delta;
+    if (_particleTimer < 0f)
     {
-        _parentNode = parent;
+      SpawnWeakFireEffect(globalPosition);
+      _particleTimer = ParticleInterval;
     }
+  }
 
-    public void Activate(bool immediate = false)
+  private void SpawnIgniteEffect(Vector2 position)
+  {
+    Node2D node = GhostIgniteEffect.Create(position.X, position.Y).Root;
+    AddVfxChild(node);
+  }
+
+  private void SpawnFireEffect(Vector2 position)
+  {
+    Node2D node = GhostlyFireEffect.Create(position.X, position.Y).Root;
+    AddVfxChild(node);
+  }
+
+  private void SpawnWeakFireEffect(Vector2 position)
+  {
+    Node2D node = GhostlyWeakFireEffect.Create(position.X, position.Y).Root;
+    AddVfxChild(node);
+  }
+
+  private void AddVfxChild(Node2D node)
+  {
+    if (NCombatRoom.Instance != null)
     {
-        _playedSfx = false;
-        IsActivated = true;
-        IsHidden = false;
-        _activateTimer = immediate ? 0f : _index * 0.3f;
+      NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(node);
     }
-
-    public void Deactivate()
+    else if (_parentNode != null && GodotObject.IsInstanceValid(_parentNode))
     {
-        IsActivated = false;
+      Node targetParent = _parentNode.GetTree()?.CurrentScene ?? _parentNode;
+      targetParent.AddChildSafely(node);
     }
+  }
 
-    public void Hide()
-    {
-        IsHidden = true;
-    }
+  private static void PlayIgniteSound()
+  {
+    string soundName = GD.Randf() < 0.5f ? "ghost_orb_ignite_1" : "ghost_orb_ignite_2";
+    AFTPModAudio.Play("hexaghost", soundName);
+  }
 
-    public void Update(float delta, Vector2 parentGlobalPosition)
-    {
-        if (IsHidden || _parentNode == null || !GodotObject.IsInstanceValid(_parentNode))
-            return;
-
-        _bobTimer += BobSpeed * delta;
-        var bobOffset = Mathf.Sin(_bobTimer) * BobAmount;
-        _currentPosition = _basePosition + new Vector2(bobOffset * 2f, bobOffset * 2f);
-        var globalPosition = parentGlobalPosition + _currentPosition;
-
-        if (IsActivated)
-        {
-            _activateTimer -= delta;
-            if (_activateTimer >= 0f)
-                return;
-
-            if (!_playedSfx)
-            {
-                _playedSfx = true;
-                SpawnIgniteEffect(globalPosition);
-                PlayIgniteSound();
-            }
-
-            _particleTimer -= delta;
-            if (_particleTimer < 0f)
-            {
-                SpawnFireEffect(globalPosition);
-                _particleTimer = ParticleInterval;
-            }
-
-            return;
-        }
-
-        _particleTimer -= delta;
-        if (_particleTimer < 0f)
-        {
-            SpawnWeakFireEffect(globalPosition);
-            _particleTimer = ParticleInterval;
-        }
-    }
-
-    private void SpawnIgniteEffect(Vector2 position)
-    {
-        var node = GhostIgniteEffect.Create(position.X, position.Y).Root;
-        AddVfxChild(node);
-    }
-
-    private void SpawnFireEffect(Vector2 position)
-    {
-        var node = GhostlyFireEffect.Create(position.X, position.Y).Root;
-        AddVfxChild(node);
-    }
-
-    private void SpawnWeakFireEffect(Vector2 position)
-    {
-        var node = GhostlyWeakFireEffect.Create(position.X, position.Y).Root;
-        AddVfxChild(node);
-    }
-
-    private void AddVfxChild(Node2D node)
-    {
-        if (NCombatRoom.Instance != null)
-        {
-            NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(node);
-        }
-        else if (_parentNode != null && GodotObject.IsInstanceValid(_parentNode))
-        {
-            var targetParent = _parentNode.GetTree()?.CurrentScene ?? _parentNode;
-            targetParent.AddChildSafely(node);
-        }
-    }
-
-    private static void PlayIgniteSound()
-    {
-        var soundName = GD.Randf() < 0.5f ? "ghost_orb_ignite_1" : "ghost_orb_ignite_2";
-        AFTPModAudio.Play("hexaghost", soundName);
-    }
-
-    public void Dispose()
-    {
-        _parentNode = null;
-    }
+  public void Dispose() => _parentNode = null;
 }

@@ -24,135 +24,135 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 [RegisterMonster]
 public sealed class SlaverRed : BalanceMonsterTemplate
 {
-    public override MonsterAssetProfile AssetProfile => new(
-      ModAssetPaths.Resource("monsters", "slaver_red", "slaver_red.tscn"));
+  public override MonsterAssetProfile AssetProfile => new(
+    ModAssetPaths.Resource("monsters", "slaver_red", "slaver_red.tscn"));
 
-    public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 48, 46);
-    public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 52, 50);
+  public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 48, 46);
+  public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 52, 50);
 
-    private static int StabDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 14, 13);
-    private static int ScrapeDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 9, 8);
-    private static int VulnerableAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 2, 1);
+  private static int StabDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 14, 13);
+  private static int ScrapeDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 9, 8);
+  private static int VulnerableAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 2, 1);
 
-    private const string STAB = "STAB";
-    private const string ENTANGLE = "ENTANGLE";
-    private const string SCRAPE = "SCRAPE";
+  private const string STAB = "STAB";
+  private const string ENTANGLE = "ENTANGLE";
+  private const string SCRAPE = "SCRAPE";
 
-    private bool _usedEntangle;
-    protected override string AttackSfx => "event:/sfx/enemy/enemy_attacks/gremlin_merc/sneaky_gremlin_attack";
+  private bool _usedEntangle;
+  protected override string AttackSfx => "event:/sfx/enemy/enemy_attacks/gremlin_merc/sneaky_gremlin_attack";
 
-    protected override MonsterMoveStateMachine GenerateMoveStateMachine()
+  protected override MonsterMoveStateMachine GenerateMoveStateMachine()
+  {
+    List<MonsterState> states = [];
+
+    MoveState stabState = new(
+      STAB,
+      Stab,
+      [new SingleAttackIntent(StabDamage)]
+    );
+
+    MoveState entangleState = new(
+      ENTANGLE,
+      Entangle,
+      [new CardDebuffIntent()]
+    );
+
+    MoveState scrapeState = new(
+      SCRAPE,
+      Scrape,
+      [new SingleAttackIntent(ScrapeDamage), new DebuffIntent()]
+    );
+
+    RngConditionalBranchState moveBranch = new("MOVE_BRANCH", SelectNextMove);
+
+    stabState.FollowUpState = moveBranch;
+    entangleState.FollowUpState = moveBranch;
+    scrapeState.FollowUpState = moveBranch;
+
+    states.Add(stabState);
+    states.Add(entangleState);
+    states.Add(scrapeState);
+    states.Add(moveBranch);
+
+    // 首回合固定使用刺击
+    return new MonsterMoveStateMachine(states, stabState);
+  }
+
+  private string SelectNextMove(Creature owner, Rng rng, MonsterMoveStateMachine stateMachine)
+  {
+    int num = rng.NextInt(100);
+
+    // 若尚未施放过缠绕，有 25% 概率施放缠绕
+    if (num >= 75 && !_usedEntangle)
     {
-        List<MonsterState> states = [];
-
-        MoveState stabState = new(
-          STAB,
-          Stab,
-          [new SingleAttackIntent(StabDamage)]
-        );
-
-        MoveState entangleState = new(
-          ENTANGLE,
-          Entangle,
-          [new CardDebuffIntent()]
-        );
-
-        MoveState scrapeState = new(
-          SCRAPE,
-          Scrape,
-          [new SingleAttackIntent(ScrapeDamage), new DebuffIntent()]
-        );
-
-        RngConditionalBranchState moveBranch = new("MOVE_BRANCH", SelectNextMove);
-
-        stabState.FollowUpState = moveBranch;
-        entangleState.FollowUpState = moveBranch;
-        scrapeState.FollowUpState = moveBranch;
-
-        states.Add(stabState);
-        states.Add(entangleState);
-        states.Add(scrapeState);
-        states.Add(moveBranch);
-
-        // 首回合固定使用刺击
-        return new MonsterMoveStateMachine(states, stabState);
+      return ENTANGLE;
     }
 
-    private string SelectNextMove(Creature owner, Rng rng, MonsterMoveStateMachine stateMachine)
+    // 已施放缠绕或未命中缠绕判定，若未连续刺击两次，有 20% 概率刺击
+    if (num >= 55 && _usedEntangle && !LastTwoMoves(stateMachine, STAB))
     {
-        int num = rng.NextInt(100);
-
-        // 若尚未施放过缠绕，有 25% 概率施放缠绕
-        if (num >= 75 && !_usedEntangle)
-        {
-            return ENTANGLE;
-        }
-
-        // 已施放缠绕或未命中缠绕判定，若未连续刺击两次，有 20% 概率刺击
-        if (num >= 55 && _usedEntangle && !LastTwoMoves(stateMachine, STAB))
-        {
-            return STAB;
-        }
-
-        // 否则若上一回合未刮击，使用刮击
-        if (!LastMove(stateMachine, SCRAPE))
-        {
-            return SCRAPE;
-        }
-
-        return STAB;
+      return STAB;
     }
 
-    private async Task Stab(IReadOnlyList<Creature> targets)
+    // 否则若上一回合未刮击，使用刮击
+    if (!LastMove(stateMachine, SCRAPE))
     {
-        await FastAttackAnimation.Play(Creature, async () =>
-        {
-            await DamageCmd.Attack(StabDamage)
-              .FromMonster(this)
-              .WithNoAttackerAnim()
-              .WithHitFx("vfx/vfx_attack_slash", tmpSfx: TmpSfx.slashAttack)
-              .Execute(null);
-        });
+      return SCRAPE;
     }
 
-    private async Task Entangle(IReadOnlyList<Creature> targets)
+    return STAB;
+  }
+
+  private async Task Stab(IReadOnlyList<Creature> targets)
+  {
+    await FastAttackAnimation.Play(Creature, async () =>
     {
-        await CreatureCmd.TriggerAnim(Creature, "UseNet", 0.0f);
-        await Cmd.Wait(0.2f);
+      await DamageCmd.Attack(StabDamage)
+            .FromMonster(this)
+            .WithNoAttackerAnim()
+            .WithHitFx("vfx/vfx_attack_slash", tmpSfx: TmpSfx.slashAttack)
+            .Execute(null);
+    });
+  }
 
-        foreach (Creature target in targets.Where(t => t.IsAlive))
-        {
-            await PowerCmd.Apply<TangledPower>(new ThrowingPlayerChoiceContext(), target, 1, Creature, null);
-        }
+  private async Task Entangle(IReadOnlyList<Creature> targets)
+  {
+    await CreatureCmd.TriggerAnim(Creature, "UseNet", 0.0f);
+    await Cmd.Wait(0.2f);
 
-        _usedEntangle = true;
+    foreach (Creature target in targets.Where(t => t.IsAlive))
+    {
+      await PowerCmd.Apply<TangledPower>(new ThrowingPlayerChoiceContext(), target, 1, Creature, null);
     }
 
-    private async Task Scrape(IReadOnlyList<Creature> targets)
+    _usedEntangle = true;
+  }
+
+  private async Task Scrape(IReadOnlyList<Creature> targets)
+  {
+    await FastAttackAnimation.Play(Creature, async () =>
     {
-        await FastAttackAnimation.Play(Creature, async () =>
-        {
-            await DamageCmd.Attack(ScrapeDamage)
-              .FromMonster(this)
-              .WithNoAttackerAnim()
-              .WithHitFx("vfx/vfx_attack_slash", tmpSfx: TmpSfx.slashAttack)
-              .Execute(null);
-        });
+      await DamageCmd.Attack(ScrapeDamage)
+            .FromMonster(this)
+            .WithNoAttackerAnim()
+            .WithHitFx("vfx/vfx_attack_slash", tmpSfx: TmpSfx.slashAttack)
+            .Execute(null);
+    });
 
-        foreach (Creature target in targets.Where(t => t.IsAlive))
-        {
-            await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), target, VulnerableAmount, Creature, null);
-        }
-    }
-
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    foreach (Creature target in targets.Where(t => t.IsAlive))
     {
-        AnimState idle = new("idle", true);
-        AnimState idleNoNet = new("idleNoNet", true);
-
-        CreatureAnimator animator = new(idle, controller);
-        animator.AddAnyState("UseNet", idleNoNet);
-
-        return animator;
+      await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), target, VulnerableAmount, Creature, null);
     }
+  }
+
+  public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+  {
+    AnimState idle = new("idle", true);
+    AnimState idleNoNet = new("idleNoNet", true);
+
+    CreatureAnimator animator = new(idle, controller);
+    animator.AddAnyState("UseNet", idleNoNet);
+
+    return animator;
+  }
 }

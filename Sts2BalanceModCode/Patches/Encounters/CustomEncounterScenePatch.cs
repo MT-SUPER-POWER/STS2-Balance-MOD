@@ -14,24 +14,24 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Encounters;
 [HarmonyPatch(typeof(EncounterModel), nameof(EncounterModel.CreateScene))]
 public static class CustomEncounterScenePatch
 {
-    [HarmonyPrefix]
-    public static bool Prefix(EncounterModel __instance, ref Control __result)
+  [HarmonyPrefix]
+  public static bool Prefix(EncounterModel __instance, ref Control __result)
+  {
+    // 1. 心灵绽放第一战：如果委托的原版 Boss 有独立场景（如同族小队 the_kin_boss），直接实例化其实际场景
+    if (__instance is MindBloomBossEncounter { BossEncounter: { HasScene: true } bossEncounter })
     {
-        // 1. 心灵绽放第一战：如果委托的原版 Boss 有独立场景（如同族小队 the_kin_boss），直接实例化其实际场景
-        if (__instance is MindBloomBossEncounter { BossEncounter: { HasScene: true } bossEncounter })
-        {
-            __result = bossEncounter.CreateScene();
-            return false;
-        }
-
-        // 2. MOD 自定义遭遇：从 AssetProfile 的 EncounterScenePath 实例化场景
-        if (__instance is BalanceEncounterTemplate { AssetProfile.EncounterScenePath: { } scenePath } &&
-            !string.IsNullOrEmpty(scenePath))
-        {
-            __result = PreloadManager.Cache.GetScene(scenePath).Instantiate<Control>(PackedScene.GenEditState.Disabled);
-            return false;
-        }
-
-        return true;
+      __result = bossEncounter.CreateScene();
+      return false;
     }
+
+    // 2. MOD 自定义遭遇：从 AssetProfile 的 EncounterScenePath 实例化场景
+    if (__instance is BalanceEncounterTemplate { AssetProfile.EncounterScenePath: { } scenePath } &&
+        !string.IsNullOrEmpty(scenePath))
+    {
+      __result = PreloadManager.Cache.GetScene(scenePath).Instantiate<Control>(PackedScene.GenEditState.Disabled);
+      return false;
+    }
+
+    return true;
+  }
 }

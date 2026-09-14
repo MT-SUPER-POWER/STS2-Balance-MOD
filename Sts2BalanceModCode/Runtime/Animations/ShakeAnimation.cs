@@ -1,6 +1,7 @@
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Screens.Bestiary;
 
@@ -12,63 +13,63 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Runtime.Animations;
 /// </summary>
 public static class ShakeAnimation
 {
-    private const float ShakeSpeed = 150f;
-    private const float ShakeThreshold = 8f;
+  private const float ShakeSpeed = 150f;
+  private const float ShakeThreshold = 8f;
 
-    public static async Task Play(Creature creature, float awaitDuration = 1.0f, float? totalDuration = null)
-    {
-        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(creature) ?? NBestiary.Instance?.GetCreatureNode(creature);
-        if (creatureNode == null)
-            return;
+  public static async Task Play(Creature creature, float awaitDuration = 1.0f, float? totalDuration = null)
+  {
+    NCreature? creatureNode = NCombatRoom.Instance?.GetCreatureNode(creature) ?? NBestiary.Instance?.GetCreatureNode(creature);
+    if (creatureNode == null)
+      return;
 
-        var visuals = creatureNode.Visuals;
-        if (visuals == null)
-            return;
+    NCreatureVisuals visuals = creatureNode.Visuals;
+    if (visuals == null)
+      return;
 
-        var originalPos = visuals.Position;
-        var actualTotalDuration = totalDuration ?? awaitDuration;
-        var elapsed = 0f;
-        var shakeToggle = true;
-        var animX = 0f;
+    Vector2 originalPos = visuals.Position;
+    float actualTotalDuration = totalDuration ?? awaitDuration;
+    float elapsed = 0f;
+    bool shakeToggle = true;
+    float animX = 0f;
 
-        var tween = creatureNode.CreateTween();
+    Tween tween = creatureNode.CreateTween();
 
-        tween.TweenMethod(
-          Callable.From<float>(t =>
-          {
-              var delta = t * actualTotalDuration - elapsed;
-              elapsed = t * actualTotalDuration;
+    tween.TweenMethod(
+      Callable.From<float>(t =>
+      {
+        float delta = t * actualTotalDuration - elapsed;
+        elapsed = t * actualTotalDuration;
 
-              if (shakeToggle)
-              {
-                  animX += ShakeSpeed * delta;
-                  if (animX > ShakeThreshold)
-                  {
-                      shakeToggle = false;
-                  }
-              }
-              else
-              {
-                  animX -= ShakeSpeed * delta;
-                  if (animX < -ShakeThreshold)
-                  {
-                      shakeToggle = true;
-                  }
-              }
-
-              visuals.Position = new Vector2(originalPos.X + animX, originalPos.Y);
-          }),
-          0f,
-          1f,
-          actualTotalDuration
-        ).SetTrans(Tween.TransitionType.Linear);
-
-        tween.Finished += () =>
+        if (shakeToggle)
         {
-            visuals.Position = originalPos;
-        };
+          animX += ShakeSpeed * delta;
+          if (animX > ShakeThreshold)
+          {
+            shakeToggle = false;
+          }
+        }
+        else
+        {
+          animX -= ShakeSpeed * delta;
+          if (animX < -ShakeThreshold)
+          {
+            shakeToggle = true;
+          }
+        }
 
-        // 只等待指定时长，动画在后台继续运行
-        await Cmd.Wait(awaitDuration);
-    }
+        visuals.Position = new Vector2(originalPos.X + animX, originalPos.Y);
+      }),
+      0f,
+      1f,
+      actualTotalDuration
+    ).SetTrans(Tween.TransitionType.Linear);
+
+    tween.Finished += () =>
+    {
+      visuals.Position = originalPos;
+    };
+
+    // 只等待指定时长，动画在后台继续运行
+    await Cmd.Wait(awaitDuration);
+  }
 }

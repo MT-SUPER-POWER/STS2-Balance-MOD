@@ -22,20 +22,20 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 [RegisterPower]
 public sealed class MutagenicDecayPower() : BalancePowerTemplate(PowerType.Debuff, PowerStackType.Counter)
 {
-    private const decimal StrengthLossPerTurn = 1M;
+  private const decimal _strengthLossPerTurn = 1M;
 
-    public override async Task AfterSideTurnEnd(
-        PlayerChoiceContext choiceContext,
-        CombatSide side,
-        IEnumerable<Creature> participants)
+  public override async Task AfterSideTurnEnd(
+      PlayerChoiceContext choiceContext,
+      CombatSide side,
+      IEnumerable<Creature> participants)
+  {
+    if (side != Owner.Side || !participants.Contains(Owner) || Amount <= 0)
     {
-        if (side != Owner.Side || !participants.Contains(Owner) || Amount <= 0)
-        {
-            return;
-        }
-
-        Flash();
-        await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, -StrengthLossPerTurn, Owner, null);
-        await PowerCmd.Decrement(this);
+      return;
     }
+
+    Flash();
+    await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, -_strengthLossPerTurn, Owner, null);
+    await PowerCmd.Decrement(this);
+  }
 }

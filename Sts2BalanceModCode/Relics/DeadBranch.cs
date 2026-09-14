@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -21,44 +21,44 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 [RegisterRelic(typeof(SharedRelicPool), FullPublicEntry = "STS2_BALANCEMOD_DEAD_BRANCH")]
 public sealed class DeadBranch : BalanceRelicTemplate
 {
-    public override string FlashSfx => "event:/sfx/ui/relic_activate_general";
-    public override RelicRarity Rarity => RelicRarity.Rare;
+  public override string FlashSfx => "event:/sfx/ui/relic_activate_general";
+  public override RelicRarity Rarity => RelicRarity.Rare;
 
-    private bool HasPrismaticGem => Owner?.GetRelic<PrismaticGem>() != null;
+  private bool HasPrismaticGem => Owner?.GetRelic<PrismaticGem>() != null;
 
-    private IEnumerable<CardPoolModel> GetCardPools()
+  private IEnumerable<CardPoolModel> GetCardPools()
+  {
+    if (HasPrismaticGem)
     {
-        if (HasPrismaticGem)
-        {
-            return Owner.UnlockState.CharacterCardPools
-                .Append(ModelDb.CardPool<ColorlessCardPool>())
-                .Distinct();
-        }
-
-        return [Owner.Character.CardPool];
+      return Owner.UnlockState.CharacterCardPools
+          .Append(ModelDb.CardPool<ColorlessCardPool>())
+          .Distinct();
     }
 
-    private CardModel GenerateRandomCard()
-    {
-        var pools = GetCardPools();
-        var allCards = pools.SelectMany(p =>
-            p.GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint));
+    return [Owner.Character.CardPool];
+  }
 
-        return CardFactory.GetForCombat(Owner, allCards, 1, Owner.RunState.Rng.CombatCardGeneration).First();
-    }
+  private CardModel GenerateRandomCard()
+  {
+    IEnumerable<CardPoolModel> pools = GetCardPools();
+    IEnumerable<CardModel> allCards = pools.SelectMany(p =>
+        p.GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint));
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
-    {
-        if (card.Owner != Owner)
-            return;
-        var newGeneratedCard = GenerateRandomCard();
+    return CardFactory.GetForCombat(Owner, allCards, 1, Owner.RunState.Rng.CombatCardGeneration).First();
+  }
 
-        // NOTE: 如何让卡片有短时效的保留效果
-        if (causedByEthereal)
-            newGeneratedCard.GiveSingleTurnRetain();
+  public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
+  {
+    if (card.Owner != Owner)
+      return;
+    CardModel newGeneratedCard = GenerateRandomCard();
 
-        Flash();    // NOTE: 让遗物闪烁一下
+    // NOTE: 如何让卡片有短时效的保留效果
+    if (causedByEthereal)
+      newGeneratedCard.GiveSingleTurnRetain();
 
-        await CardPileCmd.AddGeneratedCardToCombat(newGeneratedCard, PileType.Hand, Owner);
-    }
+    Flash();    // NOTE: 让遗物闪烁一下
+
+    await CardPileCmd.AddGeneratedCardToCombat(newGeneratedCard, PileType.Hand, Owner);
+  }
 }

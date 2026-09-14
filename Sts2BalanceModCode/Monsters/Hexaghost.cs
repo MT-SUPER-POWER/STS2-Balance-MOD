@@ -38,340 +38,342 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 /// 先根据队伍存活角色的平均当前生命动态计算 Divider，之后按六枚火球数量执行固定循环。
 /// </summary>
 [RegisterMonster]
-public sealed class Hexaghost : MindBloomBossMonsterModel
+public sealed class Hexaghost : MindBloomBossMonsterModel, IDisposable
 {
-    private const string ActivateMove = "ACTIVATE";
-    private const string DividerMove = "DIVIDER";
-    private const string TackleMove = "TACKLE";
-    private const string InflameMove = "INFLAME";
-    private const string SearMove = "SEAR";
-    private const string InfernoMove = "INFERNO";
+  private const string ActivateMove = "ACTIVATE";
+  private const string DividerMove = "DIVIDER";
+  private const string TackleMove = "TACKLE";
+  private const string InflameMove = "INFLAME";
+  private const string SearMove = "SEAR";
+  private const string InfernoMove = "INFERNO";
 
-    private const int SearDamage = 6;
-    private const int FireTackleCount = 2;
-    private const int InfernoHits = 6;
-    private const int StrengthenBlock = 12;
-    private const int InfernoBurnCount = 3;
+  private const int SearDamage = 6;
+  private const int FireTackleCount = 2;
+  private const int InfernoHits = 6;
+  private const int StrengthenBlock = 12;
+  private const int InfernoBurnCount = 3;
 
-    private bool _burnUpgraded;
-    private int _orbActiveCount;
-    private int _dividerDamage;
-    private HexaghostVisuals? _visuals;
+  private bool _burnUpgraded;
+  private int _orbActiveCount;
+  private int _dividerDamage;
+  private HexaghostVisuals? _visuals;
 
-    public override MonsterAssetProfile AssetProfile => new(
-      ModAssetPaths.Resource("monsters", "hexaghost", "hexaghost.tscn"));
+  public override MonsterAssetProfile AssetProfile => new(
+    ModAssetPaths.Resource("monsters", "hexaghost", "hexaghost.tscn"));
 
-    public override int MinInitialHp =>
-      AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 264, 250);
+  public override int MinInitialHp =>
+    AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 264, 250);
 
-    public override int MaxInitialHp => MinInitialHp;
+  public override int MaxInitialHp => MinInitialHp;
 
-    private int InfernoDamage =>
-      AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 3, 2);
+  private static int InfernoDamage =>
+    AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 3, 2);
 
-    private int FireTackleDamage =>
-      AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 6, 5);
+  private static int FireTackleDamage =>
+    AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 6, 5);
 
-    private int StrengthAmount =>
-      AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 3, 2);
+  private static int StrengthAmount =>
+    AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 3, 2);
 
-    private int SearBurnCount =>
-      AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 2, 1);
+  private static int SearBurnCount =>
+    AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 2, 1);
 
-    private static NCreature? GetCreatureNode(Creature creature)
+  private static NCreature? GetCreatureNode(Creature creature)
+  {
+    return NCombatRoom.Instance?.GetCreatureNode(creature)
+        ?? NBestiary.Instance?.GetCreatureNode(creature);
+  }
+
+  public void EnsureVisuals(NCreature? creatureNode = null)
+  {
+    if (_visuals != null)
+      return;
+
+    creatureNode ??= GetCreatureNode(Creature);
+    if (creatureNode != null)
+      _visuals = new HexaghostVisuals(Creature, creatureNode);
+  }
+
+  public override List<BestiaryMonsterMove> GenerateBestiaryMoveList(NCreatureVisuals? visuals)
+  {
+    NCreature? creatureNode = visuals?.GetParent<NCreature>() ?? GetCreatureNode(Creature);
+    EnsureVisuals(creatureNode);
+    _visuals?.ActivateAllOrbs();
+    return base.GenerateBestiaryMoveList(visuals);
+  }
+
+  public override async Task AfterAddedToRoom()
+  {
+    await base.AfterAddedToRoom();
+    _burnUpgraded = false;
+    _orbActiveCount = 0;
+    _dividerDamage = 0;
+
+    EnsureVisuals();
+    await ApplyMindBloomEnhancements();
+  }
+
+  protected override MonsterMoveStateMachine GenerateMoveStateMachine()
+  {
+    var activateState = new MoveState(
+      ActivateMove,
+      Activate,
+      [new UnknownIntent()]);
+    var dividerState = new MoveState(
+      DividerMove,
+      Divider,
+      [new HexaghostDynamicMultiAttackIntent(() => _dividerDamage, InfernoHits)]);
+    var tackleState = new MoveState(
+      TackleMove,
+      Tackle,
+      [new MultiAttackIntent(FireTackleDamage, FireTackleCount)]);
+    var inflameState = new MoveState(
+      InflameMove,
+      Inflame,
+      [new DefendIntent(), new BuffIntent()]);
+    var searState = new MoveState(
+      SearMove,
+      Sear,
+      [new SingleAttackIntent(SearDamage), new StatusIntent(SearBurnCount)]);
+    var infernoState = new MoveState(
+      InfernoMove,
+      Inferno,
+      [new MultiAttackIntent(InfernoDamage, InfernoHits), new DebuffIntent()]);
+    var moveBranch = new RngConditionalBranchState("MOVE_BRANCH", SelectNextMove);
+
+    activateState.FollowUpState = dividerState;
+    dividerState.FollowUpState = moveBranch;
+    tackleState.FollowUpState = moveBranch;
+    inflameState.FollowUpState = moveBranch;
+    searState.FollowUpState = moveBranch;
+    infernoState.FollowUpState = moveBranch;
+
+    return new MonsterMoveStateMachine(
+      [activateState, dividerState, tackleState, inflameState, searState, infernoState, moveBranch],
+      activateState);
+  }
+
+  private string SelectNextMove(Creature owner, Rng rng, MonsterMoveStateMachine stateMachine)
+  {
+    return _orbActiveCount switch
     {
-        return NCombatRoom.Instance?.GetCreatureNode(creature)
-            ?? NBestiary.Instance?.GetCreatureNode(creature);
+      0 => SearMove,
+      1 => TackleMove,
+      2 => SearMove,
+      3 => InflameMove,
+      4 => TackleMove,
+      5 => SearMove,
+      6 => InfernoMove,
+      _ => SearMove,
+    };
+  }
+
+  private Task Activate(IReadOnlyList<Creature> targets)
+  {
+    EnsureVisuals();
+    _orbActiveCount = 6;
+    _visuals?.ActivateAllOrbs();
+    _visuals?.SetTargetRotationSpeed(120f);
+
+    var livingTargets = targets.Where(target => target.IsAlive).ToList();
+    double averageHp = livingTargets.Count > 0 ? livingTargets.Average(target => target.CurrentHp) : 1d;
+    _dividerDamage = (int)(averageHp / 12d) + 1;
+    return Task.CompletedTask;
+  }
+
+  private async Task Divider(IReadOnlyList<Creature> targets)
+  {
+    for (int i = 0; i < InfernoHits; i++)
+    {
+      await Cmd.Wait(0.05f);
+      await DamageCmd.Attack(_dividerDamage)
+        .FromMonster(this)
+        .WithAttackerFx(sfx: "event:/sfx/characters/attack_fire")
+        .WithHitVfxNode(CreateGhostFireBurst)
+        .Execute(null);
     }
 
-    public void EnsureVisuals(NCreature? creatureNode = null)
-    {
-        if (_visuals != null)
-            return;
+    DeactivateAllOrbs();
+  }
 
-        creatureNode ??= GetCreatureNode(Creature);
-        if (creatureNode != null)
-            _visuals = new HexaghostVisuals(Creature, creatureNode);
+  public static Node2D? CreateGhostFireBurst(Creature target)
+  {
+    NCreature? creatureNode = NCombatRoom.Instance?.GetCreatureNode(target);
+    if (creatureNode == null || !creatureNode.IsInteractable)
+      return null;
+
+    string scenePath = SceneHelper.GetScenePath("vfx/vfx_fire_burst");
+    Node2D vfx = PreloadManager.Cache.GetScene(scenePath).Instantiate<Node2D>();
+    vfx.GlobalPosition = creatureNode.VfxSpawnPosition;
+    vfx.Modulate = new Color(0.455f, 0.918f, 0.027f, 1f);
+    return vfx;
+  }
+
+  private async Task Tackle(IReadOnlyList<Creature> targets)
+  {
+    BorderFlashEffect.PlayChartreuse();
+    await FastAttackAnimation.Play(Creature);
+    await DamageCmd.Attack(FireTackleDamage)
+      .WithHitCount(FireTackleCount)
+      .FromMonster(this)
+      .WithAttackerFx(sfx: "event:/sfx/characters/attack_fire")
+      .WithHitVfxNode(CreateGhostFireBurst)
+      .Execute(null);
+    ActivateNextOrb();
+  }
+
+  private async Task Inflame(IReadOnlyList<Creature> targets)
+  {
+    NPowerUpVfx.CreateGhostly(Creature);
+    await CreatureCmd.GainBlock(Creature, StrengthenBlock, ValueProp.Move, null);
+    await PowerCmd.Apply<StrengthPower>(
+      new ThrowingPlayerChoiceContext(),
+      Creature,
+      StrengthAmount,
+      Creature,
+      null);
+    ActivateNextOrb();
+  }
+
+  private async Task Sear(IReadOnlyList<Creature> targets)
+  {
+    Creature? playerCreature = targets.FirstOrDefault(target => target.Player != null);
+    if (playerCreature != null)
+    {
+      var fireball = FireballEffect.Create(
+        Sts1VfxHelper.GetCreatureCenter(Creature),
+        Sts1VfxHelper.GetCreatureCenter(playerCreature));
+      Sts1VfxHelper.Play(fireball);
+      await Cmd.Wait(0.5f);
     }
 
-    public override List<BestiaryMonsterMove> GenerateBestiaryMoveList(NCreatureVisuals? visuals)
+    await DamageCmd.Attack(SearDamage)
+      .FromMonster(this)
+      .WithAttackerFx(sfx: "event:/sfx/characters/attack_fire")
+      .WithHitVfxNode(CreateGhostFireBurst)
+      .Execute(null);
+
+    await AddBurnsToDiscard(targets, SearBurnCount);
+    ActivateNextOrb();
+  }
+
+  private async Task Inferno(IReadOnlyList<Creature> targets)
+  {
+    Sts1VfxHelper.Play(ScreenOnFireEffect.Create());
+    await Cmd.Wait(1f);
+
+    await DamageCmd.Attack(InfernoDamage)
+      .WithHitCount(InfernoHits)
+      .FromMonster(this)
+      .WithAttackerFx(sfx: "event:/sfx/characters/attack_fire")
+      .WithHitVfxNode(CreateGhostFireBurst)
+      .Execute(null);
+
+    await UpgradeAllBurnsAndAddMore(targets);
+    _burnUpgraded = true;
+    DeactivateAllOrbs();
+  }
+
+  private void ActivateNextOrb()
+  {
+    _orbActiveCount++;
+    _visuals?.ActivateNextOrb();
+  }
+
+  private void DeactivateAllOrbs()
+  {
+    _orbActiveCount = 0;
+    _visuals?.DeactivateAllOrbs();
+    NDebugAudioManager.Instance?.Play("card_exhaust.mp3");
+    NDebugAudioManager.Instance?.Play("card_exhaust.mp3");
+  }
+
+  private static async Task UpgradeAllBurnsAndAddMore(IReadOnlyList<Creature> targets)
+  {
+    HexaghostBurnUpgradePatch.AllowBurnUpgrade = true;
+    try
     {
-        var creatureNode = visuals?.GetParent<NCreature>() ?? GetCreatureNode(Creature);
-        EnsureVisuals(creatureNode);
-        _visuals?.ActivateAllOrbs();
-        return base.GenerateBestiaryMoveList(visuals);
-    }
+      foreach (Creature? playerCreature in targets.Where(target => target.Player != null))
+      {
+        Player player = playerCreature.Player!;
+        var burnsToUpgrade = player.Piles
+          .Where(pile => pile.Type is PileType.Draw or PileType.Discard or PileType.Hand)
+          .SelectMany(pile => pile.Cards)
+          .OfType<Burn>()
+          .Where(burn => burn.IsUpgradable)
+          .ToList();
 
-    public override async Task AfterAddedToRoom()
-    {
-        await base.AfterAddedToRoom();
-        _burnUpgraded = false;
-        _orbActiveCount = 0;
-        _dividerDamage = 0;
-
-        EnsureVisuals();
-        await ApplyMindBloomEnhancements();
-    }
-
-    protected override MonsterMoveStateMachine GenerateMoveStateMachine()
-    {
-        var activateState = new MoveState(
-          ActivateMove,
-          Activate,
-          [new UnknownIntent()]);
-        var dividerState = new MoveState(
-          DividerMove,
-          Divider,
-          [new HexaghostDynamicMultiAttackIntent(() => _dividerDamage, InfernoHits)]);
-        var tackleState = new MoveState(
-          TackleMove,
-          Tackle,
-          [new MultiAttackIntent(FireTackleDamage, FireTackleCount)]);
-        var inflameState = new MoveState(
-          InflameMove,
-          Inflame,
-          [new DefendIntent(), new BuffIntent()]);
-        var searState = new MoveState(
-          SearMove,
-          Sear,
-          [new SingleAttackIntent(SearDamage), new StatusIntent(SearBurnCount)]);
-        var infernoState = new MoveState(
-          InfernoMove,
-          Inferno,
-          [new MultiAttackIntent(InfernoDamage, InfernoHits), new DebuffIntent()]);
-        var moveBranch = new RngConditionalBranchState("MOVE_BRANCH", SelectNextMove);
-
-        activateState.FollowUpState = dividerState;
-        dividerState.FollowUpState = moveBranch;
-        tackleState.FollowUpState = moveBranch;
-        inflameState.FollowUpState = moveBranch;
-        searState.FollowUpState = moveBranch;
-        infernoState.FollowUpState = moveBranch;
-
-        return new MonsterMoveStateMachine(
-          [activateState, dividerState, tackleState, inflameState, searState, infernoState, moveBranch],
-          activateState);
-    }
-
-    private string SelectNextMove(Creature owner, Rng rng, MonsterMoveStateMachine stateMachine)
-    {
-        return _orbActiveCount switch
+        foreach (Burn? burn in burnsToUpgrade)
         {
-            0 => SearMove,
-            1 => TackleMove,
-            2 => SearMove,
-            3 => InflameMove,
-            4 => TackleMove,
-            5 => SearMove,
-            6 => InfernoMove,
-            _ => SearMove,
-        };
-    }
-
-    private Task Activate(IReadOnlyList<Creature> targets)
-    {
-        EnsureVisuals();
-        _orbActiveCount = 6;
-        _visuals?.ActivateAllOrbs();
-        _visuals?.SetTargetRotationSpeed(120f);
-
-        var livingTargets = targets.Where(target => target.IsAlive).ToList();
-        var averageHp = livingTargets.Count > 0 ? livingTargets.Average(target => target.CurrentHp) : 1d;
-        _dividerDamage = (int)(averageHp / 12d) + 1;
-        return Task.CompletedTask;
-    }
-
-    private async Task Divider(IReadOnlyList<Creature> targets)
-    {
-        for (var i = 0; i < InfernoHits; i++)
-        {
-            await Cmd.Wait(0.05f);
-            await DamageCmd.Attack(_dividerDamage)
-              .FromMonster(this)
-              .WithAttackerFx(sfx: "event:/sfx/characters/attack_fire")
-              .WithHitVfxNode(CreateGhostFireBurst)
-              .Execute(null);
+          burn.UpgradeInternal();
+          burn.FinalizeUpgradeInternal();
         }
 
-        DeactivateAllOrbs();
-    }
+        await AddUpgradedBurns(playerCreature, InfernoBurnCount);
+      }
 
-    public static Node2D? CreateGhostFireBurst(Creature target)
+      await Cmd.Wait(1f);
+    }
+    finally
     {
-        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(target);
-        if (creatureNode == null || !creatureNode.IsInteractable)
-            return null;
-
-        var scenePath = SceneHelper.GetScenePath("vfx/vfx_fire_burst");
-        var vfx = PreloadManager.Cache.GetScene(scenePath).Instantiate<Node2D>();
-        vfx.GlobalPosition = creatureNode.VfxSpawnPosition;
-        vfx.Modulate = new Color(0.455f, 0.918f, 0.027f, 1f);
-        return vfx;
+      HexaghostBurnUpgradePatch.AllowBurnUpgrade = false;
     }
+  }
 
-    private async Task Tackle(IReadOnlyList<Creature> targets)
+  private async Task AddBurnsToDiscard(IReadOnlyList<Creature> targets, int count)
+  {
+    if (!_burnUpgraded)
     {
-        BorderFlashEffect.PlayChartreuse();
-        await FastAttackAnimation.Play(Creature);
-        await DamageCmd.Attack(FireTackleDamage)
-          .WithHitCount(FireTackleCount)
-          .FromMonster(this)
-          .WithAttackerFx(sfx: "event:/sfx/characters/attack_fire")
-          .WithHitVfxNode(CreateGhostFireBurst)
-          .Execute(null);
-        ActivateNextOrb();
+      await CardPileCmd.AddToCombatAndPreview<Burn>(targets, PileType.Discard, count, (Player?)null);
+      return;
     }
 
-    private async Task Inflame(IReadOnlyList<Creature> targets)
+    HexaghostBurnUpgradePatch.AllowBurnUpgrade = true;
+    try
     {
-        NPowerUpVfx.CreateGhostly(Creature);
-        await CreatureCmd.GainBlock(Creature, StrengthenBlock, ValueProp.Move, null);
-        await PowerCmd.Apply<StrengthPower>(
-          new ThrowingPlayerChoiceContext(),
-          Creature,
-          StrengthAmount,
-          Creature,
-          null);
-        ActivateNextOrb();
-    }
+      foreach (Creature? playerCreature in targets.Where(target => target.Player != null))
+        await AddUpgradedBurns(playerCreature, count);
 
-    private async Task Sear(IReadOnlyList<Creature> targets)
+      await Cmd.Wait(1f);
+    }
+    finally
     {
-        var playerCreature = targets.FirstOrDefault(target => target.Player != null);
-        if (playerCreature != null)
-        {
-            var fireball = FireballEffect.Create(
-              Sts1VfxHelper.GetCreatureCenter(Creature),
-              Sts1VfxHelper.GetCreatureCenter(playerCreature));
-            Sts1VfxHelper.Play(fireball);
-            await Cmd.Wait(0.5f);
-        }
-
-        await DamageCmd.Attack(SearDamage)
-          .FromMonster(this)
-          .WithAttackerFx(sfx: "event:/sfx/characters/attack_fire")
-          .WithHitVfxNode(CreateGhostFireBurst)
-          .Execute(null);
-
-        await AddBurnsToDiscard(targets, SearBurnCount);
-        ActivateNextOrb();
+      HexaghostBurnUpgradePatch.AllowBurnUpgrade = false;
     }
+  }
 
-    private async Task Inferno(IReadOnlyList<Creature> targets)
+  private static async Task AddUpgradedBurns(Creature playerCreature, int count)
+  {
+    Player player = playerCreature.Player!;
+    var statusCards = new CardPileAddResult[count];
+    for (int i = 0; i < count; i++)
     {
-        Sts1VfxHelper.Play(ScreenOnFireEffect.Create());
-        await Cmd.Wait(1f);
-
-        await DamageCmd.Attack(InfernoDamage)
-          .WithHitCount(InfernoHits)
-          .FromMonster(this)
-          .WithAttackerFx(sfx: "event:/sfx/characters/attack_fire")
-          .WithHitVfxNode(CreateGhostFireBurst)
-          .Execute(null);
-
-        await UpgradeAllBurnsAndAddMore(targets);
-        _burnUpgraded = true;
-        DeactivateAllOrbs();
+      Burn burn = playerCreature.CombatState!.CreateCard<Burn>(player);
+      burn.UpgradeInternal();
+      burn.FinalizeUpgradeInternal();
+      statusCards[i] = await CardPileCmd.AddGeneratedCardToCombat(burn, PileType.Discard, (Player?)null);
     }
 
-    private void ActivateNextOrb()
-    {
-        _orbActiveCount++;
-        _visuals?.ActivateNextOrb();
-    }
+    CardCmd.PreviewCardPileAdd(
+      statusCards,
+      style: count > 5 ? CardPreviewStyle.MessyLayout : CardPreviewStyle.HorizontalLayout);
+  }
 
-    private void DeactivateAllOrbs()
-    {
-        _orbActiveCount = 0;
-        _visuals?.DeactivateAllOrbs();
-        NDebugAudioManager.Instance?.Play("card_exhaust.mp3");
-        NDebugAudioManager.Instance?.Play("card_exhaust.mp3");
-    }
+  public override async Task AfterDeath(
+    PlayerChoiceContext choiceContext,
+    Creature creature,
+    bool wasRemovalPrevented,
+    float deathAnimLength)
+  {
+    await base.AfterDeath(choiceContext, creature, wasRemovalPrevented, deathAnimLength);
+    if (creature != Creature)
+      return;
 
-    private async Task UpgradeAllBurnsAndAddMore(IReadOnlyList<Creature> targets)
-    {
-        HexaghostBurnUpgradePatch.AllowBurnUpgrade = true;
-        try
-        {
-            foreach (var playerCreature in targets.Where(target => target.Player != null))
-            {
-                var player = playerCreature.Player!;
-                var burnsToUpgrade = player.Piles
-                  .Where(pile => pile.Type is PileType.Draw or PileType.Discard or PileType.Hand)
-                  .SelectMany(pile => pile.Cards)
-                  .OfType<Burn>()
-                  .Where(burn => burn.IsUpgradable)
-                  .ToList();
+    _visuals?.HideAllOrbs();
+    _visuals?.Dispose();
+    _visuals = null;
+    NGame.Instance?.ScreenShake(ShakeStrength.Strong, ShakeDuration.Long);
+  }
 
-                foreach (var burn in burnsToUpgrade)
-                {
-                    burn.UpgradeInternal();
-                    burn.FinalizeUpgradeInternal();
-                }
-
-                await AddUpgradedBurns(playerCreature, InfernoBurnCount);
-            }
-
-            await Cmd.Wait(1f);
-        }
-        finally
-        {
-            HexaghostBurnUpgradePatch.AllowBurnUpgrade = false;
-        }
-    }
-
-    private async Task AddBurnsToDiscard(IReadOnlyList<Creature> targets, int count)
-    {
-        if (!_burnUpgraded)
-        {
-            await CardPileCmd.AddToCombatAndPreview<Burn>(targets, PileType.Discard, count, (Player?)null);
-            return;
-        }
-
-        HexaghostBurnUpgradePatch.AllowBurnUpgrade = true;
-        try
-        {
-            foreach (var playerCreature in targets.Where(target => target.Player != null))
-                await AddUpgradedBurns(playerCreature, count);
-
-            await Cmd.Wait(1f);
-        }
-        finally
-        {
-            HexaghostBurnUpgradePatch.AllowBurnUpgrade = false;
-        }
-    }
-
-    private static async Task AddUpgradedBurns(Creature playerCreature, int count)
-    {
-        var player = playerCreature.Player!;
-        var statusCards = new CardPileAddResult[count];
-        for (var i = 0; i < count; i++)
-        {
-            var burn = playerCreature.CombatState!.CreateCard<Burn>(player);
-            burn.UpgradeInternal();
-            burn.FinalizeUpgradeInternal();
-            statusCards[i] = await CardPileCmd.AddGeneratedCardToCombat(burn, PileType.Discard, (Player?)null);
-        }
-
-        CardCmd.PreviewCardPileAdd(
-          statusCards,
-          style: count > 5 ? CardPreviewStyle.MessyLayout : CardPreviewStyle.HorizontalLayout);
-    }
-
-    public override async Task AfterDeath(
-      PlayerChoiceContext choiceContext,
-      Creature creature,
-      bool wasRemovalPrevented,
-      float deathAnimLength)
-    {
-        await base.AfterDeath(choiceContext, creature, wasRemovalPrevented, deathAnimLength);
-        if (creature != Creature)
-            return;
-
-        _visuals?.HideAllOrbs();
-        _visuals?.Dispose();
-        _visuals = null;
-        NGame.Instance?.ScreenShake(ShakeStrength.Strong, ShakeDuration.Long);
-    }
+  public void Dispose() => throw new NotImplementedException();
 }

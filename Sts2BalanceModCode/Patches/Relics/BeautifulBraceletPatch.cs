@@ -22,33 +22,33 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 [HarmonyPatch(typeof(BeautifulBracelet), nameof(BeautifulBracelet.AfterObtained))]
 public static class BeautifulBraceletPatch
 {
-    [HarmonyPrefix]
-    public static bool Prefix(BeautifulBracelet __instance, ref Task __result)
+  [HarmonyPrefix]
+  public static bool Prefix(BeautifulBracelet __instance, ref Task __result)
+  {
+    __result = ProcessAfterObtained(__instance);
+    return false;
+  }
+
+  private static async Task ProcessAfterObtained(BeautifulBracelet relic)
+  {
+    Swift swift = ModelDb.Enchantment<Swift>();
+    int swiftAmount = relic.DynamicVars["Swift"].IntValue;
+    int cardsCount = relic.DynamicVars.Cards.IntValue;
+
+    IEnumerable<CardModel> selectedCards = await CardSelectCmd.FromDeckForEnchantment(
+        prefs: new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, cardsCount),
+        player: relic.Owner,
+        enchantment: swift,
+        amount: swiftAmount);
+
+    foreach (CardModel item in selectedCards)
     {
-        __result = ProcessAfterObtained(__instance);
-        return false;
+      CardCmd.Enchant<Swift>(item, swiftAmount);
+      var nCardEnchantVfx = NCardEnchantVfx.Create(item);
+      if (nCardEnchantVfx != null)
+      {
+        NRun.Instance?.GlobalUi.CardPreviewContainer.AddChildSafely(nCardEnchantVfx);
+      }
     }
-
-    private static async Task ProcessAfterObtained(BeautifulBracelet relic)
-    {
-        Swift swift = ModelDb.Enchantment<Swift>();
-        int swiftAmount = relic.DynamicVars["Swift"].IntValue;
-        int cardsCount = relic.DynamicVars.Cards.IntValue;
-
-        IEnumerable<CardModel> selectedCards = await CardSelectCmd.FromDeckForEnchantment(
-            prefs: new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, cardsCount),
-            player: relic.Owner,
-            enchantment: swift,
-            amount: swiftAmount);
-
-        foreach (CardModel item in selectedCards)
-        {
-            CardCmd.Enchant<Swift>(item, swiftAmount);
-            NCardEnchantVfx? nCardEnchantVfx = NCardEnchantVfx.Create(item);
-            if (nCardEnchantVfx != null)
-            {
-                NRun.Instance?.GlobalUi.CardPreviewContainer.AddChildSafely(nCardEnchantVfx);
-            }
-        }
-    }
+  }
 }

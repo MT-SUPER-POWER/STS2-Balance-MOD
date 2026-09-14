@@ -1,8 +1,8 @@
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
-using Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
+using Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 
@@ -15,26 +15,26 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 [RegisterGlobalEncounter]
 public sealed class ColosseumFirstEncounter : BalanceEncounterTemplate
 {
-    public override RoomType RoomType => RoomType.Monster;
+  public override RoomType RoomType => RoomType.Monster;
 
-    public override bool ShouldGiveRewards => false;
+  public override bool ShouldGiveRewards => false;
 
-    public override bool IsWeak => false;
+  public override bool IsWeak => false;
 
-    public override EncounterAssetProfile AssetProfile => new(
-        EncounterScenePath: ModAssetPaths.Resource("scenes", "colosseum_first_encounter.tscn"));
+  public override EncounterAssetProfile AssetProfile => new(
+      EncounterScenePath: ModAssetPaths.Resource("scenes", "colosseum_first_encounter.tscn"));
 
-    public override IReadOnlyList<string> Slots => ["blue", "red"];
+  public override IReadOnlyList<string> Slots => ["blue", "red"];
 
-    public override IEnumerable<MonsterModel> AllPossibleMonsters =>
-    [
-      ModelDb.Monster<SlaverBlue>(),
+  public override IEnumerable<MonsterModel> AllPossibleMonsters =>
+  [
+    ModelDb.Monster<SlaverBlue>(),
       ModelDb.Monster<SlaverRed>(),
     ];
 
-    protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
-    [
-      (ModelDb.Monster<SlaverBlue>().ToMutable(), "blue"),
+  protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
+  [
+    (ModelDb.Monster<SlaverBlue>().ToMutable(), "blue"),
       (ModelDb.Monster<SlaverRed>().ToMutable(), "red"),
     ];
 }

@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using MegaCrit.Sts2.Core.Audio.Debug;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -18,54 +18,47 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.RestSite;
 /// 输出：打开删牌界面，确认后从牌组移除一张牌。
 /// 返回值：玩家成功删除卡牌时返回 true；取消选择或无可删牌时返回 false。
 /// </summary>
-public sealed class PeacePipeRestSiteOption : BalanceRestSiteOption
+public sealed class PeacePipeRestSiteOption(Player owner) : BalanceRestSiteOption(owner)
 {
-    private const int CardsToRemove = 1;
+  private const int CardsToRemove = 1;
 
-    public override string OptionId => "SMOKE";
+  public override string OptionId => "SMOKE";
 
-    public override bool IsEnabled => GetRemovableCardCount(Owner) >= CardsToRemove;
+  public override bool IsEnabled => GetRemovableCardCount(Owner) >= CardsToRemove;
 
-    public override LocString Description
+  public override LocString Description
+  {
+    get
     {
-        get
-        {
-            LocString description = new("rest_site_ui", $"OPTION_{OptionId}.description");
-            description.Add("Cards", CardsToRemove);
-            return IsEnabled
-              ? description
-              : new LocString("rest_site_ui", $"OPTION_{OptionId}.descriptionDisabled");
-        }
+      LocString description = new("rest_site_ui", $"OPTION_{OptionId}.description");
+      description.Add("Cards", CardsToRemove);
+      return IsEnabled
+        ? description
+        : new LocString("rest_site_ui", $"OPTION_{OptionId}.descriptionDisabled");
+    }
+  }
+
+  public override IEnumerable<string> AssetPaths => base.AssetPaths.Concat(NRestSmokeVfx.AssetPaths);
+
+  public override async Task<bool> OnSelect()
+  {
+    IReadOnlyList<CardModel> selectedCards = await SelectCardsForRemoval(CardsToRemove);
+    if (selectedCards.Count == 0)
+    {
+      return false;
     }
 
-    public override IEnumerable<string> AssetPaths => base.AssetPaths.Concat(NRestSmokeVfx.AssetPaths);
+    await RemoveCardsFromDeck(selectedCards);
+    return true;
+  }
 
-    public PeacePipeRestSiteOption(Player owner) : base(owner)
-    {
-    }
+  public override Task DoLocalPostSelectVfx(CancellationToken ct = default)
+  {
+    NDebugAudioManager.Instance?.Play("SOTE_SFX_SleepBlanket_v1.mp3", 0.45f, PitchVariance.Small);
+    NRestSiteRoom.Instance?.AddChildSafely(NRestSmokeVfx.Create());
 
-    public override async Task<bool> OnSelect()
-    {
-        IReadOnlyList<CardModel> selectedCards = await SelectCardsForRemoval(CardsToRemove);
-        if (selectedCards.Count == 0)
-        {
-            return false;
-        }
+    return Task.CompletedTask;
+  }
 
-        await RemoveCardsFromDeck(selectedCards);
-        return true;
-    }
-
-    public override Task DoLocalPostSelectVfx(CancellationToken ct = default)
-    {
-        NDebugAudioManager.Instance?.Play("SOTE_SFX_SleepBlanket_v1.mp3", 0.45f, PitchVariance.Small);
-        NRestSiteRoom.Instance?.AddChildSafely(NRestSmokeVfx.Create());
-
-        return Task.CompletedTask;
-    }
-
-    public override Task DoRemotePostSelectVfx()
-    {
-        return DoLocalPostSelectVfx();
-    }
+  public override Task DoRemotePostSelectVfx() => DoLocalPostSelectVfx();
 }

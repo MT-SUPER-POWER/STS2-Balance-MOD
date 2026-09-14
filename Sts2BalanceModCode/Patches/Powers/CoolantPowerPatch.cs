@@ -20,52 +20,52 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Powers;
 [HarmonyPatch]
 public static class CoolantPowerPatch
 {
-    private static readonly Action<PowerModel>? FlashPower =
-        AccessTools.MethodDelegate<Action<PowerModel>>(AccessTools.Method(typeof(PowerModel), "Flash"));
+  private static readonly Action<PowerModel>? FlashPower =
+      AccessTools.MethodDelegate<Action<PowerModel>>(AccessTools.Method(typeof(PowerModel), "Flash"));
 
-    [HarmonyPatch(typeof(CoolantPower), nameof(CoolantPower.AfterSideTurnStart))]
-    [HarmonyPrefix]
-    public static bool AfterSideTurnStartPrefix(ref Task __result)
+  [HarmonyPatch(typeof(CoolantPower), nameof(CoolantPower.AfterSideTurnStart))]
+  [HarmonyPrefix]
+  public static bool AfterSideTurnStartPrefix(ref Task __result)
+  {
+    // 屏蔽原版充能球格挡逻辑
+    __result = Task.CompletedTask;
+    return false;
+  }
+
+  [HarmonyPatch(typeof(AbstractModel), nameof(AbstractModel.AfterCardPlayed))]
+  [HarmonyPostfix]
+  public static void AfterCardPlayedPostfix(AbstractModel __instance, ref Task __result, PlayerChoiceContext choiceContext, CardPlay cardPlay)
+  {
+    if (__instance is not CoolantPower power)
+      return;
+
+    Task prevTask = __result;
+    __result = HandleAfterCardPlayed(prevTask, power, choiceContext, cardPlay);
+  }
+
+  private static async Task HandleAfterCardPlayed(Task prevTask, CoolantPower power, PlayerChoiceContext choiceContext, CardPlay cardPlay)
+  {
+    if (prevTask != null)
+      await prevTask;
+
+    if (power.Owner?.Player == null)
+      return;
+
+    if (cardPlay.Player == power.Owner.Player && cardPlay.Card.Type == CardType.Power)
     {
-        // 屏蔽原版充能球格挡逻辑
-        __result = Task.CompletedTask;
-        return false;
+      FlashPower?.Invoke(power);
+      await CardPileCmd.Draw(choiceContext, power.Amount, power.Owner.Player);
     }
+  }
 
-    [HarmonyPatch(typeof(AbstractModel), nameof(AbstractModel.AfterCardPlayed))]
-    [HarmonyPostfix]
-    public static void AfterCardPlayedPostfix(AbstractModel __instance, ref Task __result, PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        if (__instance is not CoolantPower power)
-            return;
+  [HarmonyPatch(typeof(PowerModel), "get_ExtraHoverTips")]
+  [HarmonyPrefix]
+  public static bool ExtraHoverTipsPrefix(PowerModel __instance, ref IEnumerable<IHoverTip> __result)
+  {
+    if (__instance is not CoolantPower)
+      return true;
 
-        Task prevTask = __result;
-        __result = HandleAfterCardPlayed(prevTask, power, choiceContext, cardPlay);
-    }
-
-    private static async Task HandleAfterCardPlayed(Task prevTask, CoolantPower power, PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        if (prevTask != null)
-            await prevTask;
-
-        if (power.Owner?.Player == null)
-            return;
-
-        if (cardPlay.Player == power.Owner.Player && cardPlay.Card.Type == CardType.Power)
-        {
-            FlashPower?.Invoke(power);
-            await CardPileCmd.Draw(choiceContext, power.Amount, power.Owner.Player);
-        }
-    }
-
-    [HarmonyPatch(typeof(PowerModel), "get_ExtraHoverTips")]
-    [HarmonyPrefix]
-    public static bool ExtraHoverTipsPrefix(PowerModel __instance, ref IEnumerable<IHoverTip> __result)
-    {
-        if (__instance is not CoolantPower)
-            return true;
-
-        __result = Array.Empty<IHoverTip>();
-        return false;
-    }
+    __result = Array.Empty<IHoverTip>();
+    return false;
+  }
 }

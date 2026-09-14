@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -25,34 +25,34 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 [RegisterRelic(typeof(SharedRelicPool), FullPublicEntry = "STS2_BALANCEMOD_DWARF_ANVIL")]
 public sealed class DwarfAnvil : BalanceRelicTemplate
 {
-    private const string EnergyKey = "Energy";
+  private const string _energyKey = "Energy";
 
-    public override string FlashSfx => "event:/sfx/ui/relic_activate_general";
-    public override RelicRarity Rarity => RelicRarity.Shop;
+  public override string FlashSfx => "event:/sfx/ui/relic_activate_general";
+  public override RelicRarity Rarity => RelicRarity.Shop;
 
-    public override bool HasUponPickupEffect => true;
+  public override bool HasUponPickupEffect => true;
 
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-      HoverTipFactory.FromEnchantment<ForgeEnchantment>();
+  protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+    HoverTipFactory.FromEnchantment<ForgeEnchantment>();
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-      new EnergyVar(1),
+  protected override IEnumerable<DynamicVar> CanonicalVars =>
+  [
+    new EnergyVar(1),
   ];
 
-    public override async Task AfterObtained()
+  public override async Task AfterObtained()
+  {
+    EnchantmentModel forge = ModelDb.Enchantment<ForgeEnchantment>();
+    CardSelectorPrefs prefs = new(
+      new LocString("card_selection", "TO_ENCHANT"), 3)
     {
-        var forge = ModelDb.Enchantment<ForgeEnchantment>();
-        var prefs = new CardSelectorPrefs(
-          new LocString("card_selection", "TO_ENCHANT"), 3)
-        {
-            Cancelable = false,
-            RequireManualConfirmation = true,
-        };
+      Cancelable = false,
+      RequireManualConfirmation = true,
+    };
 
-        foreach (var card in await CardSelectCmd.FromDeckForEnchantment(Owner, forge, 1, prefs))
-        {
-            card.ApplyEnchantmentAndPreview<ForgeEnchantment>(base.DynamicVars[EnergyKey].IntValue);
-        }
+    foreach (CardModel card in await CardSelectCmd.FromDeckForEnchantment(Owner, forge, 1, prefs))
+    {
+      card.ApplyEnchantmentAndPreview<ForgeEnchantment>(base.DynamicVars[_energyKey].IntValue);
     }
+  }
 }

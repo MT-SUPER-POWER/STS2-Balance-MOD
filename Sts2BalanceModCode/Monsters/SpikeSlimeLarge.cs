@@ -36,209 +36,209 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 [RegisterMonster]
 public sealed class SpikeSlimeLarge : BalanceMonsterTemplate
 {
-    private const string FlameTackleMove = "FLAME_TACKLE";
-    private const string LickMove = "LICK";
-    private const string SplitMove = "SPLIT";
-    private const int SlimedCount = 2;
+  private const string FlameTackleMove = "FLAME_TACKLE";
+  private const string LickMove = "LICK";
+  private const string SplitMove = "SPLIT";
+  private const int SlimedCount = 2;
 
-    private int? _overrideHp;
-    private bool _splitTriggered;
-    private MoveState _splitState = null!;
+  private int? _overrideHp;
+  private bool _splitTriggered;
+  private MoveState _splitState = null!;
 
-    public int? OverrideHp
+  public int? OverrideHp
+  {
+    get => _overrideHp;
+    set
     {
-        get => _overrideHp;
-        set
-        {
-            AssertMutable();
-            _overrideHp = value;
-        }
+      AssertMutable();
+      _overrideHp = value;
+    }
+  }
+
+  public bool SplitTriggered
+  {
+    get => _splitTriggered;
+    set
+    {
+      AssertMutable();
+      _splitTriggered = value;
+    }
+  }
+
+  public MoveState SplitState => _splitState;
+
+  public override int MinInitialHp =>
+    OverrideHp ?? AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 67, 64);
+
+  public override int MaxInitialHp =>
+    OverrideHp ?? AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 73, 70);
+
+  private static int FlameTackleDamage =>
+    AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 18, 16);
+
+  private static int FrailTurns =>
+    AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 3, 2);
+
+  public override MonsterAssetProfile AssetProfile => new(
+    ModAssetPaths.Resource("monsters", "spike_slime_large", "spike_slime_large.tscn"));
+
+  public override DamageSfxType TakeDamageSfxType => DamageSfxType.Slime;
+
+  public override async Task AfterAddedToRoom()
+  {
+    await base.AfterAddedToRoom();
+    await PowerCmd.Apply<SplitPower>(new ThrowingPlayerChoiceContext(), Creature, 1M, Creature, null);
+  }
+
+  protected override MonsterMoveStateMachine GenerateMoveStateMachine()
+  {
+    var flameTackleState = new MoveState(
+      FlameTackleMove,
+      FlameTackle,
+      [new SingleAttackIntent(FlameTackleDamage), new StatusIntent(SlimedCount)]);
+    var lickState = new MoveState(
+      LickMove,
+      Lick,
+      [new DebuffIntent()]);
+    _splitState = new MoveState(
+      SplitMove,
+      Split,
+      [new UnknownIntent()]);
+    var moveBranch = new RngConditionalBranchState("MOVE_BRANCH", SelectNextMove);
+
+    flameTackleState.FollowUpState = moveBranch;
+    lickState.FollowUpState = moveBranch;
+    _splitState.FollowUpState = _splitState;
+
+    return new MonsterMoveStateMachine(
+      [flameTackleState, lickState, _splitState, moveBranch],
+      moveBranch);
+  }
+
+  private string SelectNextMove(Creature owner, Rng rng, MonsterMoveStateMachine stateMachine)
+  {
+    if (SplitTriggered)
+      return SplitMove;
+
+    int roll = rng.NextInt(100);
+    if (roll < 30)
+      return LastTwoMoves(stateMachine, FlameTackleMove) ? LickMove : FlameTackleMove;
+
+    return LastMove(stateMachine, LickMove) ? FlameTackleMove : LickMove;
+  }
+
+  private async Task FlameTackle(IReadOnlyList<Creature> targets)
+  {
+    await FastAttackAnimation.Play(Creature);
+    await DamageCmd.Attack(FlameTackleDamage)
+      .FromMonster(this)
+      .WithAttackerFx(sfx: "event:/sfx/enemy/enemy_attacks/twig_slime_s/twig_slime_s_attack")
+      .WithHitFx("vfx/vfx_slime_impact")
+      .Execute(null);
+
+    // NOTE: AFP 默认关闭“一代黏液牌”兼容项，因此直接生成 STS2 当前 Slimed。
+    await CardPileCmd.AddToCombatAndPreview<Slimed>(targets, PileType.Discard, SlimedCount, (Player?)null);
+  }
+
+  private async Task Lick(IReadOnlyList<Creature> targets)
+  {
+    await FastAttackAnimation.Play(Creature);
+    foreach (Creature? target in targets.Where(target => target.IsAlive))
+    {
+      await PowerCmd.Apply<FrailPower>(new ThrowingPlayerChoiceContext(), target, FrailTurns, Creature, null);
+    }
+  }
+
+  private async Task Split(IReadOnlyList<Creature> targets)
+  {
+    _ = ShakeAnimation.Play(Creature, 1f, 3f);
+    await Cmd.Wait(1f);
+    AFTPModAudio.Play("general", "slime_split");
+    NGame.Instance?.ScreenShake(ShakeStrength.Weak, ShakeDuration.Short);
+
+    // NOTE: 在图鉴环境中仅播放分裂音效与蓄力动画，不执行实际生成与杀死
+    if (Creature.CombatState is not CombatState combatState)
+      return;
+
+    int currentHp = Creature.CurrentHp;
+    NCreature? originalCreatureNode = NCombatRoom.Instance?.GetCreatureNode(Creature);
+    Vector2 originalPosition = originalCreatureNode?.Position ?? Vector2.Zero;
+
+    // 立即生成粘液爆裂特效并隐藏大史莱姆的视觉节点，避免死亡消散残留与分裂生成的两只史莱姆重叠显示
+    if (originalCreatureNode != null)
+    {
+      string vfxScenePath = SceneHelper.GetScenePath("vfx/vfx_slime_impact");
+      Node2D vfx = PreloadManager.Cache.GetScene(vfxScenePath).Instantiate<Node2D>();
+      vfx.GlobalPosition = originalCreatureNode.VfxSpawnPosition;
+      vfx.Scale = new Vector2(1.4f, 1.4f);
+      NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
+
+      originalCreatureNode.Visuals.Visible = false;
+      originalCreatureNode.Visible = false;
     }
 
-    public bool SplitTriggered
+    await CreatureCmd.Kill(Creature);
+
+    var occupiedSlots = combatState.GetTeammatesOf(Creature)
+      .Where(teammate => teammate.IsAlive)
+      .Select(teammate => teammate.SlotName)
+      .ToHashSet();
+    string? firstSlot = combatState.Encounter?.Slots?
+      .FirstOrDefault(slot => slot.StartsWith("spike_med", StringComparison.Ordinal) && !occupiedSlots.Contains(slot));
+    string? secondSlot = null;
+    if (firstSlot != null)
     {
-        get => _splitTriggered;
-        set
-        {
-            AssertMutable();
-            _splitTriggered = value;
-        }
+      occupiedSlots.Add(firstSlot);
+      secondSlot = combatState.Encounter?.Slots?
+        .FirstOrDefault(slot => slot.StartsWith("spike_med", StringComparison.Ordinal) && !occupiedSlots.Contains(slot));
     }
 
-    public MoveState SplitState => _splitState;
+    bool useEncounterSlots = firstSlot != null && secondSlot != null;
+    var positionQueue = new Queue<Vector2>();
+    Control? enemyContainer = NCombatRoom.Instance?.GetNode<Control>("%EnemyContainer");
+    Callable? childEnteredCallable = null;
 
-    public override int MinInitialHp =>
-      OverrideHp ?? AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 67, 64);
-
-    public override int MaxInitialHp =>
-      OverrideHp ?? AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 73, 70);
-
-    private int FlameTackleDamage =>
-      AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 18, 16);
-
-    private int FrailTurns =>
-      AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 3, 2);
-
-    public override MonsterAssetProfile AssetProfile => new(
-      ModAssetPaths.Resource("monsters", "spike_slime_large", "spike_slime_large.tscn"));
-
-    public override DamageSfxType TakeDamageSfxType => DamageSfxType.Slime;
-
-    public override async Task AfterAddedToRoom()
+    if (!useEncounterSlots)
     {
-        await base.AfterAddedToRoom();
-        await PowerCmd.Apply<SplitPower>(new ThrowingPlayerChoiceContext(), Creature, 1M, Creature, null);
+      void OnChildEntered(Node child)
+      {
+        if (child is NCreature creatureNode && positionQueue.Count > 0)
+          creatureNode.Position = positionQueue.Dequeue();
+      }
+
+      childEnteredCallable = Callable.From<Node>(OnChildEntered);
+      enemyContainer?.Connect(Node.SignalName.ChildEnteredTree, childEnteredCallable.Value);
+      positionQueue.Enqueue(originalPosition + new Vector2(-134f, Rng.Chaotic.NextFloat() * 8f - 4f));
     }
 
-    protected override MonsterMoveStateMachine GenerateMoveStateMachine()
+    try
     {
-        var flameTackleState = new MoveState(
-          FlameTackleMove,
-          FlameTackle,
-          [new SingleAttackIntent(FlameTackleDamage), new StatusIntent(SlimedCount)]);
-        var lickState = new MoveState(
-          LickMove,
-          Lick,
-          [new DebuffIntent()]);
-        _splitState = new MoveState(
-          SplitMove,
-          Split,
-          [new UnknownIntent()]);
-        var moveBranch = new RngConditionalBranchState("MOVE_BRANCH", SelectNextMove);
+      var firstSlime = (SpikeSlimeMedium)ModelDb.Monster<SpikeSlimeMedium>().ToMutable();
+      Creature firstCreature = await CreatureCmd.Add(firstSlime, combatState, CombatSide.Enemy, firstSlot);
+      await CreatureCmd.SetMaxHp(firstCreature, currentHp);
+      await CreatureCmd.Heal(firstCreature, currentHp);
 
-        flameTackleState.FollowUpState = moveBranch;
-        lickState.FollowUpState = moveBranch;
-        _splitState.FollowUpState = _splitState;
+      if (!useEncounterSlots)
+        positionQueue.Enqueue(originalPosition + new Vector2(134f, Rng.Chaotic.NextFloat() * 8f - 4f));
 
-        return new MonsterMoveStateMachine(
-          [flameTackleState, lickState, _splitState, moveBranch],
-          moveBranch);
+      var secondSlime = (SpikeSlimeMedium)ModelDb.Monster<SpikeSlimeMedium>().ToMutable();
+      Creature secondCreature = await CreatureCmd.Add(secondSlime, combatState, CombatSide.Enemy, secondSlot);
+      await CreatureCmd.SetMaxHp(secondCreature, currentHp);
+      await CreatureCmd.Heal(secondCreature, currentHp);
     }
-
-    private string SelectNextMove(Creature owner, Rng rng, MonsterMoveStateMachine stateMachine)
+    finally
     {
-        if (SplitTriggered)
-            return SplitMove;
-
-        var roll = rng.NextInt(100);
-        if (roll < 30)
-            return LastTwoMoves(stateMachine, FlameTackleMove) ? LickMove : FlameTackleMove;
-
-        return LastMove(stateMachine, LickMove) ? FlameTackleMove : LickMove;
+      if (childEnteredCallable.HasValue)
+        enemyContainer?.Disconnect(Node.SignalName.ChildEnteredTree, childEnteredCallable.Value);
     }
+  }
 
-    private async Task FlameTackle(IReadOnlyList<Creature> targets)
-    {
-        await FastAttackAnimation.Play(Creature);
-        await DamageCmd.Attack(FlameTackleDamage)
-          .FromMonster(this)
-          .WithAttackerFx(sfx: "event:/sfx/enemy/enemy_attacks/twig_slime_s/twig_slime_s_attack")
-          .WithHitFx("vfx/vfx_slime_impact")
-          .Execute(null);
-
-        // NOTE: AFP 默认关闭“一代黏液牌”兼容项，因此直接生成 STS2 当前 Slimed。
-        await CardPileCmd.AddToCombatAndPreview<Slimed>(targets, PileType.Discard, SlimedCount, (Player?)null);
-    }
-
-    private async Task Lick(IReadOnlyList<Creature> targets)
-    {
-        await FastAttackAnimation.Play(Creature);
-        foreach (var target in targets.Where(target => target.IsAlive))
-        {
-            await PowerCmd.Apply<FrailPower>(new ThrowingPlayerChoiceContext(), target, FrailTurns, Creature, null);
-        }
-    }
-
-    private async Task Split(IReadOnlyList<Creature> targets)
-    {
-        _ = ShakeAnimation.Play(Creature, 1f, 3f);
-        await Cmd.Wait(1f);
-        AFTPModAudio.Play("general", "slime_split");
-        NGame.Instance?.ScreenShake(ShakeStrength.Weak, ShakeDuration.Short);
-
-        // NOTE: 在图鉴环境中仅播放分裂音效与蓄力动画，不执行实际生成与杀死
-        if (Creature.CombatState is not CombatState combatState)
-            return;
-
-        var currentHp = Creature.CurrentHp;
-        var originalCreatureNode = NCombatRoom.Instance?.GetCreatureNode(Creature);
-        var originalPosition = originalCreatureNode?.Position ?? Vector2.Zero;
-
-        // 立即生成粘液爆裂特效并隐藏大史莱姆的视觉节点，避免死亡消散残留与分裂生成的两只史莱姆重叠显示
-        if (originalCreatureNode != null)
-        {
-            var vfxScenePath = SceneHelper.GetScenePath("vfx/vfx_slime_impact");
-            var vfx = PreloadManager.Cache.GetScene(vfxScenePath).Instantiate<Node2D>();
-            vfx.GlobalPosition = originalCreatureNode.VfxSpawnPosition;
-            vfx.Scale = new Vector2(1.4f, 1.4f);
-            NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx);
-
-            originalCreatureNode.Visuals.Visible = false;
-            originalCreatureNode.Visible = false;
-        }
-
-        await CreatureCmd.Kill(Creature);
-
-        var occupiedSlots = combatState.GetTeammatesOf(Creature)
-          .Where(teammate => teammate.IsAlive)
-          .Select(teammate => teammate.SlotName)
-          .ToHashSet();
-        var firstSlot = combatState.Encounter?.Slots?
-          .FirstOrDefault(slot => slot.StartsWith("spike_med") && !occupiedSlots.Contains(slot));
-        string? secondSlot = null;
-        if (firstSlot != null)
-        {
-            occupiedSlots.Add(firstSlot);
-            secondSlot = combatState.Encounter?.Slots?
-              .FirstOrDefault(slot => slot.StartsWith("spike_med") && !occupiedSlots.Contains(slot));
-        }
-
-        var useEncounterSlots = firstSlot != null && secondSlot != null;
-        var positionQueue = new Queue<Vector2>();
-        var enemyContainer = NCombatRoom.Instance?.GetNode<Control>("%EnemyContainer");
-        Callable? childEnteredCallable = null;
-
-        if (!useEncounterSlots)
-        {
-            void OnChildEntered(Node child)
-            {
-                if (child is NCreature creatureNode && positionQueue.Count > 0)
-                    creatureNode.Position = positionQueue.Dequeue();
-            }
-
-            childEnteredCallable = Callable.From<Node>(OnChildEntered);
-            enemyContainer?.Connect(Node.SignalName.ChildEnteredTree, childEnteredCallable.Value);
-            positionQueue.Enqueue(originalPosition + new Vector2(-134f, Rng.Chaotic.NextFloat() * 8f - 4f));
-        }
-
-        try
-        {
-            var firstSlime = (SpikeSlimeMedium)ModelDb.Monster<SpikeSlimeMedium>().ToMutable();
-            var firstCreature = await CreatureCmd.Add(firstSlime, combatState, CombatSide.Enemy, firstSlot);
-            await CreatureCmd.SetMaxHp(firstCreature, currentHp);
-            await CreatureCmd.Heal(firstCreature, currentHp);
-
-            if (!useEncounterSlots)
-                positionQueue.Enqueue(originalPosition + new Vector2(134f, Rng.Chaotic.NextFloat() * 8f - 4f));
-
-            var secondSlime = (SpikeSlimeMedium)ModelDb.Monster<SpikeSlimeMedium>().ToMutable();
-            var secondCreature = await CreatureCmd.Add(secondSlime, combatState, CombatSide.Enemy, secondSlot);
-            await CreatureCmd.SetMaxHp(secondCreature, currentHp);
-            await CreatureCmd.Heal(secondCreature, currentHp);
-        }
-        finally
-        {
-            if (childEnteredCallable.HasValue)
-                enemyContainer?.Disconnect(Node.SignalName.ChildEnteredTree, childEnteredCallable.Value);
-        }
-    }
-
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
-    {
-        var idle = new AnimState("idle", true);
-        var hit = new AnimState("hit") { NextState = idle };
-        var animator = new CreatureAnimator(idle, controller);
-        animator.AddAnyState("Hit", hit);
-        return animator;
-    }
+  public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+  {
+    var idle = new AnimState("idle", true);
+    var hit = new AnimState("hit") { NextState = idle };
+    var animator = new CreatureAnimator(idle, controller);
+    animator.AddAnyState("Hit", hit);
+    return animator;
+  }
 }

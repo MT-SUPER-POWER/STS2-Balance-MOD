@@ -46,8 +46,7 @@
         <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">$(HOME)/Library/Application Support/Steam/steamapps</SteamLibraryPath>
         <Sts2PathSteam>$(SteamLibraryPath)/common/Slay the Spire 2</Sts2PathSteam>
 
-        <!-- 如果外部设置了 Sts2Path（如 Windows 路径的 Directory.Build.props），
-             但路径在当前 Mac 上不存在，自动检测 Steam 默认位置。 -->
+        <!-- 如果外部设置了 Sts2Path（如 Windows 路径的 Directory.Build.props），但路径在当前 Mac 上不存在，自动检测 Steam 默认位置。 -->
         <Sts2Path Condition="!Exists('$(Sts2Path)') and Exists('$(Sts2PathSteam)')">$(Sts2PathSteam)</Sts2Path>
         <Sts2Path Condition="!Exists('$(Sts2Path)')">$(Sts2PathSteam)</Sts2Path>
 

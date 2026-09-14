@@ -19,38 +19,38 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 [HarmonyPatch]
 public static class CoolantPatch
 {
-    [HarmonyPatch(typeof(CardModel), "get_Rarity")]
-    [HarmonyPrefix]
-    public static bool RarityPrefix(CardModel __instance, ref CardRarity __result)
-    {
-        if (__instance is not Coolant)
-            return true;
+  [HarmonyPatch(typeof(CardModel), "get_Rarity")]
+  [HarmonyPrefix]
+  public static bool RarityPrefix(CardModel __instance, ref CardRarity __result)
+  {
+    if (__instance is not Coolant)
+      return true;
 
-        __result = CardRarity.Uncommon;
-        return false;
-    }
+    __result = CardRarity.Uncommon;
+    return false;
+  }
 
-    [HarmonyPatch(typeof(Coolant), "get_CanonicalVars")]
-    [HarmonyPrefix]
-    public static bool CanonicalVarsPrefix(ref IEnumerable<DynamicVar> __result)
-    {
-        __result = new DynamicVar[] { new PowerVar<CoolantPower>(1m) };
-        return false;
-    }
+  [HarmonyPatch(typeof(Coolant), "get_CanonicalVars")]
+  [HarmonyPrefix]
+  public static bool CanonicalVarsPrefix(ref IEnumerable<DynamicVar> __result)
+  {
+    __result = new DynamicVar[] { new PowerVar<CoolantPower>(1m) };
+    return false;
+  }
 
-    [HarmonyPatch(typeof(Coolant), "get_ExtraHoverTips")]
-    [HarmonyPrefix]
-    public static bool ExtraHoverTipsPrefix(ref IEnumerable<IHoverTip> __result)
-    {
-        __result = Array.Empty<IHoverTip>();
-        return false;
-    }
+  [HarmonyPatch(typeof(Coolant), "get_ExtraHoverTips")]
+  [HarmonyPrefix]
+  public static bool ExtraHoverTipsPrefix(ref IEnumerable<IHoverTip> __result)
+  {
+    __result = Array.Empty<IHoverTip>();
+    return false;
+  }
 
-    [HarmonyPatch(typeof(Coolant), "OnUpgrade")]
-    [HarmonyPrefix]
-    public static bool OnUpgradePrefix(Coolant __instance)
-    {
-        __instance.DynamicVars["CoolantPower"].UpgradeValueBy(1m);
-        return false;
-    }
+  [HarmonyPatch(typeof(Coolant), "OnUpgrade")]
+  [HarmonyPrefix]
+  public static bool OnUpgradePrefix(Coolant __instance)
+  {
+    __instance.DynamicVars["CoolantPower"].UpgradeValueBy(1m);
+    return false;
+  }
 }

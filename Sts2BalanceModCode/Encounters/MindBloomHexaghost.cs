@@ -17,38 +17,36 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 [RegisterGlobalEncounter]
 public sealed class MindBloomHexaghost : BalanceEncounterTemplate
 {
-    private MindBloomBossEnhancementPlan? _enhancementPlan;
+  private MindBloomBossEnhancementPlan? _enhancementPlan;
 
-    public override RoomType RoomType => RoomType.Monster;
+  public override RoomType RoomType => RoomType.Monster;
 
-    public override float GetCameraScaling() => 0.9f;
+  public override float GetCameraScaling() => 0.9f;
 
-    public override Vector2 GetCameraOffset() => Vector2.Down * 50f;
+  public override Vector2 GetCameraOffset() => Vector2.Down * 50f;
 
-    public override EncounterAssetProfile AssetProfile => new(
-      ExtraAssetPaths:
-      [
-        ModAssetPaths.Resource("monsters", "hexaghost", "plasma1.png"),
+  public override EncounterAssetProfile AssetProfile => new(
+    ExtraAssetPaths:
+    [
+      ModAssetPaths.Resource("monsters", "hexaghost", "plasma1.png"),
       ModAssetPaths.Resource("monsters", "hexaghost", "plasma2.png"),
       ModAssetPaths.Resource("monsters", "hexaghost", "plasma3.png"),
       ModAssetPaths.Resource("monsters", "hexaghost", "shadow.png"),
       ModAssetPaths.Resource("vfx", "vfx.atlas"),
       ModAssetPaths.Resource("vfx", "vfx.png"),
       ModAssetPaths.Resource("vfx", "vfx2.png"),
-      ]);
+    ]);
 
-    public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<Hexaghost>()];
+  public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<Hexaghost>()];
 
-    internal void SetEnhancementPlan(MindBloomBossEnhancementPlan plan)
-    {
-        // NOTE: EventModel 要求传入 canonical 遭遇，配置字段会在进入战斗时随 ToMutable 一起复制。
-        _enhancementPlan = plan;
-    }
+  internal void SetEnhancementPlan(MindBloomBossEnhancementPlan plan) =>
+    // NOTE: EventModel 要求传入 canonical 遭遇，配置字段会在进入战斗时随 ToMutable 一起复制。
+    _enhancementPlan = plan;
 
-    protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters()
-    {
-        var boss = (Hexaghost)ModelDb.Monster<Hexaghost>().ToMutable();
-        boss.MindBloomEnhancementPlan = _enhancementPlan;
-        return [(boss, null)];
-    }
+  protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters()
+  {
+    var boss = (Hexaghost)ModelDb.Monster<Hexaghost>().ToMutable();
+    boss.MindBloomEnhancementPlan = _enhancementPlan;
+    return [(boss, null)];
+  }
 }

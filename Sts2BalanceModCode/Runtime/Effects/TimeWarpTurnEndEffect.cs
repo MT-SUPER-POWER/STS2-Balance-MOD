@@ -11,115 +11,115 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Runtime.Effects;
 /// 注意：不继承 Node2D，避免 Godot 源码生成器创建绑定方法导致 MonoMod JIT 崩溃。
 /// 改用内建 Node2D 节点，通过 Root 属性暴露给调用方添加到场景树。
 /// </summary>
-public sealed class TimeWarpTurnEndEffect
+public sealed class TimeWarpTurnEndEffect : IDisposable
 {
-    private static readonly string AtlasPath = ModAssetPaths.Resource("literally_just_here_for_time_warp", "powers.atlas");
+  private static readonly string AtlasPath = ModAssetPaths.Resource("literally_just_here_for_time_warp", "powers.atlas");
 
-    private readonly Node2D _root;
-    private Sprite2D? _sprite;
-    private Tween? _tween;
-    private bool _disposed;
+  private readonly Node2D _root;
+  private Sprite2D? _sprite;
+  private Tween? _tween;
+  private bool _disposed;
 
-    /// <summary>
-    /// 将此节点添加到场景树后，效果自动播放。
-    /// </summary>
-    public Node2D Root => _root;
+  /// <summary>
+  /// 将此节点添加到场景树后，效果自动播放。
+  /// </summary>
+  public Node2D Root => _root;
 
-    private TimeWarpTurnEndEffect()
+  private TimeWarpTurnEndEffect()
+  {
+    _root = new Node2D();
+    _root.TreeExited += () => Dispose();
+  }
+
+  public static TimeWarpTurnEndEffect Create()
+  {
+    var effect = new TimeWarpTurnEndEffect();
+    effect.Initialize();
+    return effect;
+  }
+
+  private void Initialize()
+  {
+    LibGdxAtlas.TextureRegion? textureRegion = LibGdxAtlas.GetRegion(AtlasPath, "128/time");
+    if (textureRegion == null)
     {
-        _root = new Node2D();
-        _root.TreeExited += () => Dispose();
+      _root.QueueFree();
+      _disposed = true;
+      return;
     }
 
-    public static TimeWarpTurnEndEffect Create()
+    _sprite = new Sprite2D
     {
-        var effect = new TimeWarpTurnEndEffect();
-        effect.Initialize();
-        return effect;
-    }
+      Texture = textureRegion.Value.Texture,
+      RegionEnabled = true,
+      RegionRect = textureRegion.Value.Region,
+      Centered = true,
+    };
+    _root.AddChild(_sprite);
 
-    private void Initialize()
+    // 注意：GetViewport 需要在 _root 进入场景树后才能正常工作。
+    // 这里设一个默认值，在场景树中会自动适配。
+    const float x = 960f;    // 默认 1920/2
+    const float targetY = 540f;   // 默认 1080/2
+    const float startY = 1200f;   // 默认屏幕下方
+
+    const float scale = 3f;
+    _sprite.Scale = new Vector2(scale, scale);
+    _sprite.SelfModulate = new Color(1f, 1f, 1f, 1f);
+
+    _root.Position = new Vector2(x, startY);
+
+    // 动画：弹入 + 旋转 + 淡出（用 _root 创建和管理 Tween）
+    _tween = _root.CreateTween();
+    _tween.SetParallel(true);
+
+    // 弹入
+    Tween bounceTween = _root.CreateTween();
+    bounceTween.TweenProperty(_root, "position", new Vector2(x, targetY), 1.0f)
+      .SetTrans(Tween.TransitionType.Back)
+      .SetEase(Tween.EaseType.Out);
+
+    // 旋转
+    _tween.TweenCallback(Callable.From(() =>
     {
-        var textureRegion = LibGdxAtlas.GetRegion(AtlasPath, "128/time");
-        if (textureRegion == null)
+      Tween rotateTween = _root.CreateTween();
+      rotateTween.TweenMethod(
+        Callable.From<float>(angle =>
         {
-            _root.QueueFree();
-            _disposed = true;
-            return;
-        }
+          if (_sprite != null)
+            _sprite.Rotation = angle;
+        }),
+        0f, Mathf.Pi * 4f, 2.0f
+      ).SetTrans(Tween.TransitionType.Linear);
+    }));
 
-        _sprite = new Sprite2D
-        {
-            Texture = textureRegion.Value.Texture,
-            RegionEnabled = true,
-            RegionRect = textureRegion.Value.Region,
-            Centered = true,
-        };
-        _root.AddChild(_sprite);
+    // 1 秒后淡出
+    _tween.TweenInterval(1.0f);
+    _tween.TweenProperty(_root, "modulate", new Color(1f, 1f, 1f, 0f), 1.0f)
+      .SetTrans(Tween.TransitionType.Cubic)
+      .SetEase(Tween.EaseType.In);
 
-        // 注意：GetViewport 需要在 _root 进入场景树后才能正常工作。
-        // 这里设一个默认值，在场景树中会自动适配。
-        float x = 960f;    // 默认 1920/2
-        float targetY = 540f;   // 默认 1080/2
-        float startY = 1200f;   // 默认屏幕下方
-
-        float scale = 3f;
-        _sprite.Scale = new Vector2(scale, scale);
-        _sprite.SelfModulate = new Color(1f, 1f, 1f, 1f);
-
-        _root.Position = new Vector2(x, startY);
-
-        // 动画：弹入 + 旋转 + 淡出（用 _root 创建和管理 Tween）
-        _tween = _root.CreateTween();
-        _tween.SetParallel(true);
-
-        // 弹入
-        var bounceTween = _root.CreateTween();
-        bounceTween.TweenProperty(_root, "position", new Vector2(x, targetY), 1.0f)
-          .SetTrans(Tween.TransitionType.Back)
-          .SetEase(Tween.EaseType.Out);
-
-        // 旋转
-        _tween.TweenCallback(Callable.From(() =>
-        {
-            var rotateTween = _root.CreateTween();
-            rotateTween.TweenMethod(
-          Callable.From<float>(angle =>
-          {
-                if (_sprite != null)
-                    _sprite.Rotation = angle;
-            }),
-          0f, Mathf.Pi * 4f, 2.0f
-        ).SetTrans(Tween.TransitionType.Linear);
-        }));
-
-        // 1 秒后淡出
-        _tween.TweenInterval(1.0f);
-        _tween.TweenProperty(_root, "modulate", new Color(1f, 1f, 1f, 0f), 1.0f)
-          .SetTrans(Tween.TransitionType.Cubic)
-          .SetEase(Tween.EaseType.In);
-
-        // 完成后自毁
-        _tween.TweenCallback(Callable.From(() =>
-        {
-            if (!_disposed)
-            {
-                _disposed = true;
-                _tween?.Kill();
-                _root.QueueFree();
-            }
-        }));
-    }
-
-    /// <summary>
-    /// 外部调用，在 _root 被移出场景树时通知。
-    /// </summary>
-    public void Dispose()
+    // 完成后自毁
+    _tween.TweenCallback(Callable.From(() =>
     {
-        if (_disposed)
-            return;
+      if (!_disposed)
+      {
         _disposed = true;
         _tween?.Kill();
         _root.QueueFree();
-    }
+      }
+    }));
+  }
+
+  /// <summary>
+  /// 外部调用，在 _root 被移出场景树时通知。
+  /// </summary>
+  public void Dispose()
+  {
+    if (_disposed)
+      return;
+    _disposed = true;
+    _tween?.Kill();
+    _root.QueueFree();
+  }
 }

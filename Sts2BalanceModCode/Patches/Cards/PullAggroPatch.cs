@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
@@ -10,11 +10,11 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 [HarmonyPatch(typeof(PullAggro), "OnUpgrade")]
 public static class PullAggroPatch
 {
-    [HarmonyPrefix]
-    public static bool Prefix(PullAggro __instance)
-    {
-        __instance.DynamicVars.Summon.UpgradeValueBy(2m); // 基础 4 + 2 = 6
-        __instance.DynamicVars.Block.UpgradeValueBy(2m);  // 基础 7 + 2 = 9
-        return false;
-    }
+  [HarmonyPrefix]
+  public static bool Prefix(PullAggro __instance)
+  {
+    __instance.DynamicVars.Summon.UpgradeValueBy(2m); // 基础 4 + 2 = 6
+    __instance.DynamicVars.Block.UpgradeValueBy(2m);  // 基础 7 + 2 = 9
+    return false;
+  }
 }

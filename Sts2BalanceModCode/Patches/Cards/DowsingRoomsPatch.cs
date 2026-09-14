@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
@@ -16,63 +16,63 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// </summary>
 public static class DowsingRoomsPatch
 {
-    private const int TargetMaxRooms = 4;
+  private const int TargetMaxRooms = 4;
 
-    [HarmonyPatch(typeof(Dowsing), "get_CanonicalVars")]
-    public static class CanonicalVarsPatch
+  [HarmonyPatch(typeof(Dowsing), "get_CanonicalVars")]
+  public static class CanonicalVarsPatch
+  {
+    [HarmonyPrefix]
+    public static bool Prefix(ref IEnumerable<DynamicVar> __result)
     {
-        [HarmonyPrefix]
-        public static bool Prefix(ref IEnumerable<DynamicVar> __result)
-        {
-            __result = new DynamicVar[]
-            {
-                new DynamicVar("Rooms", TargetMaxRooms)
-            };
-            return false;
-        }
+      __result = new DynamicVar[]
+      {
+                new("Rooms", TargetMaxRooms)
+      };
+      return false;
+    }
+  }
+
+  [HarmonyPatch(typeof(Dowsing), nameof(Dowsing.RoomsEntered), MethodType.Setter)]
+  public static class RoomsEnteredSetterPatch
+  {
+    [HarmonyPrefix]
+    public static bool Prefix(Dowsing __instance, int value)
+    {
+      __instance.AssertMutable();
+      Traverse.Create(__instance).Field("_roomsEntered").SetValue(value);
+      __instance.DynamicVars["Rooms"].BaseValue = TargetMaxRooms - value;
+      return false;
+    }
+  }
+
+  [HarmonyPatch(typeof(Dowsing), nameof(Dowsing.BeforeRoomEntered))]
+  public static class BeforeRoomEnteredPatch
+  {
+    [HarmonyPrefix]
+    public static bool Prefix(Dowsing __instance, ref Task __result)
+    {
+      __result = ProcessBeforeRoomEntered(__instance);
+      return false;
     }
 
-    [HarmonyPatch(typeof(Dowsing), nameof(Dowsing.RoomsEntered), MethodType.Setter)]
-    public static class RoomsEnteredSetterPatch
+    private static async Task ProcessBeforeRoomEntered(Dowsing card)
     {
-        [HarmonyPrefix]
-        public static bool Prefix(Dowsing __instance, int value)
+      CardPile? pile = card.Pile;
+      if (pile == null || pile.Type != PileType.Deck || card.Owner.RunState.CurrentRoomCount > 1)
+      {
+        return;
+      }
+      MapPoint? currentMapPoint = card.Owner.RunState.CurrentMapPoint;
+      if (currentMapPoint != null && currentMapPoint.PointType == MapPointType.Unknown)
+      {
+        card.RoomsEntered++;
+        if (card.RoomsEntered >= TargetMaxRooms)
         {
-            __instance.AssertMutable();
-            Traverse.Create(__instance).Field("_roomsEntered").SetValue(value);
-            __instance.DynamicVars["Rooms"].BaseValue = TargetMaxRooms - value;
-            return false;
+          PlayerCmd.CompleteQuest(card);
+          await CardCmd.TransformTo<Abundance>(card);
         }
+      }
     }
-
-    [HarmonyPatch(typeof(Dowsing), nameof(Dowsing.BeforeRoomEntered))]
-    public static class BeforeRoomEnteredPatch
-    {
-        [HarmonyPrefix]
-        public static bool Prefix(Dowsing __instance, AbstractRoom room, ref Task __result)
-        {
-            __result = ProcessBeforeRoomEntered(__instance, room);
-            return false;
-        }
-
-        private static async Task ProcessBeforeRoomEntered(Dowsing card, AbstractRoom room)
-        {
-            CardPile? pile = card.Pile;
-            if (pile == null || pile.Type != PileType.Deck || card.Owner.RunState.CurrentRoomCount > 1)
-            {
-                return;
-            }
-            MapPoint? currentMapPoint = card.Owner.RunState.CurrentMapPoint;
-            if (currentMapPoint != null && currentMapPoint.PointType == MapPointType.Unknown)
-            {
-                card.RoomsEntered++;
-                if (card.RoomsEntered >= TargetMaxRooms)
-                {
-                    PlayerCmd.CompleteQuest(card);
-                    await CardCmd.TransformTo<Abundance>(card);
-                }
-            }
-        }
-    }
+  }
 }
 

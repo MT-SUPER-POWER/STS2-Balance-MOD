@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -20,39 +20,39 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 [RegisterRelic(typeof(SilentRelicPool), FullPublicEntry = "STS2_BALANCEMOD_WRIST_BLADE")]
 public sealed class WristBlade : BalanceRelicTemplate
 {
-    private const string ExtraDamageKey = "Damage";
+  private const string _extraDamageKey = "Damage";
 
-    public override RelicRarity Rarity => RelicRarity.Common;
+  public override RelicRarity Rarity => RelicRarity.Common;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => new[]
+  protected override IEnumerable<DynamicVar> CanonicalVars =>
+  [
+    new DynamicVar(_extraDamageKey, 4m)
+  ];
+
+  public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
+  {
+    if (!props.IsPoweredAttack())
     {
-    new DynamicVar(ExtraDamageKey, 4m)
-  };
-
-    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
-    {
-        if (!props.IsPoweredAttack())
-        {
-            return 0m;
-        }
-        if (cardSource == null)
-        {
-            return 0m;
-        }
-        if (cardSource.Type != CardType.Attack)
-        {
-            return 0m;
-        }
-        if (cardSource.Owner != base.Owner)
-        {
-            return 0m;
-        }
-        // Only apply to cards that currently cost 0 energy (excluding X-cost cards, which cost X and consume all energy)
-        if (cardSource.EnergyCost.CostsX || cardSource.EnergyCost.GetWithModifiers(CostModifiers.All) != 0)
-        {
-            return 0m;
-        }
-
-        return base.DynamicVars[ExtraDamageKey].BaseValue;
+      return 0m;
     }
+    if (cardSource == null)
+    {
+      return 0m;
+    }
+    if (cardSource.Type != CardType.Attack)
+    {
+      return 0m;
+    }
+    if (cardSource.Owner != base.Owner)
+    {
+      return 0m;
+    }
+    // Only apply to cards that currently cost 0 energy (excluding X-cost cards, which cost X and consume all energy)
+    if (cardSource.EnergyCost.CostsX || cardSource.EnergyCost.GetWithModifiers(CostModifiers.All) != 0)
+    {
+      return 0m;
+    }
+
+    return base.DynamicVars[_extraDamageKey].BaseValue;
+  }
 }

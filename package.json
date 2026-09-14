@@ -1,0 +1,15 @@
+{
+  "name": "sts2-balance-mod",
+  "scripts": {
+    "prepare": "husky",
+    "format": "dotnet format Sts2BalanceMod.sln --include Sts2BalanceModCode",
+    "check:format": "dotnet format Sts2BalanceMod.sln --include Sts2BalanceModCode --no-restore --verify-no-changes",
+    "check:ec": "editorconfig-checker",
+    "check": "pnpm run check:format && pnpm run check:ec"
+  },
+  "devDependencies": {
+    "editorconfig-checker": "^7.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.5.1"
+  }
+}

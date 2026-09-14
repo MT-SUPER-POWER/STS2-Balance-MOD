@@ -12,11 +12,11 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 /// </summary>
 public abstract class BalanceEncounterTemplate : ModEncounterTemplate
 {
-    public override MegaSkeletonDataResource? BossNodeSpineResource => null;
+  public override MegaSkeletonDataResource? BossNodeSpineResource => null;
 
-    public override bool HasScene => !string.IsNullOrEmpty(AssetProfile.EncounterScenePath);
+  public override bool HasScene => !string.IsNullOrEmpty(AssetProfile.EncounterScenePath);
 
-    // These encounters are addressable by events and patches, not candidates for a normal map room.
-    // RegisterGlobalEncounter still makes them available through ModelDb without leaking them into an Act pool.
-    public override bool IsValidForAct(ActModel act) => false;
+  // These encounters are addressable by events and patches, not candidates for a normal map room.
+  // RegisterGlobalEncounter still makes them available through ModelDb without leaking them into an Act pool.
+  public override bool IsValidForAct(ActModel act) => false;
 }

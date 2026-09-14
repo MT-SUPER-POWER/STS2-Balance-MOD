@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -25,52 +25,52 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 [RegisterRelic(typeof(SilentRelicPool), FullPublicEntry = "STS2_BALANCEMOD_HOVERING_KITE")]
 public sealed class HoveringKite : BalanceRelicTemplate
 {
-    private const string EnergyKey = "Energy";
+  private const string _energyKey = "Energy";
 
-    public override RelicRarity Rarity => RelicRarity.Uncommon;
+  public override RelicRarity Rarity => RelicRarity.Uncommon;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => new[]
-    {
+  protected override IEnumerable<DynamicVar> CanonicalVars =>
+  [
     new EnergyVar(1)
-  };
+  ];
 
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips => new[]
-    {
+  protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+  [
     HoverTipFactory.ForEnergy(this)
-  };
+  ];
 
-    [SavedProperty]
-    public bool DiscardedThisTurn { get; set; }
+  [SavedProperty]
+  public bool DiscardedThisTurn { get; set; }
 
-    public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+  public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+  {
+    if (player == Owner)
     {
-        if (player == Owner)
-        {
-            DiscardedThisTurn = false;
-            base.Status = RelicStatus.Active; // Glowing frame indicating it is ready to trigger
-        }
-        return Task.CompletedTask;
+      DiscardedThisTurn = false;
+      base.Status = RelicStatus.Active; // Glowing frame indicating it is ready to trigger
     }
+    return Task.CompletedTask;
+  }
 
-    public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
+  public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
+  {
+    if (Owner != null && card.Owner == Owner && Owner.Creature?.Side == Owner.Creature?.CombatState?.CurrentSide)
     {
-        if (Owner != null && card.Owner == Owner && Owner.Creature?.Side == Owner.Creature?.CombatState?.CurrentSide)
-        {
-            // Set to true synchronously to avoid race conditions with multiple discards on the same frame
-            if (!DiscardedThisTurn)
-            {
-                DiscardedThisTurn = true;
-                base.Status = RelicStatus.Normal; // Turn off glow
-                Flash();
-                await PlayerCmd.GainEnergy(base.DynamicVars[EnergyKey].BaseValue, Owner);
-            }
-        }
+      // Set to true synchronously to avoid race conditions with multiple discards on the same frame
+      if (!DiscardedThisTurn)
+      {
+        DiscardedThisTurn = true;
+        base.Status = RelicStatus.Normal; // Turn off glow
+        Flash();
+        await PlayerCmd.GainEnergy(base.DynamicVars[_energyKey].BaseValue, Owner);
+      }
     }
+  }
 
-    public override Task AfterCombatEnd(CombatRoom _)
-    {
-        base.Status = RelicStatus.Normal;
-        DiscardedThisTurn = false;
-        return Task.CompletedTask;
-    }
+  public override Task AfterCombatEnd(CombatRoom _)
+  {
+    base.Status = RelicStatus.Normal;
+    DiscardedThisTurn = false;
+    return Task.CompletedTask;
+  }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -25,51 +26,48 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 [RegisterCard(typeof(IroncladCardPool), FullPublicEntry = "STS2_BALANCEMOD_BUDDY_SLAM")]
 public sealed class BuddySlam : BalanceCardTemplate
 {
-    public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
+  public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new CalculationBaseVar(0m),
+  protected override IEnumerable<DynamicVar> CanonicalVars =>
+  [
+      new CalculationBaseVar(0m),
         new ExtraDamageVar(1m),
-        new CalculatedDamageVar(ValueProp.Move).WithMultiplier((CardModel card, Creature? _) => GetOtherPlayerMaxBlock(card))
-    ];
+        new CalculatedDamageVar(ValueProp.Move).WithMultiplier((card, _) => GetOtherPlayerMaxBlock(card))
+  ];
 
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-    [
-        HoverTipFactory.Static(StaticHoverTip.Block)
-    ];
+  protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+  [
+      HoverTipFactory.Static(StaticHoverTip.Block)
+  ];
 
-    public BuddySlam() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
+  public BuddySlam() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+  protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+  {
+    ArgumentNullException.ThrowIfNull(cardPlay.Target, nameof(cardPlay.Target));
+    await DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this, cardPlay).Targeting(cardPlay.Target)
+        .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
+        .Execute(choiceContext);
+  }
+
+  protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
+
+  private static decimal GetOtherPlayerMaxBlock(CardModel card)
+  {
+    if (card.CombatState == null)
+      return 0m;
+
+    decimal maxBlock = 0m;
+    foreach (Player player in card.CombatState.Players)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target, nameof(cardPlay.Target));
-        await DamageCmd.Attack(DynamicVars.CalculatedDamage).FromCard(this, cardPlay).Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
-            .Execute(choiceContext);
-    }
-
-    protected override void OnUpgrade()
-    {
-        EnergyCost.UpgradeBy(-1);
-    }
-
-    private static decimal GetOtherPlayerMaxBlock(CardModel card)
-    {
-        if (card.CombatState == null)
-            return 0m;
-
-        decimal maxBlock = 0m;
-        foreach (var player in card.CombatState.Players)
+      if (player != card.Owner && player.Creature != null)
+      {
+        if (player.Creature.Block > maxBlock)
         {
-            if (player != card.Owner && player.Creature != null)
-            {
-                if (player.Creature.Block > maxBlock)
-                {
-                    maxBlock = player.Creature.Block;
-                }
-            }
+          maxBlock = player.Creature.Block;
         }
-        return maxBlock;
+      }
     }
+    return maxBlock;
+  }
 }

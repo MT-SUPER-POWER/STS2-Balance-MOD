@@ -23,85 +23,85 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 [RegisterMonster]
 public sealed class Bear : BalanceMonsterTemplate
 {
-    public override MonsterAssetProfile AssetProfile => new(
-      ModAssetPaths.Resource("monsters", "bear", "bear.tscn"));
+  public override MonsterAssetProfile AssetProfile => new(
+    ModAssetPaths.Resource("monsters", "bear", "bear.tscn"));
 
-    public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 40, 38);
-    public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 44, 42);
+  public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 40, 38);
+  public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 44, 42);
 
-    private int MaulDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 20, 18);
-    private int LungeDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 10, 9);
-    private const int LungeBlock = 9;
-    private const int BearHugDexterity = -2;
+  private static int MaulDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 20, 18);
+  private static int LungeDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 10, 9);
+  private const int LungeBlock = 9;
+  private const int BearHugDexterity = -2;
 
-    private const string MAUL = "MAUL";
-    private const string BEAR_HUG = "BEAR_HUG";
-    private const string LUNGE = "LUNGE";
-    private const string AttackHitSfx = "blunt_attack.mp3";
-    protected override string AttackSfx => "event:/sfx/enemy/enemy_attacks/gremlin_merc/sneaky_gremlin_attack";
+  private const string MAUL = "MAUL";
+  private const string BEAR_HUG = "BEAR_HUG";
+  private const string LUNGE = "LUNGE";
+  private const string AttackHitSfx = "blunt_attack.mp3";
+  protected override string AttackSfx => "event:/sfx/enemy/enemy_attacks/gremlin_merc/sneaky_gremlin_attack";
 
-    protected override MonsterMoveStateMachine GenerateMoveStateMachine()
+  protected override MonsterMoveStateMachine GenerateMoveStateMachine()
+  {
+    var bearHugState = new MoveState(BEAR_HUG, BearHug, [new DebuffIntent()]);
+    var maulState = new MoveState(MAUL, Maul, [new SingleAttackIntent(MaulDamage)]);
+    var lungeState = new MoveState(LUNGE, Lunge, [new SingleAttackIntent(LungeDamage), new DefendIntent()]);
+
+    bearHugState.FollowUpState = lungeState;
+    lungeState.FollowUpState = maulState;
+    maulState.FollowUpState = lungeState;
+
+    return new MonsterMoveStateMachine([bearHugState, maulState, lungeState], bearHugState);
+  }
+
+  private async Task BearHug(IReadOnlyList<Creature> targets)
+  {
+    await FastAttackAnimation.Play(Creature);
+    SfxCmd.Play(AttackSfx);
+
+    foreach (Creature? target in targets.Where(t => t.IsAlive))
     {
-        var bearHugState = new MoveState(BEAR_HUG, BearHug, new AbstractIntent[] { new DebuffIntent() });
-        var maulState = new MoveState(MAUL, Maul, new AbstractIntent[] { new SingleAttackIntent(MaulDamage) });
-        var lungeState = new MoveState(LUNGE, Lunge, new AbstractIntent[] { new SingleAttackIntent(LungeDamage), new DefendIntent() });
-
-        bearHugState.FollowUpState = lungeState;
-        lungeState.FollowUpState = maulState;
-        maulState.FollowUpState = lungeState;
-
-        return new MonsterMoveStateMachine([bearHugState, maulState, lungeState], bearHugState);
+      await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(), target, BearHugDexterity, Creature, null);
     }
+  }
 
-    private async Task BearHug(IReadOnlyList<Creature> targets)
-    {
-        await FastAttackAnimation.Play(Creature);
-        SfxCmd.Play(AttackSfx);
+  private async Task Maul(IReadOnlyList<Creature> targets)
+  {
+    await DamageCmd.Attack(MaulDamage)
+        .FromMonster(this)
+        .WithAttackerAnim("Attack", 0.4f)
+        .WithHitFx("vfx/vfx_attack_blunt", null, AttackHitSfx)
+        .Execute(null);
+  }
 
-        foreach (var target in targets.Where(t => t.IsAlive))
-        {
-            await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(), target, BearHugDexterity, Creature, null);
-        }
-    }
+  private async Task Lunge(IReadOnlyList<Creature> targets)
+  {
+    await FastAttackAnimation.Play(Creature);
 
-    private async Task Maul(IReadOnlyList<Creature> targets)
-    {
-        await DamageCmd.Attack(MaulDamage)
-            .FromMonster(this)
-            .WithAttackerAnim("Attack", 0.4f)
-            .WithHitFx("vfx/vfx_attack_blunt", null, AttackHitSfx)
-            .Execute(null);
-    }
+    await DamageCmd.Attack(LungeDamage)
+        .FromMonster(this)
+        .WithHitFx("vfx/vfx_attack_slash", null, AttackHitSfx)
+        .Execute(null);
 
-    private async Task Lunge(IReadOnlyList<Creature> targets)
-    {
-        await FastAttackAnimation.Play(Creature);
+    await CreatureCmd.GainBlock(Creature, LungeBlock, ValueProp.Move, null);
+  }
 
-        await DamageCmd.Attack(LungeDamage)
-            .FromMonster(this)
-            .WithHitFx("vfx/vfx_attack_slash", null, AttackHitSfx)
-            .Execute(null);
+  public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+  {
+    var idle = new AnimState("Idle", true);
+    var attack = new AnimState("Attack");
+    var hit = new AnimState("Hit");
 
-        await CreatureCmd.GainBlock(Creature, LungeBlock, ValueProp.Move, null);
-    }
+    attack.NextState = idle;
+    hit.NextState = idle;
 
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
-    {
-        var idle = new AnimState("Idle", true);
-        var attack = new AnimState("Attack");
-        var hit = new AnimState("Hit");
+    var animator = new CreatureAnimator(idle, controller);
+    animator.AddAnyState("Attack", attack);
+    animator.AddAnyState(BEAR_HUG, attack);
+    animator.AddAnyState("Maul", attack);
+    animator.AddAnyState(MAUL, attack);
+    animator.AddAnyState(LUNGE, attack);
+    animator.AddAnyState("Hit", hit);
 
-        attack.NextState = idle;
-        hit.NextState = idle;
-
-        var animator = new CreatureAnimator(idle, controller);
-        animator.AddAnyState("Attack", attack);
-        animator.AddAnyState(BEAR_HUG, attack);
-        animator.AddAnyState("Maul", attack);
-        animator.AddAnyState(MAUL, attack);
-        animator.AddAnyState(LUNGE, attack);
-        animator.AddAnyState("Hit", hit);
-
-        return animator;
-    }
+    return animator;
+  }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,54 +23,54 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 [HarmonyPatch(typeof(ToastyMittens), nameof(ToastyMittens.AfterPlayerTurnStart))]
 public static class ToastyMittensPatch
 {
-    [HarmonyPrefix]
-    public static bool Prefix(
-        ToastyMittens __instance,
-        PlayerChoiceContext choiceContext,
-        Player player,
-        ref Task __result)
+  [HarmonyPrefix]
+  public static bool Prefix(
+      ToastyMittens __instance,
+      PlayerChoiceContext choiceContext,
+      Player player,
+      ref Task __result)
+  {
+    if (player != __instance.Owner.Creature.Player)
     {
-        if (player != __instance.Owner.Creature.Player)
-        {
-            __result = Task.CompletedTask;
-            return false;
-        }
-
-        __result = ProcessToastyMittens(__instance, player, choiceContext);
-        return false;
+      __result = Task.CompletedTask;
+      return false;
     }
 
-    private static async Task ProcessToastyMittens(ToastyMittens relic, Player player, PlayerChoiceContext choiceContext)
+    __result = ProcessToastyMittens(__instance, player, choiceContext);
+    return false;
+  }
+
+  private static async Task ProcessToastyMittens(ToastyMittens relic, Player player, PlayerChoiceContext choiceContext)
+  {
+    IReadOnlyList<CardModel> handCards = PileType.Hand.GetPile(player).Cards;
+    if (handCards.Count == 0)
     {
-        IReadOnlyList<CardModel> handCards = PileType.Hand.GetPile(player).Cards;
-        if (handCards.Count == 0)
-        {
-            return;
-        }
-
-        var prefs = new CardSelectorPrefs(
-            CardSelectorPrefs.ExhaustSelectionPrompt,
-            0,
-            1);
-
-        IEnumerable<CardModel> selectedCards = await CardSelectCmd.FromHand(
-            choiceContext,
-            player,
-            prefs,
-            null,
-            relic);
-
-        CardModel? cardToExhaust = selectedCards.FirstOrDefault();
-        if (cardToExhaust != null)
-        {
-            relic.Flash();
-            await CardCmd.Exhaust(choiceContext, cardToExhaust);
-            await PowerCmd.Apply<StrengthPower>(
-                choiceContext,
-                player.Creature,
-                relic.DynamicVars.Strength.BaseValue,
-                player.Creature,
-                null);
-        }
+      return;
     }
+
+    var prefs = new CardSelectorPrefs(
+        CardSelectorPrefs.ExhaustSelectionPrompt,
+        0,
+        1);
+
+    IEnumerable<CardModel> selectedCards = await CardSelectCmd.FromHand(
+        choiceContext,
+        player,
+        prefs,
+        null,
+        relic);
+
+    CardModel? cardToExhaust = selectedCards.FirstOrDefault();
+    if (cardToExhaust != null)
+    {
+      relic.Flash();
+      await CardCmd.Exhaust(choiceContext, cardToExhaust);
+      await PowerCmd.Apply<StrengthPower>(
+          choiceContext,
+          player.Creature,
+          relic.DynamicVars.Strength.BaseValue,
+          player.Creature,
+          null);
+    }
+  }
 }

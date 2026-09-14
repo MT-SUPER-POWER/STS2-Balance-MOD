@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -12,14 +12,14 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 [HarmonyPatch(typeof(CardModel), "get_Rarity")]
 public static class AcrobaticsRarityPatch
 {
-    [HarmonyPrefix]
-    public static bool Prefix(CardModel __instance, ref CardRarity __result)
+  [HarmonyPrefix]
+  public static bool Prefix(CardModel __instance, ref CardRarity __result)
+  {
+    if (__instance is Acrobatics)
     {
-        if (__instance is Acrobatics)
-        {
-            __result = CardRarity.Common;
-            return false; // 跳过原 getter
-        }
-        return true;
+      __result = CardRarity.Common;
+      return false; // 跳过原 getter
     }
+    return true;
+  }
 }

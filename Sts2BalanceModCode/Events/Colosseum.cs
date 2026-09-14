@@ -22,94 +22,88 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 [RegisterActEvent(typeof(Glory))]
 public sealed class Colosseum : BalanceEventTemplate
 {
-    public override bool IsShared => true;
+  public override bool IsShared => true;
 
-    internal static bool NeedsReplayInitialization { get; set; }
+  internal static bool NeedsReplayInitialization { get; set; }
 
-    public override void OnRoomEnter()
+  public override void OnRoomEnter() => NeedsReplayInitialization = false;
+
+  public override bool IsAllowed(IRunState runState) => true;
+
+  protected override void SetInitialEventState(bool isPreFinished)
+  {
+    if (HasCompletedFirstFight())
     {
-        NeedsReplayInitialization = false;
+      SetEventState(PageDescription("POST_FIRST"), GeneratePostFirstOptions());
+      return;
     }
 
-    public override bool IsAllowed(IRunState runState) => true;
+    base.SetInitialEventState(isPreFinished);
+  }
 
-    protected override void SetInitialEventState(bool isPreFinished)
-    {
-        if (HasCompletedFirstFight())
-        {
-            SetEventState(PageDescription("POST_FIRST"), GeneratePostFirstOptions());
-            return;
-        }
+  protected override IReadOnlyList<EventOption> GenerateInitialOptions() => [Option(Fight)];
 
-        base.SetInitialEventState(isPreFinished);
-    }
+  private Task Fight()
+  {
+    ColosseumFirstEncounter encounter = ModelDb.Encounter<ColosseumFirstEncounter>();
+    // 先设定好战后页面，第一战胜利结算后恢复事件将呈现中场抉择
+    SetEventState(PageDescription("POST_FIRST"), GeneratePostFirstOptions());
+    EnterCombatWithoutExitingEvent(encounter, [], true);
+    return Task.CompletedTask;
+  }
 
-    protected override IReadOnlyList<EventOption> GenerateInitialOptions()
-    {
-        return [Option(Fight)];
-    }
+  public override Task Resume(AbstractRoom room)
+  {
+    SetEventState(PageDescription("POST_FIRST"), GeneratePostFirstOptions());
+    return Task.CompletedTask;
+  }
 
-    private Task Fight()
-    {
-        ColosseumFirstEncounter encounter = ModelDb.Encounter<ColosseumFirstEncounter>();
-        // 先设定好战后页面，第一战胜利结算后恢复事件将呈现中场抉择
-        SetEventState(PageDescription("POST_FIRST"), GeneratePostFirstOptions());
-        EnterCombatWithoutExitingEvent(encounter, [], true);
-        return Task.CompletedTask;
-    }
-
-    public override Task Resume(AbstractRoom room)
-    {
-        SetEventState(PageDescription("POST_FIRST"), GeneratePostFirstOptions());
-        return Task.CompletedTask;
-    }
-
-    private List<EventOption> GeneratePostFirstOptions()
-    {
-        return
-        [
-          Option(FightAgain, "POST_FIRST"),
+  private List<EventOption> GeneratePostFirstOptions()
+  {
+    return
+    [
+      Option(FightAgain, "POST_FIRST"),
           Option(Flee, "POST_FIRST"),
         ];
-    }
+  }
 
-    private Task FightAgain()
-    {
-        Player? owner = Owner;
-        if (owner == null)
-            return Task.CompletedTask;
+  private Task FightAgain()
+  {
+    Player? owner = Owner;
+    if (owner == null)
+      return Task.CompletedTask;
 
-        NeedsReplayInitialization = true;
+    NeedsReplayInitialization = true;
 
-        RelicModel? rareRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Rare)?.ToMutable();
-        RelicModel? uncommonRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Uncommon)?.ToMutable();
+    RelicModel? rareRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Rare)?.ToMutable();
+    RelicModel? uncommonRelic = RelicFactory.PullNextRelicFromFront(owner, RelicRarity.Uncommon)?.ToMutable();
 
-        List<Reward> rewards = [];
-        if (rareRelic != null)
-            rewards.Add(new RelicReward(rareRelic, owner));
-        if (uncommonRelic != null)
-            rewards.Add(new RelicReward(uncommonRelic, owner));
-        rewards.Add(new GoldReward(100, owner));
+    List<Reward> rewards = [];
+    if (rareRelic != null)
+      rewards.Add(new RelicReward(rareRelic, owner));
+    if (uncommonRelic != null)
+      rewards.Add(new RelicReward(uncommonRelic, owner));
+    rewards.Add(new GoldReward(100, owner));
 
-        ColosseumSecondEncounter secondEncounter = ModelDb.Encounter<ColosseumSecondEncounter>();
-        EnterCombatWithoutExitingEvent(secondEncounter, rewards, false);
-        return Task.CompletedTask;
-    }
+    ColosseumSecondEncounter secondEncounter = ModelDb.Encounter<ColosseumSecondEncounter>();
+    EnterCombatWithoutExitingEvent(secondEncounter, rewards, false);
+    return Task.CompletedTask;
+  }
 
-    private Task Flee()
-    {
-        SetEventFinished(PageDescription("FLEE"));
-        return Task.CompletedTask;
-    }
+  private Task Flee()
+  {
+    SetEventFinished(PageDescription("FLEE"));
+    return Task.CompletedTask;
+  }
 
-    private bool HasCompletedFirstFight()
-    {
-        IReadOnlyList<MapPointRoomHistoryEntry>? rooms = Owner?.RunState.CurrentMapPointHistoryEntry?.Rooms;
-        if (rooms == null)
-            return false;
+  private bool HasCompletedFirstFight()
+  {
+    IReadOnlyList<MapPointRoomHistoryEntry>? rooms = Owner?.RunState.CurrentMapPointHistoryEntry?.Rooms;
+    if (rooms == null)
+      return false;
 
-        ModelId firstFightEncounterId = ModelDb.Encounter<ColosseumFirstEncounter>().Id;
-        return rooms.Any(room =>
-          room.ModelId == firstFightEncounterId && room.TurnsTaken > 0);
-    }
+    ModelId firstFightEncounterId = ModelDb.Encounter<ColosseumFirstEncounter>().Id;
+    return rooms.Any(room =>
+      room.ModelId == firstFightEncounterId && room.TurnsTaken > 0);
+  }
 }

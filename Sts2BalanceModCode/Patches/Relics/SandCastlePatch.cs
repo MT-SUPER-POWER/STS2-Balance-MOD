@@ -5,6 +5,7 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
@@ -22,42 +23,42 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 [HarmonyPatch(typeof(SandCastle), "AfterObtained")]
 public static class SandCastlePatch
 {
-    [HarmonyPrefix]
-    public static bool Prefix(SandCastle __instance, ref Task __result)
+  [HarmonyPrefix]
+  public static bool Prefix(SandCastle __instance, ref Task __result)
+  {
+    __result = AfterObtainedImpl(__instance);
+    return false;
+  }
+
+  private static async Task AfterObtainedImpl(SandCastle instance)
+  {
+    Player player = instance.Owner;
+    if (player == null)
+      return;
+
+    // 1. 玩家自选 3 张可升级牌进行升级
+    var chosenCards = (await CardSelectCmd.FromDeckForUpgrade(
+        player: player,
+        prefs: new CardSelectorPrefs(CardSelectorPrefs.UpgradeSelectionPrompt, 3)
+    )).ToList();
+
+    foreach (CardModel? card in chosenCards)
     {
-        __result = AfterObtainedImpl(__instance);
-        return false;
+      CardCmd.Upgrade(card);
     }
 
-    private static async Task AfterObtainedImpl(SandCastle instance)
+    // 2. 从牌组中剩余的可升级牌中随机挑选 3 张升级
+    var remainingUpgradable = PileType.Deck.GetPile(player).Cards
+        .Where(c => c?.IsUpgradable ?? false)
+        .ToList()
+        .StableShuffle(player.RunState.Rng.Niche)
+        .Take(3)
+        .ToList();
+
+    NRun.Instance?.GlobalUi.GridCardPreviewContainer.ForceMaxColumnsUntilEmpty(3);
+    foreach (CardModel? card in remainingUpgradable)
     {
-        var player = instance.Owner;
-        if (player == null)
-            return;
-
-        // 1. 玩家自选 3 张可升级牌进行升级
-        var chosenCards = (await CardSelectCmd.FromDeckForUpgrade(
-            player: player,
-            prefs: new CardSelectorPrefs(CardSelectorPrefs.UpgradeSelectionPrompt, 3)
-        )).ToList();
-
-        foreach (var card in chosenCards)
-        {
-            CardCmd.Upgrade(card);
-        }
-
-        // 2. 从牌组中剩余的可升级牌中随机挑选 3 张升级
-        var remainingUpgradable = PileType.Deck.GetPile(player).Cards
-            .Where(c => c?.IsUpgradable ?? false)
-            .ToList()
-            .StableShuffle(player.RunState.Rng.Niche)
-            .Take(3)
-            .ToList();
-
-        NRun.Instance?.GlobalUi.GridCardPreviewContainer.ForceMaxColumnsUntilEmpty(3);
-        foreach (var card in remainingUpgradable)
-        {
-            CardCmd.Upgrade(card, CardPreviewStyle.GridLayout);
-        }
+      CardCmd.Upgrade(card, CardPreviewStyle.GridLayout);
     }
+  }
 }

@@ -17,43 +17,41 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Encounters;
 [RegisterGlobalEncounter]
 public sealed class MindBloomSlimeBoss : BalanceEncounterTemplate
 {
-    private MindBloomBossEnhancementPlan? _enhancementPlan;
+  private MindBloomBossEnhancementPlan? _enhancementPlan;
 
-    public override RoomType RoomType => RoomType.Monster;
+  public override RoomType RoomType => RoomType.Monster;
 
-    public override float GetCameraScaling() => 0.85f;
+  public override float GetCameraScaling() => 0.85f;
 
-    public override Vector2 GetCameraOffset() => Vector2.Down * 40f;
+  public override Vector2 GetCameraOffset() => Vector2.Down * 40f;
 
-    public override EncounterAssetProfile AssetProfile => new(
-      EncounterScenePath: ModAssetPaths.Resource("scenes", "actsfromthepast-mind_bloom_slime_boss.tscn"),
-      ExtraAssetPaths: [ModAssetPaths.PowerIcon("SplitPower.png")]);
+  public override EncounterAssetProfile AssetProfile => new(
+    EncounterScenePath: ModAssetPaths.Resource("scenes", "actsfromthepast-mind_bloom_slime_boss.tscn"),
+    ExtraAssetPaths: [ModAssetPaths.PowerIcon("SplitPower.png")]);
 
-    public override IReadOnlyList<string> Slots =>
-    [
-      "spike_med_1", "spike_large", "spike_med_2",
+  public override IReadOnlyList<string> Slots =>
+  [
+    "spike_med_1", "spike_large", "spike_med_2",
     "acid_med_1", "slime_boss", "acid_large", "acid_med_2",
   ];
 
-    public override IEnumerable<MonsterModel> AllPossibleMonsters =>
-    [
-      ModelDb.Monster<SlimeBoss>(),
+  public override IEnumerable<MonsterModel> AllPossibleMonsters =>
+  [
+    ModelDb.Monster<SlimeBoss>(),
     ModelDb.Monster<SpikeSlimeLarge>(),
     ModelDb.Monster<SpikeSlimeMedium>(),
     ModelDb.Monster<AcidSlimeLarge>(),
     ModelDb.Monster<AcidSlimeMedium>(),
   ];
 
-    internal void SetEnhancementPlan(MindBloomBossEnhancementPlan plan)
-    {
-        // NOTE: EventModel 要求传入 canonical 遭遇，配置字段会在进入战斗时随 ToMutable 一起复制。
-        _enhancementPlan = plan;
-    }
+  internal void SetEnhancementPlan(MindBloomBossEnhancementPlan plan) =>
+    // NOTE: EventModel 要求传入 canonical 遭遇，配置字段会在进入战斗时随 ToMutable 一起复制。
+    _enhancementPlan = plan;
 
-    protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters()
-    {
-        var boss = (SlimeBoss)ModelDb.Monster<SlimeBoss>().ToMutable();
-        boss.MindBloomEnhancementPlan = _enhancementPlan;
-        return [(boss, "slime_boss")];
-    }
+  protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters()
+  {
+    var boss = (SlimeBoss)ModelDb.Monster<SlimeBoss>().ToMutable();
+    boss.MindBloomEnhancementPlan = _enhancementPlan;
+    return [(boss, "slime_boss")];
+  }
 }

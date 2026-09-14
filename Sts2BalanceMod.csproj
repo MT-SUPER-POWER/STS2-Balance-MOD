@@ -113,8 +113,7 @@
 
     </Target>
 
-    <!-- RitsuLib's NuGet target deploys its canonical mod_manifest.json. Remove the legacy filename left by earlier
-         development installs, otherwise the game discovers the same framework Mod ID twice. -->
+    <!-- RitsuLib's NuGet target deploys its canonical mod_manifest.json. Remove the legacy filename left by earlier development installs, otherwise the game discovers the same framework Mod ID twice. -->
     <Target Name="RemoveLegacyRitsuLibManifest" AfterTargets="CopyRitsuLibPackageModFiles"
             Condition="'$(RitsuLibDeployDir)' != ''">
         <Delete Files="$(RitsuLibDeployDir)STS2-RitsuLib.json" />

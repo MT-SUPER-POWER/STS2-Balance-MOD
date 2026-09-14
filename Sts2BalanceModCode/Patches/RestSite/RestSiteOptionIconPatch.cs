@@ -19,15 +19,15 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.RestSite;
 [HarmonyPatch(typeof(RestSiteOption), nameof(RestSiteOption.Icon), MethodType.Getter)]
 internal static class RestSiteOptionIconPatch
 {
-    [HarmonyPrefix]
-    private static bool Prefix(RestSiteOption __instance, ref Texture2D __result)
+  [HarmonyPrefix]
+  private static bool Prefix(RestSiteOption __instance, ref Texture2D __result)
+  {
+    if (__instance is BalanceRestSiteOption balanceOption)
     {
-        if (__instance is BalanceRestSiteOption balanceOption)
-        {
-            __result = PreloadManager.Cache.GetTexture2D(balanceOption.CustomIconPath);
-            return false;
-        }
-
-        return true;
+      __result = PreloadManager.Cache.GetTexture2D(balanceOption.CustomIconPath);
+      return false;
     }
+
+    return true;
+  }
 }

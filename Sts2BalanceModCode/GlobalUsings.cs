@@ -1,4 +1,4 @@
-﻿// RitsuLib migration conventions shared by content models.
+// RitsuLib migration conventions shared by content models.
 global using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 global using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
 global using STS2RitsuLib.Content;

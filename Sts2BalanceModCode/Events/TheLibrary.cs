@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -26,90 +27,90 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 [RegisterSharedEvent]
 public sealed class TheLibrary : BalanceEventTemplate
 {
-    public override bool IsShared => false;
-    private const int CardChoiceCount = 20;
-    private const decimal HealPercent = 0.33M;
+  public override bool IsShared => false;
+  private const int CardChoiceCount = 20;
+  private const decimal HealPercent = 0.33M;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-      new HealVar(0M),
+  protected override IEnumerable<DynamicVar> CanonicalVars =>
+  [
+    new HealVar(0M),
     new IntVar("CardChoiceCount", CardChoiceCount),
   ];
 
-    public override void CalculateVars()
-    {
-        var owner = Owner;
-        if (owner?.Creature == null)
-            return;
+  public override void CalculateVars()
+  {
+    Player? owner = Owner;
+    if (owner?.Creature == null)
+      return;
 
-        DynamicVars.Heal.BaseValue = Math.Floor(owner.Creature.MaxHp * HealPercent);
-    }
+    DynamicVars.Heal.BaseValue = Math.Floor(owner.Creature.MaxHp * HealPercent);
+  }
 
-    protected override IReadOnlyList<EventOption> GenerateInitialOptions()
-    {
-        return
-        [
-          Option(Read),
+  protected override IReadOnlyList<EventOption> GenerateInitialOptions()
+  {
+    return
+    [
+      Option(Read),
       Option(Sleep),
     ];
-    }
+  }
 
-    private async Task Read()
+  private async Task Read()
+  {
+    Player? owner = Owner;
+    if (owner == null)
     {
-        var owner = Owner;
-        if (owner == null)
-        {
-            SetEventFinished(PageDescription("SLEEP"));
-            return;
-        }
-
-        var charPools = ModelDb.AllCardPools
-          .Where(p => p is not ColorlessCardPool and not CurseCardPool);
-
-        var cardResults = CardFactory.CreateForReward(
-            owner,
-            CardChoiceCount,
-            CardCreationOptions.ForNonCombatWithDefaultOdds(charPools))
-          .ToList();
-
-        var prefs = new CardSelectorPrefs(
-          L10NLookup($"{Id.Entry}.pages.READ.selectionScreenPrompt"), 1)
-        {
-            Cancelable = false,
-        };
-
-        var selectedCard = (await CardSelectCmd.FromSimpleGridForRewards(
-          new BlockingPlayerChoiceContext(),
-          cardResults,
-          owner,
-          prefs)).FirstOrDefault();
-
-        if (selectedCard != null)
-        {
-            CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(selectedCard, PileType.Deck));
-        }
-
-        var bookIndex = Rng.NextInt(3);
-        var bookText = bookIndex switch
-        {
-            0 => L10NLookup($"{Id.Entry}.pages.READ.description_1"),
-            1 => L10NLookup($"{Id.Entry}.pages.READ.description_2"),
-            _ => L10NLookup($"{Id.Entry}.pages.READ.description_3"),
-        };
-
-        SetEventFinished(bookText);
+      SetEventFinished(PageDescription("SLEEP"));
+      return;
     }
 
-    private async Task Sleep()
+    IEnumerable<CardPoolModel> charPools = ModelDb.AllCardPools
+      .Where(p => p is not ColorlessCardPool and not CurseCardPool);
+
+    var cardResults = CardFactory.CreateForReward(
+        owner,
+        CardChoiceCount,
+        CardCreationOptions.ForNonCombatWithDefaultOdds(charPools))
+      .ToList();
+
+    var prefs = new CardSelectorPrefs(
+      L10NLookup($"{Id.Entry}.pages.READ.selectionScreenPrompt"), 1)
     {
-        var owner = Owner;
-        if (owner?.Creature == null)
-        {
-            SetEventFinished(PageDescription("SLEEP"));
-            return;
-        }
+      Cancelable = false,
+    };
 
-        await CreatureCmd.Heal(owner.Creature, DynamicVars.Heal.BaseValue);
-        SetEventFinished(PageDescription("SLEEP"));
+    CardModel? selectedCard = (await CardSelectCmd.FromSimpleGridForRewards(
+      new BlockingPlayerChoiceContext(),
+      cardResults,
+      owner,
+      prefs)).FirstOrDefault();
+
+    if (selectedCard != null)
+    {
+      CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(selectedCard, PileType.Deck));
     }
+
+    int bookIndex = Rng.NextInt(3);
+    LocString bookText = bookIndex switch
+    {
+      0 => L10NLookup($"{Id.Entry}.pages.READ.description_1"),
+      1 => L10NLookup($"{Id.Entry}.pages.READ.description_2"),
+      _ => L10NLookup($"{Id.Entry}.pages.READ.description_3"),
+    };
+
+    SetEventFinished(bookText);
+  }
+
+  private async Task Sleep()
+  {
+    Player? owner = Owner;
+    if (owner?.Creature == null)
+    {
+      SetEventFinished(PageDescription("SLEEP"));
+      return;
+    }
+
+    await CreatureCmd.Heal(owner.Creature, DynamicVars.Heal.BaseValue);
+    SetEventFinished(PageDescription("SLEEP"));
+  }
 }

@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -17,38 +17,38 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 public sealed class SplitPower() : BalancePowerTemplate(PowerType.Buff, PowerStackType.Single)
 {
 
-    public override bool ShouldStopCombatFromEnding() => true;
+  public override bool ShouldStopCombatFromEnding() => true;
 
-    public override Task AfterDamageReceived(
-      PlayerChoiceContext choiceContext,
-      Creature target,
-      DamageResult result,
-      ValueProp props,
-      Creature? dealer,
-      CardModel? cardSource)
+  public override Task AfterDamageReceived(
+    PlayerChoiceContext choiceContext,
+    Creature target,
+    DamageResult result,
+    ValueProp props,
+    Creature? dealer,
+    CardModel? cardSource)
+  {
+    if (target != Owner || result.UnblockedDamage <= 0 || target.CurrentHp > target.MaxHp / 2)
+      return Task.CompletedTask;
+
+    switch (Owner.Monster)
     {
-        if (target != Owner || result.UnblockedDamage <= 0 || target.CurrentHp > target.MaxHp / 2)
-            return Task.CompletedTask;
-
-        switch (Owner.Monster)
-        {
-            case AcidSlimeLarge { SplitTriggered: false } acidSlime:
-                Flash();
-                acidSlime.SplitTriggered = true;
-                acidSlime.SetMoveImmediate(acidSlime.SplitState, true);
-                break;
-            case SpikeSlimeLarge { SplitTriggered: false } spikeSlime:
-                Flash();
-                spikeSlime.SplitTriggered = true;
-                spikeSlime.SetMoveImmediate(spikeSlime.SplitState, true);
-                break;
-            case SlimeBoss { SplitTriggered: false } slimeBoss:
-                Flash();
-                slimeBoss.SplitTriggered = true;
-                slimeBoss.SetMoveImmediate(slimeBoss.SplitState, true);
-                break;
-        }
-
-        return Task.CompletedTask;
+      case AcidSlimeLarge { SplitTriggered: false } acidSlime:
+        Flash();
+        acidSlime.SplitTriggered = true;
+        acidSlime.SetMoveImmediate(acidSlime.SplitState, true);
+        break;
+      case SpikeSlimeLarge { SplitTriggered: false } spikeSlime:
+        Flash();
+        spikeSlime.SplitTriggered = true;
+        spikeSlime.SetMoveImmediate(spikeSlime.SplitState, true);
+        break;
+      case SlimeBoss { SplitTriggered: false } slimeBoss:
+        Flash();
+        slimeBoss.SplitTriggered = true;
+        slimeBoss.SetMoveImmediate(slimeBoss.SplitState, true);
+        break;
     }
+
+    return Task.CompletedTask;
+  }
 }

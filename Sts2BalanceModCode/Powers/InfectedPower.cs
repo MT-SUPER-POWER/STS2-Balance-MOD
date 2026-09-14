@@ -22,20 +22,20 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 [RegisterPower]
 public sealed class InfectedPower() : BalancePowerTemplate(PowerType.Debuff, PowerStackType.Counter)
 {
-    public const int InfectionPerHit = 3;
+  public const int InfectionPerHit = 3;
 
 
-    public override async Task BeforeSideTurnEnd(
-      PlayerChoiceContext choiceContext,
-      CombatSide side,
-      IEnumerable<Creature> participants)
+  public override async Task BeforeSideTurnEnd(
+    PlayerChoiceContext choiceContext,
+    CombatSide side,
+    IEnumerable<Creature> participants)
+  {
+    if (side != Owner.Side || !participants.Contains(Owner) || Amount <= 0)
     {
-        if (side != Owner.Side || !participants.Contains(Owner) || Amount <= 0)
-        {
-            return;
-        }
-
-        Flash();
-        await CreatureCmd.Damage(choiceContext, Owner, Amount, ValueProp.Unpowered, null, null);
+      return;
     }
+
+    Flash();
+    await CreatureCmd.Damage(choiceContext, Owner, Amount, ValueProp.Unpowered, null, null);
+  }
 }

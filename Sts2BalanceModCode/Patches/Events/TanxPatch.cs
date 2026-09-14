@@ -23,61 +23,61 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Events;
 [HarmonyPatch(typeof(Tanx))]
 public static class TanxPatch
 {
-    private static readonly MethodInfo? RelicOptionMethod = AccessTools.Method(
-        typeof(AncientEventModel),
-        "RelicOption",
-        [typeof(RelicModel), typeof(string), typeof(string)]
-    );
+  private static readonly MethodInfo? RelicOptionMethod = AccessTools.Method(
+      typeof(AncientEventModel),
+      "RelicOption",
+      [typeof(RelicModel), typeof(string), typeof(string)]
+  );
 
-    private static readonly PropertyInfo? BasePoolProp = AccessTools.Property(typeof(Tanx), "BaseOptionPool");
-    private static readonly PropertyInfo? TriOptionProp = AccessTools.Property(typeof(Tanx), "TriBoomerangOption");
+  private static readonly PropertyInfo? BasePoolProp = AccessTools.Property(typeof(Tanx), "BaseOptionPool");
+  private static readonly PropertyInfo? TriOptionProp = AccessTools.Property(typeof(Tanx), "TriBoomerangOption");
 
-    [HarmonyPatch("AllPossibleOptions", MethodType.Getter)]
-    [HarmonyPostfix]
-    public static void AllPossibleOptionsPostfix(Tanx __instance, ref IEnumerable<EventOption> __result)
+  [HarmonyPatch("AllPossibleOptions", MethodType.Getter)]
+  [HarmonyPostfix]
+  public static void AllPossibleOptionsPostfix(Tanx __instance, ref IEnumerable<EventOption> __result)
+  {
+    if (!BalanceModSettings.DelicateDollEnabled)
+      return;
+
+    RelicModel? dollModel = ModelDb.Relic<DelicateDoll>()?.ToMutable();
+    if (dollModel == null || RelicOptionMethod == null)
+      return;
+
+    if (RelicOptionMethod.Invoke(__instance, [dollModel, "INITIAL", null]) is EventOption dollOption)
     {
-        if (!BalanceModSettings.DelicateDollEnabled)
-            return;
+      __result = __result.Append(dollOption);
+    }
+  }
 
-        var dollModel = ModelDb.Relic<DelicateDoll>()?.ToMutable();
-        if (dollModel == null || RelicOptionMethod == null)
-            return;
+  [HarmonyPatch("GenerateInitialOptions")]
+  [HarmonyPrefix]
+  public static bool GenerateInitialOptionsPrefix(Tanx __instance, ref IReadOnlyList<EventOption> __result)
+  {
+    if (!BalanceModSettings.DelicateDollEnabled)
+      return true;
 
-        if (RelicOptionMethod.Invoke(__instance, [dollModel, "INITIAL", null]) is EventOption dollOption)
-        {
-            __result = __result.Append(dollOption);
-        }
+    RelicModel? dollModel = ModelDb.Relic<DelicateDoll>()?.ToMutable();
+    if (dollModel == null || RelicOptionMethod == null || BasePoolProp == null)
+      return true;
+
+    if (RelicOptionMethod.Invoke(__instance, [dollModel, "INITIAL", null]) is not EventOption dollOption)
+      return true;
+
+    if (BasePoolProp.GetValue(__instance) is not IEnumerable<EventOption> basePool)
+      return true;
+
+    var list = basePool.ToList();
+    list.Add(dollOption);
+
+    if (__instance.Owner != null && __instance.Owner.Deck.Cards.Count(c => ModelDb.Enchantment<Instinct>().CanEnchant(c)) >= 3)
+    {
+      if (TriOptionProp?.GetValue(__instance) is EventOption triOption)
+      {
+        list.Add(triOption);
+      }
     }
 
-    [HarmonyPatch("GenerateInitialOptions")]
-    [HarmonyPrefix]
-    public static bool GenerateInitialOptionsPrefix(Tanx __instance, ref IReadOnlyList<EventOption> __result)
-    {
-        if (!BalanceModSettings.DelicateDollEnabled)
-            return true;
-
-        var dollModel = ModelDb.Relic<DelicateDoll>()?.ToMutable();
-        if (dollModel == null || RelicOptionMethod == null || BasePoolProp == null)
-            return true;
-
-        if (RelicOptionMethod.Invoke(__instance, [dollModel, "INITIAL", null]) is not EventOption dollOption)
-            return true;
-
-        if (BasePoolProp.GetValue(__instance) is not IEnumerable<EventOption> basePool)
-            return true;
-
-        List<EventOption> list = basePool.ToList();
-        list.Add(dollOption);
-
-        if (__instance.Owner != null && __instance.Owner.Deck.Cards.Count(c => ModelDb.Enchantment<Instinct>().CanEnchant(c)) >= 3)
-        {
-            if (TriOptionProp?.GetValue(__instance) is EventOption triOption)
-            {
-                list.Add(triOption);
-            }
-        }
-
-        __result = list.UnstableShuffle(__instance.Rng).Take(3).ToList();
-        return false;
-    }
+    __result = list.UnstableShuffle(__instance.Rng).Take(3).ToList();
+    return false;
+  }
 }

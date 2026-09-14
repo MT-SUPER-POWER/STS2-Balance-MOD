@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -17,19 +17,19 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 [RegisterCard(typeof(DefectCardPool), FullPublicEntry = "STS2_BALANCEMOD_ELECTRODYNAMICS")]
 public sealed class Electrodynamics : BalanceCardTemplate
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(2)];
+  protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(2)];
 
-    public Electrodynamics() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self) { }
+  public Electrodynamics() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self) { }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "PowerUp", Owner.Character.PowerUpAnimDelay);
+  protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+  {
+    await CreatureCmd.TriggerAnim(Owner.Creature, "PowerUp", Owner.Character.PowerUpAnimDelay);
 
-        for (int i = 0; i < DynamicVars.Cards.IntValue; i++)
-            await OrbCmd.Channel<LightningOrb>(choiceContext, Owner);
+    for (int i = 0; i < DynamicVars.Cards.IntValue; i++)
+      await OrbCmd.Channel<LightningOrb>(choiceContext, Owner);
 
-        await PowerCmd.Apply<ElectrodynamicsPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
-    }
+    await PowerCmd.Apply<ElectrodynamicsPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
+  }
 
-    protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(1);
+  protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(1);
 }

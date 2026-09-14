@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,52 +21,52 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 [RegisterCard(typeof(SilentCardPool), FullPublicEntry = "STS2_BALANCEMOD_EVISCERATE")]
 public sealed class Eviscerate : BalanceCardTemplate
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7M, ValueProp.Move)];
+  protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7M, ValueProp.Move)];
 
-    public Eviscerate() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
+  public Eviscerate() : base(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+  protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+  {
+    ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
+
+    await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+        .WithHitCount(3)
+        .FromCard(this, cardPlay)
+        .Targeting(cardPlay.Target)
+        .WithHitFx("vfx/vfx_attack_slash")
+        .Execute(choiceContext);
+  }
+
+  public override Task AfterCardEnteredCombat(CardModel card)
+  {
+    if (card != this || IsClone)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .WithHitCount(3)
-            .FromCard(this, cardPlay)
-            .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(choiceContext);
+      return Task.CompletedTask;
     }
+    int count = CombatManager.Instance.History.Entries
+        .OfType<CardDiscardedEntry>()
+        .Count(e => e.Card.Owner == Owner && e.HappenedThisTurn(CombatState));
+    ReduceCostBy(count);
+    return Task.CompletedTask;
+  }
 
-    public override Task AfterCardEnteredCombat(CardModel card)
+  public override Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
+  {
+    if (card.Owner != Owner)
     {
-        if (card != this || IsClone)
-        {
-            return Task.CompletedTask;
-        }
-        int count = CombatManager.Instance.History.Entries
-            .OfType<CardDiscardedEntry>()
-            .Count(e => e.Card.Owner == Owner && e.HappenedThisTurn(CombatState));
-        ReduceCostBy(count);
-        return Task.CompletedTask;
+      return Task.CompletedTask;
     }
+    ReduceCostBy(1);
+    return Task.CompletedTask;
+  }
 
-    public override Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
+  private void ReduceCostBy(int amount)
+  {
+    if (amount > 0)
     {
-        if (card.Owner != Owner)
-        {
-            return Task.CompletedTask;
-        }
-        ReduceCostBy(1);
-        return Task.CompletedTask;
+      EnergyCost.AddThisTurn(-amount);
     }
+  }
 
-    private void ReduceCostBy(int amount)
-    {
-        if (amount > 0)
-        {
-            EnergyCost.AddThisTurn(-amount);
-        }
-    }
-
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(2M);
+  protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(2M);
 }

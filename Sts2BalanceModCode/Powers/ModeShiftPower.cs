@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -16,34 +16,34 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 [RegisterPower]
 public sealed class ModeShiftPower() : BalancePowerTemplate(PowerType.Buff, PowerStackType.Counter)
 {
-    public override bool ShouldScaleInMultiplayer => true;
+  public override bool ShouldScaleInMultiplayer => true;
 
 
-    public override async Task AfterDamageReceived(
-      PlayerChoiceContext choiceContext,
-      Creature target,
-      DamageResult result,
-      ValueProp props,
-      Creature? dealer,
-      CardModel? cardSource)
-    {
-        if (target != Owner || result.UnblockedDamage <= 0 || Owner.IsDead)
-            return;
+  public override async Task AfterDamageReceived(
+    PlayerChoiceContext choiceContext,
+    Creature target,
+    DamageResult result,
+    ValueProp props,
+    Creature? dealer,
+    CardModel? cardSource)
+  {
+    if (target != Owner || result.UnblockedDamage <= 0 || Owner.IsDead)
+      return;
 
-        if (Owner.Monster is not Guardian { IsOpen: true, CloseUpTriggered: false } guardian)
-            return;
+    if (Owner.Monster is not Guardian { IsOpen: true, CloseUpTriggered: false } guardian)
+      return;
 
-        var newAmount = Math.Max(0, Amount - result.UnblockedDamage);
-        SetAmount(newAmount);
+    int newAmount = Math.Max(0, Amount - (int)result.UnblockedDamage);
+    SetAmount(newAmount);
 
-        if (newAmount > 0)
-            return;
+    if (newAmount > 0)
+      return;
 
-        Flash();
-        guardian.CloseUpTriggered = true;
-        if (guardian.IsExecutingMove)
-            guardian.PendingModeShift = true;
-        else
-            await guardian.TransitionToDefensiveMode();
-    }
+    Flash();
+    guardian.CloseUpTriggered = true;
+    if (guardian.IsExecutingMove)
+      guardian.PendingModeShift = true;
+    else
+      await guardian.TransitionToDefensiveMode();
+  }
 }

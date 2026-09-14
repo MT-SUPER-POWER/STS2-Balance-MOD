@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
@@ -21,44 +21,44 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 [RegisterPower]
 public sealed class SorceryVulnerable() : BalancePowerTemplate(PowerType.Debuff, PowerStackType.Counter)
 {
-    private bool _wasAttackedThisTurn;
+  private bool _wasAttackedThisTurn;
 
-    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
+  public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
+  {
+    if (target != Owner || !props.IsPoweredAttack())
     {
-        if (target != Owner || !props.IsPoweredAttack())
-        {
-            return 1m;
-        }
-        return 1.75m;
+      return 1m;
+    }
+    return 1.75m;
+  }
+
+  public override Task AfterAttack(PlayerChoiceContext choiceContext, AttackCommand command)
+  {
+    if (!command.DamageProps.IsPoweredAttack())
+      return Task.CompletedTask;
+
+    bool hitOwner = command.Results
+        .SelectMany(r => r)
+        .Any(r => r.Receiver == Owner);
+
+    if (hitOwner)
+    {
+      _wasAttackedThisTurn = true;
     }
 
-    public override Task AfterAttack(PlayerChoiceContext choiceContext, AttackCommand command)
+    return Task.CompletedTask;
+  }
+
+  public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+  {
+    if (side == Owner.Side)
     {
-        if (!command.DamageProps.IsPoweredAttack())
-            return Task.CompletedTask;
-
-        bool hitOwner = command.Results
-            .SelectMany(r => r)
-            .Any(r => r.Receiver == Owner);
-
-        if (hitOwner)
-        {
-            _wasAttackedThisTurn = true;
-        }
-
-        return Task.CompletedTask;
+      if (_wasAttackedThisTurn)
+      {
+        _wasAttackedThisTurn = false;
+        Flash();
+        await PowerCmd.TickDownDuration(this);
+      }
     }
-
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
-    {
-        if (side == Owner.Side)
-        {
-            if (_wasAttackedThisTurn)
-            {
-                _wasAttackedThisTurn = false;
-                Flash();
-                await PowerCmd.TickDownDuration(this);
-            }
-        }
-    }
+  }
 }

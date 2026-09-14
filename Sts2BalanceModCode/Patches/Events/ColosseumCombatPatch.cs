@@ -1,8 +1,8 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Multiplayer.Game;
 using MegaCrit.Sts2.Core.Multiplayer.Replay;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
@@ -21,90 +21,94 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Events;
 /// </summary>
 public static class ColosseumCombatPatch
 {
-    [HarmonyPatch(typeof(EventSynchronizer), nameof(EventSynchronizer.ResumeEvents))]
-    public static class ResumeEventsPatch
+  [HarmonyPatch(typeof(EventSynchronizer), nameof(EventSynchronizer.ResumeEvents))]
+  public static class ResumeEventsPatch
+  {
+    [HarmonyPostfix]
+    private static void Postfix(
+      EventSynchronizer __instance,
+      AbstractRoom exitedRoom,
+      EventCombatSynchronizer ____combatSynchronizer)
     {
-        [HarmonyPostfix]
-        private static void Postfix(
-          EventSynchronizer __instance,
-          AbstractRoom exitedRoom,
-          EventCombatSynchronizer ____combatSynchronizer)
-        {
-            if (exitedRoom is not CombatRoom { Encounter: ColosseumFirstEncounter })
-                return;
+      if (exitedRoom is not CombatRoom { Encounter: ColosseumFirstEncounter })
+        return;
 
-            ____combatSynchronizer.ResetState();
-            ____combatSynchronizer.InitializeForEvent(__instance.GetLocalEvent());
-        }
+      ____combatSynchronizer.ResetState();
+      ____combatSynchronizer.InitializeForEvent(__instance.GetLocalEvent());
     }
+  }
 
-    [HarmonyPatch(typeof(CombatManager), "StartCombatInternal")]
-    public static class ReplayWriterPatch
+  [HarmonyPatch(typeof(CombatManager), "StartCombatInternal")]
+  public static class ReplayWriterPatch
+  {
+    [HarmonyPrefix]
+    private static void Prefix()
     {
-        [HarmonyPrefix]
-        private static void Prefix()
-        {
-            if (!Colosseum.NeedsReplayInitialization)
-                return;
+      if (!Colosseum.NeedsReplayInitialization)
+        return;
 
-            Colosseum.NeedsReplayInitialization = false;
-            RunManager runManager = RunManager.Instance;
-            CombatReplayWriter replayWriter = runManager.CombatReplayWriter;
-            if (!replayWriter.IsEnabled || replayWriter.IsRecordingReplay)
-                return;
+      Colosseum.NeedsReplayInitialization = false;
+      RunManager runManager = RunManager.Instance;
+      CombatReplayWriter replayWriter = runManager.CombatReplayWriter;
+      if (!replayWriter.IsEnabled || replayWriter.IsRecordingReplay)
+        return;
 
-            replayWriter.RecordInitialState(runManager.ToSave(null));
-        }
+      replayWriter.RecordInitialState(runManager.ToSave(null));
     }
+  }
 
-    [HarmonyPatch(typeof(RewardsSet), nameof(RewardsSet.WithRewardsFromRoom))]
-    public static class RewardsPatch
+  [HarmonyPatch(typeof(RewardsSet), nameof(RewardsSet.WithRewardsFromRoom))]
+  public static class RewardsPatch
+  {
+    [HarmonyPostfix]
+    private static void Postfix(RewardsSet __result, AbstractRoom room)
     {
-        [HarmonyPostfix]
-        private static void Postfix(RewardsSet __result, AbstractRoom room)
-        {
-            if (room is not CombatRoom { Encounter: ColosseumSecondEncounter } combatRoom)
-                return;
+      if (room is not CombatRoom { Encounter: ColosseumSecondEncounter } combatRoom)
+        return;
 
-            HashSet<Reward> extraRewards = combatRoom.ExtraRewards.Values
-              .SelectMany(list => list)
-              .ToHashSet();
+      HashSet<Reward> extraRewards = [.. combatRoom.ExtraRewards.Values.SelectMany(list => list)];
 
-            __result.Rewards.RemoveAll(r =>
-              !extraRewards.Contains(r) &&
-              r is GoldReward or RelicReward);
-        }
+      __result.Rewards.RemoveAll(r =>
+        !extraRewards.Contains(r) &&
+        r is GoldReward or RelicReward);
     }
+  }
 
-    [HarmonyPatch(typeof(EncounterModel), nameof(EncounterModel.CreateBackground))]
-    public static class CombatBackgroundPatch
+  [HarmonyPatch(typeof(EncounterModel), nameof(EncounterModel.CreateBackground))]
+  public static class CombatBackgroundPatch
+  {
+    [HarmonyPrefix]
+    private static bool Prefix(EncounterModel __instance, ref NCombatBackground __result)
     {
-        [HarmonyPrefix]
-        private static bool Prefix(EncounterModel __instance, ref NCombatBackground __result)
+      if (__instance is ColosseumFirstEncounter or ColosseumSecondEncounter)
+      {
+        var background = new TheCityBackground
         {
-            if (__instance is ColosseumFirstEncounter or ColosseumSecondEncounter)
-            {
-                var background = new TheCityBackground();
-                background.Name = "TheCityActBackground";
+          Name = "TheCityActBackground"
+        };
 
-                for (int i = 0; i < 4; i++)
-                {
-                    var layer = new Godot.Control();
-                    layer.Name = $"Layer_{i:D2}";
-                    background.AddChild(layer);
-                }
-
-                var foreground = new Godot.Control();
-                foreground.Name = "Foreground";
-                background.AddChild(foreground);
-
-                background.TreeEntered += background.OnTreeEntered;
-                __result = background;
-                return false;
-            }
-
-            return true;
+        for (int i = 0; i < 4; i++)
+        {
+          var layer = new Godot.Control
+          {
+            Name = $"Layer_{i:D2}"
+          };
+          background.AddChild(layer);
         }
+
+        var foreground = new Godot.Control
+        {
+          Name = "Foreground"
+        };
+        background.AddChild(foreground);
+
+        background.TreeEntered += background.OnTreeEntered;
+        __result = background;
+        return false;
+      }
+
+      return true;
     }
+  }
 }
 

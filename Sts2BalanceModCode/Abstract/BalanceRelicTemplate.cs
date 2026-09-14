@@ -1,4 +1,4 @@
-﻿using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
+using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -12,8 +12,8 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 /// </summary>
 public abstract class BalanceRelicTemplate : ModRelicTemplate
 {
-    public override RelicAssetProfile AssetProfile => new(
-      IconPath: ModAssetPaths.RelicIcon(ModAssetPaths.ContentFileName(Id.Entry)),
-      IconOutlinePath: ModAssetPaths.RelicOutlineIcon(ModAssetPaths.ContentFileName(Id.Entry)),
-      BigIconPath: ModAssetPaths.LargeRelicIcon(ModAssetPaths.ContentFileName(Id.Entry)));
+  public override RelicAssetProfile AssetProfile => new(
+    IconPath: ModAssetPaths.RelicIcon(ModAssetPaths.ContentFileName(Id.Entry)),
+    IconOutlinePath: ModAssetPaths.RelicOutlineIcon(ModAssetPaths.ContentFileName(Id.Entry)),
+    BigIconPath: ModAssetPaths.LargeRelicIcon(ModAssetPaths.ContentFileName(Id.Entry)));
 }
