@@ -10,7 +10,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 /// Shared RitsuLib event convention. Individual events override the portrait only when their artwork deliberately
 /// differs from their published entry.
 /// </summary>
-public abstract partial class BalanceEventTemplate : ModEventTemplate
+public abstract class BalanceEventTemplate : ModEventTemplate
 {
   public override bool IsShared => false;
 
@@ -42,9 +42,16 @@ public abstract partial class BalanceEventTemplate : ModEventTemplate
   private static string ToSnakeCase(string str)
   {
     if (string.IsNullOrEmpty(str)) return str;
-    return MyRegex().Replace(str, "_");
+    var sb = new System.Text.StringBuilder(str.Length + 4);
+    for (int i = 0; i < str.Length; i++)
+    {
+      char c = str[i];
+      if (char.IsUpper(c) && i > 0)
+      {
+        sb.Append('_');
+      }
+      sb.Append(c);
+    }
+    return sb.ToString();
   }
-
-  [System.Text.RegularExpressions.GeneratedRegex(@"(?<!^)(?=[A-Z])")]
-  private static partial System.Text.RegularExpressions.Regex MyRegex();
 }
