@@ -65,5 +65,11 @@
   "STS2_BALANCEMOD_STRANGE_SPOON.flavor": "Если приглядеться к ложке, кажется, будто она гнется и извивается прямо на глазах.",
   "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.title": "Увядание всегда сжигается",
   "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.description": "При разыгрывании [gold]Увядание[/gold] всегда сжигается и не сбрасывается Странной ложкой.",
-  "NEOWS_TALISMAN.description": "В следующих [blue]3[/blue] боях у всех врагов будет [blue]1[/blue] ОЗ."
+  "NEOWS_TALISMAN.description": "В следующих [blue]3[/blue] боях у всех врагов будет [blue]1[/blue] ОЗ.",
+  "NEOWS_TALISMAN.eventDescription": "В следующих [blue]3[/blue] боях у всех врагов будет [blue]1[/blue] ОЗ.",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.title": "Талисман Неов",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.description": "В следующих [blue]3[/blue] боях у всех врагов будет [blue]1[/blue] ОЗ.",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.eventDescription": "В следующих [blue]3[/blue] боях у всех врагов будет [blue]1[/blue] ОЗ.",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.flavor": "Сквозь долгий сон слабый плач обратился в осколок защиты.",
+  "ROYAL_STAMP.description": "При получении накладывает [gold]чары[/gold] [purple]«{Enchantment}»[/purple] на выбранную Атаку, Навык или Силу."
 }

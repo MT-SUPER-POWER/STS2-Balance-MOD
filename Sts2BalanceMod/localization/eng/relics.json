@@ -70,6 +70,12 @@
   "STS2_BALANCEMOD_STRANGE_SPOON.flavor": "Staring at the spoon, it appears to bend and twist around before your eyes.",
   "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.title": "Wither Always Exhausts",
   "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.description": "When [gold]Wither[/gold] is played, it will always be Exhausted and cannot be discarded by Strange Spoon.",
-  "NEOWS_TALISMAN.description": "Enemies in your next [blue]3[/blue] combats have [blue]1[/blue] HP."
+  "NEOWS_TALISMAN.description": "Enemies in your next [blue]3[/blue] combats have [blue]1[/blue] HP.",
+  "NEOWS_TALISMAN.eventDescription": "Enemies in your next [blue]3[/blue] combats have [blue]1[/blue] HP.",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.title": "Neow's Talisman",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.description": "Enemies in your next [blue]3[/blue] combats have [blue]1[/blue] HP.",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.eventDescription": "Enemies in your next [blue]3[/blue] combats have [blue]1[/blue] HP.",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.flavor": "Through the long slumber, a faint lament hardened into a talisman of protection.",
+  "ROYAL_STAMP.description": "Upon pickup, choose an Attack, Skill, or Power in your [gold]Deck[/gold] to [gold]Enchant[/gold] with [purple]{Enchantment}[/purple]."
 }
 

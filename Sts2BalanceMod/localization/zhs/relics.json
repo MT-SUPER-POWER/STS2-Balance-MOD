@@ -70,6 +70,12 @@
   "STS2_BALANCEMOD_STRANGE_SPOON.flavor": "如果你盯着这把勺子看，它似乎就会在你眼前弯曲变形。",
   "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.title": "凋萎必定消耗",
   "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.description": "打出 [gold]凋萎[/gold] 时必定会被消耗，不会触发汤勺的保留丢弃效果。",
-  "NEOWS_TALISMAN.description": "你遇到的接下来的 [blue]3[/blue] 场战斗中，所有敌人的生命值只有 [blue]1[/blue] 点。"
+  "NEOWS_TALISMAN.description": "你遇到的接下来的 [blue]3[/blue] 场战斗中，所有敌人的生命值只有 [blue]1[/blue] 点。",
+  "NEOWS_TALISMAN.eventDescription": "你遇到的接下来的 [blue]3[/blue] 场战斗中，所有敌人的生命值只有 [blue]1[/blue] 点。",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.title": "涅奥的护符",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.description": "你遇到的接下来的 [blue]3[/blue] 场战斗中，所有敌人的生命值只有 [blue]1[/blue] 点。",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.eventDescription": "你遇到的接下来的 [blue]3[/blue] 场战斗中，所有敌人的生命值只有 [blue]1[/blue] 点。",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.flavor": "在漫长的沉眠中，微弱的悲鸣化作了护佑的残片。",
+  "ROYAL_STAMP.description": "拾起时，从[gold]牌组[/gold]中选择一张攻击牌、技能牌或能力牌，为它[gold]附魔[/gold]：[purple]{Enchantment}[/purple]。"
 }
 

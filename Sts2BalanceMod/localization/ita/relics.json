@@ -65,6 +65,12 @@
   "STS2_BALANCEMOD_STRANGE_SPOON.flavor": "Fissando il cucchiaio, sembra piegarsi e torcersi davanti ai tuoi occhi.",
   "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.title": "Deperimento sempre Esaurito",
   "STS2_BALANCEMOD_STRANGE_SPOON_WITHER.description": "Quando giochi [gold]Deperimento[/gold], viene sempre Esaurito e non può essere scartato dal Cucchiaio Strano.",
-  "NEOWS_TALISMAN.description": "I nemici nei tuoi prossimi [blue]3[/blue] combattimenti hanno [blue]1[/blue] PF."
+  "NEOWS_TALISMAN.description": "I nemici nei tuoi prossimi [blue]3[/blue] combattimenti hanno [blue]1[/blue] PF.",
+  "NEOWS_TALISMAN.eventDescription": "I nemici nei tuoi prossimi [blue]3[/blue] combattimenti hanno [blue]1[/blue] PF.",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.title": "Talismano di Neow",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.description": "I nemici nei tuoi prossimi [blue]3[/blue] combattimenti hanno [blue]1[/blue] PF.",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.eventDescription": "I nemici nei tuoi prossimi [blue]3[/blue] combattimenti hanno [blue]1[/blue] PF.",
+  "STS2_BALANCEMOD_NEOWS_TALISMAN.flavor": "Attraverso il lungo sonno, un debole lamento si è trasformato in un frammento di protezione.",
+  "ROYAL_STAMP.description": "Dopo aver ottenuto questa reliquia, scegli una carta Attacco, Abilità o Potere nel tuo [gold]mazzo[/gold] da [gold]incantare[/gold] con [purple]{Enchantment}[/purple]."
 }
 

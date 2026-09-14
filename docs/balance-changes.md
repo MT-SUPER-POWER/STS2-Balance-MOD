@@ -34,6 +34,12 @@
     - 第 3 回合结束: 失去 1 点力量（净剩 0 力量），Debuff 扣完移除
   - 备注: 流失效果为独立 Debuff，可正常与人工制品（Artifact）交互（抵挡流失效果后保留永久 +3 力量）。
 
+- [x] **RELIC-ROYAL-STAMP-01** — 王室印章（Royal Stamp / 皇室印章）放宽附魔类型约束
+  - 目前: 遗物【王室印章】所对应的附魔【王室认证】（Royally Approved）仅允许附魔攻击牌（Attack）和技能牌（Skill），无法附魔能力牌。
+  - 目标: 降低附魔约束，允许能力牌（Power）也可以附魔【王室认证】（获得固有与保留）；拾取【王室印章】时可选能力牌，并同步更新多语言遗物描述文本。
+  - 数值: 可附魔类型由「攻击牌、技能牌」放宽为「攻击牌、技能牌、能力牌」。
+  - 备注: 通过 Harmony Patch 拦截 `RoyallyApproved.CanEnchantCardType`，当 `cardType == CardType.Power` 时返回 `true`。
+
 ### BOSS
 
 ### 怪物
