@@ -4,22 +4,27 @@ on:
   push:
     branches: [main]
     paths:
-      - '**.cs'
-      - '**.csproj'
-      - '.editorconfig'
-      - '.github/workflows/code-check.yml'
+      - "**.cs"
+      - "**.csproj"
+      - ".editorconfig"
+      - ".editorconfig-checker.json"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/code-check.yml"
   pull_request:
     branches: [main]
     paths:
-      - '**.cs'
-      - '**.csproj'
-      - '.editorconfig'
-      - '.github/workflows/code-check.yml'
+      - "**.cs"
+      - "**.csproj"
+      - ".editorconfig"
+      - ".editorconfig-checker.json"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/code-check.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
-  pull-requests: write
 
 jobs:
   code-check:
@@ -30,59 +35,47 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Install Node dependencies
+        run: pnpm install --frozen-lockfile
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: "9.0.x"
 
       - name: Restore dependencies
         # 与 release 一致：CI 无本机 GodotPath，跳过 PCK 导出
         run: dotnet restore /p:ContinuousIntegrationBuild=true /p:SkipGodotExport=true
 
       - name: Build project
-        # lint CI 需要编译校验，但不安装 Godot；参考 release 的 SkipGodotExport
         run: dotnet build --no-restore -c Debug /p:ContinuousIntegrationBuild=true /p:SkipGodotExport=true
 
-      - name: Run dotnet format check
-        id: format
+      - name: Run code & format check
+        id: check
         run: |
           set -o pipefail
-          # 根目录同时有 .sln 与 .csproj，必须显式指定 workspace
-          # format 不接受 /p: MSBuild 属性；restore/build 已带 SkipGodotExport
-          dotnet format Sts2BalanceMod.sln \
-            --verify-no-changes \
-            --severity info \
-            --no-restore \
-            2>&1 | tee format-output.txt
+          pnpm run check 2>&1 | tee check-output.txt
 
-      - name: Comment on PR if format issues found
+      - name: Save report files on failure
         if: failure() && github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            if (fs.existsSync('format-output.txt')) {
-              const output = fs.readFileSync('format-output.txt', 'utf8');
-              const body = [
-                '## 🎨 代码格式检查未通过',
-                '',
-                '检测到代码格式问题，请在本地运行以下命令修复：',
-                '```bash',
-                'dotnet format',
-                '```',
-                '',
-                '<details><summary>详细输出</summary>',
-                '',
-                '```',
-                output.slice(0, 3000),
-                '```',
-                '</details>'
-              ].join('\n');
+        run: |
+          mkdir -p report
+          echo "${{ github.event.pull_request.number }}" > report/pr_number.txt
+          cp check-output.txt report/check-output.txt
 
-              github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                body
-              });
-            }
+      - name: Upload check report artifact
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: check-report
+          path: report/
+          retention-days: 1

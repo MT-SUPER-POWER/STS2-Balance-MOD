@@ -25,80 +25,28 @@ jobs:
         uses: actions/github-script@v7
         with:
           result-encoding: string
-          script: |
-            const fs = require('fs');
-            const content = fs.readFileSync('CHANGELOG.md', 'utf8');
-            const tag = context.ref.replace('refs/tags/', '');
-            const version = tag.replace(/^v/, '');
-            
-            const lines = content.split(/\r?\n/);
-            let capturing = false;
-            const changelogLines = [];
-            const escapedVer = version.replace(/\./g, '\\.');
-            const headerRegex = new RegExp(`^##\\s+\\[?v?${escapedVer}\\]?`);
-            
-            for (const line of lines) {
-              if (headerRegex.test(line)) {
-                capturing = true;
-                continue;
-              } else if (capturing && /^##\s+/.test(line)) {
-                break;
-              }
-              if (capturing) {
-                changelogLines.push(line);
-              }
-            }
-            return changelogLines.join('\n').trim();
+          script: return require('./.github/scripts/extract-changelog.js')({ context })
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: "9.0.x"
 
       - name: Setup Godot Mono and Export Templates
-        run: |
-          # 1. 下载并安装 Godot Mono Headless 编译器
-          wget -q https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_mono_linux_x86_64.zip
-          unzip -q Godot_v${{ env.GODOT_VERSION }}-stable_mono_linux_x86_64.zip
-          mv Godot_v${{ env.GODOT_VERSION }}-stable_mono_linux_x86_64/Godot_v${{ env.GODOT_VERSION }}-stable_mono_linux.x86_64 godot
-          mv Godot_v${{ env.GODOT_VERSION }}-stable_mono_linux_x86_64/GodotSharp .
-          
-          # 2. 下载并安装导出模板（导出 PCK 所需）
-          wget -q https://github.com/godotengine/godot/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_mono_export_templates.tpz
-          unzip -q Godot_v${{ env.GODOT_VERSION }}-stable_mono_export_templates.tpz -d /tmp/templates
-          mkdir -p ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable.mono
-          mv /tmp/templates/templates/* ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable.mono/
-          
-          # 3. 将 godot 添加到 PATH
-          echo "$(pwd)" >> $GITHUB_PATH
+        run: bash .github/scripts/setup-godot.sh ${{ env.GODOT_VERSION }}
 
       - name: Update version in mod json
-        run: |
-          jq '.version = "${{ github.ref_name }}"' Sts2BalanceMod.json > Sts2BalanceMod.json.tmp && mv Sts2BalanceMod.json.tmp Sts2BalanceMod.json
+        run: node .github/scripts/update-mod-version.js ${{ github.ref_name }}
 
       - name: Compile & Publish
-        run: |
-          # 编译并发布到 dist/，跳过 Godot PCK 导出（后续步骤单独处理）
-          dotnet publish -c Release /p:ContinuousIntegrationBuild=true /p:SkipGodotExport=true
+        run: dotnet publish -c Release /p:ContinuousIntegrationBuild=true /p:SkipGodotExport=true
 
       - name: Export PCK
         continue-on-error: true
-        run: |
-          ./godot --headless --export-pack "Sts2BalanceMod" "$(pwd)/dist/Sts2BalanceMod/Sts2BalanceMod.pck" 2>&1
+        run: ./godot --headless --export-pack "Sts2BalanceMod" "$(pwd)/dist/Sts2BalanceMod/Sts2BalanceMod.pck" 2>&1
 
-      - name: Verify outputs
-        run: |
-          # 验证构建产物是否存在
-          ls -la dist/Sts2BalanceMod
-          if [ ! -f "dist/Sts2BalanceMod/Sts2BalanceMod.dll" ] || [ ! -f "dist/Sts2BalanceMod/Sts2BalanceMod.json" ] || [ ! -f "dist/Sts2BalanceMod/Sts2BalanceMod.pck" ]; then
-            echo "Error: Missing required build output files."
-            exit 1
-          fi
-
-      - name: Compress Release Archive
-        run: |
-          cd dist/Sts2BalanceMod && zip -r ../Sts2BalanceMod-${{ github.ref_name }}.zip . && cd ../..
-          ls -la dist/
+      - name: Verify and Package
+        run: bash .github/scripts/package-release.sh ${{ github.ref_name }}
 
       - name: Create GitHub Release and Upload Asset
         uses: softprops/action-gh-release@v2

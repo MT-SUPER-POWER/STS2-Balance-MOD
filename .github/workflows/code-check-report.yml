@@ -1,0 +1,37 @@
+name: Code Check Report
+
+on:
+  workflow_run:
+    workflows: ["Code Check"]
+    types: [completed]
+
+permissions:
+  contents: read
+  pull-requests: write
+  actions: read
+
+jobs:
+  report:
+    name: Post PR Report
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'failure'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download check report
+        uses: actions/download-artifact@v4
+        with:
+          name: check-report
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: report
+        continue-on-error: true
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const commentPR = require('./.github/scripts/comment-check-pr.js');
+            await commentPR({ github, context, reportDir: 'report' });
