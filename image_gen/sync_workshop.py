@@ -79,9 +79,9 @@ https://github.com/MT-SUPER-POWER/STS2-Balance-MOD"""
     data["tags"] = [
         "Balance"
     ]
-    # RitsuLib is distributed through GitHub Releases rather than Steam Workshop,
-    # so it must not be published as a stale BaseLib Workshop dependency.
-    data["dependencies"] = []
+    # RitsuLib is available on Steam Workshop (ID: 3747602295).
+    # https://steamcommunity.com/sharedfiles/filedetails/?id=3747602295
+    data["dependencies"] = [3747602295]
     data["minBranch"] = "public-beta"
     data["maxBranch"] = "public-beta"
 

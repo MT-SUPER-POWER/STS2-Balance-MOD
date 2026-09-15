@@ -6,6 +6,13 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+## v0.3.9
+
+### Fixed
+
+- 修复御守回合内抽到诅咒导致的计数导致的系列 bug 问题
+- steam 发包依赖关联到 `ritsulib`
+
 ## v0.3.8
 
 ### Changed

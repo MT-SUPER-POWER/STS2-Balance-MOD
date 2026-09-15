@@ -20,6 +20,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 ///   1. AfterCardChangedPiles() 每次卡牌改变牌堆时被游戏调用
 ///   2. 检测到诅咒牌进入持有者牌堆时，消耗诅咒并扣减计数器
 ///   3. 计数器归零后遗物耗尽
+/// TODO: 在 option 旁边加遗物图片，提示用户，可以御守阻挡，但是 <= 0 就不再提示了
 /// </summary>
 [RegisterRelic(typeof(SharedRelicPool), FullPublicEntry = "STS2_BALANCEMOD_OMAMORI")]
 public sealed class Omamori : BalanceRelicTemplate
@@ -79,7 +80,12 @@ public sealed class Omamori : BalanceRelicTemplate
 
   /// <summary>
   /// 每次卡牌改变牌堆时调用。
-  /// 当诅咒牌进入持有者牌堆（手牌/抽牌堆/弃牌堆）时触发抵消。
+  /// 只拦截诅咒牌「首次获得」时（oldPileType == PileType.None），
+  /// 即牌是全新创建加入牌组，而非战斗中在各堆之间移动。
+  /// WARNING: 游戏在 CardPileCmd.Add 中以 oldPile?.Type ?? PileType.None 传入 oldPile，
+  ///          当牌从未属于任何堆时 oldPileType 为 PileType.None，此即「获得」时机。
+  ///          若不加此守卫，战斗内诅咒牌入手时也会触发，导致 RemoveFromDeck 在
+  ///          战斗上下文中抛出异常，破坏 ActionQueue 造成牌悬停无法打出。
   /// </summary>
   public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? clonedBy)
   {
@@ -89,6 +95,11 @@ public sealed class Omamori : BalanceRelicTemplate
 
     // 只响应持有者本人的牌，不响应敌人或队友的
     if (card.Owner != Owner)
+      return;
+
+    // 只拦截「首次获得」（oldPileType == PileType.None 表示牌是新创建的，从未属于任何堆）
+    // 遗物描述「获得的诅咒」指路途中获得的新诅咒，与战斗内抽牌/弃牌无关
+    if (oldPileType != PileType.None)
       return;
 
     // 次数已用完
