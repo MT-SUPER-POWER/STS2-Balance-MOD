@@ -8,6 +8,14 @@
 
 ## v0.3.8
 
+### Changed
+
+- 遗物：商店遗物「王室印章」（Royal Stamp）放宽附魔类型约束——其对应的附魔「王室认证」（Royally Approved）不再仅限攻击牌与技能牌，能力牌（Power）亦可被附魔并获得【固有】与【保留】；同步更新多语言遗物说明文本。(RELIC-ROYAL-STAMP-01)
+
+### Fixed
+
+- 本地化/遗物：修复涅奥开局选项中「涅奥的护符」（Neow's Talisman）的选项描述（`eventDescription`）仍显示旧版升级打击防御的问题，同步更新 4 国语言为新版 3 场战斗生命值为 1 的效果。
+
 ### Added
 
 ## v0.3.7

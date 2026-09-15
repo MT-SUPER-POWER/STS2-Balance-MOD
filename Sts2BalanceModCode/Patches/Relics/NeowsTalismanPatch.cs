@@ -1,223 +1,54 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Relics;
-using MegaCrit.Sts2.Core.Rooms;
-using MegaCrit.Sts2.Core.Runs;
-using MegaCrit.Sts2.Core.Runs.History;
+using MegaCrit.Sts2.Core.Models.Events;
+using MegaCrit.Sts2.Core.Models.RelicPools;
+using CustomNeowsTalisman = Sts2BalanceMod.Sts2BalanceModCode.Relics.NeowsTalisman;
+using VanillaNeowsTalisman = MegaCrit.Sts2.Core.Models.Relics.NeowsTalisman;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 
 /// <summary>
-/// RELIC-NEOWS-TALISMAN-01 & RELIC-NEOWS-TALISMAN-02 — 涅奥遗物「涅奥的护符」（Neow's Talisman）重做为快速开局遗物（涅奥的悲哀）并限制单人模式可用
-/// Targets:
-/// - NeowsTalisman.AfterObtained
-/// - RelicModel.get_HasUponPickupEffect, get_ShowCounter, get_DisplayAmount, get_IsUsedUp, get_Status, IsAllowed
-/// - Creature.SetUniqueMonsterHpValue, Creature.ScaleMonsterHpForMultiplayer
-/// - CombatRoom.StartCombat
-/// Reason: 取消原版升级1攻1防效果；改为使接下来3场战斗中的所有敌人初始生命值为1点，耗尽后置灰失效；且与飞鞋一致仅在单人模式下可用。
-/// WARNING: Verified against D:\Game\Sts2Code\src\MegaCrit.Sts2.Core.Models.Relics\NeowsTalisman.cs.
+/// RELIC-NEOWS-TALISMAN-01 & RELIC-NEOWS-TALISMAN-02
+/// 将原版涅奥的护符（Neow's Talisman）重做项替换为自定义遗物模型 CustomNeowsTalisman：
+/// 1. 涅奥开局选项中提供 CustomNeowsTalisman
+/// 2. RelicCmd.Obtain 拦截原版遗物并替换为自定义遗物
+/// 3. EventRelicPool 中过滤移除原版遗物
 /// </summary>
-[HarmonyPatch]
 public static class NeowsTalismanPatch
 {
-  private const int TotalLamentCombats = 3;
+  private static readonly MethodInfo _relicOptionMethod = typeof(AncientEventModel).GetMethod(
+    "RelicOption",
+    BindingFlags.Instance | BindingFlags.NonPublic,
+    [typeof(RelicModel), typeof(string), typeof(string)]
+  ) ?? throw new InvalidOperationException("Could not find AncientEventModel.RelicOption method via reflection.");
 
-  [HarmonyPatch(typeof(RelicModel), nameof(RelicModel.IsAllowed))]
+  [HarmonyPatch(typeof(Neow), "get_NeowsTalismanOption")]
   [HarmonyPrefix]
-  public static bool IsAllowedPrefix(RelicModel __instance, IRunState runState, ref bool __result)
+  public static bool NeowsTalismanOptionPrefix(Neow __instance, ref EventOption __result)
   {
-    if (__instance is NeowsTalisman)
-    {
-      __result = runState.Players.Count == 1;
-      return false;
-    }
-    return true;
-  }
-
-  [HarmonyPatch(typeof(NeowsTalisman), nameof(NeowsTalisman.AfterObtained))]
-  [HarmonyPrefix]
-  public static bool AfterObtainedPrefix(ref Task __result)
-  {
-    // 取消原版升级打击和防御的效果
-    __result = Task.CompletedTask;
+    var customRelic = (CustomNeowsTalisman)ModelDb.Relic<CustomNeowsTalisman>().ToMutable();
+    __result = (EventOption)_relicOptionMethod.Invoke(__instance, [customRelic, "INITIAL", "NEOW.pages.DONE.POSITIVE.description"])!;
     return false;
   }
 
-  [HarmonyPatch(typeof(RelicModel), "get_HasUponPickupEffect")]
+  [HarmonyPatch(typeof(RelicCmd), nameof(RelicCmd.Obtain), typeof(RelicModel), typeof(Player), typeof(int))]
   [HarmonyPrefix]
-  public static bool HasUponPickupEffectPrefix(RelicModel __instance, ref bool __result)
+  public static void RelicCmdObtainPrefix(ref RelicModel relic)
   {
-    if (__instance is NeowsTalisman)
+    if (relic is VanillaNeowsTalisman)
     {
-      __result = false;
-      return false;
+      relic = (CustomNeowsTalisman)ModelDb.Relic<CustomNeowsTalisman>().ToMutable();
     }
-    return true;
   }
 
-  [HarmonyPatch(typeof(RelicModel), "get_ShowCounter")]
-  [HarmonyPrefix]
-  public static bool ShowCounterPrefix(RelicModel __instance, ref bool __result)
-  {
-    if (__instance is NeowsTalisman talisman)
-    {
-      __result = !GetIsUsedUp(talisman);
-      return false;
-    }
-    return true;
-  }
-
-  [HarmonyPatch(typeof(RelicModel), "get_DisplayAmount")]
-  [HarmonyPrefix]
-  public static bool DisplayAmountPrefix(RelicModel __instance, ref int __result)
-  {
-    if (__instance is NeowsTalisman talisman)
-    {
-      __result = Math.Max(0, GetRemainingCharges(talisman));
-      return false;
-    }
-    return true;
-  }
-
-  [HarmonyPatch(typeof(RelicModel), "get_IsUsedUp")]
-  [HarmonyPrefix]
-  public static bool IsUsedUpPrefix(RelicModel __instance, ref bool __result)
-  {
-    if (__instance is NeowsTalisman talisman)
-    {
-      __result = GetIsUsedUp(talisman);
-      return false;
-    }
-    return true;
-  }
-
-  [HarmonyPatch(typeof(RelicModel), "get_Status")]
-  [HarmonyPrefix]
-  public static bool StatusPrefix(RelicModel __instance, ref RelicStatus __result)
-  {
-    if (__instance is NeowsTalisman talisman && GetIsUsedUp(talisman))
-    {
-      __result = RelicStatus.Disabled;
-      return false;
-    }
-    return true;
-  }
-
-  [HarmonyPatch(typeof(Creature), nameof(Creature.SetUniqueMonsterHpValue))]
+  [HarmonyPatch(typeof(EventRelicPool), "GenerateAllRelics")]
   [HarmonyPostfix]
-  public static void SetUniqueMonsterHpValuePostfix(Creature __instance)
-  {
-    if (__instance.Side == CombatSide.Enemy && IsLamentActiveForCreature(__instance))
-    {
-      __instance.SetMaxHpInternal(1m);
-      __instance.SetCurrentHpInternal(1m);
-    }
-  }
-
-  [HarmonyPatch(typeof(Creature), nameof(Creature.ScaleMonsterHpForMultiplayer))]
-  [HarmonyPrefix]
-  public static bool ScaleMonsterHpForMultiplayerPrefix(Creature __instance)
-  {
-    if (__instance.Side == CombatSide.Enemy && IsLamentActiveForCreature(__instance))
-    {
-      return false;
-    }
-    return true;
-  }
-
-  [HarmonyPatch(typeof(CombatRoom), "StartCombat")]
-  [HarmonyPostfix]
-  public static void StartCombatPostfix(CombatRoom __instance)
-  {
-    if (__instance.CombatState == null)
-      return;
-
-    bool hasLament = false;
-    foreach (Player player in __instance.CombatState.Players)
-    {
-      NeowsTalisman? talisman = player.Relics.OfType<NeowsTalisman>().FirstOrDefault();
-      if (talisman != null && IsLamentActive(talisman))
-      {
-        talisman.Flash();
-        hasLament = true;
-      }
-    }
-
-    if (hasLament)
-    {
-      foreach (Creature enemy in __instance.CombatState.Enemies)
-      {
-        enemy.SetMaxHpInternal(1m);
-        enemy.SetCurrentHpInternal(1m);
-      }
-    }
-  }
-
-  public static int GetFinishedCombats(NeowsTalisman talisman)
-  {
-    if (!talisman.IsMutable)
-      return 0;
-
-    if (talisman.Owner?.RunState is not RunState runState || runState.MapPointHistory == null)
-      return 0;
-
-    int floor = 0;
-    int combats = 0;
-    foreach (IReadOnlyList<MapPointHistoryEntry> act in runState.MapPointHistory)
-    {
-      foreach (MapPointHistoryEntry entry in act)
-      {
-        floor++;
-        if (floor >= talisman.FloorAddedToDeck)
-        {
-          if (entry.Rooms.Any(r => r.RoomType == RoomType.Monster || r.RoomType == RoomType.Elite || r.RoomType == RoomType.Boss || r.MonsterIds.Count > 0))
-          {
-            combats++;
-          }
-        }
-      }
-    }
-
-    if (CombatManager.Instance.IsInProgress && combats > 0)
-    {
-      combats--;
-    }
-
-    return combats;
-  }
-
-  public static int GetRemainingCharges(NeowsTalisman talisman)
-  {
-    int finished = GetFinishedCombats(talisman);
-    return Math.Max(0, TotalLamentCombats - finished);
-  }
-
-  public static bool GetIsUsedUp(NeowsTalisman talisman) => GetRemainingCharges(talisman) <= 0;
-
-  public static bool IsLamentActive(NeowsTalisman talisman) => !GetIsUsedUp(talisman);
-
-  private static bool IsLamentActiveForCreature(Creature creature)
-  {
-    ICombatState? combatState = creature.CombatState;
-    if (combatState == null)
-      return false;
-
-    foreach (Player player in combatState.Players)
-    {
-      NeowsTalisman? talisman = player.Relics.OfType<NeowsTalisman>().FirstOrDefault();
-      if (talisman != null && IsLamentActive(talisman))
-      {
-        return true;
-      }
-    }
-    return false;
-  }
+  public static IEnumerable<RelicModel> EventPoolFilterPostfix(IEnumerable<RelicModel> __result) => __result.Where(r => r is not VanillaNeowsTalisman);
 }
