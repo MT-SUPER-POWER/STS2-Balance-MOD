@@ -16,7 +16,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 
 /// <summary>
-/// 巫术虚弱 - 造成的攻击伤害减少 50%。若本回合进行过攻击，回合结束时减少 1 层。
+/// 巫术虚弱 - 造成的攻击伤害减少 40%。若本回合进行过攻击，回合结束时减少 1 层。
 /// </summary>
 [RegisterPower]
 public sealed class SorceryWeak() : BalancePowerTemplate(PowerType.Debuff, PowerStackType.Counter)
@@ -29,7 +29,7 @@ public sealed class SorceryWeak() : BalancePowerTemplate(PowerType.Debuff, Power
     {
       return 1m;
     }
-    return 0.5m;
+    return 0.6m;
   }
 
   public override Task AfterAttack(PlayerChoiceContext choiceContext, AttackCommand command)

@@ -64,9 +64,10 @@
 > 多人游戏不会自动同步 Mod 配置。所有玩家必须使用相同设置，否则事件选项或游戏内容可能不一致。
 
 | 设置项 | 默认值 | 效果 |
-| :--- | :---: | :--- |
+| :-- | :-: | :-- |
 | **为事件添加“离开”选项** | 开启 | 控制是否为“除虫者”“科学怪人”和“药水的未来？”添加可直接离开的选项；修改后会在下次进入这些事件时生效。 |
 | **启用感染棱柱重做** | 开启 | 开启时使用固定四回合循环与【感染】机制；关闭时恢复原版【活力火花】与原版行动状态机。修改后会在下次进入感染棱柱战斗时生效。 |
+| **启用方舟联动：精致的玩偶（女巫形态）** | 开启 | 控制是否启用先古之民 Tanx 事件的联动内容。开启时将先古遗物【精致的玩偶】（拾起获得已升级的【女巫形态+】）加入可选遗物池；关闭时从候选池与卡池中过滤该内容，Tanx 仅提供原版先古遗物。 |
 
 ### 商店
 
@@ -78,12 +79,12 @@
 ### 卡牌调整
 
 | 卡牌 | 角色 | 类型 | 原版 | MOD 改后 |
-|------|:---:|:----:|------|------|
+| --- | :-: | :-: | --- | --- |
 | **挽歌 [Dirge]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 能力 | 升级后召唤次数 +1，消耗，灵魂+ | 升级后**额外追加保留词条** |
 | **刀舞 [Blade Dance]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 白卡（普通），打出后消耗 | 删除消耗词条，稀有度升为**蓝卡（罕见）**，可多次复用 |
 | **杂技 [Acrobatics]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 蓝卡（罕见），入手门槛较高 | 稀有度降为**白卡（普通）**，提升入手概率 |
 | **认知偏差 [Biased Cognition]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 每回合 -1 集中，永久持续 | 集中在对应回合后自动消失，不再扣除超出提升点数的集中 |
-| **多重释放 [Multicast]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 升级后 X+1 次释放 | 升级改为仅追加**保留**词条（取消原版 X+1）|
+| **多重释放 [Multicast]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 升级后 X+1 次释放 | 升级改为仅追加**保留**词条（取消原版 X+1） |
 | **幽魂形态 [Wraith Form]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 获得无实体后每回合累积减敏捷负面 | 打出时只施加无实体，**彻底删除减敏捷负面效果** |
 | **袖里乾坤 [Up My Sleeve]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 每次打出后减少费用，定位与刀舞冲突 | 从猎人卡池中**完全移除** |
 | **燃料 [Fuel]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 将所有状态牌转换获得 2 费 | 改为获得 1 点能量并**抽 1（升级：2）张牌** |
@@ -101,11 +102,10 @@
 | **精密 [Pinpoint]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | 耗能按技能打出数减少，造成伤害 | 从猎人卡池中**完全移除**（由「内脏切除」替代） |
 | **冷却剂 [Coolant]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 金卡（稀有），1 费；回合开始按充能球种类加格挡 | 稀有度降为**蓝卡（罕见）**，1 费；重做为能力抽牌引擎——每当你打出一张能力牌，抽 **1 / 2** 张牌（类似 1 代散热片） |
 
-
 ### 一代卡牌回归
 
 | 卡牌 | 角色 | 类型 | 稀有度 | 费用 | 效果（基础 / 升级） |
-|------|:---:|:----:|:------:|:----:|------|
+| --- | :-: | :-: | :-: | :-: | --- |
 | **死亡收割 [Death Reap]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 攻击 | 稀有 | 2 | 消耗。对所有敌人造成 **4 / 6** 点伤害，并回复等量于实际造成的非格挡伤害的生命值。 |
 | **硬撑 [Power Through]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | 罕见 | 1 | 获得 **15 / 20** 点格挡，将 2 张伤口加入手牌。 |
 | **进化 [Evolve]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 能力 | 罕见 | 1 | 每当你抽到一张状态牌，抽 **1 / 2** 张牌。 |
@@ -116,11 +116,12 @@
 ### 新增卡牌
 
 | 卡牌 | 角色 | 类型 | 稀有度 | 费用 | 效果（基础 / 升级） |
-|------|:---:|:----:|:------:|:----:|------|
+| --- | :-: | :-: | :-: | :-: | --- |
 | **比试 [Sparring]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 罕见 | 2 | 消耗。玩家对单个敌人造成 **8** 点伤害，奥斯提造成 **7 / 9** 点伤害；实际造成非格挡伤害较少的一方回复 **4 / 6** 点生命。 |
 | **猛撞 [Ram]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 普通 | 2 | 奥斯提失去 **6 / 5** 点生命，对所有敌人造成 **20 / 26** 点伤害；奥斯提生命不足时无法触发效果。 |
 | **步步为营 [Step by Step]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 稀有 | X | 消耗。接下来 X（升级：X+1）回合，每回合多抽 1 张牌并多获得 1 点能量。升级后额外获得保留词条。 |
 | **好友撞击 [Buddy Slam]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 攻击 | 罕见 | 1（升级：0） | **仅多人模式出现**。造成等同于其他队友中最高格挡值的伤害。 |
+| **女巫形态 [Witch Form]** | <img src="Assets/profile/colorless.png" width="22" height="22" title="无色 (Colorless)"> | 能力 | 先古 | 3 | 获得 1 层女巫形态。结束你的回合。升级后获得固有。（由先古遗物「精致的玩偶」获得，可在 Mod 设置中开关联动） |
 
 ### 能力调整
 
@@ -128,10 +129,13 @@
 > 完整的能力、减益与 Boss 机制说明见 **[docs/powers.md](docs/powers.md)**。
 
 | 能力 / 效果 | 分类 | 来源 | 效果说明 |
-| :--- | :---: | :--- | :--- |
+| :-- | :-: | :-- | :-- |
 | <img src="Assets/powers/electrodynamics_power.png" width="22" height="22" valign="middle"> **电动力学 [Electrodynamics]** | 玩家 Buff | <img src="Assets/profile/defect.png" width="18" height="18" title="故障机器人"> 故障机器人卡牌「电动力学」 | [闪电]球改为攻击所有敌人。 |
 | <img src="Assets/powers/evolve_power.png" width="22" height="22" valign="middle"> **进化 [Evolve]** | 玩家 Buff | <img src="Assets/profile/ironclad.png" width="18" height="18" title="铁甲战士"> 铁甲战士卡牌「进化」 | 每当你抽到状态牌，抽 **1 / 2** 张牌。 |
 | <img src="Assets/powers/step_by_step_power.png" width="22" height="22" valign="middle"> **步步为营 [Step by Step]** | 玩家 Buff | <img src="Assets/profile/silent.png" width="18" height="18" title="静默猎手"> 静默猎手卡牌「步步为营」 | 每回合多抽 1 张牌并多获得 1 点能量，持续 **X / X+1** 回合。 |
+| <img src="Sts2BalanceMod/images/powers/WitchFormPower.png" width="22" height="22" valign="middle"> **女巫形态 [Witch Form]** | 玩家 Buff | 先古卡「女巫形态」（遗物「精致的玩偶」/ Tanx 事件） | 回合开始将手牌中最多 2 张牌分别蜕变为升级后的「巫术打击+」与「巫术防御+」（无额外抽牌）。 |
+| <img src="Assets/powers/sorcery_weak.png" width="22" height="22" valign="middle"> **巫术虚弱 [Sorcery Weak]** | Debuff | 先古卡「巫术防御」（探克斯 Tanx） | 造成的攻击伤害减少 **40%**。若本回合进行过攻击，回合结束时减少 1 层。 |
+| <img src="Assets/powers/sorcery_vulnerable.png" width="22" height="22" valign="middle"> **巫术易伤 [Sorcery Vulnerable]** | Debuff | 先古卡「巫术打击」（探克斯 Tanx） | 受到的攻击伤害增加 **75%**。若本回合受到过攻击，回合结束时减少 1 层。 |
 | <img src="Assets/powers/infected_power.png" width="22" height="22" valign="middle"> **感染 [Infected]** | Debuff | <img src="Assets/map/elite.png" width="18" height="18"> 感染棱柱 Boss | 回合结束时失去 **{Amount}** 点生命（穿透格挡攻击施加）。 |
 | <img src="Assets/powers/MutagenicDecayPower.png" width="22" height="22" valign="middle"> **突变衰退 [Mutagenic Decay]** | Debuff | 遗物「突变之力」（J.A.X. 事件） | 回合结束时失去 1 点力量，持续 3 回合（层数逐回合递减至 0 移除）。 |
 | <img src="Assets/powers/mode_shift_power.png" width="22" height="22" valign="middle"> **形态转换 [Mode Shift]** | Boss 机制 | <img src="Assets/map/guardian_boss.png" width="18" height="18"> 守护者 Boss | 受到 **{Amount}** 点未被格挡伤害后转入防御模式。 |
@@ -139,12 +143,10 @@
 | <img src="Assets/powers/split_power.png" width="22" height="22" valign="middle"> **分裂 [Split]** | Boss 机制 | <img src="Assets/map/slime_boss.png" width="18" height="18"> 史莱姆老大 Boss | 生命值 ≤ **50%** 时分裂成 2 只较小的史莱姆。 |
 | <img src="Assets/powers/time_warp_power.png" width="22" height="22" valign="middle"> **时间扭曲 [Time Warp]** | Boss 机制 | 1 代 Boss 时间吞噬者（代码预留） | 玩家再打出 **{Amount}** 张牌后结束其回合并获得 2 力量。 |
 
-
-
 ### 怪物与 Boss
 
 | 名称 | 编号 | 原版机制 | MOD 改后机制 |
-| :--- | :--- | :--- | :--- |
+| :-- | :-- | :-- | :-- |
 | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" valign="middle"> **永世沙漏 [Aeonglass]** | MON-01 | 永世沙漏 Boss 生成的凋萎卡无法打出，进入手牌扣血且每次强化增加扣血量。 | 凋萎卡改为**可打出并消耗**；基础 1 费，随沙漏强化**每 2 次升级打出费用 +1**。 |
 | <img src="Assets/map/elite.png" width="22" height="22" valign="middle"> **感染棱柱 [InfestedPrism]** | BOSS-01 | 开场污染玩家技能牌（活力火花），玩家打出污染技能为棱柱增加力量；4回合循环均为攻击。 | 移除【活力火花】机制，改为未格挡攻击时叠加【感染】[InfectedPower]（每段+3层），重构为前3回合高伤害攻击 + 第4回合防守加强（+3/+2力量）的4回合循环（支持 Mod 设置切换）。 |
 | <img src="Assets/map/monster.png" width="22" height="22" valign="middle"> **红面具强盗 Bear [Bear]** | MONSTER-01 | 首回合【熊抱 BEAR_HUG】给予目标 1 层【易伤】 (`VulnerablePower`)。 | 【熊抱 BEAR_HUG】Debuff 修改为减少 2 点【敏捷】 (`DexterityPower` -2)。 |
@@ -154,8 +156,8 @@
 
 ### 事件与遭遇
 
-| 配图调整       | 说明                                                                                                                            |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| 配图调整 | 说明 |
+| --- | --- |
 | 自制事件图重画 | 配图采用宽幅构图；简化牧师与书本背景，修正石台与竞技场透视，改造师使用最终选定原图。见[事件配图说明](docs/events.md#事件配图)。 |
 
 > [!tip]
@@ -166,17 +168,17 @@
 - **禅意织者 [Zen Weaver]**：删牌价格分别下调至 **75 / 150 金币**。
 - **旧日垃圾堆 [Trash Heap]**：遗物奖励池加入 <img src="Assets/relics/omamori.png" width="18" height="18" valign="middle"> **御守**。
 - **除虫者 / 科学怪人 / 药水的未来？**：初始选项中新增可配置的 **「离开」** 分支。
-- **探克斯 [Tanx]**：联动开关开启时，将先古遗物 <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="18" height="18" valign="middle"> **精致的玩偶** 加入随机 3 选 1 候选池。
+- **探克斯 [Tanx]**：联动开关开启时（可在 Mod 设置中开关，默认开启），将先古遗物 <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="18" height="18" valign="middle"> **精致的玩偶** 加入随机 3 选 1 候选池；关闭时从候选池移除并仅提供原版先古遗物。
 
 #### 一代事件回归
-
 
 ### 遗物
 
 #### 新增遗物
 
 | 遗物 | 类型 | 描述 |
-| :--- | :--- | :--- |
+| :-- | :-- | :-- |
+| <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="22" height="22" valign="middle"> **精致的玩偶 [Delicate Doll]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 先古遗物。拾起时将一张已升级的【女巫形态+】加入牌组。第 1 回合开始时对所有敌人施加 2 层易伤与 2 层虚弱。（通过 Tanx 事件获取，可在 Mod 设置中开关联动） |
 | <img src="Assets/relics/sundial.png" width="22" height="22" valign="middle"> **日晷 [Sundial]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 每将抽牌堆洗牌 3 次（跨战斗保留计数），获得 3 点能量。 |
 | <img src="Assets/relics/orange_pill.png" width="22" height="22" valign="middle"> **橙色药丸 [Orange Pill]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 同一回合打出攻击 / 技能 / 能力各一张后，移除所有负面效果（女王的魂缚锁链除外）。 |
 | <img src="Assets/relics/dead_branch.png" width="22" height="22" valign="middle"> **枯木树枝 [Dead Branch]** | 稀有 | 每消耗一张牌，随机将一张牌加入手牌（虚无牌触发时给当回合保留）。 |
@@ -194,11 +196,10 @@
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **尼利的宝典 [Nilry's Codex]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 每回合结束时，从 3 张随机**升级版**卡牌中选择 1 张洗入抽牌堆。（RELIC-04：MOD 改为展示升级版） |
 | <img src="Assets/relics/mutagenic_strength.png" width="22" height="22" valign="middle"> **突变之力 [Mutagenic Strength]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 战斗开始时获得 3 点力量并附加 3 层「突变衰退」（每回合结束流失 1 点力量直到扣完；可与人工制品正常联动抵挡流失）。 |
 
-
 #### 原版调整
 
 | 遗物 | 类型 | 原版 | MOD 改后 |
-| :--- | :--- | :--- | :--- |
+| :-- | :-- | :-- | :-- |
 | <img src="Assets/relics/sand_castle.png" width="22" height="22" valign="middle"> **沙堡 [Sand Castle]** | <img src="Assets/profile/orobas.png" width="22" height="22" title="奥罗波斯 (Orobos)"> | 拾起时随机升级 6 张牌 | 拾起时改为选择 3 张牌升级，然后随机升级 3 张牌 |
 | <img src="Assets/relics/sturdy_clamp.png" width="22" height="22" valign="middle"> **坚固钳子 [Sturdy Clamp]** | 稀有 | 保留 10 护甲 | 保留 **15 护甲** |
 | <img src="Assets/relics/preserved_fog.png" width="22" height="22" valign="middle"> **活雾 [Preserved Fog]** | <img src="Assets/profile/vakuu.png" width="22" height="22" title="瓦库 (Vakuu)"> | 删除 3 张牌 | 删除 **4 张牌** |
