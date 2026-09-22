@@ -4,12 +4,15 @@
   "scripts": {
     "prepare": "husky",
     "format": "dotnet format Sts2BalanceMod.sln --include Sts2BalanceModCode",
+    "format:cs": "dotnet format Sts2BalanceMod.sln --include Sts2BalanceModCode",
+    "format:md": "prettier --write --ignore-unknown \"**/*.md\" && markdownlint-cli2 --fix",
+    "format:all": "pnpm run format:cs && pnpm run format:md",
     "check:format": "dotnet format Sts2BalanceMod.sln --include Sts2BalanceModCode --no-restore --verify-no-changes",
     "check:ec": "editorconfig-checker",
-    "check": "pnpm run check:format && pnpm run check:ec",
+    "check:md": "markdownlint-cli2",
+    "check": "pnpm run check:format && pnpm run check:ec && pnpm run check:md",
     "build": "dotnet build",
-    "lint:md": "markdownlint-cli2",
-    "format:md": "prettier --write --ignore-unknown \"**/*.md\" && markdownlint-cli2 --fix"
+    "lint:md": "markdownlint-cli2"
   },
   "devDependencies": {
     "editorconfig-checker": "^7.0.0",

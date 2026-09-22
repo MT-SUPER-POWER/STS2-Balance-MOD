@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: "发布版本标签 (例如 v0.3.8)"
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -11,6 +17,7 @@ permissions:
 env:
   MOD_NAME: Sts2BalanceMod
   GODOT_VERSION: 4.5.1
+  RELEASE_TAG: ${{ github.event.inputs.tag_name || github.ref_name }}
 
 jobs:
   build-and-release:
@@ -25,7 +32,11 @@ jobs:
         uses: actions/github-script@v7
         with:
           result-encoding: string
-          script: return require('./.github/scripts/extract-changelog.js')({ context })
+          script: |
+            return require('./.github/scripts/extract-changelog.js')({
+              context,
+              tagOverride: '${{ env.RELEASE_TAG }}'
+            });
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -36,7 +47,7 @@ jobs:
         run: bash .github/scripts/setup-godot.sh ${{ env.GODOT_VERSION }}
 
       - name: Update version in mod json
-        run: node .github/scripts/update-mod-version.js ${{ github.ref_name }}
+        run: node .github/scripts/update-mod-version.js ${{ env.RELEASE_TAG }}
 
       - name: Compile & Publish
         run: dotnet publish -c Release /p:ContinuousIntegrationBuild=true /p:SkipGodotExport=true
@@ -46,14 +57,14 @@ jobs:
         run: ./godot --headless --export-pack "Sts2BalanceMod" "$(pwd)/dist/Sts2BalanceMod/Sts2BalanceMod.pck" 2>&1
 
       - name: Verify and Package
-        run: bash .github/scripts/package-release.sh ${{ github.ref_name }}
+        run: bash .github/scripts/package-release.sh ${{ env.RELEASE_TAG }}
 
       - name: Create GitHub Release and Upload Asset
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref_name }}
-          name: ${{ env.MOD_NAME }} ${{ github.ref_name }}
+          tag_name: ${{ env.RELEASE_TAG }}
+          name: ${{ env.MOD_NAME }} ${{ env.RELEASE_TAG }}
           body: ${{ steps.changelog_reader.outputs.result }}
-          files: dist/Sts2BalanceMod-${{ github.ref_name }}.zip
-          generate_release_notes: false
+          files: dist/Sts2BalanceMod-${{ env.RELEASE_TAG }}.zip
+          generate_release_notes: ${{ steps.changelog_reader.outputs.result == '' }}
           make_latest: true
