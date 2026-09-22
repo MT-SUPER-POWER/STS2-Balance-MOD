@@ -10,10 +10,11 @@ Your wait is nearly over. The Spire awakens once more on **March 5, 2026**.
 
 Learn more about what ***Slay the Spire 2*** has in store in our official Early Access trailer:
 
-https://youtu.be/PW22jwFNxU8
+<https://youtu.be/PW22jwFNxU8>
 And if you haven’t yet, you can wishlist it here to keep it on your radar:
 
-https://store.steampowered.com/app/2868840/Slay_the_Spire_2/
+<https://store.steampowered.com/app/2868840/Slay_the_Spire_2/>
+
 ### About Slay the Spire 2
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/0f185873db094954202cd58424619a1d5c9fc753.gif)

@@ -50,7 +50,7 @@ We hope to share this experimental process with you all once we hit Early Access
 **Zachray2K asks:** Slay the Spire features some monsters inspired by real-world animals, like Jaw Worm and Louses. Personally, I don’t find them very cute—so I wonder if Slay the Spire 2 might introduce some cuter animal-based enemies.
 **Casey:** First of all, I think the louse is cute so you're hurting its fuzzy feelings. Either way, our art director Marlowe is VERY adept at drawing cute things; it's actually a minor problem. If you don't find enough cute things in Slay the Spire 2 I would be shocked. SHOCKED I tell you.
 
-### Q&A... with Anailis and Bruce!
+### Q&A... with Anailis and Bruce
 
 Demi the CM here! If you're interested in hearing more about how the art of *Slay the Spire* came to be, check out [More Games Please's](https://www.moregamesplease.com/art-in-boardgames/2025/5/27/anailis-dorta-amp-bruce-brenneise-slay-the-spire-art-in-board-games-76) interview with StS1's dedicated artists Bruce Brenneise and Anailis Dorta (the latter of whom is also working on StS2, as seen in the event art above)!!
 
@@ -85,12 +85,12 @@ KELP!! ...I mean HELP!! This seaweedy ball of spite is currently being referred 
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/2a530a09991c204a1ca52be965c5786e460b5392.gif)
 
-Another shadowy menace has appeared before our very eyes! If you have any ideas as to what it could be, be sure to submit them via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
+Another shadowy menace has appeared before our very eyes! If you have any ideas as to what it could be, be sure to submit them via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
 
-### Pride with Friends!
+### Pride with Friends
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/610df4898a6bc3916b23ea58d419dc85de02350a.png)
-The third annual Pride with Friends charity streaming event is happening on **June 27-29**, hosted by (https://www.twitch.tv/panacea108) on Twitch! There will be competitive seeded runs, speedrunning, and casual *Spire with Friends* co-op runs, all of which YOU can sign up to participate in now! There will also be trivia and guest appearances from the dev team (including me, Demi, hi!) All proceeds from donations will go towards the Trevor Project, so be sure to tune in and support a great cause! Check out more info, including the schedule and sign up form, (https://www.reddit.com/r/slaythespire/comments/1l3lcli/pride_with_friends_community_event_competitions/)! Credit for the cute event art goes to [@okureito](https://x.com/okureito) <3
+The third annual Pride with Friends charity streaming event is happening on **June 27-29**, hosted by (<https://www.twitch.tv/panacea108>) on Twitch! There will be competitive seeded runs, speedrunning, and casual *Spire with Friends* co-op runs, all of which YOU can sign up to participate in now! There will also be trivia and guest appearances from the dev team (including me, Demi, hi!) All proceeds from donations will go towards the Trevor Project, so be sure to tune in and support a great cause! Check out more info, including the schedule and sign up form, (<https://www.reddit.com/r/slaythespire/comments/1l3lcli/pride_with_friends_community_event_competitions/>)! Credit for the cute event art goes to [@okureito](https://x.com/okureito) <3
 
 ### Merch Madness
 
@@ -107,17 +107,17 @@ Another [Slay the Spire Connections puzzle](https://custom-connections-game.verc
 First off, thank you to bibimboy for our rainbowy cover image this month! Shoutout to these other incredible submissions from (in order from left to right) Connor, rat mama, Alcalmy, as well as Rowan, who is a 10-year old fan of Slay the Spire!! :') Thank you so much for sharing your wonderful art with us!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/4dae9f50d4b45a141125fec187eb182664a0f159.png)
-Next month's theme is: **Neow at the beach!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
+Next month's theme is: **Neow at the beach!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
 
 Ok, now for some community highlights!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/cfc970e429a8a9619efcdc8488c30cba5fac8bc1.png)
-This intricate illustration by (https://x.com/YoMrWhi23911066) inspired by the Defect's initial promo image!
+This intricate illustration by (<https://x.com/YoMrWhi23911066>) inspired by the Defect's initial promo image!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/19551ee6abe75c1013f52eaa985ea4771b579201.jpg)
-This awe-inspiring full-sleeve StS tattoo from (https://www.reddit.com/r/slaythespire/comments/1kxbiy4/my_fullsleeve_spire_tattoo/)--we appreciate the dedication!!
+This awe-inspiring full-sleeve StS tattoo from (<https://www.reddit.com/r/slaythespire/comments/1kxbiy4/my_fullsleeve_spire_tattoo/)--we> appreciate the dedication!!
 
-https://www.youtube.com/watch?v=5M_KLShhDwg
+<https://www.youtube.com/watch?v=5M_KLShhDwg>
 This super well-produced series of Slay the Spire challenge videos from a new StS content creator, MultiBradx!
 
 Phew, that's all for this month, but July's Neowsletter is just around the corner!

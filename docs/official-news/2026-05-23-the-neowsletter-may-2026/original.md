@@ -39,12 +39,12 @@ On the topic of stats...
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/acd34b385270327a0de6293fd224a4568a80d351.png)
 ![](https://clan.fastly.steamstatic.com/images/44971832/98d4114654c5c8ba42767d67497e5463e55347e1.png)
-We also wanted to take the opportunity to highlight a couple of community projects that collect their own stats and provide data, tools, guides, etc. for players: (https://spiracle.gg/) and [Spire Codex](https://spire-codex.com/). Be sure to check them out!!
+We also wanted to take the opportunity to highlight a couple of community projects that collect their own stats and provide data, tools, guides, etc. for players: (<https://spiracle.gg/>) and [Spire Codex](https://spire-codex.com/). Be sure to check them out!!
 
 ### Devour the Tower
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/f2c2bfdcb4e14ece9228359ed8c0ebd43642bb27.png)
-The first big community-led StS2 tournament, Devour the Tower, is coming in just a few days on **May 25**! Featuring 34 streamers, this 4-player co-op competition will be co-casted by (https://www.twitch.tv/frostprime) and (https://www.twitch.tv/otzdarva) so it's sure to be a good time. The winners of the tournament may even get a special gift, courtesy of Mega Crit. ;) Check out FrostPrime's Twitch for more details!
+The first big community-led StS2 tournament, Devour the Tower, is coming in just a few days on **May 25**! Featuring 34 streamers, this 4-player co-op competition will be co-casted by (<https://www.twitch.tv/frostprime>) and (<https://www.twitch.tv/otzdarva>) so it's sure to be a good time. The winners of the tournament may even get a special gift, courtesy of Mega Crit. ;) Check out FrostPrime's Twitch for more details!
 
 ### Merch Madness
 
@@ -61,7 +61,7 @@ Another Neowsletter, another [Slay the Spire Connections Puzzle!](https://custom
 As usual, let's check out some of the incredible in-game map creations from our community!
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/aea2aaadb721ca94044db74ac72659b0badc6e2e.jpg)
-This incredibly adorable drawing of the Regent by (https://x.com/AplphaE)!
+This incredibly adorable drawing of the Regent by (<https://x.com/AplphaE>)!
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/54cf4ea6e8fb14874d15eebfc15e8b8ccf006299.png)
 This stunningly detailed illustration of the Necrobinder and Osty by **[白板红中碰發财](https://www.xiaoheihe.cn/app/user/profile/65492201)**!
@@ -76,7 +76,7 @@ Lastly, this funny drawing involving the Doormaker (RIP) by **SnakeFangz**!
 
 Thank you to **doshiBAP** for this month’s gorgeous cover image featuring everyone's favorite Mother of Resurrection! (It was actually a late submission from April but we thought it fit this month's theme too!)
 
-Next month's theme is: **Slay the Summer!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
+Next month's theme is: **Slay the Summer!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
 
 Now on with some more community highlights:
 
@@ -87,6 +87,6 @@ This series of beautiful illustrations by **[dk000484](https://x.com/dk000484)**
 This super clever graduation cap from **lizard**--congradulations!!
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/ea5f586744b520e290f5a809d73324fd73a606cd.png)
-Last but not least, if you are craving more ways to test your StS2 knowledge than just our monthly Connections puzzle, check out (https://www.reddit.com/r/slaythespire/comments/1slffjo/spiredle/)!
+Last but not least, if you are craving more ways to test your StS2 knowledge than just our monthly Connections puzzle, check out (<https://www.reddit.com/r/slaythespire/comments/1slffjo/spiredle/>)!
 
 That's it for this month's issue of the Neowsletter, see you again in June!

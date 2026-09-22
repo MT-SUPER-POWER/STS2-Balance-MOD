@@ -19,12 +19,14 @@ The road to version 1.0 is long but we're hoping to get back on track to some bi
 ### Roadmap
 
 **Features and Systems:**
+
 - Steam Workshop support
 - Support for more languages
 - The Bestiary, a way to view and learn about the enemies in the game
 - Experimental game modes
 
 **Ongoing Tasks:**
+
 - Fixings bugs
 - Compatibility and performance improvements
 - Game balance and tweaks
@@ -33,12 +35,14 @@ The road to version 1.0 is long but we're hoping to get back on track to some bi
 - Visual polish (less silly placeholder art)
 
 **Content (No spoilers, it's for your own good!)**
+
 - Alternate Act 2
 - New Character
 - Alternate Act 3
 - More cards, events, relics, and potions
 
 **Further off in the Future**
+
 - Ports to other consoles/platforms/mobile/etc
 - Steam Achievements & Tradings Cards
 - "True Victory" + Everything that comes with it
@@ -51,7 +55,7 @@ Mega Crit is a small team where each member understands their responsibilities, 
 
 We evaluate our tasks each week and work on what feels most impactful. It’s not the most organized method, but this allows spontaneous experimentation like the dialogues you have with the Ancients or the existence of a Room Full of Cheese. We won’t massively expand the size of the studio to finish the game faster. Exacting deadlines produce sloppy uninspired work and I don't want Sloppy Spire 2, I want Slay the Spire 2.
 
-While we don't have firm timelines, beta patches release at a much more frequent cadence than main branch patches. If you haven't heard, the beta branch is an optional version of the game intended for testing experimental changes that are tweaked until we feel they are stable enough for the main branch. If you're eager to try out and provide feedback on content before it's officially live, check out the instructions for switching branches outlined (https://store.steampowered.com/news/app/2868840/view/502852451136700758).
+While we don't have firm timelines, beta patches release at a much more frequent cadence than main branch patches. If you haven't heard, the beta branch is an optional version of the game intended for testing experimental changes that are tweaked until we feel they are stable enough for the main branch. If you're eager to try out and provide feedback on content before it's officially live, check out the instructions for switching branches outlined (<https://store.steampowered.com/news/app/2868840/view/502852451136700758>).
 
 ### Spire Stats
 
@@ -81,7 +85,7 @@ That’s all for now, but next time we’ll take a peek behind the curtain at so
 Still, you never know how inspiration strikes. Maybe a modder will think of a way to make it work!
 
 **D asks:** will you also make official tabletop simulator expansion so that those that don't have friends IRL could play the board game online with others?
-**Demi:** Firstly, Contention Games is the one who handles most things related to the board game, as they develop, produce, and distribute it! Secondly, the public playtesting of the board game’s Downfall expansion has just recently begun, actually, and you can find it on Tabletop Simulator (https://steamcommunity.com/sharedfiles/filedetails/?id=3687082014)! For those who don’t already know, the base board game can be found on Tabletop Simulator (https://steamcommunity.com/sharedfiles/filedetails/?id=2884027954). If you’d like to provide feedback on the Downfall expansion and find teammates, check out the [Contention Games Discord server](https://discord.gg/54TPJMJ9fQ)!
+**Demi:** Firstly, Contention Games is the one who handles most things related to the board game, as they develop, produce, and distribute it! Secondly, the public playtesting of the board game’s Downfall expansion has just recently begun, actually, and you can find it on Tabletop Simulator (<https://steamcommunity.com/sharedfiles/filedetails/?id=3687082014>)! For those who don’t already know, the base board game can be found on Tabletop Simulator (<https://steamcommunity.com/sharedfiles/filedetails/?id=2884027954>). If you’d like to provide feedback on the Downfall expansion and find teammates, check out the [Contention Games Discord server](https://discord.gg/54TPJMJ9fQ)!
 
 **Origo asks:** Will this (beta patch) make it to the normal branch soon or not ?
 **Casey:** Probably when we feel that the first set of balance patches feel stable in the beta branch. We were discussing pulling in a handful of fixes into main branch before then. So that might happen soon, maybe before this Neowsletter is even published!
@@ -112,7 +116,7 @@ For those who are new to Connections puzzles, the objective is to make 4 groups 
 
 ### Map Masterpieces
 
-Last month we asked for submissions of any in-game map drawings you make, and we’ve received way more than we could ever include in a Neowsletter! Here are just a handful of highlights; if you’d like to be featured next month then post it in our Discord or email fanmail@megacrit.com!
+Last month we asked for submissions of any in-game map drawings you make, and we’ve received way more than we could ever include in a Neowsletter! Here are just a handful of highlights; if you’d like to be featured next month then post it in our Discord or email <fanmail@megacrit.com>!
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/7a6500a061168367db6d18029ca9629d2b8fed90.png)
 This drawing of The Silent’s classic key art by **Petěrko**!
@@ -131,7 +135,7 @@ An adorable drawing of The Defect and Flaw by **Axye**!
 
 This funny little Regent doodle (feat. a sus cameo) by **Bukie**!
 
-https://www.youtube.com/watch?v=XqQW4UYb6FA
+<https://www.youtube.com/watch?v=XqQW4UYb6FA>
 And last but not least, a full map-drawn animation of Bad Apple by **Terminaidan**!
 
 ### Community Corner
@@ -142,17 +146,17 @@ Thank you to **DotNetIzzy** for this month’s lovely sakura-themed cover image!
 ![](https://clan.fastly.steamstatic.com/images/44971832/f504a9dffb5d2ca954f28f5bee2ad52205df90d2.png)
 ![](https://clan.fastly.steamstatic.com/images/44971832/695aca591f43bef128cc1d1d467619eec437184e.jpg)
 
-Next month's theme is: **Mother (of Resurrection)’s Day!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
+Next month's theme is: **Mother (of Resurrection)’s Day!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
 
 Now it’s time for the rest of our usual community highlights, which are only the tip of the iceberg of the HUGE amount of incredible fanworks we’ve been seeing. Every illustration, video, meme, cosplay, etc that we come across makes our day–so thank you!
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/816db4042ed8d4eb0479f0cc3c3ffa8aabf55bde.jpg)
-This art of The Necrobinder sporting a different, super-cute style by (https://x.com/Radioxy28/status/2041718635681738806?s=20)!
+This art of The Necrobinder sporting a different, super-cute style by (<https://x.com/Radioxy28/status/2041718635681738806?s=20>)!
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/df94f71739bbe959a58b6d3ca8b23d9485040fe2.jpg)
-This very cool art of a Silent x Ceremonial Beast fusion by (https://x.com/PotariVT/status/2035361072073298129?s=20)!
+This very cool art of a Silent x Ceremonial Beast fusion by (<https://x.com/PotariVT/status/2035361072073298129?s=20>)!
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/82ea0775c7e905e66c2fae49fdec4cc85a488213.jpg)
-This incredible, colorful portrait of The Regent by (https://x.com/_jAn215/status/2041957577240490061?s=20)!
+This incredible, colorful portrait of The Regent by (<https://x.com/_jAn215/status/2041957577240490061?s=20>)!
 
 That’s all for the April 2026 issue of the Neowsletter, see you again next month with more updates and highlights!

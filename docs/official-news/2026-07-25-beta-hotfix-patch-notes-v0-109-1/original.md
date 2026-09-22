@@ -8,6 +8,6 @@ author: "demileaf"
 
 Got a tiny patch today with one important hotfix for players playing in Traditional Chinese!
 
-### BUG FIXES:
+### BUG FIXES
 
--  Synced corrected Traditional Chinese translations to fix broken plural evaluation
+- Synced corrected Traditional Chinese translations to fix broken plural evaluation

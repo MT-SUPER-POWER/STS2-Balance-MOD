@@ -1,0 +1,7 @@
+node_modules/
+.agents/
+.codex/
+.codegraph/
+package-lock.json
+nvim/lazy-lock.json
+docs/references/

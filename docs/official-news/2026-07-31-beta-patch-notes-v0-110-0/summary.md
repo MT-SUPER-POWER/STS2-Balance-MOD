@@ -3,25 +3,31 @@
 ### <img src="../../../Assets/profile/ancient.png" width="20" height="20" valign="middle"> 先古之民 (Ancients)
 
 #### <img src="../../../Assets/profile/neow.png" width="18" height="18" valign="middle"> 涅奥 (Neow)
+
 - **卡牌** 富足 [Abundance]：现在总是生成已升级的能力牌；升级效果改为耗能 -1
 
 #### <img src="../../../Assets/profile/tezcatara.png" width="18" height="18" valign="middle"> 提兹卡塔拉 (Tezcatara)
+
 - **遗物** 烘焙手套 [Toasty Mittens]：重构，效果改为「在你的回合开始时，消耗手牌中的 1 张牌并获得 1 点力量」（原为消耗抽牌堆顶部的牌）
 - **遗物** 黄金印 [Seal of Gold]：金币损失从 5 减少至 3
 
 #### <img src="../../../Assets/profile/nonupeipe.png" width="18" height="18" valign="middle"> 诺努佩佩 (Nonupeipe)
+
 - **遗物** 华美手镯 [Beautiful Bracelet]：附魔卡牌数量从 3 增至 4，快捷 [Swift] 层数从 3 减至 2
 - **遗物** 皮草大衣 [Fur Coat]：标记战斗次数从 7 增至 8
 - **遗物** 图章戒指 [Signet Ring]：获得金币从 999 减至 888
 
 #### <img src="../../../Assets/profile/pael.png" width="18" height="18" valign="middle"> 佩尔 (Pael)
+
 - **卡牌** 放松 [Relax]：格挡从 15(17) 增至 16(18)
 
 #### <img src="../../../Assets/profile/tanx.png" width="18" height="18" valign="middle"> 坦克斯 (Tanx)
+
 - **卡牌** 吹哨 [Whistle]：耗能从 3 减至 2
 - **卡牌** 撕咬 [Maul]：伤害成长从 1(2) 增至 2(3)
 
 #### <img src="../../../Assets/profile/vakuu.png" width="18" height="18" valign="middle"> 瓦库 (Vakuu)
+
 - **遗物** 小提琴 [Fiddle]：抽牌数量回调，从 3 减回 2
 
 ---

@@ -25,8 +25,9 @@ dotnet build                              # 编译 Mod 工程，检查 C# 语法
 2. **需求清单**：在 `docs/balance-changes.md` 中更新对应任务的完成状态。
 3. **变更与说明**：
 
-- 在 `CHANGELOG.md` 中记录改动明细（图表使用 `mermaid`，文字表格使用 `table`）。
-- 在 `README.md` 的「调整内容」章节中同步更新对应的表格与跳转链接。
+- 在 `CHANGELOG.md` 中按标准 Changelog 规范（Added / Changed / Fixed 等分类列表）记录改动条目，保持清晰精炼，无须冗余绘制表格或流程图。
+- 在 `README.md` 的「调整内容」章节中持续维护好结构清晰的 Markdown 紧凑表格与跳转链接，保障玩家具备最佳的可读性。
+- Markdown 格式规范：表格保持紧凑格式（刚好合适的大小，不填充多余空格平衡），强调语法保持使用星号（`*` / `**`），`skills/` 与 `docs/official-news/` 目录均纳入 Markdown 规范管理。
 
 <!-- DOCUMENTATION_RULE_END -->
 
@@ -34,21 +35,21 @@ dotnet build                              # 编译 Mod 工程，检查 C# 语法
 
 ## 关键路径
 
-| 路径                                                                                         | 用途                                                                                                                                  |
-| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `docs/README.md`                                                                             | **知识库总索引（Knowledge Base Hub）**                                                                                                |
-| `docs/powers.md`                                                                             | 能力与效果手册（Buff / Debuff / Boss 机制）                                                                                           |
-| `docs/events.md`                                                                             | 事件与遭遇手册（原版调整 / 1 代回归事件）                                                                                             |
-| `Sts2BalanceModCode/BalanceModEntry.cs`                                                      | Mod 入口：注册 RitsuLib 程序集、设置与 Harmony Patch                                                                                  |
-| `Sts2BalanceModCode/Abstract/`                                                               | 共享模板：`BalanceCardTemplate`、`BalanceRelicTemplate`、`BalancePowerTemplate`、`BalanceMonsterTemplate`、`BalanceEncounterTemplate` |
-| `Sts2BalanceModCode/Patches/`                                                                | Harmony Patch（子目录：Cards/ / Relics/ / Powers/ / Orbs/ / Merchant/ / Events/ / CardPools/ / Encounters/ / Monsters/）              |
-| `Sts2BalanceModCode/{Cards,Relics,Powers,Monsters,Encounters,Events,RestSite,Enchantments}/` | 按内容类别组织的 RitsuLib 模型                                                                                                        |
-| `Sts2BalanceModCode/Runtime/`                                                                | 运行时视觉、音频与战斗状态辅助代码                                                                                                    |
-| `Sts2BalanceModCode/{Extensions,Settings}/`                                                  | 路径约定与玩家可编辑设置                                                                                                              |
-| `Sts2BalanceMod/localization/{eng,zhs,ita,rus}/`                                             | 本地化 JSON（cards.json / powers.json / relics.json 等）                                                                              |
-| `D:\Game\Sts2Code\localization/{eng,zhs,ita,rus}/`                                           | 游戏原版本地化 JSON（查阅原版卡牌、遗物、能力、事件等的文本与 LocKey 规则）                                                           |
-| `Sts2BalanceMod/images/`                                                                     | 图片资源（card_portraits/ / powers/ / relics/ / events/ / ui/）                                                                       |
-| `image_gen/`                                                                                 | Python 图片批处理脚本（需 `uv`）                                                                                                      |
+| 路径 | 用途 |
+| --- | --- |
+| `docs/README.md` | **知识库总索引（Knowledge Base Hub）** |
+| `docs/powers.md` | 能力与效果手册（Buff / Debuff / Boss 机制） |
+| `docs/events.md` | 事件与遭遇手册（原版调整 / 1 代回归事件） |
+| `Sts2BalanceModCode/BalanceModEntry.cs` | Mod 入口：注册 RitsuLib 程序集、设置与 Harmony Patch |
+| `Sts2BalanceModCode/Abstract/` | 共享模板：`BalanceCardTemplate`、`BalanceRelicTemplate`、`BalancePowerTemplate`、`BalanceMonsterTemplate`、`BalanceEncounterTemplate` |
+| `Sts2BalanceModCode/Patches/` | Harmony Patch（子目录：Cards/ / Relics/ / Powers/ / Orbs/ / Merchant/ / Events/ / CardPools/ / Encounters/ / Monsters/） |
+| `Sts2BalanceModCode/{Cards,Relics,Powers,Monsters,Encounters,Events,RestSite,Enchantments}/` | 按内容类别组织的 RitsuLib 模型 |
+| `Sts2BalanceModCode/Runtime/` | 运行时视觉、音频与战斗状态辅助代码 |
+| `Sts2BalanceModCode/{Extensions,Settings}/` | 路径约定与玩家可编辑设置 |
+| `Sts2BalanceMod/localization/{eng,zhs,ita,rus}/` | 本地化 JSON（cards.json / powers.json / relics.json 等） |
+| `D:\Game\Sts2Code\localization/{eng,zhs,ita,rus}/` | 游戏原版本地化 JSON（查阅原版卡牌、遗物、能力、事件等的文本与 LocKey 规则） |
+| `Sts2BalanceMod/images/` | 图片资源（card_portraits/ / powers/ / relics/ / events/ / ui/） |
+| `image_gen/` | Python 图片批处理脚本（需 `uv`） |
 
 <!-- PATHS_END -->
 
@@ -58,14 +59,14 @@ dotnet build                              # 编译 Mod 工程，检查 C# 语法
 
 中文沟通中可使用下表的常用外号；外号、官方中文名和英文名均指向同一名可操作角色。涉及 C# 类型、卡池、资源 ID、本地化 key 或游戏 API 时，必须使用表中的英文标识符，不得将外号写入标识符。
 
-| 常用外号 | 官方中文名 | 英文标识符    |
-| -------- | ---------- | ------------- |
-| 战士     | 铁甲战士   | `Ironclad`    |
-| 猎人     | 静默猎手   | `Silent`      |
-| 骨妹     | 死灵缚者   | `Necrobinder` |
-| 机宝     | 故障机器人 | `Defect`      |
-| 储君     | 储君       | `Regent`      |
-| -        | 先古之民   | `Ancients`    |
+| 常用外号 | 官方中文名 | 英文标识符 |
+| --- | --- | --- |
+| 战士 | 铁甲战士 | `Ironclad` |
+| 猎人 | 静默猎手 | `Silent` |
+| 骨妹 | 死灵缚者 | `Necrobinder` |
+| 机宝 | 故障机器人 | `Defect` |
+| 储君 | 储君 | `Regent` |
+| - | 先古之民 | `Ancients` |
 
 - 面向玩家的文档和本地化优先使用官方中文名；首次出现时可附英文名以消除歧义。
 - 新增可操作角色或约定新的外号时，必须在同一改动中更新此表。
@@ -78,9 +79,9 @@ dotnet build                              # 编译 Mod 工程，检查 C# 语法
 
 下表记录了项目中的通用游戏术语翻译约定。面向玩家的文档、代码注释及本地化中，必须统一使用表中的规范中文名。
 
-| 英文名 / 概念 | 规范中文名 | 禁用/弃用旧称 | 备注                                 |
-| ------------- | ---------- | ------------- | ------------------------------------ |
-| `Focus`       | 集中       | 聚焦          | 故障机器人 (`Defect`) 属性与能力词条 |
+| 英文名 / 概念 | 规范中文名 | 禁用/弃用旧称 | 备注 |
+| --- | --- | --- | --- |
+| `Focus` | 集中 | 聚焦 | 故障机器人 (`Defect`) 属性与能力词条 |
 
 <!-- TERMINOLOGY_END -->
 
@@ -120,12 +121,14 @@ uv run events                                 # 事件背景图（3440×1616）
 1. 更新 `Sts2BalanceMod.json` 中的 `version` 字段为目标版本号 `vX.X.X`。
 2. 在 `CHANGELOG.md` 中以 `# vX.X.X` 的格式追加该版本的变更内容。
 3. 提交改动并打上对应版本号的 Git Tag，然后推送至远程仓库：
+
    ```bash
    git add .
    git commit -m "chore: release vX.X.X"
    git tag vX.X.X
    git push origin <当前分支> vX.X.X
    ```
+
 4. 推送后，GitHub Actions 会在云端自动拉取依赖、还原 API Stub DLL 编译、使用 Godot Mono Headless 导出 PCK，并最终将打包好的 ZIP 发布到 Release 页面中，无须本地手动打包上传。
 
 <!-- RELEASE_END -->

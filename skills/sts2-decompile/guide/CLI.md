@@ -9,6 +9,7 @@ GDRE Tools (Godot Reverse Engineering Tools) v2.6.0 provides a full CLI interfac
 ## Input Types
 
 GDRE Tools can process:
+
 - **EXE** — Game executable (recommended for full recovery)
 - **PCK** — Godot resource package
 - **APK** — Android package
@@ -36,11 +37,13 @@ Recovers entire project including scripts, resources, scenes, translations, and 
 ```
 
 **When input is EXE:**
+
 - Automatically extracts embedded PCK
 - Decompiles C# assemblies (if present)
 - Recovers all GDScript and resources
 
 **Options:**
+
 - `--output=<DIR>` — Output directory (default: `<NAME>_extracted`)
 - `--scripts-only` — Only recover GDScript files
 - `--include=<GLOB>` — Include files matching pattern (repeatable)
@@ -147,6 +150,7 @@ Decompile a specific GDC (GDScript bytecode) file to text.
 ```
 
 **Options:**
+
 - `--bytecode=<VERSION>` — Bytecode version (commit hash or version string)
 - `--load-custom-bytecode=<JSON>` — Custom bytecode definition
 - `--output=<DIR>` — Output directory
@@ -173,6 +177,7 @@ Compile GDScript text files to bytecode.
 ```
 
 **Options:**
+
 - `--bytecode=<VERSION>` — **Required.** Target bytecode version
 - `--output=<DIR>` — Output directory
 
@@ -241,6 +246,7 @@ Create a new PCK file from a directory.
 ```
 
 **Options:**
+
 - `--pck-version=<0|1|2>` — **Required.** PCK format version
 - `--pck-engine-version=<x.y.z>` — **Required.** Target Godot version
 - `--embed=<EXE>` — Embed PCK into executable
@@ -272,6 +278,7 @@ Replace files in an existing PCK.
 ```
 
 **Options:**
+
 - `--patch-file=<SRC>=<DEST>` — **Required.** File to patch (repeatable)
 - `--include=<GLOB>` — Only include matching files
 - `--exclude=<GLOB>` — Exclude matching files
@@ -325,6 +332,7 @@ Patch translation files from CSV.
 ```
 
 **Options:**
+
 - `--pck=<PCK>` — Source PCK with translations
 - `--output=<DIR>` — Output directory
 - `--locales=<LOCALES>` — Comma-separated locale list
@@ -336,7 +344,7 @@ Patch translation files from CSV.
 Include/Exclude patterns support:
 
 | Pattern | Meaning |
-|---------|---------|
+| --- | --- |
 | `**` | Recursive match |
 | `res://` | Project root |
 | `user://` | User directory |
@@ -344,6 +352,7 @@ Include/Exclude patterns support:
 | `res://scripts/**/*.gdc` | All GDC in scripts/ recursively |
 
 **Notes:**
+
 - Globs must be rooted to `res://` or `user://`
 - If not rooted, automatically prefixed with `res://`
 - Wildcard + directory = recursive pattern
@@ -353,7 +362,7 @@ Include/Exclude patterns support:
 ## Troubleshooting
 
 | Issue | Solution |
-|-------|----------|
+| --- | --- |
 | Version mismatch errors | Use `--force-bytecode-version=<version>` |
 | Checksum errors | Use `--ignore-checksum-errors` or `--skip-checksum-check` |
 | Encrypted PCK | Use `--key=<64-char-hex>` |

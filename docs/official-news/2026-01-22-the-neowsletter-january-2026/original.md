@@ -37,7 +37,7 @@ And last but (maybe) not least, let's take a look behind the curtain at some out
 
 ### Localization Applications
 
-We have begun to localize *Slay the Spire 2* into several different languages already (French, German, Japanese, Korean, Polish, Russian, Simplified Chinese, and Thai), but we are now looking to onboard some translators for other languages. If you are interested in helping to localize *Slay the Spire 2* as well as our Neowsletters and potentially other important announcements, please apply (https://docs.google.com/forms/d/e/1FAIpQLSct_F7JaG3qDoa1Ha_nY_b-zIVEld7QD9-fl0YX5WjG_BgDzA/viewform)!
+We have begun to localize *Slay the Spire 2* into several different languages already (French, German, Japanese, Korean, Polish, Russian, Simplified Chinese, and Thai), but we are now looking to onboard some translators for other languages. If you are interested in helping to localize *Slay the Spire 2* as well as our Neowsletters and potentially other important announcements, please apply (<https://docs.google.com/forms/d/e/1FAIpQLSct_F7JaG3qDoa1Ha_nY_b-zIVEld7QD9-fl0YX5WjG_BgDzA/viewform>)!
 
 ### Spire Spotting
 
@@ -70,13 +70,13 @@ And now, my dear intrepid explorers, this month's issue marks a very special mom
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/2ef59f2982cfb5619ad75b5e6c47ba78a12970be.gif)
 
-Aha! It appears to be mostly rectangular in shape, but there's some sort of sphere suspended in the middle... Our detection equipment seems to experiencing some sort of interference, so in the meantime we'd greatly appreciate your help in deciphering this strange being! Be sure to submit your guesses via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
+Aha! It appears to be mostly rectangular in shape, but there's some sort of sphere suspended in the middle... Our detection equipment seems to experiencing some sort of interference, so in the meantime we'd greatly appreciate your help in deciphering this strange being! Be sure to submit your guesses via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
 
 ### Collab Land
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/9f9decff321709b43f5d4f824cb2b9fd7bfa3383.jpg)
 
-Looks like Snecko Eye has snuck its way into another game?? The team behind (https://store.steampowered.com/app/3802470/Turnbound/), a brand new inventory management PvP autobattler, has included a Slay the Spire-themed item and free, early-access-exclusive cosmetic in their game! To celebrate this collab, Turnbound and Slay the Spire will bundled together for a 10% discount starting on their early access launch day... which just so happens to be today!
+Looks like Snecko Eye has snuck its way into another game?? The team behind (<https://store.steampowered.com/app/3802470/Turnbound/>), a brand new inventory management PvP autobattler, has included a Slay the Spire-themed item and free, early-access-exclusive cosmetic in their game! To celebrate this collab, Turnbound and Slay the Spire will bundled together for a 10% discount starting on their early access launch day... which just so happens to be today!
 
 ### Connections Section
 
@@ -89,10 +89,10 @@ New year, new Neowsletter, new [Slay the Spire Connections](https://custom-conne
 Now that the holiday season is over, let's take a look at some of your Mega Crit-mas creations!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/51a1a915556701f2a27ce359730b432dfdf9adf7.jpg)
-An adorable drawing of iconic StS character gathered around a tree by (https://x.com/SoccerObsidian)!
+An adorable drawing of iconic StS character gathered around a tree by (<https://x.com/SoccerObsidian>)!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/b014cb657b3a0080c247d615befba9d32eaa0b25.jpg)
-A painterly illustration of some wintery gremlins by (https://www.tiktok.com/@taydungeon/video/7587464728440622350) (timelapse on TikTok)!
+A painterly illustration of some wintery gremlins by (<https://www.tiktok.com/@taydungeon/video/7587464728440622350>) (timelapse on TikTok)!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/a137d435a0518e7e11311db15c4901aa88bc998e.jpg)
 A festive Snecko Eye cookie baked by Steeve_rules!
@@ -104,7 +104,7 @@ Thank you to **Okasana** for this month's beautiful, sparkly cover image, and sh
 ![](https://clan.fastly.steamstatic.com/images/29087962/fb9564f0eba7fd7ace15f1415753cf7d7eabfe82.jpg)
 ![](https://clan.fastly.steamstatic.com/images/29087962/e068ee0f36c3089f2fcb307f046ebf3a3d1d21cd.jpg)
 
-Next month's theme is: **Valentine's Day Neow!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
+Next month's theme is: **Valentine's Day Neow!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
 
 Now for our usual community highlights!
 
@@ -116,6 +116,6 @@ A gorgeous illustration of The Watcher underneath some wisteria by [鸡翅好吃
 An illustrated exploration of what the other StS1 slayer's Orbs might look like by [Maria/electrohoneys](https://www.tumblr.com/electrohoneys)!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/69c3da66b3fae534f2a3c3b1cfe15942bd05b488.png)
-Stunning 3D art of The Ironclad facing off against some giant Sentries by (https://bsky.app/profile/babymango3d.bsky.social)!
+Stunning 3D art of The Ironclad facing off against some giant Sentries by (<https://bsky.app/profile/babymango3d.bsky.social>)!
 
 And that's all for the first Neowsletter of 2026! See you all next month!

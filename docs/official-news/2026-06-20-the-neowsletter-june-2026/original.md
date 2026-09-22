@@ -32,13 +32,13 @@ We purposefully haven't been advertising mod support, as we knew it still needed
 
 However, as of the last patch, we've deemed mod support mature enough to enable the Workshop! This is now the official way to browse and install mods, right in the Steam client. We can't wait to see what else you all create going forward!
 
-If you're already a modder, upload your mods using the tool (https://github.com/megacrit/sts2-mod-uploader).
+If you're already a modder, upload your mods using the tool (<https://github.com/megacrit/sts2-mod-uploader>).
 
 If you're interested in getting started with modding, see the [community documentation](https://github.com/Alchyr/ModTemplate-StS2/wiki).
 
 And if you're interested in *playing* some mods, check out the [Steam Workshop](https://steamcommunity.com/app/2868840/workshop/)!
 
-If you have feedback on the modding framework, post in the #sts2-modding channel in the (https://discord.gg/slaythespire), or submit it via F2/the settings in-game.
+If you have feedback on the modding framework, post in the #sts2-modding channel in the (<https://discord.gg/slaythespire>), or submit it via F2/the settings in-game.
 
 ### Q&A with C&A
 
@@ -60,7 +60,7 @@ If you have feedback on the modding framework, post in the #sts2-modding channel
 ### Merch Madness
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/faeacf6f0f77194087594dbd779e8f2590107a61.png)
-The first *Slay the Spire 2* drop from Artovision is here! Showcase your love for StS2 right on your wall with this gorgeous shadowbox of the game's key art (which lends itself really well to the 3D effect!) Order yours now (https://artovision3d.com/collections/all/slay-the-spire)!
+The first *Slay the Spire 2* drop from Artovision is here! Showcase your love for StS2 right on your wall with this gorgeous shadowbox of the game's key art (which lends itself really well to the 3D effect!) Order yours now (<https://artovision3d.com/collections/all/slay-the-spire>)!
 
 ### Map Masterpieces
 
@@ -82,7 +82,7 @@ If the heat out there is getting to you, cool off with some good old fashioned [
 
 ### Community Corner
 
-Thank you to **moon raccoon** for this month's lovely cover art! Next month's theme is: **Slay the Summer 2**! Whether it's Neow enjoying a day at the beach (unlike most whales), the Spire's climbers taking a dip, or whatever beach episode activities you can think of, we'd love to see your submissions! If you'd like to submit your art for consideration, reminder that it must be submitted to us via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title! Please make your submission by **Friday, July 10th!**
+Thank you to **moon raccoon** for this month's lovely cover art! Next month's theme is: **Slay the Summer 2**! Whether it's Neow enjoying a day at the beach (unlike most whales), the Spire's climbers taking a dip, or whatever beach episode activities you can think of, we'd love to see your submissions! If you'd like to submit your art for consideration, reminder that it must be submitted to us via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title! Please make your submission by **Friday, July 10th!**
 
 Now for some monthly highlights:
 
@@ -92,9 +92,9 @@ This very cool art of the Test Subject from an 11 y/o fan, **Elias**!
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/abeff83b65c5b2b4f47a1e7b65a7344dfea29431.png)
 
-This incredibly accurate Regent cosplay by (https://x.com/radioxy28)!
+This incredibly accurate Regent cosplay by (<https://x.com/radioxy28>)!
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/dd6fc38f03dcc01401960f30564667356a7a3f32.jpg)
-This lovely art of all of the Spire's (current) climbers by (https://x.com/timotimo628)!
+This lovely art of all of the Spire's (current) climbers by (<https://x.com/timotimo628>)!
 
 Thus concludes the June Neowsletter; see you all again next month!

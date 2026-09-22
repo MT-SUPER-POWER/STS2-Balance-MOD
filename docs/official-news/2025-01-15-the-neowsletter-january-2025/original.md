@@ -10,16 +10,16 @@ author: "demileaf"
 
 Happy New Year everyone 🎉
 
-Some of you keen-eyed players are aware that we're launching Slay the Spire 2 into Early Access this year! The rumors are true, we're still on track to release. But what day? What month?? Well, we can't say for sure yet. More news will follow sometime this year. If you want to stay up-to-date you can get the Neowsletter straight to your inbox by signing up on [our website](https://megacrit.com/). But you can also get notified on (https://store.steampowered.com/app/646570/Slay_the_Spire/), [Twitter/X](https://twitter.com/MegaCrit), and (https://bsky.app/profile/megacrit.com)!
+Some of you keen-eyed players are aware that we're launching Slay the Spire 2 into Early Access this year! The rumors are true, we're still on track to release. But what day? What month?? Well, we can't say for sure yet. More news will follow sometime this year. If you want to stay up-to-date you can get the Neowsletter straight to your inbox by signing up on [our website](https://megacrit.com/). But you can also get notified on (<https://store.steampowered.com/app/646570/Slay_the_Spire/>), [Twitter/X](https://twitter.com/MegaCrit), and (<https://bsky.app/profile/megacrit.com>)!
 
 For those who missed the gameplay trailer, you can view it right here by clicking that play button. We have the technology 🤖.
 
-https://www.youtube.com/watch?v=ttVtllHkb4E
+<https://www.youtube.com/watch?v=ttVtllHkb4E>
 *I know we brought it up already but we worked hard on it, okay?*
 
 ### A Holiday Break
 
-We took a nice break during the second half of December so there isn't too much news to share, but if you have any burning questions that aren't covered in our (https://www.megacrit.com/faq/), then you can visit the [Slay the Spire Official Discord](https://discord.com/invite/slaythespire) and ask away in our #ask-the-devs channel where I'll personally refuse to answer your spoiler-related questions :)
+We took a nice break during the second half of December so there isn't too much news to share, but if you have any burning questions that aren't covered in our (<https://www.megacrit.com/faq/>), then you can visit the [Slay the Spire Official Discord](https://discord.com/invite/slaythespire) and ask away in our #ask-the-devs channel where I'll personally refuse to answer your spoiler-related questions :)
 
 ### No News, Have an Image
 

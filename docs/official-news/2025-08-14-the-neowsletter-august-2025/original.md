@@ -71,7 +71,7 @@ The award for most accurate theory goes to **PrincexKoi**, who drew an organic-l
 Shout out to all of the other submissions (many of which seemed to center around Neow or another character becoming trapped/corrupted actually...)
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/7d9b8fa18b57c0affb3b6649e4cc67a5c33172cc.png)
-Credit from left to right: ssorgatem, gummyfungi, Marmoth, popnfresh24, GooseEle, Multi-Man, Ada, Mound Sand,  Podunk22, Nevve1776, mainasuarafa, ironstove, B.D., PorpleKnight, 2kiye, Trevor.
+Credit from left to right: ssorgatem, gummyfungi, Marmoth, popnfresh24, GooseEle, Multi-Man, Ada, Mound Sand, Podunk22, Nevve1776, mainasuarafa, ironstove, B.D., PorpleKnight, 2kiye, Trevor.
 
 Without further ado, let's have a drum roll for the unveiling...
 
@@ -81,7 +81,7 @@ Agh! It's an enormous, shambling monster seemingly made of vines?? This publicat
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/67bce454cb70a68de983b76b9bd10b57458bf286.gif)
 
-Of course, there are always further discoveries to be made--yet another shadowy creature has emerged! If you have any guesses as to what this creature could be, be sure to submit them via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
+Of course, there are always further discoveries to be made--yet another shadowy creature has emerged! If you have any guesses as to what this creature could be, be sure to submit them via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
 
 ### Connections Section
 
@@ -95,17 +95,17 @@ Thank you to **Osakana** for our incredibly beautiful cover image this month! An
 ![](https://clan.fastly.steamstatic.com/images/29087962/252933f1d9105c0a691667ac022fa4f7cdbbbae8.png)
 Credit from left to right: WildeChelsy ([timelapse on Instagram!](https://www.instagram.com/p/DMa0p1RN6hv)), HAN, tide, and 周恒辉!
 
-Next month's theme is: **Neow in an autumnal forest!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
+Next month's theme is: **Neow in an autumnal forest!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
 
 Ok, let's take a look at some of this month's top community highlights!
 
-https://www.youtube.com/watch?v=xVE4SlP02d8
+<https://www.youtube.com/watch?v=xVE4SlP02d8>
 An amazing Slay the Spire parody song/animation by PixelPenguin (released in honor of the 1-year anniversary of their "Drawing badly until StS2 comes out" project!)
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/00013bc9abaa8586f5cde5052e750f693afb309d.png)
-A pixel Ironclad as well as a mini pixel Ironclad by (https://x.com/Landmily1)!
+A pixel Ironclad as well as a mini pixel Ironclad by (<https://x.com/Landmily1>)!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/da8c1ef1536494f50e66de04f6938569d5cc93c9.jpg)
-A Binding of Isaac x Slay the Spire crossover mousepad made by (https://x.com/GM_Whitose)!
+A Binding of Isaac x Slay the Spire crossover mousepad made by (<https://x.com/GM_Whitose>)!
 
 Alright, that's it for this issue. Cheers to one whole year of Neowsletters! Be sure to tune in, as always, next month!

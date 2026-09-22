@@ -10,13 +10,13 @@ author: "demileaf"
 
 Oh hey, it's the April Meowsletter... I mean Neowsletter! (This is as close to an April Fool's joke as you're gonna get from us this year.)
 
-Thank you again for all the fantastic cover art submissions, this one is brought to you by Caleb! May's prompt is: Neow and Mother's Day flowers! It's what she deserves, being the Mother of Resurrection and all. Send them to us either in the fanart channel of our (https://discord.gg/slaythespire) or via fanmail@megacrit.com, and reminder that the dimensions should be 800x450px and leave room for the title text, which we'll add!
+Thank you again for all the fantastic cover art submissions, this one is brought to you by Caleb! May's prompt is: Neow and Mother's Day flowers! It's what she deserves, being the Mother of Resurrection and all. Send them to us either in the fanart channel of our (<https://discord.gg/slaythespire>) or via <fanmail@megacrit.com>, and reminder that the dimensions should be 800x450px and leave room for the title text, which we'll add!
 
 There's still a lot of work ahead of us, but maybe *because* we know that things may get hectic when Early Access starts, the whole Mega Crit team (and some friends) took a trip to Japan! We've been working on *Slay the Spire 2* for more than 3 years but as a hybrid-remote studio, many of our employees have never met in-person.
 
 That's now changed! We met up in Japan to see the sights, enjoy the almost-ready cherry blossoms, take part in various traditions, karaoke, and really just hang out in a non-work environment. So much grass and moss was touched. The Ghibli Museum is quite something! With the power of okonomiyaki, Tower of the Sun, and my terrible singing, Mega Crit is considerably more powerful than before.
 
-(Demi's note: Neow joined us on our journey, too! You can check out her little TikTok diary (https://www.tiktok.com/@megacritgames/video/7491471701398818094?is_from_webapp=1&sender_device=pc&web_id=7467654117587551750).)
+(Demi's note: Neow joined us on our journey, too! You can check out her little TikTok diary (<https://www.tiktok.com/@megacritgames/video/7491471701398818094?is_from_webapp=1&sender_device=pc&web_id=7467654117587551750>).)
 
 Alright, enough of this human experience nonsense. Here's a sneak peak at a new way for monsters to ruin your day. Afflictions!
 
@@ -64,11 +64,11 @@ And--you guessed it--another shadowy enemy just appeared!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/0f50128fcc4f8be2ba3636cabb10bf5fcb3fa027.gif)
 
-What could it be? What could it do?? Submit your guesses in our Discord, on socials, or via fanmail@megacrit.com, as usual!
+What could it be? What could it do?? Submit your guesses in our Discord, on socials, or via <fanmail@megacrit.com>, as usual!
 
 # Q&A with C&A
 
-It's Questions & Answers with Casey & Anthony! Do you have questions? We have answers! Though sometimes we withhold them because you've asked for too much. If you'd like to see your questions answered, submit them to fanmail@megacrit.com and title it like "I have a Question!" or something and be sure to provide a pen name/alias if you want to retain some anonymity. Okay, on with it!
+It's Questions & Answers with Casey & Anthony! Do you have questions? We have answers! Though sometimes we withhold them because you've asked for too much. If you'd like to see your questions answered, submit them to <fanmail@megacrit.com> and title it like "I have a Question!" or something and be sure to provide a pen name/alias if you want to retain some anonymity. Okay, on with it!
 
 **King?? asks:** Not quite related to STS 2, but I really liked the desk mats you guys released and was wondering where we can expect more STS merch in the future.
 **Casey:** The deskmat is sold independently by our background and key art illustrator for Slay the Spire, Bruce Brenneise. In general, we're doing considerably more merch as we have a larger team but it'll likely ramp up after Early Access begins.
@@ -110,7 +110,7 @@ Ascensions will be available from Early Access and it'll be seeing some changes!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/ce37c942b61135f9ea7f5351ea4b17dd26d8040e.png)
 
-You can now live your dream of snuggling up with The Silent OR celebrate the Year of the Snecko with these brand new limited edition plushies from YouTooz! Look at them, just a couple of green, sneaky friends :'D Pre-order them today (https://youtooz.com/collections/slay-the-spire)!
+You can now live your dream of snuggling up with The Silent OR celebrate the Year of the Snecko with these brand new limited edition plushies from YouTooz! Look at them, just a couple of green, sneaky friends :'D Pre-order them today (<https://youtooz.com/collections/slay-the-spire>)!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/55a302617f13744a3f0555553b1a112cfdd7df02.png)
 
@@ -118,7 +118,7 @@ And back by popular demand, Fangamer is re-launching their [Slay the Spire colle
 
 # Triple-i Returns
 
-https://www.youtube.com/watch?v=rnNhA7vLgZ0
+<https://www.youtube.com/watch?v=rnNhA7vLgZ0>
 
 Did you know the Triple-i Initiative just held another showcase? While we're not participating this year, they did a fantastic job at showcasing a consortium of exciting indie game reveals, updates, and other stuff! Give your local indie devs a look and--WAIT IS THAT A KATANA ZERO DLC??? Anyways, go check it out!!
 
@@ -142,10 +142,10 @@ Now for the rest of the community highlights!
 
 The final installment (for now) in the Choose Your Own Ascension series by [Alex Zapata aka boosta11b](https://x.com/boosta11b)!
 
-https://www.youtube.com/watch?v=ml5sc8wv2jk
+<https://www.youtube.com/watch?v=ml5sc8wv2jk>
 Another hilarious Slay the Spire song and animation by Atillion!
 
-https://www.youtube.com/watch?v=LTOvTg2crOE
+<https://www.youtube.com/watch?v=LTOvTg2crOE>
 Slay the Spire 2 reimagined in Unreal by 星门望天!
 
 And that's all for this month! See you again next time, come what May!

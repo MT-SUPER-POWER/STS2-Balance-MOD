@@ -75,7 +75,7 @@ Do this **before** `rg`, directory scans, or reading C# files. Do not guess file
 2. Select and combine CodeGraph operations based on the unanswered question; do **not** mechanically run every command or rely on one fixed prompt. Use the MCP equivalents when available, otherwise use these repository CLI commands:
 
 | Need | CLI | Example |
-|------|-----|---------|
+| --- | --- | --- |
 | Orient to indexed paths | `codegraph files` | Identify the relevant `Cards/`, `Patches/`, or localization area without a filesystem scan |
 | Find a known ID, type, or method | `codegraph query <search>` | `codegraph query "Electrodynamics"` |
 | Read a known symbol or source file | `codegraph node <name>` | `codegraph node "GlowDrawCardPatch"` or `codegraph node "Sts2BalanceModCode/Patches/Cards/GlowDrawCardPatch.cs"` |
@@ -84,17 +84,16 @@ Do this **before** `rg`, directory scans, or reading C# files. Do not guess file
 | Assess the modification blast radius | `codegraph impact <symbol>` | `codegraph impact "GlowDrawCardPatch.Prefix"` |
 | Identify relevant tests after a code change | `codegraph affected <files...>` | `codegraph affected Sts2BalanceModCode/Patches/Cards/GlowDrawCardPatch.cs` |
 
-   `codegraph node` and `codegraph explore` return current on-disk source with line numbers; treat that output as the source read. Do **not** re-read a file returned there with filesystem tools. Start with `query` or `files` only when the symbol or area is unknown, then use `node` or `explore` to read the relevant code. Use `callers`, `callees`, or `impact` when the implementation decision depends on relationships rather than text alone. Fall back to `rg` or direct reads only after CodeGraph cannot surface the needed repository source.
-3. Determine which source governs the requested behavior. Use this map:
+`codegraph node` and `codegraph explore` return current on-disk source with line numbers; treat that output as the source read. Do **not** re-read a file returned there with filesystem tools. Start with `query` or `files` only when the symbol or area is unknown, then use `node` or `explore` to read the relevant code. Use `callers`, `callees`, or `impact` when the implementation decision depends on relationships rather than text alone. Fall back to `rg` or direct reads only after CodeGraph cannot surface the needed repository source. 3. Determine which source governs the requested behavior. Use this map:
 
 | Source | Location | Use it for | Editing rule |
-|--------|----------|------------|--------------|
+| --- | --- | --- | --- |
 | Mod source | `Sts2BalanceModCode/` | This mod's new content, patches, abstractions, and extensions | Authoritative editable implementation |
 | Vanilla game source | `D:\Game\Sts2Code\` | Exact target type, overload, control flow, private fields, and patch feasibility | Read-only decompiled reference; never modify |
 | Reference mods | `docs/references/WatcherMod/`, `docs/references/ActsFromThePast/` | Read-only examples and compatibility research | Never edit or treat as the target implementation |
 | Player resources | `Sts2BalanceMod/localization/{eng,zhs,ita,rus}/`, `Sts2BalanceMod/images/` | Text and artwork for new or player-visible content | Update only when the task requires them |
 
-4. If CodeGraph finds no mod-side implementation, inspect the exact vanilla type and method in `D:\Game\Sts2Code\` before selecting a Harmony target. This external decompiled tree is not the repository's CodeGraph index; use a direct read there only after resolving the type with CodeGraph. Verify the fully qualified type, method overload, return type, relevant fields, and whether a Prefix/Postfix can safely express the change. Prefer Postfix, then Prefix, then Transpiler.
+1. If CodeGraph finds no mod-side implementation, inspect the exact vanilla type and method in `D:\Game\Sts2Code\` before selecting a Harmony target. This external decompiled tree is not the repository's CodeGraph index; use a direct read there only after resolving the type with CodeGraph. Verify the fully qualified type, method overload, return type, relevant fields, and whether a Prefix/Postfix can safely express the change. Prefer Postfix, then Prefix, then Transpiler.
 
 Record this source-resolution result in the implementation plan:
 
@@ -111,7 +110,7 @@ Record this source-resolution result in the implementation plan:
 Use the CodeGraph result to select the narrowest matching location. These are starting points, not substitutes for source resolution:
 
 | Change | New content | Existing-content patch |
-|--------|-------------|------------------------|
+| --- | --- | --- |
 | Card | `Sts2BalanceModCode/Cards/` | `Sts2BalanceModCode/Patches/Cards/` or `Patches/CardPools/` |
 | Relic | `Sts2BalanceModCode/Relics/` | `Sts2BalanceModCode/Patches/Relics/` |
 | Power or orb | `Sts2BalanceModCode/Powers/` | `Sts2BalanceModCode/Patches/Powers/` or `Patches/Orbs/` |
@@ -144,6 +143,7 @@ Use the CodeGraph result to select the narrowest matching location. These are st
 Follow project conventions:
 
 **Harmony Patches:**
+
 ```csharp
 /// <summary>
 /// TASK-ID — <change summary>.
@@ -164,12 +164,14 @@ public static class MyPatch
 ```
 
 **New Cards/Relics:**
+
 - Inherit from `Sts2CardModel` / `Sts2RelicModel`
 - Add `eng`, `zhs`, `ita`, and `rus` localization for player-visible new content
 - Generate matching images when the content needs artwork
 - Verify the generated filename matches the model's ID-derived image path
 
 **Image Generation:**
+
 ```bash
 cd image_gen && uv sync && cd ..
 uv run cards filename.png
@@ -181,11 +183,13 @@ uv run relics filename.png
 Run `dotnet build`. For behavior that requires runtime confirmation, restart the game and inspect the new portion of `%AppData%/SlayTheSpire2/logs/godot.log` for mod loading, Harmony target failures, missing resources, and exceptions.
 
 **Mark task complete in `docs/balance-changes.md`:**
+
 ```markdown
 - [x] **CARD-XX** — [Completed]
 ```
 
 **Update `CHANGELOG.md`:**
+
 ```markdown
 # [Unreleased]
 
@@ -194,6 +198,7 @@ Run `dotnet build`. For behavior that requires runtime confirmation, restart the
 ```
 
 **Update `README.md`:**
+
 - Update "调整内容" table
 
 ### Step 6: Review and Commit
@@ -226,7 +231,7 @@ CodeGraph automatically watches the repository and syncs file changes in the bac
 ## Quick Reference
 
 | What | Where |
-|------|-------|
+| --- | --- |
 | Requirements | `docs/balance-changes.md` |
 | Entry point | `Sts2BalanceModCode/BalanceModEntry.cs` |
 | Abstract bases | `Sts2BalanceModCode/Abstract/` |

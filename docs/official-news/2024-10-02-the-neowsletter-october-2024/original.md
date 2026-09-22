@@ -52,7 +52,7 @@ While a lot of my time post-release and during the pandemic was spent on improvi
 
 We've been working together for the majority of the project and we continue to hone the visual identity of *Slay the Spire 2* based on what I think, what Marlowe thinks, what the rest of our team thinks, and what our internal playtesters think. There's a lot of thinking overall.
 
-Our style and philosophy is merging together and I'm always pushing for UX snappiness and speed while ensuring that the game's vibes don't stray from the original. On top of this, we've also hired a full-time animator, Chris Gortz, and *Slay the Spire 1's* card and event illustrator, Anailis Dorta (see our full team here: https://megacrit.com/about/). Working together for a long time allows us to mind meld and I think the harmony you'll see in the game is a sight to behold!
+Our style and philosophy is merging together and I'm always pushing for UX snappiness and speed while ensuring that the game's vibes don't stray from the original. On top of this, we've also hired a full-time animator, Chris Gortz, and *Slay the Spire 1's* card and event illustrator, Anailis Dorta (see our full team here: <https://megacrit.com/about/>). Working together for a long time allows us to mind meld and I think the harmony you'll see in the game is a sight to behold!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/5524a08919c47fb96af79017465b05794419621d.gif)
 
@@ -66,7 +66,6 @@ If I were forced to make a bulleted list of high level changes, it would look so
 - **Cinematic:**More whole-screen art stuff. Compared to before, this makes the game feel more epic rather than intimate.
 - **Colorfuler:**Everything is more colorful! This improves the legibility of various screens as well.
 
-
 ### Some words from our Art Director
 
 Working on developing the visual style for Slay the Spire 2 has been a really interesting and unique challenge that I’m unsure I’ll ever get to experience again as a game developer. Coming into work on a sequel of a very beloved game has a whole new set of rules from working on a new concept or property. While we want to update the visuals and make it feel new and fresh, we also want to ride that line of it being recognizable as the Slay the Spire world.
@@ -74,7 +73,7 @@ Working on developing the visual style for Slay the Spire 2 has been a really in
 ![](https://clan.fastly.steamstatic.com/images/29087962/0d5b8c7068133e5547dff8264b7e546c22694a4f.png)
 *Some early explorations for The Silent for StS2. Perhaps there is a universe in which we ended up going in this more cartoony direction.*
 
-Myself and the art team have done what I can only describe as visually dissecting what parts made up the vibe of *Slay the Spire 1*. What motifs, repeating visuals, creatures, races, architecture, etc. all add up to the unique, kind-of-creepy-but-kind-of-fun energy of the first game. We’re all big fans of the first installment and I at least have spent an embarrassing amount of my time playing it. When I’m approaching it as a fan and also someone in charge of steering the visuals of the sequel, you start to pick up on things like “yeah there’s not a lot of uncovered faces in *Slay the Spire 1*, this character we’re working on wouldn’t fit cause you see too much of their face.” or  “This is a cool monster, but is it WEIRD enough?” (I have spent a lot of time iterating on enemy designs to make them weirder.)
+Myself and the art team have done what I can only describe as visually dissecting what parts made up the vibe of *Slay the Spire 1*. What motifs, repeating visuals, creatures, races, architecture, etc. all add up to the unique, kind-of-creepy-but-kind-of-fun energy of the first game. We’re all big fans of the first installment and I at least have spent an embarrassing amount of my time playing it. When I’m approaching it as a fan and also someone in charge of steering the visuals of the sequel, you start to pick up on things like “yeah there’s not a lot of uncovered faces in *Slay the Spire 1*, this character we’re working on wouldn’t fit cause you see too much of their face.” or “This is a cool monster, but is it WEIRD enough?” (I have spent a lot of time iterating on enemy designs to make them weirder.)
 
 In the end, our goal is to make it feel bigger than the first game with new sets, new characters and enemies, more full-screen-art, way more animation, and a LOT of VFX (insert sparkles and fire and sparks here.) Of course it’ll look different and new, but I think it’s going to be a place that old and new StS players will feel comfortable and familiar in!
 
@@ -85,9 +84,9 @@ And in the ~spirit~ of the season, here’s a spooky StS2 sneak peek…
 
 ### Translating the Neowsletter
 
-As we've started posting the Neowsletter on Steam, our viewership has increased significantly. It may be time to start translating these announcements... If you have worked on Slay the Spire translations in the past and/or interested in translating announcements, please contact devs@megacrit.com or DM me on Discord @caseyyano. As an FYI: We're not yet starting on STS2 translations.
+As we've started posting the Neowsletter on Steam, our viewership has increased significantly. It may be time to start translating these announcements... If you have worked on Slay the Spire translations in the past and/or interested in translating announcements, please contact <devs@megacrit.com> or DM me on Discord @caseyyano. As an FYI: We're not yet starting on STS2 translations.
 
-### Mega Crit-or-Treat Returns!
+### Mega Crit-or-Treat Returns
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/e27d7449bcb37e2629c176eada98488af6005a32.jpg)
 *Our art director Marlowe’s own beautiful Cultist-themed pumpkin carving from last Halloween.*
@@ -119,7 +118,6 @@ And, as always, let’s close this out with some of our community’s wonderful 
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/8d04ffc510f8152a317fa35d99bdc65dd896ad4f.jpg)
 *A big, beautiful, beefy Demon Form Ironclad by [@ultimatept0812](https://x.com/ultimatept0812)*
-
 
 *A hilariously animated and insanely catchy song by [Finger Pickin Good](https://www.youtube.com/watch?v=vZXxf5jXY7E)*
 

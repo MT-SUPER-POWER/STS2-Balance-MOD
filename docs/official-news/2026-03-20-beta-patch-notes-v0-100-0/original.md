@@ -15,9 +15,9 @@ Some snazzy new portrait art for various cards!
 
 Cool new character-specific VFX for when you gain energy!
 
-Reminder that **this patch is exclusive to the beta branch branch for now**, which you can access via the instructions outlined (https://store.steampowered.com/news/app/2868840/view/502852451136700758?). It will come to the main branch later, likely with some more tweaks!
+Reminder that **this patch is exclusive to the beta branch branch for now**, which you can access via the instructions outlined (<https://store.steampowered.com/news/app/2868840/view/502852451136700758>?). It will come to the main branch later, likely with some more tweaks!
 
-### CONTENT:
+### CONTENT
 
 **General:**
 
@@ -25,11 +25,10 @@ Reminder that **this patch is exclusive to the beta branch branch for now**, whi
 
 - If you have an in-progress run and a card in your deck is removed from the game due to a recent update, it will be replaced with "Deprecated Card"
 
-
 **Ironclad:**
 
 - Reworked **Dominate** card: Skill - Cost 1 - Uncommon - "Apply 1(2) Vulnerable. Gain 1 Strength for each Vulnerable on the enemy. Exhaust."
-- Reworked **Expect a Fight** card: Skill - Cost 2(1) - Uncommon - "Gain  for each Attack in your Hand. You cannot gain additional  this turn."
+- Reworked **Expect a Fight** card: Skill - Cost 2(1) - Uncommon - "Gain for each Attack in your Hand. You cannot gain additional this turn."
 - Reworked **Spite** card: Cost 0 - Attack - Uncommon - "Deal 5 damage. If you lost HP this turn, hits 2(3) times."
 - Reworked **Stoke** card: Skill - Cost 1 - Rare - "Exhaust your Hand. Add 1 random (Upgraded) card into your Hand for each card Exhausted."
 
@@ -55,8 +54,7 @@ Reminder that **this patch is exclusive to the beta branch branch for now**, whi
 - Added new **Neow** blessing: **Hefty Tablet** -"Choose 1 of 3 Rare cards to add to your Deck. Add 1 Injury to your Deck."
 - Added new **Neow** blessing: **Neow's Talisman** - "Upgrade 1 of your Strikes and 1 of your Defends."
 
-
-### BALANCE:
+### BALANCE
 
 **General:**
 
@@ -151,7 +149,6 @@ Reminder that **this patch is exclusive to the beta branch branch for now**, whi
 - Cost increased from 0 -> 1(0)
 - Upgrade no longer makes a Soul+
 
-
 **Defect:**
 
 - Nerfed **Hotfix** card:
@@ -164,7 +161,7 @@ Reminder that **this patch is exclusive to the beta branch branch for now**, whi
 **Colorless Cards:**
 
 - Buffed **Seeker Strike** card: Damage increased from 6(9) -> 9(12)
-- Changed **Discovery** card: "It costs 0  this turn." -> "It's free to play this turn."
+- Changed **Discovery** card: "It costs 0 this turn." -> "It's free to play this turn."
 
 - This means that, if the card it generates has a Star cost, this cost is now also reduced to 0 this turn
 
@@ -233,7 +230,6 @@ Reminder that **this patch is exclusive to the beta branch branch for now**, whi
 - Cards removed decreased from 5 -> 3
 - Folly curse is now Ethereal
 
-
 **Events:**
 
 - Changed **Dense Vegetation** event: Trudge On option is now "Lose 8 HP. Gain 61-99 Gold."
@@ -258,8 +254,7 @@ Reminder that **this patch is exclusive to the beta branch branch for now**, whi
 - Nerfed **Believe in You** card: Energy decreased from 3(4)-> 2(3)
 - Nerfed **Huddle Up** card: now Exhausts
 
-
-### ART:
+### ART
 
 - Infection affliction card overlay is no longer animated when Phobia Mode is turned on
 - Added alternate Phobia Mode visuals for:
@@ -288,8 +283,7 @@ Reminder that **this patch is exclusive to the beta branch branch for now**, whi
 - Neow's Talisman
 - Hefty Tablet
 
-
-### USER INTERFACE & EXPERIENCE:
+### USER INTERFACE & EXPERIENCE
 
 - Added Phobia Mode tickbox in the Settings
 - You can now skip relics received at treasure chests
@@ -299,23 +293,20 @@ Reminder that **this patch is exclusive to the beta branch branch for now**, whi
 - Added a way to disable map drawings in multiplayer
 - The invite button now uses a hotkey on controller instead of manual navigation
 
-
-### WRITING:
+### WRITING
 
 - **Huddle Up** card now says "ALL players" instead of "ALL allies"
 - Improved wording clarity for **Bombardment** and **Howl from Beyond** cards
 - The descriptions for **Fairy in a Bottle** potion and **Lizard Tail** relic now specify that they trigger specifically when you reach 0 HP, rather than when you die in any manner
 - **The Insatiable** boss's Sandpit power is now worded more clearly on the turn that it will eat you
 
-
-### LOCALIZATION:
+### LOCALIZATION
 
 - Updated translations for various languages
 - Updated Korean text spacing to be a little bit closer
 - The "Fight" message in multiplayer treasure room is now translatable
 
-
-### BUG FIXES:
+### BUG FIXES
 
 **General:**
 

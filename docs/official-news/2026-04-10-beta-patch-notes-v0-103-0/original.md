@@ -75,7 +75,6 @@ This change makes **Regalite** consistent with Arsenal, and gives more love to t
 
 ### **ART:**
 
-
 - Added portrait art for the following cards:
 
 - Adaptive Strike
@@ -94,7 +93,6 @@ This change makes **Regalite** consistent with Arsenal, and gives more love to t
 
 ### **USER INTERFACE & EXPERIENCE:**
 
-
 - Players on the beta branch now submit their scores to a separate beta-only leaderboard
 - Added a scrollbar to the Run History screen
 - Badges now show up in Run History screen
@@ -109,7 +107,6 @@ This change makes **Regalite** consistent with Arsenal, and gives more love to t
 - Big divination button hotkey in Crystal Sphere event no longer uses deck view button on controller
 
 ### **WRITING:**
-
 
 - **Archaic Tooth** relic now properly says "Transform a starter card *into* an Ancient version" instead of "*with* an Ancient version".
 - **Flak Cannon** card description now highlights "Status" in gold

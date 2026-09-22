@@ -8,13 +8,11 @@ author: "demileaf"
 
 Quick hotfix with a couple of Aeonglass-related fixes and some localization updates!
 
-### WRITING:
+### WRITING
 
+- Updated translations for various languages
 
--  Updated translations for various languages
-
-
-### BUG FIXES:
+### BUG FIXES
 
 **Enemies:**
 
