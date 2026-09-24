@@ -20,7 +20,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
 /// <summary>
 /// 先古遗物：精致的玩偶 (Delicate Doll)
-/// 效果: 拾起时将一张已升级的【女巫形态+】加入牌组。
+/// 效果: 拾起时失去 50% 最大生命值上限，并将一张已升级的【女巫形态+】加入牌组。
 /// 战斗开始时，对所有敌人施加 2 层易伤与 2 层虚弱。
 /// </summary>
 [RegisterRelic(typeof(SharedRelicPool), FullPublicEntry = "STS2_BALANCEMOD_DELICATE_DOLL")]
@@ -40,14 +40,20 @@ public sealed class DelicateDoll : BalanceRelicTemplate
   protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
   [
       HoverTipFactory.FromCard<WitchForm>(upgrade: true),
-    ];
+  ];
 
   public override async Task AfterObtained()
   {
-    if (Owner?.RunState == null)
+    if (Owner?.RunState == null || Owner.Creature == null)
       return;
 
     Flash();
+    int hpLoss = Owner.Creature.MaxHp / 2;
+    if (hpLoss > 0)
+    {
+      await CreatureCmd.LoseMaxHp(new ThrowingPlayerChoiceContext(), Owner.Creature, hpLoss, isFromCard: false);
+    }
+
     CardModel card = Owner.RunState.CreateCard<WitchForm>(Owner);
     CardCmd.Upgrade(card);
     CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(card, PileType.Deck), 2f);

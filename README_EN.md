@@ -67,7 +67,7 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 | :-- | :-: | :-- |
 | **Add "Leave" option to events** | Enabled | Controls whether an explicit "Leave" option is added to "Bug Eater", "Frankenstein", and "Future of Potions?". Changes take effect on next event entrance. |
 | **Enable Infested Prism Rework** | Enabled | When enabled, uses fixed 4-turn rotation and [Infected] mechanic. When disabled, reverts to vanilla Spark of Vitality and state machine. |
-| **Enable Arknights Crossover: Delicate Doll (Witch Form)** | Enabled | Controls whether to enable crossover content in Tanx event. When enabled, adds Ancient Relic "Delicate Doll" (grants upgraded "Witch Form+") to the relic pool; when disabled, removes it completely. |
+| **Enable Arknights Crossover: Delicate Doll (Witch Form)** | Enabled | Controls whether to enable crossover content in Tanx event. When enabled, adds Ancient Relic "Delicate Doll" (lose 50% Max HP and gain upgraded "Witch Form+") to the relic pool; when disabled, removes it completely. |
 
 ### Shop
 
@@ -184,7 +184,7 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 
 | Relic | Type | Description |
 | :-- | :-- | :-- |
-| <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="22" height="22" valign="middle"> **Delicate Doll** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | Ancient Relic. Upon pickup, add an upgraded "Witch Form+" to your deck. At the start of turn 1, apply 2 Vulnerable and 2 Weak to all enemies. (Obtained from Tanx event, toggleable in Mod Settings) |
+| <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="22" height="22" valign="middle"> **Delicate Doll** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | Ancient Relic. Upon pickup, lose 50% Max HP and add an upgraded "Witch Form+" to your deck. At the start of turn 1, apply 2 Vulnerable and 2 Weak to all enemies. (Obtained from Tanx event, toggleable in Mod Settings) |
 | <img src="Assets/relics/sundial.png" width="22" height="22" valign="middle"> **Sundial** | <img src="Assets/profile/merchant.png" width="22" height="22" title="Merchant"> | Every 3 times you shuffle your draw pile (persists across combats), gain 3 Energy. |
 | <img src="Assets/relics/orange_pill.png" width="22" height="22" valign="middle"> **Orange Pills** | <img src="Assets/profile/merchant.png" width="22" height="22" title="Merchant"> | Playing an Attack, Skill, and Power card in a single turn removes all debuffs (except Queen's Soul Shackles). |
 | <img src="Assets/relics/dead_branch.png" width="22" height="22" valign="middle"> **Dead Branch** | Rare | Whenever a card is Exhausted, add a random card to your hand (Ethereal trigger gives turn-retain). |

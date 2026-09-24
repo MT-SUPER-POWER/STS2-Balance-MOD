@@ -36,7 +36,7 @@
 | <img src="../Assets/events/bugslayer.png" width="120"> | **除虫者 [Bugslayer]** | `EventLeaveOptionPatches` | 初始选项中**新增「离开」分支**，允许玩家直接走开而无须获取卡牌（可在 Mod 设置中开关）。 |
 | <img src="../Assets/events/tinker_time.png" width="120"> | **科学怪人 [Tinker Time]** | `EventLeaveOptionPatches` | 初始选项中**新增「离开」分支**，允许玩家直接走开而不用强制接受突变卡（可在 Mod 设置中开关）。 |
 | <img src="../Assets/events/the_future_of_potions.png" width="120"> | **药水的未来？ [The Future of Potions]** | `EventLeaveOptionPatches` | 初始选项中**新增「离开」分支**，允许玩家保留药水直接离开（可在 Mod 设置中开关）。 |
-| - | **探克斯 [Tanx]** | `TanxPatch` | 可在 Mod 设置中开关（默认开启）。联动开关开启时，将先古遗物 <img src="../Sts2BalanceMod/images/relics/DelicateDoll.png" width="18" height="18"> **精致的玩偶 [Delicate Doll]** 加入随机候选池抽取。获得后将升级版先古卡 **女巫形态+** 加入牌组，第 1 回合开始对所有敌人施加 2 层易伤与 2 层虚弱；关闭时从候选池中移除并仅提供原版先古遗物。 |
+| - | **探克斯 [Tanx]** | `TanxPatch` | 可在 Mod 设置中开关（默认开启）。联动开关开启时，将先古遗物 <img src="../Sts2BalanceMod/images/relics/DelicateDoll.png" width="18" height="18"> **精致的玩偶 [Delicate Doll]** 加入随机候选池抽取。获得后失去 50% 最大生命值上限，并将升级版先古卡 **女巫形态+** 加入牌组，第 1 回合开始对所有敌人施加 2 层易伤与 2 层虚弱；关闭时从候选池中移除并仅提供原版先古遗物。 |
 
 ---
 

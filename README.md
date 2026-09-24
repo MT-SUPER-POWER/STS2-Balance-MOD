@@ -67,7 +67,7 @@
 | :-- | :-: | :-- |
 | **为事件添加“离开”选项** | 开启 | 控制是否为“除虫者”“科学怪人”和“药水的未来？”添加可直接离开的选项；修改后会在下次进入这些事件时生效。 |
 | **启用感染棱柱重做** | 开启 | 开启时使用固定四回合循环与【感染】机制；关闭时恢复原版【活力火花】与原版行动状态机。修改后会在下次进入感染棱柱战斗时生效。 |
-| **启用方舟联动：精致的玩偶（女巫形态）** | 开启 | 控制是否启用先古之民 Tanx 事件的联动内容。开启时将先古遗物【精致的玩偶】（拾起获得已升级的【女巫形态+】）加入可选遗物池；关闭时从候选池与卡池中过滤该内容，Tanx 仅提供原版先古遗物。 |
+| **启用方舟联动：精致的玩偶（女巫形态）** | 开启 | 控制是否启用先古之民 Tanx 事件的联动内容。开启时将先古遗物【精致的玩偶】（拾起扣除 50% 生命上限并获得已升级的【女巫形态+】）加入可选遗物池；关闭时从候选池与卡池中过滤该内容，Tanx 仅提供原版先古遗物。 |
 
 ### 商店
 
@@ -178,7 +178,7 @@
 
 | 遗物 | 类型 | 描述 |
 | :-- | :-- | :-- |
-| <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="22" height="22" valign="middle"> **精致的玩偶 [Delicate Doll]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 先古遗物。拾起时将一张已升级的【女巫形态+】加入牌组。第 1 回合开始时对所有敌人施加 2 层易伤与 2 层虚弱。（通过 Tanx 事件获取，可在 Mod 设置中开关联动） |
+| <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="22" height="22" valign="middle"> **精致的玩偶 [Delicate Doll]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 先古遗物。拾起时失去 50% 最大生命值上限，并将一张已升级的【女巫形态+】加入牌组。第 1 回合开始时对所有敌人施加 2 层易伤与 2 层虚弱。（通过 Tanx 事件获取，可在 Mod 设置中开关联动） |
 | <img src="Assets/relics/sundial.png" width="22" height="22" valign="middle"> **日晷 [Sundial]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 每将抽牌堆洗牌 3 次（跨战斗保留计数），获得 3 点能量。 |
 | <img src="Assets/relics/orange_pill.png" width="22" height="22" valign="middle"> **橙色药丸 [Orange Pill]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 同一回合打出攻击 / 技能 / 能力各一张后，移除所有负面效果（女王的魂缚锁链除外）。 |
 | <img src="Assets/relics/dead_branch.png" width="22" height="22" valign="middle"> **枯木树枝 [Dead Branch]** | 稀有 | 每消耗一张牌，随机将一张牌加入手牌（虚无牌触发时给当回合保留）。 |

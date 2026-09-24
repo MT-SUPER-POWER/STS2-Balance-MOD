@@ -1,6 +1,6 @@
 {
   "STS2_BALANCEMOD_DELICATE_DOLL.title": "Delicate Doll",
-  "STS2_BALANCEMOD_DELICATE_DOLL.description": "Upon pickup, add an upgraded [gold]Witch Form+[/gold] to your deck. At the start of turn 1, apply [blue]{VulnerablePower}[/blue] [gold]Vulnerable[/gold] and [blue]{WeakPower}[/blue] [gold]Weak[/gold] to all enemies.",
+  "STS2_BALANCEMOD_DELICATE_DOLL.description": "Upon pickup, lose [red]50%[/red] Max HP and add an upgraded [gold]Witch Form+[/gold] to your deck. At the start of turn 1, apply [blue]{VulnerablePower}[/blue] [gold]Vulnerable[/gold] and [blue]{WeakPower}[/blue] [gold]Weak[/gold] to all enemies.",
   "STS2_BALANCEMOD_DELICATE_DOLL.flavor": "A gorgeous, exquisite doll hiding a deep curse beneath its glamorous exterior.",
   "STS2_BALANCEMOD_SHABBY_DOLL.title": "Shabby Doll",
   "STS2_BALANCEMOD_SHABBY_DOLL.description": "Upon pickup, lose [red]50%[/red] Max HP and replace all basic [gold]Strikes[/gold] and [gold]Defends[/gold] in your deck with upgraded [gold]Sorcery Strike+[/gold] and [gold]Sorcery Defend+[/gold].",
