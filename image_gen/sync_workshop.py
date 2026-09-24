@@ -35,28 +35,20 @@ def main():
         print(f"[ERROR] Workshop config file not found: {workspace_json}")
         return
 
-    # 1. 固定精炼主描述 (Fixed Concise Description + GitHub Link)
-    desc_markdown = """【中文介绍】
+    desc_md_path = root_dir / "workshop" / "WORKSHOP_DESCRIPTION.md"
+
+    # 1. 主描述直接从 workshop/WORKSHOP_DESCRIPTION.md (原生 Steam BBCode 格式) 读取
+    if desc_md_path.exists():
+        description_bbcode = desc_md_path.read_text(encoding="utf-8")
+    else:
+        description_bbcode = """[ZH]
 《杀戮尖塔 2》平衡调整 Mod
 
-本 Mod 旨在优化《杀戮尖塔 2》的游戏平衡性与游玩体验，针对部分卡牌、遗物、商店价格及随机事件进行了机制重构与数值调优。
+本 Mod 旨在优化《杀戮尖塔 2》的游戏平衡性与游玩体验。
 
-📌 **前置需求**: 需从 [RitsuLib Releases](https://github.com/BAKAOLC/STS2-RitsuLib/releases) 安装并启用与游戏版本兼容的最新稳定版 **RitsuLib**
-📖 **详细调整清单与 README**:
-https://github.com/MT-SUPER-POWER/STS2-Balance-MOD
-
-----------------------------------------
-
-【English Description】
-Slay the Spire 2 Balance MOD
-
-This mod aims to optimize the balance and gameplay experience of Slay the Spire 2 by reworking mechanics and fine-tuning values for select cards, relics, shop prices, and random events.
-
-📌 **Dependency**: Requires the latest stable **RitsuLib** compatible with your game version, from [GitHub Releases](https://github.com/BAKAOLC/STS2-RitsuLib/releases)
-📖 **Detailed Changes & README**:
-https://github.com/MT-SUPER-POWER/STS2-Balance-MOD"""
-
-    description_bbcode = md2steam.markdown_to_steam_bbcode(desc_markdown)
+🌐 [b]支持语言[/b]: 简体中文、English
+📌 [b]前置需求[/b]: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3747602295]RitsuLib[/url]
+📖 [b]GitHub[/b]: https://github.com/MT-SUPER-POWER/STS2-Balance-MOD"""
 
     # 2. 动态从 CHANGELOG.md 提取最新版本日志填入 changeNote
     latest_change_note = extract_latest_changelog(changelog_md_path)
