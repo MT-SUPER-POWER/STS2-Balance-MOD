@@ -1,17 +1,25 @@
 {
   "name": "sts2-balance-mod",
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@12.6.0",
   "scripts": {
     "prepare": "husky",
     "format": "dotnet format Sts2BalanceMod.sln --include Sts2BalanceModCode",
+    "format:cs": "dotnet format Sts2BalanceMod.sln --include Sts2BalanceModCode",
+    "format:md": "prettier --write --ignore-unknown \"**/*.md\" && markdownlint-cli2 --fix",
+    "format:all": "pnpm run format:cs && pnpm run format:md",
     "check:format": "dotnet format Sts2BalanceMod.sln --include Sts2BalanceModCode --no-restore --verify-no-changes",
     "check:ec": "editorconfig-checker",
-    "check": "pnpm run check:format && pnpm run check:ec",
-    "build": "dotnet build"
+    "check:md": "markdownlint-cli2",
+    "check": "pnpm run check:format && pnpm run check:ec && pnpm run check:md",
+    "build": "dotnet build",
+    "lint:md": "markdownlint-cli2"
   },
   "devDependencies": {
     "editorconfig-checker": "^7.0.0",
     "husky": "^9.1.7",
-    "lint-staged": "^17.5.1"
+    "lint-staged": "^17.5.1",
+    "markdownlint-cli2": "^0.23.3",
+    "prettier": "^3.9.8",
+    "prettier-plugin-markdown-compact-tables": "1.0.0"
   }
 }
