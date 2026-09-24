@@ -30,7 +30,6 @@
   </a>
 </div>
 
-
 ## Installation
 
 ### Prerequisites
@@ -65,9 +64,10 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 > Multiplayer games do not auto-sync Mod settings. All players must use identical settings to avoid desynchronized event choices or battle states.
 
 | Setting | Default | Effect |
-| :--- | :---: | :--- |
+| :-- | :-: | :-- |
 | **Add "Leave" option to events** | Enabled | Controls whether an explicit "Leave" option is added to "Bug Eater", "Frankenstein", and "Future of Potions?". Changes take effect on next event entrance. |
 | **Enable Infested Prism Rework** | Enabled | When enabled, uses fixed 4-turn rotation and [Infected] mechanic. When disabled, reverts to vanilla Spark of Vitality and state machine. |
+| **Enable Arknights Crossover: Delicate Doll (Witch Form)** | Enabled | Controls whether to enable crossover content in Tanx event. When enabled, adds Ancient Relic "Delicate Doll" (grants upgraded "Witch Form+") to the relic pool; when disabled, removes it completely. |
 
 ### Shop
 
@@ -79,7 +79,7 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 ### Card Adjustments
 
 | Card | Character | Type | Vanilla | MOD Rework |
-|------|:---:|:----:|------|------|
+| --- | :-: | :-: | --- | --- |
 | **Dirge** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Power | Upgraded: Summon +1, Exhaust, Soul+ | Upgraded: **Gains Retain keyword** |
 | **Blade Dance** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | Common card, Exhausts on play | Removes Exhaust, rarity changed to **Uncommon**, reusable |
 | **Acrobatics** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | Uncommon card | Rarity lowered to **Common**, increasing offer chance |
@@ -102,11 +102,10 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 | **Grand Finale** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Attack | 0-cost, requires exactly 0 cards in draw pile | **X-Cost** card, playable when **draw pile count ≤ X**; **Upgraded reduces cost by 2** (consumes $\max(0, X - 2)$ energy) |
 | **Pinpoint** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Attack | Cost reduces based on skill count | **Completely removed** from Silent card pool (replaced by Eviscerate) |
 
-
 ### STS1 Classic Returned Cards
 
 | Card | Character | Type | Rarity | Cost | Effect (Base / Upgraded) |
-|------|:---:|:----:|:------:|:----:|------|
+| --- | :-: | :-: | :-: | :-: | --- |
 | **Death Reap** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="Ironclad"> | Attack | Rare | 2 | Exhaust. Deal **4 / 6** damage to ALL enemies. Heal HP equal to unblocked damage dealt. |
 | **Power Through** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="Ironclad"> | Skill | Uncommon | 1 | Gain **15 / 20** Block. Add 2 Wounds into your hand. |
 | **Evolve** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="Ironclad"> | Power | Uncommon | 1 | Whenever you draw a Status card, draw **1 / 2** card(s). |
@@ -117,10 +116,11 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 ### New Mod Cards
 
 | Card | Character | Type | Rarity | Cost | Effect (Base / Upgraded) |
-|------|:---:|:----:|:------:|:----:|------|
+| --- | :-: | :-: | :-: | :-: | --- |
 | **Sparring** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Attack | Uncommon | 2 | Exhaust. Deal **8** damage, Osty deals **7 / 9** damage. Whichever side deals less unblocked damage heals **4 / 6** HP. |
 | **Ram** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Attack | Common | 2 | Osty loses **6 / 5** HP, deal **20 / 26** damage to ALL enemies; cannot trigger if Osty HP is insufficient. |
 | **Step by Step** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | Rare | X | Exhaust. For next X (Upgraded: X+1) turns, draw +1 card and gain +1 Energy each turn. Upgraded gains Retain. |
+| **Witch Form** | <img src="Assets/profile/colorless.png" width="22" height="22" title="Colorless"> | Power | Ancient | 3 | Gain 1 Witch Form. End your turn. Upgraded gains Innate. (Obtained via relic "Delicate Doll", toggleable in Mod Settings) |
 
 ### Powers & Status Adjustments
 
@@ -128,21 +128,23 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 > For complete powers, debuffs, and Boss mechanics reference, see **[docs/powers.md](docs/powers.md)**.
 
 | Power / Effect | Category | Source | Description |
-| :--- | :---: | :--- | :--- |
+| :-- | :-: | :-- | :-- |
 | <img src="Assets/powers/electrodynamics_power.png" width="22" height="22" valign="middle"> **Electrodynamics** | Player Buff | Defect Card "Electrodynamics" | Lightning Orbs hit ALL enemies. |
 | <img src="Assets/powers/evolve_power.png" width="22" height="22" valign="middle"> **Evolve** | Player Buff | Ironclad Card "Evolve" | Whenever you draw a Status card, draw **1 / 2** card(s). |
 | <img src="Assets/powers/step_by_step_power.png" width="22" height="22" valign="middle"> **Step by Step** | Player Buff | Silent Card "Step by Step" | Draw +1 card and gain +1 Energy each turn for **X / X+1** turns. |
+| <img src="Sts2BalanceMod/images/powers/WitchFormPower.png" width="22" height="22" valign="middle"> **Witch Form** | Player Buff | Ancient Card "Witch Form" (Relic "Delicate Doll" / Tanx Event) | At turn start, transform up to 2 cards in hand into upgraded "Sorcery Strike+" and "Sorcery Defend+" (no additional card draw). |
+| <img src="Assets/powers/sorcery_weak.png" width="22" height="22" valign="middle"> **Sorcery Weak** | Debuff | Ancient Card "Sorcery Defend" (Tanx) | Deals **40%** less attack damage. Decreases by 1 at turn end if attacking this turn. |
+| <img src="Assets/powers/sorcery_vulnerable.png" width="22" height="22" valign="middle"> **Sorcery Vulnerable** | Debuff | Ancient Card "Sorcery Strike" (Tanx) | Takes **75%** more attack damage. Decreases by 1 at turn end if attacked this turn. |
 | <img src="Assets/powers/infected_power.png" width="22" height="22" valign="middle"> **Infected** | Debuff | Infested Prism Boss | At turn end, lose **{Amount}** HP (applied by unblocked attacks). |
 | <img src="Assets/powers/mode_shift_power.png" width="22" height="22" valign="middle"> **Mode Shift** | Boss Mechanic | Guardian Boss | Shift into Defensive Mode after taking **{Amount}** unblocked damage. |
 | <img src="Assets/powers/sharp_hide_power.png" width="22" height="22" valign="middle"> **Sharp Hide** | Boss Mechanic | Guardian Boss | Whenever attacked, deal **{Amount}** damage back to the attacker. |
 | <img src="Assets/powers/split_power.png" width="22" height="22" valign="middle"> **Split** | Boss Mechanic | Slime Boss | Splits into 2 smaller Slimes when HP ≤ **50%**. |
 | <img src="Assets/powers/time_warp_power.png" width="22" height="22" valign="middle"> **Time Warp** | Boss Mechanic | Time Eater Boss (Code reserved) | Ends player's turn and gains 2 Strength after **{Amount}** cards are played. |
 
-
 ### Monsters & Bosses
 
 | Name | Code | Vanilla Behavior | MOD Reworked Behavior |
-| :--- | :--- | :--- | :--- |
+| :-- | :-- | :-- | :-- |
 | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" valign="middle"> **Aeonglass** | MON-01 | Wither cards generated by Boss are unplayable. | Wither cards are **playable and Exhaust** (starts at 1-cost, +1 cost every 2 upgrades). |
 | <img src="Assets/map/elite.png" width="22" height="22" valign="middle"> **Infested Prism** | BOSS-01 | Contaminates skill cards (Spark of Vitality) on turn 1, gaining Strength when played; 4-turn attack rotation. | Removes Spark of Vitality; applies **Infected** (+3 per hit) on unblocked attacks and uses a reworked 4-turn rotation (high attack pressure T1-T3, defend & +3/+2 Strength T4; configurable via Mod Settings). |
 | <img src="Assets/map/monster.png" width="22" height="22" valign="middle"> **Bandit Bear** | MONSTER-01 | Turn 1 Bear Hug applies 1 Vulnerable. | Bear Hug debuff changed to reduce 2 **Dexterity** (`DexterityPower` -2). |
@@ -156,13 +158,15 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 > For complete event branch options and trigger conditions, see **[docs/events.md](docs/events.md)**.
 
 #### Vanilla Event Adjustments
+
 - **Zen Weaver**: Card removal prices reduced to **75 / 150 Gold**.
 - **Trash Heap**: Relic reward pool now includes <img src="Assets/relics/omamori.png" width="18" height="18" valign="middle"> **Omamori**.
 - **Bug Eater / Frankenstein / Future of Potions?**: Added configurable **"Leave"** choices in initial options.
 
 #### STS1 Returned Events
+
 | Event Name | Requirements | Summary |
-| :--- | :--- | :--- |
+| :-- | :-- | :-- |
 | **Old Beggar** | All players Gold ≥ 75 | Pay 75 Gold to reveal Cleric card removal service. |
 | **Cursed Tome** | Act 2 (No Tome) | Multi-stage reading test to receive <img src="Assets/relics/necronomicon.png" width="18" height="18" valign="middle"> **Necronomicon** / <img src="Assets/relics/nilrys_codex.png" width="18" height="18" valign="middle"> **Nilry's Codex** / <img src="Assets/relics/enchiridion.png" width="18" height="18" valign="middle"> **Enchiridion**. |
 | **Masked Bandits** | Act 2, Floor ≥ 23 | Hand over all Gold or fight to earn <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **Red Mask**. |
@@ -174,13 +178,13 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 | **Tomb of Lord Red Mask** | Act 3 | Offer all Gold for <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **Red Mask** (or gain 222 Gold if wearing Red Mask). |
 | **The Library** | Act 3 | Offers **[Read]** (choose 1 cross-class card) or **[Sleep]** (heal 33% HP). |
 
-
 ### Relics
 
 #### New Relics
 
 | Relic | Type | Description |
-| :--- | :--- | :--- |
+| :-- | :-- | :-- |
+| <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="22" height="22" valign="middle"> **Delicate Doll** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | Ancient Relic. Upon pickup, add an upgraded "Witch Form+" to your deck. At the start of turn 1, apply 2 Vulnerable and 2 Weak to all enemies. (Obtained from Tanx event, toggleable in Mod Settings) |
 | <img src="Assets/relics/sundial.png" width="22" height="22" valign="middle"> **Sundial** | <img src="Assets/profile/merchant.png" width="22" height="22" title="Merchant"> | Every 3 times you shuffle your draw pile (persists across combats), gain 3 Energy. |
 | <img src="Assets/relics/orange_pill.png" width="22" height="22" valign="middle"> **Orange Pills** | <img src="Assets/profile/merchant.png" width="22" height="22" title="Merchant"> | Playing an Attack, Skill, and Power card in a single turn removes all debuffs (except Queen's Soul Shackles). |
 | <img src="Assets/relics/dead_branch.png" width="22" height="22" valign="middle"> **Dead Branch** | Rare | Whenever a card is Exhausted, add a random card to your hand (Ethereal trigger gives turn-retain). |
@@ -196,11 +200,10 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 | <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **Soul Contract** | <img src="Assets/profile/merchant.png" width="22" height="22" title="Merchant"> | Select 1 card in your deck with Exhaust and permanently remove its Exhaust property. |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **Nilry's Codex** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | At turn end, choose 1 of 3 random **Upgraded** cards to shuffle into your draw pile. |
 
-
 #### Vanilla Relic Adjustments
 
 | Relic | Type | Vanilla | MOD Rework |
-| :--- | :--- | :--- | :--- |
+| :-- | :-- | :-- | :-- |
 | <img src="Assets/relics/sturdy_clamp.png" width="22" height="22" valign="middle"> **Sturdy Clamp** | Rare | Retain 10 Armor | Retain **15 Armor** |
 | <img src="Assets/relics/preserved_fog.png" width="22" height="22" valign="middle"> **Preserved Fog** | <img src="Assets/profile/vakuu.png" width="22" height="22" title="Vakuu"> | Remove 3 cards | Remove **4 cards** |
 | <img src="Assets/relics/red_mask.png" width="22" height="22" valign="middle"> **Red Mask** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | In general relic pool | **Removed** from general relic pool, obtainable only via Red Mask events |

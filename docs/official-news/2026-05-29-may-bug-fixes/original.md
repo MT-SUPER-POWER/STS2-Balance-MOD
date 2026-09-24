@@ -8,7 +8,7 @@ author: "Mega Crit Games"
 
 Hey Slayers! Today we are pushing out a bugfix patch that brings tons of bugfixes from the beta branch over to main.
 
-## BUG FIXES:
+## BUG FIXES
 
 **General:**
 
@@ -42,34 +42,28 @@ Hey Slayers! Today we are pushing out a bugfix patch that brings tons of bugfixe
 - Fixed a rare softlock related to writing debug files
 - Fixed an issue where your odds of receiving another potion reward could sometimes increase instead of decrease after winning an elite combat and receiving a potion
 
-
 **Ironclad:**
 
 - Fixed being able to select an already-upgraded card with **Armaments** when it was added to your hand by **Largesse+**
 
-
 **Silent:**
 
 - Fixed being able to skip the **Survivor** card's discard selection using the peek button
-
 
 **Defect:**
 
 - Fixed the **Scrape** card discarding cards that cost zero Energy but have a Star cost
 - Fixed a spacing issue in the **Consuming Shadow** power's hovertip
 
-
 **Regent:**
 
 - Fixed the **Summon Forth** card so it now puts your existing **Sovereign Blades** into your hand before Forging instead of after
-
 
 **Potions & Relics:**
 
 - Fixed **The Boot** dealing 5 damage instead of 1 to you from the **Bad Luck** curse while you have Intangible
 - Fixed the **Self-Forming Clay** relic being triggered by the **Terminal** modifier's max HP loss
 - Fixed the **Whispering Earring** relic replaying **Stardust** for 0 Stars instead of the correct amount
-
 
 **Enemies:**
 
@@ -82,13 +76,11 @@ Hey Slayers! Today we are pushing out a bugfix patch that brings tons of bugfixe
 - Fixed a softlock with the **Thieving Hopper** when you have no cards for it to steal
 - Fixed the **Parafright** illusion keeping its negative Strength from **Dark Shackles** when you kill it for the turn
 
-
 **Events:**
 
 - Fixed cards from other characters appearing in the **Infested Automaton** event
 - Fixed being unable to discard potions in the **Punch Off** event
 - Fixed being unable to give the foul potion to the Merchant
-
 
 **Ancients:**
 
@@ -97,7 +89,6 @@ Hey Slayers! Today we are pushing out a bugfix patch that brings tons of bugfixe
 - Fixed being able to slightly see the top of the next dialogue bubble before it animates in at the Ancients
 - Fixed the **Leafy Poultice** relic transforming the upgraded Strikes and Defends granted by **Neow's Talisman** when you get both from **Neow's Bones**
 - Fixed the **Nutritious Soup** option appearing in the **Tezcatara** screen when you have no Strikes
-
 
 **Multiplayer:**
 

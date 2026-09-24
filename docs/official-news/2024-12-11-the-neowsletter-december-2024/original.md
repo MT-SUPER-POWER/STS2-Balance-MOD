@@ -32,17 +32,17 @@ It's truly a privilege for us to be independent game developers and I'd like to 
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/15502efa7e8c54ef878d7408d394ed4656ca6b68.jpg)
 
-### Enemy Preview... WAIT, BEES?!
+### Enemy Preview... WAIT, BEES?
 
 When working on sequels we ask ourselves how we can introduce new and creative ways for you to die horrifically and we whispered, *"...what about bees?"*
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/e5b157f0e8a48ca1e3dd85b3d9a219fbb79936c5.gif)
 
-### Mega Crit-mas!
+### Mega Crit-mas
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/48ed7a749e62169ead08d5c9e9e3101d7ac0a202.png)
 
-Demi here, bringing good tidings: Mega Crit-mas is back!! For those of you who weren’t around last year, this is your opportunity to spread some holiday-themed Slay the Spire cheer. Tag us on (https://x.com/MegaCrit/status/1865177141354336550) or (https://bsky.app/profile/megacrit.com) with any original festive fan creation, be it art, writing, mods, a video, some Spire-y holiday decorations, etc, and we just might spread the cheer, too! AND if you share your work in the event channel on our (https://discord.gg/slaythespire), you’ll get an exclusive role to wear with honor throughout the season!
+Demi here, bringing good tidings: Mega Crit-mas is back!! For those of you who weren’t around last year, this is your opportunity to spread some holiday-themed Slay the Spire cheer. Tag us on (<https://x.com/MegaCrit/status/1865177141354336550>) or (<https://bsky.app/profile/megacrit.com>) with any original festive fan creation, be it art, writing, mods, a video, some Spire-y holiday decorations, etc, and we just might spread the cheer, too! AND if you share your work in the event channel on our (<https://discord.gg/slaythespire>), you’ll get an exclusive role to wear with honor throughout the season!
 
 And no holiday ambience is complete without the official [Slay the Spire Yule Log](https://www.youtube.com/watch?v=UmrEhI1SE9s), featuring some cheerful renditions of classic StS boss themes to accompany the crackling rest site flames!
 
@@ -52,7 +52,7 @@ And one last plug: if you’re looking for some last-minute gift ideas, you can 
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/96ea6f6ab28d46f1a78bf9ab7d7e69403bc78138.png)
 
-*Merchant voice* Ho ho ho! This month brings a more festive (though hopefully still somewhat fiendish)  [Slay the Spire Connections puzzle](https://custom-connections-game.vercel.app/ylabW6yGRwtXs3F0DSqm)!
+*Merchant voice* Ho ho ho! This month brings a more festive (though hopefully still somewhat fiendish) [Slay the Spire Connections puzzle](https://custom-connections-game.vercel.app/ylabW6yGRwtXs3F0DSqm)!
 
 ### Community Roundup
 

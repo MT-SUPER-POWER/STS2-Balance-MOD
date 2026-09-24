@@ -1,5 +1,0 @@
-{
-  "*.cs": [
-    "dotnet format Sts2BalanceMod.sln --include"
-  ]
-}

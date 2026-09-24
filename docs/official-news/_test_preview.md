@@ -81,17 +81,17 @@ Thank you to **pp** for this month's super cool cover image (check out Neow's cu
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/9ca67d72b06276f0a48cf8dc9d8cdc66ba946c06.jpg)
 
-Next month's theme is: **Slay the Summer - Festival Edition**! You could include water lanterns, food stalls, fireworks, whatever you like--just make it August-y! If you'd like to submit your art for consideration, reminder that it must be submitted to us via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title! Please make your submission by **Friday, August 7th!**
+Next month's theme is: **Slay the Summer - Festival Edition**! You could include water lanterns, food stalls, fireworks, whatever you like--just make it August-y! If you'd like to submit your art for consideration, reminder that it must be submitted to us via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title! Please make your submission by **Friday, August 7th!**
 
 On with the rest of the community highlights!
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/fdcddc1c013712cd070ad42b771fcbc5e1bd2131.gif)
-An animated version of the Ironclad's Evil Eye card by (https://www.youtube.com/@Qumerredem)!
+An animated version of the Ironclad's Evil Eye card by (<https://www.youtube.com/@Qumerredem>)!
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/b95c57e0cf4b06c9aa72c0dc4857114c246d8cdc.jpg)
-Awesome cosplay by (https://www.reddit.com/r/slaythespire/comments/1u8ec9p/my_silent_cosplay/) of the Silent partaking of her own poison!
+Awesome cosplay by (<https://www.reddit.com/r/slaythespire/comments/1u8ec9p/my_silent_cosplay/>) of the Silent partaking of her own poison!
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/5a0d2b424721600703e569591c71db208191a07e.jpg)
-A desk setup that SLAYS by (https://bsky.app/profile/ches-sky-nut.bsky.social) featuring his very own gorgeous fanart!
+A desk setup that SLAYS by (<https://bsky.app/profile/ches-sky-nut.bsky.social>) featuring his very own gorgeous fanart!
 
 That's all for this month's issue, see you in the next one!

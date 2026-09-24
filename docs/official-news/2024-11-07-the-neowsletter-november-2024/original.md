@@ -58,11 +58,11 @@ Ok, now Demi’s section begins! First things first, we’ve got some big merch 
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/89596e35b0944e85bc002ba1151dcf2d628cbe0f.png)
 
-This plushie of The Champ may be tiny, but he is also MIGHTY!! He’s also VERY limited edition; there’s less than a week left on the campaign, so be sure to grab your own from Makeship (https://www.makeship.com/products/the-champ-plushie) before November 12!
+This plushie of The Champ may be tiny, but he is also MIGHTY!! He’s also VERY limited edition; there’s less than a week left on the campaign, so be sure to grab your own from Makeship (<https://www.makeship.com/products/the-champ-plushie>) before November 12!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/c03dbcf27a09ca016b006033c0555c00271075cc.jpg)
 
-Also, The Yetee recently released a bunch of stickers, including sticker sheets of EVERY relic in the game and some very boss-looking boss stickers! And (as their namesake would imply) the drop also includes a t-shirt, featuring Neow and the Corrupt Heart in a metal concert tee style! Get your hands on these and lots of other items from our Yetee collection (https://theyetee.com/collections/slay-the-spire).
+Also, The Yetee recently released a bunch of stickers, including sticker sheets of EVERY relic in the game and some very boss-looking boss stickers! And (as their namesake would imply) the drop also includes a t-shirt, featuring Neow and the Corrupt Heart in a metal concert tee style! Get your hands on these and lots of other items from our Yetee collection (<https://theyetee.com/collections/slay-the-spire>).
 
 ### StS Connections
 
@@ -72,7 +72,7 @@ Another Neowletter, another [Slay the Spire Connections puzzle](https://custom-c
 
 ### Community Roundup
 
-If you tuned in last month, you’d know that we just held our annual Mega Crit-or-Treat event! We got LOTS of spooky submissions via (https://discord.gg/slaythespire) and (https://x.com/MegaCrit), and while we couldn’t possibly show them all, here are just some of the highlights of what our community created last month!
+If you tuned in last month, you’d know that we just held our annual Mega Crit-or-Treat event! We got LOTS of spooky submissions via (<https://discord.gg/slaythespire>) and (<https://x.com/MegaCrit>), and while we couldn’t possibly show them all, here are just some of the highlights of what our community created last month!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/fc958afda57f7732f810cd787d3c31403b3c0f75.jpg)
 Another resplendent rendition of The Ironclad in his fiery, spooky Demon Form by [@JoQuerol](https://x.com/JoQuerol)

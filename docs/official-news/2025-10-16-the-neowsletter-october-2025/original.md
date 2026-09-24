@@ -40,9 +40,9 @@ Transformation is a major part of necromancy, of course, so the Necrobinder also
 
 That's all the information on our little lich that we have for you today, but there will be plenty more to uncover still.
 
-### Q&A with C&A:
+### Q&A with C&A
 
-We didn't answer any questions last month because there was a Q&A section for the delay announcement. Fear not, we're back to answering your exciting questions. As always, send your questions to fanmail@megacrit.com and we'll respond within 90 business days. Yes, it's slow. At least we're honest about it.
+We didn't answer any questions last month because there was a Q&A section for the delay announcement. Fear not, we're back to answering your exciting questions. As always, send your questions to <fanmail@megacrit.com> and we'll respond within 90 business days. Yes, it's slow. At least we're honest about it.
 
 **posmen asks:** The community has dubbed quitting and reloading from the start of a floor as savescumming. It seems to be a pretty divisive topic but being that Slay the Spire is a single player game there's no real impact aside from being used as a progression loophole. Is this still going to be a "feature" of StS2?
 **Casey:** Yeah you can still save scum. Play how you want
@@ -56,7 +56,7 @@ We didn't answer any questions last month because there was a Q&A section for th
 **Matt asks:** Is Poison back for The Silent in STS2, or does she now have to rely on a new kit to make her way through The Spire?
 **Casey:** we like poison
 
-**The Singaporean Smoke Machine asks:**  Will there be a feature for shiv cards where there will be a "throwing" card animation? Like when you play a shiv, the card itself flies striaght into an enemy before spinning and falling off-screen? I think it would be really cool!
+**The Singaporean Smoke Machine asks:** Will there be a feature for shiv cards where there will be a "throwing" card animation? Like when you play a shiv, the card itself flies striaght into an enemy before spinning and falling off-screen? I think it would be really cool!
 **Anthony:** No
 
 ### Spire Spotting
@@ -70,7 +70,7 @@ As always, let's take a look at last month's mystery monster silhouette:
 Now let's see what guesses you all had this time around...
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/7246b6dd7d9d606d23e05993023e3c8db5aaab55.png)
-The award for cutest guess goes to **rinny.Ly._.nn**, which might have been the toughest category this time around!
+The award for cutest guess goes to **rinny.Ly.\_.nn**, which might have been the toughest category this time around!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/d991d58bf59f20c6d53284a156baf717d5d62038.png)
 The "Hit the Slay button" award goes to **gold**! No need to sashay away.
@@ -91,7 +91,7 @@ AAAAAH... aww? It's just a little guy, surely he's harmless! Either he's a senti
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/54c62c0b5682c2c5f63a41d4b5316d667d86ae74.gif)
 
-JUMPSCARE! I'm sure you weren't expecting that--another shadowy creature is in need of unveiling. If you have any clues as to what this creature could be, be sure to submit them via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
+JUMPSCARE! I'm sure you weren't expecting that--another shadowy creature is in need of unveiling. If you have any clues as to what this creature could be, be sure to submit them via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
 
 ### Merch Madness
 
@@ -101,7 +101,7 @@ SLIME... plush??
 
 For a limited time ONLY, you can grab this Makeship Slime Boss doughboi (meaning it's BIG and squishy just like the real, in-game deal) as well as a couple of cute, fuzzy Louse plushies for you to Curl Up with <3
 
-Get into the spooky, slimy spirit and pre-order yours right (https://makeship.com/shop/creator/slay-the-spire) before the campaign ends forever!
+Get into the spooky, slimy spirit and pre-order yours right (<https://makeship.com/shop/creator/slay-the-spire>) before the campaign ends forever!
 
 ### Connections Section
 
@@ -109,7 +109,7 @@ Get into the spooky, slimy spirit and pre-order yours right (https://makeship.co
 
 BOO! This month's terrifying [Slay the Spire Connections](https://custom-connections-game.vercel.app/jKxTwnNfOr8BzmbApbgo) puzzle is here!
 
-### Mega Crit-or-Treat Returns!
+### Mega Crit-or-Treat Returns
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/5b43a65458d3356cd24107cc92e9cc9f6cf5c30d.png)
 What's this? Could this be the work of the Necrobinder? Everyone's favorite spooky, seasonal *Slay the Spire* event has been revived once more!
@@ -129,12 +129,12 @@ Thank you to **Jolfe** for this month's hauntingly beautiful cover image, and sh
 ![](https://clan.fastly.steamstatic.com/images/29087962/9ef8420cac66712103eb445e94542ee60353c690.png)
 ![](https://clan.fastly.steamstatic.com/images/29087962/019a61ce7abd302acfda95c52dfeced1c9ae4a95.jpg)
 
-Next month's theme is: **Neowvember!** This one can be a free space, so you can draw anything as long as it's Neow-related. If you'd like to submit your art for consideration, reminder that it must be submitted to us via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
+Next month's theme is: **Neowvember!** This one can be a free space, so you can draw anything as long as it's Neow-related. If you'd like to submit your art for consideration, reminder that it must be submitted to us via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
 
 Without further ado, let's look at this month's community highlights!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/d2940480578928047a51d87f3f34e2cd909a8bdf.jpg)
-An incredible illustration of the Ironclad facing off against the Awakened One and its Cultists by taydungeon (timelapse on (https://www.tiktok.com/@taydungeon/video/7546775449259576590) again!)
+An incredible illustration of the Ironclad facing off against the Awakened One and its Cultists by taydungeon (timelapse on (<https://www.tiktok.com/@taydungeon/video/7546775449259576590>) again!)
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/eb81a312fefe36d015782b5340ac054904cdf5dc.jpg)
 ![](https://clan.fastly.steamstatic.com/images/29087962/6d100e6c11efe35379bdcd79eeb8c0df4316f13c.jpg)

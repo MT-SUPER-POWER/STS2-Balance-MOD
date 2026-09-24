@@ -17,7 +17,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Powers;
 
 /// <summary>
-/// 女巫形态能力：在回合开始时抽 2 张牌，并将手牌中的两张牌转化为升级后的巫术打击与巫术防御。
+/// 女巫形态能力：在回合开始时将手牌中的两张牌转化为升级后的巫术打击与巫术防御。
 /// </summary>
 [RegisterPower]
 public sealed class WitchFormPower() : BalancePowerTemplate(PowerType.Buff, PowerStackType.Single)
@@ -30,7 +30,6 @@ public sealed class WitchFormPower() : BalancePowerTemplate(PowerType.Buff, Powe
     }
 
     Flash();
-    await CardPileCmd.Draw(choiceContext, 2, player);
     var transformableCards = PileType.Hand.GetPile(player).Cards
         .Where(card => card.IsTransformable)
         .ToList();

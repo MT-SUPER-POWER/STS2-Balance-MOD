@@ -35,11 +35,13 @@ python skills/sts2-decompile/scripts/decompile.py
 ```
 
 This script automatically:
+
 1. **Recovers all Godot assets and localization**: Runs GDRE Tools CLI on `SlayTheSpire2.exe` to decompile PCK resources, translations, shaders, and configs to `D:\Game\Sts2Code`.
 2. **Cleans & Decompiles C# Assembly**: Uses `ilspycmd` on `sts2.dll` directly to generate 100% clean, conflict-free C# source files under `D:\Game\Sts2Code\src\`.
 3. **Verifies Output**: Validates that all `.cs` and `.json` localization files are fully extracted.
 
-#### Variations:
+#### Variations
+
 ```powershell
 # Only decompile C# assembly (faster when only checking code logic):
 python skills/sts2-decompile/scripts/decompile.py --csharp-only
@@ -106,7 +108,7 @@ See `skills/gdre-tools/guide/CLI.md` for full CLI options.
 ## Troubleshooting
 
 | Issue | Solution |
-|-------|----------|
+| --- | --- |
 | EXE not found | Check game install path, ask user |
 | Version mismatch | Use `--force-bytecode-version=<version>` |
 | Incomplete decompilation | Try `--ignore-checksum-errors` |

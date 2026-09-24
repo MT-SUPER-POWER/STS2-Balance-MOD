@@ -20,7 +20,7 @@ There's no single dramatic reason. Some personal life stuff hit the team (everyo
 
 All that said, we know you still have questions, so Demi, our community manager, has put together a pre-emptive FAQ to help answer some of them.
 
-### Will-Probably-Be-Asked Questions:
+### Will-Probably-Be-Asked Questions
 
 **Is the real reason for the delay the timing of the Silksong release?**
 We got together as a team to determine our new release window before Silksong’s date was announced. The timing just worked out like that, but on the bright side, everyone can keep busy playing Silksong during the wait!
@@ -64,7 +64,7 @@ The capabilities of these different enemies, the opportunities these events offe
 
 For those who haven't heard: the new community-run [Slay the Spire wiki](https://slaythespire.wiki.gg/) is now live on wiki.gg!!
 
-It's still a work in progress, so if you'd like to contribute and help make it a fully comprehensive one-stop-shop for Slay the Spire info, visit [this page](https://slaythespire.wiki.gg/wiki/Editor_Portal) to learn how. Also, the ⁠wiki channel on our (https://discord.gg/slaythespire) is always there for wiki-related discussions/questions!
+It's still a work in progress, so if you'd like to contribute and help make it a fully comprehensive one-stop-shop for Slay the Spire info, visit [this page](https://slaythespire.wiki.gg/wiki/Editor_Portal) to learn how. Also, the ⁠wiki channel on our (<https://discord.gg/slaythespire>) is always there for wiki-related discussions/questions!
 
 The old wiki hosted on Fandom is still live, especially during this transitional phase, but the wiki.gg one exists as an alternative for those who were looking for one and is the one that will be maintained going forward.
 
@@ -104,7 +104,7 @@ It's a terrifying eel-like creature covered in wiggly little eyeballs… wait, i
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/e2be1ba3f40589304648da97d728ba00a4cb559d.gif)
 
-Just as I thought, another shadowy monster has emerged! If you have any clues as to what this creature could be, be sure to submit them via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
+Just as I thought, another shadowy monster has emerged! If you have any clues as to what this creature could be, be sure to submit them via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
 
 ### Connections Section
 
@@ -119,7 +119,7 @@ Thank you to **Qmint** for this month's gorgeous cover image, and thank you, as 
 ![](https://clan.fastly.steamstatic.com/images/29087962/3581092b33897ef37f5492e0c61651d4560c2299.png)
 Credit from left to right: Alcalmy, clover, Cyb3rm00k, Suspa
 
-Next month's theme is: **Neow-loween!** (That's Neow, but Halloween.) If you'd like to submit your art for consideration, reminder that it must be submitted to us via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
+Next month's theme is: **Neow-loween!** (That's Neow, but Halloween.) If you'd like to submit your art for consideration, reminder that it must be submitted to us via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
 
 Now to highlight some work from our wonderful, steadfast community...
 
@@ -127,9 +127,9 @@ Now to highlight some work from our wonderful, steadfast community...
 This stunning pixel Ironclad art by [D.M.](https://www.reddit.com/r/slaythespire/comments/1mc9a2g/i_made_an_ironclad_pixel_art/)!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/816d4bcd4633da8ba731a4b213979d83814c1b87.png)
-Inscryption-style cards of StS1’s heroes by (https://www.instagram.com/justozzycosplay/)!
+Inscryption-style cards of StS1’s heroes by (<https://www.instagram.com/justozzycosplay/>)!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/7cf9d82188ffdf1816423f9740e4097428e8bb68.jpg)
-A beautiful illustration of Ironclad by (https://steamcommunity.com/sharedfiles/filedetails/?id=3551185690)!
+A beautiful illustration of Ironclad by (<https://steamcommunity.com/sharedfiles/filedetails/?id=3551185690>)!
 
 Thanks so much for tuning into this month's Neowsletter! We'll have lots of dev updates and content teases in the coming issues as we get closer to Slay the Spire 2's launch. See you next month!

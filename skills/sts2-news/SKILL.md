@@ -15,7 +15,8 @@ docs/official-news/
     ├── original-zh.md                    ← full article translated to Chinese
     └── summary.md                        ← game-change extract; "本期无游戏数值改动" if none
 ```
-```
+
+````
 
 ### index.md columns
 
@@ -31,7 +32,7 @@ title: "..."
 source: https://...
 author: ...
 ---
-```
+````
 
 ### summary.md
 
@@ -82,7 +83,7 @@ No API key required. Key response fields per item: `gid`, `title`, `url`, `autho
 ### BBCode conversion rules
 
 | BBCode | Markdown |
-|--------|----------|
+| --- | --- |
 | `[h1]…[/h1]` | `# …` |
 | `[h2]…[/h2]` | `## …` |
 | `[h3]…[/h3]` | `### …` |
@@ -142,11 +143,13 @@ Triggered by: questions about a specific card, relic, power, or mechanic — e.g
 1. Collect all `docs/official-news/*/summary.md` files.
 2. Search for the query term across all summaries, matching both Chinese and English variants.
 3. For each match present results as a timeline entry:
+
    ```
    • YYYY-MM-DD「Article Title」
      改动内容：…
      → [查看原文](../YYYY-MM-DD-slug/original.md)
    ```
+
 4. If no matches: reply `未找到"<query>"的相关记录`.
 
 **Completion criterion**: all `summary.md` files scanned; result lists every match with date and source link, or explicitly states no record found.

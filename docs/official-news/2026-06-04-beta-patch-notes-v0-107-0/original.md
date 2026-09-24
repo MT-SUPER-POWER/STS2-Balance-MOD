@@ -14,7 +14,7 @@ Another bi-weekly beta patch is here! This one is a bit smaller as it is intende
 
 Without further ado, let's dive in...
 
-### CONTENT & BALANCE:
+### CONTENT & BALANCE
 
 **Enemies:**
 
@@ -42,19 +42,16 @@ Without further ado, let's dive in...
 - Buffed **Sic 'Em** card: Summon increased from 2(3) -> 3(4)
 - Buffed **The Scythe** card: damage increased from 3(4) -> 4(5)
 
-
-### QUALITY OF LIFE:
+### QUALITY OF LIFE
 
 - During the Gremlin Merc fight, if Gremlin Merc didn't steal any gold but Fat Gremlin escaped, the player now receives 50% of the normal gold reward instead of 0%
 
-
-### USER INTERFACE & EXPERIENCE:
+### USER INTERFACE & EXPERIENCE
 
 **General:**
 
 - If errors occur on run start, a popup is now displayed instead of a black screen
 - Implemented preferred Ascension for random character option
-
 
 **Ancients:**
 
@@ -71,7 +68,7 @@ Without further ado, let's dive in...
 
 - **Sacrifice** card now previews how much Block it will gain, so that it's easier to plan with effects like Dexterity and Frail
 
-### ART:
+### ART
 
 - Added Epoch art for:
 
@@ -82,11 +79,11 @@ Without further ado, let's dive in...
 - Added **Defect** power up animation
 - Added new **Soul Nexus** VFX
 
-### WRITING:
+### WRITING
 
 - Updated translations for various languages
 
-### BUG FIXES:
+### BUG FIXES
 
 **General:**
 
@@ -141,10 +138,10 @@ Without further ado, let's dive in...
 - Fixed rare issue which caused incorrect cards to be shown when obtaining cards at certain events
 - **Nightmare** card VFX no longer plays for all players
 
-### PERFORMANCE:
+### PERFORMANCE
 
 - Reduced stuttering when combat effects appear for the first time in a run
 
-### MODDING:
+### MODDING
 
 - Base game no longer deletes progress from mods that are removed or errored

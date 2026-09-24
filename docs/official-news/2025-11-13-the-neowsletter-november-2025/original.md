@@ -74,7 +74,7 @@ Now, what's next on our roster of shadowy species...
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/d65b8a6898f991ecb7dfb6eca2b3f74cd66211b2.gif)
 
-Our work is never done! If you have any clues as to what this creature could be, be sure to submit them via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
+Our work is never done! If you have any clues as to what this creature could be, be sure to submit them via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
 
 ### Connections Section
 
@@ -85,15 +85,15 @@ Time to dive right into this month's [Slay the Spire Connections puzzle](https:/
 
 Thank you to **Snubobo** for this month's corNeowcopia-themed cover image!
 
-Next month's theme is: **Wintery Neow!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
+Next month's theme is: **Wintery Neow!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
 
 Thank you to everyone who submitted their spooky Spire content for Mega Crit-or-Treat last month! Here are just some of the highlights:
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/4be25216575790040276360f8efd4b2ad8e44d99.jpg)
-A creepily cute illustration of the 4 *Slay the Spire* characters by (https://x.com/spacelarktemple)!
+A creepily cute illustration of the 4 *Slay the Spire* characters by (<https://x.com/spacelarktemple>)!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/447ab0c308e4b943146776be6c683eeb0e4129a4.jpg)
-This super accurate Reptomancer cosplay by (https://twitch.tv/commentbagel)!
+This super accurate Reptomancer cosplay by (<https://twitch.tv/commentbagel>)!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/e2ff180a19876ebff731bb6cf9eb13e37439eabb.png)
 Some Spire-y jack-o-lanterns by LegendofLonk, JoeGo, Zoie, Falspar, and Pug!

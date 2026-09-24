@@ -85,7 +85,7 @@ As you'll have seen in the gameplay trailer, the Merchant is back with some love
 
 ---
 
-That's all for this month! We used to have this section in our Discord server but felt that choosing the top questions we receive and answering them here would be better. If you wish to submit questions for next month's Neowsletter, post it in the #ask-the-devs channel in our Discord or shoot us an email at fanmail@megacrit.com with the Subject: Question for Casey and Anthony or something similar. Be sure to include an alias!
+That's all for this month! We used to have this section in our Discord server but felt that choosing the top questions we receive and answering them here would be better. If you wish to submit questions for next month's Neowsletter, post it in the #ask-the-devs channel in our Discord or shoot us an email at <fanmail@megacrit.com> with the Subject: Question for Casey and Anthony or something similar. Be sure to include an alias!
 
 ### Connections Section
 
@@ -104,7 +104,7 @@ Some beautiful Year of the Snecko envelopes made by GM_Whitose
 ![](https://clan.fastly.steamstatic.com/images/29087962/595556ab65bacdeb4f12c3c870e5c26faa0dbdf1.jpg)
 The latest (and coziest) ModTheSpire anniversary project by our incredible modding community, [Spire Cafe](https://steamcommunity.com/sharedfiles/filedetails/?id=3410083760)
 
-Needless to say we have a LOT of talented artists in our community--and we've got another way to showcase that! If you would like your own art featured as the Neowsletter's cover image next month, submit it to us either via our (https://discord.gg/slaythespire) or fanmail@megacrit.com by **Friday, March 7**. The image must contain no text (since we localize the covers) but should have room for the title & issue text to be added, and the dimensions must be 800x450px. We can only choose one submission of course, but if people like the idea we'll continue it for future issues going forward! **The March Neowsletter cover image prompt is: "Neow admiring the cherry blossoms."**
+Needless to say we have a LOT of talented artists in our community--and we've got another way to showcase that! If you would like your own art featured as the Neowsletter's cover image next month, submit it to us either via our (<https://discord.gg/slaythespire>) or <fanmail@megacrit.com> by **Friday, March 7**. The image must contain no text (since we localize the covers) but should have room for the title & issue text to be added, and the dimensions must be 800x450px. We can only choose one submission of course, but if people like the idea we'll continue it for future issues going forward! **The March Neowsletter cover image prompt is: "Neow admiring the cherry blossoms."**
 
 ### Localization Info
 

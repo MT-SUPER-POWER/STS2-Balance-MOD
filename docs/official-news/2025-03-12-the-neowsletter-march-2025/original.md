@@ -10,11 +10,11 @@ author: "demileaf"
 
 Happy March everybody,
 
-It's time for another Neowsletter! Wow, thank you for the March Neowsletter banner image, melohdy. It's so nice, beautiful, and *featured*! You too can get your art up here if you submit something through our Discord or email us your 800x450px artwork to fanmail@megacrit.com (and make sure there's no text but has room for us to add text.) It's true, only one submission can be the header... but we'll feature the rest in the Community Roundup section! Next month's theme is: Neow donning cat ears or otherwise looking catlike :3 (we have a reason okay, trust us).
+It's time for another Neowsletter! Wow, thank you for the March Neowsletter banner image, melohdy. It's so nice, beautiful, and *featured*! You too can get your art up here if you submit something through our Discord or email us your 800x450px artwork to <fanmail@megacrit.com> (and make sure there's no text but has room for us to add text.) It's true, only one submission can be the header... but we'll feature the rest in the Community Roundup section! Next month's theme is: Neow donning cat ears or otherwise looking catlike :3 (we have a reason okay, trust us).
 
 This is a wild month because a lot of us are playing *Monster Hunter: Wilds*, but outside of this bad joke, development progresses at a good pace. Okay, let's show off a new thing. Behold...
 
-### Quests!
+### Quests
 
 *Slay the Spire 2* is... an RPG? No! However, we're adding a new type of card called **Quests**. Obtain these rare cards and fulfill their requirements and you will be greatly rewarded. Each quest is quite different from one another but we hope you get to encounter every one of them :).
 
@@ -28,16 +28,15 @@ Okay, that was quite exhilarating.
 
 ### TikTok & YouTube Shorts
 
-We started a (https://www.tiktok.com/@megacritgames) page?? Channel? There will be more videos and insights into various Slay the Spire and Mega Crit things there! These "Shorts" will also be brought over to the Mega Crit (https://www.youtube.com/@megacrit) channel. If a variety of vertical videos about little details, previews, or meme things appeal to you- then good news for you, go to these links to subscribe, get notified, follow, like, thumbs up, etc etc. I should have had Demi (our Community Manager) summarize this portion. Too late now.
+We started a (<https://www.tiktok.com/@megacritgames>) page?? Channel? There will be more videos and insights into various Slay the Spire and Mega Crit things there! These "Shorts" will also be brought over to the Mega Crit (<https://www.youtube.com/@megacrit>) channel. If a variety of vertical videos about little details, previews, or meme things appeal to you- then good news for you, go to these links to subscribe, get notified, follow, like, thumbs up, etc etc. I should have had Demi (our Community Manager) summarize this portion. Too late now.
 
 (Demi's note: That about sums it up lol, thank you Casey! By the way, here's a sneak peek of our sneak peeks, featuring our art director Marlowe posing as her own reference for Ironclad!)
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/eb687c1f4b2dd5d1924894f1f70a664161a43c75.gif)
 
-### ThatGuyGlen Made a Documentary About Us!
+### ThatGuyGlen Made a Documentary About Us
 
 It's always fun to look at how games are made and it was fun AND nostalgic to see a documentary for Slay the Spire 1's production. I helped gather bits of art, video, and info for this documentary and if you wanted to dive a bit more into the making of the game, then it's a great video to look through with some exclusive archival footage 👀!
-
 
 ### Spire Spotting
 
@@ -70,11 +69,11 @@ Phew, now that's settled! I'm sure there are no more shadowy monsters lurking ne
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/1cfcad71f19e5320daad2c5863b50bdd292c7d31.gif)
 
-Looks like we need your hypotheses yet again! You can submit them via the fanart channel in our (https://discord.gg/slaythespire), fanmail@megacrit.com, or tag us on social media!
+Looks like we need your hypotheses yet again! You can submit them via the fanart channel in our (<https://discord.gg/slaythespire>), <fanmail@megacrit.com>, or tag us on social media!
 
 ### Q&A with C&A
 
-It's time for us to answer more questions from you, yes... YOU! As a reminder, you can submit your questions to us via Discord during a short window near the end of each month or via fanmail@megacrit.com at any time (just be sure to specify an alias if you choose to send us an email or we'll list you as anonymous.)
+It's time for us to answer more questions from you, yes... YOU! As a reminder, you can submit your questions to us via Discord during a short window near the end of each month or via <fanmail@megacrit.com> at any time (just be sure to specify an alias if you choose to send us an email or we'll list you as anonymous.)
 
 **Tekamania asks:** Will there be any interesting start of run features?
 Casey: Yes, many features at the start of the run :). While there are a few changes to the start of the run we can't talk about, Neow will be returning to help our heroes make it to the top with new and old blessings.
@@ -170,12 +169,12 @@ by Georgia
 And last but not least, here are some other incredible fanworks from the past month!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/a9773474e12772d5b40be003450660e8fff692d5.png)
-A series of beautiful character redesigns by (https://www.instagram.com/justozzycosplay/)
+A series of beautiful character redesigns by (<https://www.instagram.com/justozzycosplay/>)
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/a7c77ec2dad46348578bd7bf4ca170e6b7eac56f.gif)
 An incredible pixel animation of Necrobinder and Osty by [var1egated](https://x.com/var1egated)
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/7917db23d05fa89ffce6f9534aaf3691e7751a9b.jpg)
-Part of a series of really cute, sticker-worthy StS illustrations by (https://x.com/haiqiebulasiji)
+Part of a series of really cute, sticker-worthy StS illustrations by (<https://x.com/haiqiebulasiji>)
 
 That's all for this month's Neowsletter; see you again when we March onward into April!

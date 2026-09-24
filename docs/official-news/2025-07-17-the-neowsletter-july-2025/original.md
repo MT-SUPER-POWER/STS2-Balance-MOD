@@ -33,7 +33,8 @@ Hey everyone, Anthony again with some more card previews. This time, we are show
 ⚙️⚙️⚙️
 
 ### Q&A with Casey & Anthony
-Most of the questions seem to revolve around fishing for spoilers so it's been difficult to get content in here this month. I'm an extreme spoiler hater so do keep that in mind when you submit stuff to fanmail@megacrit.com!
+
+Most of the questions seem to revolve around fishing for spoilers so it's been difficult to get content in here this month. I'm an extreme spoiler hater so do keep that in mind when you submit stuff to <fanmail@megacrit.com>!
 
 **TabbyCat asks:** Will there be more "written" lore for STS2 (like a bestiary with descriptions of the enemies you fight)?
 **The Aloner asks:** Hello! I recently started playing Slay the Spire, and was wondering if StS2 will have more lore/worldbuilding regarding the characters. I really liked the events in the first game.
@@ -90,7 +91,7 @@ It's a knight with flails!! A Flail Knight, even. I wonder what happens to you w
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/1d87d2622e65c2c3d67ba42abbfe0fefefb4ef30.gif)
 
-...Or not! It appears something just emerged from the overgrowth, but we can't quite make it out just yet. If you have any clues as to what this creature could be, be sure to submit them via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
+...Or not! It appears something just emerged from the overgrowth, but we can't quite make it out just yet. If you have any clues as to what this creature could be, be sure to submit them via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
 
 ### Connections Section
 
@@ -99,17 +100,17 @@ Grab your popcorn folks, it's time for another [Slay the Spire Connections puzzl
 
 ### Community Corner
 
-Thank you to **rat mama** for our very detailed, beachy cover image this month! Next month's theme is: **Neow underwater!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
+Thank you to **rat mama** for our very detailed, beachy cover image this month! Next month's theme is: **Neow underwater!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
 
 Now for our usual community highlights...
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/f2709b3c2aa3a7e3797a0c89dec74d3ae0fdbab0.jpg)
-This incredibly dynamic illustration of the Defect defeating Gremlin Nob by **@taydungeon** (timelapse on (https://www.tiktok.com/@taydungeon/video/7521039439079034167)!)
+This incredibly dynamic illustration of the Defect defeating Gremlin Nob by **@taydungeon** (timelapse on (<https://www.tiktok.com/@taydungeon/video/7521039439079034167>)!)
 
-https://www.youtube.com/watch?v=oCVRfwIoLCY
+<https://www.youtube.com/watch?v=oCVRfwIoLCY>
 A very funny animation of The Ironclad vs Gremlins by **Flurry of Bricks**!
 
-https://www.youtube.com/watch?v=0XkC6XPiq1c
+<https://www.youtube.com/watch?v=0XkC6XPiq1c>
 One of the latest instalments in **Asukii**'s series of Slay the Spire song parodies!
 
 Wow, we're already at the end of this month's Neowsletter, that was a slightly shorter one! See you all next month :D

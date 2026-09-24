@@ -24,7 +24,7 @@ In other news, we've also got a few card reworks, new Badges, and a balance pass
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/52d0afb58122687b0a9242f5b216994973b336af.png)
 
-### CONTENT:
+### CONTENT
 
 **General:**
 
@@ -62,7 +62,7 @@ Anthony's note: Parry's numbers are looking correct now, but we think it will be
 
 - Reworked Axebots combat to have just a single, more challenging Axebot
 
-### BALANCE:
+### BALANCE
 
 **General:**
 
@@ -112,7 +112,7 @@ Anthony's note: We are slowly starting the process of making lower Ascensions a 
 - **Stratagem** card is no longer banned from the colorless card pool during multiplayer runs (this banning was originally due to a bug with Stratagem in multiplayer, which has now been fixed)
 - Buffed **Tag Team** card: Replay effect now triggers on "deal damage to ALL enemies" attacks too
 
-### ART:
+### ART
 
 - Added portrait art for the following cards:
 
@@ -144,7 +144,7 @@ Anthony's note: We are slowly starting the process of making lower Ascensions a 
 
 - Repositioned **Sludge Spinner** death landing spot
 
-### USER INTERFACE & EXPERIENCE:
+### USER INTERFACE & EXPERIENCE
 
 - Added Ascension first-time tutorial popup for single player and multiplayer
 - An error is now displayed when Steam crashes
@@ -160,7 +160,7 @@ Anthony's note: We are slowly starting the process of making lower Ascensions a 
 - Improved controller navigation in the Fake Merchant shop
 - Pause menu button controller navigation now wraps
 
-### WRITING:
+### WRITING
 
 - **Brilliant Scarf** relic description now specifies that it only counts cards played "from your hand" so it's clear that it doesn't count auto-played cards
 - **Reaper Form** card wording has been changed to make it clear that the Doom is applied by Reaper Form's power rather than by the played card:
@@ -171,7 +171,7 @@ Anthony's note: We are slowly starting the process of making lower Ascensions a 
 - Added translations for various languages
 - Fixed various translation errors
 
-### BUG FIXES:
+### BUG FIXES
 
 **General:**
 

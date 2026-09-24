@@ -26,11 +26,12 @@
 ProceedButton 是一个按钮、两个语义：
 
 | 时机 | 按钮文字 | 点击行为 |
-|------|---------|---------|
+| --- | --- | --- |
 | 进房未开箱（持有诅咒钥匙） | "跳过宝箱" | 跳过宝箱 → 开启地图 → 无诅咒 |
 | 开箱取遗物后 | "Proceed"（原版文字） | 正常离开 → 诅咒触发 |
 
 状态通过两个静态字段追踪：
+
 - `_chestOpened`：宝箱是否已打开
 - `SkipChestForCurseKey`：玩家是否选择了跳过
 
@@ -47,13 +48,13 @@ Godot 场景（`.tscn`）是资源文件，Mod 不宜直接修改。使用 Harmo
 ```
 NTreasureRoom._Ready
   ↓ Postfix: 改文字 + 放图标 + Enable 按钮
-  
+
 NTreasureRoom.OnActiveScreenChanged
   ↓ Postfix: 防止原生逻辑在未开箱时 Disable 按钮
-  
+
 NTreasureRoom.OpenChest
   ↓ Prefix: 记录 _chestOpened=true + 移除图标
-  
+
 NTreasureRoom.OnProceedButtonPressed
   ↓ Prefix (return false): 未开箱时主动调用 ProceedFromTerminalRewardsScreen() 离开房间
 ```
@@ -61,6 +62,7 @@ NTreasureRoom.OnProceedButtonPressed
 ### 3.1 `_Ready` Postfix — 初始化
 
 在宝箱房节点就绪时：
+
 1. 重置 `_chestOpened = false`、`SkipChestForCurseKey = false`
 2. 检查是否单人模式 + 持有诅咒钥匙
 3. 若符合条件，调用 `proceedButton.UpdateText(new LocString("gameplay_ui", "STS2BALANCEMOD-SKIP_CHEST"))` 将文字改为"跳过宝箱"
@@ -74,6 +76,7 @@ NTreasureRoom.OnProceedButtonPressed
 ### 3.3 `OpenChest` Prefix — 记录状态 + 移除图标
 
 在 `OpenChest()` 执行前：
+
 1. 设 `_chestOpened = true`
 2. 重置 `SkipChestForCurseKey = false`（如果玩家改变主意开了宝箱，诅咒正常触发）
 3. 移除之前添加的诅咒钥匙图标（后续文字由原生 OpenChest 管理）
@@ -83,6 +86,7 @@ NTreasureRoom.OnProceedButtonPressed
 拦截点击事件。如果 `_chestOpened == true`，`return true` 走原生流程（正常离开，诅咒触发）。
 
 如果 `_chestOpened == false`（未开箱跳过着），`return false` 跳过原生 handler，在 Prefix 中执行：
+
 ```
 1. SkipChestForCurseKey = true
 2. NMapScreen.Instance.SetTravelEnabled(true)
@@ -176,7 +180,7 @@ Label 从 x=57 开始（中心对齐），图标放在 x=12、宽 32px，到 x=4
 跳过宝箱文字使用 `LocString` 系统对接本地化文件：
 
 | 文件 | Key | EN | ZHS | ITA |
-|------|-----|----|-----|-----|
+| --- | --- | --- | --- | --- |
 | `localization/{lang}/gameplay_ui.json` | `STS2BALANCEMOD-SKIP_CHEST` | Skip Chest | 跳过宝箱 | Salta Forziere |
 
 定位在 `gameplay_ui.json`（与原版 `PROCEED_BUTTON` 同源），而非和遗物描述混放的 `relics.json`。
@@ -220,7 +224,7 @@ Label 从 x=57 开始（中心对齐），图标放在 x=12、宽 32px，到 x=4
 ## 九、涉及的文件
 
 | 文件 | 用途 |
-|------|------|
+| --- | --- |
 | `Sts2BalanceModCode/Patches/Relics/TreasureRoomSkipPatch.cs` | ProceedButton 复用、状态追踪、图标管理 |
 | `Sts2BalanceModCode/Patches/Relics/CurseKeyPatch.cs` | 诅咒生成时机（选遗物后） |
 | `Sts2BalanceMod/localization/{eng,zhs,ita}/gameplay_ui.json` | 按钮文字本地化 |

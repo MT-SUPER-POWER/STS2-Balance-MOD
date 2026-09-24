@@ -14,10 +14,8 @@ Step into the newly evolved Spire, a twisted labyrinth teeming with strange and 
 
 What new strategies and challenges await…?
 
-
 Looking for even more ways to get Slay the Spire 2 updates? Join the flock:
 
-
--  (https://twitter.com/MegaCrit)
--  (https://https://bsky.app/profile/megacrit.com)
--  (https://discord.gg/slaythespire)
+- (<https://twitter.com/MegaCrit>)
+- (<https://https://bsky.app/profile/megacrit.com>)
+- (<https://discord.gg/slaythespire>)

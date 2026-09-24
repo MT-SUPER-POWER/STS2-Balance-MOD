@@ -1,0 +1,12 @@
+{
+  "plugins": ["prettier-plugin-markdown-compact-tables"],
+  "overrides": [
+    {
+      "files": ["**/*.md", "**/*.mdx"],
+      "options": {
+        "proseWrap": "preserve",
+        "embeddedLanguageFormatting": "off"
+      }
+    }
+  ]
+}

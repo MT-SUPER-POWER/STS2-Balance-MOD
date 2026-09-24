@@ -24,8 +24,8 @@ Since we fed different seeds to each PRNG, we expected their results to be compl
 
 Let’s visualize one example: the correlation between your first act and the curse you receive from Neow’s Bones. In both cases, we generate a decimal between 0 and 1, but from different PRNGs.
 
- - For your first act, if the decimal generated is less than 0.5, you get Overgrowth; otherwise, you get Underdocks.
- - For Neow's Bones’ curse, we use the decimal to pick from a list of ten curses. Between 0 and 0.1 you get Clumsy, between 0.1 and 0.2 you get Debt, and so on.
+- For your first act, if the decimal generated is less than 0.5, you get Overgrowth; otherwise, you get Underdocks.
+- For Neow's Bones’ curse, we use the decimal to pick from a list of ten curses. Between 0 and 0.1 you get Clumsy, between 0.1 and 0.2 you get Debt, and so on.
 
 Here is a scatterplot of the raw numbers generated given 10000 random run seeds on v0.103.3:
 
@@ -50,7 +50,7 @@ We built STS2 with modding in mind, and the game has had an integrated mod loade
 Previously, the only supported way to install mods was to download them and place them next to the executable. With this patch, **Steam Workshop support has officially been added!** Now, you can browse and install mods directly from the workshop, and they will be automatically downloaded to all devices where you play on Steam.
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/41af9b81e0817b2a4bf6dbfc529690f24f993c0a.png)
-If you are a mod creator, upload your mods using the tool (https://github.com/megacrit/sts2-mod-uploader).
+If you are a mod creator, upload your mods using the tool (<https://github.com/megacrit/sts2-mod-uploader>).
 
 And if you're interested in playing some mods, check out the [new workshop](https://steamcommunity.com/app/2868840/workshop/).
 
@@ -77,7 +77,7 @@ Another big change you'll notice is Hive's **Infested Prism** enemy has been tot
 
 Alright, now it's time to get into the nitty gritty notes!
 
-### CONTENT & BALANCE:
+### CONTENT & BALANCE
 
 **General:**
 
@@ -203,11 +203,11 @@ Alright, now it's time to get into the nitty gritty notes!
 - Buffed **Tag Team** card: Replay effect now triggers on "deal damage to ALL enemies" attacks too
 - Changed **Fossil Stalker**: in multiplayer, now gains a set amount of Strength if it hits any player instead of gaining Strength for each player hit
 
-### QUALITY OF LIFE:
+### QUALITY OF LIFE
 
 - During the Gremlin Merc fight, if Gremlin Merc didn't steal any gold but Fat Gremlin escaped, you now receive 50% of the normal gold reward instead of 0%
 
-### USER INTERFACE & EXPERIENCE:
+### USER INTERFACE & EXPERIENCE
 
 **General:**
 
@@ -252,7 +252,7 @@ Alright, now it's time to get into the nitty gritty notes!
 
 - Added a more informative error popup for the Steam BadCert multiplayer error
 
-### ART:
+### ART
 
 **General:**
 
@@ -333,7 +333,7 @@ Alright, now it's time to get into the nitty gritty notes!
 
 - Added phobia mode alternate art for **Zen Weaver** event
 
-### AUDIO:
+### AUDIO
 
 - Added background music for **Soul Fysh** and **Kaiser Crab**
 - Added SFX for:
@@ -343,7 +343,7 @@ Alright, now it's time to get into the nitty gritty notes!
 - Hyperbeam move
 - Cards traveling to a pile
 
-### WRITING:
+### WRITING
 
 - **Brilliant Scarf** relic description now specifies it only counts cards played "from your hand" (so it's clear it doesn't count auto-played cards)
 - **Reaper Form** card wording now makes clear the Doom is applied by Reaper Form's power rather than the played card
@@ -353,7 +353,7 @@ Alright, now it's time to get into the nitty gritty notes!
 - Reworded the Axebot death message to reflect that there is only one of them now
 - Added more translated text and fixed translation errors across many languages
 
-### BUG FIXES:
+### BUG FIXES
 
 **General:**
 
@@ -488,7 +488,7 @@ Alright, now it's time to get into the nitty gritty notes!
 **Multiplayer:**
 
 - Fixed a crash when using potions in multiplayer due to state divergence
-- Fixed state divergences related to event combats, the **Crystal Sphere** event, long event option resolution, **Mad Science**/**Juggling**  cards with mixed combat speeds, and **Stampede** + **Headbutt** cards
+- Fixed state divergences related to event combats, the **Crystal Sphere** event, long event option resolution, **Mad Science**/**Juggling** cards with mixed combat speeds, and **Stampede** + **Headbutt** cards
 - Fixed player names with brackets (e.g. clan tags) causing errors
 - Fixed **Pael's Legion** and **Vambrace** relics not proccing when the owner applies Block to other players
 - Fixed occasional black screen when loading into a saved multiplayer combat
@@ -507,15 +507,15 @@ Alright, now it's time to get into the nitty gritty notes!
 - The "Show Multiplayer Drawings" tickbox is now correctly localized
 - You can no longer start a loaded multiplayer game with only one person
 
-### PERFORMANCE:
+### PERFORMANCE
 
 - Reduced stuttering when combat effects appear for the first time in a run
 
-### MODDING:
+### MODDING
 
 - The base game no longer deletes progress from mods that are removed or errored
 
-### LATEST BETA FIXES:
+### LATEST BETA FIXES
 
 **General:**
 

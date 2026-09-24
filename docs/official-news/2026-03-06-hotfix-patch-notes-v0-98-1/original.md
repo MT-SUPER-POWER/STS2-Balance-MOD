@@ -8,8 +8,7 @@ author: "demileaf"
 
 Happy Slay the Spire 2 launch day everyone! We have a day 1 hotfix for various issues and softlocks that players have reported. Thank you all for your feedback! For those who don't know, you can submit feedback in-game by pressing F2 or through the settings menu.
 
-### BUG FIXES:
-
+### BUG FIXES
 
 - Fixed an issue where, if you played your first run in multiplayer and disconnected after defeating the Act 1 boss, you would be unable to start a new run or enter the Timeline screen
 - Fixed crash from fast card play when card play is cancelled during targeting

@@ -96,7 +96,7 @@ It's time for another beta patch! A main focus of this one is enemy balance, inc
 - Smash move removed, now uses Zoom move turns 1 and 2 instead
 - No longer gains Block
 
-### ART:
+### ART
 
 - Added new **Ironclad** heavy attack animation
 - Added new **Necrobinder** cast animation
@@ -122,7 +122,7 @@ It's time for another beta patch! A main focus of this one is enemy balance, inc
 - **The Obscura**
 - **Twig Slime M**
 
-### USER INTERFACE & EXPERIENCE:
+### USER INTERFACE & EXPERIENCE
 
 - Improved **Byrdonis**'s UX
 
@@ -141,12 +141,12 @@ It's time for another beta patch! A main focus of this one is enemy balance, inc
 - Ability to see other player scores near your score in leaderboards
 - Added controller navigation for the modifer icons on the top bar
 
-### AUDIO:
+### AUDIO
 
 - Added SFX for **Skulking Colony**
 - Added SFX for when a card travels to a pile
 
-### WRITING:
+### WRITING
 
 - Fixed some inconsistencies in **Jeweled Mask** relic's wording
 - Fixed **Exterminate** card's wording to be more consistent with **Conflagration** card
@@ -154,7 +154,7 @@ It's time for another beta patch! A main focus of this one is enemy balance, inc
 - Added more translated text for various languages
 - Fixed formatting, numeric values, and punctuation in various languages
 
-### BUG FIXES:
+### BUG FIXES
 
 **General:**
 

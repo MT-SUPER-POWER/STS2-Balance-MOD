@@ -8,18 +8,20 @@ author: "demileaf"
 
 Quick hotfix today addressing several bugs related to the new Aeonglass boss and multiplayer state divergences.
 
-### USER INTERFACE & EXPERIENCE:
+### USER INTERFACE & EXPERIENCE
 
 - Updated the **Aeonglass** boss icon
 
-### BUG FIXES:
+### BUG FIXES
 
 **Enemies:**
+
 - Fixed **Aeonglass** first move intent showing a buff instead of a debuff
 - Fixed **Aeonglass** music not playing correctly
 - Fixed **Ceremonial Beast** background music transition not lining up with when it gets stunned
 
 **Multiplayer:**
+
 - Fixed **Silken Tress** relic only affecting card rewards for the host
 - Fixed state divergence when taking any rewards after a treasure room
 - Fixed state divergence after **Crystal Sphere** event

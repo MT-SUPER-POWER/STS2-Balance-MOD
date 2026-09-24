@@ -8,7 +8,7 @@ author: "demileaf"
 
 Hey everyone, Anthony here. It's time for another Beta Patch where we test out experimental changes. Today we are going to do something a little different for the patch notes as I will be giving some insights into our design intent and thoughts behind various changes. Reminder that nothing in the beta branch is set in stone, expect lots of back and forth, and above all please let me know what you think by using the in-game feedback tool by hitting F2! I read countless pieces of player feedback and it has been instrumental in helping guide our process.
 
-### CONTENT:
+### CONTENT
 
 **Reworks and Reverts:**
 
@@ -37,7 +37,7 @@ Starting off, I am reverting the changes made last week to **Prepared**, **Borro
 
 **Doormaker** is receiving another rework! Now each visual phase he is in has its own unique power to hamper the player. All of them are disruptive and will hopefully encourage interesting play, but should now be less random and reward player agency more.
 
-### BALANCE:
+### BALANCE
 
 **General:**
 
@@ -106,9 +106,7 @@ Skulking Colony went from too weak to too strong. This nerf should put his encou
 - Disallowed Gold generating relics from showing up as the featured relic in the Welcome to Wongo's event
 - Mad Science Skill Chaos option (In the Tinker Time event) now uses Free to Play instead of Costs 0 Energy
 
-
-### ART:
-
+### ART
 
 - Added Test Subject burn animation
 - Axe and Crossbow Ruby Raiders now have improved textures
@@ -121,15 +119,14 @@ Skulking Colony went from too weak to too strong. This nerf should put his encou
 - Subroutine
 - Trash to Treasure
 
-
-### USER INTERFACE & EXPERIENCE:
+### USER INTERFACE & EXPERIENCE
 
 - Date at top-right now reflects build date instead of current date
 - Increased feedback form character limit from 500 to 8000
 
 Receiving in-game feedback from YOU the player is the best way we have of improving the game. Many of you have requested the ability to write more without hitting the character cap too early. We've increased the character count 16 fold, so I am eagerly looking forward to reading your effort posts!
 
-### BUG FIXES:
+### BUG FIXES
 
 **General:**
 

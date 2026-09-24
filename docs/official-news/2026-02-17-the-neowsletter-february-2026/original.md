@@ -107,7 +107,7 @@ Thank you to **Mars** for this month's lovely cover image, and shout out to Sori
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/8b190443f56c916f9f176e5abb89b8a5ec1c7e60.jpg)
 
-Next month's theme is: **Slay the Spire 2 Neow!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
+Next month's theme is: **Slay the Spire 2 Neow!** If you'd like to submit your art for consideration, reminder that it must be submitted to us via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title!
 
 Now let's check out some community highlights!
 
@@ -119,6 +119,6 @@ The 8th (and likely last!) StS1 Mod the Spire Anniversary mod, [Spire Quests](ht
 Incredible cosplays of The Ironclad and The Silent by **ZHENG/SNAKE**!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/fd464082123e3cca196d5e81ecab76d245ffa959.png)
-Some classic "Ooh Donut!" achievement fanart by (https://x.com/m_o_m_1_a/)!
+Some classic "Ooh Donut!" achievement fanart by (<https://x.com/m_o_m_1_a/>)!
 
 And that's it for this month's Neowsletter. By the time the next issue lands in your mailbox... *Slay the Spire 2* will be out already!!

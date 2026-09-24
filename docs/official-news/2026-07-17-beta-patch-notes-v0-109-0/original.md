@@ -10,7 +10,7 @@ Another beta patch is here, Slayers! This one brings a host of balance changes, 
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/807ba5b49a1a995682549a6c412c0ad4b7bed7b5.png)
 
-### CONTENT & BALANCE:
+### CONTENT & BALANCE
 
 **Ancients:**
 
@@ -42,8 +42,8 @@ Another beta patch is here, Slayers! This one brings a host of balance changes, 
 
 **Ironclad:**
 
-- Buffed **Demon Form** card:  Strength gain increased from 2(3) -> 3(4)
-- Buffed **Expect a Fight** card: no longer says "You cannot gain additional  this turn."
+- Buffed **Demon Form** card: Strength gain increased from 2(3) -> 3(4)
+- Buffed **Expect a Fight** card: no longer says "You cannot gain additional this turn."
 - Buffed **Primal Force** card: **Giant Rock** token damage increased from 16(20) -> 20(24)
 - Changed **Taunt** card:
 
@@ -91,7 +91,7 @@ Another beta patch is here, Slayers! This one brings a host of balance changes, 
 - Cost increased from 1 -> 2(1)
 - Upgrade no longer increases Shiv count
 
-### USER EXPERIENCE & INTERFACE:
+### USER EXPERIENCE & INTERFACE
 
 **General:**
 
@@ -103,7 +103,7 @@ Another beta patch is here, Slayers! This one brings a host of balance changes, 
 - You can now play nearly any potion on another player
 - Map ink circles are now the same for all players
 
-### ART:
+### ART
 
 **General:**
 
@@ -132,7 +132,7 @@ Another beta patch is here, Slayers! This one brings a host of balance changes, 
 
 - Created "Failed to join" text VFX
 
-### WRITING:
+### WRITING
 
 **Localization:**
 
@@ -142,7 +142,7 @@ Another beta patch is here, Slayers! This one brings a host of balance changes, 
 - Fixed translation errors for French, Italian, Russian, and Thai
 - Removed stale translations for redesigned **Well-Laid Plans, Fuel, Outbreak, Sere Talon, Cacophony**
 
-### BUG FIXES:
+### BUG FIXES
 
 **General:**
 
@@ -186,7 +186,7 @@ Another beta patch is here, Slayers! This one brings a host of balance changes, 
 - Player icons are rendered above the ink circle on the map
 - Resolved issue where, if Epochs were deprecated, that player could no longer join multiplayer games
 
-### MODDING:
+### MODDING
 
 - Merged SavedPropertySerializationCache into ModelIdSerializationCache. SavedProperties are now included in its hash.
 - Models from non-gameplay-affecting mods are now properly excluded in the hash

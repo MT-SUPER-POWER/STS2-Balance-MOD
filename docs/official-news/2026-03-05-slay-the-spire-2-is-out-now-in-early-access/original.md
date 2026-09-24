@@ -10,8 +10,8 @@ The Spire has finally reawakened.
 
 ***Slay the Spire 2***, the long awaited sequel to the original genre-defining roguelike deckbuilder, is **available now on Steam Early Access**!
 
-https://store.steampowered.com/app/2868840/Slay_the_Spire_2/
-We're so excited for you all to see for yourselves what we've been working on for the past 5 years. If you've been keeping up with our monthly Neowsletters, you already know that this reawakened Spire has a LOT of new features and content compared to the one you may already know, but there's plenty more to discover and much more on the way. For more info, you can check out our (https://steamcommunity.com/app/2868840/discussions/0/4355620416676744549/).
+<https://store.steampowered.com/app/2868840/Slay_the_Spire_2/>
+We're so excited for you all to see for yourselves what we've been working on for the past 5 years. If you've been keeping up with our monthly Neowsletters, you already know that this reawakened Spire has a LOT of new features and content compared to the one you may already know, but there's plenty more to discover and much more on the way. For more info, you can check out our (<https://steamcommunity.com/app/2868840/discussions/0/4355620416676744549/>).
 
 For those who have never ventured into the Spire before, you don't need any prior experience with *Slay the Spire 1* to enjoy what *Slay the Spire 2* has to offer. Now is a great time to dive right in and ascend the Spire, either on your own or—this time around—with your friends!
 

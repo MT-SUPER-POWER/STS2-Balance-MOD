@@ -1,0 +1,20 @@
+{
+  "config": {
+    "default": false,
+    "MD049": {
+      "style": "asterisk"
+    },
+    "MD050": {
+      "style": "asterisk"
+    }
+  },
+
+  "globs": ["**/*.md", "**/*.mdx"],
+
+  "ignores": [
+    "node_modules/**",
+    "dist/**",
+    "docs/references/**",
+    ".agents/**"
+  ]
+}

@@ -14,7 +14,7 @@ author: "demileaf"
 
 我们非常期待听到大家的反馈！接下来是本次补丁更新的详细日志……
 
-## 内容与平衡性 (CONTENT & BALANCE):
+## 内容与平衡性 (CONTENT & BALANCE)
 
 **先古之民 (Ancients):**
 
@@ -76,11 +76,11 @@ author: "demileaf"
 - 削弱 **空值 [Null]** 卡牌：施加的虚弱层数由 2(3) 层减少至 1(2) 层
 - 削弱 **同步 [Synchronize]** 卡牌：获得的集中由 2(3) 层减少至 1(2) 点
 
-## 文本与本地化 (WRITING):
+## 文本与本地化 (WRITING)
 
 - 正式加入了印尼语本地化（未翻译部分回退至英语）
 
-## 用户体验与界面 (USER EXPERIENCE & INTERFACE):
+## 用户体验与界面 (USER EXPERIENCE & INTERFACE)
 
 - **瓦库的宝珠面具 [Vakuu's Jeweled Mask]** 遗物现在优先选择非固有 [Innate] 能力牌，除非玩家牌组中的所有能力牌均为固有牌
 - 拥有“回合结束时触发效果”的卡牌在数量较多时，播放速度加快
@@ -88,7 +88,7 @@ author: "demileaf"
 - 恢复了玩家可以通过按 E 键确认卡牌选择的功能
 - 如果开启了快速模式，加快纪元 [Epoch] 解锁特效的播放速度
 
-## 美术 (ART):
+## 美术 (ART)
 
 - 为以下卡牌添加了立绘艺术：
   - 休眠 [Hibernate]
@@ -100,7 +100,7 @@ author: "demileaf"
 - 更新了死灵缚者的斩击特效 (VFX)
 - 将敏捷药水的颜色恢复为绿色
 
-## 缺陷修复 (BUG FIXES):
+## 缺陷修复 (BUG FIXES)
 
 **通用 (General):**
 
@@ -130,7 +130,7 @@ author: "demileaf"
 - 在已加载的每日挑战大厅中取消准备不再会将你保持在已准备状态
 - 修复了在多人模式中使用 **魔球 [The Ball]** 卡牌击杀遭遇战中最后一个敌人时可能发生的崩溃
 
-## 性能优化 (PERFORMANCE):
+## 性能优化 (PERFORMANCE)
 
 - 减少了比试 [Punch Off] 和 提灯钥匙 [The Lantern Key] 事件触发时的顿挫
 - 减少了在日语、中文、韩语、泰语和俄语文字首次出现时的卡顿现象

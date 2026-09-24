@@ -8,6 +8,6 @@ author: "demileaf"
 
 Another small hotfix which resolves some more softlock issues. Thanks again to everyone reporting issues like this!
 
-### BUG FIXES:
+### BUG FIXES
 
 - Fixed more instances of players getting stuck at the timeline

@@ -3,9 +3,11 @@
 ### <img src="../../../Assets/profile/ancient.png" width="20" height="20" valign="middle"> 先古之民 (Ancients)
 
 #### <img src="../../../Assets/profile/tezcatara.png" width="18" height="18" valign="middle"> 特兹卡塔拉 (Tezcatara)
+
 - **卡牌** 至亮之焰 [Brightest Flame]：削弱，最大生命值扣减由 1点 增加至 2点。
 
 #### <img src="../../../Assets/profile/nonupeipe.png" width="18" height="18" valign="middle"> 诺奴佩普 (Nonupeipe)
+
 - **遗物** 华美手镯 [Beautiful Bracelet]：削弱，由原本自选卡牌附魔改为随机对 4张 卡牌附魔。
 
 ---

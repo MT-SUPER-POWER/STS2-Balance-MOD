@@ -8,14 +8,13 @@ author: "demileaf"
 
 Happy day-after-launch day, Slayers! We've got another hotfix for you all today which should resolve some more frequent issues that players have been reporting. Your feedback will continue to be invaluable throughout Early Access!
 
-### WRITING:
-
+### WRITING
 
 - Updated various translations
 - Fixed Russian and Turkish formatting errors
 - Fixed Spanish, Italian, Polish, Russian, and Chinese translation errors
 
-### BUG FIXES:
+### BUG FIXES
 
 **General:**
 

@@ -14,7 +14,7 @@ It's the fifth month of the year and Slay the Spire 2 isn't out yet. We're quite
 
 Speaking of low quality games... *Blue Prince* is NOT one of them! While I do wish for a few quality of life features, there's many mysteries to solve, room drafting to be done, and a heartfelt history to uncover. It has been a great time as I've been digging (with my shovel) into the game's depths the last few weeks. No, I was not paid by *Raw Fury*.
 
-### Working working...
+### Working working
 
 So April has been a **WORK MONTH**.
 
@@ -80,7 +80,7 @@ Wait, does anyone else hear that...?
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/92194ed1eba73f7586a6655bd2cd07fe4c1b9d35.gif)
 
-It's yet another shadowy (and wiggly) creature!! Remember, submit your guesses as to what this monster could be via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
+It's yet another shadowy (and wiggly) creature!! Remember, submit your guesses as to what this monster could be via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel!
 
 ### Q&A with C&A
 
@@ -104,8 +104,7 @@ It's time again to answer questions. No time for unnecessary words. Onwards!
 **Adam from France asks:** Are you going to launch a collector's edition for Slay the Spire 2 ? Maybe with some figurine or chibi, I will buy it for sure if you do.
 **Casey:** Maybe for the full release, definitely not for Early Access.
 
-**Tim asks:** Hello! What is the Merchant saying? My partner is convinced they sometimes say "f*** off" and now I cannot unhear it.
-**Casey:***Mlyahh...* the denizens of the Spire don't speak English so they aren't telling you to f*** off. The dialog and story beats and such are translated to various languages so YOU, the player, can understand this foreign tongue. The merchant has 12 voice lines in the game and include a greeting, jovial laughter, a thank you in advance for buying wares, and of course the secret mercantile frequency technique version 4.
+**Tim asks:** Hello! What is the Merchant saying? My partner is convinced they sometimes say "f*** off" and now I cannot unhear it. **Casey:***Mlyahh...* the denizens of the Spire don't speak English so they aren't telling you to f*** off. The dialog and story beats and such are translated to various languages so YOU, the player, can understand this foreign tongue. The merchant has 12 voice lines in the game and include a greeting, jovial laughter, a thank you in advance for buying wares, and of course the secret mercantile frequency technique version 4.
 
 **Nguyen from Vietnam asks:** Can Infinite deck in the sequel be easy to make?
 **Anthony:** No
@@ -114,7 +113,7 @@ It's time again to answer questions. No time for unnecessary words. Onwards!
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/1cbe35ca415acf7d390a9fb11afc17a4337acdb2.png)
 
-It's Demi again, with a reminder that you can now get the full collection of every main Slay the Spire character in figure form AND grab a Silent and Snecko plush while you're at it! Shop everything YouTooz x Slay the Spire (https://youtooz.com/collections/slay-the-spire)!
+It's Demi again, with a reminder that you can now get the full collection of every main Slay the Spire character in figure form AND grab a Silent and Snecko plush while you're at it! Shop everything YouTooz x Slay the Spire (<https://youtooz.com/collections/slay-the-spire>)!
 
 ### Connections Section
 
@@ -128,7 +127,7 @@ First of all, thank you to Maple for our gorgeous cover image this month, and sh
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/9ebbdb1837b5dea3d9746bb7ad61b9f3c9a6a408.png)
 
-If your submission wasn't featured, reminder that cover image submissions must be submitted to us via fanmail@megacrit.com or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title! Next month's theme: **Neow and a dreamy, rainbow sky!**
+If your submission wasn't featured, reminder that cover image submissions must be submitted to us via <fanmail@megacrit.com> or in our [Discord's](https://discord.gg/slaythespire) fanart channel, have dimensions of 800x450px, feature no text, and leave room for a title! Next month's theme: **Neow and a dreamy, rainbow sky!**
 
 Now for our regularly scheduled community highlights...
 
@@ -136,12 +135,11 @@ Now for our regularly scheduled community highlights...
 
 This extremely cool, low-poly, animated Defect by PsiSlinger!
 
-https://www.youtube.com/watch?v=q3lFhs-U7IM
+<https://www.youtube.com/watch?v=q3lFhs-U7IM>
 A fanmade Slay the Spire trailer reimagined in Limbus Company's style by Rusli!
-
 
 ![](https://clan.fastly.steamstatic.com/images/29087962/b7af288b3acfa8fc2e1e17a281dcdbf6fdf39148.jpg)
 
-This helpful Spire Field Guide series by (https://www.reddit.com/r/slaythespire/comments/1gv6h70/spire_field_guide_day_20_dead_adventurers/)! (We made a note to highlight this one a while back but only recently remembered, oops. It now appears to be on hiatus but we think it's a great idea ^-^)
+This helpful Spire Field Guide series by (<https://www.reddit.com/r/slaythespire/comments/1gv6h70/spire_field_guide_day_20_dead_adventurers/>)! (We made a note to highlight this one a while back but only recently remembered, oops. It now appears to be on hiatus but we think it's a great idea ^-^)
 
 And that's a wrap on the May Neowsletter, see you soon in June!

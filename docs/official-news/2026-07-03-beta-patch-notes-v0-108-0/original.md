@@ -22,7 +22,7 @@ Additionally, players have been frequently encountering version conflict errors 
 
 We plan for these changes to come to the main branch soon, so non-beta-testers can keep an eye out for that! For more info on modding and playing with mods, check the patch notes from Major Update 2. Now it's time for the rest of today's patch notes...
 
-### CONTENT & BALANCE:
+### CONTENT & BALANCE
 
 **General:**
 
@@ -121,7 +121,7 @@ We plan for these changes to come to the main branch soon, so non-beta-testers c
 - Nerfed enemy block scaling in 2-player multiplayer
 - Nerfed **Beacon of Hope** card: cost increased from 1 → 2
 
-### USER INTERFACE & EXPERIENCE:
+### USER INTERFACE & EXPERIENCE
 
 **General:**
 
@@ -145,7 +145,7 @@ We plan for these changes to come to the main branch soon, so non-beta-testers c
 
 - Version mismatch error now contains more information
 
-### ART:
+### ART
 
 - Added portrait art for **Wither** status card
 - Added **Aeonglass** animations
@@ -166,14 +166,14 @@ We plan for these changes to come to the main branch soon, so non-beta-testers c
 - Added card removal VFX
 - Added new card Exhaust VFX
 
-### WRITING:
+### WRITING
 
 - Big Game Hunter modifier's hovertip now specifies that it makes elites drop rare card rewards instead of just "better rewards"
 - **Helix Drill** card's wording has been updated to be clearer that it only counts energy spent on other cards
 - Clarified that **Silken Tress** relic applies only to the player who chose it in multiplayer
 - Updated translations for various languages
 
-### BUG FIXES:
+### BUG FIXES
 
 **General:**
 
@@ -284,11 +284,11 @@ We plan for these changes to come to the main branch soon, so non-beta-testers c
 - Event RNG seeds are now consistent across all multiplayer Daily Runs
 - **Jungle Maze Adventure** event no longer appears if a player doesn't have enough HP for the solo option
 
-### PERFORMANCE:
+### PERFORMANCE
 
 - Compressed various combat background assets
 
-### MODDING:
+### MODDING
 
 - Unmodded saves are now copied to the modded save directory if you are launching modded for the first time
 - Added controller support for Modding menu

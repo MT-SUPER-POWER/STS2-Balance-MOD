@@ -13,13 +13,12 @@ In the meantime, let's look at some of this update's highlights. First off, ther
 ![](https://clan.fastly.steamstatic.com/images/44971832/9db1f13e88c7634759e235f7bbb9ce29abe656bb.gif)
 We look forward to hearing all of your feedback! Now on with the rest of the patch notes...
 
-## CONTENT & BALANCE:
+## CONTENT & BALANCE
 
 **Ancients:**
 
 - Nerfed **Tezcatara's Brightest Flame** card: max HP loss increased from 1 → 2
 - Nerfed **Nonupeipe's Beautiful Bracelet** relic: now Enchants 4 random cards instead of allowing you to select the cards to Enchant
-
 
 **Enemies:**
 
@@ -36,7 +35,6 @@ We look forward to hearing all of your feedback! Now on with the rest of the pat
 - Buffed **Soul Fysh**: De-Gas move damage at A9 increased from 16(17) → 16(18)
 - Buffed **Entomancer**: HP at A8 increased from 145(155) → 145(165)
 
-
 **Colorless Cards:**
 
 - Changed **Rend** card:
@@ -45,7 +43,6 @@ We look forward to hearing all of your feedback! Now on with the rest of the pat
 - Base damage decreased from 15(18) → 10(12)
 
 - Changed **Salvo** and **Splash** cards: swapped rarities, Splash is now Rare and Salvo is now Uncommon
-
 
 **Ironclad:**
 
@@ -56,12 +53,10 @@ We look forward to hearing all of your feedback! Now on with the rest of the pat
 - Base damage increased from 9 → 10
 - Scaling damage from 5(9) → 5(10)
 
-
 **Silent:**
 
 - Nerfed **Blade of Ink** card: Inky enchantment no longer gives additional damage (still applies Weak)
 - Nerfed **Mirage** card: now Exhausts and loses Exhaust on upgrade instead of cost lowering from 1 → 0
-
 
 **Regent:**
 
@@ -75,12 +70,10 @@ We look forward to hearing all of your feedback! Now on with the rest of the pat
 
 - Nerfed **Regalite** relic: Block gain decreased from 6 → 4
 
-
 **Necrobinder:**
 
 - Buffed **Shroud** card: Block gain increased from 2(3) → 3(4)
 - Buffed **Time's Up** card: no longer has Exhaust
-
 
 **Defect:**
 
@@ -89,15 +82,11 @@ We look forward to hearing all of your feedback! Now on with the rest of the pat
 - Nerfed **Null** card: Weak application decreased from 2(3) → 1(2)
 - Nerfed **Synchronize** card: Focus decreased from 2(3) → 1(2)
 
-
-## WRITING:
-
+## WRITING
 
 - Added Indonesian localization with English fallback
 
-
-## USER EXPERIENCE & INTERFACE:
-
+## USER EXPERIENCE & INTERFACE
 
 - **Vakuu's Jeweled Mask** relic now chooses a non-Innate power unless all powers in the player's deck are Innate
 - Cards with on-end-turn effects are now played faster when there are many of them
@@ -105,9 +94,7 @@ We look forward to hearing all of your feedback! Now on with the rest of the pat
 - Made it so players can confirm card selection via E again
 - Sped up Epoch unlock VFX if playing in fast mode
 
-
-## ART:
-
+## ART
 
 - Added portrait art for the cards:
 
@@ -121,8 +108,7 @@ We look forward to hearing all of your feedback! Now on with the rest of the pat
 - Updated Necrobinder's slash VFX
 - Changed Dexterity Potion back to being green
 
-
-## BUG FIXES:
+## BUG FIXES
 
 **General:**
 
@@ -137,17 +123,14 @@ We look forward to hearing all of your feedback! Now on with the rest of the pat
 - Fixed an issue where badges earned at the end of a run could be lost if you left the game over screen early or had already earned every unlock
 - Fixed focus not returning to cards after rerolling rewards on controller
 
-
 **Enemies:**
 
 - Fixed Form VFX not flipping when the player flips direction during the **Kaiser Crab** Combat
 - Fixed the **Lost and Forgotten** monster's death particles continuing to play the animation is interrupted in the Bestiary
 
-
 **Defect:**
 
 - Fixed Defect's power-up animation freezing when interrupted while playing **Echo Form** card
-
 
 **Multiplayer:**
 
@@ -155,9 +138,7 @@ We look forward to hearing all of your feedback! Now on with the rest of the pat
 - Unreadying in a loaded Daily Run lobby no longer leaves you readied up
 - Fixed a multiplayer crash that could happen when killing the last enemy in an encounter with **The Ball** card
 
-
-## PERFORMANCE:
-
+## PERFORMANCE
 
 - Reduced hitch on Punch Off and The Lantern Key events
 - Reduced stuttering when text appears for the first time in Japanese, Chinese, Korean, Thai and Russian

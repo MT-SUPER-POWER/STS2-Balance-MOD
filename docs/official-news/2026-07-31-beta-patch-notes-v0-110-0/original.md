@@ -10,7 +10,7 @@ Another beta patch just dropped! This one contains a host of balance changes and
 
 ![](https://clan.fastly.steamstatic.com/images/44971832/5241bdca8e33580f7b3ba5361221225407ec551c.gif)
 
-### CONTENT & BALANCE:
+### CONTENT & BALANCE
 
 **Ancients:**
 
@@ -78,7 +78,7 @@ Another beta patch just dropped! This one contains a host of balance changes and
 - Upgrade changed to increase temp focus from 2 -> 3
 - No longer Exhausts
 
-### USER INTERFACE & EXPERIENCE:
+### USER INTERFACE & EXPERIENCE
 
 **General:**
 
@@ -103,7 +103,7 @@ Another beta patch just dropped! This one contains a host of balance changes and
 - **Tutor** card now un-ends the target's turn if they have ended their turn
 - Removed "Waiting for Players" screen when dying to Architect
 
-### ART:
+### ART
 
 - Added form VFX
 - Added portrait art for the following cards:
@@ -119,7 +119,7 @@ Another beta patch just dropped! This one contains a host of balance changes and
 - Added beta portrait art for **Sidestep** card
 - Added fire to **Test Subject** burn animation
 
-### WRITING:
+### WRITING
 
 **General:**
 
@@ -141,7 +141,7 @@ Another beta patch just dropped! This one contains a host of balance changes and
 - Turkish
 - Traditional Chinese
 
-### BUG FIXES:
+### BUG FIXES
 
 **General:**
 
@@ -180,6 +180,6 @@ Another beta patch just dropped! This one contains a host of balance changes and
 - **Tutor** card no longer softlocks with Replay
 - Players can Abandon Run outside of combat again
 
-### MODDING:
+### MODDING
 
 - The "Report Bug" button is no longer shown in error dialogs when any player in a session has mods

@@ -6,22 +6,38 @@ on:
     paths:
       - "**.cs"
       - "**.csproj"
+      - "**.md"
       - ".editorconfig"
       - ".editorconfig-checker.json"
+      - ".markdownlint-cli2.jsonc"
+      - ".prettierrc.json"
+      - ".prettierignore"
+      - "lint-staged.config.mjs"
       - "package.json"
       - "pnpm-lock.yaml"
-      - ".github/workflows/code-check.yml"
+      - ".github/workflows/**"
+      - ".github/scripts/**"
   pull_request:
     branches: [main]
     paths:
       - "**.cs"
       - "**.csproj"
+      - "**.md"
       - ".editorconfig"
       - ".editorconfig-checker.json"
+      - ".markdownlint-cli2.jsonc"
+      - ".prettierrc.json"
+      - ".prettierignore"
+      - "lint-staged.config.mjs"
       - "package.json"
       - "pnpm-lock.yaml"
-      - ".github/workflows/code-check.yml"
+      - ".github/workflows/**"
+      - ".github/scripts/**"
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read

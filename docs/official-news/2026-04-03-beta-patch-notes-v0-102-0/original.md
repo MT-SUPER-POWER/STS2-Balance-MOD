@@ -20,7 +20,7 @@ In terms of visual changes, there are some new art additions for various cards a
 
 Up next, we've got some more commentary from Anthony on this patch's content reworks, so let's dive right into it.
 
-### CONTENT:
+### CONTENT
 
 **General:**
 
@@ -33,7 +33,6 @@ As mentioned last week, affecting map generation through Ascension has increasin
 - Reworked **Blade of Ink** card: "Rare - Cost 1 - Skill | This turn, whenever you play an Attack, gain 2(3) Strength this turn." -> "Rare - Cost 1 - Skill - Add 2(3) Inky Shivs into your Hand."
 
 - Added new Inky enchantment: "This card deals 2 additional damage and applies 1 Weak."
-
 
 The Blade of Ink rework is an experiment with generating Enchanted cards mid combat. Definitely let us know how this feels or if Enchantments are best left to things like Events and Relics. I suspect this card will be high impact, and gives Silent another strong Weak applier.
 
@@ -49,7 +48,7 @@ This new Borrowed Time should go particularly well with high cost cards like Rea
 
 Doormaker's Grasp turn was too underwhelming, and overall lowered the difficulty of the fight too much. This new version should make the entire fight high stakes and actually give the player a difficult problem to puzzle over turn to turn instead of making the fight about just living until turn 4.
 
-### BALANCE:
+### BALANCE
 
 **Silent:**
 
@@ -72,7 +71,6 @@ Doormaker's Grasp turn was too underwhelming, and overall lowered the difficulty
 - Now attacks on all turns
 - Deals slightly more damage
 
-
 **Ancients:**
 
 - Buffed Nonupeipe's **Fur Coat** relic: now affects restocked Axebots and other enemies that enter combat during a fight
@@ -87,7 +85,7 @@ Doormaker's Grasp turn was too underwhelming, and overall lowered the difficulty
 
 - Buffed **Whispering Hollow** event: Exchange option gold cost decreased from 50 -> 35+-9
 
-### ART:
+### ART
 
 - Added portrait art for the following cards:
 
@@ -109,7 +107,7 @@ Doormaker's Grasp turn was too underwhelming, and overall lowered the difficulty
 
 - Updated empty chest VFX, smoke puffs
 
-### USER INTERFACE & EXPERIENCE:
+### USER INTERFACE & EXPERIENCE
 
 **General:**
 
@@ -127,7 +125,7 @@ Doormaker's Grasp turn was too underwhelming, and overall lowered the difficulty
 - Better handling of intermittent Steam errors
 - Disabled skipping chests in multiplayer. Too many people thought it was the Proceed button.
 
-### WRITING:
+### WRITING
 
 **General:**
 
@@ -146,8 +144,7 @@ Doormaker's Grasp turn was too underwhelming, and overall lowered the difficulty
 - Thai
 - Polish
 
-
-### BUG FIXES:
+### BUG FIXES
 
 **General:**
 
