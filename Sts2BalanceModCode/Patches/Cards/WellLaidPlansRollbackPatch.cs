@@ -24,6 +24,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// WARNING: Hook order and signatures are verified against decompiled game source; do not modify that source directly.
 /// </summary>
 [HarmonyPatch]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C09")]
 public static class WellLaidPlansRollbackPatch
 {
   // The original card inherits both properties from CardModel, so both

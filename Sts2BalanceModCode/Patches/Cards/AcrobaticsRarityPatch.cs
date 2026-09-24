@@ -10,6 +10,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// Patch CardModel 基类的 get_Rarity，用 Prefix 直接覆盖返回值
 /// </summary>
 [HarmonyPatch(typeof(CardModel), "get_Rarity")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C08")]
 public static class AcrobaticsRarityPatch
 {
   [HarmonyPrefix]

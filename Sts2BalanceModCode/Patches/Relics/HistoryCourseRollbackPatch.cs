@@ -17,6 +17,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 /// WARNING: The copied base-game flow is verified from decompiled source; do not modify that source directly.
 /// </summary>
 [HarmonyPatch(typeof(HistoryCourse), nameof(HistoryCourse.AfterAutoPrePlayPhaseEntered))]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R05")]
 public static class HistoryCourseRollbackPatch
 {
   [HarmonyPrefix]

@@ -11,6 +11,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Enchantments;
 /// WARNING: Verified against D:\Game\Sts2Code\src\MegaCrit.Sts2.Core.Models.Enchantments\RoyallyApproved.cs; game updates may change this decompiled implementation.
 /// </summary>
 [HarmonyPatch(typeof(RoyallyApproved), nameof(RoyallyApproved.CanEnchantCardType))]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R12")]
 public static class RoyallyApprovedCanEnchantPatch
 {
   [HarmonyPostfix]

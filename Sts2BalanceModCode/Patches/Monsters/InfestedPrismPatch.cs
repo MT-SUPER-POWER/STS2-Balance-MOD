@@ -24,6 +24,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Monsters;
 /// 警告：依赖反编译源码 MegaCrit.Sts2.Core.Models.Monsters.InfestedPrism
 /// </summary>
 [HarmonyPatch(typeof(InfestedPrism))]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("M02")]
 public static class InfestedPrismPatch
 {
   [HarmonyPatch(nameof(InfestedPrism.AfterAddedToRoom))]

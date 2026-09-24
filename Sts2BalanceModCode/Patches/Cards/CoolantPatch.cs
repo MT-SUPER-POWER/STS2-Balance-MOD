@@ -17,6 +17,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// WARNING: Verified against D:\Game\Sts2Code\src\MegaCrit.Sts2.Core.Models.Cards\Coolant.cs.
 /// </summary>
 [HarmonyPatch]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C21")]
 public static class CoolantPatch
 {
   [HarmonyPatch(typeof(CardModel), "get_Rarity")]

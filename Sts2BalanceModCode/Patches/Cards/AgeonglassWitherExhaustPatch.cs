@@ -9,6 +9,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// 改为 消耗 保留
 /// </summary>
 [HarmonyPatch(typeof(Wither), "get_CanonicalKeywords")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("M01")]
 public static class AgeonglassWitherKeywordsPatch
 {
   [HarmonyPrefix]
@@ -24,6 +25,7 @@ public static class AgeonglassWitherKeywordsPatch
 /// NOTE: 如何给构造函数没有费用的卡打补丁
 /// </summary>
 [HarmonyPatch(typeof(CardModel), "get_CanonicalEnergyCost")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("M01")]
 public static class AgeonglassWitherCostPatch
 {
   [HarmonyPrefix]
@@ -43,6 +45,7 @@ public static class AgeonglassWitherCostPatch
 /// WARNING: Verified against D:\Game\Sts2Code\src\MegaCrit.Sts2.Core.Models.Cards\Wither.cs; game updates may change this decompiled implementation.
 /// </summary>
 [HarmonyPatch(typeof(Wither), nameof(Wither.FakeUpgrade))]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("M01")]
 public static class AgeonglassWitherFakeUpgradePatch
 {
   // NOTE: 如何访问一个类内的私有变量

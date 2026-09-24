@@ -19,5 +19,5 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.CardPools;
 public static class SilentCardPoolPatch
 {
   [HarmonyPostfix]
-  public static CardModel[] Postfix(CardModel[] __result) => [.. __result.Where(c => c is not UpMySleeve && c is not Pinpoint && c is not Sidestep)];
+  public static CardModel[] Postfix(CardModel[] __result) => [.. __result.Where(c => (c is not UpMySleeve || !Settings.BalanceModSettings.IsEnabled("C12")) && (c is not Pinpoint || !Settings.BalanceModSettings.IsEnabled("C13")) && (c is not Sidestep || !Settings.BalanceModSettings.IsEnabled("C14")))];
 }

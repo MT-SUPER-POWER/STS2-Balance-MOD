@@ -15,6 +15,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.CardPools;
 /// 如果这里再做原位替换，ConcatModelsFromMods 会再追加一份，造成重复。
 /// </remarks>
 [HarmonyPatch(typeof(DefectCardPool), "GenerateAllCards")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C23")]
 public static class DefectCardPoolPatch
 {
   [HarmonyPostfix]

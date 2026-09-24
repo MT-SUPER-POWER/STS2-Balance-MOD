@@ -12,6 +12,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 
 // 把 RedMask 的稀有度从 Common 改为 Event
 [HarmonyPatch(typeof(RedMask), "get_Rarity")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R04")]
 public static class RedMaskRarityPatch
 {
   [HarmonyPrefix]
@@ -24,6 +25,7 @@ public static class RedMaskRarityPatch
 
 // 从 SharedRelicPool 移除 RedMask（池子是硬编码列表，改 Rarity 不够）
 [HarmonyPatch(typeof(SharedRelicPool), "GenerateAllRelics")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R04")]
 public static class RedMaskRemoveFromSharedPatch
 {
   [HarmonyPostfix]
@@ -32,6 +34,7 @@ public static class RedMaskRemoveFromSharedPatch
 
 // 注入 RedMask 到 EventRelicPool（使其在遗物图鉴中可见）
 [HarmonyPatch(typeof(EventRelicPool), "GenerateAllRelics")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R04")]
 public static class RedMaskAddToEventPoolPatch
 {
   [HarmonyPostfix]

@@ -12,6 +12,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Events;
 /// - 顿悟 (BreathingTechniquesCost): 50金 (保持不变)
 /// </summary>
 [HarmonyPatch(typeof(ZenWeaver), "get_CanonicalVars")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("E01")]
 public static class ZenWeaverCostPatch
 {
   [HarmonyPrefix]

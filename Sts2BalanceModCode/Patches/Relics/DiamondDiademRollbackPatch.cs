@@ -24,6 +24,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 /// WARNING: Target hooks and combat-history semantics are verified against decompiled source; do not modify that source directly.
 /// </summary>
 [HarmonyPatch]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R06")]
 public static class DiamondDiademRollbackPatch
 {
   private sealed class TurnState

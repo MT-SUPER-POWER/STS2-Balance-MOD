@@ -24,7 +24,7 @@ public static class EventLeaveOptionPatches
     [HarmonyPostfix]
     private static void Postfix(Bugslayer __instance, ref IReadOnlyList<EventOption> __result)
     {
-      if (!BalanceModSettings.EventLeaveOptionsEnabled)
+      if (!BalanceModSettings.IsEnabled("E02"))
       {
         return;
       }
@@ -48,7 +48,7 @@ public static class EventLeaveOptionPatches
     [HarmonyPostfix]
     private static void Postfix(TinkerTime __instance, ref IReadOnlyList<EventOption> __result)
     {
-      if (!BalanceModSettings.EventLeaveOptionsEnabled)
+      if (!BalanceModSettings.IsEnabled("E15"))
       {
         return;
       }
@@ -72,7 +72,7 @@ public static class EventLeaveOptionPatches
     [HarmonyPostfix]
     private static void Postfix(TheFutureOfPotions __instance, ref IReadOnlyList<EventOption> __result)
     {
-      if (!BalanceModSettings.EventLeaveOptionsEnabled)
+      if (!BalanceModSettings.IsEnabled("E16"))
       {
         return;
       }

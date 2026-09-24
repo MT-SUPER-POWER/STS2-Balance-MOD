@@ -24,6 +24,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// </para>
 /// </summary>
 [HarmonyPatch(typeof(GrandFinale), "get_IsPlayable")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C11")]
 public static class GrandFinaleIsPlayablePatch
 {
   [HarmonyPrefix]
@@ -53,6 +54,7 @@ public static class GrandFinaleIsPlayablePatch
 /// 修改原因: 华丽收场原本是 0 费牌，我们需要让游戏认为它是 X 费牌。
 /// </summary>
 [HarmonyPatch(typeof(CardModel), "get_HasEnergyCostX")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C11")]
 public static class GrandFinaleHasEnergyCostXPatch
 {
   [HarmonyPrefix]
@@ -71,6 +73,7 @@ public static class GrandFinaleHasEnergyCostXPatch
 /// GrandFinale 打出时扣除能量计算：按抽牌堆卡牌数扣除，结合升级减费与 Hook.ModifyXValue (如化学 X)。
 /// </summary>
 [HarmonyPatch(typeof(CardEnergyCost), nameof(CardEnergyCost.GetAmountToSpend))]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C11")]
 public static class GrandFinaleEnergyToSpendPatch
 {
   private static readonly FieldInfo _cardField = AccessTools.Field(typeof(CardEnergyCost), "_card");
@@ -99,6 +102,7 @@ public static class GrandFinaleEnergyToSpendPatch
 /// - CalculatedSpend: 用于战斗中手牌实时计算并渲染具体的扣除能量（按抽牌堆卡牌数扣除）。
 /// </summary>
 [HarmonyPatch(typeof(GrandFinale), "get_CanonicalVars")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C11")]
 public static class GrandFinaleCanonicalVarsPatch
 {
   [HarmonyPostfix]
@@ -126,6 +130,7 @@ public static class GrandFinaleCanonicalVarsPatch
 /// CARD-10 — 华丽收场 (Grand Finale) 升级逻辑重写：对 EnergySaved 变量执行 UpgradeValueBy(2m)。
 /// </summary>
 [HarmonyPatch(typeof(GrandFinale), "OnUpgrade")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C11")]
 public static class GrandFinaleCanonicalUpgradePatch
 {
   [HarmonyPrefix]

@@ -7,6 +7,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// CARD-08 — 将巨镰的初始伤害调整为 16 点（配合官方增至 5(7) 的成长数值）。
 /// </summary>
 [HarmonyPatch]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C27")]
 public static class TheScytheDamagePatch
 {
   private const int BaseDamage = 16;

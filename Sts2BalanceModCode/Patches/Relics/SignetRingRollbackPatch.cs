@@ -9,6 +9,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 /// RELIC-03 — 图章戒指 (Signet Ring) 获得金币回调为 999
 /// </summary>
 [HarmonyPatch(typeof(SignetRing), nameof(SignetRing.AfterObtained))]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R08")]
 public static class SignetRingRollbackPatch
 {
   [HarmonyPrefix]

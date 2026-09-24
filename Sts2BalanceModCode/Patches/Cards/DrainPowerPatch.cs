@@ -19,6 +19,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// - 改为升级后，升级所有弃牌堆的所有手牌（所有卡牌）
 /// </summary>
 [HarmonyPatch(typeof(DrainPower))]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C25")]
 public static class DrainPowerPatch
 {
   [HarmonyPatch("get_CanonicalVars")]

@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Models.Relics;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 
 [HarmonyPatch(typeof(PreservedFog), "get_CanonicalVars")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R03")]
 public static class PreservedFogMoreDELPatch
 {
   [HarmonyPrefix]

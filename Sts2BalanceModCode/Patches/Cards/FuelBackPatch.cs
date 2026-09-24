@@ -11,6 +11,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// 改回抽2加1费
 /// </summary>
 [HarmonyPatch(typeof(Fuel), "OnPlay")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C20")]
 public static class FuelDrawPatch
 {
 
@@ -31,6 +32,7 @@ public static class FuelDrawPatch
 
 
 [HarmonyPatch(typeof(Fuel), "get_CanonicalVars")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C20")]
 public static class FuelGetVarPatch
 {
   [HarmonyPrefix]
@@ -46,6 +48,7 @@ public static class FuelGetVarPatch
 }
 
 [HarmonyPatch(typeof(Fuel), "OnUpgrade")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C20")]
 public static class FuelUpgradePatch
 {
   [HarmonyPrefix]

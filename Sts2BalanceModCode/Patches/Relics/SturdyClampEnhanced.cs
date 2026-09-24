@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 
 [HarmonyPatch(typeof(SturdyClamp), nameof(SturdyClamp.AfterPreventingBlockClear))]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R02")]
 public static class SturdyClampEnhancedPatch
 {
   private const int _retainedBlock = 15;
@@ -43,6 +44,7 @@ public static class SturdyClampEnhancedPatch
 
 // 修改其 Var 变量，保持 json 文件翻译说明一直
 [HarmonyPatch(typeof(SturdyClamp), "get_CanonicalVars")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R02")]
 public static class SturdyClampGetVarPatch
 {
   // NOTE: 一个修改 `CanonicalVars` 的案例

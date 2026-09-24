@@ -8,6 +8,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// CARD-01 — 挽歌：在原版升级效果的基础上，额外获得保留词条。
 /// </summary>
 [HarmonyPatch(typeof(Dirge), "OnUpgrade")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C24")]
 public static class DirgeOnUpgradePatch
 {
   [HarmonyPostfix]

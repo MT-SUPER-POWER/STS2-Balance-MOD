@@ -21,6 +21,8 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 /// 2. RelicCmd.Obtain 拦截原版遗物并替换为自定义遗物
 /// 3. EventRelicPool 中过滤移除原版遗物
 /// </summary>
+[HarmonyPatch]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R10")]
 public static class NeowsTalismanPatch
 {
   private static readonly MethodInfo _relicOptionMethod = typeof(AncientEventModel).GetMethod(

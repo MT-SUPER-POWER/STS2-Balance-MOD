@@ -10,6 +10,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// Prefix 直接替换 CanonicalKeywords 为空，彻底移除消耗词条
 /// </summary>
 [HarmonyPatch(typeof(BladeDance), "get_CanonicalKeywords")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C07")]
 public static class BladeDanceExhaustPatch
 {
   [HarmonyPrefix]
@@ -24,6 +25,7 @@ public static class BladeDanceExhaustPatch
 /// CARD-03 — 刀舞白卡→蓝卡（稀有度降级）
 /// </summary>
 [HarmonyPatch(typeof(CardModel), "get_Rarity")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C07")]
 public static class BladeDanceRarityPatch
 {
   [HarmonyPrefix]

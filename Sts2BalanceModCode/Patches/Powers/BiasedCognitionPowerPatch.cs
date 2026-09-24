@@ -12,6 +12,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Powers;
 /// 改为：聚焦归零时自动移除该能力（修复结束回合按钮消失的 BUG）
 /// </summary>
 [HarmonyPatch(typeof(BiasedCognitionPower), nameof(BiasedCognitionPower.AfterSideTurnStart))]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C18")]
 public static class BiasedCognitionPowerPatch
 {
   public static bool Prefix(BiasedCognitionPower __instance, IReadOnlyList<Creature> participants)

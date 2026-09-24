@@ -21,6 +21,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 /// 只有成功消耗卡牌时才获得 1 点力量，若 Skip 跳过则不加力量。
 /// </summary>
 [HarmonyPatch(typeof(ToastyMittens), nameof(ToastyMittens.AfterPlayerTurnStart))]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R07")]
 public static class ToastyMittensPatch
 {
   [HarmonyPrefix]

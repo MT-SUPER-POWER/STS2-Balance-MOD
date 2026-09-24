@@ -14,6 +14,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// CARD-01 — 探寻 (Dowsing)
 /// - 任务目标从进入 5 个 ? 房间调整为进入 4 个 ? 房间。
 /// </summary>
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C31")]
 public static class DowsingRoomsPatch
 {
   private const int TargetMaxRooms = 4;

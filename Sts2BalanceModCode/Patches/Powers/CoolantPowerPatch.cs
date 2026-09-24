@@ -18,6 +18,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Powers;
 /// WARNING: Verified against D:\Game\Sts2Code\src\MegaCrit.Sts2.Core.Models.Powers\CoolantPower.cs.
 /// </summary>
 [HarmonyPatch]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C21")]
 public static class CoolantPowerPatch
 {
   private static readonly Action<PowerModel>? FlashPower =

@@ -10,6 +10,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// 辉光：改为当回合抽 2 张，不再下回合额外抽牌。
 /// </summary>
 [HarmonyPatch(typeof(Glow), "OnPlay")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C30")]
 public static class GlowDrawCardPatch
 {
   private const int DrawCount = 2;
@@ -39,6 +40,7 @@ public static class GlowDrawCardPatch
 
 
 [HarmonyPatch(typeof(Glow), "OnUpgrade")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C30")]
 public static class GlowUpgradePatch
 {
   [HarmonyPrefix]

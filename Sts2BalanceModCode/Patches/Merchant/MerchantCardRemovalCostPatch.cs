@@ -15,6 +15,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Merchant;
 ///   有微笑面具的时候，删牌价格固定 50
 /// </summary>
 [HarmonyPatch(typeof(MerchantCardRemovalEntry), nameof(MerchantCardRemovalEntry.CalcCost))]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("G01")]
 internal static class MerchantCardRemovalPricePatch
 {
   // MerchantEntry 里面有两个成员变量就是 _cost 和 _player

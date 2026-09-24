@@ -1,6 +1,7 @@
 using System.Reflection;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Events;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Events;
 using Sts2BalanceMod.Sts2BalanceModCode.Relics;
@@ -60,7 +61,12 @@ internal static class DarvAddCustomRelicPatch
 
       foreach ((string? name, RelicModel? relic) in relicsToAdd)
       {
-        object? set = Activator.CreateInstance(structType, [new RelicModel[] { relic }]);
+        if (!Settings.BalanceContent.IsEnabled(relic.GetType()))
+          continue;
+        // WARNING: Darv filters ValidRelicSet before drawing; it does not call relic.IsAllowed.
+        Func<Player, bool> allowed = player => relic.IsAllowed(player.RunState) &&
+          (relic is not CurseKey || player.RunState.Players.Count == 1);
+        object? set = Activator.CreateInstance(structType, [allowed, new RelicModel[] { relic }]);
         list.Add(set);
         BalanceModEntry.Logger.Info($"[DarvAddCustomRelicPatch] 成功注册 {name}");
       }

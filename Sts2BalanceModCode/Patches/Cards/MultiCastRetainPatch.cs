@@ -12,6 +12,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// </summary>
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.UpgradeInternal))]
 [HarmonyPatch(typeof(CardModel), "OnUpgrade")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C19")]
 public static class MultiCastRetainPatch
 {
   [HarmonyPrefix]

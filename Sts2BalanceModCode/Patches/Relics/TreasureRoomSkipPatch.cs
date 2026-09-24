@@ -15,6 +15,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 [HarmonyPatch]
 public static class TreasureRoomSkipPatch
 {
+  // NOTE: Chest bookkeeping must remain installed when G02 is off: CurseKeyPatch uses it.
   internal static bool SkipChestForCurseKey { get; private set; }
   private static bool _chestOpened;
   private static TextureRect? _skipIcon;
@@ -57,7 +58,7 @@ public static class TreasureRoomSkipPatch
     SkipChestForCurseKey = false;
     _chestOpened = false;
 
-    if (!IsCurseKeySinglePlayer())
+    if (!Settings.BalanceModSettings.IsEnabled("G02") || !IsCurseKeySinglePlayer())
       return;
 
     NProceedButton proceedButton = __instance.GetNodeOrNull<NProceedButton>("%ProceedButton");
@@ -89,7 +90,7 @@ public static class TreasureRoomSkipPatch
   [HarmonyPostfix]
   public static void NTreasureRoomOnActiveScreenChangedPostfix(NTreasureRoom __instance)
   {
-    if (!IsCurseKeySinglePlayer())
+    if (!Settings.BalanceModSettings.IsEnabled("G02") || !IsCurseKeySinglePlayer())
       return;
 
     NProceedButton proceedButton = __instance.GetNodeOrNull<NProceedButton>("%ProceedButton");
@@ -117,7 +118,7 @@ public static class TreasureRoomSkipPatch
   [HarmonyPrefix]
   public static bool NTreasureRoomOnProceedButtonPressedPrefix()
   {
-    if (_chestOpened)
+    if (!Settings.BalanceModSettings.IsEnabled("G02") || !IsCurseKeySinglePlayer() || _chestOpened)
       return true; // 开箱后走原生流程
 
     // 未开箱 → 跳过宝箱（不隐藏宝箱，地图返回后仍可正常交互）

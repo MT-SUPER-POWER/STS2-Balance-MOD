@@ -20,6 +20,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 /// WARNING: Verified against D:\Game\Sts2Code\src\MegaCrit.Sts2.Core.Models.Relics\BeautifulBracelet.cs.
 /// </summary>
 [HarmonyPatch(typeof(BeautifulBracelet), nameof(BeautifulBracelet.AfterObtained))]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R09")]
 public static class BeautifulBraceletPatch
 {
   [HarmonyPrefix]

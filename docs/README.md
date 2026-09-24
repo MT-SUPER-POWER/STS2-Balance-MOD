@@ -38,6 +38,7 @@
 
 ## 🛠️ 开发者与 Mod 制作指南
 
+- 🛠️ **[贡献指南 (contribute.md)](contribute.md)** — 本机路径、DLL / Stub、构建调试与目录分层速览。
 - 📖 **[STS2 Mod 制作指南 (sts2-modding-guide.md)](sts2-modding-guide.md)** — 从零开始制作 STS2 Mod 的完整开发教程。
 - 💡 **[WatcherMod 参考代码 (references/WatcherMod/)](references/WatcherMod/)** — 社区优秀 Mod 参考（GitHub Submodule）。
 - 💡 **[ActsFromThePast 参考代码 (references/ActsFromThePast/)](references/ActsFromThePast/)** — STS1 内容移植参考 Mod（GitHub Submodule）。
@@ -45,6 +46,8 @@
 ---
 
 ## 🔍 系统设计与技术分析报告
+
+- ⚙️ **[分区开关与联机保护方案](settings-catalog-proposal.md)** — 78 项分区清单、配套内容边界、重启生效和联机配置检查的实现与验收状态。
 
 针对复杂机制与底层 Harmony 架构的深度技术分析：
 

@@ -8,6 +8,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// - 升级后数值调整为，召唤6，防御9
 /// </summary>
 [HarmonyPatch(typeof(PullAggro), "OnUpgrade")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C26")]
 public static class PullAggroPatch
 {
   [HarmonyPrefix]

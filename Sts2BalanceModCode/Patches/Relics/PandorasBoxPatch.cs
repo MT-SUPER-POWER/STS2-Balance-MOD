@@ -28,6 +28,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 /// WARNING: Verified against D:\Game\Sts2Code\src\MegaCrit.Sts2.Core.Models.Relics\PandorasBox.cs.
 /// </summary>
 [HarmonyPatch(typeof(PandorasBox), nameof(PandorasBox.AfterObtained))]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R11")]
 public static class PandorasBoxPatch
 {
   [HarmonyPrefix]

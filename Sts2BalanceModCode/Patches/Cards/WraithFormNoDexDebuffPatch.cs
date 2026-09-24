@@ -14,6 +14,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// 1. 移除 WraithFormPower 负面效果
 /// 2. 移除 DexterityPower 的 HoverTip
 /// </summary>
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C10")]
 public static class WraithFormReworkPatch
 {
   /// <summary>

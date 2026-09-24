@@ -21,6 +21,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 /// WARNING: Verified against D:\Game\Sts2Code\src\MegaCrit.Sts2.Core.Models.Relics\SandCastle.cs; game updates may change this decompiled implementation.
 /// </summary>
 [HarmonyPatch(typeof(SandCastle), "AfterObtained")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R01")]
 public static class SandCastlePatch
 {
   [HarmonyPrefix]

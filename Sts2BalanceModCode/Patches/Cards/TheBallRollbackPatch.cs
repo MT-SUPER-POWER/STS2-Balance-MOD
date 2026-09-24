@@ -12,6 +12,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Cards;
 /// WARNING: Target and values are based on decompiled game source; do not modify that source directly.
 /// </summary>
 [HarmonyPatch(typeof(TheBall), "get_CanonicalVars")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("C32")]
 public static class TheBallRollbackPatch
 {
   [HarmonyPrefix]
