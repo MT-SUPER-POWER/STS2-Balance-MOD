@@ -47,22 +47,30 @@ public sealed class BalanceModSettings
     Store.Save(DataKey);
     RitsuLibFramework.RegisterModSettings(BalanceModEntry.ModId, page =>
     {
-      page.WithTitle(Text("平衡调整 Mod")).WithModDisplayName(Text("平衡调整 Mod"));
+      page.WithTitle(Text("平衡调整 Mod")).WithModDisplayName(Text("平衡调整 Mod"))
+        .WithDescription(Text("展开分区调整内容；修改后重启游戏生效。"));
       page.AddSection("overview", section =>
       {
-        section.WithTitle(Text("改动配置"));
+        section.WithTitle(Text("浏览与应用"));
+        section.AddChoice("filter", Text("显示内容"),
+          new ModSettingsCallbackValueBinding<int>(BalanceModEntry.ModId, "view-filter", SaveScope.Global,
+            () => _filter, value => _filter = value, () => { }),
+          new[]
+          {
+            new ModSettingsChoiceOption<int>(0, Text("全部改动")),
+            new ModSettingsChoiceOption<int>(1, Text("当前生效")),
+            new ModSettingsChoiceOption<int>(2, Text("待重启"))
+          }, presentation: ModSettingsChoicePresentation.Dropdown);
         section.AddParagraph("status", ModSettingsText.Dynamic(() => NeedsRestart
-          ? "配置已修改，重启游戏后生效。当前对局继续使用本次启动配置。"
-          : "配置已生效。"));
-        section.AddButton("restart", Text("应用配置"), Text("保存并重启游戏"), Restart);
+          ? $"有 {BalanceCatalog.All.Count(c => Pending(c.Id))} 项改动待重启，当前游戏仍使用原配置。"
+          : _filter == 2 ? "没有待重启的改动。" : "配置已生效。展开下方分区，或从左侧直接定位。"));
+        section.AddButton("restart", Text("应用改动"), Text("保存并重启"), Restart);
         section.WithEntryVisibleWhen("restart", () => NeedsRestart);
         section.WithEntryEnabledWhen("restart", CanRestart);
-        section.AddParagraph("restart-help", Text("立即重启仅限主菜单；请先退出对局或房间，再从主菜单打开设置。"));
-        AddBulk(section, "all", BalanceCatalog.All);
-        section.AddButton("defaults", Text("默认配置"), Text("恢复默认（全部开启）"),
-          (IModSettingsUiActionHost host) => SetMany(BalanceCatalog.All, true, host));
-        section.AddButton("filter", Text("列表筛选"), ModSettingsText.Dynamic(() => new[] { "全部", "当前生效", "待重启" }[_filter]),
-          (IModSettingsUiActionHost host) => { _filter = (_filter + 1) % 3; host.RequestRefresh(); });
+        section.AddParagraph("restart-help", Text("请先退出对局或房间，再从主菜单重启。"));
+        section.WithEntryVisibleWhen("restart-help", () => NeedsRestart && !CanRestart());
+        section.AddParagraph("empty", Text("没有符合筛选条件的内容。可切换到「全部改动」。"));
+        section.WithEntryVisibleWhen("empty", () => _filter == 1 && !BalanceCatalog.All.Any(c => Visible(c.Id)));
       });
       int index = 0;
       foreach (var group in BalanceCatalog.All.GroupBy(c => c.Group))
@@ -71,22 +79,23 @@ public sealed class BalanceModSettings
         page.AddSection(groupId, section =>
         {
           var entries = group.ToArray();
-          section.WithTitle(ModSettingsText.Dynamic(() => $"{group.Key} · {Summary(entries)}"));
-          AddBulk(section, groupId, entries);
+          section.WithTitle(Text(group.Key)).Collapsible(true);
+          section.WithVisibleWhen(() => entries.Any(c => Visible(c.Id)));
           foreach (var subgroup in entries.GroupBy(c => c.Subgroup))
           {
             if (subgroup.Key.Length > 0)
             {
-              section.AddParagraph($"sub-{subgroup.First().Id}", ModSettingsText.Dynamic(() => $"{subgroup.Key} · {Summary(subgroup)}"));
-              AddBulk(section, $"sub-{subgroup.First().Id}", subgroup);
+              string subgroupId = $"sub-{subgroup.First().Id}";
+              section.AddParagraph(subgroupId, Text(subgroup.Key));
+              section.WithEntryVisibleWhen(subgroupId, () => subgroup.Any(c => Visible(c.Id)));
             }
             foreach (BalanceChange change in subgroup)
             {
-              section.AddToggle(change.Id, ModSettingsText.Dynamic(() => $"{change.Label} · {State(change.Id)}"),
+              section.AddToggle(change.Id, Text(change.Label),
                 new ModSettingsValueBinding<BalanceModSettings, bool>(BalanceModEntry.ModId, DataKey, SaveScope.Global,
                   s => s.Choices.GetValueOrDefault(change.Id, true), (s, value) => s.Choices[change.Id] = value),
-                Text(change.Description));
-              section.WithEntryVisibleWhen(change.Id, () => _filter == 0 || (_filter == 1 ? IsEnabled(change.Id) : Pending(change.Id)));
+                ModSettingsText.Dynamic(() => $"{State(change.Id)} · {change.Description}"));
+              section.WithEntryVisibleWhen(change.Id, () => Visible(change.Id));
             }
           }
         });
@@ -102,27 +111,7 @@ public sealed class BalanceModSettings
       state = (Pending(id) ? "待重启" : "暂不生效") + "（需要至少开启一个红面具事件）";
     return state;
   }
-  private static string Summary(IEnumerable<BalanceChange> changes)
-  {
-    var items = changes.ToArray();
-    int selected = items.Count(c => Selected(c.Id));
-    string state = selected == 0 ? "全部关闭" : selected == items.Length ? "全部开启" : "部分开启";
-    return $"{state} {selected}/{items.Length} · 当前生效 {items.Count(c => IsEnabled(c.Id))} · 待重启 {items.Count(c => Pending(c.Id))}";
-  }
-  private static void AddBulk(ModSettingsSectionBuilder section, string id, IEnumerable<BalanceChange> changes)
-  {
-    var items = changes.ToArray();
-    section.AddButton(id + "-on", Text("快速操作"), Text("全开"),
-      (IModSettingsUiActionHost host) => SetMany(items, true, host));
-    section.AddButton(id + "-off", Text("快速操作"), Text("全关"),
-      (IModSettingsUiActionHost host) => SetMany(items, false, host));
-  }
-  private static void SetMany(IEnumerable<BalanceChange> changes, bool value, IModSettingsUiActionHost host)
-  {
-    foreach (BalanceChange c in changes) Current.Choices[c.Id] = value;
-    Store.Save(DataKey);
-    host.RequestRefreshAfterDataModelBatchChange();
-  }
+  private static bool Visible(string id) => _filter == 0 || (_filter == 1 ? IsEnabled(id) : Pending(id));
 
   private static bool CanRestart()
   {
