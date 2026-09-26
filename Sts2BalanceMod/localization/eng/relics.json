@@ -9,7 +9,7 @@
   "STS2_BALANCEMOD_SUNDIAL.description": "Every [blue]{Shuffles}[/blue] times you shuffle your [blue]Draw Pile[/blue], gain [blue]{Energy}[/blue].",
   "STS2_BALANCEMOD_SUNDIAL.flavor": "\"Early man's foolish obsession with time caused them to look to the sky for guidance, hoping for something permanent.\" - Zoroth",
   "STS2_BALANCEMOD_ORANGE_PILL.title": "Orange Pill",
-  "STS2_BALANCEMOD_ORANGE_PILL.description": "Each turn, after you play a [gold]Power[/gold], an [gold]Attack[/gold], and a [gold]Skill[/gold], remove all negative effects from yourself.",
+  "STS2_BALANCEMOD_ORANGE_PILL.description": "Each turn, after you play a [gold]Power[/gold], an [gold]Attack[/gold], and a [gold]Skill[/gold], remove all negative effects from yourself (except Queen's Chains of Binding).",
   "STS2_BALANCEMOD_ORANGE_PILL.flavor": "\"A pill made from all the fungi in the Spire. Cures everything!\"",
   "STS2_BALANCEMOD_DEAD_BRANCH.title": "Dead Branch",
   "STS2_BALANCEMOD_DEAD_BRANCH.description": "Whenever you [gold]Exhaust[/gold] a card, add a random card into your hand.",

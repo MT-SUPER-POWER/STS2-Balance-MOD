@@ -9,7 +9,7 @@
   "STS2_BALANCEMOD_SUNDIAL.description": "每将[blue]抽牌堆[/blue]洗牌[blue]{Shuffles}[/blue]次，获得[blue]{Energy}[/blue]。",
   "STS2_BALANCEMOD_SUNDIAL.flavor": "「早期人类对时间的愚蠢痴迷导致他们仰望天空寻求指引，希望找到永恒之物。」——佐罗斯",
   "STS2_BALANCEMOD_ORANGE_PILL.title": "橙色药丸",
-  "STS2_BALANCEMOD_ORANGE_PILL.description": "你每在同一回合内打[gold]能力牌[/gold] 、[gold]攻击牌[/gold]和[gold]技能牌[/gold]各一张，移除你身上的所有负面效果",
+  "STS2_BALANCEMOD_ORANGE_PILL.description": "你每在同一回合内打[gold]能力牌[/gold]、[gold]攻击牌[/gold]和[gold]技能牌[/gold]各一张，移除你身上的所有负面效果（女王的【魂缚锁链】除外）。",
   "STS2_BALANCEMOD_ORANGE_PILL.flavor": "用塔里各处真菌做出来的药，包治百病！",
   "STS2_BALANCEMOD_DEAD_BRANCH.title": "枯木树枝",
   "STS2_BALANCEMOD_DEAD_BRANCH.description": "每当你[gold]消耗[/gold]一张牌增加一张随机手牌到你的手中",
