@@ -74,7 +74,7 @@ public sealed class CursedTome : BalanceEventTemplate
     await DamageOwner(_dmgPage2);
     SetEventState(PageDescription("PAGE_3"),
     [
-      new EventOption(this, Page2Continue, $"{Id.Entry}.pages.PAGE_3.options.CONTINUE", []),
+      new EventOption(this, Page3Continue, $"{Id.Entry}.pages.PAGE_3.options.CONTINUE", []),
     ]);
   }
 
