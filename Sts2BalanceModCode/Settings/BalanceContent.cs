@@ -47,6 +47,30 @@ internal static class BalanceRelicAcquisitionPatch
     __result = __result.Where(c => BalanceContent.IsEnabled(c.GetType()));
 }
 
+[HarmonyPatch(typeof(ModelDb), nameof(ModelDb.AllCards), MethodType.Getter)]
+internal static class BalanceAllCardsPatch
+{
+  private static void Postfix(ref IEnumerable<CardModel> __result) =>
+    __result = __result.Where(c => BalanceContent.IsEnabled(c.GetType()));
+}
+
+[HarmonyPatch(typeof(ModelDb), nameof(ModelDb.AllRelics), MethodType.Getter)]
+internal static class BalanceAllRelicsPatch
+{
+  private static void Postfix(ref IEnumerable<RelicModel> __result) =>
+    __result = __result.Where(r => BalanceContent.IsEnabled(r.GetType()));
+}
+
+[HarmonyPatch(typeof(CardModel), nameof(CardModel.ShouldShowInCardLibrary), MethodType.Getter)]
+internal static class BalanceCardLibraryVisibilityPatch
+{
+  private static void Postfix(CardModel __instance, ref bool __result)
+  {
+    if (__result && !BalanceContent.IsEnabled(__instance.GetType()))
+      __result = false;
+  }
+}
+
 // Target each override as well as inherited base methods; disabling only the base
 // EventModel.IsAllowed would miss custom events that implement their own conditions.
 [HarmonyPatch]

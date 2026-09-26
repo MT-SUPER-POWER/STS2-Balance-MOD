@@ -22,6 +22,7 @@ public sealed class BalanceModSettings
 
   private static IReadOnlyDictionary<string, bool> _active = new Dictionary<string, bool>();
   private static int _filter;
+  private static string? _lastEditedId;
   internal static IReadOnlyDictionary<string, bool> Active => _active;
   public static bool IsEnabled(string id) => BalanceCatalog.Effective(_active, id);
   public static bool InfestedPrismReworkEnabled => IsEnabled("M02");
@@ -93,9 +94,22 @@ public sealed class BalanceModSettings
             {
               section.AddToggle(change.Id, Text(change.Label),
                 new ModSettingsValueBinding<BalanceModSettings, bool>(BalanceModEntry.ModId, DataKey, SaveScope.Global,
-                  s => s.Choices.GetValueOrDefault(change.Id, true), (s, value) => s.Choices[change.Id] = value),
+                  s => s.Choices.GetValueOrDefault(change.Id, true), (s, value) =>
+                  {
+                    s.Choices[change.Id] = value;
+                    _lastEditedId = change.Id;
+                  }),
                 ModSettingsText.Dynamic(() => $"{State(change.Id)} · {change.Description}"));
               section.WithEntryVisibleWhen(change.Id, () => Visible(change.Id));
+              // Keep one contextual action beside the last edit instead of requiring a scroll to the top.
+              string restartId = change.Id + "-restart";
+              section.AddButton(restartId, Text("配置已修改，重启后生效"), Text("重启游戏"), Restart,
+                description: ModSettingsText.Dynamic(() => CanRestart()
+                  ? "可以继续调整，重启时会保存并应用全部改动。"
+                  : "请先退出对局或房间，再从主菜单重启。"));
+              section.WithEntryVisibleWhen(restartId,
+                () => _lastEditedId == change.Id && NeedsRestart && Visible(change.Id));
+              section.WithEntryEnabledWhen(restartId, CanRestart);
             }
           }
         });
