@@ -1,4 +1,5 @@
 {
-  "REST_SITE.OPTIONS.SMOKE.title": "Трубка",
-  "REST_SITE.OPTIONS.SMOKE.description": "Удалить 1 карту из вашей колоды."
+  "OPTION_SMOKE.name": "Покурить",
+  "OPTION_SMOKE.description": "Удалите [blue]1[/blue] карту из вашей колоды.",
+  "OPTION_SMOKE.descriptionDisabled": "В вашей колоде нет карт, доступных для удаления."
 }

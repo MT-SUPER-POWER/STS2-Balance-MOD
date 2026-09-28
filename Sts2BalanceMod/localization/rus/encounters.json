@@ -1,14 +1,14 @@
 {
-  "STS2_BALANCE_MOD_ENCOUNTER_TIME_EATER_ENCOUNTER.title": "Пожиратель времени",
-  "STS2_BALANCE_MOD_ENCOUNTER_COLLECTOR_ENCOUNTER.title": "Коллекционер",
-  "STS2_BALANCE_MOD_ENCOUNTER_GUARDIAN_ENCOUNTER.title": "Страж",
-  "STS2_BALANCE_MOD_ENCOUNTER_HEXAGHOST_ENCOUNTER.title": "Шестикрылый призрак",
-  "STS2_BALANCE_MOD_ENCOUNTER_SLIME_BOSS_ENCOUNTER.title": "Босс Слизней",
-  "STS2_BALANCE_MOD_ENCOUNTER_MASKED_BANDITS_ENCOUNTER.title": "Бандиты в красных масках",
+  "STS2_BALANCE_MOD_ENCOUNTER_TIME_EATER_BOSS.title": "Пожиратель времени",
+  "STS2_BALANCE_MOD_ENCOUNTER_TIME_EATER_BOSS.loss": "{name} был{player:/а} остановлен{player:/а} временем.",
+  "STS2_BALANCE_MOD_ENCOUNTER_COLLECTOR_BOSS.title": "Коллекционер",
+  "STS2_BALANCE_MOD_ENCOUNTER_COLLECTOR_BOSS.loss": "{name} пополнил{player:/а} коллекцию.",
+  "STS2_BALANCE_MOD_ENCOUNTER_RED_MASK_BANDITS.title": "Бандиты в красных масках",
+  "STS2_BALANCE_MOD_ENCOUNTER_RED_MASK_BANDITS.loss": "{name} был{player:/а} ограблен{player:/а}.",
   "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_GUARDIAN.title": "Страж",
-  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_GUARDIAN.loss": "{name} был сокрушён Стражем.",
+  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_GUARDIAN.loss": "{name} был{player:/а} раздавлен{player:/а} Стражем.",
   "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_HEXAGHOST.title": "Гексадух",
-  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_HEXAGHOST.loss": "{name} поглотили шесть огней.",
-  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_SLIME_BOSS.title": "Слизнебосс",
-  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_SLIME_BOSS.loss": "{name} утонул в слизи."
+  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_HEXAGHOST.loss": "{name} был{player:/а} поглощен{player:/а} шестью огнями.",
+  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_SLIME_BOSS.title": "Слизебосс",
+  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_SLIME_BOSS.loss": "{name} был{player:/а} поглощен{player:/а} слизью."
 }

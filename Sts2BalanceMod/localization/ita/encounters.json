@@ -1,14 +1,14 @@
 {
-  "STS2_BALANCE_MOD_ENCOUNTER_TIME_EATER_BOSS.title": "Time Eater",
-  "STS2_BALANCE_MOD_ENCOUNTER_TIME_EATER_BOSS.loss": "{name} was stopped by time.",
-  "STS2_BALANCE_MOD_ENCOUNTER_COLLECTOR_BOSS.title": "The Collector",
-  "STS2_BALANCE_MOD_ENCOUNTER_COLLECTOR_BOSS.loss": "{name} was collected.",
-  "STS2_BALANCE_MOD_ENCOUNTER_RED_MASK_BANDITS.title": "Banditi Mascherati",
-  "STS2_BALANCE_MOD_ENCOUNTER_RED_MASK_BANDITS.loss": "{name} fu derubato.",
-  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_GUARDIAN.title": "Il Guardiano",
-  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_GUARDIAN.loss": "{name} fu schiacciato dal Guardiano.",
+  "STS2_BALANCE_MOD_ENCOUNTER_TIME_EATER_BOSS.title": "Mangiatempo",
+  "STS2_BALANCE_MOD_ENCOUNTER_TIME_EATER_BOSS.loss": "{name} è stat{player:o/a} fermat{player:o/a} dal tempo.",
+  "STS2_BALANCE_MOD_ENCOUNTER_COLLECTOR_BOSS.title": "Il Collezionista",
+  "STS2_BALANCE_MOD_ENCOUNTER_COLLECTOR_BOSS.loss": "{name} è stat{player:o/a} collezionat{player:o/a}.",
+  "STS2_BALANCE_MOD_ENCOUNTER_RED_MASK_BANDITS.title": "Banditi con Maschera Rossa",
+  "STS2_BALANCE_MOD_ENCOUNTER_RED_MASK_BANDITS.loss": "{name} è stat{player:o/a} derubat{player:o/a}.",
+  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_GUARDIAN.title": "Il Custode",
+  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_GUARDIAN.loss": "{name} è stat{player:o/a} schiacciat{player:o/a} dal Custode.",
   "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_HEXAGHOST.title": "Hexaghost",
-  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_HEXAGHOST.loss": "{name} fu consumato da sei fiamme.",
+  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_HEXAGHOST.loss": "{name} è stat{player:o/a} consumat{player:o/a} da sei fiamme.",
   "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_SLIME_BOSS.title": "Boss Melma",
-  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_SLIME_BOSS.loss": "{name} fu inghiottito dalla melma."
+  "STS2_BALANCE_MOD_ENCOUNTER_MIND_BLOOM_SLIME_BOSS.loss": "{name} è stat{player:o/a} inghiottit{player:o/a} dalla melma."
 }

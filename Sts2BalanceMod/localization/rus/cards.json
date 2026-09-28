@@ -7,8 +7,8 @@
   "STS2_BALANCEMOD_CONCENTRATE.description": "Сбрасывает {Cards:diff()} {Cards:plural(ru):карту|карты|карт}.\nДает {Energy:energyIcons()}.",
   "STS2_BALANCEMOD_ELECTRODYNAMICS.title": "Электродинамика",
   "STS2_BALANCEMOD_ELECTRODYNAMICS.description": "Создает {Cards:diff()} {Cards:plural(ru):сферу|сферы|сфер} [gold]Молнии[/gold].\nСферы [gold]Молнии[/gold] теперь бьют [gold]ВСЕХ врагов[/gold].",
-  "STS2_BALANCEMOD_JAX.title": "J.A.X.",
-  "STS2_BALANCEMOD_JAX.description": "Вы теряете {HpLoss:diff()} ОЗ.\nДает {StrengthPower:diff()} [gold]силы[/gold].",
+  "STS2_BALANCEMOD_JAX.title": "Д.Ж.А.",
+  "STS2_BALANCEMOD_JAX.description": "Теряет {HpLoss} ОЗ.\nДает {Strength:diff()} [gold]Силы[/gold].",
   "STS2_BALANCEMOD_NECRONOMICURSE.title": "Проклятие Некрономикона",
   "STS2_BALANCEMOD_NECRONOMICURSE.description": "От этого [red]Проклятия[/red] не сбежать.",
   "WRAITH_FORM.description": "Дает {IntangiblePower:diff()} [gold]неосязаемости[/gold].",
@@ -31,5 +31,12 @@
   "STS2_BALANCEMOD_EVISCERATE.description": "Стоит на 1{energyPrefix:energyIcons(1)} меньше за каждую карту, сброшенную на этом ходу.\nНаносит {Damage:diff()} урона 3 раза.",
   "COOLANT.description": "Каждый раз, когда вы разыгрываете карту [gold]Таланта[/gold], возьмите {CoolantPower:diff()} {CoolantPower:plural(ru):карту|карты|карт}.",
   "STS2_BALANCEMOD_BUDDY_SLAM.title": "Бросок напарника",
-  "STS2_BALANCEMOD_BUDDY_SLAM.description": "Наносит урон, равный наибольшей [gold]защите[/gold] среди других игроков.{InCombat:\n(Наносит {CalculatedDamage:diff()} урона)|}"
+  "STS2_BALANCEMOD_BUDDY_SLAM.description": "Наносит урон, равный наибольшей [gold]защите[/gold] среди других игроков.{InCombat:\n(Наносит {CalculatedDamage:diff()} урона)|}",
+  "EXPECT_A_FIGHT.title": "Отступление с боем",
+  "STS2_BALANCEMOD_SORCERY_STRIKE.title": "Колдовской удар",
+  "STS2_BALANCEMOD_SORCERY_STRIKE.description": "Наносит {Damage:diff()} урона.\nНакладывает {Affliction:diff()} [gold]Колдовской уязвимости[/gold].",
+  "STS2_BALANCEMOD_SORCERY_DEFEND.title": "Колдовская защита",
+  "STS2_BALANCEMOD_SORCERY_DEFEND.description": "Дает {Block:diff()} [gold]Защиты[/gold].\nНакладывает {Affliction:diff()} [gold]Колдовской слабости[/gold].",
+  "STS2_BALANCEMOD_WITCH_FORM.title": "Форма ведьмы",
+  "STS2_BALANCEMOD_WITCH_FORM.description": "Начинает каждый бой с {Affliction:diff()} [gold]Колдовской уязвимости[/gold].\nВ начале хода дает [blue]1[/blue] Энергию и тянет на [blue]1[/blue] карту больше."
 }

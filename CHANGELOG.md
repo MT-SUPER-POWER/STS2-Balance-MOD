@@ -6,6 +6,16 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+## v0.3.10
+
+### Changed
+
+- 卡牌：铁甲战士卡牌「且战且退」全语言同步更名（ENG: Fighting Retreat / ITA: Ritirata combattente / RUS: Отступление с боем）。
+
+### Fixed
+
+- 本地化：修复俄语与意语多语言翻译未对齐、缺失内容及历史旧键名。
+
 ## v0.3.9
 
 ### Added

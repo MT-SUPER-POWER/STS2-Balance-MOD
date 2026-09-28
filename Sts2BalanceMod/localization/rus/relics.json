@@ -58,7 +58,6 @@
   "TOASTY_MITTENS.description": "В начале своего хода вы можете выбрать [blue]1[/blue] карту в своей руке для [gold]Сжигания[/gold] (содержит вариант Пропустить). При сжигании карты вы получаете [blue]1[/blue] [red]силу[/red].",
   "SIGNET_RING.description": "При получении дает [blue]999[/blue] золота.",
   "BEAUTIFUL_BRACELET.description": "При получении выберите [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в вашей [gold]колоде[/gold] и наложите [gold]чары[/gold] [purple]«Скорость»[/purple] [blue]2[/blue].",
-  "BEAUTIFUL_BRACELET.eventDescription": "Выберите [blue]{Cards}[/blue] {Cards:plural(ru):карту|карты|карт} в вашей [gold]колоде[/gold] и наложите [gold]чары[/gold] [purple]«Скорость» {Swift}[/purple].",
   "SAND_CASTLE.description": "При подборе выберите [blue]3[/blue] карты для [gold]Улучшения[/gold], затем [gold]Улучшите[/gold] [blue]3[/blue] случайные карты.",
   "STS2_BALANCEMOD_STRANGE_SPOON.title": "Странная ложка",
   "STS2_BALANCEMOD_STRANGE_SPOON.description": "Карты со [gold]Сжиганием[/gold] при разыгрывании с вероятностью [blue]50%[/blue] сбрасываются вместо сжигания. ([gold]Увядание[/gold] всегда сжигается.)",
@@ -71,5 +70,11 @@
   "STS2_BALANCEMOD_NEOWS_TALISMAN.description": "В следующих [blue]3[/blue] боях у всех врагов будет [blue]1[/blue] ОЗ.",
   "STS2_BALANCEMOD_NEOWS_TALISMAN.eventDescription": "В следующих [blue]3[/blue] боях у всех врагов будет [blue]1[/blue] ОЗ.",
   "STS2_BALANCEMOD_NEOWS_TALISMAN.flavor": "Сквозь долгий сон слабый плач обратился в осколок защиты.",
-  "ROYAL_STAMP.description": "При получении накладывает [gold]чары[/gold] [purple]«{Enchantment}»[/purple] на выбранную Атаку, Навык или Силу."
+  "ROYAL_STAMP.description": "При получении накладывает [gold]чары[/gold] [purple]«{Enchantment}»[/purple] на выбранную Атаку, Навык или Силу.",
+  "STS2_BALANCEMOD_DELICATE_DOLL.title": "Изящная кукла",
+  "STS2_BALANCEMOD_DELICATE_DOLL.description": "В начале каждого боя накладывает [blue]1[/blue] [gold]Колдовскую уязвимость[/gold] на ВСЕХ врагов.",
+  "STS2_BALANCEMOD_DELICATE_DOLL.flavor": "Фарфоровая куколка, пропитанная тревожной защитной магией.",
+  "STS2_BALANCEMOD_SHABBY_DOLL.title": "Потрепанная кукла",
+  "STS2_BALANCEMOD_SHABBY_DOLL.description": "В начале каждого боя накладывает [blue]1[/blue] [gold]Колдовскую слабость[/gold] на ВСЕХ врагов.",
+  "STS2_BALANCEMOD_SHABBY_DOLL.flavor": "Старая тряпичная кукла со зловещими стежками."
 }

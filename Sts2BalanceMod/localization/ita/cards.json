@@ -8,9 +8,9 @@
   "STS2_BALANCEMOD_ELECTRODYNAMICS.title": "Elettrodinamica",
   "STS2_BALANCEMOD_ELECTRODYNAMICS.description": "Incarni {Cards:diff()} Sfere [gold]Fulmine[/gold].\nLe Sfere [gold]Fulmine[/gold] colpiscono [gold]TUTTI i nemici[/gold].",
   "STS2_BALANCEMOD_JAX.title": "J.A.X.",
-  "STS2_BALANCEMOD_JAX.description": "Lose {HpLoss:diff()} HP.\nGain {StrengthPower:diff()} [gold]Strength[/gold].",
-  "STS2_BALANCEMOD_NECRONOMICURSE.title": "Necronomicurse",
-  "STS2_BALANCEMOD_NECRONOMICURSE.description": "There is no escape from this [red]Curse[/red].",
+  "STS2_BALANCEMOD_JAX.description": "Perdi {HpLoss} PV.\nOttieni {Strength:diff()} [gold]Forza[/gold].",
+  "STS2_BALANCEMOD_NECRONOMICURSE.title": "Necronomiconcurse",
+  "STS2_BALANCEMOD_NECRONOMICURSE.description": "Non può essere rimossa dal mazzo né distrutta.",
   "WRAITH_FORM.description": "Ottieni {IntangiblePower:diff()} [gold]Intangibilità[/gold].",
   "GLOW.description": "Ottieni {Stars:starIcons()}.\nPesca 2 carte.",
   "FUEL.description": "Ottieni {Energy:energyIcons()}.\nPesca {Cards:diff()} {Cards:plural:carta|carte}.",
@@ -31,6 +31,12 @@
   "STS2_BALANCEMOD_EVISCERATE.description": "Costa 1 {energyPrefix:energyIcons(1)} in meno per ogni carta scartata in questo turno.\nInfliggi {Damage:diff()} danni per 3 volte.",
   "COOLANT.description": "Ogni volta che giochi una carta [gold]Potere[/gold], pesca {CoolantPower:diff()} {CoolantPower:plural:carta|carte}.",
   "STS2_BALANCEMOD_BUDDY_SLAM.title": "Spanciata di Gruppo",
-  "STS2_BALANCEMOD_BUDDY_SLAM.description": "Infliggi danno pari al [gold]Blocco[/gold] più alto tra gli altri giocatori.{InCombat:\n(Infligge {CalculatedDamage:diff()} di danno)|}"
+  "STS2_BALANCEMOD_BUDDY_SLAM.description": "Infliggi danno pari al [gold]Blocco[/gold] più alto tra gli altri giocatori.{InCombat:\n(Infligge {CalculatedDamage:diff()} di danno)|}",
+  "EXPECT_A_FIGHT.title": "Ritirata combattente",
+  "STS2_BALANCEMOD_SORCERY_STRIKE.title": "Colpo stregonesco",
+  "STS2_BALANCEMOD_SORCERY_STRIKE.description": "Infigge {Damage:diff()} danni.\nApplica {Affliction:diff()} [gold]Vulnerabilità stregonesca[/gold].",
+  "STS2_BALANCEMOD_SORCERY_DEFEND.title": "Difesa stregonesca",
+  "STS2_BALANCEMOD_SORCERY_DEFEND.description": "Ottieni {Block:diff()} [gold]Armatura[/gold].\nApplica {Affliction:diff()} [gold]Debolezza stregonesca[/gold].",
+  "STS2_BALANCEMOD_WITCH_FORM.title": "Forma di strega",
+  "STS2_BALANCEMOD_WITCH_FORM.description": "Inizia ogni combattimento con {Affliction:diff()} [gold]Vulnerabilità stregonesca[/gold].\nAll'inizio del tuo turno, ottieni [blue]1[/blue] Energia e pesca [blue]1[/blue] carta in più."
 }
-

@@ -32,5 +32,14 @@
   "COOLANT_POWER.smartDescription": "Каждый раз, когда вы разыгрываете карту [gold]Таланта[/gold], возьмите {Amount} {Amount:plural(ru):карту|карты|карт}.",
   "STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER.title": "Мутагенный распад",
   "STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER.description": "В конце своего хода вы теряете [blue]1[/blue] [gold]Силы[/gold]. Длится {Amount} {Amount:plural(ru):ход|хода|ходов}.",
-  "STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER.smartDescription": "Теряйте [blue]1[/blue] [gold]Силы[/gold] в конце своего хода. Осталось {Amount} {Amount:plural(ru):ход|хода|ходов}."
+  "STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER.smartDescription": "Теряйте [blue]1[/blue] [gold]Силы[/gold] в конце своего хода. Осталось {Amount} {Amount:plural(ru):ход|хода|ходов}.",
+  "STS2_BALANCE_MOD_POWER_SORCERY_VULNERABLE.title": "Колдовская уязвимость",
+  "STS2_BALANCE_MOD_POWER_SORCERY_VULNERABLE.description": "Уязвимые существа получают на [red]75%[/red] больше урона от Атак. Уменьшается на 1 в конце хода при получении удара в этом ходу.",
+  "STS2_BALANCE_MOD_POWER_SORCERY_VULNERABLE.smartDescription": "Получает на [red]75%[/red] больше урона от атак. Осталось зарядов: [blue]{Amount}[/blue] (уменьшается на 1 в конце хода при получении удара).",
+  "STS2_BALANCE_MOD_POWER_SORCERY_WEAK.title": "Колдовская слабость",
+  "STS2_BALANCE_MOD_POWER_SORCERY_WEAK.description": "Ослабленные существа наносят на [red]40%[/red] меньше урона Атаками. Уменьшается на 1 в конце хода при совершении атаки в этом ходу.",
+  "STS2_BALANCE_MOD_POWER_SORCERY_WEAK.smartDescription": "Наносит на [red]40%[/red] меньше урона атаками. Осталось зарядов: [blue]{Amount}[/blue] (уменьшается на 1 в конце хода при совершении атаки).",
+  "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.title": "Форма ведьмы",
+  "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.description": "В начале хода превращает [blue]2[/blue] карты в руке в улучшенные [gold]Колдовской удар+[/gold] и [gold]Колдовская защита+[/gold].",
+  "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.smartDescription": "В начале хода превращает [blue]2[/blue] карты в руке в улучшенные [gold]Колдовской удар+[/gold] и [gold]Колдовская защита+[/gold]."
 }
