@@ -198,6 +198,7 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 | <img src="Assets/relics/wrist_blade.png" width="22" height="22" valign="middle"> **Wrist Blade** | Uncommon | Silent exclusive. 0-cost Attack cards deal 4 additional damage. |
 | <img src="Assets/relics/hovering_kite.png" width="22" height="22" valign="middle"> **Hovering Kite** | Common | Silent exclusive. The first time you discard a card each turn, gain 1 Energy. |
 | <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **Soul Contract** | <img src="Assets/profile/merchant.png" width="22" height="22" title="Merchant"> | Select 1 card in your deck with Exhaust and permanently remove its Exhaust property. |
+| <img src="Sts2BalanceMod/images/relics/BlueCandle.png" width="22" height="22" valign="middle"> **Blue Candle** | Uncommon | Unplayable Curse cards can now be played (0-cost; costed curses retain cost). Whenever you play a Curse, lose 1 HP and Exhaust it. |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **Nilry's Codex** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | At turn end, choose 1 of 3 random **Upgraded** cards to shuffle into your draw pile. |
 
 #### Vanilla Relic Adjustments

@@ -8,6 +8,11 @@
 
 ## v0.3.10
 
+### Added
+
+- 遗物：新增 1 代经典罕见通用遗物「蓝蜡烛」（Blue Candle），可以打出原本不能被打出的诅咒牌，打出诅咒牌会让你失去 1 点生命并将其消耗（RELIC-BLUE-CANDLE-01）。
+- 设置：新增「蓝蜡烛」（R27）独立开关选项，支持在 Mod 设置中独立启闭与图鉴完全隔离。
+
 ### Changed
 
 - 卡牌：铁甲战士卡牌「且战且退」全语言同步更名（ENG: Fighting Retreat / ITA: Ritirata combattente / RUS: Отступление с боем）。

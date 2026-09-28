@@ -9,6 +9,7 @@ publish/
 .git/
 .idea/
 .vs/
+.nuget/
 .DS_Store
 
 # NuGet
