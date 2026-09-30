@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -49,18 +49,18 @@ public sealed class BlueCandle : BalanceRelicTemplate
   /// 原生战斗 Hook：动态修正卡牌耗能。
   /// 仅对原本无法打出（原耗能为负）的诅咒牌修正为 0 费打出；若诅咒原本具备正数能量费用则保持原费不变。
   /// </summary>
-  public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, ref decimal modifiedCost)
+  public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
   {
     if (card.Type == CardType.Curse && card.Owner == Owner)
     {
-      if (originalCost < 0m || modifiedCost < 0m)
+      if (originalCost < 0m)
       {
         modifiedCost = 0m;
         return true;
       }
     }
 
-    return base.TryModifyEnergyCostInCombat(card, originalCost, ref modifiedCost);
+    return base.TryModifyEnergyCostInCombat(card, originalCost, out modifiedCost);
   }
 
   /// <summary>

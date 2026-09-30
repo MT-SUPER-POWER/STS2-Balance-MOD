@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,15 +11,15 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 
 /// <summary>
 /// RELIC-BLUE-CANDLE-01 — 蓝蜡烛：确保原本不可打出的诅咒牌在手牌中被正确识别为可打出。
-/// Target: MegaCrit.Sts2.Core.Models.CardModel.CanPlay(ref UnplayableReason, ref AbstractModel)
+/// Target: MegaCrit.Sts2.Core.Models.CardModel.CanPlay(out UnplayableReason, out AbstractModel)
 /// Reason: 当持有蓝蜡烛时，解除诅咒牌因 HasUnplayableKeyword 导致的阻断，允许玩家拖拽并打出。
 /// </summary>
-[HarmonyPatch(typeof(CardModel), nameof(CardModel.CanPlay), [typeof(UnplayableReason).MakeByRefType(), typeof(AbstractModel).MakeByRefType()])]
+[HarmonyPatch(typeof(CardModel), nameof(CardModel.CanPlay), [typeof(UnplayableReason), typeof(AbstractModel)], [ArgumentType.Out, ArgumentType.Out])]
 [BalancePatch("R27")]
 public static class BlueCandleCanPlayPatch
 {
   [HarmonyPostfix]
-  public static void Postfix(CardModel __instance, ref UnplayableReason reason, ref AbstractModel blocker, ref bool __result)
+  public static void Postfix(CardModel __instance, ref UnplayableReason reason, ref AbstractModel? blocker, ref bool __result)
   {
     if (__result)
       return;
@@ -47,7 +48,7 @@ public static class BlueCandleCanPlayPatch
 /// Target: MegaCrit.Sts2.Core.Models.CardModel.IsPlayable (getter)
 /// Reason: 确保持有蓝蜡烛时，手牌中的诅咒牌正常显示可打出的视觉高亮。
 /// </summary>
-[HarmonyPatch(typeof(CardModel), nameof(CardModel.IsPlayable), MethodType.Getter)]
+[HarmonyPatch(typeof(CardModel), "IsPlayable", MethodType.Getter)]
 [BalancePatch("R27")]
 public static class BlueCandleIsPlayablePatch
 {
@@ -61,7 +62,7 @@ public static class BlueCandleIsPlayablePatch
       return;
 
     Player? owner = __instance.Owner;
-    if (owner != null && owner.Relics.OfType<BlueCandle>().Any())
+    if (owner?.Relics.OfType<BlueCandle>().Any() is true)
     {
       __result = true;
     }
