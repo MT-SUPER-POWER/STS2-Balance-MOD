@@ -2,10 +2,11 @@ name: Code Check
 
 on:
   push:
-    branches: [main]
+    branches: ["**"]
     paths:
       - "**.cs"
       - "**.csproj"
+      - "**.sln"
       - "**.md"
       - ".editorconfig"
       - ".editorconfig-checker.json"
@@ -15,6 +16,7 @@ on:
       - "lint-staged.config.mjs"
       - "package.json"
       - "pnpm-lock.yaml"
+      - "Sts2BalanceMod.json"
       - ".github/workflows/**"
       - ".github/scripts/**"
   pull_request:
@@ -22,6 +24,7 @@ on:
     paths:
       - "**.cs"
       - "**.csproj"
+      - "**.sln"
       - "**.md"
       - ".editorconfig"
       - ".editorconfig-checker.json"
@@ -31,6 +34,7 @@ on:
       - "lint-staged.config.mjs"
       - "package.json"
       - "pnpm-lock.yaml"
+      - "Sts2BalanceMod.json"
       - ".github/workflows/**"
       - ".github/scripts/**"
   workflow_dispatch:
