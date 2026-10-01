@@ -38,5 +38,8 @@
   "STS2_BALANCEMOD_SORCERY_DEFEND.title": "Difesa stregonesca",
   "STS2_BALANCEMOD_SORCERY_DEFEND.description": "Ottieni {Block:diff()} [gold]Armatura[/gold].\nApplica {Affliction:diff()} [gold]Debolezza stregonesca[/gold].",
   "STS2_BALANCEMOD_WITCH_FORM.title": "Forma di strega",
-  "STS2_BALANCEMOD_WITCH_FORM.description": "Inizia ogni combattimento con {Affliction:diff()} [gold]Vulnerabilità stregonesca[/gold].\nAll'inizio del tuo turno, ottieni [blue]1[/blue] Energia e pesca [blue]1[/blue] carta in più."
+  "STS2_BALANCEMOD_WITCH_FORM.description": "Inizia ogni combattimento con {Affliction:diff()} [gold]Vulnerabilità stregonesca[/gold].\nAll'inizio del tuo turno, ottieni [blue]1[/blue] Energia e pesca [blue]1[/blue] carta in più.",
+  "STS2_BALANCEMOD_CONSUME.title": "Consumo",
+  "STS2_BALANCEMOD_CONSUME.description": "Perdi {OrbSlots:diff()} spazio sfera.\nGuadagna {FocusPower:diff()} [gold]Concentrazione[/gold].",
+  "STS2_BALANCEMOD_CONSUME.flavor": "Ogni punto di concentrazione è estratto dal corpo meccanico stesso."
 }

@@ -79,5 +79,8 @@
   "STS2_BALANCEMOD_DELICATE_DOLL.flavor": "Фарфоровая куколка, пропитанная тревожной защитной магией.",
   "STS2_BALANCEMOD_SHABBY_DOLL.title": "Потрепанная кукла",
   "STS2_BALANCEMOD_SHABBY_DOLL.description": "В начале каждого боя накладывает [blue]1[/blue] [gold]Колдовскую слабость[/gold] на ВСЕХ врагов.",
-  "STS2_BALANCEMOD_SHABBY_DOLL.flavor": "Старая тряпичная кукла со зловещими стежками."
+  "STS2_BALANCEMOD_SHABBY_DOLL.flavor": "Старая тряпичная кукла со зловещими стежками.",
+  "STS2_BALANCEMOD_INSERTER.title": "Инсертер",
+  "STS2_BALANCEMOD_INSERTER.description": "Каждые [blue]2[/blue] хода получайте [blue]1[/blue] ячейку сферы.",
+  "STS2_BALANCEMOD_INSERTER.flavor": "Толкай. Тяни. Складывай. Повторяй."
 }

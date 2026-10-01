@@ -38,5 +38,8 @@
   "STS2_BALANCEMOD_SORCERY_DEFEND.title": "Колдовская защита",
   "STS2_BALANCEMOD_SORCERY_DEFEND.description": "Дает {Block:diff()} [gold]Защиты[/gold].\nНакладывает {Affliction:diff()} [gold]Колдовской слабости[/gold].",
   "STS2_BALANCEMOD_WITCH_FORM.title": "Форма ведьмы",
-  "STS2_BALANCEMOD_WITCH_FORM.description": "Начинает каждый бой с {Affliction:diff()} [gold]Колдовской уязвимости[/gold].\nВ начале хода дает [blue]1[/blue] Энергию и тянет на [blue]1[/blue] карту больше."
+  "STS2_BALANCEMOD_WITCH_FORM.description": "Начинает каждый бой с {Affliction:diff()} [gold]Колдовской уязвимости[/gold].\nВ начале хода дает [blue]1[/blue] Энергию и тянет на [blue]1[/blue] карту больше.",
+  "STS2_BALANCEMOD_CONSUME.title": "Поглощение",
+  "STS2_BALANCEMOD_CONSUME.description": "Потеряйте {OrbSlots:diff()} ячейку{OrbSlots:plural(ru): ||и} сферы.\nПолучите {FocusPower:diff()} [gold]Концентрации[/gold].",
+  "STS2_BALANCEMOD_CONSUME.flavor": "Каждая единица концентрации извлекается из самой машины."
 }

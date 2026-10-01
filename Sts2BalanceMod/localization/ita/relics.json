@@ -79,5 +79,8 @@
   "STS2_BALANCEMOD_DELICATE_DOLL.flavor": "Una bambola di porcellana intessuta di un'inquietante magia protettiva.",
   "STS2_BALANCEMOD_SHABBY_DOLL.title": "Bambola logora",
   "STS2_BALANCEMOD_SHABBY_DOLL.description": "All'inizio di ogni combattimento, applica [blue]1[/blue] carica di [gold]Debolezza stregonesca[/gold] a TUTTI i nemici.",
-  "STS2_BALANCEMOD_SHABBY_DOLL.flavor": "Una vecchia bambola di pezza con una sinistra cucitura."
+  "STS2_BALANCEMOD_SHABBY_DOLL.flavor": "Una vecchia bambola di pezza con una sinistra cucitura.",
+  "STS2_BALANCEMOD_INSERTER.title": "Inseritore",
+  "STS2_BALANCEMOD_INSERTER.description": "Ogni [blue]2[/blue] turni, ottieni [blue]1[/blue] spazio sfera.",
+  "STS2_BALANCEMOD_INSERTER.flavor": "Spingi. Tira. Impila. Ripeti."
 }

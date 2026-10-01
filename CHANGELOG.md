@@ -6,6 +6,17 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+## [Unreleased]
+
+### Added
+
+- 卡牌：新增故障机器人稀有技能牌「耗尽」（Consume），2 费，失去 1 个充能球栏位，获得 2（升级：3）点集中；与机械臂、扩容形成球位闭环（CARD-CONSUME-01）。
+- 遗物：新增故障机器人专属稀有遗物「机械臂」（Inserter），每 2 回合获得 1 个充能球栏位，为集中流提供长线球位再生引擎（RELIC-INSERTER-01）。
+
+### Changed
+
+- 卡牌：故障机器人卡牌「碎片整理」（Defragment）稀有度由稀有（金卡）下调为罕见（蓝卡），降低集中流启动门槛（CARD-DEFRAGMENT-01）。
+
 ## v0.3.10
 
 ### Added

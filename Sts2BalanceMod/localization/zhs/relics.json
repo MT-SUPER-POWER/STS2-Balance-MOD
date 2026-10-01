@@ -79,6 +79,9 @@
   "STS2_BALANCEMOD_NEOWS_TALISMAN.description": "你遇到的接下来的 [blue]3[/blue] 场战斗中，所有敌人的生命值只有 [blue]1[/blue] 点。",
   "STS2_BALANCEMOD_NEOWS_TALISMAN.eventDescription": "你遇到的接下来的 [blue]3[/blue] 场战斗中，所有敌人的生命值只有 [blue]1[/blue] 点。",
   "STS2_BALANCEMOD_NEOWS_TALISMAN.flavor": "在漫长的沉眠中，微弱的悲鸣化作了护佑的残片。",
-  "ROYAL_STAMP.description": "拾起时，从[gold]牌组[/gold]中选择一张攻击牌、技能牌或能力牌，为它[gold]附魔[/gold]：[purple]{Enchantment}[/purple]。"
+  "ROYAL_STAMP.description": "拾起时，从[gold]牌组[/gold]中选择一张攻击牌、技能牌或能力牌，为它[gold]附魔[/gold]：[purple]{Enchantment}[/purple]。",
+  "STS2_BALANCEMOD_INSERTER.title": "机械臂",
+  "STS2_BALANCEMOD_INSERTER.description": "每 [blue]2[/blue] 回合，获得 [blue]1[/blue] 个充能球栏位。",
+  "STS2_BALANCEMOD_INSERTER.flavor": "推。拉。堆叠。重复。"
 }
 
