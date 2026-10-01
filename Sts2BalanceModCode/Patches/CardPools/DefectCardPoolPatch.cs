@@ -10,11 +10,12 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.CardPools;
 /// <summary>
 /// LEGACY-04 — 从 Defect 卡池中移除 ConsumingShadow
 /// CARD-SYNTHESIS-01 — 从 Defect 卡池中移除 Synthesis (人工合成)
+/// CARD-SYNCHRONIZE-01 — 从 Defect 卡池中移除 Synchronize (同步)
 /// Target: MegaCrit.Sts2.Core.Models.CardPools.DefectCardPool.GenerateAllCards
-/// Reason: 根据 C23 (ConsumingShadow) 和 C35 (Synthesis) 配置项从卡池中过滤对应原版卡牌。
+/// Reason: 根据 C23 (ConsumingShadow), C35 (Synthesis), C36 (Synchronize) 配置项从卡池中过滤对应原版卡牌。
 /// </summary>
 /// <remarks>
-/// NOTE: 只移除不替换 — Electrodynamics 等自定义卡牌由 RitsuLib 自动注册到对应卡池；此补丁仅保留原版卡池移除逻辑。
+/// NOTE: 只移除不替换 — Electrodynamics, Fission 等自定义卡牌由 RitsuLib 自动注册到对应卡池；此补丁仅保留原版卡池移除逻辑。
 /// </remarks>
 [HarmonyPatch(typeof(DefectCardPool), "GenerateAllCards")]
 public static class DefectCardPoolPatch
@@ -24,7 +25,8 @@ public static class DefectCardPoolPatch
   [
     .. __result.Where(c =>
       (c is not ConsumingShadow || !BalanceModSettings.IsEnabled("C23")) &&
-      (c is not Synthesis || !BalanceModSettings.IsEnabled("C35"))
+      (c is not Synthesis || !BalanceModSettings.IsEnabled("C35")) &&
+      (c is not Synchronize || !BalanceModSettings.IsEnabled("C36"))
     )
   ];
 }

@@ -41,6 +41,9 @@
   "STS2_BALANCEMOD_WITCH_FORM.description": "获得 {WitchFormPower:diff()} 层[gold]女巫形态[/gold]。结束你的回合。",
   "STS2_BALANCEMOD_CONSUME.title": "耗尽",
   "STS2_BALANCEMOD_CONSUME.description": "失去 {OrbSlots:diff()} 个充能球栏位。\n获得 {FocusPower:diff()} 点[gold]集中[/gold]。",
-  "STS2_BALANCEMOD_CONSUME.flavor": "每一分专注，都是对机械躯体的一次索取。"
+  "STS2_BALANCEMOD_CONSUME.flavor": "每一分专注，都是对机械躯体的一次索取。",
+  "STS2_BALANCEMOD_FISSION.title": "裂变",
+  "STS2_BALANCEMOD_FISSION.description": "{IfUpgraded:show:激发|移除}所有[gold]充能球[/gold]。每{IfUpgraded:show:激发|移除}一个[gold]充能球[/gold]，获得 {Energy:energyIcons()}并抽 {Cards:diff()} 张牌。\n[gold]消耗[/gold]。",
+  "STS2_BALANCEMOD_FISSION.flavor": "核心过载裂变，迸发出无穷的能量。"
 }
 

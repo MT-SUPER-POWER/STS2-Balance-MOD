@@ -108,6 +108,7 @@
 | **冷却剂 [Coolant]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 金卡（稀有），1 费；回合开始按充能球种类加格挡 | 稀有度降为**蓝卡（罕见）**，1 费；重做为能力抽牌引擎——每当你打出一张能力牌，抽 **1 / 2** 张牌（类似 1 代散热片） |
 | **人工合成 [Synthesis]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 攻击 | 2 费，造成 14 / 20 伤害，下一张能力牌 0 费 | 从机器人卡池中**完全移除** |
 | **碎片整理 [Defragment]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 金卡（稀有），1 费；获得 1（升级 2）点集中 | 稀有度降为**蓝卡（罕见）**，让集中流基础地基更易获取（CARD-DEFRAGMENT-01） |
+| **同步 [Synchronize]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 罕见，1 费；按充能球种类加临时集中 | 从机器人卡池中**完全移除**，由「裂变」替代（CARD-SYNCHRONIZE-01） |
 
 ### 一代卡牌回归
 
@@ -120,6 +121,7 @@
 | **内脏切除 [Eviscerate]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | 罕见 | 3 | 本回合每丢弃 1 张牌耗能 -1 点。造成 **7 / 9** 点伤害 3 次。 |
 | **电动力学 [Electrodynamics]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 稀有 | 2 | 召唤 **2 / 3** 个闪电球，且闪电球改为攻击所有敌人。 |
 | **耗尽 [Consume]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 稀有 | 2 | 失去 1 个充能球栏位，获得 **2 / 3** 点集中。（CARD-CONSUME-01） |
+| **裂变 [Fission]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 稀有 | 0 | 消耗。移除（升级：激发）所有充能球。每移除/激发一个充能球，获得 1 点能量并抽 1 张牌。（CARD-FISSION-01） |
 
 ### 新增卡牌
 
