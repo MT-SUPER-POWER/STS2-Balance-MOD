@@ -51,6 +51,31 @@ public static class OrbDamageTrackingPatch
 }
 
 /// <summary>
+/// 闪电球锁定补丁：
+/// 若场上有带有跟踪锁定（LockOnPower）的敌人且未指定目标，闪电球优先命中被锁定的敌人。
+/// </summary>
+[HarmonyPatch(typeof(LightningOrb), "ApplyLightningDamage")]
+public static class LightningOrbLockOnPatch
+{
+  [HarmonyPrefix]
+  public static void Prefix(LightningOrb __instance, ref Creature? target)
+  {
+    // 如果已有指定目标（如卡牌直接指定），则不改变
+    if (target != null)
+      return;
+
+    var lockedOnEnemies = __instance.CombatState?.GetOpponentsOf(__instance.Owner.Creature)
+      .Where(e => e.IsHittable && e.HasPower<LockOnPower>())
+      .ToList();
+
+    if (lockedOnEnemies != null && lockedOnEnemies.Count > 0)
+    {
+      target = __instance.Owner.RunState.Rng.CombatTargets.NextItem(lockedOnEnemies);
+    }
+  }
+}
+
+/// <summary>
 /// 暗黑球锁定补丁：
 /// 若场上有带有跟踪锁定（LockOnPower）的敌人，暗黑球激发时优先命中该敌人（多个时取当前生命最低者）。
 /// </summary>

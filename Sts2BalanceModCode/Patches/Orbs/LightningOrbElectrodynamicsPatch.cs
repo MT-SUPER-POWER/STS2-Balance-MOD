@@ -20,34 +20,20 @@ public static class LightningOrbElectrodynamicsPatch
       AccessTools.Method(typeof(OrbModel), "PlayEvokeSfx")!;
 
   [HarmonyPrefix]
+  [HarmonyPriority(Priority.High)]
   public static bool Prefix(
       LightningOrb __instance,
       decimal value,
-      ref Creature? target,
       PlayerChoiceContext choiceContext,
       ref Task<IEnumerable<Creature>> __result)
   {
     // NOTE: 不检查 target != null，因为 TeslaCoil 等卡牌会传入指定目标，
     // 有电动力学时无论 target 是否为 null 都应攻击全体敌人
-    if (__instance.Owner.Creature.HasPower<ElectrodynamicsPower>())
-    {
-      __result = HitAllEnemies(__instance, value, choiceContext);
-      return false;
-    }
+    if (!__instance.Owner.Creature.HasPower<ElectrodynamicsPower>())
+      return true;
 
-    // 锁定（Lock-On）效果：未指定目标时优先命中带有锁定的敌人
-    if (target == null)
-    {
-      var lockedOnEnemies = __instance.CombatState?.GetOpponentsOf(__instance.Owner.Creature)
-        .Where(e => e.IsHittable && e.HasPower<LockOnPower>())
-        .ToList();
-      if (lockedOnEnemies != null && lockedOnEnemies.Count > 0)
-      {
-        target = __instance.Owner.RunState.Rng.CombatTargets.NextItem(lockedOnEnemies);
-      }
-    }
-
-    return true;
+    __result = HitAllEnemies(__instance, value, choiceContext);
+    return false;
   }
 
   // FIXME: 原 BUG 已修复——根因是 TeslaCoil 传入指定 target 导致 patch 短路跳过群伤
