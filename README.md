@@ -198,6 +198,7 @@
 | <img src="Assets/relics/hovering_kite.png" width="22" height="22" valign="middle"> **悬浮风筝 [Hovering Kite]** | 罕见 | <img src="Assets/profile/silent.png" width="18" height="18" valign="middle" title="静默猎手"> 猎人专属。你在每回合第一次弃牌时，获得 1 点能量。 |
 | <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **灵魂契约 [Soul Contract]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 选择牌组中的 1 张有消耗的牌，永久去除其消耗属性。 |
 | <img src="Assets/relics/strange_spoon.png" width="22" height="22" valign="middle"> **奇怪的汤勺 [Strange Spoon]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 应被消耗的牌在被打出时有 50% 几率改为被丢弃。（凋萎必定会被消耗） |
+| <img src="Sts2BalanceMod/images/relics/BlueCandle.png" width="22" height="22" valign="middle"> **蓝蜡烛 [Blue Candle]** | 罕见 | 可以打出原本不能被打出的诅咒牌（0 费打出；原本有费用的诅咒按原费支付），打出诅咒牌会让你失去 1 点生命并将其消耗。 |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **尼利的宝典 [Nilry's Codex]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 每回合结束时，从 3 张随机**升级版**卡牌中选择 1 张洗入抽牌堆。（RELIC-04：MOD 改为展示升级版） |
 | <img src="Assets/relics/mutagenic_strength.png" width="22" height="22" valign="middle"> **突变之力 [Mutagenic Strength]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 战斗开始时获得 3 点力量并附加 3 层「突变衰退」（每回合结束流失 1 点力量直到扣完；可与人工制品正常联动抵挡流失）。 |
 

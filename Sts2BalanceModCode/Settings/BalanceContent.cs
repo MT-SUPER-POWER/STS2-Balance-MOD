@@ -15,6 +15,7 @@ internal static class BalanceContent
     ["DeadBranch"] = "R15", ["Omamori"] = "R16", ["PeacePipe"] = "R17", ["SmilingMask"] = "R18",
     ["CoffieCup"] = "R19", ["FusionHammer"] = "R20", ["CurseKey"] = "R21", ["DwarfAnvil"] = "R22",
     ["WristBlade"] = "R23", ["HoveringKite"] = "R24", ["SoulContract"] = "R25", ["StrangeSpoon"] = "R26",
+    ["BlueCandle"] = "R27",
     ["NeowsTalisman"] = "R10", ["DelicateDoll"] = "E14", ["WitchForm"] = "E14",
     ["SorceryStrike"] = "E14", ["SorceryDefend"] = "E14",
     ["OldBeggar"] = "E03", ["Cleric"] = "E04", ["CursedTome"] = "E05", ["MaskedBandits"] = "E06",
