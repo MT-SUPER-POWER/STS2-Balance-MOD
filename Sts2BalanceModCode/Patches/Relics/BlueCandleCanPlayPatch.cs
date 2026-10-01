@@ -19,7 +19,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 public static class BlueCandleCanPlayPatch
 {
   [HarmonyPostfix]
-  public static void Postfix(CardModel __instance, ref UnplayableReason reason, ref AbstractModel? blocker, ref bool __result)
+  public static void Postfix(CardModel __instance, ref UnplayableReason reason, ref AbstractModel? preventer, ref bool __result)
   {
     if (__result)
       return;
@@ -33,11 +33,14 @@ public static class BlueCandleCanPlayPatch
 
     if (owner.Relics.OfType<BlueCandle>().Any())
     {
-      if (reason == UnplayableReason.HasUnplayableKeyword)
+      if ((reason & UnplayableReason.HasUnplayableKeyword) != 0)
       {
-        reason = UnplayableReason.None;
-        blocker = null;
-        __result = true;
+        reason &= ~UnplayableReason.HasUnplayableKeyword;
+        if (reason == UnplayableReason.None)
+        {
+          preventer = null;
+          __result = true;
+        }
       }
     }
   }

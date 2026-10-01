@@ -41,10 +41,23 @@ public static class ModAssetPaths
     ExistingOrFallback(Resource("images", "relics", "big", fileName),
       Resource("images", "relics", "big", "Relic.png"), "large relic image");
 
-  public static string RelicOutlineIcon(string fileName) =>
-    ExistingOrFallback(Resource("images", "relics", "outlines", fileName),
-      ExistingOrFallback(Resource("images", "relics", $"{Path.GetFileNameWithoutExtension(fileName)}Outline.png"),
-        Resource("images", "relics", "outlines", "Relic.png"), "relic outline image"), "relic outline image");
+  public static string RelicOutlineIcon(string fileName)
+  {
+    string standardPath = Resource("images", "relics", "outlines", fileName);
+    if (ResourceLoader.Exists(standardPath))
+    {
+      return standardPath;
+    }
+
+    string legacyPath = Resource("images", "relics", $"{Path.GetFileNameWithoutExtension(fileName)}Outline.png");
+    if (ResourceLoader.Exists(legacyPath))
+    {
+      return legacyPath;
+    }
+
+    BalanceModEntry.Logger.Info($"Could not find relic outline image path: {standardPath}");
+    return Resource("images", "relics", "outlines", "Relic.png");
+  }
 
   public static string RestSiteOptionIcon(string fileName) =>
     ExistingOrFallback(Resource("images", "ui", "rest_site", fileName),
