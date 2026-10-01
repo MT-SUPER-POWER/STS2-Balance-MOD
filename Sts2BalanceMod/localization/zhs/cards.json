@@ -44,6 +44,9 @@
   "STS2_BALANCEMOD_CONSUME.flavor": "每一分专注，都是对机械躯体的一次索取。",
   "STS2_BALANCEMOD_FISSION.title": "裂变",
   "STS2_BALANCEMOD_FISSION.description": "{IfUpgraded:show:激发|移除}所有[gold]充能球[/gold]。每{IfUpgraded:show:激发|移除}一个[gold]充能球[/gold]，获得 {Energy:energyIcons()}并抽 {Cards:diff()} 张牌。\n[gold]消耗[/gold]。",
-  "STS2_BALANCEMOD_FISSION.flavor": "核心过载裂变，迸发出无穷的能量。"
+  "STS2_BALANCEMOD_FISSION.flavor": "核心过载裂变，迸发出无穷的能量。",
+  "STS2_BALANCEMOD_BULLSEYE.title": "瞄准靶心",
+  "STS2_BALANCEMOD_BULLSEYE.description": "造成 {Damage:diff()} 点伤害。\n给予 {LockOnPower:diff()} 层[gold]跟踪锁定[/gold]。",
+  "STS2_BALANCEMOD_BULLSEYE.flavor": "锁定目标。"
 }
 

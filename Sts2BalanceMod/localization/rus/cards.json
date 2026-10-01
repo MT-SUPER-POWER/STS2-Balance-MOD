@@ -44,5 +44,8 @@
   "STS2_BALANCEMOD_CONSUME.flavor": "Каждая единица концентрации извлекается из самой машины.",
   "STS2_BALANCEMOD_FISSION.title": "Деление",
   "STS2_BALANCEMOD_FISSION.description": "{IfUpgraded:show:Активируйте|Удалите} все ваши сферы. За каждую {IfUpgraded:show:активированную|удаленную} сферу получите {Energy:energyIcons()} и возьмите {Cards:diff()} карту.\n[gold]Сжигание[/gold].",
-  "STS2_BALANCEMOD_FISSION.flavor": "Перегрузка ядра высвобождает огромную энергию."
+  "STS2_BALANCEMOD_FISSION.flavor": "Перегрузка ядра высвобождает огромную энергию.",
+  "STS2_BALANCEMOD_BULLSEYE.title": "Мишень",
+  "STS2_BALANCEMOD_BULLSEYE.description": "Наносит {Damage:diff()} урона.\nНакладывает {LockOnPower:diff()} [gold]Захват цели[/gold].",
+  "STS2_BALANCEMOD_BULLSEYE.flavor": "Цель захвачена."
 }

@@ -108,7 +108,7 @@
 | **冷却剂 [Coolant]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 金卡（稀有），1 费；回合开始按充能球种类加格挡 | 稀有度降为**蓝卡（罕见）**，1 费；重做为能力抽牌引擎——每当你打出一张能力牌，抽 **1 / 2** 张牌（类似 1 代散热片） |
 | **人工合成 [Synthesis]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 攻击 | 2 费，造成 14 / 20 伤害，下一张能力牌 0 费 | 从机器人卡池中**完全移除** |
 | **碎片整理 [Defragment]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 金卡（稀有），1 费；获得 1（升级 2）点集中 | 稀有度降为**蓝卡（罕见）**，让集中流基础地基更易获取（CARD-DEFRAGMENT-01） |
-| **同步 [Synchronize]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 罕见，1 费；按充能球种类加临时集中 | 从机器人卡池中**完全移除**，由「裂变」替代（CARD-SYNCHRONIZE-01） |
+| **同步 [Synchronize]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 罕见，1 费；按充能球种类加临时集中 | 从机器人卡池中**完全移除** |
 
 ### 一代卡牌回归
 
@@ -122,6 +122,7 @@
 | **电动力学 [Electrodynamics]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 稀有 | 2 | 召唤 **2 / 3** 个闪电球，且闪电球改为攻击所有敌人。 |
 | **耗尽 [Consume]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 稀有 | 2 | 失去 1 个充能球栏位，获得 **2 / 3** 点集中。（CARD-CONSUME-01） |
 | **裂变 [Fission]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 稀有 | 0 | 消耗。移除（升级：激发）所有充能球。每移除/激发一个充能球，获得 1 点能量并抽 1 张牌。（CARD-FISSION-01） |
+| **瞄准靶心 [Bullseye]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 攻击 | 罕见 | 1 | 造成 **8 / 11** 点伤害。给予 **2 / 3** 层【跟踪锁定】。（CARD-BULLSEYE-01） |
 
 ### 新增卡牌
 
@@ -144,6 +145,7 @@
 | <img src="Assets/powers/evolve_power.png" width="22" height="22" valign="middle"> **进化 [Evolve]** | 玩家 Buff | <img src="Assets/profile/ironclad.png" width="18" height="18" title="铁甲战士"> 铁甲战士卡牌「进化」 | 每当你抽到状态牌，抽 **1 / 2** 张牌。 |
 | <img src="Assets/powers/step_by_step_power.png" width="22" height="22" valign="middle"> **步步为营 [Step by Step]** | 玩家 Buff | <img src="Assets/profile/silent.png" width="18" height="18" title="静默猎手"> 静默猎手卡牌「步步为营」 | 每回合多抽 1 张牌并多获得 1 点能量，持续 **X / X+1** 回合。 |
 | <img src="Sts2BalanceMod/images/powers/WitchFormPower.png" width="22" height="22" valign="middle"> **女巫形态 [Witch Form]** | 玩家 Buff | 先古卡「女巫形态」（遗物「精致的玩偶」/ Tanx 事件） | 回合开始将手牌中最多 2 张牌分别蜕变为升级后的「巫术打击+」与「巫术防御+」（无额外抽牌）。 |
+| <img src="Sts2BalanceMod/images/powers/LockOnPower.png" width="22" height="22" valign="middle"> **跟踪锁定 [Lock-On]** | Debuff | <img src="Assets/profile/defect.png" width="18" height="18" title="故障机器人"> 故障机器人卡牌「瞄准靶心」 | 受到的[充能球]伤害增加 **50%**；闪电球与暗黑球优先索敌该目标；回合结束减少 1 层。 |
 | <img src="Assets/powers/sorcery_weak.png" width="22" height="22" valign="middle"> **巫术虚弱 [Sorcery Weak]** | Debuff | 先古卡「巫术防御」（探克斯 Tanx） | 造成的攻击伤害减少 **40%**。若本回合进行过攻击，回合结束时减少 1 层。 |
 | <img src="Assets/powers/sorcery_vulnerable.png" width="22" height="22" valign="middle"> **巫术易伤 [Sorcery Vulnerable]** | Debuff | 先古卡「巫术打击」（探克斯 Tanx） | 受到的攻击伤害增加 **75%**。若本回合受到过攻击，回合结束时减少 1 层。 |
 | <img src="Assets/powers/infected_power.png" width="22" height="22" valign="middle"> **感染 [Infected]** | Debuff | <img src="Assets/map/elite.png" width="18" height="18"> 感染棱柱 Boss | 回合结束时失去 **{Amount}** 点生命（穿透格挡攻击施加）。 |

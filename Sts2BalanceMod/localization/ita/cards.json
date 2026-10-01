@@ -44,5 +44,8 @@
   "STS2_BALANCEMOD_CONSUME.flavor": "Ogni punto di concentrazione è estratto dal corpo meccanico stesso.",
   "STS2_BALANCEMOD_FISSION.title": "Fissione",
   "STS2_BALANCEMOD_FISSION.description": "{IfUpgraded:show:Evoca|Rimuovi} tutte le tue Sfere. Per ogni Sfera {IfUpgraded:show:evocata|rimossa}, ottieni {Energy:energyIcons()} e pesca {Cards:diff()} carta.\n[gold]Esausta[/gold].",
-  "STS2_BALANCEMOD_FISSION.flavor": "Il sovraccarico del nucleo sprigiona un potere immenso."
+  "STS2_BALANCEMOD_FISSION.flavor": "Il sovraccarico del nucleo sprigiona un potere immenso.",
+  "STS2_BALANCEMOD_BULLSEYE.title": "Centro",
+  "STS2_BALANCEMOD_BULLSEYE.description": "Infigge {Damage:diff()} danni.\nApplica {LockOnPower:diff()} [gold]Puntamento[/gold].",
+  "STS2_BALANCEMOD_BULLSEYE.flavor": "Bersaglio agganciato."
 }
