@@ -44,6 +44,12 @@
   "STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER.smartDescription": "在你的回合结束时，失去 [blue]1[/blue] 点[gold]力量[/gold]。剩余 {Amount} 回合。",
   "STS2_BALANCE_MOD_POWER_LOCK_ON_POWER.title": "跟踪锁定",
   "STS2_BALANCE_MOD_POWER_LOCK_ON_POWER.description": "受到的[gold]充能球[/gold]伤害增加 [blue]50%[/blue]。\n[gold]闪电[/gold]球与[gold]暗黑[/gold]球将优先以该目标为目标。\n回合结束时减少 1 层。",
-  "STS2_BALANCE_MOD_POWER_LOCK_ON_POWER.smartDescription": "受到的[gold]充能球[/gold]伤害增加 [blue]50%[/blue]。\n[gold]闪电[/gold]球与[gold]暗黑[/gold]球将优先以该目标为目标。\n回合结束时减少 1 层。"
+  "STS2_BALANCE_MOD_POWER_LOCK_ON_POWER.smartDescription": "受到的[gold]充能球[/gold]伤害增加 [blue]50%[/blue]。\n[gold]闪电[/gold]球与[gold]暗黑[/gold]球将优先以该目标为目标。\n回合结束时减少 1 层。",
+  "STS2_BALANCE_MOD_POWER_ASLEEP_LAGAVULIN_POWER.title": "沉睡",
+  "STS2_BALANCE_MOD_POWER_ASLEEP_LAGAVULIN_POWER.description": "该生物正在沉睡。受到未被格挡的伤害会使其立刻苏醒。在 {Amount} 回合后自然苏醒。",
+  "STS2_BALANCE_MOD_POWER_ASLEEP_LAGAVULIN_POWER.smartDescription": "该生物正在沉睡。受到未被格挡的伤害会使其立刻苏醒。剩余 {Amount} 回合后苏醒。",
+  "STS2_BALANCE_MOD_POWER_METALLICIZE_POWER.title": "金属化",
+  "STS2_BALANCE_MOD_POWER_METALLICIZE_POWER.description": "在回合结束时，获得 {Amount} 点[gold]格挡[/gold]。",
+  "STS2_BALANCE_MOD_POWER_METALLICIZE_POWER.smartDescription": "在回合结束时，获得 {Amount} 点[gold]格挡[/gold]。"
 }
 
