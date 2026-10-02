@@ -26,7 +26,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 [RegisterActEvent(typeof(Underdocks))]
 public sealed class DeadAdventurer : BalanceEventTemplate
 {
-  public override bool IsShared => false;
+  public override bool IsShared => true;
 
   public override EventLayoutType LayoutType => EventLayoutType.Combat;
 
