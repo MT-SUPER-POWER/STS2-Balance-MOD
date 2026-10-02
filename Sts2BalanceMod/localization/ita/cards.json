@@ -38,5 +38,14 @@
   "STS2_BALANCEMOD_SORCERY_DEFEND.title": "Difesa stregonesca",
   "STS2_BALANCEMOD_SORCERY_DEFEND.description": "Ottieni {Block:diff()} [gold]Armatura[/gold].\nApplica {Affliction:diff()} [gold]Debolezza stregonesca[/gold].",
   "STS2_BALANCEMOD_WITCH_FORM.title": "Forma di strega",
-  "STS2_BALANCEMOD_WITCH_FORM.description": "Inizia ogni combattimento con {Affliction:diff()} [gold]Vulnerabilità stregonesca[/gold].\nAll'inizio del tuo turno, ottieni [blue]1[/blue] Energia e pesca [blue]1[/blue] carta in più."
+  "STS2_BALANCEMOD_WITCH_FORM.description": "Inizia ogni combattimento con {Affliction:diff()} [gold]Vulnerabilità stregonesca[/gold].\nAll'inizio del tuo turno, ottieni [blue]1[/blue] Energia e pesca [blue]1[/blue] carta in più.",
+  "STS2_BALANCEMOD_CONSUME.title": "Consumo",
+  "STS2_BALANCEMOD_CONSUME.description": "Perdi {OrbSlots:diff()} spazio sfera.\nGuadagna {FocusPower:diff()} [gold]Concentrazione[/gold].",
+  "STS2_BALANCEMOD_CONSUME.flavor": "Ogni punto di concentrazione è estratto dal corpo meccanico stesso.",
+  "STS2_BALANCEMOD_FISSION.title": "Fissione",
+  "STS2_BALANCEMOD_FISSION.description": "{IfUpgraded:show:Evoca|Rimuovi} tutte le tue Sfere. Per ogni Sfera {IfUpgraded:show:evocata|rimossa}, ottieni {Energy:energyIcons()} e pesca {Cards:diff()} carta.\n[gold]Esausta[/gold].",
+  "STS2_BALANCEMOD_FISSION.flavor": "Il sovraccarico del nucleo sprigiona un potere immenso.",
+  "STS2_BALANCEMOD_BULLSEYE.title": "Centro",
+  "STS2_BALANCEMOD_BULLSEYE.description": "Infigge {Damage:diff()} danni.\nApplica {LockOnPower:diff()} [gold]Puntamento[/gold].",
+  "STS2_BALANCEMOD_BULLSEYE.flavor": "Bersaglio agganciato."
 }

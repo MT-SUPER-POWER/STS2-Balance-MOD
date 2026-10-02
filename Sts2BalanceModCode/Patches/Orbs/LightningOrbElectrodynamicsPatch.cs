@@ -20,6 +20,7 @@ public static class LightningOrbElectrodynamicsPatch
       AccessTools.Method(typeof(OrbModel), "PlayEvokeSfx")!;
 
   [HarmonyPrefix]
+  [HarmonyPriority(Priority.High)]
   public static bool Prefix(
       LightningOrb __instance,
       decimal value,

@@ -106,6 +106,9 @@
 | **华丽收场 [Grand Finale]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | 0 费，抽牌堆有 0 张牌时打出 | **X 费**卡牌，打出条件调整为**抽牌堆卡牌数 ≤ X**；**升级后打出少扣除 2 点费用**（扣除 $\max(0, X - 2)$ 能量） |
 | **精密 [Pinpoint]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | 耗能按技能打出数减少，造成伤害 | 从猎人卡池中**完全移除**（由「内脏切除」替代） |
 | **冷却剂 [Coolant]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 金卡（稀有），1 费；回合开始按充能球种类加格挡 | 稀有度降为**蓝卡（罕见）**，1 费；重做为能力抽牌引擎——每当你打出一张能力牌，抽 **1 / 2** 张牌（类似 1 代散热片） |
+| **人工合成 [Synthesis]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 攻击 | 2 费，造成 14 / 20 伤害，下一张能力牌 0 费 | 从机器人卡池中**完全移除** |
+| **碎片整理 [Defragment]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 金卡（稀有），1 费；获得 1（升级 2）点集中 | 稀有度降为**蓝卡（罕见）**，让集中流基础地基更易获取（CARD-DEFRAGMENT-01） |
+| **同步 [Synchronize]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 罕见，1 费；按充能球种类加临时集中 | 从机器人卡池中**完全移除** |
 
 ### 一代卡牌回归
 
@@ -117,6 +120,9 @@
 | **全神贯注 [Concentrate]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 罕见 | 0 | 丢弃 **3 / 2** 张牌，获得 2 点能量。 |
 | **内脏切除 [Eviscerate]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | 罕见 | 3 | 本回合每丢弃 1 张牌耗能 -1 点。造成 **7 / 9** 点伤害 3 次。 |
 | **电动力学 [Electrodynamics]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 稀有 | 2 | 召唤 **2 / 3** 个闪电球，且闪电球改为攻击所有敌人。 |
+| **耗尽 [Consume]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 稀有 | 2 | 失去 1 个充能球栏位，获得 **2 / 3** 点集中。（CARD-CONSUME-01） |
+| **裂变 [Fission]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 稀有 | 0 | 消耗。移除（升级：激发）所有充能球。每移除/激发一个充能球，获得 1 点能量并抽 1 张牌。（CARD-FISSION-01） |
+| **瞄准靶心 [Bullseye]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 攻击 | 罕见 | 1 | 造成 **8 / 11** 点伤害。给予 **2 / 3** 层【跟踪锁定】。（CARD-BULLSEYE-01） |
 
 ### 新增卡牌
 
@@ -139,6 +145,7 @@
 | <img src="Assets/powers/evolve_power.png" width="22" height="22" valign="middle"> **进化 [Evolve]** | 玩家 Buff | <img src="Assets/profile/ironclad.png" width="18" height="18" title="铁甲战士"> 铁甲战士卡牌「进化」 | 每当你抽到状态牌，抽 **1 / 2** 张牌。 |
 | <img src="Assets/powers/step_by_step_power.png" width="22" height="22" valign="middle"> **步步为营 [Step by Step]** | 玩家 Buff | <img src="Assets/profile/silent.png" width="18" height="18" title="静默猎手"> 静默猎手卡牌「步步为营」 | 每回合多抽 1 张牌并多获得 1 点能量，持续 **X / X+1** 回合。 |
 | <img src="Sts2BalanceMod/images/powers/WitchFormPower.png" width="22" height="22" valign="middle"> **女巫形态 [Witch Form]** | 玩家 Buff | 先古卡「女巫形态」（遗物「精致的玩偶」/ Tanx 事件） | 回合开始将手牌中最多 2 张牌分别蜕变为升级后的「巫术打击+」与「巫术防御+」（无额外抽牌）。 |
+| <img src="Sts2BalanceMod/images/powers/LockOnPower.png" width="22" height="22" valign="middle"> **跟踪锁定 [Lock-On]** | Debuff | <img src="Assets/profile/defect.png" width="18" height="18" title="故障机器人"> 故障机器人卡牌「瞄准靶心」 | 受到的[充能球]伤害增加 **50%**；闪电球与暗黑球优先索敌该目标；回合结束减少 1 层。 |
 | <img src="Assets/powers/sorcery_weak.png" width="22" height="22" valign="middle"> **巫术虚弱 [Sorcery Weak]** | Debuff | 先古卡「巫术防御」（探克斯 Tanx） | 造成的攻击伤害减少 **40%**。若本回合进行过攻击，回合结束时减少 1 层。 |
 | <img src="Assets/powers/sorcery_vulnerable.png" width="22" height="22" valign="middle"> **巫术易伤 [Sorcery Vulnerable]** | Debuff | 先古卡「巫术打击」（探克斯 Tanx） | 受到的攻击伤害增加 **75%**。若本回合受到过攻击，回合结束时减少 1 层。 |
 | <img src="Assets/powers/infected_power.png" width="22" height="22" valign="middle"> **感染 [Infected]** | Debuff | <img src="Assets/map/elite.png" width="18" height="18"> 感染棱柱 Boss | 回合结束时失去 **{Amount}** 点生命（穿透格挡攻击施加）。 |
@@ -199,6 +206,7 @@
 | <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **灵魂契约 [Soul Contract]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 选择牌组中的 1 张有消耗的牌，永久去除其消耗属性。 |
 | <img src="Assets/relics/strange_spoon.png" width="22" height="22" valign="middle"> **奇怪的汤勺 [Strange Spoon]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 应被消耗的牌在被打出时有 50% 几率改为被丢弃。（凋萎必定会被消耗） |
 | <img src="Sts2BalanceMod/images/relics/BlueCandle.png" width="22" height="22" valign="middle"> **蓝蜡烛 [Blue Candle]** | 罕见 | 可以打出原本不能被打出的诅咒牌（0 费打出；原本有费用的诅咒按原费支付），打出诅咒牌会让你失去 1 点生命并将其消耗。 |
+| <img src="Sts2BalanceMod/images/relics/Inserter.png" width="22" height="22" valign="middle"> **机械臂 [Inserter]** | 稀有 | <img src="Assets/profile/defect.png" width="18" height="18" valign="middle" title="故障机器人"> 机器人专属。每 2 回合，获得 1 个充能球栏位。（RELIC-INSERTER-01） |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **尼利的宝典 [Nilry's Codex]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 每回合结束时，从 3 张随机**升级版**卡牌中选择 1 张洗入抽牌堆。（RELIC-04：MOD 改为展示升级版） |
 | <img src="Assets/relics/mutagenic_strength.png" width="22" height="22" valign="middle"> **突变之力 [Mutagenic Strength]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 战斗开始时获得 3 点力量并附加 3 层「突变衰退」（每回合结束流失 1 点力量直到扣完；可与人工制品正常联动抵挡流失）。 |
 

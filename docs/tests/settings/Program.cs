@@ -14,7 +14,7 @@ void Reject(byte[] bytes, string name)
 }
 var choices = new Dictionary<string, bool>();
 BalanceCatalog.Migrate(choices, false, false, false);
-Check(choices.Count == 78 && BalanceCatalog.All.Select(c => c.Id).Distinct().Count() == 78, "unique catalog");
+Check(choices.Count == 83 && BalanceCatalog.All.Select(c => c.Id).Distinct().Count() == 83, "unique catalog");
 Check(new[] { "E02", "E15", "E16", "M02", "E14" }.All(id => !choices[id]), "legacy false values survive");
 choices["E15"] = true;
 BalanceCatalog.Migrate(choices, false, false, false);
@@ -36,7 +36,7 @@ Check(BalanceCatalog.All.Count(c => c.Group == "先古之民调整") == 13, "anc
 choices["C13"] = true; choices["C16"] = false;
 Check(BalanceCatalog.Effective(choices, "C13") && !BalanceCatalog.Effective(choices, "C16"), "removed vanilla and new replacement remain independent");
 var wire = BalanceCatalog.All.Where(c => c.AffectsGameplay).ToDictionary(c => c.Id, c => BalanceCatalog.Effective(active, c.Id));
-Check(!wire.ContainsKey("C02") && wire.Count == 77, "cosmetic excluded");
+Check(!wire.ContainsKey("C02") && wire.Count == 82, "cosmetic excluded");
 byte[] encoded = BalanceConfigWire.Encode(wire);
 Check(BalanceConfigWire.Differences(wire, BalanceConfigWire.Decode(encoded)).Length == 0, "wire round trip");
 Check(encoded.SequenceEqual(BalanceConfigWire.Encode(wire.Reverse().ToDictionary())), "wire order deterministic");
