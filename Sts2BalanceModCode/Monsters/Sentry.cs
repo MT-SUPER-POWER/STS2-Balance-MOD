@@ -136,12 +136,12 @@ public sealed class Sentry : BalanceMonsterTemplate
     animator.AddAnyState("spaz3", spaz3);
     animator.AddAnyState("Hit", hit);
 
-    var animState = controller.GetAnimationState();
+    MegaAnimationState animState = controller.GetAnimationState();
     animState.SetTimeScale(2.0f);
-    var current = animState.GetCurrent(0);
-    current.SetTrackTime(Rng.Chaotic.NextFloat(current.GetAnimationEnd()));
+    MegaTrackEntry? current = animState.GetCurrent(0);
+    current?.SetTrackTime(Rng.Chaotic.NextFloat(current.GetAnimationEnd()));
     animState.Update(0.0f);
-    animState.Apply(controller.GetSkeleton());
+    animState.Apply(controller.GetSkeleton()!);
 
     return animator;
   }

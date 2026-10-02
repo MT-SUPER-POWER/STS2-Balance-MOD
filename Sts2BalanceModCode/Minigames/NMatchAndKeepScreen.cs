@@ -74,7 +74,7 @@ public partial class NMatchAndKeepScreen : Control, IOverlayScreen, IScreenConte
     screen.LoadCardBack();
     screen.BuildUI();
     _instance = screen;
-    NOverlayStack.Instance.Push((IOverlayScreen)screen);
+    NOverlayStack.Instance?.Push((IOverlayScreen)screen);
     screen.SetupFocusNeighbors();
     screen.DealCards();
 
@@ -216,12 +216,15 @@ public partial class NMatchAndKeepScreen : Control, IOverlayScreen, IScreenConte
     _gridContainer.AddChild(wrapper);
 
     CardModel cardModel = _minigame.Cards[index];
-    NCard ncard = NCard.Create(cardModel, ModelVisibility.Visible);
-    NGridCardHolder holder = NGridCardHolder.Create(ncard);
-    holder.Position = Vector2.Zero;
-    wrapper.AddChild(holder);
+    var ncard = NCard.Create(cardModel, ModelVisibility.Visible);
+    var holder = NGridCardHolder.Create(ncard!);
+    if (holder != null)
+    {
+      holder.Position = Vector2.Zero;
+      wrapper.AddChild(holder);
+    }
 
-    ncard.Visible = false;
+    ncard!.Visible = false;
     Callable.From(() =>
     {
       ncard.UpdateVisuals(PileType.None, CardPreviewMode.Normal);
@@ -241,11 +244,11 @@ public partial class NMatchAndKeepScreen : Control, IOverlayScreen, IScreenConte
         MouseFilter = MouseFilterEnum.Ignore,
         Visible = true
       };
-      holder.AddChild(overlay);
+      holder?.AddChild(overlay);
     }
 
     int idx = index;
-    holder.Pressed += _ => OnCardClicked(idx);
+    holder!.Pressed += _ => OnCardClicked(idx);
 
     holder.Connect(Control.SignalName.MouseEntered, Callable.From(() =>
     {
@@ -385,7 +388,7 @@ public partial class NMatchAndKeepScreen : Control, IOverlayScreen, IScreenConte
 
     scaleTween.TweenCallback(Callable.From(() =>
     {
-      Traverse traverse = Traverse.Create(slot.Holder);
+      var traverse = Traverse.Create(slot.Holder);
       traverse.Field("_isFocused").SetValue(false);
       traverse.Method("RefreshFocusState").GetValue();
     }));
@@ -473,8 +476,8 @@ public partial class NMatchAndKeepScreen : Control, IOverlayScreen, IScreenConte
       _slots[b].IsFaceUp = false;
       _slots[a].CardNode.Visible = false;
       _slots[b].CardNode.Visible = false;
-      if (_slots[a].Overlay != null) _slots[a].Overlay.Visible = true;
-      if (_slots[b].Overlay != null) _slots[b].Overlay.Visible = true;
+      if (_slots[a].Overlay != null) _slots[a].Overlay!.Visible = true;
+      if (_slots[b].Overlay != null) _slots[b].Overlay!.Visible = true;
 
       SetSlotScale(a, GridScale);
       SetSlotScale(b, GridScale);
@@ -549,7 +552,7 @@ public partial class NMatchAndKeepScreen : Control, IOverlayScreen, IScreenConte
       cleanupTween.TweenCallback(Callable.From(() =>
       {
         _minigame.Complete();
-        NOverlayStack.Instance.Remove((IOverlayScreen)this);
+        NOverlayStack.Instance?.Remove((IOverlayScreen)this);
       }));
     }));
   }
