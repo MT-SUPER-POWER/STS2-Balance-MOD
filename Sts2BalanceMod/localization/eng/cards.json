@@ -38,5 +38,14 @@
   "STS2_BALANCEMOD_BUDDY_SLAM.description": "Deal damage equal to the highest [gold]Block[/gold] among other players.{InCombat:\n(Deals {CalculatedDamage:diff()} damage)|}",
   "STS2_BALANCEMOD_WITCH_FORM.title": "Witch Form",
   "STS2_BALANCEMOD_WITCH_FORM.description": "Gain {WitchFormPower:diff()} [gold]Witch Form[/gold]. End your turn.",
-  "EXPECT_A_FIGHT.title": "Fighting Retreat"
+  "EXPECT_A_FIGHT.title": "Fighting Retreat",
+  "STS2_BALANCEMOD_CONSUME.title": "Consume",
+  "STS2_BALANCEMOD_CONSUME.description": "Lose {OrbSlots:diff()} Orb slot(s).\nGain {FocusPower:diff()} [gold]Focus[/gold].",
+  "STS2_BALANCEMOD_CONSUME.flavor": "Each unit of Focus is extracted from the machine itself.",
+  "STS2_BALANCEMOD_FISSION.title": "Fission",
+  "STS2_BALANCEMOD_FISSION.description": "{IfUpgraded:show:Evoke|Remove} all of your Orbs. For each Orb {IfUpgraded:show:evoked|removed}, gain {Energy:energyIcons()} and draw {Cards:diff()} card.\n[gold]Exhaust[/gold].",
+  "STS2_BALANCEMOD_FISSION.flavor": "Overloading the core produces immense power.",
+  "STS2_BALANCEMOD_BULLSEYE.title": "Bullseye",
+  "STS2_BALANCEMOD_BULLSEYE.description": "Deal {Damage:diff()} damage.\nApply {LockOnPower:diff()} [gold]Lock-On[/gold].",
+  "STS2_BALANCEMOD_BULLSEYE.flavor": "Target acquired."
 }

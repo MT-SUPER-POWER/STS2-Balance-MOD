@@ -41,5 +41,8 @@
   "STS2_BALANCE_MOD_POWER_SORCERY_WEAK.smartDescription": "Infligge il [red]40%[/red] di danno in meno con gli attacchi. [blue]{Amount}[/blue] cariche rimanenti (diminuisce di 1 alla fine del turno se attacca in questo turno).",
   "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.title": "Forma di strega",
   "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.description": "All'inizio del tuo turno, trasforma [blue]2[/blue] carte nella tua mano in [gold]Colpo stregonesco+[/gold] e [gold]Difesa stregonesca+[/gold] potenziati.",
-  "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.smartDescription": "All'inizio del tuo turno, trasforma [blue]2[/blue] carte nella tua mano in [gold]Colpo stregonesco+[/gold] e [gold]Difesa stregonesca+[/gold] potenziati."
+  "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.smartDescription": "All'inizio del tuo turno, trasforma [blue]2[/blue] carte nella tua mano in [gold]Colpo stregonesco+[/gold] e [gold]Difesa stregonesca+[/gold] potenziati.",
+  "STS2_BALANCE_MOD_POWER_LOCK_ON_POWER.title": "Puntamento",
+  "STS2_BALANCE_MOD_POWER_LOCK_ON_POWER.description": "Subisce il [blue]50%[/blue] di danni in più dalle [gold]Sfere[/gold].\nLe Sfere [gold]Fulmine[/gold] e [gold]Oscurità[/gold] danno priorità a questo bersaglio.\nDiminuisce di 1 alla fine del turno.",
+  "STS2_BALANCE_MOD_POWER_LOCK_ON_POWER.smartDescription": "Subisce il [blue]50%[/blue] di danni in più dalle [gold]Sfere[/gold].\nLe Sfere [gold]Fulmine[/gold] e [gold]Oscurità[/gold] danno priorità a questo bersaglio.\nDiminuisce di 1 alla fine del turno."
 }

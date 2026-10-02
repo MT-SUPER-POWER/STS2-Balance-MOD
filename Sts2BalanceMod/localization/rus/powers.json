@@ -41,5 +41,8 @@
   "STS2_BALANCE_MOD_POWER_SORCERY_WEAK.smartDescription": "Наносит на [red]40%[/red] меньше урона атаками. Осталось зарядов: [blue]{Amount}[/blue] (уменьшается на 1 в конце хода при совершении атаки).",
   "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.title": "Форма ведьмы",
   "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.description": "В начале хода превращает [blue]2[/blue] карты в руке в улучшенные [gold]Колдовской удар+[/gold] и [gold]Колдовская защита+[/gold].",
-  "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.smartDescription": "В начале хода превращает [blue]2[/blue] карты в руке в улучшенные [gold]Колдовской удар+[/gold] и [gold]Колдовская защита+[/gold]."
+  "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.smartDescription": "В начале хода превращает [blue]2[/blue] карты в руке в улучшенные [gold]Колдовской удар+[/gold] и [gold]Колдовская защита+[/gold].",
+  "STS2_BALANCE_MOD_POWER_LOCK_ON_POWER.title": "Захват цели",
+  "STS2_BALANCE_MOD_POWER_LOCK_ON_POWER.description": "Получает на [blue]50%[/blue] больше урона от [gold]Сфер[/gold].\nСферы [gold]Молнии[/gold] и [gold]Тьмы[/gold] выбирают эту цель в приоритете.\nУменьшается на 1 в конце хода.",
+  "STS2_BALANCE_MOD_POWER_LOCK_ON_POWER.smartDescription": "Получает на [blue]50%[/blue] больше урона от [gold]Сфер[/gold].\nСферы [gold]Молнии[/gold] и [gold]Тьмы[/gold] выбирают эту цель в приоритете.\nУменьшается на 1 в конце хода."
 }

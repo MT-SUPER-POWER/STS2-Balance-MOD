@@ -41,6 +41,15 @@
   "STS2_BALANCE_MOD_POWER_WITCH_FORM_POWER.smartDescription": "At the start of your turn, transform [blue]2[/blue] cards in your hand into upgraded [gold]Sorcery Strike+[/gold] and [gold]Sorcery Defend+[/gold].",
   "STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER.title": "Mutagenic Decay",
   "STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER.description": "At the end of your turn, lose [blue]1[/blue] [gold]Strength[/gold]. Lasts for {Amount} {Amount:plural:turn|turns}.",
-  "STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER.smartDescription": "At the end of your turn, lose [blue]1[/blue] [gold]Strength[/gold]. {Amount} {Amount:plural:turn|turns} remaining."
+  "STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER.smartDescription": "At the end of your turn, lose [blue]1[/blue] [gold]Strength[/gold]. {Amount} {Amount:plural:turn|turns} remaining.",
+  "STS2_BALANCE_MOD_POWER_LOCK_ON_POWER.title": "Lock-On",
+  "STS2_BALANCE_MOD_POWER_LOCK_ON_POWER.description": "Receives [blue]50%[/blue] more damage from [gold]Orbs[/gold].\n[gold]Lightning[/gold] and [gold]Dark[/gold] Orbs prioritize this target.\nDecreases by 1 at the end of round.",
+  "STS2_BALANCE_MOD_POWER_LOCK_ON_POWER.smartDescription": "Receives [blue]50%[/blue] more damage from [gold]Orbs[/gold].\n[gold]Lightning[/gold] and [gold]Dark[/gold] Orbs prioritize this target.\nDecreases by 1 at the end of round.",
+  "STS2_BALANCE_MOD_POWER_ASLEEP_LAGAVULIN_POWER.title": "Asleep",
+  "STS2_BALANCE_MOD_POWER_ASLEEP_LAGAVULIN_POWER.description": "This creature is asleep. Taking unblocked damage will awaken it immediately. Awakens naturally in {Amount} turns.",
+  "STS2_BALANCE_MOD_POWER_ASLEEP_LAGAVULIN_POWER.smartDescription": "This creature is asleep. Taking unblocked damage will awaken it immediately. Awakens in {Amount} turns.",
+  "STS2_BALANCE_MOD_POWER_METALLICIZE_POWER.title": "Metallicize",
+  "STS2_BALANCE_MOD_POWER_METALLICIZE_POWER.description": "At the end of round, gain {Amount} [gold]Block[/gold].",
+  "STS2_BALANCE_MOD_POWER_METALLICIZE_POWER.smartDescription": "At the end of round, gain {Amount} [gold]Block[/gold]."
 }
 

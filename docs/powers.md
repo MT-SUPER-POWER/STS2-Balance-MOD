@@ -37,6 +37,7 @@
 | <img src="../Assets/powers/infected_power.png" width="22" height="22" valign="middle"> | **感染 [Infected]** | `InfectedPower`<br>`STS2BALANCEMOD-INFECTED_POWER` | Boss <img src="../Assets/map/elite.png" width="18" height="18"> 感染棱柱（穿透格挡攻击） | 在你的回合结束时，失去 **{Amount}** 点生命。 |
 | <img src="../Assets/powers/draw_reduction_power.png" width="22" height="22" valign="middle"> | **抽牌减少 [Draw Reduction]** | `DrawReductionPower`<br>`STS2BALANCEMOD-DRAW_REDUCTION_POWER` | 1 代回归减益 / 遭遇战 | 持续 **{Amount}** 回合，每回合开始时少抽 1 张牌。 |
 | <img src="../Assets/powers/MutagenicDecayPower.png" width="22" height="22" valign="middle"> | **突变衰退 [Mutagenic Decay]** | `MutagenicDecayPower`<br>`STS2_BALANCE_MOD_POWER_MUTAGENIC_DECAY_POWER` | 遗物 <img src="../Assets/relics/mutagenic_strength.png" width="18" height="18"> 突变之力（J.A.X. 事件） | 在你的回合结束时，失去 1 点力量。持续 **{Amount}** 回合（初始 3 层，每回合流失 1 点力量直到扣完）。 |
+| <img src="../Sts2BalanceMod/images/powers/LockOnPower.png" width="22" height="22" valign="middle"> | **跟踪锁定 [Lock-On]** | `LockOnPower`<br>`STS2_BALANCE_MOD_POWER_LOCK_ON_POWER` | 故障机器人卡牌「瞄准靶心」 | 受到的[充能球]伤害增加 **50%**；闪电球与暗黑球优先索敌该目标；回合结束时减少 1 层。 |
 
 ---
 

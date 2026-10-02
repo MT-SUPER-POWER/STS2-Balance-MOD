@@ -22,7 +22,9 @@ internal static class BalanceContent
     ["Augmenter"] = "E07", ["TheDivineFountain"] = "E08", ["MindBloom"] = "E09", ["WheelOfChange"] = "E10",
     ["TombOfLordRedMask"] = "E11", ["TheLibrary"] = "E12", ["Colosseum"] = "E13",
     ["Necronomicurse"] = "E05", ["Necronomicon"] = "E05", ["NilrysCodex"] = "E05", ["Enchiridion"] = "E05",
-    ["Jax"] = "E07", ["MutagenicStrength"] = "E07", ["MarkOfTheBloom"] = "E09"
+    ["Jax"] = "E07", ["MutagenicStrength"] = "E07", ["MarkOfTheBloom"] = "E09",
+    ["Consume"] = "C34", ["Inserter"] = "R28", ["Fission"] = "C37",
+    ["Bullseye"] = "C38", ["LockOnPower"] = "C38"
   };
   public static bool IsEnabled(Type type) => type.Assembly != typeof(BalanceContent).Assembly ||
     !Owners.TryGetValue(type.Name, out string? id) || BalanceModSettings.IsEnabled(id);
