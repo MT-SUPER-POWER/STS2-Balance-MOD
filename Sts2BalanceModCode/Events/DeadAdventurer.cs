@@ -1,7 +1,6 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.Helpers;
@@ -12,9 +11,7 @@ using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
-using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
 using Sts2BalanceMod.Sts2BalanceModCode.Encounters;
-using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 
@@ -33,8 +30,7 @@ public sealed class DeadAdventurer : BalanceEventTemplate
   private const int GoldRewardAmount = 30;
   private const int EncounterChanceRamp = 25;
 
-  private int EncounterChanceStart =>
-    (Owner?.RunState.AscensionLevel >= 15 || AscensionHelper.HasAscension(AscensionLevel.DeadlyEnemies)) ? 35 : 25;
+  private static int EncounterChanceStart => AscensionHelper.HasAscension(AscensionLevel.DeadlyEnemies) ? 35 : 25;
 
   public override bool IsAllowed(IRunState runState) =>
     runState.CurrentActIndex == 0 && runState.TotalFloor >= 7;
