@@ -1,6 +1,7 @@
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
 using Sts2BalanceMod.Sts2BalanceModCode.Abstract;
+using Sts2BalanceMod.Sts2BalanceModCode.Extensions;
 using Sts2BalanceMod.Sts2BalanceModCode.Monsters;
 using STS2RitsuLib.Interop.AutoRegistration;
 
@@ -14,6 +15,11 @@ public sealed class DeadAdventurerSentriesEncounter : BalanceEncounterTemplate
 {
   public override RoomType RoomType => RoomType.Monster;
   public override bool IsWeak => false;
+
+  public override EncounterAssetProfile AssetProfile => new(
+    EncounterScenePath: ModAssetPaths.Resource("scenes", "encounters", "dead_adventurer_sentries.tscn"));
+
+  public override IReadOnlyList<string> Slots => ["sentry_1", "sentry_2", "sentry_3"];
 
   public override IEnumerable<MonsterModel> AllPossibleMonsters =>
   [
@@ -32,9 +38,9 @@ public sealed class DeadAdventurerSentriesEncounter : BalanceEncounterTemplate
 
     return
     [
-      (sentry0, null),
-      (sentry1, null),
-      (sentry2, null)
+      (sentry0, "sentry_1"),
+      (sentry1, "sentry_2"),
+      (sentry2, "sentry_3")
     ];
   }
 }

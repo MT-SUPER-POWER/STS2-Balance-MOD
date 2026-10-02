@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using Sts2BalanceMod.Sts2BalanceModCode.Encounters;
+using Sts2BalanceMod.Sts2BalanceModCode.Patches.Events;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 
@@ -26,6 +27,17 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 public sealed class DeadAdventurer : BalanceEventTemplate
 {
   public override bool IsShared => false;
+
+  public override EventLayoutType LayoutType => EventLayoutType.Combat;
+
+  public override EncounterModel CanonicalEncounter => _enemyType switch
+  {
+    0 => ModelDb.Encounter<DeadAdventurerSentriesEncounter>(),
+    1 => ModelDb.Encounter<DeadAdventurerNobEncounter>(),
+    _ => ModelDb.Encounter<DeadAdventurerLagavulinEncounter>()
+  };
+
+  public override EventAssetProfile AssetProfile => new();
 
   private const int GoldRewardAmount = 30;
   private const int EncounterChanceRamp = 25;
@@ -100,6 +112,7 @@ public sealed class DeadAdventurer : BalanceEventTemplate
 
   private Task TriggerCombat()
   {
+    DeadAdventurerCombatPatch.RevealEnemies();
     SetEventState(
       PageDescription("FIGHT"),
       [Option(EnterCombat, "FIGHT")]);
@@ -112,12 +125,7 @@ public sealed class DeadAdventurer : BalanceEventTemplate
     if (owner == null)
       return Task.CompletedTask;
 
-    EncounterModel encounter = _enemyType switch
-    {
-      0 => ModelDb.Encounter<DeadAdventurerSentriesEncounter>(),
-      1 => ModelDb.Encounter<DeadAdventurerNobEncounter>(),
-      _ => ModelDb.Encounter<DeadAdventurerLagavulinEncounter>()
-    };
+    EncounterModel encounter = CanonicalEncounter;
 
     List<Reward> rewards =
     [
@@ -140,7 +148,7 @@ public sealed class DeadAdventurer : BalanceEventTemplate
       }
     }
 
-    EnterCombatWithoutExitingEvent(encounter, rewards, true);
+    EnterCombatWithoutExitingEvent(encounter, rewards, false);
     return Task.CompletedTask;
   }
 
