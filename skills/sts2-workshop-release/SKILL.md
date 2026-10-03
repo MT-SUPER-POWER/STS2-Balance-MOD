@@ -101,7 +101,11 @@ Copy-Item -Path "dist\Sts2BalanceMod\*" -Destination "workshop\content" -Force
 ### Step 6: Execute Steam Upload
 
 ```powershell
-D:\Game\ModUploader-win-x64\ModUploader.exe upload -w .\workshop
+# 完整双语发布（自动更新中文与英文槽位）
+dotnet run --project tools/WorkshopPublisher -c Release
+
+# 或者仅更新代码产物（推荐，不碰主页文案）
+# dotnet run --project tools/WorkshopPublisher -c Release -- -c
 ```
 
 ### Step 7: Git Commit & Handoff
