@@ -50,6 +50,7 @@ dotnet build                              # 编译 Mod 工程，检查 C# 语法
 | `D:\Game\Sts2Code\localization/{eng,zhs,ita,rus}/` | 游戏原版本地化 JSON（查阅原版卡牌、遗物、能力、事件等的文本与 LocKey 规则） |
 | `Sts2BalanceMod/images/` | 图片资源（card_portraits/ / powers/ / relics/ / events/ / ui/） |
 | `image_gen/` | Python 图片批处理脚本（需 `uv`） |
+| `workshop/` | Steam 创意工坊主描述与发布配置（`WORKSHOP_DESCRIPTION.md` / `workshop.json` 等） |
 
 <!-- PATHS_END -->
 

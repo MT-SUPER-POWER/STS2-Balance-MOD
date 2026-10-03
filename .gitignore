@@ -48,4 +48,5 @@ Directory.Build.props
 mod-uploader.log
 
 # Steam
-workshop/
+workshop/content/
+workshop/tmp/
