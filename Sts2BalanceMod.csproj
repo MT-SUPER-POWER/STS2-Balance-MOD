@@ -71,11 +71,14 @@
         <Compile Remove="shaders/**" />
         <Compile Remove="images/**" />
         <Compile Remove="docs/**" />
+        <Compile Remove="tools/**" />
         <EmbeddedResource Remove="Sts2BalanceMod/**" />
         <EmbeddedResource Remove="Assets/**" />
         <EmbeddedResource Remove="materials/**" />
         <EmbeddedResource Remove="shaders/**" />
         <EmbeddedResource Remove="images/**" />
+        <EmbeddedResource Remove="docs/**" />
+        <EmbeddedResource Remove="tools/**" />
     </ItemGroup>
 
     <ItemGroup>
