@@ -50,10 +50,7 @@ def main():
 📌 [b]前置需求[/b]: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3747602295]RitsuLib[/url]
 📖 [b]GitHub[/b]: https://github.com/MT-SUPER-POWER/STS2-Balance-MOD"""
 
-    # 2. 动态从 CHANGELOG.md 提取最新版本日志填入 changeNote
-    latest_change_note = extract_latest_changelog(changelog_md_path)
-
-    # 3. 读取 Sts2BalanceMod.json 获取当前版本号
+    # 2. 读取 Sts2BalanceMod.json 获取当前版本号
     mod_json_path = root_dir / "Sts2BalanceMod.json"
     version = "v0.1.0"
     if mod_json_path.exists():
@@ -61,13 +58,17 @@ def main():
             mod_meta = json.load(f)
             version = mod_meta.get("version", version)
 
+    # 3. 仅保留 GitHub Release 链接作为 changeNote
+    release_url = f"https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/releases/tag/{version}"
+    change_note = release_url
+
     # 4. 读取 workshop.json 并更新配置
     with open(workspace_json, "r", encoding="utf-8-sig") as f:
         data = json.load(f)
 
     data["title"] = f"STS2 Balance MOD [{version}] | 《杀戮尖塔2》平衡调整 Mod"
     data["description"] = description_bbcode
-    data["changeNote"] = latest_change_note
+    data["changeNote"] = change_note
     data["tags"] = [
         "Balance"
     ]
