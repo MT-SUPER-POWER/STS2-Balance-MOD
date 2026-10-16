@@ -84,6 +84,7 @@ public partial class NMatchAndKeepScreen : Control, IOverlayScreen, IScreenConte
   public override void _ExitTree()
   {
     KillAllTweens();
+    ClearAllHoverTips();
     _minigame.ForceEnd();
     _instance = null;
   }
@@ -91,6 +92,37 @@ public partial class NMatchAndKeepScreen : Control, IOverlayScreen, IScreenConte
   private void KillAllTweens()
   {
     _waitTween?.Kill();
+  }
+
+  private void ClearAllHoverTips()
+  {
+    foreach (CardSlot slot in _slots)
+    {
+      if (slot.Holder != null && GodotObject.IsInstanceValid(slot.Holder))
+      {
+        NHoverTipSet.Remove(slot.Holder);
+      }
+    }
+  }
+
+  /// <summary>
+  /// 判断指定卡牌持有者在当前对对碰小游戏中是否应抑制 HoverTip 显示。
+  /// 未翻开（背面朝上）或已匹配移除的卡牌一律禁止显示，避免提前泄露暗牌内容。
+  /// </summary>
+  public static bool ShouldSuppressHoverTips(NCardHolder holder)
+  {
+    if (_instance == null || !GodotObject.IsInstanceValid(_instance))
+      return false;
+
+    foreach (CardSlot slot in _instance._slots)
+    {
+      if (slot.Holder == holder)
+      {
+        return !slot.IsFaceUp || slot.IsMatched;
+      }
+    }
+
+    return false;
   }
 
   public NetScreenType ScreenType => NetScreenType.None;
@@ -114,6 +146,7 @@ public partial class NMatchAndKeepScreen : Control, IOverlayScreen, IScreenConte
   public void AfterOverlayClosed()
   {
     KillAllTweens();
+    ClearAllHoverTips();
     this.QueueFreeSafely();
   }
 
@@ -249,17 +282,6 @@ public partial class NMatchAndKeepScreen : Control, IOverlayScreen, IScreenConte
 
     int idx = index;
     holder!.Pressed += _ => OnCardClicked(idx);
-
-    holder.Connect(Control.SignalName.MouseEntered, Callable.From(() =>
-    {
-      if (idx < _slots.Count && !_slots[idx].IsFaceUp)
-        Callable.From(() => NHoverTipSet.Remove(holder)).CallDeferred();
-    }));
-    holder.Connect(Control.SignalName.FocusEntered, Callable.From(() =>
-    {
-      if (idx < _slots.Count && !_slots[idx].IsFaceUp)
-        Callable.From(() => NHoverTipSet.Remove(holder)).CallDeferred();
-    }));
 
     wrapper.OffsetTop = 800f;
     wrapper.OffsetBottom = 800f;
@@ -417,6 +439,9 @@ public partial class NMatchAndKeepScreen : Control, IOverlayScreen, IScreenConte
 
   private void HandleMatch(int a, int b)
   {
+    NHoverTipSet.Remove(_slots[a].Holder);
+    NHoverTipSet.Remove(_slots[b].Holder);
+
     Tween tween = CreateTween();
     tween.SetParallel(true);
 
@@ -441,6 +466,8 @@ public partial class NMatchAndKeepScreen : Control, IOverlayScreen, IScreenConte
       _slots[b].IsMatched = true;
       _slots[a].Wrapper.Visible = false;
       _slots[b].Wrapper.Visible = false;
+      NHoverTipSet.Remove(_slots[a].Holder);
+      NHoverTipSet.Remove(_slots[b].Holder);
 
       CardModel canonical = _minigame.Canonicals[_slots[a].PairIndex];
       Player player = _minigame.Owner;
@@ -478,6 +505,8 @@ public partial class NMatchAndKeepScreen : Control, IOverlayScreen, IScreenConte
       _slots[b].CardNode.Visible = false;
       if (_slots[a].Overlay != null) _slots[a].Overlay!.Visible = true;
       if (_slots[b].Overlay != null) _slots[b].Overlay!.Visible = true;
+      NHoverTipSet.Remove(_slots[a].Holder);
+      NHoverTipSet.Remove(_slots[b].Holder);
 
       SetSlotScale(a, GridScale);
       SetSlotScale(b, GridScale);

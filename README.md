@@ -184,6 +184,8 @@
 
 #### 一代事件回归
 
+详细选项与机制见 [docs/events.md](docs/events.md#一代回归事件-sts1-classic-events-return)。
+
 ### 遗物
 
 #### 新增遗物
