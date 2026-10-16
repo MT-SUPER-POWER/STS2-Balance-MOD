@@ -19,7 +19,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Events;
 /// <summary>
 /// 冒险者尸体 (Dead Adventurer)。
 /// 经典一代第一幕专属事件，仅在第 1 幕（Overgrowth / Underdocks）第 7 层以上出现。
-/// 初始遇敌概率受进阶影响（A0~A14 为 25%，A15+ 为 35%），每次搜查 +25%。
+/// 初始遇敌概率受进阶影响（未开启「致命敌人」为 25%，开启后为 35%），每次搜查 +25%。
 /// 搜查可获得 30G、随机遗物或空。触发战斗后击败一代精英，全额补发未搜出的全部剩余战利品。
 /// </summary>
 [RegisterActEvent(typeof(Overgrowth))]
@@ -42,7 +42,7 @@ public sealed class DeadAdventurer : BalanceEventTemplate
   private const int GoldRewardAmount = 30;
   private const int EncounterChanceRamp = 25;
 
-  private static int EncounterChanceStart => AscensionHelper.HasAscension(AscensionLevel.DeadlyEnemies) ? 35 : 25;
+  private static int EncounterChanceStart => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 35, 25);
 
   public override bool IsAllowed(IRunState runState) =>
     runState.CurrentActIndex == 0 && runState.TotalFloor >= 7;
