@@ -1,6 +1,6 @@
 {
   "STS2_BALANCEMOD_DEATH_REAP.title": "Жатва смерти",
-  "STS2_BALANCEMOD_DEATH_REAP.description": "Наносит {Damage:diff()} урона всем врагам. Восстанавливает ОЗ в размере [gold]незаблокированного урона[/gold].\n[gold]Сжигание[/gold].",
+  "STS2_BALANCEMOD_DEATH_REAP.description": "Наносит {Damage:diff()} урона всем врагам. Восстанавливает ОЗ в размере [gold]незаблокированного урона[/gold].",
   "STS2_BALANCEMOD_POWER_THOUGHT.title": "Сжав зубы",
   "STS2_BALANCEMOD_POWER_THOUGHT.description": "Дает {Block:diff()} [gold]защиты[/gold].\nДобавляет 2 [gold]«Раны»[/gold] в [gold]руку[/gold].",
   "STS2_BALANCEMOD_CONCENTRATE.title": "Концентрация",
@@ -43,7 +43,7 @@
   "STS2_BALANCEMOD_CONSUME.description": "Потеряйте {OrbSlots:diff()} ячейку{OrbSlots:plural(ru): ||и} сферы.\nПолучите {FocusPower:diff()} [gold]Концентрации[/gold].",
   "STS2_BALANCEMOD_CONSUME.flavor": "Каждая единица концентрации извлекается из самой машины.",
   "STS2_BALANCEMOD_FISSION.title": "Деление",
-  "STS2_BALANCEMOD_FISSION.description": "{IfUpgraded:show:Активируйте|Удалите} все ваши сферы. За каждую {IfUpgraded:show:активированную|удаленную} сферу получите {Energy:energyIcons()} и возьмите {Cards:diff()} карту.\n[gold]Сжигание[/gold].",
+  "STS2_BALANCEMOD_FISSION.description": "{IfUpgraded:show:Активируйте|Удалите} все ваши сферы. За каждую {IfUpgraded:show:активированную|удаленную} сферу получите {Energy:energyIcons()} и возьмите {Cards:diff()} карту.",
   "STS2_BALANCEMOD_FISSION.flavor": "Перегрузка ядра высвобождает огромную энергию.",
   "STS2_BALANCEMOD_BULLSEYE.title": "Мишень",
   "STS2_BALANCEMOD_BULLSEYE.description": "Наносит {Damage:diff()} урона.\nНакладывает {LockOnPower:diff()} [gold]Захват цели[/gold].",
