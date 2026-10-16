@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,51 +16,45 @@ using Sts2BalanceMod.Sts2BalanceModCode.Runtime;
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Orbs;
 
 /// <summary>
-/// 充能球伤害标记补丁：
-/// 拦截 OrbCmd.Evoke 与 OrbCmd.Passive，在其异步生命周期内设置 OrbDamageContext.IsOrbDealingDamage = true，
-/// 供 LockOnPower 等机制精确识别充能球来源伤害并施加 50% 增伤。
+/// 充能球全局伤害上下文补丁：
+/// 在 CreatureCmd.Damage 结算伤害前，根据 PlayerChoiceContext 中的模型栈精确识别是否为充能球发起的伤害。
+/// 这一步在同步主线程执行，确保后续 Hook.ModifyDamage 中的 LockOnPower 能够立即识别充能球伤害来源。
 /// </summary>
-[HarmonyPatch]
-public static class OrbDamageTrackingPatch
+[HarmonyPatch(typeof(CreatureCmd), nameof(CreatureCmd.Damage),
+  [typeof(PlayerChoiceContext), typeof(IEnumerable<Creature>), typeof(decimal), typeof(ValueProp), typeof(Creature), typeof(CardModel), typeof(CardPlay)])]
+public static class CreatureCmdDamageOrbContextPatch
 {
-  [HarmonyPatch(typeof(OrbCmd), "Evoke")]
-  [HarmonyPostfix]
-  public static void PostfixEvoke(ref Task __result)
+  [HarmonyPrefix]
+  public static void Prefix(PlayerChoiceContext choiceContext, CardModel? cardSource, out bool __state)
   {
-    __result = WrapWithContext(__result);
+    __state = OrbDamageContext.IsOrbDealingDamage;
+    if (cardSource == null && (choiceContext?.LastInvolvedModel is OrbModel || choiceContext?.ModelStack?.Any(m => m is OrbModel) == true))
+    {
+      OrbDamageContext.IsOrbDealingDamage = true;
+    }
   }
 
-  [HarmonyPatch(typeof(OrbCmd), "Passive")]
   [HarmonyPostfix]
-  public static void PostfixPassive(ref Task __result)
+  public static void Postfix(bool __state)
   {
-    __result = WrapWithContext(__result);
-  }
-
-  private static async Task WrapWithContext(Task originalTask)
-  {
-    OrbDamageContext.IsOrbDealingDamage = true;
-    try
-    {
-      await originalTask;
-    }
-    finally
-    {
-      OrbDamageContext.IsOrbDealingDamage = false;
-    }
+    OrbDamageContext.IsOrbDealingDamage = __state;
   }
 }
 
 /// <summary>
 /// 闪电球锁定补丁：
-/// 若场上有带有跟踪锁定（LockOnPower）的敌人且未指定目标，闪电球优先命中被锁定的敌人。
+/// 1. 若场上有带有跟踪锁定（LockOnPower）的敌人且未指定目标，闪电球优先命中被锁定的敌人。
+/// 2. 在伤害执行生命周期内设置 OrbDamageContext.IsOrbDealingDamage = true，确保被动与激发伤害均能享受 50% 加伤。
 /// </summary>
 [HarmonyPatch(typeof(LightningOrb), "ApplyLightningDamage")]
 public static class LightningOrbLockOnPatch
 {
   [HarmonyPrefix]
-  public static void Prefix(LightningOrb __instance, ref Creature? target)
+  public static void Prefix(LightningOrb __instance, ref Creature? target, out bool __state)
   {
+    __state = OrbDamageContext.IsOrbDealingDamage;
+    OrbDamageContext.IsOrbDealingDamage = true;
+
     // 如果已有指定目标（如卡牌直接指定），则不改变
     if (target != null)
       return;
@@ -73,11 +68,18 @@ public static class LightningOrbLockOnPatch
       target = __instance.Owner.RunState.Rng.CombatTargets.NextItem(lockedOnEnemies);
     }
   }
+
+  [HarmonyPostfix]
+  public static void Postfix(bool __state)
+  {
+    OrbDamageContext.IsOrbDealingDamage = __state;
+  }
 }
 
 /// <summary>
 /// 暗黑球锁定补丁：
 /// 若场上有带有跟踪锁定（LockOnPower）的敌人，暗黑球激发时优先命中该敌人（多个时取当前生命最低者）。
+/// 同时在伤害执行期间显式标记充能球伤害上下文。
 /// </summary>
 [HarmonyPatch(typeof(DarkOrb), "Evoke")]
 public static class DarkOrbLockOnPatch
@@ -106,8 +108,54 @@ public static class DarkOrbLockOnPatch
     {
       return [];
     }
-    AccessTools.Method(typeof(OrbModel), "ActivateEvoke", [typeof(Creature[])])?.Invoke(orb, [new Creature[] { target }]);
-    await CreatureCmd.Damage(playerChoiceContext, target, orb.EvokeVal, ValueProp.Unpowered, orb.Owner.Creature);
+    orb.ActivateEvoke([target]);
+    OrbDamageContext.IsOrbDealingDamage = true;
+    try
+    {
+      await CreatureCmd.Damage(playerChoiceContext, target, orb.EvokeVal, ValueProp.Unpowered, orb.Owner.Creature);
+    }
+    finally
+    {
+      OrbDamageContext.IsOrbDealingDamage = false;
+    }
     return [target];
+  }
+}
+
+/// <summary>
+/// 玻璃球伤害上下文补丁：
+/// 拦截玻璃球的 Passive 与 Evoke，在其同步伤害结算前标记 OrbDamageContext.IsOrbDealingDamage = true。
+/// </summary>
+[HarmonyPatch]
+public static class GlassOrbDamageContextPatch
+{
+  [HarmonyPatch(typeof(GlassOrb), nameof(GlassOrb.Passive))]
+  [HarmonyPrefix]
+  public static void PrefixPassive(out bool __state)
+  {
+    __state = OrbDamageContext.IsOrbDealingDamage;
+    OrbDamageContext.IsOrbDealingDamage = true;
+  }
+
+  [HarmonyPatch(typeof(GlassOrb), nameof(GlassOrb.Passive))]
+  [HarmonyPostfix]
+  public static void PostfixPassive(bool __state)
+  {
+    OrbDamageContext.IsOrbDealingDamage = __state;
+  }
+
+  [HarmonyPatch(typeof(GlassOrb), nameof(GlassOrb.Evoke))]
+  [HarmonyPrefix]
+  public static void PrefixEvoke(out bool __state)
+  {
+    __state = OrbDamageContext.IsOrbDealingDamage;
+    OrbDamageContext.IsOrbDealingDamage = true;
+  }
+
+  [HarmonyPatch(typeof(GlassOrb), nameof(GlassOrb.Evoke))]
+  [HarmonyPostfix]
+  public static void PostfixEvoke(bool __state)
+  {
+    OrbDamageContext.IsOrbDealingDamage = __state;
   }
 }

@@ -39,7 +39,7 @@ public sealed class LockOnPower() : BalancePowerTemplate(PowerType.Debuff, Power
   {
     if (target == Owner && OrbDamageContext.IsOrbDealingDamage)
     {
-      return 1.5m;
+      return DynamicVars["DamageMultiplier"].BaseValue;
     }
     return 1m;
   }
