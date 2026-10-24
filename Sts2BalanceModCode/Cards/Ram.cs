@@ -12,8 +12,8 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 /// <summary>
 /// CARD-NEW — 猛撞 (Ram)
 /// 2费 | 攻击 | 普通
-/// 奥斯提失去6点生命，对所有敌人造成20点伤害。只有在奥斯提拥有至少 5 点生命时才会触发效果。
-/// 升级：伤害 20->26，奥斯提失去生命 6->5。
+/// 奥斯提失去8点生命，对所有敌人造成20点伤害。只有在奥斯提拥有至少与扣除生命一致的生命值时才会触发效果。
+/// 升级：伤害 20->26，奥斯提失去生命 8->7。
 /// </summary>
 [RegisterCard(typeof(NecrobinderCardPool), FullPublicEntry = "STS2_BALANCEMOD_RAM")]
 public sealed class Ram : BalanceCardTemplate
@@ -25,7 +25,7 @@ public sealed class Ram : BalanceCardTemplate
   protected override IEnumerable<DynamicVar> CanonicalVars =>
   [
     new DamageVar(20M, ValueProp.Move),
-    new HpLossVar(6M),
+    new HpLossVar(8M),
   ];
 
   public Ram() : base(2, CardType.Attack, CardRarity.Common, TargetType.AllEnemies) { }
