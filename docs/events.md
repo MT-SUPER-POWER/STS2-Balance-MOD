@@ -31,7 +31,7 @@
 
 | 事件配图 | 事件名称 | C# 类名 / ID | 调整内容 |
 | :-: | :-- | :-- | :-- |
-| <img src="../Assets/events/zen_weaver.png" width="120"> | **禅意织者 [Zen Weaver]** | `ZenWeaverCostPatch` | **删牌价格大幅下调**：<br>• 删 1 张牌价格从 125 金币**下调至 75 金币**（事件触发门槛同步降至 75 金）。<br>• 删 2 张牌价格从 250 金币**下调至 150 金币**。 |
+| <img src="../Assets/events/zen_weaver.png" width="120"> | **禅意织者 [Zen Weaver]** | `ZenWeaverCostPatch` | **删牌价格下调**：<br>• 删 1 张牌价格从 125 金币**下调至 100 金币**（事件触发门槛同步降至 100 金）。<br>• 删 2 张牌价格从 250 金币**下调至 200 金币**。 |
 | <img src="../Assets/events/trash_heap.png" width="120"> | **旧日垃圾堆 [Trash Heap]** | `TrashHeapAddCustomRelicAndCard` | 遗物奖励池中加入 <img src="../Assets/relics/omamori.png" width="18" height="18"> **御守 [Omamori]**。 |
 | <img src="../Assets/events/bugslayer.png" width="120"> | **除虫者 [Bugslayer]** | `EventLeaveOptionPatches` | 初始选项中**新增「离开」分支**，允许玩家直接走开而无须获取卡牌（可在 Mod 设置中开关）。 |
 | <img src="../Assets/events/tinker_time.png" width="120"> | **科学怪人 [Tinker Time]** | `EventLeaveOptionPatches` | 初始选项中**新增「离开」分支**，允许玩家直接走开而不用强制接受突变卡（可在 Mod 设置中开关）。 |

@@ -177,7 +177,7 @@
 
 #### 原版事件调整
 
-- **禅意织者 [Zen Weaver]**：删牌价格分别下调至 **75 / 150 金币**。
+- **禅意织者 [Zen Weaver]**：删牌价格分别下调至 **100 / 200 金币**。
 - **旧日垃圾堆 [Trash Heap]**：遗物奖励池加入 <img src="Assets/relics/omamori.png" width="18" height="18" valign="middle"> **御守**。
 - **除虫者 / 科学怪人 / 药水的未来？**：初始选项中新增可配置的 **「离开」** 分支。
 - **探克斯 [Tanx]**：联动开关开启时（可在 Mod 设置中开关，默认开启），将先古遗物 <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="18" height="18" valign="middle"> **精致的玩偶** 加入随机 3 选 1 候选池；关闭时从候选池移除并仅提供原版先古遗物。

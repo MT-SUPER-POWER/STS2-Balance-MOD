@@ -159,7 +159,7 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 
 #### Vanilla Event Adjustments
 
-- **Zen Weaver**: Card removal prices reduced to **75 / 150 Gold**.
+- **Zen Weaver**: Card removal prices reduced to **100 / 200 Gold**.
 - **Trash Heap**: Relic reward pool now includes <img src="Assets/relics/omamori.png" width="18" height="18" valign="middle"> **Omamori**.
 - **Bug Eater / Frankenstein / Future of Potions?**: Added configurable **"Leave"** choices in initial options.
 
