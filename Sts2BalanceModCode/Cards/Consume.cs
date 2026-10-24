@@ -14,7 +14,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 
 /// <summary>
 /// CARD-CONSUME-01 — 耗尽（Consume）
-/// 2费 | 稀有 | 技能 | 获得 2(+) 点集中，失去 1 个充能球栏位
+/// 2费 | 稀有 | 技能 | 获得 1(+) 点集中，失去 1 个充能球栏位
 /// 故障机器人专属金卡，高风险高回报的集中成长核心牌。
 /// </summary>
 [RegisterCard(typeof(DefectCardPool), FullPublicEntry = "STS2_BALANCEMOD_CONSUME")]
@@ -29,7 +29,7 @@ public sealed class Consume : BalanceCardTemplate
 
   protected override IEnumerable<DynamicVar> CanonicalVars =>
   [
-    new PowerVar<FocusPower>(2m),
+    new PowerVar<FocusPower>(1m),
     new DynamicVar(_orbSlotsKey, 1m)
   ];
 
