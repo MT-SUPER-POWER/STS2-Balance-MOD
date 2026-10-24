@@ -1,7 +1,7 @@
 {
-  "title": "STS2 Balance MOD [v0.3.11] | 《杀戮尖塔2》平衡调整 Mod",
+  "title": "STS2 Balance MOD [v0.3.12] | 《杀戮尖塔2》平衡调整 Mod",
   "visibility": "public",
-  "changeNote": "https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/releases/tag/v0.3.11",
+  "changeNote": "https://github.com/MT-SUPER-POWER/STS2-Balance-MOD/releases/tag/v0.3.12",
   "tags": [
     "Balance"
   ],
@@ -10,5 +10,6 @@
   ],
   "contentDescriptors": [],
   "minBranch": "public-beta",
-  "maxBranch": "public-beta"
+  "maxBranch": "public-beta",
+  "description": ""
 }

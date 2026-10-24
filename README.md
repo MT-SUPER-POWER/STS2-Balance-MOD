@@ -123,6 +123,7 @@
 | **耗尽 [Consume]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 稀有 | 2 | 失去 1 个充能球栏位，获得 **1 / 2** 点集中。（CARD-CONSUME-01） |
 | **裂变 [Fission]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 稀有 | 0 | 消耗。移除（升级：激发）所有充能球。每移除/激发一个充能球，获得 1 点能量并抽 1 张牌。（CARD-FISSION-01） |
 | **瞄准靶心 [Bullseye]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 攻击 | 罕见 | 1 | 造成 **8 / 11** 点伤害。给予 **2 / 3** 层【跟踪锁定】。（CARD-BULLSEYE-01） |
+| **递归 [Recursion]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 普通 | **1 / 0** | 激发你最右侧的充能球。然后生成一个刚才被激发的充能球。（CARD-RECURSION-01） |
 
 ### 新增卡牌
 

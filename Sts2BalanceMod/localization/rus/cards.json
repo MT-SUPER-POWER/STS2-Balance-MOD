@@ -47,5 +47,8 @@
   "STS2_BALANCEMOD_FISSION.flavor": "Перегрузка ядра высвобождает огромную энергию.",
   "STS2_BALANCEMOD_BULLSEYE.title": "Мишень",
   "STS2_BALANCEMOD_BULLSEYE.description": "Наносит {Damage:diff()} урона.\nНакладывает {LockOnPower:diff()} [gold]Захват цели[/gold].",
-  "STS2_BALANCEMOD_BULLSEYE.flavor": "Цель захвачена."
+  "STS2_BALANCEMOD_BULLSEYE.flavor": "Цель захвачена.",
+  "STS2_BALANCEMOD_RECURSION.title": "Рекурсия",
+  "STS2_BALANCEMOD_RECURSION.description": "[gold]Разряжает[/gold] правую сферу.\n[gold]Заряжает[/gold] только что [gold]Разряженную[/gold] сферу.",
+  "STS2_BALANCEMOD_RECURSION.flavor": "Чтобы понять рекурсию, нужно сначала понять рекурсию."
 }

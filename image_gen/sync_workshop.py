@@ -67,7 +67,7 @@ def main():
         data = json.load(f)
 
     data["title"] = f"STS2 Balance MOD [{version}] | 《杀戮尖塔2》平衡调整 Mod"
-    data["description"] = description_bbcode
+    data["description"] = ""  # description 保持为空，由开发者在工坊页面手动粘贴，避免 json 冗长难读
     data["changeNote"] = change_note
     data["tags"] = [
         "Balance"
@@ -85,8 +85,11 @@ def main():
     with open(workspace_json, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
+    # preview.json 保留完整 description 用于本地预览完整内容
+    preview_data = dict(data)
+    preview_data["description"] = description_bbcode
     with open(preview_json_path, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        json.dump(preview_data, f, ensure_ascii=False, indent=2)
 
     print(f"[OK] Dynamic sync complete! Saved preview to {preview_json_path} and updated {workspace_json}")
 

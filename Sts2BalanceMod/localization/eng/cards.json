@@ -47,5 +47,8 @@
   "STS2_BALANCEMOD_FISSION.flavor": "Overloading the core produces immense power.",
   "STS2_BALANCEMOD_BULLSEYE.title": "Bullseye",
   "STS2_BALANCEMOD_BULLSEYE.description": "Deal {Damage:diff()} damage.\nApply {LockOnPower:diff()} [gold]Lock-On[/gold].",
-  "STS2_BALANCEMOD_BULLSEYE.flavor": "Target acquired."
+  "STS2_BALANCEMOD_BULLSEYE.flavor": "Target acquired.",
+  "STS2_BALANCEMOD_RECURSION.title": "Recursion",
+  "STS2_BALANCEMOD_RECURSION.description": "[gold]Evoke[/gold] your rightmost Orb.\n[gold]Channel[/gold] the Orb that was just [gold]Evoked[/gold].",
+  "STS2_BALANCEMOD_RECURSION.flavor": "To understand recursion, one must first understand recursion."
 }

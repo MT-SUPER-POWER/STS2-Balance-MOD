@@ -47,6 +47,9 @@
   "STS2_BALANCEMOD_FISSION.flavor": "核心过载裂变，迸发出无穷的能量。",
   "STS2_BALANCEMOD_BULLSEYE.title": "瞄准靶心",
   "STS2_BALANCEMOD_BULLSEYE.description": "造成 {Damage:diff()} 点伤害。\n给予 {LockOnPower:diff()} 层[gold]跟踪锁定[/gold]。",
-  "STS2_BALANCEMOD_BULLSEYE.flavor": "锁定目标。"
+  "STS2_BALANCEMOD_BULLSEYE.flavor": "锁定目标。",
+  "STS2_BALANCEMOD_RECURSION.title": "递归",
+  "STS2_BALANCEMOD_RECURSION.description": "[gold]激发[/gold]你最右侧的充能球。\n然后[gold]生成[/gold]一个刚才被[gold]激发[/gold]的充能球。",
+  "STS2_BALANCEMOD_RECURSION.flavor": "终而复始，循环不绝。"
 }
 

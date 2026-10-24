@@ -47,5 +47,8 @@
   "STS2_BALANCEMOD_FISSION.flavor": "Il sovraccarico del nucleo sprigiona un potere immenso.",
   "STS2_BALANCEMOD_BULLSEYE.title": "Centro",
   "STS2_BALANCEMOD_BULLSEYE.description": "Infigge {Damage:diff()} danni.\nApplica {LockOnPower:diff()} [gold]Puntamento[/gold].",
-  "STS2_BALANCEMOD_BULLSEYE.flavor": "Bersaglio agganciato."
+  "STS2_BALANCEMOD_BULLSEYE.flavor": "Bersaglio agganciato.",
+  "STS2_BALANCEMOD_RECURSION.title": "Ripeti",
+  "STS2_BALANCEMOD_RECURSION.description": "[gold]Evochi[/gold] il tuo primo Globo a destra.\n[gold]Crei[/gold] il Globo appena [gold]Evocato[/gold].",
+  "STS2_BALANCEMOD_RECURSION.flavor": "Per comprendere la ricorsione, devi prima comprendere la ricorsione."
 }

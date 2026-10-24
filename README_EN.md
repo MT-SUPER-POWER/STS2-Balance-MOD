@@ -112,6 +112,10 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 | **Concentrate** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | Uncommon | 0 | Discard **3 / 2** cards. Gain 2 Energy. |
 | **Eviscerate** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Attack | Uncommon | 3 | Costs 1 less for each card discarded this turn. Deal **7 / 9** damage 3 times. |
 | **Electrodynamics** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Power | Rare | 2 | Channel **2 / 3** Lightning. Lightning Orbs now hit ALL enemies. |
+| **Consume** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Skill | Rare | 2 | Lose 1 Orb slot. Gain **1 / 2** Focus. (CARD-CONSUME-01) |
+| **Fission** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Skill | Rare | 0 | Exhaust. Remove (Upgraded: Evoke) all Orbs. For each Orb removed/evoked, gain 1 Energy and draw 1 card. (CARD-FISSION-01) |
+| **Bullseye** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Attack | Uncommon | 1 | Deal **8 / 11** damage. Apply **2 / 3** Lock-On. (CARD-BULLSEYE-01) |
+| **Recursion** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Skill | Common | **1 / 0** | Evoke your rightmost Orb. Channel the Orb that was just Evoked. (CARD-RECURSION-01) |
 
 ### New Mod Cards
 
