@@ -52,6 +52,6 @@ dotnet build
 | `Assets/` | 文档预览及参考资源 |
 | `libs/` | CI 编译使用的 API Stub DLL |
 | `image_gen/` | 图片批处理脚本与母版 |
-| `docs/` | 需求、玩法说明及开发参考；入口是 [知识库索引](README.md) |
+| `docs/` | 需求、玩法说明及开发参考；入口是 [知识库索引](docs/README.md) |
 
 改动后补充对应需求、README 和 CHANGELOG。不要提交构建缓存、个人路径或无关文件；更多约定见根目录 `AGENTS.md`。
