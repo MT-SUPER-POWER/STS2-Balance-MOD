@@ -78,53 +78,52 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 
 ### Card Adjustments
 
-| Card | Character | Type | Vanilla | MOD Rework |
-| --- | :-: | :-: | --- | --- |
-| **Dirge** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Power | Upgraded: Summon +1, Exhaust, Soul+ | Upgraded: **Gains Retain keyword** |
-| **Blade Dance** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | Common card, Exhausts on play | Removes Exhaust, rarity changed to **Uncommon**, reusable |
-| **Acrobatics** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | Uncommon card | Rarity lowered to **Common**, increasing offer chance |
-| **Biased Cognition** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Power | -1 Focus per turn permanently | Focus loss auto-expires after specified turns without over-deducting Focus |
-| **Multicast** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Skill | Upgraded: Evoke X+1 times | Upgrade changed to gain **Retain** keyword (removed vanilla X+1) |
-| **Wraith Form** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | Lose 1 Dexterity every turn while Intangible | Applies Intangible; **completely removes Dexterity loss drawback** |
-| **Up My Sleeve** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | Reduces cost on play, overlapping with Blade Dance | **Completely removed** from Silent card pool |
-| **Fuel** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Skill | Transform Status cards into 2 Energy | Gain 1 Energy and **draw 1 card (Upgraded: 2)** |
-| **Drain Power** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Attack | Deal 10/12 damage, upgraded randomly upgrades 3 discarded cards | Damage reduced to **6/8**; base upgrades **2** discard cards, upgraded upgrades **all** discard cards |
-| **Pull Aggro** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Skill | Vanilla upgraded stats | Upgraded stats adjusted to: **Summon 6, Block 9** |
-| **Wither** | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" title="Aeonglass"> | Status | Unplayable, deals damage at turn end and scales | Changed to **1-cost Playable and Exhausts**; cost increases by +1 every 2 upgrades |
-| **Glow** | <img src="Assets/profile/regent.png" width="22" height="22" title="Regent"> | Skill | Gain Stardust, draw extra card next turn | Changed to **immediately draw 2 cards** this turn; upgrade grants +1 Stardust |
-| **Bloodletting** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="Ironclad"> | Skill | Uncommon (v1.0.9 change) | Rarity reverted back to **Common** |
-| **Cruelty** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="Ironclad"> | Power | Shifted to Ironclad Uncommon | **Completely removed** from Ironclad card pool (replaced by Evolve) |
-| **Dowsing** | <img src="Assets/profile/neow.png" width="22" height="22" title="Neow"> | Quest | Transform into Abundance after 5 ? rooms | Adjusted to transform after **4 ? rooms** |
-| **The Ball** | <img src="Assets/profile/colorless.png" width="22" height="22" title="Colorless"> | Attack | Scaling damage +10/15 per play | Damage scaling increased to **+15/20** |
-| **The Scythe** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Attack | 2-cost, Exhaust; deal 13 damage, scaling +4/5 | Base damage increased to **16**, pairing with official +5/7 scaling |
-| **Accelerant** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Power | Uncommon card | Rarity reverted to **Rare** |
-| **Well-Laid Plans** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Power | Rare, 2/1 cost; non-discard turn end | Uncommon, **1 cost (no cost reduction on upgrade)**; Retain up to **1/2** cards at turn end (stackable on multiple plays, filters existing Retain cards) |
-| **Grand Finale** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Attack | 0-cost, requires exactly 0 cards in draw pile | **X-Cost** card, playable when **draw pile count ≤ X**; **Upgraded reduces cost by 2** (consumes $\max(0, X - 2)$ energy) |
-| **Pinpoint** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Attack | Cost reduces based on skill count | **Completely removed** from Silent card pool (replaced by Eviscerate) |
+| Card | Character | Type | Rarity | Vanilla | MOD Rework |
+| --- | :-: | :-: | :-: | --- | --- |
+| **Dirge** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Skill | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | Upgraded: Summon +1, Exhaust, Soul+ | Upgraded: **Gains Retain keyword** |
+| **Blade Dance** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | <img src="Assets/rarity/common.png" width="22" height="22" title="Common"> | Common card, Exhausts on play | Removes Exhaust, rarity changed to <img src="Assets/rarity/uncommon.png" width="18" height="18" valign="middle" title="Uncommon"> **Uncommon**, reusable |
+| **Acrobatics** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | Uncommon card | Rarity lowered to <img src="Assets/rarity/common.png" width="18" height="18" valign="middle" title="Common"> **Common**, increasing offer chance |
+| **Biased Cognition** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Power | <img src="Assets/rarity/special.png" width="22" height="22" title="Ancient"> | -1 Focus per turn permanently | Focus loss auto-expires after specified turns without over-deducting Focus |
+| **Multicast** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Skill | <img src="Assets/rarity/rare.png" width="22" height="22" title="Rare"> | Upgraded: Evoke X+1 times | Upgrade changed to gain **Retain** keyword (removed vanilla X+1) |
+| **Wraith Form** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Power | <img src="Assets/rarity/special.png" width="22" height="22" title="Ancient"> | Lose 1 Dexterity every turn while Intangible | Applies Intangible; **completely removes Dexterity loss drawback** |
+| **Up My Sleeve** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | Reduces cost on play, overlapping with Blade Dance | **Completely removed** from Silent card pool |
+| **Fuel** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Skill | <img src="Assets/rarity/special.png" width="22" height="22" title="Token"> | Transform Status cards into 2 Energy | Gain 1 Energy and **draw 1 card (Upgraded: 2)** |
+| **Drain Power** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Attack | <img src="Assets/rarity/common.png" width="22" height="22" title="Common"> | Deal 10/12 damage, upgraded randomly upgrades 3 discarded cards | Damage reduced to **6/8**; base upgrades **2** discard cards, upgraded upgrades **all** discard cards |
+| **Pull Aggro** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Skill | <img src="Assets/rarity/common.png" width="22" height="22" title="Common"> | Vanilla upgraded stats | Upgraded stats adjusted to: **Summon 6, Block 9** |
+| **Wither** | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" title="Aeonglass"> | Status | <img src="Assets/rarity/special.png" width="22" height="22" title="Status"> | Unplayable, deals damage at turn end and scales | Changed to **1-cost Playable and Exhausts**; cost increases by +1 every 2 upgrades |
+| **Glow** | <img src="Assets/profile/regent.png" width="22" height="22" title="Regent"> | Skill | <img src="Assets/rarity/common.png" width="22" height="22" title="Common"> | Gain Stardust, draw extra card next turn | Changed to **immediately draw 2 cards** this turn; upgrade grants +1 Stardust |
+| **Bloodletting** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="Ironclad"> | Skill | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | Uncommon (v1.0.9 change) | Rarity reverted back to <img src="Assets/rarity/common.png" width="18" height="18" valign="middle" title="Common"> **Common** |
+| **Cruelty** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="Ironclad"> | Power | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | Shifted to Ironclad Uncommon | **Completely removed** from Ironclad card pool (replaced by Evolve) |
+| **Dowsing** | <img src="Assets/profile/neow.png" width="22" height="22" title="Neow"> | Quest | <img src="Assets/rarity/special.png" width="22" height="22" title="Quest"> | Transform into Abundance after 5 ? rooms | Adjusted to transform after **4 ? rooms** |
+| **The Ball** | <img src="Assets/profile/colorless.png" width="22" height="22" title="Colorless"> | Attack | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | Scaling damage +10/15 per play | Damage scaling increased to **+15/20** |
+| **The Scythe** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Attack | <img src="Assets/rarity/rare.png" width="22" height="22" title="Rare"> | 2-cost, Exhaust; deal 13 damage, scaling +4/5 | Base damage increased to **16**, pairing with official +5/7 scaling |
+| **Accelerant** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Power | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | Uncommon card | Rarity reverted to <img src="Assets/rarity/rare.png" width="18" height="18" valign="middle" title="Rare"> **Rare** |
+| **Well-Laid Plans** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Power | <img src="Assets/rarity/rare.png" width="22" height="22" title="Rare"> | Rare, 2/1 cost; non-discard turn end | Rarity lowered to <img src="Assets/rarity/uncommon.png" width="18" height="18" valign="middle" title="Uncommon"> **Uncommon**, **1 cost (no cost reduction on upgrade)**; Retain up to **1/2** cards at turn end (stackable on multiple plays, filters existing Retain cards) |
+| **Grand Finale** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Attack | <img src="Assets/rarity/rare.png" width="22" height="22" title="Rare"> | 0-cost, requires exactly 0 cards in draw pile | **X-Cost** card, playable when **draw pile count ≤ X**; **Upgraded reduces cost by 2** (consumes $\max(0, X - 2)$ energy) |
+| **Pinpoint** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Attack | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | Cost reduces based on skill count | **Completely removed** from Silent card pool (replaced by Eviscerate) |
 
 ### STS1 Classic Returned Cards
 
 | Card | Character | Type | Rarity | Cost | Effect (Base / Upgraded) |
 | --- | :-: | :-: | :-: | :-: | --- |
-| **Death Reap** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="Ironclad"> | Attack | Rare | 2 | Exhaust. Deal **4 / 6** damage to ALL enemies. Heal HP equal to unblocked damage dealt. |
-| **Power Through** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="Ironclad"> | Skill | Uncommon | 1 | Gain **15 / 20** Block. Add 2 Wounds into your hand. |
-| **Evolve** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="Ironclad"> | Power | Uncommon | 1 | Whenever you draw a Status card, draw **1 / 2** card(s). |
-| **Concentrate** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | Uncommon | 0 | Discard **3 / 2** cards. Gain 2 Energy. |
-| **Eviscerate** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Attack | Uncommon | 3 | Costs 1 less for each card discarded this turn. Deal **7 / 9** damage 3 times. |
-| **Electrodynamics** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Power | Rare | 2 | Channel **2 / 3** Lightning. Lightning Orbs now hit ALL enemies. |
-| **Consume** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Skill | Rare | 2 | Lose 1 Orb slot. Gain **1 / 2** Focus. (CARD-CONSUME-01) |
-| **Fission** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Skill | Rare | 0 | Exhaust. Remove (Upgraded: Evoke) all Orbs. For each Orb removed/evoked, gain 1 Energy and draw 1 card. (CARD-FISSION-01) |
-| **Bullseye** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Attack | Uncommon | 1 | Deal **8 / 11** damage. Apply **2 / 3** Lock-On. (CARD-BULLSEYE-01) |
-| **Recursion** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Skill | Common | **1 / 0** | Evoke your rightmost Orb. Channel the Orb that was just Evoked. (CARD-RECURSION-01) |
+| **Death Reap** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="Ironclad"> | Attack | <img src="Assets/rarity/rare.png" width="22" height="22" title="Rare"> | 2 | Exhaust. Deal **4 / 6** damage to ALL enemies. Heal HP equal to unblocked damage dealt. |
+| **Power Through** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="Ironclad"> | Skill | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | 1 | Gain **15 / 20** Block. Add 2 Wounds into your hand. |
+| **Evolve** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="Ironclad"> | Power | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | 1 | Whenever you draw a Status card, draw **1 / 2** card(s). |
+| **Concentrate** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | 0 | Discard **3 / 2** cards. Gain 2 Energy. |
+| **Eviscerate** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Attack | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | 3 | Costs 1 less for each card discarded this turn. Deal **7 / 9** damage 3 times. |
+| **Electrodynamics** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Power | <img src="Assets/rarity/rare.png" width="22" height="22" title="Rare"> | 2 | Channel **2 / 3** Lightning. Lightning Orbs now hit ALL enemies. |
+| **Consume** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Skill | <img src="Assets/rarity/rare.png" width="22" height="22" title="Rare"> | 2 | Lose 1 Orb slot. Gain **1 / 2** Focus. (CARD-CONSUME-01) |
+| **Fission** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Skill | <img src="Assets/rarity/rare.png" width="22" height="22" title="Rare"> | 0 | Exhaust. Remove (Upgraded: Evoke) all Orbs. For each Orb removed/evoked, gain 1 Energy and draw 1 card. (CARD-FISSION-01) |
+| **Bullseye** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Attack | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | 1 | Deal **8 / 11** damage. Apply **2 / 3** Lock-On. (CARD-BULLSEYE-01) |
+| **Recursion** | <img src="Assets/profile/defect.png" width="22" height="22" title="Defect"> | Skill | <img src="Assets/rarity/common.png" width="22" height="22" title="Common"> | **1 / 0** | Evoke your rightmost Orb. Channel the Orb that was just Evoked. (CARD-RECURSION-01) |
 
 ### New Mod Cards
 
 | Card | Character | Type | Rarity | Cost | Effect (Base / Upgraded) |
 | --- | :-: | :-: | :-: | :-: | --- |
-| **Sparring** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Attack | Uncommon | 2 | Exhaust. Deal **8** damage, Osty deals **7 / 9** damage. Whichever side deals less unblocked damage heals **4 / 6** HP. |
-| **Ram** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Attack | Common | 2 | Osty loses **6 / 5** HP, deal **20 / 26** damage to ALL enemies; cannot trigger if Osty HP is insufficient. |
-| **Step by Step** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | Rare | X | Exhaust. For next X (Upgraded: X+1) turns, draw +1 card and gain +1 Energy each turn. Upgraded gains Retain. |
-| **Witch Form** | <img src="Assets/profile/colorless.png" width="22" height="22" title="Colorless"> | Power | Ancient | 3 | Gain 1 Witch Form. End your turn. Upgraded gains Innate. (Obtained via relic "Delicate Doll", toggleable in Mod Settings) |
+| **Ram** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="Necrobinder"> | Attack | <img src="Assets/rarity/common.png" width="22" height="22" title="Common"> | 2 | Osty loses **8 / 7** HP, deal **20 / 26** damage to ALL enemies; cannot trigger if Osty HP is insufficient. |
+| **Step by Step** | <img src="Assets/profile/silent.png" width="22" height="22" title="Silent"> | Skill | <img src="Assets/rarity/rare.png" width="22" height="22" title="Rare"> | X | Exhaust. For next X (Upgraded: X+1) turns, draw +1 card and gain +1 Energy each turn. Upgraded gains Retain. |
+| **Witch Form** | <img src="Assets/profile/colorless.png" width="22" height="22" title="Colorless"> | Power | <img src="Assets/rarity/special.png" width="22" height="22" title="Ancient"> | 3 | Ethereal. Gain 1 Witch Form. End your turn. Upgraded gains Innate. (Obtained via relic "Delicate Doll", toggleable in Mod Settings) |
 
 ### Powers & Status Adjustments
 
@@ -187,29 +186,29 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 #### New Relics
 
 | Relic | Type | Description |
-| :-- | :-- | :-- |
+| :-- | :-: | :-- |
 | <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="22" height="22" valign="middle"> **Delicate Doll** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | Ancient Relic. Upon pickup, lose 50% Max HP and add an upgraded "Witch Form+" to your deck. At the start of turn 1, apply 2 Vulnerable and 2 Weak to all enemies. (Obtained from Tanx event, toggleable in Mod Settings) |
 | <img src="Assets/relics/sundial.png" width="22" height="22" valign="middle"> **Sundial** | <img src="Assets/profile/merchant.png" width="22" height="22" title="Merchant"> | Every 3 times you shuffle your draw pile (persists across combats), gain 3 Energy. |
 | <img src="Assets/relics/orange_pill.png" width="22" height="22" valign="middle"> **Orange Pills** | <img src="Assets/profile/merchant.png" width="22" height="22" title="Merchant"> | Playing an Attack, Skill, and Power card in a single turn removes all debuffs (except Queen's Soul Shackles). |
-| <img src="Assets/relics/dead_branch.png" width="22" height="22" valign="middle"> **Dead Branch** | Rare | Whenever a card is Exhausted, add a random card to your hand (Ethereal trigger gives turn-retain). |
+| <img src="Assets/relics/dead_branch.png" width="22" height="22" valign="middle"> **Dead Branch** | <img src="Assets/rarity/rare.png" width="22" height="22" title="Rare"> | Whenever a card is Exhausted, add a random card to your hand (Ethereal trigger gives turn-retain). |
 | <img src="Assets/relics/omamori.png" width="22" height="22" valign="middle"> **Omamori** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | Negates the next 2 Curses obtained (with counter). |
-| <img src="Assets/relics/peace_pipe.png" width="22" height="22" valign="middle"> **Peace Pipe** | Rare | Adds a "Toke" option at Rest Sites, allowing you to remove a card. |
+| <img src="Assets/relics/peace_pipe.png" width="22" height="22" valign="middle"> **Peace Pipe** | <img src="Assets/rarity/rare.png" width="22" height="22" title="Rare"> | Adds a "Toke" option at Rest Sites, allowing you to remove a card. |
 | <img src="Assets/relics/smiling_mask.png" width="22" height="22" valign="middle"> **Smiling Mask** | <img src="Assets/profile/merchant.png" width="22" height="22" title="Merchant"> | Card removal cost is fixed at 50 Gold. |
 | <img src="Assets/relics/coffie_cup.png" width="22" height="22" valign="middle"> **Coffee Drip** | <img src="Assets/profile/darv.png" width="22" height="22" title="Darv"> | Cannot Rest at Rest Sites; gain +1 Energy each turn. |
 | <img src="Assets/relics/fusion_hammer.png" width="22" height="22" valign="middle"> **Fusion Hammer** | <img src="Assets/profile/darv.png" width="22" height="22" title="Darv"> | Cannot Forge at Rest Sites; gain +1 Energy each turn. |
 | <img src="Assets/relics/curse_key.png" width="22" height="22" valign="middle"> **Cursed Key** | <img src="Assets/profile/darv.png" width="22" height="22" title="Darv"> | Gain +1 Energy each turn; obtain a random Curse upon opening a chest. **Singleplayer only. Allows skipping chest via bottom-right ProceedButton to avoid Curses.** |
 | <img src="Assets/relics/dwarf_anvil.png" width="22" height="22" valign="middle"> **Dwarf Anvil** | <img src="Assets/profile/merchant.png" width="22" height="22" title="Merchant"> | Upon pickup, applies "Forge" enchantment to 3 cards, permanently reducing cost by 1 (min 0). |
-| <img src="Assets/relics/wrist_blade.png" width="22" height="22" valign="middle"> **Wrist Blade** | Uncommon | Silent exclusive. 0-cost Attack cards deal 4 additional damage. |
-| <img src="Assets/relics/hovering_kite.png" width="22" height="22" valign="middle"> **Hovering Kite** | Common | Silent exclusive. The first time you discard a card each turn, gain 1 Energy. |
+| <img src="Assets/relics/wrist_blade.png" width="22" height="22" valign="middle"> **Wrist Blade** | <img src="Assets/rarity/common.png" width="22" height="22" title="Common"> | Silent exclusive. 0-cost Attack cards deal 4 additional damage. |
+| <img src="Assets/relics/hovering_kite.png" width="22" height="22" valign="middle"> **Hovering Kite** | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | Silent exclusive. The first time you discard a card each turn, gain 1 Energy. |
 | <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **Soul Contract** | <img src="Assets/profile/merchant.png" width="22" height="22" title="Merchant"> | Select 1 card in your deck with Exhaust and permanently remove its Exhaust property. |
-| <img src="Sts2BalanceMod/images/relics/BlueCandle.png" width="22" height="22" valign="middle"> **Blue Candle** | Uncommon | Unplayable Curse cards can now be played (0-cost; costed curses retain cost). Whenever you play a Curse, lose 1 HP and Exhaust it. |
+| <img src="Sts2BalanceMod/images/relics/BlueCandle.png" width="22" height="22" valign="middle"> **Blue Candle** | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | Unplayable Curse cards can now be played (0-cost; costed curses retain cost). Whenever you play a Curse, lose 1 HP and Exhaust it. |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **Nilry's Codex** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | At turn end, choose 1 of 3 random **Upgraded** cards to shuffle into your draw pile. |
 
 #### Vanilla Relic Adjustments
 
 | Relic | Type | Vanilla | MOD Rework |
-| :-- | :-- | :-- | :-- |
-| <img src="Assets/relics/sturdy_clamp.png" width="22" height="22" valign="middle"> **Sturdy Clamp** | Rare | Retain 10 Armor | Retain **15 Armor** |
+| :-- | :-: | :-- | :-- |
+| <img src="Assets/relics/sturdy_clamp.png" width="22" height="22" valign="middle"> **Sturdy Clamp** | <img src="Assets/rarity/rare.png" width="22" height="22" title="Rare"> | Retain 10 Armor | Retain **15 Armor** |
 | <img src="Assets/relics/preserved_fog.png" width="22" height="22" valign="middle"> **Preserved Fog** | <img src="Assets/profile/vakuu.png" width="22" height="22" title="Vakuu"> | Remove 3 cards | Remove **4 cards** |
 | <img src="Assets/relics/red_mask.png" width="22" height="22" valign="middle"> **Red Mask** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | In general relic pool | **Removed** from general relic pool, obtainable only via Red Mask events |
 | <img src="Assets/relics/history_course.png" width="22" height="22" valign="middle"> **History Course** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | Replays only last Attack played last turn | Reverted to replay last **Attack or Skill** played last turn |
@@ -228,7 +227,7 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 - **[Events & Encounters Manual](docs/events.md)**: Guide on STS1 returned events, vanilla adjustments, choices, and triggers.
 - **[STS2 Modding Guide](docs/sts2-modding-guide.md)**: Tutorial on building STS2 Mods from scratch.
 - **[Technical Reports](docs/README.md#系统设计与技术分析报告)**: Layered technical analysis of Red Mask event, Treasure Room Skip system report, etc.
-- **[Pending Tasks List](docs/balance-changes.md)** and **[Changelog](CHANGELOG.md)**.
+- **[Contributing Guide](CONTRIBUTING.md)**, **[Pending Tasks List](docs/balance-changes.md)** and **[Changelog](CHANGELOG.md)**.
 
 ## About the Spire
 

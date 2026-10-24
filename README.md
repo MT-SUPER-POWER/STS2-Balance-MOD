@@ -72,7 +72,7 @@
 
 联机入房时检查双方**本次启动生效的玩法配置**。不一致会沿用入房失败流程，提示「Mod 配置不一致」和房主 / 本人的差异；不会自动同步配置。其他版本、连接、超时等错误保留原版提示。
 
-开发环境的路径、DLL 与目录说明见 [贡献指南](docs/contribute.md)。
+开发环境的路径、DLL 与目录说明见 [贡献指南](CONTRIBUTING.md)。
 
 ### 商店
 
@@ -83,57 +83,56 @@
 
 ### 卡牌调整
 
-| 卡牌 | 角色 | 类型 | 原版 | MOD 改后 |
-| --- | :-: | :-: | --- | --- |
-| **挽歌 [Dirge]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 能力 | 升级后召唤次数 +1，消耗，灵魂+ | 升级后**额外追加保留词条** |
-| **刀舞 [Blade Dance]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 白卡（普通），打出后消耗 | 删除消耗词条，稀有度升为**蓝卡（罕见）**，可多次复用 |
-| **杂技 [Acrobatics]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 蓝卡（罕见），入手门槛较高 | 稀有度降为**白卡（普通）**，提升入手概率 |
-| **认知偏差 [Biased Cognition]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 每回合 -1 集中，永久持续 | 集中在对应回合后自动消失，不再扣除超出提升点数的集中 |
-| **多重释放 [Multicast]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 升级后 X+1 次释放 | 升级改为仅追加**保留**词条（取消原版 X+1） |
-| **幽魂形态 [Wraith Form]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 获得无实体后每回合累积减敏捷负面 | 打出时只施加无实体，**彻底删除减敏捷负面效果** |
-| **袖里乾坤 [Up My Sleeve]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 每次打出后减少费用，定位与刀舞冲突 | 从猎人卡池中**完全移除** |
-| **燃料 [Fuel]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 将所有状态牌转换获得 2 费 | 改为获得 1 点能量并**抽 1（升级：2）张牌** |
-| **能量汲取 [Drain Power]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 造成 10/12 伤害，升级后随机升级弃牌堆 3 张 | 伤害降为 **6/8**；基础随机升级弃牌堆 **2 张**，升级后改为升级弃牌堆**全部可升级牌** |
-| **吸引仇恨 [Pull Aggro]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 技能 | 升级后原版数值 | 升级后调整为：**召唤 6，格挡 9 点** |
-| **凋萎 [Wither]** | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" title="永世沙漏 (Aeonglass)"> | 状态 | 不可打出，回合结束受伤害，随沙漏成长 | 改为 **1 费可打出**，打出后消耗；且**每累计 2 次升级打出费用 +1**（保留成长机制） |
-| **辉光 [Glow]** | <img src="Assets/profile/regent.png" width="22" height="22" title="储君 (Regent)"> | 技能 | 获得星尘，下回合额外抽牌 | 改为**当回合立即抽 2 张**，升级额外多获得 1 星尘 |
-| **放血 [Bloodletting]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | 蓝卡（罕见）（v1.0.9 修改） | 稀有度改回**白卡（普通）** |
-| **且战且退 [Fighting Retreat]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | 原官方名称「跃跃欲试 / Expect a Fight」 | 全语言调整名称为**「且战且退 / Fighting Retreat」**，机制与数值保持原版一致 |
-| **探寻 [Dowsing]** | <img src="Assets/profile/neow.png" width="22" height="22" title="涅奥 (Neow)"> | 任务 | 进入 5 个 ? 房间后转化为「丰饶」 | 调整为进入 **4 个 ? 房间**后转化为「丰饶」 |
-| **魔球 [The Ball]** | <img src="Assets/profile/colorless.png" width="22" height="22" title="无色 (Colorless)"> | 攻击 | 每次打出后伤害成长 **10 / 15** | 成长幅度改为 **15 / 20** |
-| **巨镰 [The Scythe]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 2 费，消耗；造成 13 点伤害，每次打出后伤害成长 **4 / 5** | 初始伤害调整为 **16** 点，配合官方 **5 / 7** 的成长幅度 |
-| **计划妥当 [Well-Laid Plans]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 能力 | 金卡（稀有），2 / 1 费；回合结束时不弃牌 | 罕见，**1 费（升级不减费）**；回合结束时保留最多 **1 / 2** 张牌（再次打出保留张数可叠加，选卡界面自动过滤手牌中已有【保留】属性的牌），未选择的手牌正常弃置，并保留多人可用支持 |
-| **华丽收场 [Grand Finale]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | 0 费，抽牌堆有 0 张牌时打出 | **X 费**卡牌，打出条件调整为**抽牌堆卡牌数 ≤ X**；**升级后打出少扣除 2 点费用**（扣除 $\max(0, X - 2)$ 能量） |
-| **精密 [Pinpoint]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | 耗能按技能打出数减少，造成伤害 | 从猎人卡池中**完全移除**（由「内脏切除」替代） |
-| **冷却剂 [Coolant]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 金卡（稀有），1 费；回合开始按充能球种类加格挡 | 稀有度降为**蓝卡（罕见）**，1 费；重做为能力抽牌引擎——每当你打出一张能力牌，抽 **1 / 2** 张牌（类似 1 代散热片） |
-| **人工合成 [Synthesis]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 攻击 | 2 费，造成 14 / 20 伤害，下一张能力牌 0 费 | 从机器人卡池中**完全移除** |
-| **碎片整理 [Defragment]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 金卡（稀有），1 费；获得 1（升级 2）点集中 | 稀有度降为**蓝卡（罕见）**，让集中流基础地基更易获取（CARD-DEFRAGMENT-01） |
-| **同步 [Synchronize]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 罕见，1 费；按充能球种类加临时集中 | 从机器人卡池中**完全移除** |
+| 卡牌 | 角色 | 类型 | 稀有度 | 原版 | MOD 改后 |
+| --- | :-: | :-: | :-: | --- | --- |
+| **挽歌 [Dirge]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 技能 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 升级后召唤次数 +1，消耗，灵魂+ | 升级后**额外追加保留词条** |
+| **刀舞 [Blade Dance]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | <img src="Assets/rarity/common.png" width="22" height="22" title="普通 (Common)"> | 白卡（普通），打出后消耗 | 删除消耗词条，稀有度升为 <img src="Assets/rarity/uncommon.png" width="18" height="18" valign="middle" title="罕见 (Uncommon)"> **罕见**，可多次复用 |
+| **杂技 [Acrobatics]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 蓝卡（罕见），入手门槛较高 | 稀有度降为 <img src="Assets/rarity/common.png" width="18" height="18" valign="middle" title="普通 (Common)"> **普通**，提升入手概率 |
+| **认知偏差 [Biased Cognition]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | <img src="Assets/rarity/special.png" width="22" height="22" title="先古 (Ancient)"> | 每回合 -1 集中，永久持续 | 集中在对应回合后自动消失，不再扣除超出提升点数的集中 |
+| **多重释放 [Multicast]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 升级后 X+1 次释放 | 升级改为仅追加**保留**词条（取消原版 X+1） |
+| **幽魂形态 [Wraith Form]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 能力 | <img src="Assets/rarity/special.png" width="22" height="22" title="先古 (Ancient)"> | 获得无实体后每回合累积减敏捷负面 | 打出时只施加无实体，**彻底删除减敏捷负面效果** |
+| **袖里乾坤 [Up My Sleeve]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 每次打出后减少费用，定位与刀舞冲突 | 从猎人卡池中**完全移除** |
+| **燃料 [Fuel]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | <img src="Assets/rarity/special.png" width="22" height="22" title="特殊 (Token)"> | 将所有状态牌转换获得 2 费 | 改为获得 1 点能量并**抽 1（升级：2）张牌** |
+| **能量汲取 [Drain Power]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | <img src="Assets/rarity/common.png" width="22" height="22" title="普通 (Common)"> | 造成 10/12 伤害，升级后随机升级弃牌堆 3 张 | 伤害降为 **6/8**；基础随机升级弃牌堆 **2 张**，升级后改为升级弃牌堆**全部可升级牌** |
+| **吸引仇恨 [Pull Aggro]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 技能 | <img src="Assets/rarity/common.png" width="22" height="22" title="普通 (Common)"> | 升级后原版数值 | 升级后调整为：**召唤 6，格挡 9 点** |
+| **凋萎 [Wither]** | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" title="永世沙漏 (Aeonglass)"> | 状态 | <img src="Assets/rarity/special.png" width="22" height="22" title="状态 (Status)"> | 不可打出，回合结束受伤害，随沙漏成长 | 改为 **1 费可打出**，打出后消耗；且**每累计 2 次升级打出费用 +1**（保留成长机制） |
+| **辉光 [Glow]** | <img src="Assets/profile/regent.png" width="22" height="22" title="储君 (Regent)"> | 技能 | <img src="Assets/rarity/common.png" width="22" height="22" title="普通 (Common)"> | 获得星尘，下回合额外抽牌 | 改为**当回合立即抽 2 张**，升级额外多获得 1 星尘 |
+| **放血 [Bloodletting]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 蓝卡（罕见）（v1.0.9 修改） | 稀有度改回 <img src="Assets/rarity/common.png" width="18" height="18" valign="middle" title="普通 (Common)"> **普通** |
+| **且战且退 [Fighting Retreat]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 原官方名称「跃跃欲试 / Expect a Fight」 | 全语言调整名称为**「且战且退 / Fighting Retreat」**，机制与数值保持原版一致 |
+| **探寻 [Dowsing]** | <img src="Assets/profile/neow.png" width="22" height="22" title="涅奥 (Neow)"> | 任务 | <img src="Assets/rarity/special.png" width="22" height="22" title="任务 (Quest)"> | 进入 5 个 ? 房间后转化为「丰饶」 | 调整为进入 **4 个 ? 房间**后转化为「丰饶」 |
+| **魔球 [The Ball]** | <img src="Assets/profile/colorless.png" width="22" height="22" title="无色 (Colorless)"> | 攻击 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 每次打出后伤害成长 **10 / 15** | 成长幅度改为 **15 / 20** |
+| **巨镰 [The Scythe]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 2 费，消耗；造成 13 点伤害，每次打出后伤害成长 **4 / 5** | 初始伤害调整为 **16** 点，配合官方 **5 / 7** 的成长幅度 |
+| **计划妥当 [Well-Laid Plans]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 能力 | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 金卡（稀有），2 / 1 费；回合结束时不弃牌 | 稀有度降为 <img src="Assets/rarity/uncommon.png" width="18" height="18" valign="middle" title="罕见 (Uncommon)"> **罕见**，**1 费（升级不减费）**；回合结束时保留最多 **1 / 2** 张牌（再次打出保留张数可叠加，选卡界面自动过滤手牌中已有【保留】属性的牌），未选择的手牌正常弃置，并保留多人可用支持 |
+| **华丽收场 [Grand Finale]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 0 费，抽牌堆有 0 张牌时打出 | **X 费**卡牌，打出条件调整为**抽牌堆卡牌数 ≤ X**；**升级后打出少扣除 2 点费用**（扣除 $\max(0, X - 2)$ 能量） |
+| **精密 [Pinpoint]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 耗能按技能打出数减少，造成伤害 | 从猎人卡池中**完全移除**（由「内脏切除」替代） |
+| **冷却剂 [Coolant]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 金卡（稀有），1 费；回合开始按充能球种类加格挡 | 稀有度降为 <img src="Assets/rarity/uncommon.png" width="18" height="18" valign="middle" title="罕见 (Uncommon)"> **罕见**，1 费；重做为能力抽牌引擎——每当你打出一张能力牌，抽 **1 / 2** 张牌（类似 1 代散热片） |
+| **人工合成 [Synthesis]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 攻击 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 2 费，造成 14 / 20 伤害，下一张能力牌 0 费 | 从机器人卡池中**完全移除** |
+| **碎片整理 [Defragment]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 金卡（稀有），1 费；获得 1（升级 2）点集中 | 稀有度降为 <img src="Assets/rarity/uncommon.png" width="18" height="18" valign="middle" title="罕见 (Uncommon)"> **罕见**，让集中流基础地基更易获取（CARD-DEFRAGMENT-01） |
+| **同步 [Synchronize]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 罕见，1 费；按充能球种类加临时集中 | 从机器人卡池中**完全移除** |
 
 ### 一代卡牌回归
 
 | 卡牌 | 角色 | 类型 | 稀有度 | 费用 | 效果（基础 / 升级） |
 | --- | :-: | :-: | :-: | :-: | --- |
-| **死亡收割 [Death Reap]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 攻击 | 稀有 | 2 | 消耗。对所有敌人造成 **4 / 6** 点伤害，并回复等量于实际造成的非格挡伤害的生命值。 |
-| **硬撑 [Power Through]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | 罕见 | 1 | 获得 **15 / 20** 点格挡，将 2 张伤口加入手牌。 |
-| **进化 [Evolve]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 能力 | 罕见 | 1 | 每当你抽到一张状态牌，抽 **1 / 2** 张牌。 |
-| **全神贯注 [Concentrate]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 罕见 | 0 | 丢弃 **3 / 2** 张牌，获得 2 点能量。 |
-| **内脏切除 [Eviscerate]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | 罕见 | 3 | 本回合每丢弃 1 张牌耗能 -1 点。造成 **7 / 9** 点伤害 3 次。 |
-| **电动力学 [Electrodynamics]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | 稀有 | 2 | 召唤 **2 / 3** 个闪电球，且闪电球改为攻击所有敌人。 |
-| **耗尽 [Consume]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 稀有 | 2 | 失去 1 个充能球栏位，获得 **1 / 2** 点集中。（CARD-CONSUME-01） |
-| **裂变 [Fission]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 稀有 | 0 | 消耗。移除（升级：激发）所有充能球。每移除/激发一个充能球，获得 1 点能量并抽 1 张牌。（CARD-FISSION-01） |
-| **瞄准靶心 [Bullseye]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 攻击 | 罕见 | 1 | 造成 **8 / 11** 点伤害。给予 **2 / 3** 层【跟踪锁定】。（CARD-BULLSEYE-01） |
-| **递归 [Recursion]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | 普通 | **1 / 0** | 激发你最右侧的充能球。然后生成一个刚才被激发的充能球。（CARD-RECURSION-01） |
+| **死亡收割 [Death Reap]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 攻击 | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 2 | 消耗。对所有敌人造成 **4 / 6** 点伤害，并回复等量于实际造成的非格挡伤害的生命值。 |
+| **硬撑 [Power Through]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 1 | 获得 **15 / 20** 点格挡，将 2 张伤口加入手牌。 |
+| **进化 [Evolve]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 能力 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 1 | 每当你抽到一张状态牌，抽 **1 / 2** 张牌。 |
+| **全神贯注 [Concentrate]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 0 | 丢弃 **3 / 2** 张牌，获得 2 点能量。 |
+| **内脏切除 [Eviscerate]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 攻击 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 3 | 本回合每丢弃 1 张牌耗能 -1 点。造成 **7 / 9** 点伤害 3 次。 |
+| **电动力学 [Electrodynamics]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 能力 | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 2 | 召唤 **2 / 3** 个闪电球，且闪电球改为攻击所有敌人。 |
+| **耗尽 [Consume]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 2 | 失去 1 个充能球栏位，获得 **1 / 2** 点集中。（CARD-CONSUME-01） |
+| **裂变 [Fission]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 0 | 消耗。移除（升级：激发）所有充能球。每移除/激发一个充能球，获得 1 点能量并抽 1 张牌。（CARD-FISSION-01） |
+| **瞄准靶心 [Bullseye]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 攻击 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 1 | 造成 **8 / 11** 点伤害。给予 **2 / 3** 层【跟踪锁定】。（CARD-BULLSEYE-01） |
+| **递归 [Recursion]** | <img src="Assets/profile/defect.png" width="22" height="22" title="故障机器人 (Defect)"> | 技能 | <img src="Assets/rarity/common.png" width="22" height="22" title="普通 (Common)"> | **1 / 0** | 激发你最右侧的充能球。然后生成一个刚才被激发的充能球。（CARD-RECURSION-01） |
 
 ### 新增卡牌
 
 | 卡牌 | 角色 | 类型 | 稀有度 | 费用 | 效果（基础 / 升级） |
 | --- | :-: | :-: | :-: | :-: | --- |
-| **比试 [Sparring]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 罕见 | 2 | 消耗。玩家对单个敌人造成 **8** 点伤害，奥斯提造成 **7 / 9** 点伤害；实际造成非格挡伤害较少的一方回复 **4 / 6** 点生命。 |
-| **猛撞 [Ram]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | 普通 | 2 | 奥斯提失去 **6 / 5** 点生命，对所有敌人造成 **20 / 26** 点伤害；奥斯提生命不足时无法触发效果。 |
-| **步步为营 [Step by Step]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | 稀有 | X | 消耗。接下来 X（升级：X+1）回合，每回合多抽 1 张牌并多获得 1 点能量。升级后额外获得保留词条。 |
-| **好友撞击 [Buddy Slam]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 攻击 | 罕见 | 1（升级：0） | **仅多人模式出现**。造成等同于其他队友中最高格挡值的伤害。 |
-| **女巫形态 [Witch Form]** | <img src="Assets/profile/colorless.png" width="22" height="22" title="无色 (Colorless)"> | 能力 | 先古 | 3 | 获得 1 层女巫形态。结束你的回合。升级后获得固有。（由先古遗物「精致的玩偶」获得，可在 Mod 设置中开关联动） |
+| **猛撞 [Ram]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | <img src="Assets/rarity/common.png" width="22" height="22" title="普通 (Common)"> | 2 | 奥斯提失去 **8 / 7** 点生命，对所有敌人造成 **20 / 26** 点伤害；奥斯提生命不足时无法触发效果。 |
+| **步步为营 [Step by Step]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | X | 消耗。接下来 X（升级：X+1）回合，每回合多抽 1 张牌并多获得 1 点能量。升级后额外获得保留词条。 |
+| **好友撞击 [Buddy Slam]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 攻击 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 1（升级：0） | **仅多人模式出现**。造成等同于其他队友中最高格挡值的伤害。 |
+| **女巫形态 [Witch Form]** | <img src="Assets/profile/colorless.png" width="22" height="22" title="无色 (Colorless)"> | 能力 | <img src="Assets/rarity/special.png" width="22" height="22" title="先古 / 特殊 (Special)"> | 3 | 虚无。获得 1 层女巫形态。结束你的回合。升级后获得固有。（由先古遗物「精致的玩偶」获得，可在 Mod 设置中开关联动） |
 
 ### 能力调整
 
@@ -192,33 +191,33 @@
 #### 新增遗物
 
 | 遗物 | 类型 | 描述 |
-| :-- | :-- | :-- |
+| :-- | :-: | :-- |
 | <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="22" height="22" valign="middle"> **精致的玩偶 [Delicate Doll]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 先古遗物。拾起时失去 50% 最大生命值上限，并将一张已升级的【女巫形态+】加入牌组。第 1 回合开始时对所有敌人施加 2 层易伤与 2 层虚弱。（通过 Tanx 事件获取，可在 Mod 设置中开关联动） |
 | <img src="Assets/relics/sundial.png" width="22" height="22" valign="middle"> **日晷 [Sundial]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 每将抽牌堆洗牌 3 次（跨战斗保留计数），获得 3 点能量。 |
 | <img src="Assets/relics/orange_pill.png" width="22" height="22" valign="middle"> **橙色药丸 [Orange Pill]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 同一回合打出攻击 / 技能 / 能力各一张后，移除所有负面效果（女王的魂缚锁链除外）。 |
-| <img src="Assets/relics/dead_branch.png" width="22" height="22" valign="middle"> **枯木树枝 [Dead Branch]** | 稀有 | 每消耗一张牌，随机将一张牌加入手牌（虚无牌触发时给当回合保留）。 |
+| <img src="Assets/relics/dead_branch.png" width="22" height="22" valign="middle"> **枯木树枝 [Dead Branch]** | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 每消耗一张牌，随机将一张牌加入手牌（虚无牌触发时给当回合保留）。 |
 | <img src="Assets/relics/omamori.png" width="22" height="22" valign="middle"> **御守 [Omamori]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 抵消接下来获得的 2 张诅咒牌（带计数器）。 |
-| <img src="Assets/relics/peace_pipe.png" width="22" height="22" valign="middle"> **宁静烟斗 [Peace Pipe]** | 稀有 | 在火堆新增"烟斗"选项，可删除一张牌。 |
+| <img src="Assets/relics/peace_pipe.png" width="22" height="22" valign="middle"> **宁静烟斗 [Peace Pipe]** | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 在火堆新增"烟斗"选项，可删除一张牌。 |
 | <img src="Assets/relics/smiling_mask.png" width="22" height="22" valign="middle"> **微笑面具 [Smiling Mask]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 删牌价格固定为 50 金币。 |
 | <img src="Assets/relics/coffie_cup.png" width="22" height="22" valign="middle"> **咖啡杯 [Coffee Cup]** | <img src="Assets/profile/darv.png" width="22" height="22" title="达尔夫 (Darv)"> | 无法在火堆休息，但每回合 +1 费用。 |
 | <img src="Assets/relics/fusion_hammer.png" width="22" height="22" valign="middle"> **融合之锤 [Fusion Hammer]** | <img src="Assets/profile/darv.png" width="22" height="22" title="达尔夫 (Darv)"> | 无法锻造，但每回合 +1 费用。 |
 | <img src="Assets/relics/curse_key.png" width="22" height="22" valign="middle"> **诅咒钥匙 [Curse Key]** | <img src="Assets/profile/darv.png" width="22" height="22" title="达尔夫 (Darv)"> | 每回合 +1 费用，每次打开宝箱获得一张随机诅咒。**仅限单人模式出现，单人模式下可通过右下角的"跳过宝箱"按钮（ProceedButton）直接离开，同时规避诅咒。** |
 | <img src="Assets/relics/dwarf_anvil.png" width="22" height="22" valign="middle"> **矮人铁砧 [Dwarf Anvil]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 拾起时选择 3 张牌附加"锻造"附魔，被附魔的牌费用永久 -1（最低 0 费）。 |
-| <img src="Assets/relics/wrist_blade.png" width="22" height="22" valign="middle"> **袖箭 [Wrist Blade]** | 普通 | <img src="Assets/profile/silent.png" width="18" height="18" valign="middle" title="静默猎手"> 猎人专属。费用为 0 的攻击牌额外造成 4 点伤害。 |
-| <img src="Assets/relics/hovering_kite.png" width="22" height="22" valign="middle"> **悬浮风筝 [Hovering Kite]** | 罕见 | <img src="Assets/profile/silent.png" width="18" height="18" valign="middle" title="静默猎手"> 猎人专属。你在每回合第一次弃牌时，获得 1 点能量。 |
+| <img src="Assets/relics/wrist_blade.png" width="22" height="22" valign="middle"> **袖箭 [Wrist Blade]** | <img src="Assets/rarity/common.png" width="22" height="22" title="普通 (Common)"> | <img src="Assets/profile/silent.png" width="18" height="18" valign="middle" title="静默猎手"> 猎人专属。费用为 0 的攻击牌额外造成 4 点伤害。 |
+| <img src="Assets/relics/hovering_kite.png" width="22" height="22" valign="middle"> **悬浮风筝 [Hovering Kite]** | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | <img src="Assets/profile/silent.png" width="18" height="18" valign="middle" title="静默猎手"> 猎人专属。你在每回合第一次弃牌时，获得 1 点能量。 |
 | <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **灵魂契约 [Soul Contract]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 选择牌组中的 1 张有消耗的牌，永久去除其消耗属性。 |
 | <img src="Assets/relics/strange_spoon.png" width="22" height="22" valign="middle"> **奇怪的汤勺 [Strange Spoon]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 应被消耗的牌在被打出时有 50% 几率改为被丢弃。（凋萎必定会被消耗） |
-| <img src="Sts2BalanceMod/images/relics/BlueCandle.png" width="22" height="22" valign="middle"> **蓝蜡烛 [Blue Candle]** | 罕见 | 可以打出原本不能被打出的诅咒牌（0 费打出；原本有费用的诅咒按原费支付），打出诅咒牌会让你失去 1 点生命并将其消耗。 |
-| <img src="Sts2BalanceMod/images/relics/Inserter.png" width="22" height="22" valign="middle"> **机械臂 [Inserter]** | 稀有 | <img src="Assets/profile/defect.png" width="18" height="18" valign="middle" title="故障机器人"> 机器人专属。每 2 回合，获得 1 个充能球栏位。（RELIC-INSERTER-01） |
+| <img src="Sts2BalanceMod/images/relics/BlueCandle.png" width="22" height="22" valign="middle"> **蓝蜡烛 [Blue Candle]** | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 可以打出原本不能被打出的诅咒牌（0 费打出；原本有费用的诅咒按原费支付），打出诅咒牌会让你失去 1 点生命并将其消耗。 |
+| <img src="Sts2BalanceMod/images/relics/Inserter.png" width="22" height="22" valign="middle"> **机械臂 [Inserter]** | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | <img src="Assets/profile/defect.png" width="18" height="18" valign="middle" title="故障机器人"> 机器人专属。每 2 回合，获得 1 个充能球栏位。（RELIC-INSERTER-01） |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **尼利的宝典 [Nilry's Codex]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 每回合结束时，从 3 张随机**升级版**卡牌中选择 1 张洗入抽牌堆。（RELIC-04：MOD 改为展示升级版） |
 | <img src="Assets/relics/mutagenic_strength.png" width="22" height="22" valign="middle"> **突变之力 [Mutagenic Strength]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 战斗开始时获得 3 点力量并附加 3 层「突变衰退」（每回合结束流失 1 点力量直到扣完；可与人工制品正常联动抵挡流失）。 |
 
 #### 原版调整
 
 | 遗物 | 类型 | 原版 | MOD 改后 |
-| :-- | :-- | :-- | :-- |
+| :-- | :-: | :-- | :-- |
 | <img src="Assets/relics/sand_castle.png" width="22" height="22" valign="middle"> **沙堡 [Sand Castle]** | <img src="Assets/profile/orobas.png" width="22" height="22" title="奥罗波斯 (Orobos)"> | 拾起时随机升级 6 张牌 | 拾起时改为选择 3 张牌升级，然后随机升级 3 张牌 |
-| <img src="Assets/relics/sturdy_clamp.png" width="22" height="22" valign="middle"> **坚固钳子 [Sturdy Clamp]** | 稀有 | 保留 10 护甲 | 保留 **15 护甲** |
+| <img src="Assets/relics/sturdy_clamp.png" width="22" height="22" valign="middle"> **坚固钳子 [Sturdy Clamp]** | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 保留 10 护甲 | 保留 **15 护甲** |
 | <img src="Assets/relics/preserved_fog.png" width="22" height="22" valign="middle"> **活雾 [Preserved Fog]** | <img src="Assets/profile/vakuu.png" width="22" height="22" title="瓦库 (Vakuu)"> | 删除 3 张牌 | 删除 **4 张牌** |
 | <img src="Assets/relics/red_mask.png" width="22" height="22" valign="middle"> **红面具 [Red Mask]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 在一般共享遗物池中 | 从一般共享遗物池**移除**，只通过红面具相关事件获得 |
 | <img src="Assets/relics/history_course.png" width="22" height="22" valign="middle"> **历史课 [History Course]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 只重复上回合最后打出的攻击牌 | 回调为重复上回合最后打出的**攻击牌或技能牌** |
