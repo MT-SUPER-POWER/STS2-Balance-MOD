@@ -20,8 +20,6 @@
   "FUEL.description": "获得 {Energy:energyIcons()} 。\n抽 {Cards:diff()} 张牌。",
   "STS2_BALANCEMOD_STEP_BY_STEP.title": "步步为营",
   "STS2_BALANCEMOD_STEP_BY_STEP.description": "消耗 {IfUpgraded:show:X+1|X} 点费用。接下来 {IfUpgraded:show:X+1|X} 回合，每回合开始时多抽 [blue]1[/blue] 张牌并额外获得 {energyPrefix:energyIcons(1)}。",
-  "STS2_BALANCEMOD_SPARRING.title": "比试",
-  "STS2_BALANCEMOD_SPARRING.description": "[gold]奥斯提[/gold]造成 {OstyDamage:diff()} 点伤害。\n造成 {Damage:diff()} 点伤害。造成伤害较少的一方回复 {Heal:diff()} 点生命。",
   "STS2_BALANCEMOD_RAM.title": "猛撞",
   "STS2_BALANCEMOD_RAM.description": "如果[gold]奥斯提[/gold]拥有至少 {HpLoss:diff()} 点生命，使其失去 {HpLoss:diff()} 点生命，并对所有敌人造成 {Damage:diff()} 点伤害。",
   "DRAIN_POWER.description": "造成 {Damage:diff()} 点伤害。升级弃牌堆中的 {IfUpgraded:show:所有|{Cards:diff()}张随机}卡牌。",

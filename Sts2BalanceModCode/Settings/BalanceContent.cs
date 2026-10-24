@@ -11,7 +11,7 @@ internal static class BalanceContent
   {
     ["DeathReap"] = "C03", ["PowerThought"] = "C04", ["Evolve"] = "C05", ["BuddySlam"] = "C06",
     ["Concentrate"] = "C15", ["Eviscerate"] = "C16", ["StepByStep"] = "C17", ["Electrodynamics"] = "C22",
-    ["Sparring"] = "C28", ["Ram"] = "C29", ["Sundial"] = "R13", ["OrangePill"] = "R14",
+    ["Ram"] = "C29", ["Sundial"] = "R13", ["OrangePill"] = "R14",
     ["DeadBranch"] = "R15", ["Omamori"] = "R16", ["PeacePipe"] = "R17", ["SmilingMask"] = "R18",
     ["CoffieCup"] = "R19", ["FusionHammer"] = "R20", ["CurseKey"] = "R21", ["DwarfAnvil"] = "R22",
     ["WristBlade"] = "R23", ["HoveringKite"] = "R24", ["SoulContract"] = "R25", ["StrangeSpoon"] = "R26",

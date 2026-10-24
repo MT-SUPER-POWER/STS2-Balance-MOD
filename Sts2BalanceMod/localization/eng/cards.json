@@ -20,8 +20,6 @@
   "FUEL.description": "Gain {Energy:energyIcons()}.\nDraw {Cards:diff()} {Cards:plural:card|cards}.",
   "STS2_BALANCEMOD_STEP_BY_STEP.title": "Step by Step",
   "STS2_BALANCEMOD_STEP_BY_STEP.description": "Spend {IfUpgraded:show:X+1|X} Energy. For the next {IfUpgraded:show:X+1|X} turns, draw [blue]1[/blue] additional card and gain {energyPrefix:energyIcons(1)} at the start of your turn.",
-  "STS2_BALANCEMOD_SPARRING.title": "Sparring",
-  "STS2_BALANCEMOD_SPARRING.description": "[gold]Osty[/gold] deals {OstyDamage:diff()} damage.\nDeal {Damage:diff()} damage. The side that deals less damage heals {Heal:diff()} HP.",
   "STS2_BALANCEMOD_RAM.title": "Ram",
   "STS2_BALANCEMOD_RAM.description": "If [gold]Osty[/gold] has at least {HpLoss:diff()} HP, make it lose {HpLoss:diff()} HP and deal {Damage:diff()} damage to all enemies.",
   "DRAIN_POWER.description": "Deal {Damage:diff()} damage. Upgrade {IfUpgraded:show:all|{Cards:diff()} random} cards in your discard pile.",
