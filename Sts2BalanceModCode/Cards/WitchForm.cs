@@ -14,13 +14,15 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Cards;
 
 /// <summary>
 /// 先古卡：女巫形态 (Witch Form)
-/// 3 费 | 能力 | 稀有度：先古 | 目标：自身
+/// 3 费 | 能力 | 稀有度：先古 | 目标：自身 | 虚无
 /// 获得 1 层女巫形态。结束你的回合。
 /// 升级：获得固有。
 /// </summary>
 [RegisterCard(typeof(EventCardPool), FullPublicEntry = "STS2_BALANCEMOD_WITCH_FORM")]
 public sealed class WitchForm : BalanceCardTemplate
 {
+  public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
+
   protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<WitchFormPower>(1m)];
 
   protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
