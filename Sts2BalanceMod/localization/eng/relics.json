@@ -82,6 +82,11 @@
   "ROYAL_STAMP.description": "Upon pickup, choose an Attack, Skill, or Power in your [gold]Deck[/gold] to [gold]Enchant[/gold] with [purple]{Enchantment}[/purple].",
   "STS2_BALANCEMOD_INSERTER.title": "Inserter",
   "STS2_BALANCEMOD_INSERTER.description": "Every [blue]2[/blue] turns, gain [blue]1[/blue] Orb slot.",
-  "STS2_BALANCEMOD_INSERTER.flavor": "Push. Pull. Stack. Repeat."
+  "STS2_BALANCEMOD_INSERTER.flavor": "Push. Pull. Stack. Repeat.",
+  "STS2_BALANCEMOD_POINTYS_TWIN_BLADES.title": "Pointy's Twin Blades",
+  "STS2_BALANCEMOD_POINTYS_TWIN_BLADES.description": "At the start of turn 1 of each combat, add [gold]{Shivs}[/gold] [gold]Shivs[/gold] into your hand. Your attacks deal [blue]{ExtraDamage}[/blue] additional damage to enemies with [gold]Weak[/gold] or [gold]Vulnerable[/gold].",
+  "STS2_BALANCEMOD_POINTYS_TWIN_BLADES.flavor": "\"Take this! And that!\" — Pointy",
+  "STS2_BALANCEMOD_BEARS_PELT.title": "Bear's Pelt",
+  "STS2_BALANCEMOD_BEARS_PELT.description": "Upon pickup, gain [gold]{MaxHp}[/gold] Max HP. At the start of turn 1 of each combat, gain [gold]{Block}[/gold] [gold]Block[/gold]. If any enemy has [gold]Weak[/gold], gain an additional [gold]{ExtraBlock}[/gold] [gold]Block[/gold].",
+  "STS2_BALANCEMOD_BEARS_PELT.flavor": "A heavy barbaric bear pelt that once shielded the Red Mask Bandits from countless fatal blows."
 }
-

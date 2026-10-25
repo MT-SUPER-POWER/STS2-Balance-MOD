@@ -82,6 +82,11 @@
   "ROYAL_STAMP.description": "拾起时，从[gold]牌组[/gold]中选择一张攻击牌、技能牌或能力牌，为它[gold]附魔[/gold]：[purple]{Enchantment}[/purple]。",
   "STS2_BALANCEMOD_INSERTER.title": "机械臂",
   "STS2_BALANCEMOD_INSERTER.description": "每 [blue]2[/blue] 回合，获得 [blue]1[/blue] 个充能球栏位。",
-  "STS2_BALANCEMOD_INSERTER.flavor": "推。拉。堆叠。重复。"
+  "STS2_BALANCEMOD_INSERTER.flavor": "推。拉。堆叠。重复。",
+  "STS2_BALANCEMOD_POINTYS_TWIN_BLADES.title": "尖刺的双刺",
+  "STS2_BALANCEMOD_POINTYS_TWIN_BLADES.description": "在每场战斗的第 1 回合，将 [gold]{Shivs}[/gold] 张 [gold]小刀[/gold] 加入手牌。你的攻击对处于 [gold]虚弱[/gold] 或 [gold]易伤[/gold] 状态的敌人造成 [blue]{ExtraDamage}[/blue] 点额外伤害。",
+  "STS2_BALANCEMOD_POINTYS_TWIN_BLADES.flavor": "「尝尝这个！还有这个！」——尖刺",
+  "STS2_BALANCEMOD_BEARS_PELT.title": "巨熊的皮甲",
+  "STS2_BALANCEMOD_BEARS_PELT.description": "拾起时，获得 [gold]{MaxHp}[/gold] 点最大生命值。在每场战斗的第 1 回合获得 [gold]{Block}[/gold] 点 [gold]格挡[/gold]；若场上有敌人处于 [gold]虚弱[/gold] 状态，额外获得 [gold]{ExtraBlock}[/gold] 点 [gold]格挡[/gold]。",
+  "STS2_BALANCEMOD_BEARS_PELT.flavor": "厚重而温暖的蛮熊毛皮，曾为红面具盗贼团挡下了无数致命打击。"
 }
-

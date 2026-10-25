@@ -82,5 +82,11 @@
   "STS2_BALANCEMOD_SHABBY_DOLL.flavor": "Старая тряпичная кукла со зловещими стежками.",
   "STS2_BALANCEMOD_INSERTER.title": "Инсертер",
   "STS2_BALANCEMOD_INSERTER.description": "Каждые [blue]2[/blue] хода получайте [blue]1[/blue] ячейку сферы.",
-  "STS2_BALANCEMOD_INSERTER.flavor": "Толкай. Тяни. Складывай. Повторяй."
+  "STS2_BALANCEMOD_INSERTER.flavor": "Толкай. Тяни. Складывай. Повторяй.",
+  "STS2_BALANCEMOD_POINTYS_TWIN_BLADES.title": "Парные клинки Колючки",
+  "STS2_BALANCEMOD_POINTYS_TWIN_BLADES.description": "В начале 1-го хода каждого боя добавляет [gold]{Shivs}[/gold] [gold]Заточки[/gold] в руку. Ваши атаки наносят на [blue]{ExtraDamage}[/blue] больше урона врагам со [gold]Слабостью[/gold] или [gold]Уязвимостью[/gold].",
+  "STS2_BALANCEMOD_POINTYS_TWIN_BLADES.flavor": "«Получай! И ещё!» — Колючка",
+  "STS2_BALANCEMOD_BEARS_PELT.title": "Шкура Медведя",
+  "STS2_BALANCEMOD_BEARS_PELT.description": "При получении даёт [gold]{MaxHp}[/gold] к макс. ОЗ. В начале 1-го хода каждого боя даёт [gold]{Block}[/gold] [gold]Защиты[/gold]. Если у врага есть [gold]Слабость[/gold], даёт дополнительно [gold]{ExtraBlock}[/gold] [gold]Защиты[/gold].",
+  "STS2_BALANCEMOD_BEARS_PELT.flavor": "Тяжёлая варварская медвежья шкура, защищавшая банду Красной Маски от множества смертельных ударов."
 }
