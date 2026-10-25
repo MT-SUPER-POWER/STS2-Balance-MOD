@@ -211,6 +211,8 @@
 | <img src="Sts2BalanceMod/images/relics/Inserter.png" width="22" height="22" valign="middle"> **机械臂 [Inserter]** | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | <img src="Assets/profile/defect.png" width="18" height="18" valign="middle" title="故障机器人"> 机器人专属。每 2 回合，获得 1 个充能球栏位。（RELIC-INSERTER-01） |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **尼利的宝典 [Nilry's Codex]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 每回合结束时，从 3 张随机**升级版**卡牌中选择 1 张洗入抽牌堆。（RELIC-04：MOD 改为展示升级版） |
 | <img src="Assets/relics/mutagenic_strength.png" width="22" height="22" valign="middle"> **突变之力 [Mutagenic Strength]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 战斗开始时获得 3 点力量并附加 3 层「突变衰退」（每回合结束流失 1 点力量直到扣完；可与人工制品正常联动抵挡流失）。 |
+| <img src="Assets/relics/pointys_twin_blades.png" width="22" height="22" valign="middle"> **尖刺的双刺 [Pointy's Twin Blades]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 第 1 回合将 2 张小刀加入手牌。你的攻击对处于虚弱或易伤状态的敌人造成 3 点额外伤害。（红面具大人之墓事件） |
+| <img src="Assets/relics/bears_pelt.png" width="22" height="22" valign="middle"> **巨熊的皮甲 [Bear's Pelt]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 拾起时获得 8 点最大生命值。第 1 回合获得 8 点格挡；若场上有敌人处于虚弱状态，额外获得 8 点格挡。（红面具大人之墓事件） |
 
 #### 原版调整
 

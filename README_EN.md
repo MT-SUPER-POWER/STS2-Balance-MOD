@@ -178,7 +178,7 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 | **Cleric** | All players Gold ≥ 35 | Offers 25% HP heal for Gold / 75 Gold card removal. |
 | **Mind Bloom** | Act 3 | Choice of Act 1 Boss fight, upgrade all cards (gains <img src="Assets/relics/mark_of_the_bloom.png" width="18" height="18" valign="middle"> **Mark of the Bloom**), or 999 Gold. |
 | **Wheel of Change** | - | Spin wheel for random Gold / Relic / Full Heal / Card Removal / Curse / Damage. |
-| **Tomb of Lord Red Mask** | Act 3 | Offer all Gold for <img src="Assets/relics/red_mask.png" width="18" height="18" valign="middle"> **Red Mask** (or gain 222 Gold if wearing Red Mask). |
+| **Tomb of Lord Red Mask** | Act 3 (Has Red Mask) | Dedicated tribute to the Red Mask Bandits: Gain 222 Gold (Romeo), Pointy's Twin Blades, or Bear's Pelt. |
 | **The Library** | Act 3 | Offers **[Read]** (choose 1 cross-class card) or **[Sleep]** (heal 33% HP). |
 
 ### Relics
@@ -203,6 +203,8 @@ This Mod is integrated into RitsuLib's Mod Settings UI. Settings are persisted a
 | <img src="Assets/relics/soul_contract.png" width="22" height="22" valign="middle"> **Soul Contract** | <img src="Assets/profile/merchant.png" width="22" height="22" title="Merchant"> | Select 1 card in your deck with Exhaust and permanently remove its Exhaust property. |
 | <img src="Sts2BalanceMod/images/relics/BlueCandle.png" width="22" height="22" valign="middle"> **Blue Candle** | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="Uncommon"> | Unplayable Curse cards can now be played (0-cost; costed curses retain cost). Whenever you play a Curse, lose 1 HP and Exhaust it. |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **Nilry's Codex** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | At turn end, choose 1 of 3 random **Upgraded** cards to shuffle into your draw pile. |
+| <img src="Assets/relics/pointys_twin_blades.png" width="22" height="22" valign="middle"> **Pointy's Twin Blades** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | Turn 1 of combat, add 2 Shivs into hand. Your attacks deal 3 additional damage to enemies with Weak or Vulnerable. (Tomb of Lord Red Mask event) |
+| <img src="Assets/relics/bears_pelt.png" width="22" height="22" valign="middle"> **Bear's Pelt** | <img src="Assets/map/event.png" width="22" height="22" title="Event"> | Upon pickup, gain 8 Max HP. Turn 1 of combat, gain 8 Block; if any enemy has Weak, gain an additional 8 Block. (Tomb of Lord Red Mask event) |
 
 #### Vanilla Relic Adjustments
 
