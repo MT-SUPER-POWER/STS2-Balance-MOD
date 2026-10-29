@@ -48,5 +48,8 @@
   "STS2_BALANCEMOD_BULLSEYE.flavor": "Target acquired.",
   "STS2_BALANCEMOD_RECURSION.title": "Recursion",
   "STS2_BALANCEMOD_RECURSION.description": "[gold]Evoke[/gold] your rightmost Orb.\n[gold]Channel[/gold] the Orb that was just [gold]Evoked[/gold].",
-  "STS2_BALANCEMOD_RECURSION.flavor": "To understand recursion, one must first understand recursion."
+  "STS2_BALANCEMOD_RECURSION.flavor": "To understand recursion, one must first understand recursion.",
+  "STS2_BALANCEMOD_POINTY_SHIV.title": "Shiv+",
+  "STS2_BALANCEMOD_POINTY_SHIV.description": "[gold]Retain[/gold].\nDeal {Damage:diff()} damage.\nApply {WeakPower:diff()} [gold]Weak[/gold].\n[gold]Exhaust[/gold].",
+  "STS2_BALANCEMOD_POINTY_SHIV.flavor": "\"Take this! And that!\" — Pointy"
 }

@@ -48,6 +48,9 @@
   "STS2_BALANCEMOD_BULLSEYE.flavor": "锁定目标。",
   "STS2_BALANCEMOD_RECURSION.title": "递归",
   "STS2_BALANCEMOD_RECURSION.description": "[gold]激发[/gold]你最右侧的充能球。\n然后[gold]生成[/gold]一个刚才被[gold]激发[/gold]的充能球。",
-  "STS2_BALANCEMOD_RECURSION.flavor": "终而复始，循环不绝。"
+  "STS2_BALANCEMOD_RECURSION.flavor": "终而复始，循环不绝。",
+  "STS2_BALANCEMOD_POINTY_SHIV.title": "小刀+",
+  "STS2_BALANCEMOD_POINTY_SHIV.description": "[gold]保留[/gold]。\n造成 {Damage:diff()} 点伤害。\n给予 {WeakPower:diff()} 层[gold]虚弱[/gold]。\n[gold]消耗[/gold]。",
+  "STS2_BALANCEMOD_POINTY_SHIV.flavor": "「尝尝这个！还有这个！」——尖刺"
 }
 

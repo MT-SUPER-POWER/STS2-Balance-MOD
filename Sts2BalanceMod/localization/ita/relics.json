@@ -84,9 +84,9 @@
   "STS2_BALANCEMOD_INSERTER.description": "Ogni [blue]2[/blue] turni, ottieni [blue]1[/blue] spazio sfera.",
   "STS2_BALANCEMOD_INSERTER.flavor": "Spingi. Tira. Impila. Ripeti.",
   "STS2_BALANCEMOD_POINTYS_TWIN_BLADES.title": "Doppi Pugnali di Pointy",
-  "STS2_BALANCEMOD_POINTYS_TWIN_BLADES.description": "All'inizio del turno 1 di ogni combattimento, aggiungi [gold]{Shivs}[/gold] [gold]Pugnali[/gold] alla tua mano. I tuoi attacchi infliggono [blue]{ExtraDamage}[/blue] danni aggiuntivi ai nemici con [gold]Debolezza[/gold] o [gold]Vulnerabilità[/gold].",
+  "STS2_BALANCEMOD_POINTYS_TWIN_BLADES.description": "All'inizio del turno 1 di ogni combattimento, aggiungi alla mano [gold]{Shivs}[/gold] [gold]Pugnali+[/gold] con [gold]Conserva[/gold] e [gold]Debolezza[/gold].",
   "STS2_BALANCEMOD_POINTYS_TWIN_BLADES.flavor": "\"Prendi questo! E quello!\" — Pointy",
   "STS2_BALANCEMOD_BEARS_PELT.title": "Pelliccia dell'Orso",
-  "STS2_BALANCEMOD_BEARS_PELT.description": "Quando lo raccogli, ottieni [gold]{MaxHp}[/gold] PS massimi. All'inizio del turno 1 di ogni combattimento, ottieni [gold]{Block}[/gold] [gold]Blocco[/gold]. Se un nemico ha [gold]Debolezza[/gold], ottieni ulteriori [gold]{ExtraBlock}[/gold] [gold]Blocco[/gold].",
+  "STS2_BALANCEMOD_BEARS_PELT.description": "Quando lo raccogli, ottieni [gold]{MaxHp}[/gold] PS massimi. All'inizio del turno 1 di ogni combattimento, ottieni [gold]{Block}[/gold] [gold]Blocco[/gold] e applica [gold]{WeakPower}[/gold] carica di [gold]Debolezza[/gold] a TUTTI i nemici.",
   "STS2_BALANCEMOD_BEARS_PELT.flavor": "Una pesante pelliccia d'orso barbarica che un tempo proteggeva la banda di Maschera Rossa da innumerevoli colpi mortali."
 }

@@ -48,5 +48,8 @@
   "STS2_BALANCEMOD_BULLSEYE.flavor": "Цель захвачена.",
   "STS2_BALANCEMOD_RECURSION.title": "Рекурсия",
   "STS2_BALANCEMOD_RECURSION.description": "[gold]Разряжает[/gold] правую сферу.\n[gold]Заряжает[/gold] только что [gold]Разряженную[/gold] сферу.",
-  "STS2_BALANCEMOD_RECURSION.flavor": "Чтобы понять рекурсию, нужно сначала понять рекурсию."
+  "STS2_BALANCEMOD_RECURSION.flavor": "Чтобы понять рекурсию, нужно сначала понять рекурсию.",
+  "STS2_BALANCEMOD_POINTY_SHIV.title": "Заточка+",
+  "STS2_BALANCEMOD_POINTY_SHIV.description": "[gold]Сохранение[/gold].\nНаносит {Damage:diff()} урона.\nНакладывает {WeakPower:diff()} [gold]Слабости[/gold].\n[gold]Сжигание[/gold].",
+  "STS2_BALANCEMOD_POINTY_SHIV.flavor": "«Получай! И ещё!» — Колючка"
 }

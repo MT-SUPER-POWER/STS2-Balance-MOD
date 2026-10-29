@@ -6,6 +6,18 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+## v0.4.1
+
+### Changed
+
+- 遗物：重构红面具强盗团专属事件遗物「尖刺的双刺」（Pointy's Twin Blades），第 1 回合将 2 张具备【保留】且打出时给予 1 层【虚弱】的【小刀+】（造成 6 点伤害，消耗）加入手牌。
+- 遗物：重构红面具强盗团专属事件遗物「巨熊的皮甲」（Bear's Pelt），拾起时获得 8 点最大生命值，第 1 回合获得 10 点格挡，并对所有敌人施加 1 层【虚弱】。
+- 事件：调整第 2 幕事件「面具强盗」（Masked Bandits）遭遇条件，移除 `TotalFloor >= 23` 楼层门槛，对齐原版「灯火钥匙」事件约束，避免因队列机制导致前中期问号房被永久跳过废弃。
+
+### Added
+
+- 工具：新增项目版本管理脚本 `scripts/bump.ts` 并集成至 `package.json`（支持 `pnpm bump [patch|minor|major|<version>]`）。
+
 ## v0.4.0
 
 ### Added

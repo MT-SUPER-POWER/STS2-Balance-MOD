@@ -41,14 +41,12 @@ public sealed class MaskedBandits : BalanceEventTemplate
   public override EncounterModel CanonicalEncounter => ModelDb.Encounter<RedMaskBandits>();
 
   /// <summary>
-  /// 第 3 层（城市）且未持有红面具时触发
+  /// 第 2 幕（蜂巢）且未持有红面具时触发（对齐原版灯火钥匙事件约束，无楼层门槛）
   /// </summary>
   public override bool IsAllowed(IRunState runState)
   {
     if (runState.CurrentActIndex != 1)
-      return false;         // NOTE: 第 2 幕（索引 1）
-    if (runState.TotalFloor < 23)
-      return false;              // NOTE: 至少第 23 层
+      return false; // NOTE: 第 2 幕（索引 1）
     return !runState.Players.Any(p => p.Relics.Any(r => r is RedMask));
   }
 

@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -18,7 +19,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Relics;
 
 /// <summary>
 /// STS1-EVENT-08 红面具大人之墓关联事件遗物 — 巨熊的皮甲：
-/// 拾取时获得 8 点最大生命值。第 1 回合获得 8 点格挡；若有敌人处于虚弱状态，额外获得 8 点格挡（共 16 点）。
+/// 拾取时获得 8 点最大生命值。第 1 回合获得 10 点格挡，并对所有敌人施加 1 层虚弱。
 /// </summary>
 [RegisterRelic(typeof(EventRelicPool), FullPublicEntry = "STS2_BALANCEMOD_BEARS_PELT")]
 public sealed class BearsPelt : BalanceRelicTemplate
@@ -29,8 +30,8 @@ public sealed class BearsPelt : BalanceRelicTemplate
   protected override IEnumerable<DynamicVar> CanonicalVars =>
   [
     new MaxHpVar(8m),
-    new BlockVar(8m, ValueProp.Unpowered),
-    new DynamicVar("ExtraBlock", 8m),
+    new BlockVar(10m, ValueProp.Unpowered),
+    new PowerVar<WeakPower>(1m),
   ];
 
   protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
@@ -47,22 +48,17 @@ public sealed class BearsPelt : BalanceRelicTemplate
     }
   }
 
-  public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+  public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
   {
     Player? owner = Owner;
     if (owner?.Creature == null || !participants.Contains(owner.Creature))
       return;
 
-    if (owner.PlayerCombatState?.TurnNumber > 1)
-      return;
-
-    Flash();
-    decimal blockToGain = DynamicVars.Block.BaseValue;
-    if (combatState.HittableEnemies.Any(e => e.Powers.Any(p => p is WeakPower)))
+    if (owner.PlayerCombatState?.TurnNumber <= 1)
     {
-      blockToGain += DynamicVars["ExtraBlock"].BaseValue;
+      Flash();
+      await CreatureCmd.GainBlock(owner.Creature, DynamicVars.Block.BaseValue, ValueProp.Unpowered, null);
+      await PowerCmd.Apply<WeakPower>(choiceContext, combatState.HittableEnemies, DynamicVars["WeakPower"].BaseValue, owner.Creature, null);
     }
-
-    await CreatureCmd.GainBlock(owner.Creature, blockToGain, ValueProp.Unpowered, null);
   }
 }

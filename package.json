@@ -1,8 +1,10 @@
 {
   "name": "sts2-balance-mod",
+  "version": "0.4.1",
   "packageManager": "pnpm@12.6.0",
   "scripts": {
     "prepare": "husky",
+    "bump": "bun scripts/bump.ts",
     "format": "dotnet format Sts2BalanceMod.sln --include Sts2BalanceModCode",
     "format:cs": "dotnet format Sts2BalanceMod.sln --include Sts2BalanceModCode",
     "format:md": "prettier --write --ignore-unknown \"**/*.md\" && markdownlint-cli2 --fix",

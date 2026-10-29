@@ -48,5 +48,8 @@
   "STS2_BALANCEMOD_BULLSEYE.flavor": "Bersaglio agganciato.",
   "STS2_BALANCEMOD_RECURSION.title": "Ripeti",
   "STS2_BALANCEMOD_RECURSION.description": "[gold]Evochi[/gold] il tuo primo Globo a destra.\n[gold]Crei[/gold] il Globo appena [gold]Evocato[/gold].",
-  "STS2_BALANCEMOD_RECURSION.flavor": "Per comprendere la ricorsione, devi prima comprendere la ricorsione."
+  "STS2_BALANCEMOD_RECURSION.flavor": "Per comprendere la ricorsione, devi prima comprendere la ricorsione.",
+  "STS2_BALANCEMOD_POINTY_SHIV.title": "Pugnale+",
+  "STS2_BALANCEMOD_POINTY_SHIV.description": "[gold]Conserva[/gold].\nInfligge {Damage:diff()} danni.\nApplica {WeakPower:diff()} [gold]Debolezza[/gold].\n[gold]Esausta[/gold].",
+  "STS2_BALANCEMOD_POINTY_SHIV.flavor": "\"Prendi questo! E quello!\" — Pointy"
 }

@@ -119,8 +119,8 @@ uv run events                                 # 事件背景图（3440×1616）
 
 ## 发布流程
 
-1. 更新 `Sts2BalanceMod.json` 中的 `version` 字段为目标版本号 `vX.X.X`。
-2. 在 `CHANGELOG.md` 中以 `# vX.X.X` 的格式追加该版本的变更内容。
+1. 运行 `pnpm bump`（自增 patch）、`pnpm bump minor`、`pnpm bump major` 或 `pnpm bump vX.X.X`，脚本会自动同步更新 `Sts2BalanceMod.json`、`workshop/workshop.json` 及 `package.json` 中的版本号并核对 `CHANGELOG.md`。
+2. 在 `CHANGELOG.md` 中以 `## vX.X.X` 的格式记录该版本的变更内容。
 3. 提交改动并打上对应版本号的 Git Tag，然后推送至远程仓库：
 
    ```bash
