@@ -204,5 +204,7 @@
   "STS2_BALANCE_MOD_EVENT_TOMB_OF_LORD_RED_MASK.pages.INITIAL.options.TRIBUTE_BEAR.description": "获得 [gold]巨熊的皮甲[/gold]。",
   "STS2_BALANCE_MOD_EVENT_TOMB_OF_LORD_RED_MASK.pages.TRIBUTE_ROMEO.description": "「你惹错人了，朋友！」耳边仿佛回荡起罗密欧嚣张的笑声，金币哗啦啦地散落在你面前。",
   "STS2_BALANCE_MOD_EVENT_TOMB_OF_LORD_RED_MASK.pages.TRIBUTE_POINTY.description": "你从尖刺的祭坛上取下他的双刃。耳边传来小个子强盗敏捷而狠戾的低语。",
-  "STS2_BALANCE_MOD_EVENT_TOMB_OF_LORD_RED_MASK.pages.TRIBUTE_BEAR.description": "你披上巨熊遗留的厚重熊皮肩甲。沉重的力量与坚实的安全感涌遍全身。"
+  "STS2_BALANCE_MOD_EVENT_TOMB_OF_LORD_RED_MASK.pages.TRIBUTE_BEAR.description": "你披上巨熊遗留的厚重熊皮肩甲。沉重的力量与坚实的安全感涌遍全身。",
+  "STS2_BALANCE_MOD_EVENT_SPIRALING_WHIRLPOOL_OBSERVE.title": "观察",
+  "STS2_BALANCE_MOD_EVENT_SPIRALING_WHIRLPOOL_OBSERVE.description": "为一张牌[gold]附魔[/gold]：[purple]回响[/purple]。"
 }

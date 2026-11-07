@@ -204,5 +204,7 @@
   "STS2_BALANCE_MOD_EVENT_TOMB_OF_LORD_RED_MASK.pages.INITIAL.options.TRIBUTE_BEAR.description": "Obtain [gold]Bear's Pelt[/gold].",
   "STS2_BALANCE_MOD_EVENT_TOMB_OF_LORD_RED_MASK.pages.TRIBUTE_ROMEO.description": "\"You ran into the wrong crowd, friend!\" Romeo's boisterous laughter echoes as gold coins clatter to the ground.",
   "STS2_BALANCE_MOD_EVENT_TOMB_OF_LORD_RED_MASK.pages.TRIBUTE_POINTY.description": "You retrieve Pointy's twin blades from his altar, hearing the quick whispers of the nimble cutpurse.",
-  "STS2_BALANCE_MOD_EVENT_TOMB_OF_LORD_RED_MASK.pages.TRIBUTE_BEAR.description": "You don Bear's thick pelt harness. Immense fortitude and warmth envelop you."
+  "STS2_BALANCE_MOD_EVENT_TOMB_OF_LORD_RED_MASK.pages.TRIBUTE_BEAR.description": "You don Bear's thick pelt harness. Immense fortitude and warmth envelop you.",
+  "STS2_BALANCE_MOD_EVENT_SPIRALING_WHIRLPOOL_OBSERVE.title": "Observe",
+  "STS2_BALANCE_MOD_EVENT_SPIRALING_WHIRLPOOL_OBSERVE.description": "Enchant a card: [purple]Echo[/purple]."
 }

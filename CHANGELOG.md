@@ -8,15 +8,18 @@
 
 ## v0.4.1
 
+### Added
+
+- 附魔：新增附魔「回响」（EchoEnchantment），被附魔的卡牌打出时额外打出 1 次（获得 1 次重放 / Replay 1，支持 X 费卡牌二次结算）；可附魔常规攻击牌、技能牌与能力牌（排除不可打出牌、状态牌、诅咒牌），并在卡牌末尾呈现重放词条与专属回响 HoverTip 说明（ENCHANT-ECHO-WHIRLPOOL）。
+- 设置：新增「旋转漩涡：回响附魔」（E17）Mod 设置独立启闭项。
+- 工具：新增项目版本管理脚本 `scripts/bump.ts` 并集成至 `package.json`（支持 `pnpm bump [patch|minor|major|<version>]`）。
+
 ### Changed
 
+- 事件：全面改造第 1 幕事件「旋转漩涡」（SpiralingWhirlpool），将选项 1 原版仅限基础打击/防御的「涡旋」（Spiral）附魔替换为自选牌的「回响」（EchoEnchantment）附魔；遭遇前置条件同步适配为牌组中存在可附魔回响的卡牌（保留选项 2 饮水回血）。
 - 遗物：重构红面具强盗团专属事件遗物「尖刺的双刺」（Pointy's Twin Blades），第 1 回合将 2 张具备【保留】且打出时给予 1 层【虚弱】的【小刀+】（造成 6 点伤害，消耗）加入手牌。
 - 遗物：重构红面具强盗团专属事件遗物「巨熊的皮甲」（Bear's Pelt），拾起时获得 8 点最大生命值，第 1 回合获得 10 点格挡，并对所有敌人施加 1 层【虚弱】。
 - 事件：调整第 2 幕事件「面具强盗」（Masked Bandits）遭遇条件，移除 `TotalFloor >= 23` 楼层门槛，对齐原版「灯火钥匙」事件约束，避免因队列机制导致前中期问号房被永久跳过废弃。
-
-### Added
-
-- 工具：新增项目版本管理脚本 `scripts/bump.ts` 并集成至 `package.json`（支持 `pnpm bump [patch|minor|major|<version>]`）。
 
 ## v0.4.0
 

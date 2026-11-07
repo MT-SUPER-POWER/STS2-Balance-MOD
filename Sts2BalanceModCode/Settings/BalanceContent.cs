@@ -24,7 +24,8 @@ internal static class BalanceContent
     ["Necronomicurse"] = "E05", ["Necronomicon"] = "E05", ["NilrysCodex"] = "E05", ["Enchiridion"] = "E05",
     ["Jax"] = "E07", ["MutagenicStrength"] = "E07", ["MarkOfTheBloom"] = "E09",
     ["Consume"] = "C34", ["Inserter"] = "R28", ["Fission"] = "C37",
-    ["Bullseye"] = "C38", ["LockOnPower"] = "C38", ["Recursion"] = "C39"
+    ["Bullseye"] = "C38", ["LockOnPower"] = "C38", ["Recursion"] = "C39",
+    ["EchoEnchantment"] = "E17"
   };
   public static bool IsEnabled(Type type) => type.Assembly != typeof(BalanceContent).Assembly ||
     !Owners.TryGetValue(type.Name, out string? id) || BalanceModSettings.IsEnabled(id);
@@ -109,7 +110,9 @@ internal static class BalanceLocalizationPatch
     ["TOASTY_MITTENS"] = "R07", ["SIGNET_RING"] = "R08", ["BEAUTIFUL_BRACELET"] = "R09",
     ["SAND_CASTLE"] = "R01", ["NEOWS_TALISMAN"] = "R10", ["ROYAL_STAMP"] = "R12",
     ["BUGSLAYER"] = "E02", ["TINKER_TIME"] = "E15", ["THE_FUTURE_OF_POTIONS"] = "E16",
-    ["TREASURE_ROOM"] = "G02", ["ZEN_WEAVER"] = "E01", ["BIASED_COGNITION_POWER"] = "C18", ["INFESTED_PRISM"] = "M02"
+    ["TREASURE_ROOM"] = "G02", ["ZEN_WEAVER"] = "E01", ["BIASED_COGNITION_POWER"] = "C18", ["INFESTED_PRISM"] = "M02",
+    ["STS2_BALANCE_MOD_EVENT_SPIRALING_WHIRLPOOL_OBSERVE"] = "E17",
+    ["STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT"] = "E17"
   };
   private static void Postfix(string path, Dictionary<string, string> __result)
   {

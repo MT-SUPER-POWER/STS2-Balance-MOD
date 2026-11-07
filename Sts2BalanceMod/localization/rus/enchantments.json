@@ -1,5 +1,8 @@
 {
-  "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.title": "Ковка",
-  "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.description": "Стоимость этой карты навсегда снижена на 1 {Amount:energyIcons()}.",
-  "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.extraCardText": ""
+  "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.title": "Выковано",
+  "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.description": "Стоит на 1 {Amount:energyIcons()} меньше.",
+  "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.extraCardText": "",
+  "STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT.title": "Эхо",
+  "STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT.description": "Эта карта получает [gold]Повтор[/gold] [blue]1[/blue].",
+  "STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT.extraCardText": ""
 }
