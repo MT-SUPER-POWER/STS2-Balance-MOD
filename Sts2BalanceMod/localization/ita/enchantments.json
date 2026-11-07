@@ -3,6 +3,6 @@
   "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.description": "Costa 1 {Amount:energyIcons()} in meno.",
   "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.extraCardText": "",
   "STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT.title": "Eco",
-  "STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT.description": "Questa carta ottiene [gold]Ripeti[/gold] [blue]1[/blue].",
+  "STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT.description": "La prima volta che questa carta viene giocata ogni turno, ottiene [gold]Ripeti[/gold] [blue]1[/blue].",
   "STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT.extraCardText": ""
 }
