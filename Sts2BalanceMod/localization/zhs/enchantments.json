@@ -3,6 +3,6 @@
   "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.description": "费用永久减少 1 {Amount:energyIcons()}。",
   "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.extraCardText": "",
   "STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT.title": "回响",
-  "STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT.description": "每回合第一次打出这张牌时，获得[gold]重放[/gold][blue]1[/blue]。",
+  "STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT.description": "这张牌每回合能够[gold]重放[/gold]一次。",
   "STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT.extraCardText": ""
 }

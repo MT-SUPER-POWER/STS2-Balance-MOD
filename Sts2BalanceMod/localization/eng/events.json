@@ -206,5 +206,5 @@
   "STS2_BALANCE_MOD_EVENT_TOMB_OF_LORD_RED_MASK.pages.TRIBUTE_POINTY.description": "You retrieve Pointy's twin blades from his altar, hearing the quick whispers of the nimble cutpurse.",
   "STS2_BALANCE_MOD_EVENT_TOMB_OF_LORD_RED_MASK.pages.TRIBUTE_BEAR.description": "You don Bear's thick pelt harness. Immense fortitude and warmth envelop you.",
   "STS2_BALANCE_MOD_EVENT_SPIRALING_WHIRLPOOL_OBSERVE.title": "Observe",
-  "STS2_BALANCE_MOD_EVENT_SPIRALING_WHIRLPOOL_OBSERVE.description": "Enchant a card: [purple]Echo[/purple]."
+  "STS2_BALANCE_MOD_EVENT_SPIRALING_WHIRLPOOL_OBSERVE.description": "[gold]Enchant[/gold] a card with [purple]Echo[/purple]."
 }

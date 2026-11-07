@@ -177,7 +177,7 @@
 
 #### 原版事件调整
 
-- **旋转漩涡 [Spiraling Whirlpool]**：将选项 1「凝视漩涡」的原版「涡旋」（仅限基础打击/防御）附魔替换为 <img src="Sts2BalanceMod/images/enchantments/EchoEnchantment.png" width="18" height="18" valign="middle"> **「回响」[Echo]** 附魔（被附魔的牌每回合首次打出时额外打出 1 次，支持常规攻击/技能/能力牌与 X 费卡牌）；触发条件同步放宽至牌组中存在符合回响条件的卡牌。
+- **旋转漩涡 [Spiraling Whirlpool]**：将选项 1「凝视漩涡」的原版「涡旋」（仅限基础打击/防御）附魔替换为 <img src="Sts2BalanceMod/images/enchantments/EchoEnchantment.png" width="18" height="18" valign="middle"> **「回响」[Echo]** 附魔（被附魔的牌每回合能够重放 1 次，支持常规攻击/技能/能力牌与 X 费卡牌）；触发条件同步放宽至牌组中存在符合回响条件的卡牌。
 - **禅意织者 [Zen Weaver]**：删牌价格分别下调至 **100 / 200 金币**。
 - **旧日垃圾堆 [Trash Heap]**：遗物奖励池加入 <img src="Assets/relics/omamori.png" width="18" height="18" valign="middle"> **御守**。
 - **除虫者 / 科学怪人 / 药水的未来？**：初始选项中新增可配置的 **「离开」** 分支。

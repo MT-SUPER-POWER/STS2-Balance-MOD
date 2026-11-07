@@ -3,6 +3,6 @@
   "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.description": "Costs 1 less {Amount:energyIcons()}.",
   "STS2_BALANCE_MOD_ENCHANTMENT_FORGE_ENCHANTMENT.extraCardText": "",
   "STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT.title": "Echo",
-  "STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT.description": "The first time this card is played each turn, it gains [gold]Replay[/gold] [blue]1[/blue].",
+  "STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT.description": "This card has [gold]Replay[/gold] once per turn.",
   "STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT.extraCardText": ""
 }

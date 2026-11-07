@@ -10,7 +10,7 @@
 
 ### Added
 
-- 附魔：新增附魔「回响」（EchoEnchantment），被附魔的卡牌每回合首次打出时额外打出 1 次（获得 1 次重放 / Replay 1，支持 X 费卡牌二次结算）；可附魔常规攻击牌、技能牌与能力牌（排除不可打出牌、状态牌、诅咒牌），并在卡牌末尾呈现重放词条与专属回响 HoverTip 说明（ENCHANT-ECHO-WHIRLPOOL）。
+- 附魔：新增附魔「回响」（EchoEnchantment），被附魔的卡牌每回合能够重放 1 次（对齐「华彩」语法规则，支持 X 费卡牌二次结算）；可附魔常规攻击牌、技能牌与能力牌（排除不可打出牌、状态牌、诅咒牌），并在卡牌末尾呈现重放词条与专属回响 HoverTip 说明（ENCHANT-ECHO-WHIRLPOOL）。
 - 设置：新增「旋转漩涡：回响附魔」（E17）Mod 设置独立启闭项。
 - 工具：新增项目版本管理脚本 `scripts/bump.ts` 并集成至 `package.json`（支持 `pnpm bump [patch|minor|major|<version>]`）。
 
