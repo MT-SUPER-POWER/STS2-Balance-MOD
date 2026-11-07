@@ -43,6 +43,8 @@
 
 ### 怪物
 
+- [x] **BUG-COLOSSEUM-VISUALS** — 修复竞技场四怪物 `.tscn` 缺少 `preview_animation`，`"-- Empty --"` 改为正确骨骼动画名（`"idle"` / `"animation"`）
+
 ---
 
 ### 事件

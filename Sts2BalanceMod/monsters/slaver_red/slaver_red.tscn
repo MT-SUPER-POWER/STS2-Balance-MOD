@@ -30,3 +30,4 @@ unique_name_in_owner = true
 position = Vector2(0, -15)
 scale = Vector2(1.1, 1.1)
 skeleton_data_res = ExtResource("2_skel")
+preview_animation = "idle"

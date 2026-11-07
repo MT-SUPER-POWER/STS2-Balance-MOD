@@ -6,6 +6,12 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+## v0.4.2
+
+### Fixed
+
+- 怪物：修复竞技场（Colosseum）四只怪物（蓝奴隶贩子、红奴隶贩子、奴隶贩子头目、地精大块头）的 `.tscn` 场景缺少 `preview_animation` 属性导致 Spine 骨骼在 Godot 编辑器中无法预览待机动画的问题；骨骼实际可用动画名已在 `GenerateAnimator` 中正确绑定（`"idle"` / `"animation"`）。
+
 ## v0.4.1
 
 ### Added

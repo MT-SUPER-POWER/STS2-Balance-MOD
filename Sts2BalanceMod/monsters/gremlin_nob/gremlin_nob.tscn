@@ -32,7 +32,7 @@ position = Vector2(-155, -343)
 [node name="Visuals" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("2_skel")
 preview_skin = "Default"
-preview_animation = "-- Empty --"
+preview_animation = "animation"
 preview_frame = false
 preview_time = 0.0
 unique_name_in_owner = true
