@@ -99,7 +99,6 @@
 | **辉光 [Glow]** | <img src="Assets/profile/regent.png" width="22" height="22" title="储君 (Regent)"> | 技能 | <img src="Assets/rarity/common.png" width="22" height="22" title="普通 (Common)"> | 获得星尘，下回合额外抽牌 | 改为**当回合立即抽 2 张**，升级额外多获得 1 星尘 |
 | **放血 [Bloodletting]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 蓝卡（罕见）（v1.0.9 修改） | 稀有度改回 <img src="Assets/rarity/common.png" width="18" height="18" valign="middle" title="普通 (Common)"> **普通** |
 | **且战且退 [Fighting Retreat]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 技能 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 原官方名称「跃跃欲试 / Expect a Fight」 | 全语言调整名称为**「且战且退 / Fighting Retreat」**，机制与数值保持原版一致 |
-| **探寻 [Dowsing]** | <img src="Assets/profile/neow.png" width="22" height="22" title="涅奥 (Neow)"> | 任务 | <img src="Assets/rarity/special.png" width="22" height="22" title="任务 (Quest)"> | 进入 5 个 ? 房间后转化为「丰饶」 | 调整为进入 **4 个 ? 房间**后转化为「丰饶」 |
 | **魔球 [The Ball]** | <img src="Assets/profile/colorless.png" width="22" height="22" title="无色 (Colorless)"> | 攻击 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 每次打出后伤害成长 **10 / 15** | 成长幅度改为 **15 / 20** |
 | **巨镰 [The Scythe]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 2 费，消耗；造成 13 点伤害，每次打出后伤害成长 **4 / 5** | 初始伤害调整为 **16** 点，配合官方 **5 / 7** 的成长幅度 |
 | **计划妥当 [Well-Laid Plans]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 能力 | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 金卡（稀有），2 / 1 费；回合结束时不弃牌 | 稀有度降为 <img src="Assets/rarity/uncommon.png" width="18" height="18" valign="middle" title="罕见 (Uncommon)"> **罕见**，**1 费（升级不减费）**；回合结束时保留最多 **1 / 2** 张牌（再次打出保留张数可叠加，选卡界面自动过滤手牌中已有【保留】属性的牌），未选择的手牌正常弃置，并保留多人可用支持 |
@@ -132,7 +131,7 @@
 | **猛撞 [Ram]** | <img src="Assets/profile/necrobinder.png" width="22" height="22" title="死灵缚者 (Necrobinder)"> | 攻击 | <img src="Assets/rarity/common.png" width="22" height="22" title="普通 (Common)"> | 2 | 奥斯提失去 **8 / 7** 点生命，对所有敌人造成 **20 / 26** 点伤害；奥斯提生命不足时无法触发效果。 |
 | **步步为营 [Step by Step]** | <img src="Assets/profile/silent.png" width="22" height="22" title="静默猎手 (Silent)"> | 技能 | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | X | 消耗。接下来 X（升级：X+1）回合，每回合多抽 1 张牌并多获得 1 点能量。升级后额外获得保留词条。 |
 | **好友撞击 [Buddy Slam]** | <img src="Assets/profile/ironclad.png" width="22" height="22" title="铁甲战士 (Ironclad)"> | 攻击 | <img src="Assets/rarity/uncommon.png" width="22" height="22" title="罕见 (Uncommon)"> | 1（升级：0） | **仅多人模式出现**。造成等同于其他队友中最高格挡值的伤害。 |
-| **女巫形态 [Witch Form]** | <img src="Assets/profile/colorless.png" width="22" height="22" title="无色 (Colorless)"> | 能力 | <img src="Assets/rarity/special.png" width="22" height="22" title="先古 / 特殊 (Special)"> | 3 | 虚无。获得 1 层女巫形态。结束你的回合。升级后获得固有。（由先古遗物「精致的玩偶」获得，可在 Mod 设置中开关联动） |
+| **女巫形态 [Witch Form]** | <img src="Assets/profile/colorless.png" width="22" height="22" title="无色 (Colorless)"> | 能力 | <img src="Assets/rarity/special.png" width="22" height="22" title="先古 / 特殊 (Special)"> | 3（升级：2） | 每回合开始时额外多抽 1 张牌。打出时将手牌中所有的基础打击与防御蜕变为升级后的「巫术打击+」与「巫术防御+」。升级后获得固有。（由先古遗物「精致的玩偶」获得，可在 Mod 设置中开关联动） |
 
 ### 能力调整
 
@@ -144,7 +143,7 @@
 | <img src="Assets/powers/electrodynamics_power.png" width="22" height="22" valign="middle"> **电动力学 [Electrodynamics]** | 玩家 Buff | <img src="Assets/profile/defect.png" width="18" height="18" title="故障机器人"> 故障机器人卡牌「电动力学」 | [闪电]球改为攻击所有敌人。 |
 | <img src="Assets/powers/evolve_power.png" width="22" height="22" valign="middle"> **进化 [Evolve]** | 玩家 Buff | <img src="Assets/profile/ironclad.png" width="18" height="18" title="铁甲战士"> 铁甲战士卡牌「进化」 | 每当你抽到状态牌，抽 **1 / 2** 张牌。 |
 | <img src="Assets/powers/step_by_step_power.png" width="22" height="22" valign="middle"> **步步为营 [Step by Step]** | 玩家 Buff | <img src="Assets/profile/silent.png" width="18" height="18" title="静默猎手"> 静默猎手卡牌「步步为营」 | 每回合多抽 1 张牌并多获得 1 点能量，持续 **X / X+1** 回合。 |
-| <img src="Sts2BalanceMod/images/powers/WitchFormPower.png" width="22" height="22" valign="middle"> **女巫形态 [Witch Form]** | 玩家 Buff | 先古卡「女巫形态」（遗物「精致的玩偶」/ Tanx 事件） | 回合开始将手牌中最多 2 张牌分别蜕变为升级后的「巫术打击+」与「巫术防御+」（无额外抽牌）。 |
+| <img src="Sts2BalanceMod/images/powers/WitchFormPower.png" width="22" height="22" valign="middle"> **女巫形态 [Witch Form]** | 玩家 Buff | 先古卡「女巫形态」（遗物「精致的玩偶」/ Tanx 事件） | 在你的回合开始时，额外多抽 1 张牌。 |
 | <img src="Sts2BalanceMod/images/powers/LockOnPower.png" width="22" height="22" valign="middle"> **跟踪锁定 [Lock-On]** | Debuff | <img src="Assets/profile/defect.png" width="18" height="18" title="故障机器人"> 故障机器人卡牌「瞄准靶心」 | 受到的[充能球]伤害增加 **50%**；闪电球与暗黑球优先索敌该目标；回合结束减少 1 层。 |
 | <img src="Assets/powers/sorcery_weak.png" width="22" height="22" valign="middle"> **巫术虚弱 [Sorcery Weak]** | Debuff | 先古卡「巫术防御」（探克斯 Tanx） | 造成的攻击伤害减少 **40%**。若本回合进行过攻击，回合结束时减少 1 层。 |
 | <img src="Assets/powers/sorcery_vulnerable.png" width="22" height="22" valign="middle"> **巫术易伤 [Sorcery Vulnerable]** | Debuff | 先古卡「巫术打击」（探克斯 Tanx） | 受到的攻击伤害增加 **75%**。若本回合受到过攻击，回合结束时减少 1 层。 |
@@ -178,6 +177,8 @@
 #### 原版事件调整
 
 - **旋转漩涡 [Spiraling Whirlpool]**：将选项 1「凝视漩涡」的原版「涡旋」（仅限基础打击/防御）附魔替换为 <img src="Sts2BalanceMod/images/enchantments/EchoEnchantment.png" width="18" height="18" valign="middle"> **「回响」[Echo]** 附魔（被附魔的牌每回合能够重放 1 次，支持常规攻击/技能/能力牌与 X 费卡牌）；触发条件同步放宽至牌组中存在符合回响条件的卡牌。
+- **显秘瀑布 [Waterfall of Obvious Secrets]**：暴打选项塞入的「内疚」诅咒由 2 张减少至 **1 张**。
+- **诺奴佩普温泉 [Thermae Nonupeipe]**：痛饮泉水选项塞入的「内疚」诅咒由 3 张减少至 **2 张**。
 - **禅意织者 [Zen Weaver]**：删牌价格分别下调至 **100 / 200 金币**。
 - **旧日垃圾堆 [Trash Heap]**：遗物奖励池加入 <img src="Assets/relics/omamori.png" width="18" height="18" valign="middle"> **御守**。
 - **除虫者 / 科学怪人 / 药水的未来？**：初始选项中新增可配置的 **「离开」** 分支。
@@ -193,7 +194,7 @@
 
 | 遗物 | 类型 | 描述 |
 | :-- | :-: | :-- |
-| <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="22" height="22" valign="middle"> **精致的玩偶 [Delicate Doll]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 先古遗物。拾起时失去 50% 最大生命值上限，并将一张已升级的【女巫形态+】加入牌组。第 1 回合开始时对所有敌人施加 2 层易伤与 2 层虚弱。（通过 Tanx 事件获取，可在 Mod 设置中开关联动） |
+| <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="22" height="22" valign="middle"> **精致的玩偶 [Delicate Doll]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 先古遗物。拾起时失去 25% 最大生命值上限，将一张未升级的【女巫形态】加入牌组，并选择 2 张牌蜕变为升级后的「巫术打击+」与「巫术防御+」。第 1 回合开始时对所有敌人施加 2 层易伤与 2 层虚弱。（通过 Tanx 事件获取，可在 Mod 设置中开关联动） |
 | <img src="Assets/relics/sundial.png" width="22" height="22" valign="middle"> **日晷 [Sundial]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 每将抽牌堆洗牌 3 次（跨战斗保留计数），获得 3 点能量。 |
 | <img src="Assets/relics/orange_pill.png" width="22" height="22" valign="middle"> **橙色药丸 [Orange Pill]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 同一回合打出攻击 / 技能 / 能力各一张后，移除所有负面效果（女王的魂缚锁链除外）。 |
 | <img src="Assets/relics/dead_branch.png" width="22" height="22" valign="middle"> **枯木树枝 [Dead Branch]** | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 每消耗一张牌，随机将一张牌加入手牌（虚无牌触发时给当回合保留）。 |
@@ -225,6 +226,7 @@
 | <img src="Assets/relics/red_mask.png" width="22" height="22" valign="middle"> **红面具 [Red Mask]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 在一般共享遗物池中 | 从一般共享遗物池**移除**，只通过红面具相关事件获得 |
 | <img src="Assets/relics/history_course.png" width="22" height="22" valign="middle"> **历史课 [History Course]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 只重复上回合最后打出的攻击牌 | 回调为重复上回合最后打出的**攻击牌或技能牌** |
 | <img src="Assets/relics/diamond_diadem.png" width="22" height="22" valign="middle"> **诺努佩佩的钻石王冠 [Nonupeipe's Diamond Diadem]** | <img src="Assets/profile/nonupeipe.png" width="22" height="22" title="诺努佩佩 (Nonupeipe)"> | 战斗开始时获得 20 格挡，并在下回合开始时保留 | 回调为：一回合打出不超过 2 张牌时，受到的敌人伤害减半 |
+| <img src="Assets/profile/nonupeipe.png" width="22" height="22" valign="middle"> **艳丽围巾 [Brilliant Scarf]** | <img src="Assets/profile/nonupeipe.png" width="22" height="22" title="诺努佩佩 (Nonupeipe)"> | 每回合打出第 6 张牌耗能为 0（v0.113.0 削弱） | 回调为每回合打出的**第 5 张牌**耗能为 0 |
 | <img src="Assets/relics/toasty_mittens.png" width="22" height="22" valign="middle"> **烘焙手套 [Toasty Mittens]** | <img src="Assets/profile/tezcatara.png" width="22" height="22" title="提兹卡塔拉 (Tezcatara)"> | 回合开始自动从抽牌堆消耗 1 张牌并 +1 力量 | 回合开始支持从手牌中选择 1 张卡牌消耗（**提供 Skip 选项**），成功消耗后才获得 1 点力量 |
 | <img src="Assets/relics/signet_ring.png" width="22" height="22" valign="middle"> **图章戒指 [Signet Ring]** | <img src="Assets/profile/nonupeipe.png" width="22" height="22" title="诺努佩佩 (Nonupeipe)"> | 获得 888 金币 | 回调获得 **999** 金币 |
 | <img src="Assets/relics/beautiful_bracelet.png" width="22" height="22" valign="middle"> **华美手镯 [Beautiful Bracelet]** | <img src="Assets/profile/nonupeipe.png" width="22" height="22" title="诺努佩佩 (Nonupeipe)"> | 随机 4 张牌附魔【迅捷 2】 | 拾起时改为由玩家**自选 4 张牌**定向附魔【迅捷 2】 |

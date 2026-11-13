@@ -11,21 +11,21 @@
 
 ### 卡牌
 
-- [ ] **CARD-DOWSING-REMOVE-PATCH** — 移除「探寻」（Dowsing）问号房数量补丁
+- [x] **CARD-DOWSING-REMOVE-PATCH** — 移除「探寻」（Dowsing）问号房数量补丁
   - 目前: Mod 包含 `DowsingRoomsPatch`，将任务目标从 5 个 ? 房间改为 4 个。
   - 目标: 官方在 v0.113.0 更新中已原生将目标改为 4 个 ? 房间（且战斗问号房不触发），因此完全移除 Mod 中的 `DowsingRoomsPatch.cs`，直接采用官方原版实现。
   - 数值: 4 个 ? 房间（原版已支持）。
 
 ### 遗物
 
-- [ ] **RELIC-BRILLIANT-SCARF-REVERT** — 回退先古遗物「艳丽围巾」（Brilliant Scarf）触发门槛削弱
+- [x] **RELIC-BRILLIANT-SCARF-REVERT** — 回退先古遗物「艳丽围巾」（Brilliant Scarf）触发门槛削弱
   - 目前: 官方在 v0.113.0 将触发条件由「第 5 张牌」削弱为「第 6 张牌」。
   - 目标: 通过 Harmony Patch 将 `BrilliantScarf` 的触发门槛从 6 张牌改回 5 张牌（恢复削弱前的体验）。
   - 数值: 触发门槛 6 → 5。
 
 ### 事件与遭遇
 
-- [ ] **EVENT-NEW-EVENTS-CURSE-REDUCE** — 新增事件多重诅咒数量减 1
+- [x] **EVENT-NEW-EVENTS-CURSE-REDUCE** — 新增事件多重诅咒数量减 1
   - 目前: v0.113.0 新增事件中，部分选项惩罚塞入过多诅咒牌：
     1. 「显秘瀑布」（WaterfallOfObviousSecrets）的「暴打」选项给予 2 张「内疚」（Guilty）。
     2. 「诺奴佩普温泉」（ThermaeNonupeipe）的「痛饮泉水」选项给予 3 张「内疚」（Guilty）。

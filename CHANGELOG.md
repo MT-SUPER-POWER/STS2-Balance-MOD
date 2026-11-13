@@ -6,6 +6,27 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+## v0.5.0
+
+### Added
+
+- 遗物：回退诺奴佩普先古遗物「艳丽围巾」（Brilliant Scarf）触发门槛削弱，恢复为每回合打出的第 5 张牌耗能为 0（RELIC-BRILLIANT-SCARF-REVERT）。
+- 事件：调整 v0.113.0 新增事件多重诅咒惩罚，显秘瀑布（WaterfallOfObviousSecrets）暴打选项「内疚」诅咒由 2 张减少至 1 张；诺奴佩普温泉（ThermaeNonupeipe）痛饮泉水选项「内疚」诅咒由 3 张减少至 2 张（EVENT-NEW-EVENTS-CURSE-REDUCE）。
+- 设置：新增「艳丽围巾回退」（R13）、「显秘瀑布：诅咒减 1」（E18）与「诺奴佩普温泉：诅咒减 1」（E19）独立开关。
+
+### Changed
+
+- 卡牌：重构先古能力牌「女巫形态」（Witch Form），移除虚无与固有，耗能改为 3 费（升级 2 费，获得固有）；打出时移除强制结束回合，立即将当前手牌中所有的基础打击与防御蜕变为升级后的「巫术打击+」与「巫术防御+」；能力效果改为常驻每回合开始额外多抽 1 张牌（CARD-WITCH-FORM-REWORK）。
+- 遗物：重构先古遗物「精致的玩偶」（Delicate Doll），拾起时扣除最大生命值从 50% 下调至 25%，加入牌组的「女巫形态」改为未升级版本，并新增拾起时从牌组中选择 2 张牌蜕变为升级后的「巫术打击+」与「巫术防御+」（RELIC-DELICATE-DOLL-REWORK）。
+
+### Removed
+
+- 卡牌：移除「探寻」（Dowsing）问号房数量补丁，官方 v0.113.0 已原生将目标优化为 4 个问号房且避免战斗房变形（CARD-DOWSING-REMOVE-PATCH）。
+
+### Fixed
+
+- 兼容：全面适配游戏 v0.113.0 最新测试分支底层 API（包含 `CreatureCmd.LoseMaxHp` 参数变更、`RelicFactory.PullNextRelicForRewardFromFront` 遗物获取重构、`RelicModel.IsAllowedInternal` 虚方法调整及怪物死亡回调签名对齐）。
+
 ## v0.4.2
 
 ### Fixed
