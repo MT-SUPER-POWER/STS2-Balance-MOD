@@ -53,7 +53,7 @@ public sealed class NeowsTalisman : BalanceRelicTemplate
     }
   }
 
-  public override bool IsAllowed(IRunState runState) => runState.Players.Count == 1;
+  protected override bool IsAllowedInternal(IRunState runState) => runState.Players.Count == 1;
 
   public override Task AfterRoomEntered(AbstractRoom room)
   {

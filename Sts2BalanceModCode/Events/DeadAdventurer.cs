@@ -141,7 +141,7 @@ public sealed class DeadAdventurer : BalanceEventTemplate
           rewards.Add(new GoldReward(GoldRewardAmount, owner));
           break;
         case RewardType.Relic:
-          RelicModel? relic = RelicFactory.PullNextRelicFromFront(owner)?.ToMutable();
+          RelicModel? relic = RelicFactory.PullNextRelicForRewardFromFront(owner)?.ToMutable();
           if (relic != null)
             rewards.Add(new RelicReward(relic, owner));
           break;
@@ -173,7 +173,7 @@ public sealed class DeadAdventurer : BalanceEventTemplate
         case RewardType.Nothing:
           break;
         case RewardType.Relic:
-          RelicModel? relic = RelicFactory.PullNextRelicFromFront(owner)?.ToMutable();
+          RelicModel? relic = RelicFactory.PullNextRelicForRewardFromFront(owner)?.ToMutable();
           if (relic != null)
             await RelicCmd.Obtain(relic, owner);
           break;

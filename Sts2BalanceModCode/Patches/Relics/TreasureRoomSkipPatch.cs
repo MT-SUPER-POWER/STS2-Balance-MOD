@@ -125,7 +125,7 @@ public static class TreasureRoomSkipPatch
     SkipChestForCurseKey = true;
 
     NMapScreen.Instance?.SetTravelEnabled(enabled: true);
-    TaskHelper.RunSafely(RunManager.Instance.ProceedFromTerminalRewardsScreen());
+    RunManager.Instance.ProceedFromTerminalRewardsScreen();
 
     return false; // 跳过原生 handler
   }
