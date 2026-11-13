@@ -2,6 +2,9 @@
 
 | 日期 | 版本号 | 标题 | 档案链接 |
 | :-- | :-- | :-- | :-- |
+| 2026-11-12 | v0.113.0 | Beta Patch Notes - v0.113.0 | [查看原文](./2026-11-12-beta-patch-notes-v0-113-0/original.md) |
+| 2026-10-30 | v0.111.0 | The Neowsletter - October 2026 | [查看原文](./2026-10-30-the-neowsletter-october-2026/original.md) |
+| 2026-09-25 | - | The Neowsletter - September 2026 | [查看原文](./2026-09-25-the-neowsletter-september-2026/original.md) |
 | 2026-08-14 | v0.111.0 | Beta Patch Notes - v0.111.0 | [查看原文](./2026-08-14-beta-patch-notes-v0-111-0/original.md) |
 | 2026-07-31 | v0.110.0 | Beta Patch Notes - v0.110.0 | [查看原文](./2026-07-31-beta-patch-notes-v0-110-0/original.md) |
 | 2026-07-25 | v0.109.1 | Beta Hotfix Patch Notes - v0.109.1 | [查看原文](./2026-07-25-beta-hotfix-patch-notes-v0-109-1/original.md) |
