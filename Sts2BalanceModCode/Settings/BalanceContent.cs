@@ -124,7 +124,7 @@ internal static class BalanceLocalizationPatch
 }
 
 /// <summary>
-/// Target: CardFactory.FilterForPlayerCount / FilterForCombat, before random selection.
+/// Target: CardFactory.FilterForRun (v0.113.0+) / FilterForPlayerCount (legacy) / FilterForCombat, before random selection.
 /// Also cover explicit option lists supplied by generation hooks. Direct creation of
 /// existing event/witch-form reward cards is intentionally left intact for saved content.
 /// WARNING: relies on the vanilla factory filtering before it consumes RNG.
@@ -132,11 +132,21 @@ internal static class BalanceLocalizationPatch
 [HarmonyPatch]
 internal static class BalanceGeneratedCardPatch
 {
-  private static IEnumerable<MethodBase> TargetMethods() =>
-  [
-    AccessTools.Method(typeof(MegaCrit.Sts2.Core.Factories.CardFactory), "FilterForPlayerCount"),
-    AccessTools.Method(typeof(MegaCrit.Sts2.Core.Factories.CardFactory), "FilterForCombat")
-  ];
+  private static IEnumerable<MethodBase> TargetMethods()
+  {
+    MethodInfo? mRun = AccessTools.Method(typeof(MegaCrit.Sts2.Core.Factories.CardFactory), "FilterForRun");
+    if (mRun != null)
+      yield return mRun;
+
+    MethodInfo? mPlayer = AccessTools.Method(typeof(MegaCrit.Sts2.Core.Factories.CardFactory), "FilterForPlayerCount");
+    if (mPlayer != null)
+      yield return mPlayer;
+
+    MethodInfo? mCombat = AccessTools.Method(typeof(MegaCrit.Sts2.Core.Factories.CardFactory), "FilterForCombat");
+    if (mCombat != null)
+      yield return mCombat;
+  }
+
   private static void Postfix(ref IEnumerable<CardModel> __result) =>
     __result = __result.Where(c => BalanceContent.IsEnabled(c.GetType()));
 }
