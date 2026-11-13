@@ -32,6 +32,8 @@
 | 事件配图 | 事件名称 | C# 类名 / ID | 调整内容 |
 | :-: | :-- | :-- | :-- |
 | <img src="../Assets/events/spiraling_whirlpool.png" width="120"> | **旋转漩涡 [Spiraling Whirlpool]** | `SpiralingWhirlpoolPatch` | **奖励附魔重构**：<br>• 选项 1【凝视漩涡】原版仅能为基础「打击」或「防御」附魔「涡旋」（重放 1 次），现替换为自选卡牌附魔 <img src="../Sts2BalanceMod/images/enchantments/EchoEnchantment.png" width="18" height="18" valign="middle"> **「回响」[Echo]**（攻击/技能/能力牌每回合能够重放 1 次，支持 X 费牌二次结算）。<br>• 事件前置遭遇条件同步放宽为牌组中存在可被回响附魔的卡牌。 |
+| - | **显秘瀑布 [Waterfall of Obvious Secrets]** | `WaterfallOfObviousSecretsCursePatch` | **诅咒数量下调**：<br>• 选项【暴打】获取稀有卡/遗物时塞入的「内疚」诅咒数量由 2 张**减少至 1 张**。 |
+| - | **诺奴佩普温泉 [Thermae Nonupeipe]** | `ThermaeNonupeipeCursePatch` | **诅咒数量下调**：<br>• 选项【痛饮泉水】扣除 31 生命获取先古遗物时塞入的「内疚」诅咒数量由 3 张**减少至 2 张**。 |
 | <img src="../Assets/events/zen_weaver.png" width="120"> | **禅意织者 [Zen Weaver]** | `ZenWeaverCostPatch` | **删牌价格下调**：<br>• 删 1 张牌价格从 125 金币**下调至 100 金币**（事件触发门槛同步降至 100 金）。<br>• 删 2 张牌价格从 250 金币**下调至 200 金币**。 |
 | <img src="../Assets/events/trash_heap.png" width="120"> | **旧日垃圾堆 [Trash Heap]** | `TrashHeapAddCustomRelicAndCard` | 遗物奖励池中加入 <img src="../Assets/relics/omamori.png" width="18" height="18"> **御守 [Omamori]**。 |
 | <img src="../Assets/events/bugslayer.png" width="120"> | **除虫者 [Bugslayer]** | `EventLeaveOptionPatches` | 初始选项中**新增「离开」分支**，允许玩家直接走开而无须获取卡牌（可在 Mod 设置中开关）。 |
