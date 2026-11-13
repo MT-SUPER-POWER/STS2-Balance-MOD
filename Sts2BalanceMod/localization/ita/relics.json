@@ -75,7 +75,7 @@
   "STS2_BALANCEMOD_NEOWS_TALISMAN.flavor": "Attraverso il lungo sonno, un debole lamento si è trasformato in un frammento di protezione.",
   "ROYAL_STAMP.description": "Dopo aver ottenuto questa reliquia, scegli una carta Attacco, Abilità o Potere nel tuo [gold]mazzo[/gold] da [gold]incantare[/gold] con [purple]{Enchantment}[/purple].",
   "STS2_BALANCEMOD_DELICATE_DOLL.title": "Bambola delicata",
-  "STS2_BALANCEMOD_DELICATE_DOLL.description": "All'inizio di ogni combattimento, applica [blue]1[/blue] carica di [gold]Vulnerabilità stregonesca[/gold] a TUTTI i nemici.",
+  "STS2_BALANCEMOD_DELICATE_DOLL.description": "All'ottenimento, perdi il [red]25%[/red] dei PV max, aggiungi una [gold]Forma di strega[/gold] al tuo mazzo e trasforma 2 carte in [gold]Colpo stregonesco+[/gold] e [gold]Difesa stregonesca+[/gold] potenziati. All'inizio del turno 1, applica [blue]{VulnerablePower}[/blue] [gold]Vulnerabile[/gold] e [blue]{WeakPower}[/blue] [gold]Debole[/gold] a tutti i nemici.",
   "STS2_BALANCEMOD_DELICATE_DOLL.flavor": "Una bambola di porcellana intessuta di un'inquietante magia protettiva.",
   "STS2_BALANCEMOD_SHABBY_DOLL.title": "Bambola logora",
   "STS2_BALANCEMOD_SHABBY_DOLL.description": "All'inizio di ogni combattimento, applica [blue]1[/blue] carica di [gold]Debolezza stregonesca[/gold] a TUTTI i nemici.",

@@ -35,7 +35,7 @@
   "STS2_BALANCEMOD_BUDDY_SLAM.title": "Buddy Slam",
   "STS2_BALANCEMOD_BUDDY_SLAM.description": "Deal damage equal to the highest [gold]Block[/gold] among other players.{InCombat:\n(Deals {CalculatedDamage:diff()} damage)|}",
   "STS2_BALANCEMOD_WITCH_FORM.title": "Witch Form",
-  "STS2_BALANCEMOD_WITCH_FORM.description": "Gain {WitchFormPower:diff()} [gold]Witch Form[/gold]. End your turn.",
+  "STS2_BALANCEMOD_WITCH_FORM.description": "At the start of your turn, draw 1 additional card.\nTransform all basic [gold]Strikes[/gold] and [gold]Defends[/gold] in your hand into upgraded [gold]Sorcery Strike+[/gold] and [gold]Sorcery Defend+[/gold].",
   "EXPECT_A_FIGHT.title": "Fighting Retreat",
   "STS2_BALANCEMOD_CONSUME.title": "Consume",
   "STS2_BALANCEMOD_CONSUME.description": "Lose {OrbSlots:diff()} Orb slot(s).\nGain {FocusPower:diff()} [gold]Focus[/gold].",

@@ -75,7 +75,7 @@
   "STS2_BALANCEMOD_NEOWS_TALISMAN.flavor": "Сквозь долгий сон слабый плач обратился в осколок защиты.",
   "ROYAL_STAMP.description": "При получении накладывает [gold]чары[/gold] [purple]«{Enchantment}»[/purple] на выбранную Атаку, Навык или Силу.",
   "STS2_BALANCEMOD_DELICATE_DOLL.title": "Изящная кукла",
-  "STS2_BALANCEMOD_DELICATE_DOLL.description": "В начале каждого боя накладывает [blue]1[/blue] [gold]Колдовскую уязвимость[/gold] на ВСЕХ врагов.",
+  "STS2_BALANCEMOD_DELICATE_DOLL.description": "При получении теряет [red]25%[/red] макс. ОЗ, добавляет [gold]Форма ведьмы[/gold] в вашу колоду и превращает 2 карты в улучшенные [gold]Колдовской удар+[/gold] и [gold]Колдовская защита+[/gold]. В начале 1-го хода накладывает на всех врагов [blue]{VulnerablePower}[/blue] [gold]Уязвимость[/gold] и [blue]{WeakPower}[/blue] [gold]Слабость[/gold].",
   "STS2_BALANCEMOD_DELICATE_DOLL.flavor": "Фарфоровая куколка, пропитанная тревожной защитной магией.",
   "STS2_BALANCEMOD_SHABBY_DOLL.title": "Потрепанная кукла",
   "STS2_BALANCEMOD_SHABBY_DOLL.description": "В начале каждого боя накладывает [blue]1[/blue] [gold]Колдовскую слабость[/gold] на ВСЕХ врагов.",
