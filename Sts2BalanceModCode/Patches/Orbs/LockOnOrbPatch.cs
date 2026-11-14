@@ -7,11 +7,13 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Orbs;
 using MegaCrit.Sts2.Core.ValueProps;
 using Sts2BalanceMod.Sts2BalanceModCode.Powers;
 using Sts2BalanceMod.Sts2BalanceModCode.Runtime;
+using Sts2BalanceMod.Sts2BalanceModCode.Settings;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Orbs;
 
@@ -21,7 +23,8 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Orbs;
 /// 这一步在同步主线程执行，确保后续 Hook.ModifyDamage 中的 LockOnPower 能够立即识别充能球伤害来源。
 /// </summary>
 [HarmonyPatch(typeof(CreatureCmd), nameof(CreatureCmd.Damage),
-  [typeof(PlayerChoiceContext), typeof(IEnumerable<Creature>), typeof(decimal), typeof(ValueProp), typeof(Creature), typeof(CardModel), typeof(CardPlay)])]
+  [typeof(PlayerChoiceContext), typeof(IEnumerable<Creature>), typeof(decimal), typeof(ValueProp), typeof(Creature), typeof(CardModel), typeof(CardPlay), typeof(ModifyDamageHookType)])]
+[BalancePatch("C38")]
 public static class CreatureCmdDamageOrbContextPatch
 {
   [HarmonyPrefix]
@@ -47,6 +50,7 @@ public static class CreatureCmdDamageOrbContextPatch
 /// 2. 在伤害执行生命周期内设置 OrbDamageContext.IsOrbDealingDamage = true，确保被动与激发伤害均能享受 50% 加伤。
 /// </summary>
 [HarmonyPatch(typeof(LightningOrb), "ApplyLightningDamage")]
+[BalancePatch("C38")]
 public static class LightningOrbLockOnPatch
 {
   [HarmonyPrefix]
@@ -82,6 +86,7 @@ public static class LightningOrbLockOnPatch
 /// 同时在伤害执行期间显式标记充能球伤害上下文。
 /// </summary>
 [HarmonyPatch(typeof(DarkOrb), "Evoke")]
+[BalancePatch("C38")]
 public static class DarkOrbLockOnPatch
 {
   [HarmonyPrefix]
@@ -127,6 +132,7 @@ public static class DarkOrbLockOnPatch
 /// 拦截玻璃球的 Passive 与 Evoke，在其同步伤害结算前标记 OrbDamageContext.IsOrbDealingDamage = true。
 /// </summary>
 [HarmonyPatch]
+[BalancePatch("C38")]
 public static class GlassOrbDamageContextPatch
 {
   [HarmonyPatch(typeof(GlassOrb), nameof(GlassOrb.Passive))]

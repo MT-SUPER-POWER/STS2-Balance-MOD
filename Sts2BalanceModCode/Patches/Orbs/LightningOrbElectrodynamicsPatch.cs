@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Orbs;
 using MegaCrit.Sts2.Core.ValueProps;
 using Sts2BalanceMod.Sts2BalanceModCode.Powers;
+using Sts2BalanceMod.Sts2BalanceModCode.Settings;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Orbs;
 
@@ -14,6 +15,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Orbs;
 /// 电动力学：闪电球被动/激发攻击所有敌人（原版为随机单体，现覆盖 TeslaCoil 等指定目标场景）
 /// </summary>
 [HarmonyPatch(typeof(LightningOrb), "ApplyLightningDamage")]
+[BalancePatch("C25")]
 public static class LightningOrbElectrodynamicsPatch
 {
   private static readonly MethodInfo PlayEvokeSfx =

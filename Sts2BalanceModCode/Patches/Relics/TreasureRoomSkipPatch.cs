@@ -4,6 +4,7 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Screens.Map;
 using MegaCrit.Sts2.Core.Nodes.Screens.ScreenContext;
@@ -114,9 +115,9 @@ public static class TreasureRoomSkipPatch
       proceedButton.UpdateText(NProceedButton.ProceedLoc);
   }
 
-  [HarmonyPatch(typeof(NTreasureRoom), "OnProceedButtonPressed")]
+  [HarmonyPatch(typeof(NTreasureRoom), "OnProceedButtonReleased")]
   [HarmonyPrefix]
-  public static bool NTreasureRoomOnProceedButtonPressedPrefix()
+  public static bool NTreasureRoomOnProceedButtonReleasedPrefix(NButton _)
   {
     if (!Settings.BalanceModSettings.IsEnabled("G02") || !IsCurseKeySinglePlayer() || _chestOpened)
       return true; // 开箱后走原生流程
