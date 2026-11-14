@@ -11,6 +11,11 @@
 
 ### 卡牌
 
+- [x] **CARD-FORGOTTEN-RITUAL-NO-EXHAUST** — 铁甲战士「被遗忘的仪式」（Forgotten Ritual）升级取消消耗
+  - 目前: 原版升级增加 1 点能量（获得 4 点能量，且仍保留消耗词条）。
+  - 目标: 修改为升级后取消消耗词条（移除 Exhaust 关键字），并保持基础 3 点能量获取（不再增加能量）。
+  - 数值: 升级前消耗且获得 3 点能量；升级后取消消耗且获得 3 点能量。
+
 - [x] **CARD-DOWSING-REMOVE-PATCH** — 移除「探寻」（Dowsing）问号房数量补丁
   - 目前: Mod 包含 `DowsingRoomsPatch`，将任务目标从 5 个 ? 房间改为 4 个。
   - 目标: 官方在 v0.113.0 更新中已原生将目标改为 4 个 ? 房间（且战斗问号房不触发），因此完全移除 Mod 中的 `DowsingRoomsPatch.cs`，直接采用官方原版实现。
