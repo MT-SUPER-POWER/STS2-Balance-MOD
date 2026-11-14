@@ -1,6 +1,6 @@
 {
   "name": "sts2-balance-mod",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "packageManager": "pnpm@12.6.0",
   "scripts": {
     "prepare": "husky",
