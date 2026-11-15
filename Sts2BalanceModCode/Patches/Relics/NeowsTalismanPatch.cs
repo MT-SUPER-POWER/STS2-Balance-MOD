@@ -25,10 +25,10 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 [Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R10")]
 public static class NeowsTalismanPatch
 {
-  private static readonly MethodInfo _relicOptionMethod = typeof(AncientEventModel).GetMethod(
+  private static readonly MethodInfo _relicOptionMethod = AccessTools.Method(
+    typeof(AncientEventModel),
     "RelicOption",
-    BindingFlags.Instance | BindingFlags.NonPublic,
-    [typeof(RelicModel), typeof(string), typeof(string)]
+    [typeof(RelicModel), typeof(string)]
   ) ?? throw new InvalidOperationException("Could not find AncientEventModel.RelicOption method via reflection.");
 
   [HarmonyPatch(typeof(Neow), "get_NeowsTalismanOption")]
@@ -36,7 +36,7 @@ public static class NeowsTalismanPatch
   public static bool NeowsTalismanOptionPrefix(Neow __instance, ref EventOption __result)
   {
     var customRelic = (CustomNeowsTalisman)ModelDb.Relic<CustomNeowsTalisman>().ToMutable();
-    __result = (EventOption)_relicOptionMethod.Invoke(__instance, [customRelic, "INITIAL", "NEOW.pages.DONE.POSITIVE.description"])!;
+    __result = (EventOption)_relicOptionMethod.Invoke(__instance, [customRelic, "INITIAL"])!;
     return false;
   }
 

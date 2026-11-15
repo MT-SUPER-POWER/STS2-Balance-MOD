@@ -6,6 +6,13 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+## v0.5.2
+
+### Fixed
+
+- 遗物：修复「涅奥的护符」（Neow's Talisman）内部反射 `AncientEventModel.RelicOption` 签名参数不匹配抛出 `TypeInitializationException`，导致选用「涅奥的头骨」（Neow's Bones）无法弹出先古遗物奖励界面的问题。
+- 事件：修复先古之民 Tanx 事件补丁中 `RelicOption` 方法反射签名不匹配导致「精致的玩偶」（DelicateDoll）未能正确加入候选池的问题。
+
 ## v0.5.1
 
 ### Added

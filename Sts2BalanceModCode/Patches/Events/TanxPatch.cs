@@ -26,7 +26,7 @@ public static class TanxPatch
   private static readonly MethodInfo? RelicOptionMethod = AccessTools.Method(
       typeof(AncientEventModel),
       "RelicOption",
-      [typeof(RelicModel), typeof(string), typeof(string)]
+      [typeof(RelicModel), typeof(string)]
   );
 
   private static readonly PropertyInfo? BasePoolProp = AccessTools.Property(typeof(Tanx), "BaseOptionPool");
@@ -43,7 +43,7 @@ public static class TanxPatch
     if (dollModel == null || RelicOptionMethod == null)
       return;
 
-    if (RelicOptionMethod.Invoke(__instance, [dollModel, "INITIAL", null]) is EventOption dollOption)
+    if (RelicOptionMethod.Invoke(__instance, [dollModel, "INITIAL"]) is EventOption dollOption)
     {
       __result = __result.Append(dollOption);
     }
@@ -60,7 +60,7 @@ public static class TanxPatch
     if (dollModel == null || RelicOptionMethod == null || BasePoolProp == null)
       return true;
 
-    if (RelicOptionMethod.Invoke(__instance, [dollModel, "INITIAL", null]) is not EventOption dollOption)
+    if (RelicOptionMethod.Invoke(__instance, [dollModel, "INITIAL"]) is not EventOption dollOption)
       return true;
 
     if (BasePoolProp.GetValue(__instance) is not IEnumerable<EventOption> basePool)
