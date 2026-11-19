@@ -10,6 +10,7 @@
 
 ### Fixed
 
+- 联机：修复「艳丽围巾回退」设置项 ID 与「日晷」冲突（同为 R13），导致多人联机发送握手包构造配置快照时抛出 `ArgumentException` 异常中断、进而引发双方握手超时 10 秒（客户端提示网络 ERROR）的问题；更正艳丽围巾 ID 为 R29，并加固了握手快照的防重与异常保护机制。
 - 遗物：修复「涅奥的护符」（Neow's Talisman）内部反射 `AncientEventModel.RelicOption` 签名参数不匹配抛出 `TypeInitializationException`，导致选用「涅奥的头骨」（Neow's Bones）无法弹出先古遗物奖励界面的问题。
 - 事件：修复先古之民 Tanx 事件补丁中 `RelicOption` 方法反射签名不匹配导致「精致的玩偶」（DelicateDoll）未能正确加入候选池的问题。
 

@@ -22,15 +22,32 @@ internal sealed record BalanceConfigMismatchInfo : ConnectionFailureExtraInfo
   [typeof(ulong), typeof(PeerVersionInfo), typeof(PacketWriter)])]
 internal static class BalanceWriteHandshakePatch
 {
-  internal static Dictionary<string, bool> Snapshot() => BalanceCatalog.All.Where(c => c.AffectsGameplay)
-    .ToDictionary(c => c.Id, c => BalanceModSettings.IsEnabled(c.Id), StringComparer.Ordinal);
+  internal static Dictionary<string, bool> Snapshot()
+  {
+    var dict = new Dictionary<string, bool>(StringComparer.Ordinal);
+    foreach (var c in BalanceCatalog.All)
+    {
+      if (c.AffectsGameplay)
+      {
+        dict[c.Id] = BalanceModSettings.IsEnabled(c.Id);
+      }
+    }
+    return dict;
+  }
 
   private static void Postfix(PacketWriter writer)
   {
-    byte[] payload = BalanceConfigWire.Encode(Snapshot());
-    writer.WriteUInt(BalanceConfigWire.Magic);
-    writer.WriteUShort((ushort)payload.Length);
-    writer.WriteBytes(payload, payload.Length);
+    try
+    {
+      byte[] payload = BalanceConfigWire.Encode(Snapshot());
+      writer.WriteUInt(BalanceConfigWire.Magic);
+      writer.WriteUShort((ushort)payload.Length);
+      writer.WriteBytes(payload, payload.Length);
+    }
+    catch (Exception ex)
+    {
+      MegaCrit.Sts2.Core.Logging.Log.Error($"[Sts2BalanceMod] Failed to append balance handshake: {ex}");
+    }
   }
 }
 
@@ -58,8 +75,9 @@ internal static class BalanceReadHandshakePatch
       reader.ReadBytes(payload, length);
       remote = BalanceConfigWire.Decode(payload);
     }
-    catch (InvalidDataException)
+    catch (Exception ex)
     {
+      MegaCrit.Sts2.Core.Logging.Log.Error($"[Sts2BalanceMod] Failed to read balance configuration handshake: {ex}");
       // Vanilla has already cancelled the handshake timer. Explicitly use its existing
       // abort/failure cleanup instead of leaving the join waiting forever or reporting a mismatch.
       __instance.AbortHandshake(senderId);

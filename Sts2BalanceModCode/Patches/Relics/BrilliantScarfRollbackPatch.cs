@@ -12,7 +12,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Relics;
 /// WARNING: Verified against decompiled BrilliantScarf.cs in sts2.dll v0.113.0.
 /// </summary>
 [HarmonyPatch(typeof(BrilliantScarf), "get_CanonicalVars")]
-[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R13")]
+[Sts2BalanceMod.Sts2BalanceModCode.Settings.BalancePatch("R29")]
 public static class BrilliantScarfRollbackPatch
 {
   private const int RollbackTriggerThreshold = 5;
