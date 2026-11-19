@@ -260,12 +260,15 @@
 | `Settings/BalanceCatalog.cs` | 稳定条目 ID、分区、说明、旧配置迁移和红面具依赖 |
 | `Settings/BalanceModSettings.cs` | 保存选择、启动快照、折叠分区、筛选和主菜单重启 |
 | `Settings/BalancePatch.cs` | 按启动有效值安装标注的原版补丁，包含嵌套补丁 |
+| `Settings/BalanceRegistry.cs` | 启动时校验目录及绑定，生成补丁安装清单与日志摘要 |
 | `Settings/BalanceContent.cs` | 获取入口过滤、事件资格和关闭原版调整后的本地化恢复 |
 | `Settings/BalanceConfigWire.cs` | 有长度限制、按 ID 排序的配置编码与差异比较 |
 | `Settings/BalanceConfigDiagnostics.cs` | 配置读取错误及逐项差异的提示文案 |
 | `Patches/Multiplayer/BalanceConfigHandshakePatch.cs` | 握手附加数据及专属错误与原版弹窗接入 |
 
-源码路径均相对 `Sts2BalanceModCode/`。新增内容保留 `ModelDb` 注册和 `AllCards / AllRelics`，以免旧存档模型失去卡池 / 遗物池身份。常规获取通过 `GetUnlockedCards / GetUnlockedRelics`、卡牌随机生成过滤、遗物 / 事件 `IsAllowed` 控制；达尔夫、探克斯和旧日垃圾堆的直接注入入口另行处理。已持有物品与已生成事件的直接奖励不回收。
+源码路径均相对 `Sts2BalanceModCode/`。新增内容保留 `ModelDb` 注册，以供旧存档解析模型。卡牌和遗物列表通过返回值过滤隐藏禁用内容。常规获取通过 `GetUnlockedCards / GetUnlockedRelics`、卡牌随机生成过滤、遗物 / 事件 `IsAllowed` 控制；达尔夫、探克斯和旧日垃圾堆的直接注入入口另行处理。已持有物品与已生成事件的直接奖励不回收。
+
+启动时先检查开关编号格式和重复项，再检查内容、本地化及补丁引用的编号。无效引用会在初始化日志中指出来源和编号。校验和安装共用同一份补丁清单。启动摘要记录开启的玩法设置数量及已关闭的玩法编号。
 
 房主和客户端在原版 `SendHandshakeMessage` 发送前追加生效配置块。原版版本、Mod 列表和模型 ID 校验成功后读取该块，当前交换 89 项玩法配置。附加块依赖原版握手布局，游戏或其他握手 Mod 改变布局时需要重新验证。
 

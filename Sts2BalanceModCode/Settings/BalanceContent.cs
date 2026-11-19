@@ -27,6 +27,13 @@ internal static class BalanceContent
     ["Bullseye"] = "C38", ["LockOnPower"] = "C38", ["Recursion"] = "C39",
     ["EchoEnchantment"] = "E17"
   };
+
+  internal static void ValidateBindings(IReadOnlyDictionary<string, BalanceChange> catalog)
+  {
+    foreach (var (model, id) in Owners)
+      BalanceCatalog.RequireKnownId(catalog, id, $"Content model '{model}'");
+  }
+
   public static bool IsEnabled(Type type) => type.Assembly != typeof(BalanceContent).Assembly ||
     !Owners.TryGetValue(type.Name, out string? id) || BalanceModSettings.IsEnabled(id);
 
@@ -35,8 +42,8 @@ internal static class BalanceContent
       .Select(t => AccessTools.Method(t, "IsAllowed")).Where(m => m != null).Distinct();
 }
 
-// WARNING: GetUnlockedCards/Relics are the acquisition boundary. Keep AllCards/AllRelics
-// intact: existing saved models still need their Pool and preloaded resources after disabling.
+// WARNING: filter the enumerated choices without removing registered models.
+// Existing saves still need to resolve disabled models and their pools.
 [HarmonyPatch(typeof(CardPoolModel), nameof(CardPoolModel.GetUnlockedCards))]
 internal static class BalanceCardAcquisitionPatch
 {
@@ -114,6 +121,13 @@ internal static class BalanceLocalizationPatch
     ["STS2_BALANCE_MOD_EVENT_SPIRALING_WHIRLPOOL_OBSERVE"] = "E17",
     ["STS2_BALANCE_MOD_ENCHANTMENT_ECHO_ENCHANTMENT"] = "E17"
   };
+
+  internal static void ValidateBindings(IReadOnlyDictionary<string, BalanceChange> catalog)
+  {
+    foreach (var (key, id) in Owners)
+      BalanceCatalog.RequireKnownId(catalog, id, $"Localization key '{key}'");
+  }
+
   private static void Postfix(string path, Dictionary<string, string> __result)
   {
     if (!path.StartsWith("res://Sts2BalanceMod/localization/", StringComparison.OrdinalIgnoreCase)) return;

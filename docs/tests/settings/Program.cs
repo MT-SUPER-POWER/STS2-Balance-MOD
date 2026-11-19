@@ -12,15 +12,29 @@ void Reject(byte[] bytes, string name)
   catch (InvalidDataException) { checks++; return; }
   throw new Exception(name);
 }
+void RejectCatalog(Action validate, string message, string name)
+{
+  try { validate(); }
+  catch (InvalidOperationException ex)
+  {
+    Check(ex.Message.Contains(message, StringComparison.Ordinal), name);
+    return;
+  }
+  throw new Exception(name);
+}
 
-const string catalogPrefixes = "CREMG";
 var catalogIds = BalanceCatalog.All.Select(change => change.Id).ToArray();
-var duplicateIds = catalogIds.GroupBy(id => id, StringComparer.Ordinal)
-  .Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
-Check(duplicateIds.Length == 0, $"duplicate catalog IDs: {string.Join(", ", duplicateIds)}");
-Check(catalogIds.All(id => id.Length == 3 && catalogPrefixes.Contains(id[0]) &&
-  char.IsAsciiDigit(id[1]) && char.IsAsciiDigit(id[2])), "catalog IDs must have a category prefix and two digits");
-Check(catalogIds.SequenceEqual(catalogIds.OrderBy(id => catalogPrefixes.IndexOf(id[0]))
+var catalog = BalanceCatalog.ValidateIds(BalanceCatalog.All);
+Check(catalog.Count == catalogIds.Length, "startup validates every catalog ID");
+var exampleChange = BalanceCatalog.All[0];
+RejectCatalog(() => BalanceCatalog.ValidateIds([exampleChange, exampleChange with { Label = "duplicate" }]),
+  $"Duplicate balance setting ID '{exampleChange.Id}' for '{exampleChange.Label}' and 'duplicate'.",
+  "duplicate ID reports both conflicting settings");
+RejectCatalog(() => BalanceCatalog.ValidateIds([exampleChange with { Id = "C０1" }]),
+  $"Invalid balance setting ID 'C０1' for '{exampleChange.Label}'.", "non-ASCII digits are rejected");
+RejectCatalog(() => BalanceCatalog.RequireKnownId(catalog, "C31", "Localization key 'EXAMPLE'"),
+  "Localization key 'EXAMPLE' references unknown balance setting ID 'C31'.", "unknown binding identifies its source and ID");
+Check(catalogIds.SequenceEqual(catalogIds.OrderBy(id => BalanceCatalog.IdPrefixes.IndexOf(id[0]))
   .ThenBy(id => id, StringComparer.Ordinal)), "catalog IDs must be grouped by C/R/E/M/G and ascend within each group");
 Check(!catalogIds.Contains("C28") && !catalogIds.Contains("C31"), "retired IDs C28 and C31 must stay reserved");
 Check(BalanceCatalog.All.GroupBy(change => (change.Group, change.Subgroup, change.Label))
@@ -28,7 +42,7 @@ Check(BalanceCatalog.All.GroupBy(change => (change.Group, change.Subgroup, chang
 
 var choices = new Dictionary<string, bool>();
 BalanceCatalog.Migrate(choices, false, false, false);
-Check(choices.Keys.ToHashSet(StringComparer.Ordinal).SetEquals(catalogIds), "migration supplies a value for every catalog ID");
+Check(choices.Keys.ToHashSet(StringComparer.Ordinal).SetEquals(catalog.Keys), "migration supplies a value for every catalog ID");
 Check(new[] { "E02", "E15", "E16", "M02", "E14" }.All(id => !choices[id]), "legacy false values survive");
 choices["E15"] = true;
 BalanceCatalog.Migrate(choices, false, false, false);

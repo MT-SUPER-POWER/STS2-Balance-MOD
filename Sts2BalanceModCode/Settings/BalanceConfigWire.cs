@@ -12,7 +12,7 @@ internal static class BalanceConfigWire
     int offset = 0;
     foreach (var (id, enabled) in values.OrderBy(p => p.Key, StringComparer.Ordinal))
     {
-      if (!ValidId(id)) throw new InvalidDataException("Invalid configuration ID.");
+      if (!BalanceCatalog.IsValidId(id)) throw new InvalidDataException("Invalid configuration ID.");
       foreach (char c in id) bytes[offset++] = (byte)c;
       bytes[offset++] = enabled ? (byte)1 : (byte)0;
     }
@@ -26,15 +26,12 @@ internal static class BalanceConfigWire
     for (int i = 0; i < bytes.Length; i += 4)
     {
       string id = new(new[] { (char)bytes[i], (char)bytes[i + 1], (char)bytes[i + 2] });
-      if (!ValidId(id) || bytes[i + 3] > 1 || !result.TryAdd(id, bytes[i + 3] != 0))
+      if (!BalanceCatalog.IsValidId(id) || bytes[i + 3] > 1 || !result.TryAdd(id, bytes[i + 3] != 0))
         throw new InvalidDataException("Invalid configuration entry.");
     }
     return result;
   }
   internal static bool ValidPayloadLength(int length) => length > 0 && length <= MaxEntries * 4 && length % 4 == 0;
-
-  private static bool ValidId(string id) => id.Length == 3 && "CREMG".Contains(id[0]) &&
-    char.IsAsciiDigit(id[1]) && char.IsAsciiDigit(id[2]);
 
   internal static string[] Differences(IReadOnlyDictionary<string, bool> local, IReadOnlyDictionary<string, bool> remote) =>
     local.Keys.Union(remote.Keys).OrderBy(id => id, StringComparer.Ordinal)

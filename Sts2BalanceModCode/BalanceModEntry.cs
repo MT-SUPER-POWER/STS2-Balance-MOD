@@ -19,6 +19,7 @@ public partial class BalanceModEntry : Node
   {
     Logger = RitsuLibFramework.CreateLogger(ModId);
     var assembly = Assembly.GetExecutingAssembly();
+    var patches = BalanceRegistry.Validate(assembly);
 
     // RitsuLib needs the assembly association before content can be auto-registered.
     ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);
@@ -26,7 +27,8 @@ public partial class BalanceModEntry : Node
 
     BalanceModSettings.Register();
 
-    BalancePatch.Install(new Harmony(ModId), assembly);
+    BalancePatch.Install(new Harmony(ModId), patches);
+    BalanceRegistry.LogStartupSummary(Logger);
     Logger.Info("Sts2BalanceMod 加载完成");
   }
 }

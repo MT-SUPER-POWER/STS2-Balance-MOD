@@ -8,6 +8,8 @@ internal sealed record BalanceChange(string Id, string Group, string Subgroup, s
 /// <summary>Stable IDs shared by settings, startup patch selection and the handshake.</summary>
 internal static class BalanceCatalog
 {
+  internal const string IdPrefixes = "CREMG";
+
   // Keep each category in numeric order. Retired IDs C28 and C31 remain reserved.
   public static readonly IReadOnlyList<BalanceChange> All =
   [
@@ -106,6 +108,28 @@ internal static class BalanceCatalog
     new("G01", "通用规则", "", "高进阶商店删牌价格", "A6+ 初始 75，后续每次 +25；微笑面具开启并持有时仍优先固定 50"),
     new("G02", "通用规则", "", "单人跳过宝箱", "单人持有诅咒钥匙时可跳过宝箱；关闭跳过不取消遗物的诅咒代价"),
   ];
+
+  internal static bool IsValidId(string id) =>
+    id.Length == 3 && IdPrefixes.Contains(id[0]) && char.IsAsciiDigit(id[1]) && char.IsAsciiDigit(id[2]);
+
+  internal static IReadOnlyDictionary<string, BalanceChange> ValidateIds(IEnumerable<BalanceChange> changes)
+  {
+    var byId = new Dictionary<string, BalanceChange>(StringComparer.Ordinal);
+    foreach (var change in changes)
+    {
+      if (!IsValidId(change.Id))
+        throw new InvalidOperationException($"Invalid balance setting ID '{change.Id}' for '{change.Label}'.");
+      if (!byId.TryAdd(change.Id, change))
+        throw new InvalidOperationException($"Duplicate balance setting ID '{change.Id}' for '{byId[change.Id].Label}' and '{change.Label}'.");
+    }
+    return byId;
+  }
+
+  internal static void RequireKnownId(IReadOnlyDictionary<string, BalanceChange> catalog, string id, string binding)
+  {
+    if (!catalog.ContainsKey(id))
+      throw new InvalidOperationException($"{binding} references unknown balance setting ID '{id}'.");
+  }
 
   internal static void Migrate(Dictionary<string, bool> choices, bool leave, bool prism, bool doll)
   {

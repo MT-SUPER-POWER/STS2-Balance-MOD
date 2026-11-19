@@ -23,15 +23,20 @@ public sealed class BalanceModSettings
   private static IReadOnlyDictionary<string, bool> _active = new Dictionary<string, bool>();
   private static int _filter;
   private static string? _lastEditedId;
-  internal static IReadOnlyDictionary<string, bool> Active => _active;
   public static bool IsEnabled(string id) => BalanceCatalog.Effective(_active, id);
   public static bool InfestedPrismReworkEnabled => IsEnabled("M02");
   public static bool DelicateDollEnabled => IsEnabled("E14");
   private static ModDataStore Store => RitsuLibFramework.GetDataStore(BalanceModEntry.ModId);
   private static BalanceModSettings Current => Store.Get<BalanceModSettings>(DataKey);
-  private static bool Selected(string id) => Current.Choices.GetValueOrDefault(id, true);
   private static bool Pending(string id) => BalanceCatalog.Pending(Current.Choices, _active, id);
-  internal static bool NeedsRestart => BalanceCatalog.All.Any(c => Pending(c.Id));
+  private static bool NeedsRestart
+  {
+    get
+    {
+      var choices = Current.Choices;
+      return BalanceCatalog.All.Any(change => BalanceCatalog.Pending(choices, _active, change.Id));
+    }
+  }
 
   internal void Migrate()
   {
@@ -41,11 +46,13 @@ public sealed class BalanceModSettings
 
   public static void Register()
   {
-    Store.Register<BalanceModSettings>(DataKey, FileName, SaveScope.Global,
+    var store = Store;
+    store.Register<BalanceModSettings>(DataKey, FileName, SaveScope.Global,
       defaultFactory: static () => new(), autoCreateIfMissing: true);
-    Current.Migrate();
-    _active = new Dictionary<string, bool>(Current.Choices);
-    Store.Save(DataKey);
+    var settings = store.Get<BalanceModSettings>(DataKey);
+    settings.Migrate();
+    _active = new Dictionary<string, bool>(settings.Choices);
+    store.Save(DataKey);
     RitsuLibFramework.RegisterModSettings(BalanceModEntry.ModId, page =>
     {
       page.WithTitle(Text("平衡调整 Mod")).WithModDisplayName(Text("平衡调整 Mod"))
@@ -62,9 +69,7 @@ public sealed class BalanceModSettings
             new ModSettingsChoiceOption<int>(1, Text("当前生效")),
             new ModSettingsChoiceOption<int>(2, Text("待重启"))
           }, presentation: ModSettingsChoicePresentation.Dropdown);
-        section.AddParagraph("status", ModSettingsText.Dynamic(() => NeedsRestart
-          ? $"有 {BalanceCatalog.All.Count(c => Pending(c.Id))} 项改动待重启，当前游戏仍使用原配置。"
-          : _filter == 2 ? "没有待重启的改动。" : "配置已生效。展开下方分区，或从左侧直接定位。"));
+        section.AddParagraph("status", ModSettingsText.Dynamic(OverviewStatus));
         section.AddButton("restart", Text("应用改动"), Text("保存并重启"), Restart);
         section.WithEntryVisibleWhen("restart", () => NeedsRestart);
         section.WithEntryEnabledWhen("restart", CanRestart);
@@ -142,12 +147,31 @@ public sealed class BalanceModSettings
   }
 
   private static ModSettingsText Text(string value) => ModSettingsText.Literal(value);
+
+  private static string OverviewStatus()
+  {
+    var choices = Current.Choices;
+    int pendingCount = BalanceCatalog.All.Count(change => BalanceCatalog.Pending(choices, _active, change.Id));
+    if (pendingCount > 0)
+      return $"有 {pendingCount} 项改动待重启，当前游戏仍使用原配置。";
+    return _filter == 2 ? "没有待重启的改动。" : "配置已生效。展开下方分区，或从左侧直接定位。";
+  }
+
   private static string State(string id)
   {
-    string state = Pending(id) ? (BalanceCatalog.Effective(Current.Choices, id) ? "待启用" : "待关闭") : (IsEnabled(id) ? "已启用" : "已关闭");
-    if (id == "R04" && Selected(id) && !BalanceCatalog.Effective(Current.Choices, id))
-      state = (Pending(id) ? "待重启" : "暂不生效") + "（需要至少开启一个红面具事件）";
-    return state;
+    var choices = Current.Choices;
+    bool pending = BalanceCatalog.Pending(choices, _active, id);
+    bool effective = BalanceCatalog.Effective(choices, id);
+    if (id == "R04" && choices.GetValueOrDefault(id, true) && !effective)
+      return (pending ? "待重启" : "暂不生效") + "（需要至少开启一个红面具事件）";
+
+    return (pending, effective) switch
+    {
+      (true, true) => "待启用",
+      (true, false) => "待关闭",
+      (false, true) => "已启用",
+      _ => "已关闭"
+    };
   }
   private static bool Visible(string id) => _filter == 0 || (_filter == 1 ? IsEnabled(id) : Pending(id));
 
