@@ -23,12 +23,7 @@ internal sealed record BalanceConfigMismatchInfo : ConnectionFailureExtraInfo
   internal string GetTitle(string? lang)
   {
     if (CustomTitle != null) return CustomTitle;
-    return lang switch
-    {
-      "jpn" => "MOD設定の不一致",
-      "zhs" or "zht" => "Mod 参数配置不一致",
-      _ => "Mod Configuration Mismatch"
-    };
+    return lang is "zhs" or "zht" ? "Mod 参数配置不一致" : "Mod Configuration Mismatch";
   }
 
   internal string GetDetails(string? lang)
@@ -44,72 +39,25 @@ internal sealed record BalanceConfigMismatchInfo : ConnectionFailureExtraInfo
     IReadOnlyDictionary<string, bool> clientValues,
     bool isHost)
   {
-    string header = lang switch
-    {
-      "jpn" => "STS2 バランス調整 MOD (Sts2BalanceMod) の設定がホストと一致しないため、部屋に参加できません。\n設定を一致させてゲームを再起動してから再試行してください。\n\n不一致の項目:",
-      "zhs" or "zht" => "平衡调整 Mod (Sts2BalanceMod) 的生效配置与房主不一致，无法加入房间。\n请将配置调整为一致并重启游戏后重试。\n\n不一致的选项：",
-      _ => "STS2 Balance Mod (Sts2BalanceMod) configuration does not match the host.\nPlease match the settings and restart the game before retrying.\n\nMismatched options:"
-    };
+    bool isZh = lang is "zhs" or "zht";
+    string header = isZh
+      ? "平衡调整 Mod (Sts2BalanceMod) 的生效配置与房主不一致，无法加入房间。\n请将配置调整为一致并重启游戏后重试。\n\n不一致的选项："
+      : "STS2 Balance Mod (Sts2BalanceMod) configuration does not match the host.\nPlease match the settings and restart the game before retrying.\n\nMismatched options:";
 
-    string hostRole;
-    string clientRole;
-    if (isHost)
-    {
-      hostRole = lang switch
-      {
-        "jpn" => "あなた(ホスト)",
-        "zhs" or "zht" => "本人(房主)",
-        _ => "You (Host)"
-      };
-      clientRole = lang switch
-      {
-        "jpn" => "参加者",
-        "zhs" or "zht" => "加入者",
-        _ => "Peer"
-      };
-    }
-    else
-    {
-      hostRole = lang switch
-      {
-        "jpn" => "ホスト",
-        "zhs" or "zht" => "房主",
-        _ => "Host"
-      };
-      clientRole = lang switch
-      {
-        "jpn" => "あなた",
-        "zhs" or "zht" => "本人",
-        _ => "You"
-      };
-    }
+    string hostRole = isHost
+      ? (isZh ? "本人(房主)" : "You (Host)")
+      : (isZh ? "房主" : "Host");
+    string clientRole = isHost
+      ? (isZh ? "加入者" : "Peer")
+      : (isZh ? "本人" : "You");
 
     string FormatValue(IReadOnlyDictionary<string, bool> dict, string id)
     {
       if (!dict.TryGetValue(id, out bool val))
       {
-        return lang switch
-        {
-          "jpn" => "未設定",
-          "zhs" or "zht" => "无此项",
-          _ => "Missing"
-        };
+        return isZh ? "无此项" : "Missing";
       }
-      if (val)
-      {
-        return lang switch
-        {
-          "jpn" => "有効",
-          "zhs" or "zht" => "开启",
-          _ => "Enabled"
-        };
-      }
-      return lang switch
-      {
-        "jpn" => "無効",
-        "zhs" or "zht" => "关闭",
-        _ => "Disabled"
-      };
+      return val ? (isZh ? "开启" : "Enabled") : (isZh ? "关闭" : "Disabled");
     }
 
     string FormatLine(string id)
@@ -118,8 +66,8 @@ internal sealed record BalanceConfigMismatchInfo : ConnectionFailureExtraInfo
       string name;
       if (change != null)
       {
-        string g = LocalizeGroup(change.Group, lang);
-        string s = LocalizeSubgroup(change.Subgroup, lang);
+        string g = isZh ? change.Group : LocalizeGroup(change.Group);
+        string s = isZh ? change.Subgroup : LocalizeSubgroup(change.Subgroup);
         string cat = string.IsNullOrEmpty(s) ? g : $"{g} / {s}";
         name = $"{change.Label} ({cat})";
       }
@@ -129,11 +77,9 @@ internal sealed record BalanceConfigMismatchInfo : ConnectionFailureExtraInfo
       }
       string hVal = FormatValue(hostValues, id);
       string cVal = FormatValue(clientValues, id);
-      if (lang is "zhs" or "zht")
-      {
-        return $"・[{id}] {name}：{hostRole}=[{hVal}] / {clientRole}=[{cVal}]";
-      }
-      return $"・[{id}] {name}: {hostRole}=[{hVal}] / {clientRole}=[{cVal}]";
+      return isZh
+        ? $"・[{id}] {name}：{hostRole}=[{hVal}] / {clientRole}=[{cVal}]"
+        : $"・[{id}] {name}: {hostRole}=[{hVal}] / {clientRole}=[{cVal}]";
     }
 
     const int maxLines = 8;
@@ -141,100 +87,46 @@ internal sealed record BalanceConfigMismatchInfo : ConnectionFailureExtraInfo
     if (differenceIds.Length > maxLines)
     {
       int remaining = differenceIds.Length - maxLines;
-      string more = lang switch
-      {
-        "jpn" => $"...他 {remaining} 件の不一致",
-        "zhs" or "zht" => $"...以及其他 {remaining} 项不一致",
-        _ => $"...and {remaining} more mismatches"
-      };
+      string more = isZh
+        ? $"...以及其他 {remaining} 项不一致"
+        : $"...and {remaining} more mismatches";
       lines.Add(more);
     }
 
     return $"{header}\n" + string.Join("\n", lines);
   }
 
-  private static string LocalizeGroup(string group, string lang)
+  private static string LocalizeGroup(string group) => group switch
   {
-    if (lang == "jpn")
-    {
-      return group switch
-      {
-        "新增卡牌" => "新規カード",
-        "新增普通遗物" => "新規レリック",
-        "回归事件" => "復刻イベント",
-        "原版卡牌调整" => "カード調整",
-        "原版普通遗物调整" => "レリック調整",
-        "原版事件调整" => "イベント調整",
-        "怪物调整" => "モンスター調整",
-        "先古之民调整" => "エンシェント調整",
-        "通用规则" => "共通ルール",
-        _ => group
-      };
-    }
-    if (lang is not ("zhs" or "zht"))
-    {
-      return group switch
-      {
-        "新增卡牌" => "New Cards",
-        "新增普通遗物" => "New Relics",
-        "回归事件" => "Returning Events",
-        "原版卡牌调整" => "Vanilla Cards",
-        "原版普通遗物调整" => "Vanilla Relics",
-        "原版事件调整" => "Vanilla Events",
-        "怪物调整" => "Monster Balance",
-        "先古之民调整" => "Ancient Balance",
-        "通用规则" => "General Rules",
-        _ => group
-      };
-    }
-    return group;
-  }
+    "新增卡牌" => "New Cards",
+    "新增普通遗物" => "New Relics",
+    "回归事件" => "Returning Events",
+    "原版卡牌调整" => "Vanilla Cards",
+    "原版普通遗物调整" => "Vanilla Relics",
+    "原版事件调整" => "Vanilla Events",
+    "怪物调整" => "Monster Balance",
+    "先古之民调整" => "Ancient Balance",
+    "通用规则" => "General Rules",
+    _ => group
+  };
 
-  private static string LocalizeSubgroup(string subgroup, string lang)
+  private static string LocalizeSubgroup(string subgroup) => subgroup switch
   {
-    if (string.IsNullOrEmpty(subgroup)) return string.Empty;
-    if (lang == "jpn")
-    {
-      return subgroup switch
-      {
-        "铁甲战士" => "アイアンクラッド",
-        "静默猎手" => "サイレント",
-        "故障机器人" => "ディフェクト",
-        "死灵缚者" => "ネクロバインダー",
-        "储君" => "リージェント",
-        "涅奥" => "ネオー",
-        "达尔夫" => "ダルフ",
-        "探克斯" => "タンクス",
-        "瓦库" => "ヴァク",
-        "奥罗波斯" => "ウロボロス",
-        "提兹卡塔拉" => "ティズカタラ",
-        "诺努佩佩" => "ノヌペペ",
-        "其他" => "その他",
-        _ => subgroup
-      };
-    }
-    if (lang is not ("zhs" or "zht"))
-    {
-      return subgroup switch
-      {
-        "铁甲战士" => "Ironclad",
-        "静默猎手" => "Silent",
-        "故障机器人" => "Defect",
-        "死灵缚者" => "Necrobinder",
-        "储君" => "Regent",
-        "涅奥" => "Neow",
-        "达尔夫" => "Darf",
-        "探克斯" => "Tanx",
-        "瓦库" => "Vaku",
-        "奥罗波斯" => "Ouroboros",
-        "提兹卡塔拉" => "Tizcatala",
-        "诺努佩佩" => "Nonupepe",
-        "其他" => "Other",
-        _ => subgroup
-      };
-    }
-    return subgroup;
-  }
+    "铁甲战士" => "Ironclad",
+    "静默猎手" => "Silent",
+    "故障机器人" => "Defect",
+    "死灵缚者" => "Necrobinder",
+    "储君" => "Regent",
+    "涅奥" => "Neow",
+    "达尔夫" => "Darf",
+    "探克斯" => "Tanx",
+    "瓦库" => "Vaku",
+    "奥罗波斯" => "Ouroboros",
+    "提兹卡塔拉" => "Tizcatala",
+    "诺努佩佩" => "Nonupepe",
+    "其他" => "Other",
+    _ => subgroup
+  };
 }
 
 /// <summary>
@@ -317,19 +209,11 @@ internal static class BalanceReadHandshakePatch
     catch (Exception ex)
     {
       Log.Error($"[Sts2BalanceMod] Failed to read balance configuration handshake: {ex}");
-      string lang = LocManager.Instance?.Language ?? "eng";
-      string title = lang switch
-      {
-        "jpn" => "MODバージョンの不一致",
-        "zhs" or "zht" => "Mod 版本不兼容",
-        _ => "Mod Version Incompatible"
-      };
-      string details = lang switch
-      {
-        "jpn" => "相手の STS2 バランス調整 MOD (Sts2BalanceMod) と通信形式が一致しません。\nお互いに Mod を最新バージョンに更新してゲームを再起動してください。",
-        "zhs" or "zht" => "对方的平衡调整 Mod (Sts2BalanceMod) 通信协议不兼容。\n请双方均更新至最新版本 Mod 并重启游戏后重试。",
-        _ => "Incompatible STS2 Balance Mod communication protocol.\nPlease both update to the latest mod version and restart the game."
-      };
+      bool isZh = LocManager.Instance?.Language is "zhs" or "zht";
+      string title = isZh ? "Mod 版本不兼容" : "Mod Version Incompatible";
+      string details = isZh
+        ? "对方的平衡调整 Mod (Sts2BalanceMod) 通信协议不兼容。\n请双方均更新至最新版本 Mod 并重启游戏后重试。"
+        : "Incompatible STS2 Balance Mod communication protocol.\nPlease both update to the latest mod version and restart the game.";
       LastMismatch = new BalanceConfigMismatchInfo
       {
         localInfo = __result.extraInfo?.localInfo ?? PeerVersionInfo.LocalDefault(),
