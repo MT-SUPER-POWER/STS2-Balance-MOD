@@ -64,4 +64,23 @@ Reject([.. encoded, .. encoded[..4]], "duplicate rejected");
 Reject([(byte)'C', (byte)'0', (byte)'1', 2], "invalid bool rejected");
 Reject([(byte)'X', (byte)'0', (byte)'1', 1], "invalid ID rejected");
 Reject(new byte[516], "oversized rejected");
-Console.WriteLine($"PASS: {checks} configuration checks (catalog IDs, migration, startup isolation, dependencies, grouping, handshake codec).");
+
+var host = new Dictionary<string, bool> { ["C22"] = true, ["E03"] = false, ["G99"] = true };
+var guest = new Dictionary<string, bool> { ["C22"] = false, ["E03"] = false, ["R29"] = true };
+string[] diffIds = BalanceConfigWire.Differences(host, guest);
+string[] chineseDetails = BalanceConfigDiagnostics.MismatchLines("zhs", diffIds, host, guest, localIsHost: false);
+Check(chineseDetails.Length == 3 && chineseDetails[0].Contains("C22 电动力学 (新增卡牌 / 故障机器人)") &&
+  chineseDetails[0].Contains("房主 = 开启 / 你 = 关闭"), "guest sees the individual toggle and both values");
+Check(chineseDetails[1].Contains("G99") && chineseDetails[1].Contains("房主 = 开启 / 你 = 无此设置") &&
+  chineseDetails[2].Contains("R29") && chineseDetails[2].Contains("房主 = 无此设置 / 你 = 开启"),
+  "missing settings are distinct from disabled values in either direction");
+string[] englishDetails = BalanceConfigDiagnostics.MismatchLines("eng", diffIds, host, guest, localIsHost: true);
+Check(englishDetails[0].Contains("New Cards / Defect") &&
+  englishDetails[0].Contains("You (Host) = Enabled / Joining player = Disabled"), "host sees the same values with host-side labels");
+Check(BalanceConfigDiagnostics.MismatchSummary("zhs", diffIds.Length).Contains("3 项"), "popup summary includes the total");
+Check(BalanceConfigDiagnostics.ReadFailure("zhs", BalanceConfigReadError.MissingHeader, false).Body.Contains("未收到房主"),
+  "missing configuration is reported as a missing packet from the host");
+Check(BalanceConfigDiagnostics.ReadFailure("eng", BalanceConfigReadError.TruncatedPayload, true).Body.Contains("joining player sent incomplete"),
+  "truncated configuration identifies the joining player");
+
+Console.WriteLine($"PASS: {checks} configuration checks (catalog IDs, migration, startup isolation, dependencies, grouping, handshake codec and diagnostics).");

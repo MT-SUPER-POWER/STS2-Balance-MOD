@@ -7,6 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="../../../Sts2BalanceModCode/Settings/BalanceCatalog.cs" Link="BalanceCatalog.cs" />
+    <Compile Include="../../../Sts2BalanceModCode/Settings/BalanceConfigDiagnostics.cs" Link="BalanceConfigDiagnostics.cs" />
     <Compile Include="../../../Sts2BalanceModCode/Settings/BalanceConfigWire.cs" Link="BalanceConfigWire.cs" />
   </ItemGroup>
 </Project>

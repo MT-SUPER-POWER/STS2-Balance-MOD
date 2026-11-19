@@ -20,7 +20,7 @@ internal static class BalanceConfigWire
   }
   internal static Dictionary<string, bool> Decode(byte[] bytes)
   {
-    if (bytes.Length == 0 || bytes.Length % 4 != 0 || bytes.Length > MaxEntries * 4)
+    if (!ValidPayloadLength(bytes.Length))
       throw new InvalidDataException("Invalid configuration payload length.");
     var result = new Dictionary<string, bool>(StringComparer.Ordinal);
     for (int i = 0; i < bytes.Length; i += 4)
@@ -31,6 +31,8 @@ internal static class BalanceConfigWire
     }
     return result;
   }
+  internal static bool ValidPayloadLength(int length) => length > 0 && length <= MaxEntries * 4 && length % 4 == 0;
+
   private static bool ValidId(string id) => id.Length == 3 && "CREMG".Contains(id[0]) &&
     char.IsAsciiDigit(id[1]) && char.IsAsciiDigit(id[2]);
 

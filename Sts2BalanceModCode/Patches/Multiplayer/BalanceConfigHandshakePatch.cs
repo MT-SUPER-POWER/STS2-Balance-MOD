@@ -1,4 +1,6 @@
+using Godot;
 using HarmonyLib;
+using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
@@ -10,144 +12,17 @@ using Sts2BalanceMod.Sts2BalanceModCode.Settings;
 
 namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Multiplayer;
 
-internal sealed record BalanceConfigMismatchInfo : ConnectionFailureExtraInfo
-{
-  internal required string[] DifferenceIds { get; init; }
-  internal required IReadOnlyDictionary<string, bool> HostValues { get; init; }
-  internal required IReadOnlyDictionary<string, bool> ClientValues { get; init; }
-  internal string? CustomTitle { get; init; }
-  internal string? CustomDetails { get; init; }
+internal sealed record BalanceConfigMismatchInfo(
+  string[] DifferenceIds,
+  IReadOnlyDictionary<string, bool> HostValues,
+  IReadOnlyDictionary<string, bool> ClientValues) : ConnectionFailureExtraInfo;
 
-  internal string Details => GetDetails(LocManager.Instance?.Language);
-
-  internal string GetTitle(string? lang)
-  {
-    if (CustomTitle != null) return CustomTitle;
-    return lang is "zhs" or "zht" ? "Mod 参数配置不一致" : "Mod Configuration Mismatch";
-  }
-
-  internal string GetDetails(string? lang)
-  {
-    if (CustomDetails != null) return CustomDetails;
-    return FormatDetails(lang ?? "eng", DifferenceIds, HostValues, ClientValues, localIsHost);
-  }
-
-  private static string FormatDetails(
-    string lang,
-    string[] differenceIds,
-    IReadOnlyDictionary<string, bool> hostValues,
-    IReadOnlyDictionary<string, bool> clientValues,
-    bool isHost)
-  {
-    bool isZh = lang is "zhs" or "zht";
-    string header = isZh
-      ? "平衡调整 Mod (Sts2BalanceMod) 的生效配置与房主不一致，无法加入房间。\n请将配置调整为一致并重启游戏后重试。\n\n不一致的选项："
-      : "STS2 Balance Mod (Sts2BalanceMod) configuration does not match the host.\nPlease match the settings and restart the game before retrying.\n\nMismatched options:";
-
-    string hostRole = isHost
-      ? (isZh ? "本人(房主)" : "You (Host)")
-      : (isZh ? "房主" : "Host");
-    string clientRole = isHost
-      ? (isZh ? "加入者" : "Peer")
-      : (isZh ? "本人" : "You");
-
-    string FormatValue(IReadOnlyDictionary<string, bool> dict, string id)
-    {
-      if (!dict.TryGetValue(id, out bool val))
-      {
-        return isZh ? "无此项" : "Missing";
-      }
-      return val ? (isZh ? "开启" : "Enabled") : (isZh ? "关闭" : "Disabled");
-    }
-
-    string FormatLine(string id)
-    {
-      var change = BalanceCatalog.All.FirstOrDefault(c => c.Id == id);
-      string name;
-      if (change != null)
-      {
-        string g = isZh ? change.Group : LocalizeGroup(change.Group);
-        string s = isZh ? change.Subgroup : LocalizeSubgroup(change.Subgroup);
-        string cat = string.IsNullOrEmpty(s) ? g : $"{g} / {s}";
-        name = $"{change.Label} ({cat})";
-      }
-      else
-      {
-        name = id;
-      }
-      string hVal = FormatValue(hostValues, id);
-      string cVal = FormatValue(clientValues, id);
-      return isZh
-        ? $"・[{id}] {name}：{hostRole}=[{hVal}] / {clientRole}=[{cVal}]"
-        : $"・[{id}] {name}: {hostRole}=[{hVal}] / {clientRole}=[{cVal}]";
-    }
-
-    const int maxLines = 8;
-    var lines = differenceIds.Take(maxLines).Select(FormatLine).ToList();
-    if (differenceIds.Length > maxLines)
-    {
-      int remaining = differenceIds.Length - maxLines;
-      string more = isZh
-        ? $"...以及其他 {remaining} 项不一致"
-        : $"...and {remaining} more mismatches";
-      lines.Add(more);
-    }
-
-    return $"{header}\n" + string.Join("\n", lines);
-  }
-
-  private static string LocalizeGroup(string group) => group switch
-  {
-    "新增卡牌" => "New Cards",
-    "新增普通遗物" => "New Relics",
-    "回归事件" => "Returning Events",
-    "原版卡牌调整" => "Vanilla Cards",
-    "原版普通遗物调整" => "Vanilla Relics",
-    "原版事件调整" => "Vanilla Events",
-    "怪物调整" => "Monster Balance",
-    "先古之民调整" => "Ancient Balance",
-    "通用规则" => "General Rules",
-    _ => group
-  };
-
-  private static string LocalizeSubgroup(string subgroup) => subgroup switch
-  {
-    "铁甲战士" => "Ironclad",
-    "静默猎手" => "Silent",
-    "故障机器人" => "Defect",
-    "死灵缚者" => "Necrobinder",
-    "储君" => "Regent",
-    "涅奥" => "Neow",
-    "达尔夫" => "Darf",
-    "探克斯" => "Tanx",
-    "瓦库" => "Vaku",
-    "奥罗波斯" => "Ouroboros",
-    "提兹卡塔拉" => "Tizcatala",
-    "诺努佩佩" => "Nonupepe",
-    "其他" => "Other",
-    _ => subgroup
-  };
-}
+internal sealed record BalanceConfigReadFailureInfo(BalanceConfigReadError Error) : ConnectionFailureExtraInfo;
 
 /// <summary>
-/// Clear any stale mismatch info when initiating a new handshake.
+/// Append our active gameplay choices at the host/client send boundary.
+/// WARNING: the configuration trailer follows the original HandshakeManager payload.
 /// </summary>
-[HarmonyPatch(typeof(HandshakeManager), nameof(HandshakeManager.BeginHandshakeFor), [typeof(ulong)])]
-internal static class BalanceBeginHandshakePatch
-{
-  private static void Prefix()
-  {
-    BalanceReadHandshakePatch.LastMismatch = null;
-  }
-}
-
-/// <summary>
-/// Append our active gameplay choices after the vanilla version handshake.
-/// WARNING: verified against HandshakeManager.WriteHandshakeMessage and TryReadHandshakeMessage;
-/// vanilla fields/order must remain untouched when updating to a new game version.
-/// </summary>
-[HarmonyPatch(typeof(HandshakeManager), nameof(HandshakeManager.WriteHandshakeMessage),
-  [typeof(ulong), typeof(PeerVersionInfo), typeof(PacketWriter)])]
 internal static class BalanceWriteHandshakePatch
 {
   internal static Dictionary<string, bool> Snapshot()
@@ -163,138 +38,196 @@ internal static class BalanceWriteHandshakePatch
     return dict;
   }
 
-  private static void Postfix(PacketWriter writer)
+  internal static void Append(ulong peerId, PacketWriter writer)
   {
     try
     {
-      BalanceReadHandshakePatch.LastMismatch = null;
       byte[] payload = BalanceConfigWire.Encode(Snapshot());
       writer.WriteUInt(BalanceConfigWire.Magic);
       writer.WriteUShort((ushort)payload.Length);
       writer.WriteBytes(payload, payload.Length);
+      Log.Info($"[Sts2BalanceMod] Appended balance configuration handshake ({payload.Length} bytes, {payload.Length / 4} options) to peer {peerId}.");
     }
     catch (Exception ex)
     {
-      Log.Error($"[Sts2BalanceMod] Failed to append balance handshake: {ex}");
+      Log.Error($"[Sts2BalanceMod] Failed to append balance handshake to peer {peerId}: {ex}");
     }
   }
 }
 
+[HarmonyPatch(typeof(NetHostGameService), nameof(NetHostGameService.SendHandshakeMessage))]
+internal static class BalanceHostSendHandshakePatch
+{
+  private static void Prefix(ulong peerId, PacketWriter writer) =>
+    BalanceWriteHandshakePatch.Append(peerId, writer);
+}
+
+[HarmonyPatch(typeof(NetClientGameService), nameof(NetClientGameService.SendHandshakeMessage))]
+internal static class BalanceClientSendHandshakePatch
+{
+  private static void Prefix(ulong peerId, PacketWriter writer) =>
+    BalanceWriteHandshakePatch.Append(peerId, writer);
+}
+
 /// <summary>
-/// Only augment a successful vanilla handshake. Other error categories retain vanilla behavior.
-/// ModMismatch is the existing transport carrier; the extra-info subtype identifies our own error.
+/// Compare active settings after the vanilla checks and attach details to the native error.
+/// WARNING: the native success result carries peer version info and the reader is at the trailer.
 /// </summary>
 [HarmonyPatch(typeof(HandshakeManager), "TryReadHandshakeMessage")]
 internal static class BalanceReadHandshakePatch
 {
-  internal static BalanceConfigMismatchInfo? LastMismatch;
-
   private static void Postfix(HandshakeManager __instance, ulong senderId, PacketReader reader,
     IHandshakeHandler ____handler, ref HandshakeResult __result)
   {
     if (__result.status != HandshakeStatus.Success) return;
-    Dictionary<string, bool> remote;
-    try
+
+    var original = __result.extraInfo;
+    bool isHost = original?.localIsHost ?? false;
+    var readError = ReadConfiguration(reader, out var remote);
+    if (remote == null)
     {
-      if ((long)reader.BitPosition + 48 > (long)reader.Buffer.Length * 8 || reader.ReadUInt() != BalanceConfigWire.Magic)
-        throw new InvalidDataException("Missing balance configuration handshake.");
-      int length = reader.ReadUShort();
-      if (length == 0 || length > BalanceConfigWire.MaxEntries * 4 || length % 4 != 0 ||
-          (long)reader.BitPosition + length * 8 > (long)reader.Buffer.Length * 8)
-        throw new InvalidDataException("Truncated balance configuration handshake.");
-      byte[] payload = new byte[length];
-      reader.ReadBytes(payload, length);
-      remote = BalanceConfigWire.Decode(payload);
-    }
-    catch (Exception ex)
-    {
-      Log.Error($"[Sts2BalanceMod] Failed to read balance configuration handshake: {ex}");
-      bool isZh = LocManager.Instance?.Language is "zhs" or "zht";
-      string title = isZh ? "Mod 版本不兼容" : "Mod Version Incompatible";
-      string details = isZh
-        ? "对方的平衡调整 Mod (Sts2BalanceMod) 通信协议不兼容。\n请双方均更新至最新版本 Mod 并重启游戏后重试。"
-        : "Incompatible STS2 Balance Mod communication protocol.\nPlease both update to the latest mod version and restart the game.";
-      LastMismatch = new BalanceConfigMismatchInfo
+      Log.Error($"[Sts2BalanceMod] Could not read balance configuration from peer {senderId}: {readError}.");
+      var failure = new BalanceConfigReadFailureInfo(readError)
       {
-        localInfo = __result.extraInfo?.localInfo ?? PeerVersionInfo.LocalDefault(),
-        remoteInfo = __result.extraInfo?.remoteInfo ?? PeerVersionInfo.LocalDefault(),
-        localIsHost = __result.extraInfo?.localIsHost ?? false,
-        DifferenceIds = [],
-        HostValues = new Dictionary<string, bool>(),
-        ClientValues = new Dictionary<string, bool>(),
-        CustomTitle = title,
-        CustomDetails = details
+        localInfo = original?.localInfo ?? PeerVersionInfo.LocalDefault(),
+        remoteInfo = original?.remoteInfo ?? PeerVersionInfo.LocalDefault(),
+        localIsHost = isHost
       };
+      // The Steam disconnect event can arrive before ConnectionFailed. Clear the pending
+      // handshake first so the game dispatches this error with its details.
       __instance.AbortHandshake(senderId);
       __result = new HandshakeResult(HandshakeStatus.InvalidHandshake);
-      ____handler.HandshakeFailed(senderId, new NetErrorInfo(NetError.InvalidHandshake, selfInitiated: false));
+      ____handler.HandshakeFailed(senderId, new NetErrorInfo(NetError.InvalidHandshake, selfInitiated: false)
+      {
+        ConnectionExtraInfo = failure
+      });
       return;
     }
 
+    Log.Info($"[Sts2BalanceMod] Read balance configuration ({remote.Count} options) from peer {senderId}.");
     var local = BalanceWriteHandshakePatch.Snapshot();
     string[] differences = BalanceConfigWire.Differences(local, remote);
     if (differences.Length == 0) return;
 
-    var original = __result.extraInfo;
-    bool isHost = original?.localIsHost ?? false;
     var host = isHost ? local : remote;
     var client = isHost ? remote : local;
-
-    var mismatch = new BalanceConfigMismatchInfo
+    __result.extraInfo = new BalanceConfigMismatchInfo(differences, host, client)
     {
       localInfo = original?.localInfo ?? PeerVersionInfo.LocalDefault(),
       remoteInfo = original?.remoteInfo ?? PeerVersionInfo.LocalDefault(),
-      localIsHost = isHost,
-      DifferenceIds = differences,
-      HostValues = host,
-      ClientValues = client
+      localIsHost = isHost
     };
-
-    LastMismatch = mismatch;
-    Log.Warn($"[Sts2BalanceMod] Balance configuration mismatch detected with peer {senderId}:\n{mismatch.GetDetails(LocManager.Instance?.Language)}");
-
-    __result.extraInfo = mismatch;
     __result.status = HandshakeStatus.ModMismatch;
+    Log.Warn($"[Sts2BalanceMod] Balance settings differ with peer {senderId}: {string.Join(", ", differences)}.");
+  }
+
+  private static BalanceConfigReadError ReadConfiguration(PacketReader reader, out Dictionary<string, bool>? remote)
+  {
+    remote = null;
+    long availableBits = (long)reader.Buffer.Length * 8 - reader.BitPosition;
+    if (availableBits < 32) return BalanceConfigReadError.MissingHeader;
+    if (reader.ReadUInt() != BalanceConfigWire.Magic) return BalanceConfigReadError.UnrecognizedHeader;
+    if (availableBits < 48) return BalanceConfigReadError.TruncatedLength;
+
+    int length = reader.ReadUShort();
+    if (!BalanceConfigWire.ValidPayloadLength(length)) return BalanceConfigReadError.InvalidLength;
+    if (availableBits - 48 < length * 8) return BalanceConfigReadError.TruncatedPayload;
+
+    byte[] payload = new byte[length];
+    reader.ReadBytes(payload, length);
+    try
+    {
+      remote = BalanceConfigWire.Decode(payload);
+      return BalanceConfigReadError.None;
+    }
+    catch (InvalidDataException)
+    {
+      return BalanceConfigReadError.InvalidEntries;
+    }
   }
 }
 
 /// <summary>
-/// Intercept network error popups to display detailed balance configuration differences.
-/// Falls back to LastMismatch if Steam transport disconnection cleared ConnectionExtraInfo.
+/// Use the vanilla network error popup for this mod's typed errors.
+/// WARNING: the original error_popup scene owns the VerticalPopup and Description nodes.
 /// </summary>
 [HarmonyPatch(typeof(NErrorPopup), nameof(NErrorPopup.Create), [typeof(NetErrorInfo)])]
 internal static class BalanceConfigErrorPopupPatch
 {
   private static bool Prefix(NetErrorInfo info, ref NErrorPopup? __result)
   {
-    if (info.SelfInitiated && (info.GetReason() == NetError.Quit || info.GetReason() == NetError.CancelledJoin))
+    string? language = LocManager.Instance?.Language;
+    switch (info.ConnectionExtraInfo)
     {
-      BalanceReadHandshakePatch.LastMismatch = null;
-      return true;
+      case BalanceConfigReadFailureInfo failure:
+        var (title, body) = BalanceConfigDiagnostics.ReadFailure(language, failure.Error, failure.localIsHost);
+        __result = NErrorPopup.Create(title, body, false);
+        return false;
+      case BalanceConfigMismatchInfo mismatch:
+        __result = CreateMismatchPopup(language, mismatch);
+        return false;
+      default:
+        return true;
     }
-    var mismatch = info.ConnectionExtraInfo as BalanceConfigMismatchInfo ?? BalanceReadHandshakePatch.LastMismatch;
-    if (mismatch == null) return true;
-    BalanceReadHandshakePatch.LastMismatch = null;
+  }
 
-    string lang = LocManager.Instance?.Language ?? "eng";
-    __result = NErrorPopup.Create(mismatch.GetTitle(lang), mismatch.GetDetails(lang), false);
-    return false;
+  private static NErrorPopup? CreateMismatchPopup(string? language, BalanceConfigMismatchInfo mismatch)
+  {
+    string title = BalanceConfigDiagnostics.MismatchTitle(language);
+    string[] lines = BalanceConfigDiagnostics.MismatchLines(language,
+      mismatch.DifferenceIds, mismatch.HostValues, mismatch.ClientValues, mismatch.localIsHost);
+    string summary = $"{BalanceConfigDiagnostics.MismatchSummary(language, lines.Length)}\n\n{lines[0]}";
+    NErrorPopup? popup = NErrorPopup.Create(title, summary, false);
+    if (popup == null) return null;
+
+    string details = string.Join("\n\n", lines);
+    string detailsLabel = BalanceConfigDiagnostics.IsChinese(language) ? "详情" : "Details";
+    string backLabel = BalanceConfigDiagnostics.IsChinese(language) ? "返回" : "Back";
+    popup.Ready += () =>
+    {
+      var vertical = popup.GetNode<NVerticalPopup>("VerticalPopup");
+      var description = vertical.GetNode<MegaRichTextLabel>("Description");
+      var button = vertical.NoButton;
+      button.IsYes = false;
+      button.SetText(detailsLabel);
+      button.Show();
+      bool showingDetails = false;
+
+      // InitNoButton closes the modal. Bind the native button directly to switch views.
+      button.Released += _ =>
+      {
+        showingDetails = !showingDetails;
+        description.AutoSizeEnabled = !showingDetails;
+        description.ScrollActive = showingDetails;
+        description.HorizontalAlignment = showingDetails ? HorizontalAlignment.Left : HorizontalAlignment.Center;
+        description.VerticalAlignment = showingDetails ? VerticalAlignment.Top : VerticalAlignment.Center;
+        vertical.SetText(title, showingDetails ? details : summary);
+        if (showingDetails) description.ScrollToLine(0);
+        button.SetText(showingDetails ? backLabel : detailsLabel);
+      };
+    };
+    return popup;
   }
 }
 
 /// <summary>
-/// Ensure GetErrorString returns the detailed parameter differences when available.
+/// Include a short explanation in native surfaces that only render the error body.
 /// </summary>
 [HarmonyPatch(typeof(NetErrorInfo), nameof(NetErrorInfo.GetErrorString))]
 internal static class BalanceConfigErrorTextPatch
 {
   private static void Postfix(NetErrorInfo __instance, ref string __result)
   {
-    var mismatch = __instance.ConnectionExtraInfo as BalanceConfigMismatchInfo ?? BalanceReadHandshakePatch.LastMismatch;
-    if (mismatch != null)
+    string? language = LocManager.Instance?.Language;
+    switch (__instance.ConnectionExtraInfo)
     {
-      string lang = LocManager.Instance?.Language ?? "eng";
-      __result = mismatch.GetDetails(lang);
+      case BalanceConfigReadFailureInfo failure:
+        __result = BalanceConfigDiagnostics.ReadFailure(language, failure.Error, failure.localIsHost).Body;
+        break;
+      case BalanceConfigMismatchInfo mismatch:
+        __result = string.Join("\n", BalanceConfigDiagnostics.MismatchLines(language,
+          mismatch.DifferenceIds.Take(3), mismatch.HostValues, mismatch.ClientValues, mismatch.localIsHost));
+        break;
     }
   }
 }
