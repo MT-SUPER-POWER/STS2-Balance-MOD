@@ -41,6 +41,27 @@ dotnet build
 - 修改后关闭并重新启动游戏。编译成功不等于运行正常，Windows 日志在 `%AppData%/SlayTheSpire2/logs/godot.log`。
 - 处理图片时才需要安装 `uv`，在 `image_gen/` 运行 `uv sync`。用到参考子模块时运行 `git submodule update --init --recursive`，子模块仅作只读参考。
 
+## 用 Node.js 更新 Steam 创意工坊
+
+上传需要 Windows x64、x64 版 Node.js 22+ 和已登录的 Steam 客户端。Steam 账号须有权更新 `workshop/mod_id.txt` 指向的条目。脚本通过仓库已有的 Steamworks DLL 提交。
+
+先把发布产物放入 `workshop/content/`，并在 `workshop/workshop.json` 填好更新说明 `changeNote`。然后在仓库根目录运行这些命令。
+
+```powershell
+pnpm install
+pnpm workshop:publish --dry-run
+pnpm workshop:publish --publish
+```
+
+日常上传提交内容包和更新说明，工坊主页文案继续在网页维护。要同步标题、介绍、封面、标签或可见性时，可以用 `--meta-only` 预览元数据，或用 `--full` 同时预览内容与元数据。两种模式都支持 `--lang schinese` 和 `--lang english`，省略语言时会分别更新中英文。可以用 `--workspace <路径>` 指定其他工坊目录。
+
+```powershell
+pnpm workshop:publish --meta-only --lang english --dry-run
+pnpm workshop:publish --full --dry-run
+```
+
+预览确认后，用相同参数把 `--dry-run` 换为 `--publish`。依赖关系和游戏分支要求在工坊管理页维护。
+
 ## 目录速览
 
 | 目录 | 内容 |

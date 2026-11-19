@@ -5,6 +5,7 @@
   "scripts": {
     "prepare": "husky",
     "bump": "bun scripts/bump.ts",
+    "workshop:publish": "node scripts/workshop-publish.mjs",
     "format": "dotnet format Sts2BalanceMod.sln --include Sts2BalanceModCode",
     "format:cs": "dotnet format Sts2BalanceMod.sln --include Sts2BalanceModCode",
     "format:md": "prettier --write --ignore-unknown \"**/*.md\" && markdownlint-cli2 --fix",
@@ -19,6 +20,7 @@
   "devDependencies": {
     "editorconfig-checker": "^7.0.0",
     "husky": "^9.1.7",
+    "koffi": "3.3.8",
     "lint-staged": "^17.5.1",
     "markdownlint-cli2": "^0.23.3",
     "prettier": "^3.9.8",

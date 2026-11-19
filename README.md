@@ -47,6 +47,8 @@
 3. 确保 `STS2-RitsuLib` 也已安装在同一目录
 4. 启动游戏，在 Mod 管理页面确认 `Sts2BalanceMod` 已勾选
 
+维护者可用 [Node.js 工坊发布脚本](CONTRIBUTING.md#用-nodejs-更新-steam-创意工坊) 预览和上传本地发布包。
+
 ---
 
 ## 调整内容
