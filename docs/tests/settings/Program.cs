@@ -12,9 +12,23 @@ void Reject(byte[] bytes, string name)
   catch (InvalidDataException) { checks++; return; }
   throw new Exception(name);
 }
+
+const string catalogPrefixes = "CREMG";
+var catalogIds = BalanceCatalog.All.Select(change => change.Id).ToArray();
+var duplicateIds = catalogIds.GroupBy(id => id, StringComparer.Ordinal)
+  .Where(group => group.Count() > 1).Select(group => group.Key).ToArray();
+Check(duplicateIds.Length == 0, $"duplicate catalog IDs: {string.Join(", ", duplicateIds)}");
+Check(catalogIds.All(id => id.Length == 3 && catalogPrefixes.Contains(id[0]) &&
+  char.IsAsciiDigit(id[1]) && char.IsAsciiDigit(id[2])), "catalog IDs must have a category prefix and two digits");
+Check(catalogIds.SequenceEqual(catalogIds.OrderBy(id => catalogPrefixes.IndexOf(id[0]))
+  .ThenBy(id => id, StringComparer.Ordinal)), "catalog IDs must be grouped by C/R/E/M/G and ascend within each group");
+Check(!catalogIds.Contains("C28") && !catalogIds.Contains("C31"), "retired IDs C28 and C31 must stay reserved");
+Check(BalanceCatalog.All.GroupBy(change => (change.Group, change.Subgroup, change.Label))
+  .All(group => group.Count() == 1), "no duplicate (Group, Subgroup, Label) entries");
+
 var choices = new Dictionary<string, bool>();
 BalanceCatalog.Migrate(choices, false, false, false);
-Check(choices.Count == 90 && BalanceCatalog.All.Select(c => c.Id).Distinct().Count() == 90, "unique catalog");
+Check(choices.Keys.ToHashSet(StringComparer.Ordinal).SetEquals(catalogIds), "migration supplies a value for every catalog ID");
 Check(new[] { "E02", "E15", "E16", "M02", "E14" }.All(id => !choices[id]), "legacy false values survive");
 choices["E15"] = true;
 BalanceCatalog.Migrate(choices, false, false, false);
@@ -36,7 +50,7 @@ Check(BalanceCatalog.All.Count(c => c.Group == "先古之民调整") == 13, "anc
 choices["C13"] = true; choices["C16"] = false;
 Check(BalanceCatalog.Effective(choices, "C13") && !BalanceCatalog.Effective(choices, "C16"), "removed vanilla and new replacement remain independent");
 var wire = BalanceCatalog.All.Where(c => c.AffectsGameplay).ToDictionary(c => c.Id, c => BalanceCatalog.Effective(active, c.Id));
-Check(!wire.ContainsKey("C02") && wire.Count == 89, "cosmetic excluded");
+Check(!wire.ContainsKey("C02") && wire.Count == catalogIds.Length - 1, "only the cosmetic setting is excluded");
 byte[] encoded = BalanceConfigWire.Encode(wire);
 Check(BalanceConfigWire.Differences(wire, BalanceConfigWire.Decode(encoded)).Length == 0, "wire round trip");
 Check(encoded.SequenceEqual(BalanceConfigWire.Encode(wire.Reverse().ToDictionary())), "wire order deterministic");
@@ -50,4 +64,4 @@ Reject([.. encoded, .. encoded[..4]], "duplicate rejected");
 Reject([(byte)'C', (byte)'0', (byte)'1', 2], "invalid bool rejected");
 Reject([(byte)'X', (byte)'0', (byte)'1', 1], "invalid ID rejected");
 Reject(new byte[516], "oversized rejected");
-Console.WriteLine($"PASS: {checks} configuration checks (migration, startup isolation, dependencies, grouping, handshake codec).");
+Console.WriteLine($"PASS: {checks} configuration checks (catalog IDs, migration, startup isolation, dependencies, grouping, handshake codec).");

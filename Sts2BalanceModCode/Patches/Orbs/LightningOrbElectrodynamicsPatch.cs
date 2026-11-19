@@ -15,7 +15,7 @@ namespace Sts2BalanceMod.Sts2BalanceModCode.Patches.Orbs;
 /// 电动力学：闪电球被动/激发攻击所有敌人（原版为随机单体，现覆盖 TeslaCoil 等指定目标场景）
 /// </summary>
 [HarmonyPatch(typeof(LightningOrb), "ApplyLightningDamage")]
-[BalancePatch("C25")]
+[BalancePatch("C22")]
 public static class LightningOrbElectrodynamicsPatch
 {
   private static readonly MethodInfo PlayEvokeSfx =

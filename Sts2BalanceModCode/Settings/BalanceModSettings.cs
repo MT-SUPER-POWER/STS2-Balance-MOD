@@ -73,8 +73,32 @@ public sealed class BalanceModSettings
         section.AddParagraph("empty", Text("没有符合筛选条件的内容。可切换到「全部改动」。"));
         section.WithEntryVisibleWhen("empty", () => _filter == 1 && !BalanceCatalog.All.Any(c => Visible(c.Id)));
       });
+      // Keep the settings navigation order independent of the catalog's stable ID order.
+      var orderedChanges = BalanceCatalog.All.OrderBy(c => c.Group switch
+      {
+        "新增卡牌" => 0,
+        "新增普通遗物" => 1,
+        "回归事件" => 2,
+        "原版卡牌调整" => 3,
+        "原版普通遗物调整" => 4,
+        "先古之民调整" => 5,
+        "原版事件调整" => 6,
+        "怪物调整" => 7,
+        "通用规则" => 8,
+        _ => int.MaxValue
+      }).ThenBy(c => c.Subgroup switch
+      {
+        "探克斯" => 0,
+        "达尔夫" => 1,
+        "瓦库" => 2,
+        "诺努佩佩" => 3,
+        "奥罗波斯" => 4,
+        "提兹卡塔拉" => 5,
+        "涅奥" => 6,
+        _ => int.MaxValue
+      });
       int index = 0;
-      foreach (var group in BalanceCatalog.All.GroupBy(c => c.Group))
+      foreach (var group in orderedChanges.GroupBy(c => c.Group))
       {
         string groupId = $"group-{index++}";
         page.AddSection(groupId, section =>
