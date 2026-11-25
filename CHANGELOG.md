@@ -6,6 +6,16 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+## [Unreleased]
+
+### Changed
+
+- 本地化：依据知识库人物称呼规范统一 `Pointy`（点点）与 `Bear`（熊）的中文翻译，更新「点点的双刺」「熊的皮甲」、红面具强盗「点点」及「红面具大人之墓」事件文本。
+
+### Fixed
+
+- 文档：修复 [README.md](README.md) 与 [README_EN.md](README_EN.md) 中先古遗物「精致的玩偶」错误使用事件问号图标的问题，改为探克斯（Tanx）头像图标。
+
 ## v0.5.4
 
 ### Fixed

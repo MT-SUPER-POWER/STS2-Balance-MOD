@@ -167,7 +167,7 @@
 | :-- | :-- | :-- | :-- |
 | <img src="Assets/map/aeonglass_boss.png" width="22" height="22" valign="middle"> **永世沙漏 [Aeonglass]** | MON-01 | 永世沙漏 Boss 生成的凋萎卡无法打出，进入手牌扣血且每次强化增加扣血量。 | 凋萎卡改为**可打出并消耗**；基础 1 费，随沙漏强化**每 2 次升级打出费用 +1**。 |
 | <img src="Assets/map/elite.png" width="22" height="22" valign="middle"> **感染棱柱 [InfestedPrism]** | BOSS-01 | 开场污染玩家技能牌（活力火花），玩家打出污染技能为棱柱增加力量；4回合循环均为攻击。 | 移除【活力火花】机制，改为未格挡攻击时叠加【感染】[InfectedPower]（每段+3层），重构为前3回合高伤害攻击 + 第4回合防守加强（+3/+2力量）的4回合循环（支持 Mod 设置切换）。 |
-| <img src="Assets/map/monster.png" width="22" height="22" valign="middle"> **红面具强盗 Bear [Bear]** | MONSTER-01 | 首回合【熊抱 BEAR_HUG】给予目标 1 层【易伤】 (`VulnerablePower`)。 | 【熊抱 BEAR_HUG】Debuff 修改为减少 2 点【敏捷】 (`DexterityPower` -2)。 |
+| <img src="Assets/map/monster.png" width="22" height="22" valign="middle"> **红面具强盗 熊 [Bear]** | MONSTER-01 | 首回合【熊抱 BEAR_HUG】给予目标 1 层【易伤】 (`VulnerablePower`)。 | 【熊抱 BEAR_HUG】Debuff 修改为减少 2 点【敏捷】 (`DexterityPower` -2)。 |
 | <img src="Assets/map/guardian_boss.png" width="22" height="22" valign="middle"> **守护者 [Guardian]** | AFP-BOSS-01 | - | 按 Acts From the Past v1.0.5 移植完整行动循环、形态转换、Mode Shift、Sharp Hide、动画与音效；提供不进入普通地图池的心灵绽放专用遭遇。 |
 | <img src="Assets/map/hexaghost_boss.png" width="22" height="22" valign="middle"> **六火亡魂 [Hexaghost]** | AFP-BOSS-02 | - | 按 Acts From the Past v1.0.5 移植六火球状态、Divider/Sear/Inferno、灼伤升级、火焰特效与音效；提供不进入普通地图池的心灵绽放专用遭遇。 |
 | <img src="Assets/map/slime_boss.png" width="22" height="22" valign="middle"> **史莱姆老大 [Slime Boss]** | AFP-BOSS-03 | - | 按 Acts From the Past v1.0.5 移植 Boss、酸液/尖刺史莱姆大型与中型单位及完整两级分裂链；提供七槽位的心灵绽放专用遭遇。 |
@@ -201,7 +201,7 @@
 
 | 遗物 | 类型 | 描述 |
 | :-- | :-: | :-- |
-| <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="22" height="22" valign="middle"> **精致的玩偶 [Delicate Doll]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 先古遗物。拾起时失去 25% 最大生命值上限，将一张未升级的【女巫形态】加入牌组，并选择 2 张牌蜕变为升级后的「巫术打击+」与「巫术防御+」。第 1 回合开始时对所有敌人施加 2 层易伤与 2 层虚弱。（通过 Tanx 事件获取，可在 Mod 设置中开关联动） |
+| <img src="Sts2BalanceMod/images/relics/DelicateDoll.png" width="22" height="22" valign="middle"> **精致的玩偶 [Delicate Doll]** | <img src="Assets/profile/tanx.png" width="22" height="22" title="探克斯 (Tanx)"> | 先古遗物。拾起时失去 25% 最大生命值上限，将一张未升级的【女巫形态】加入牌组，并选择 2 张牌蜕变为升级后的「巫术打击+」与「巫术防御+」。第 1 回合开始时对所有敌人施加 2 层易伤与 2 层虚弱。（通过 Tanx 事件获取，可在 Mod 设置中开关联动） |
 | <img src="Assets/relics/sundial.png" width="22" height="22" valign="middle"> **日晷 [Sundial]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 每将抽牌堆洗牌 3 次（跨战斗保留计数），获得 3 点能量。 |
 | <img src="Assets/relics/orange_pill.png" width="22" height="22" valign="middle"> **橙色药丸 [Orange Pill]** | <img src="Assets/profile/merchant.png" width="22" height="22" title="商人 (Merchant)"> | 同一回合打出攻击 / 技能 / 能力各一张后，移除所有负面效果（女王的魂缚锁链除外）。 |
 | <img src="Assets/relics/dead_branch.png" width="22" height="22" valign="middle"> **枯木树枝 [Dead Branch]** | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | 每消耗一张牌，随机将一张牌加入手牌（虚无牌触发时给当回合保留）。 |
@@ -220,8 +220,8 @@
 | <img src="Sts2BalanceMod/images/relics/Inserter.png" width="22" height="22" valign="middle"> **机械臂 [Inserter]** | <img src="Assets/rarity/rare.png" width="22" height="22" title="稀有 (Rare)"> | <img src="Assets/profile/defect.png" width="18" height="18" valign="middle" title="故障机器人"> 机器人专属。每 2 回合，获得 1 个充能球栏位。（RELIC-INSERTER-01） |
 | <img src="Assets/relics/nilrys_codex.png" width="22" height="22" valign="middle"> **尼利的宝典 [Nilry's Codex]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 每回合结束时，从 3 张随机**升级版**卡牌中选择 1 张洗入抽牌堆。（RELIC-04：MOD 改为展示升级版） |
 | <img src="Assets/relics/mutagenic_strength.png" width="22" height="22" valign="middle"> **突变之力 [Mutagenic Strength]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 战斗开始时获得 3 点力量并附加 3 层「突变衰退」（每回合结束流失 1 点力量直到扣完；可与人工制品正常联动抵挡流失）。 |
-| <img src="Assets/relics/pointys_twin_blades.png" width="22" height="22" valign="middle"> **尖刺的双刺 [Pointy's Twin Blades]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 第 1 回合将 2 张具备保留且能施加虚弱的小刀+加入手牌。（红面具大人之墓事件） |
-| <img src="Assets/relics/bears_pelt.png" width="22" height="22" valign="middle"> **巨熊的皮甲 [Bear's Pelt]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 拾起时获得 8 点最大生命值。第 1 回合获得 10 点格挡，并对所有敌人施加 1 层虚弱。（红面具大人之墓事件） |
+| <img src="Assets/relics/pointys_twin_blades.png" width="22" height="22" valign="middle"> **点点的双刺 [Pointy's Twin Blades]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 第 1 回合将 2 张具备保留且能施加虚弱的小刀+加入手牌。（红面具大人之墓事件） |
+| <img src="Assets/relics/bears_pelt.png" width="22" height="22" valign="middle"> **熊的皮甲 [Bear's Pelt]** | <img src="Assets/map/event.png" width="22" height="22" title="事件 (Event)"> | 拾起时获得 8 点最大生命值。第 1 回合获得 10 点格挡，并对所有敌人施加 1 层虚弱。（红面具大人之墓事件） |
 
 #### 原版调整
 
