@@ -45,7 +45,7 @@ dotnet build
 
 上传需要 Windows x64、x64 版 Node.js 22+ 和已登录的 Steam 客户端。Steam 账号须有权更新 `workshop/mod_id.txt` 指向的条目。脚本通过仓库已有的 Steamworks DLL 提交。
 
-先把发布产物放入 `workshop/content/`，并在 `workshop/workshop.json` 填好更新说明 `changeNote`。然后在仓库根目录运行这些命令。
+将同一次发布构建生成的 DLL、PCK 和清单一起放入 `workshop/content/`，并在 `workshop/workshop.json` 填好更新说明 `changeNote`。然后在仓库根目录运行这些命令。
 
 ```powershell
 pnpm install
@@ -60,7 +60,7 @@ pnpm workshop:publish --meta-only --lang english --dry-run
 pnpm workshop:publish --full --dry-run
 ```
 
-预览确认后，用相同参数把 `--dry-run` 换为 `--publish`。依赖关系和游戏分支要求在工坊管理页维护。
+内容预览会显示清单版本和游戏分支范围。上传内容时，脚本会向 Steam 提交 `minBranch` 和 `maxBranch`。预览确认后，用相同参数把 `--dry-run` 换为 `--publish`。依赖关系在工坊管理页维护。
 
 ## 目录速览
 

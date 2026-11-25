@@ -9,7 +9,7 @@
 
 ### 发布工具
 
-- [x] **Node.js 创意工坊发布入口** — `pnpm workshop:publish --dry-run` 从仓库的 `workshop/` 预览内容包和更新说明，添加 `--publish` 后更新既有物品。支持只更新页面资料、完整更新及指定文案语言。上传使用 Windows x64、Node.js 22 或更高版本及已登录的桌面 Steam。
+- [x] **Node.js 创意工坊发布入口** — `pnpm workshop:publish --dry-run` 预览内容包、清单版本、游戏分支范围和更新说明。上传内容时提交配置的分支范围。支持只更新页面资料、完整更新及指定文案语言。
 
 ### Mod 设置
 

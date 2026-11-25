@@ -6,6 +6,12 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+## v0.5.4
+
+### Fixed
+
+- 创意工坊：上传内容时提交游戏分支范围，预览显示分支和清单版本，并拦截与仓库版本不符的清单。
+
 ## v0.5.3
 
 ### Added

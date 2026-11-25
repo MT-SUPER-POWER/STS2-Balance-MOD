@@ -50,6 +50,11 @@ function bindSteamworks(koffi) {
     ),
     startUpdate: ugc("StartItemUpdate", "uint64_t", ["uint32_t", "uint64_t"]),
     setContent: ugc("SetItemContent", "bool", ["uint64_t", "str"]),
+    setRequiredGameVersions: ugc("SetRequiredGameVersions", "bool", [
+      "uint64_t",
+      "str",
+      "str",
+    ]),
     setLanguage: ugc("SetItemUpdateLanguage", "bool", ["uint64_t", "str"]),
     setTitle: ugc("SetItemTitle", "bool", ["uint64_t", "str"]),
     setDescription: ugc("SetItemDescription", "bool", ["uint64_t", "str"]),
@@ -107,6 +112,8 @@ function applyUpdate(api, ugc, handle, update) {
 
   if (update.contentPath !== undefined)
     set("内容目录", api.setContent, update.contentPath);
+  if (update.gameBranches !== undefined)
+    set("游戏分支范围", api.setRequiredGameVersions, ...update.gameBranches);
   if (update.language !== undefined)
     set("文案语言", api.setLanguage, update.language);
   if (update.title !== undefined) set("标题", api.setTitle, update.title);

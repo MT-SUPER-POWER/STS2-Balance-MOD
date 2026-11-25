@@ -149,6 +149,27 @@ async function makePlan(workspace, mode, selectedLanguage) {
       throw new Error(`Workshop content folder is empty: ${contentPath}`);
     }
     finalUpdate.contentPath = contentPath;
+    if (config.minBranch !== undefined || config.maxBranch !== undefined) {
+      finalUpdate.gameBranches = [
+        checkedText(config.minBranch ?? "", "minBranch"),
+        checkedText(config.maxBranch ?? "", "maxBranch"),
+      ];
+    }
+    if (workspace === defaultWorkspace) {
+      const manifestName = "Sts2BalanceMod.json";
+      const manifest = JSON.parse(
+        await readText(path.join(contentPath, manifestName)),
+      );
+      const source = JSON.parse(
+        await readText(path.join(workspace, "..", manifestName)),
+      );
+      if (manifest.id !== source.id || manifest.version !== source.version) {
+        throw new Error(
+          `Workshop manifest is ${manifest.id} ${manifest.version}; expected ${source.id} ${source.version}. Rebuild and stage the complete release bundle.`,
+        );
+      }
+      finalUpdate.contentVersion = manifest.version;
+    }
   }
   finalUpdate.changeNote = checkedText(config.changeNote ?? "", "changeNote");
   return { appId, itemId, updates };
@@ -167,6 +188,14 @@ function printPreview({ itemId, updates }, mode) {
       );
     }
     if (update.contentPath) console.log(`\nContent: ${update.contentPath}`);
+    if (update.contentVersion)
+      console.log(`Manifest version: ${update.contentVersion}`);
+    if (update.gameBranches) {
+      const [min, max] = update.gameBranches;
+      console.log(
+        `Game branches: ${min || "(unbounded)"} to ${max || "(unbounded)"}`,
+      );
+    }
     if (update.previewPath) console.log(`Preview: ${update.previewPath}`);
     if (update.tags) console.log(`Tags: ${update.tags.join(", ")}`);
     if (update.visibility !== undefined) {
