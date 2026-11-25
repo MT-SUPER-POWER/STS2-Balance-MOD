@@ -67,6 +67,8 @@ dotnet build                              # 编译 Mod 工程，检查 C# 语法
 | 骨妹 | 死灵缚者 | `Necrobinder` |
 | 机宝 | 故障机器人 | `Defect` |
 | 储君 | 储君 | `Regent` |
+| 点点 | 点点 | `Pointy` |
+| 熊 | 熊 | `Bear` |
 | - | 先古之民 | `Ancients` |
 
 - 面向玩家的文档和本地化优先使用官方中文名；首次出现时可附英文名以消除歧义。
@@ -184,9 +186,8 @@ uv run events                                 # 事件背景图（3440×1616）
 
 在支持或需分析的代码库中（如 Mod 项目或游戏反编译项目 `D:\Game\Sts2Code`），在阅读文件或 grep 之前优先使用 CodeGraph 了解及定位代码：
 
+- When `.codegraph/` exists, use CodeGraph before searching or reading implementation code. Query the relevant file or symbol with `codegraph_explore` or `codegraph explore`.
 - **MCP 工具**（推荐）：`codegraph_explore` 可以在一次调用中回答代码结构、符号源码与调用链。查询游戏原版代码时务必显式指定 `projectPath: "D:\\Game\\Sts2Code"`。
-- **Shell 命令行**：`codegraph explore "<symbol names or question>"`。
-- **自动同步（Auto-Sync）**：CodeGraph 默认开启自动监听与同步。编辑、新增或删除文件时会自动实时更新索引，无需手动执行 `codegraph sync`。
 - **兜底策略（自动建立索引）**：如果目标代码库（如 `D:\Game\Sts2Code` 或新项目）未生成 `.codegraph/` 索引或索引丢失，**允许且应当**直接通过 shell 运行 `codegraph init` 或 `codegraph index` 自动建立索引，建立完成后即可正常使用 `codegraph_explore` 进行深入分析，严禁回退到使用脚本/反射解包 DLL。
 
 <!-- CODEGRAPH_END -->
