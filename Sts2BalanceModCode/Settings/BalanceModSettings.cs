@@ -55,27 +55,32 @@ public sealed class BalanceModSettings
     store.Save(DataKey);
     RitsuLibFramework.RegisterModSettings(BalanceModEntry.ModId, page =>
     {
-      page.WithTitle(Text("平衡调整 Mod")).WithModDisplayName(Text("平衡调整 Mod"))
-        .WithDescription(Text("展开分区调整内容；修改后重启游戏生效。"));
+      page.WithTitle(LocText("STS2BALANCEMOD.mod_title", "平衡调整 Mod"))
+        .WithModDisplayName(LocText("STS2BALANCEMOD.mod_title", "平衡调整 Mod"))
+        .WithDescription(LocText("STS2BALANCEMOD.settings.description", "展开分区调整内容；修改后重启游戏生效。"));
       page.AddSection("overview", section =>
       {
-        section.WithTitle(Text("浏览与应用"));
-        section.AddChoice("filter", Text("显示内容"),
+        section.WithTitle(LocText("STS2BALANCEMOD.settings.overview.title", "浏览与应用"));
+        section.AddChoice("filter", LocText("STS2BALANCEMOD.settings.overview.filter.title", "显示内容"),
           new ModSettingsCallbackValueBinding<int>(BalanceModEntry.ModId, "view-filter", SaveScope.Global,
             () => _filter, value => _filter = value, () => { }),
           new[]
           {
-            new ModSettingsChoiceOption<int>(0, Text("全部改动")),
-            new ModSettingsChoiceOption<int>(1, Text("当前生效")),
-            new ModSettingsChoiceOption<int>(2, Text("待重启"))
+            new ModSettingsChoiceOption<int>(0, LocText("STS2BALANCEMOD.settings.overview.filter.all", "全部改动")),
+            new ModSettingsChoiceOption<int>(1, LocText("STS2BALANCEMOD.settings.overview.filter.active", "当前生效")),
+            new ModSettingsChoiceOption<int>(2, LocText("STS2BALANCEMOD.settings.overview.filter.pending", "待重启"))
           }, presentation: ModSettingsChoicePresentation.Dropdown);
         section.AddParagraph("status", ModSettingsText.Dynamic(OverviewStatus));
-        section.AddButton("restart", Text("应用改动"), Text("保存并重启"), Restart);
+        section.AddButton("restart",
+          LocText("STS2BALANCEMOD.settings.overview.restart.title", "应用改动"),
+          LocText("STS2BALANCEMOD.settings.overview.restart.button", "保存并重启"), Restart);
         section.WithEntryVisibleWhen("restart", () => NeedsRestart);
         section.WithEntryEnabledWhen("restart", CanRestart);
-        section.AddParagraph("restart-help", Text("请先退出对局或房间，再从主菜单重启。"));
+        section.AddParagraph("restart-help",
+          LocText("STS2BALANCEMOD.settings.overview.restart_help", "请先退出对局或房间，再从主菜单重启。"));
         section.WithEntryVisibleWhen("restart-help", () => NeedsRestart && !CanRestart());
-        section.AddParagraph("empty", Text("没有符合筛选条件的内容。可切换到「全部改动」。"));
+        section.AddParagraph("empty",
+          LocText("STS2BALANCEMOD.settings.overview.empty", "没有符合筛选条件的内容。可切换到「全部改动」。"));
         section.WithEntryVisibleWhen("empty", () => _filter == 1 && !BalanceCatalog.All.Any(c => Visible(c.Id)));
       });
       // Keep the settings navigation order independent of the catalog's stable ID order.
@@ -109,33 +114,35 @@ public sealed class BalanceModSettings
         page.AddSection(groupId, section =>
         {
           var entries = group.ToArray();
-          section.WithTitle(Text(group.Key)).Collapsible(true);
+          section.WithTitle(LocText(BalanceCatalog.GroupKey(group.Key), group.Key)).Collapsible(true);
           section.WithVisibleWhen(() => entries.Any(c => Visible(c.Id)));
           foreach (var subgroup in entries.GroupBy(c => c.Subgroup))
           {
             if (subgroup.Key.Length > 0)
             {
               string subgroupId = $"sub-{subgroup.First().Id}";
-              section.AddParagraph(subgroupId, Text(subgroup.Key));
+              section.AddParagraph(subgroupId, LocText(BalanceCatalog.SubgroupKey(subgroup.Key), subgroup.Key));
               section.WithEntryVisibleWhen(subgroupId, () => subgroup.Any(c => Visible(c.Id)));
             }
             foreach (BalanceChange change in subgroup)
             {
-              section.AddToggle(change.Id, Text(change.Label),
+              section.AddToggle(change.Id, LocText(change.LabelKey, change.Label),
                 new ModSettingsValueBinding<BalanceModSettings, bool>(BalanceModEntry.ModId, DataKey, SaveScope.Global,
                   s => s.Choices.GetValueOrDefault(change.Id, true), (s, value) =>
                   {
                     s.Choices[change.Id] = value;
                     _lastEditedId = change.Id;
                   }),
-                ModSettingsText.Dynamic(() => $"{State(change.Id)} · {change.Description}"));
+                ModSettingsText.Dynamic(() => $"{State(change.Id)} · {change.LocalizedDescription}"));
               section.WithEntryVisibleWhen(change.Id, () => Visible(change.Id));
               // Keep one contextual action beside the last edit instead of requiring a scroll to the top.
               string restartId = change.Id + "-restart";
-              section.AddButton(restartId, Text("配置已修改，重启后生效"), Text("重启游戏"), Restart,
+              section.AddButton(restartId,
+                LocText("STS2BALANCEMOD.settings.item_restart.title", "配置已修改，重启后生效"),
+                LocText("STS2BALANCEMOD.settings.item_restart.button", "重启游戏"), Restart,
                 description: ModSettingsText.Dynamic(() => CanRestart()
-                  ? "可以继续调整，重启时会保存并应用全部改动。"
-                  : "请先退出对局或房间，再从主菜单重启。"));
+                  ? Loc("STS2BALANCEMOD.settings.item_restart.can_restart", "可以继续调整，重启时会保存并应用全部改动。")
+                  : Loc("STS2BALANCEMOD.settings.item_restart.cannot_restart", "请先退出对局或房间，再从主菜单重启。")));
               section.WithEntryVisibleWhen(restartId,
                 () => _lastEditedId == change.Id && NeedsRestart && Visible(change.Id));
               section.WithEntryEnabledWhen(restartId, CanRestart);
@@ -146,15 +153,20 @@ public sealed class BalanceModSettings
     }, pageId: "settings");
   }
 
-  private static ModSettingsText Text(string value) => ModSettingsText.Literal(value);
+  private static ModSettingsText LocText(string key, string fallback) =>
+    ModSettingsText.LocString("settings_ui", key, fallback);
+
+  private static string Loc(string key, string fallback) => BalanceCatalog.Loc(key, fallback);
 
   private static string OverviewStatus()
   {
     var choices = Current.Choices;
     int pendingCount = BalanceCatalog.All.Count(change => BalanceCatalog.Pending(choices, _active, change.Id));
     if (pendingCount > 0)
-      return $"有 {pendingCount} 项改动待重启，当前游戏仍使用原配置。";
-    return _filter == 2 ? "没有待重启的改动。" : "配置已生效。展开下方分区，或从左侧直接定位。";
+      return string.Format(Loc("STS2BALANCEMOD.settings.overview.status.pending", "有 {0} 项改动待重启，当前游戏仍使用原配置。"), pendingCount);
+    return _filter == 2
+      ? Loc("STS2BALANCEMOD.settings.overview.status.no_pending", "没有待重启的改动。")
+      : Loc("STS2BALANCEMOD.settings.overview.status.active", "配置已生效。展开下方分区，或从左侧直接定位。");
   }
 
   private static string State(string id)
@@ -163,14 +175,16 @@ public sealed class BalanceModSettings
     bool pending = BalanceCatalog.Pending(choices, _active, id);
     bool effective = BalanceCatalog.Effective(choices, id);
     if (id == "R04" && choices.GetValueOrDefault(id, true) && !effective)
-      return (pending ? "待重启" : "暂不生效") + "（需要至少开启一个红面具事件）";
+      return pending
+        ? Loc("STS2BALANCEMOD.settings.state.r04_pending_blocked", "待重启（需要至少开启一个红面具事件）")
+        : Loc("STS2BALANCEMOD.settings.state.r04_inactive_blocked", "暂不生效（需要至少开启一个红面具事件）");
 
     return (pending, effective) switch
     {
-      (true, true) => "待启用",
-      (true, false) => "待关闭",
-      (false, true) => "已启用",
-      _ => "已关闭"
+      (true, true) => Loc("STS2BALANCEMOD.settings.state.pending_enable", "待启用"),
+      (true, false) => Loc("STS2BALANCEMOD.settings.state.pending_disable", "待关闭"),
+      (false, true) => Loc("STS2BALANCEMOD.settings.state.enabled", "已启用"),
+      _ => Loc("STS2BALANCEMOD.settings.state.disabled", "已关闭")
     };
   }
   private static bool Visible(string id) => _filter == 0 || (_filter == 1 ? IsEnabled(id) : Pending(id));

@@ -42,7 +42,7 @@ internal static class BalanceConfigDiagnostics
       BalanceChange? change = BalanceCatalog.All.FirstOrDefault(c => c.Id == id);
       string name = change == null
         ? id
-        : $"{id} {change.Label} ({Category(change, isChinese)})";
+        : $"{id} {change.LocalizedLabel} ({Category(change, isChinese)})";
       return $"• {name}\n  {hostRole} = {Value(host, id)} / {clientRole} = {Value(client, id)}";
     }).ToArray();
   }
@@ -80,7 +80,7 @@ internal static class BalanceConfigDiagnostics
 
   private static string Category(BalanceChange change, bool isChinese)
   {
-    string group = isChinese ? change.Group : change.Group switch
+    string fallbackGroup = isChinese ? change.Group : change.Group switch
     {
       "新增卡牌" => "New Cards",
       "新增普通遗物" => "New Relics",
@@ -93,7 +93,7 @@ internal static class BalanceConfigDiagnostics
       "通用规则" => "General Rules",
       _ => change.Group
     };
-    string subgroup = isChinese ? change.Subgroup : change.Subgroup switch
+    string fallbackSubgroup = isChinese ? change.Subgroup : change.Subgroup switch
     {
       "铁甲战士" => "Ironclad",
       "静默猎手" => "Silent",
@@ -101,15 +101,19 @@ internal static class BalanceConfigDiagnostics
       "死灵缚者" => "Necrobinder",
       "储君" => "Regent",
       "涅奥" => "Neow",
-      "达尔夫" => "Darf",
+      "达尔夫" => "Darv",
       "探克斯" => "Tanx",
-      "瓦库" => "Vaku",
+      "瓦库" => "Vakuu",
       "奥罗波斯" => "Orobas",
       "提兹卡塔拉" => "Tezcatara",
       "诺努佩佩" => "Nonupeipe",
       "其他" => "Other",
       _ => change.Subgroup
     };
+    string group = BalanceCatalog.Loc(BalanceCatalog.GroupKey(change.Group), fallbackGroup);
+    string subgroup = string.IsNullOrEmpty(change.Subgroup)
+      ? string.Empty
+      : BalanceCatalog.Loc(BalanceCatalog.SubgroupKey(change.Subgroup), fallbackSubgroup);
     return subgroup.Length == 0 ? group : $"{group} / {subgroup}";
   }
 }
