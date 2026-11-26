@@ -1,8 +1,14 @@
+using MegaCrit.Sts2.Core.Localization;
+
 namespace Sts2BalanceMod.Sts2BalanceModCode.Settings;
 
 internal sealed record BalanceChange(string Id, string Group, string Subgroup, string Label, string Description)
 {
   public bool AffectsGameplay => Id != "C02";
+  public string LabelKey => $"STS2BALANCEMOD.settings.change.{Id}.label";
+  public string DescriptionKey => $"STS2BALANCEMOD.settings.change.{Id}.desc";
+  public string LocalizedLabel => BalanceCatalog.Loc(LabelKey, Label);
+  public string LocalizedDescription => BalanceCatalog.Loc(DescriptionKey, Description);
 }
 
 /// <summary>Stable IDs shared by settings, startup patch selection and the handshake.</summary>
@@ -149,4 +155,51 @@ internal static class BalanceCatalog
   public static bool Effective(IReadOnlyDictionary<string, bool> values, string id) =>
     (!values.TryGetValue(id, out bool value) || value) &&
     (id != "R04" || Effective(values, "E06") || Effective(values, "E11"));
+
+  internal static string GroupKey(string group) => group switch
+  {
+    "新增卡牌" => "STS2BALANCEMOD.settings.group.new_cards",
+    "新增普通遗物" => "STS2BALANCEMOD.settings.group.new_relics",
+    "回归事件" => "STS2BALANCEMOD.settings.group.returning_events",
+    "原版卡牌调整" => "STS2BALANCEMOD.settings.group.vanilla_cards",
+    "原版普通遗物调整" => "STS2BALANCEMOD.settings.group.vanilla_relics",
+    "先古之民调整" => "STS2BALANCEMOD.settings.group.ancients",
+    "原版事件调整" => "STS2BALANCEMOD.settings.group.vanilla_events",
+    "怪物调整" => "STS2BALANCEMOD.settings.group.monsters",
+    "通用规则" => "STS2BALANCEMOD.settings.group.general",
+    _ => string.Empty
+  };
+
+  internal static string SubgroupKey(string subgroup) => subgroup switch
+  {
+    "铁甲战士" => "STS2BALANCEMOD.settings.subgroup.ironclad",
+    "静默猎手" => "STS2BALANCEMOD.settings.subgroup.silent",
+    "故障机器人" => "STS2BALANCEMOD.settings.subgroup.defect",
+    "死灵缚者" => "STS2BALANCEMOD.settings.subgroup.necrobinder",
+    "储君" => "STS2BALANCEMOD.settings.subgroup.regent",
+    "其他" => "STS2BALANCEMOD.settings.subgroup.other",
+    "探克斯" => "STS2BALANCEMOD.settings.subgroup.tanx",
+    "达尔夫" => "STS2BALANCEMOD.settings.subgroup.darf",
+    "瓦库" => "STS2BALANCEMOD.settings.subgroup.vaku",
+    "诺努佩佩" => "STS2BALANCEMOD.settings.subgroup.nonupeipe",
+    "奥罗波斯" => "STS2BALANCEMOD.settings.subgroup.orobas",
+    "提兹卡塔拉" => "STS2BALANCEMOD.settings.subgroup.tezcatara",
+    "涅奥" => "STS2BALANCEMOD.settings.subgroup.neow",
+    _ => string.Empty
+  };
+
+  internal static string Loc(string key, string fallback)
+  {
+    if (string.IsNullOrEmpty(key)) return fallback;
+    try
+    {
+      if (LocManager.Instance == null) return fallback;
+      var loc = new LocString("settings_ui", key);
+      return loc.Exists() ? loc.GetFormattedText() : fallback;
+    }
+    catch
+    {
+      return fallback;
+    }
+  }
 }
