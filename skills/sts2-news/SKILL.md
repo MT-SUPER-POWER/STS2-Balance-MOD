@@ -38,25 +38,36 @@ author: ...
 
 `summary.md` 全部用**中文**撰写：名称用 `中文 [English]` 双语格式，改动描述也翻译成中文，按角色/分类二级标题（如 `### <img src="../../../Assets/profile/ironclad.png" width="20" height="20" valign="middle"> 铁甲战士 (Ironclad)`、`### <img src="../../../Assets/profile/ancient.png" width="20" height="20" valign="middle"> 先古之民 (Ancients)` 等）进行拆分归类。先古之民下具体的先古角色使用四级标题并带对应图标（如 `#### <img src="../../../Assets/profile/neow.png" width="18" height="18" valign="middle"> 涅奥 (Neow)`）。各大板块之间使用 `---` 分隔线隔开，保持视觉呼吸感。`original.md` 保持英文原文不动。
 
+**分类子标题与紧凑表格规范（强制约束）**：
+
+- 当某个角色/板块下存在多类平衡改动时，**必须**按 `#### 新增与解锁`、`#### 重做`、`#### 加强`、`#### 削弱`、`#### 调整` 进行四级标题细分；机制与修复板块可细分为 `#### 机制与界面`、`#### 问题修复`。
+- 细分后的卡牌/遗物/能力改动优先采用**紧凑 Markdown 表格**（不填充多余对齐空格）呈现对比，参考项目 [README.md](../../README.md) 的表格风格：
+  - **新增与解锁**：`| 项目 | 类型 | 稀有度 | 费用 | 说明 / 效果（基础 / 升级） |`
+  - **重做 / 加强 / 削弱 / 调整**：`| 卡牌（或项目） | 改动前 | 改动后 |`
+  - 稀有度图标可使用 `../../../Assets/rarity/{common,uncommon,rare,special}.png`，关键数值变化用 `**加粗**` 突出显示。
+- 仅包含少量条目（如 1–3 条）或纯文字 Bug 修复列表的板块，可使用 `- **分类** 名称：说明` 列表形式（分类前缀：`**卡牌**`、`**遗物**`、`**能力**`、`**机制**`、`**界面**`、`**修复**`、`**其他**`）。
+- 无游戏数值改动时，写一行：`本期无游戏数值改动`。
+
 ```markdown
 ## 游戏改动摘要
 
-### <img src="../../../Assets/profile/ancient.png" width="20" height="20" valign="middle"> 先古之民 (Ancients)
-
-#### <img src="../../../Assets/profile/neow.png" width="18" height="18" valign="middle"> 涅奥 (Neow)
-- **卡牌** 富足 [Abundance]：现在总是生成已升级的能力牌
-
----
-
 ### <img src="../../../Assets/profile/ironclad.png" width="20" height="20" valign="middle"> 铁甲战士 (Ironclad)
 
-- **卡牌** 吞噬暗影 [Devour Shadow]：费用 1→2
+#### 削弱
+
+| 卡牌 | 改动前 | 改动后 |
+| --- | --- | --- |
+| **吞噬暗影 [Devour Shadow]** | **1** 费 | **2** 费 |
 
 ---
 
 ### <img src="../../../Assets/profile/silent.png" width="20" height="20" valign="middle"> 静默猎手 (Silent)
 
-- **遗物** 日晷 [Sundial]：触发条件改为「每打出 5 张牌时触发」
+#### 调整
+
+| 遗物 | 改动前 | 改动后 |
+| --- | --- | --- |
+| **日晷 [Sundial]** | 每打出 **3** 张牌时触发 | 每打出 **5** 张牌时触发 |
 
 ---
 
@@ -67,7 +78,7 @@ author: ...
 
 名称格式：`中文 [English]`。从 `D:\Game\Sts2Code\localization` 查翻译，规律：`{ID}.title` 在 `eng/{file}.json` 对应 `zhs/{file}.json` 同一 key。覆盖 `cards.json`、`relics.json`、`powers.json`。找不到中文时保留英文。
 
-分类前缀：`**卡牌**`、`**遗物**`、`**能力**`、`**机制**`、`**其他**`。按角色分组拆分二级标题。  
+分类前缀（用于非表格列表）：`**卡牌**`、`**遗物**`、`**能力**`、`**机制**`、`**界面**`、`**修复**`、`**其他**`。按角色分组拆分二级标题。
 无游戏数值改动时，写一行：`本期无游戏数值改动`。
 
 ## Steam API
