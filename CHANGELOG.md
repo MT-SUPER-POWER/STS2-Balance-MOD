@@ -6,6 +6,12 @@
 
 已完成的所有改动见 [README.md](README.md#调整内容)；未完成的待办项见 [docs/balance-changes.md](docs/balance-changes.md)。
 
+## [Unreleased]
+
+### Changed
+
+- 更新故障机器人「裂变」的卡图（CARD-FISSION-01）。
+
 ## v0.5.5
 
 ### Changed
