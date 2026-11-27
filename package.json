@@ -5,6 +5,7 @@
   "scripts": {
     "prepare": "husky",
     "bump": "bun scripts/bump.ts",
+    "skills": "bun scripts/link-skills.ts",
     "workshop:publish": "node scripts/workshop-publish.mjs",
     "format": "dotnet format Sts2BalanceMod.sln --include Sts2BalanceModCode",
     "format:cs": "dotnet format Sts2BalanceMod.sln --include Sts2BalanceModCode",
@@ -18,6 +19,7 @@
     "lint:md": "markdownlint-cli2"
   },
   "devDependencies": {
+    "@clack/prompts": "^1.9.0",
     "editorconfig-checker": "^7.0.0",
     "husky": "^9.1.7",
     "koffi": "3.3.8",

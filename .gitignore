@@ -50,3 +50,5 @@ mod-uploader.log
 # Steam
 workshop/content/
 workshop/tmp/
+/.skill-tool-targets.json
+/.skill-tool-targets.json.*.tmp
